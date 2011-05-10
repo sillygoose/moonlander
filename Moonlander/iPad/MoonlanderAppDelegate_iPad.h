@@ -9,8 +9,12 @@
 #import <UIKit/UIKit.h>
 #import "MoonlanderAppDelegate.h"
 
+#import "LanderViewController_iPad.h"
+
 @interface MoonlanderAppDelegate_iPad : MoonlanderAppDelegate {
-    
+    LanderViewController_iPad *_landerViewController;
 }
+
+@property (nonatomic, retain) IBOutlet LanderViewController_iPad *landerViewController;
 
 @end

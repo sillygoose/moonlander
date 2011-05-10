@@ -10,6 +10,13 @@
 
 @implementation MoonlanderAppDelegate_iPhone
 
+- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
+{
+    [super application:application didFinishLaunchingWithOptions:launchOptions];
+    [self.window makeKeyAndVisible];
+    return YES;
+}
+
 - (void)dealloc
 {
 	[super dealloc];

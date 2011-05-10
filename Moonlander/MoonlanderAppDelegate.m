@@ -15,7 +15,8 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    // Override point for customization after application launch.
+	// We don't want the screen to sleep during our game 
+    application.idleTimerDisabled = YES;
     [self.window makeKeyAndVisible];
     return YES;
 }
