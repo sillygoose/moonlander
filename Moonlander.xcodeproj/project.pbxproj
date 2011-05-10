@@ -1,0 +1,485 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		560FA0D0137991AD0017EE25 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 560FA0CF137991AD0017EE25 /* UIKit.framework */; };
+		560FA0D2137991AD0017EE25 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 560FA0D1137991AD0017EE25 /* Foundation.framework */; };
+		560FA0D4137991AD0017EE25 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 560FA0D3137991AD0017EE25 /* CoreGraphics.framework */; };
+		560FA0DA137991AE0017EE25 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 560FA0D8137991AE0017EE25 /* InfoPlist.strings */; };
+		560FA0DD137991AE0017EE25 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 560FA0DC137991AE0017EE25 /* main.m */; };
+		560FA0E0137991AE0017EE25 /* MoonlanderAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 560FA0DF137991AE0017EE25 /* MoonlanderAppDelegate.m */; };
+		560FA0E4137991AE0017EE25 /* MoonlanderAppDelegate_iPhone.m in Sources */ = {isa = PBXBuildFile; fileRef = 560FA0E3137991AE0017EE25 /* MoonlanderAppDelegate_iPhone.m */; };
+		560FA0E7137991AE0017EE25 /* MainWindow_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 560FA0E5137991AE0017EE25 /* MainWindow_iPhone.xib */; };
+		560FA0EB137991AE0017EE25 /* MoonlanderAppDelegate_iPad.m in Sources */ = {isa = PBXBuildFile; fileRef = 560FA0EA137991AE0017EE25 /* MoonlanderAppDelegate_iPad.m */; };
+		560FA0EE137991AE0017EE25 /* MainWindow_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 560FA0EC137991AE0017EE25 /* MainWindow_iPad.xib */; };
+		560FA0F5137991AE0017EE25 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 560FA0CF137991AD0017EE25 /* UIKit.framework */; };
+		560FA0F6137991AE0017EE25 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 560FA0D1137991AD0017EE25 /* Foundation.framework */; };
+		560FA0F7137991AE0017EE25 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 560FA0D3137991AD0017EE25 /* CoreGraphics.framework */; };
+		560FA0FF137991AE0017EE25 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 560FA0FD137991AE0017EE25 /* InfoPlist.strings */; };
+		560FA102137991AE0017EE25 /* MoonlanderTests.h in Resources */ = {isa = PBXBuildFile; fileRef = 560FA101137991AE0017EE25 /* MoonlanderTests.h */; };
+		560FA104137991AE0017EE25 /* MoonlanderTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 560FA103137991AE0017EE25 /* MoonlanderTests.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		560FA0F8137991AE0017EE25 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 560FA0C2137991AD0017EE25 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 560FA0CA137991AD0017EE25;
+			remoteInfo = Moonlander;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		560FA0CB137991AD0017EE25 /* Moonlander.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Moonlander.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		560FA0CF137991AD0017EE25 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		560FA0D1137991AD0017EE25 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		560FA0D3137991AD0017EE25 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		560FA0D7137991AE0017EE25 /* Moonlander-Info.plist */ = {isa = PBXFileReference; path = "Moonlander-Info.plist"; sourceTree = "<group>"; };
+		560FA0D9137991AE0017EE25 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		560FA0DB137991AE0017EE25 /* Moonlander-Prefix.pch */ = {isa = PBXFileReference; path = "Moonlander-Prefix.pch"; sourceTree = "<group>"; };
+		560FA0DC137991AE0017EE25 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		560FA0DE137991AE0017EE25 /* MoonlanderAppDelegate.h */ = {isa = PBXFileReference; path = MoonlanderAppDelegate.h; sourceTree = "<group>"; };
+		560FA0DF137991AE0017EE25 /* MoonlanderAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MoonlanderAppDelegate.m; sourceTree = "<group>"; };
+		560FA0E2137991AE0017EE25 /* MoonlanderAppDelegate_iPhone.h */ = {isa = PBXFileReference; name = MoonlanderAppDelegate_iPhone.h; path = iPhone/MoonlanderAppDelegate_iPhone.h; sourceTree = "<group>"; };
+		560FA0E3137991AE0017EE25 /* MoonlanderAppDelegate_iPhone.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = MoonlanderAppDelegate_iPhone.m; path = iPhone/MoonlanderAppDelegate_iPhone.m; sourceTree = "<group>"; };
+		560FA0E6137991AE0017EE25 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = iPhone/en.lproj/MainWindow_iPhone.xib; sourceTree = "<group>"; };
+		560FA0E9137991AE0017EE25 /* MoonlanderAppDelegate_iPad.h */ = {isa = PBXFileReference; name = MoonlanderAppDelegate_iPad.h; path = iPad/MoonlanderAppDelegate_iPad.h; sourceTree = "<group>"; };
+		560FA0EA137991AE0017EE25 /* MoonlanderAppDelegate_iPad.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = MoonlanderAppDelegate_iPad.m; path = iPad/MoonlanderAppDelegate_iPad.m; sourceTree = "<group>"; };
+		560FA0ED137991AE0017EE25 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = iPad/en.lproj/MainWindow_iPad.xib; sourceTree = "<group>"; };
+		560FA0F4137991AE0017EE25 /* MoonlanderTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MoonlanderTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
+		560FA0FC137991AE0017EE25 /* MoonlanderTests-Info.plist */ = {isa = PBXFileReference; path = "MoonlanderTests-Info.plist"; sourceTree = "<group>"; };
+		560FA0FE137991AE0017EE25 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		560FA100137991AE0017EE25 /* MoonlanderTests-Prefix.pch */ = {isa = PBXFileReference; path = "MoonlanderTests-Prefix.pch"; sourceTree = "<group>"; };
+		560FA101137991AE0017EE25 /* MoonlanderTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MoonlanderTests.h; sourceTree = "<group>"; };
+		560FA103137991AE0017EE25 /* MoonlanderTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MoonlanderTests.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		560FA0C8137991AD0017EE25 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				560FA0D0137991AD0017EE25 /* UIKit.framework in Frameworks */,
+				560FA0D2137991AD0017EE25 /* Foundation.framework in Frameworks */,
+				560FA0D4137991AD0017EE25 /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		560FA0F0137991AE0017EE25 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				560FA0F5137991AE0017EE25 /* UIKit.framework in Frameworks */,
+				560FA0F6137991AE0017EE25 /* Foundation.framework in Frameworks */,
+				560FA0F7137991AE0017EE25 /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		560FA0C0137991AD0017EE25 = {
+			isa = PBXGroup;
+			children = (
+				560FA0D5137991AE0017EE25 /* Moonlander */,
+				560FA0FA137991AE0017EE25 /* MoonlanderTests */,
+				560FA0CE137991AD0017EE25 /* Frameworks */,
+				560FA0CC137991AD0017EE25 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		560FA0CC137991AD0017EE25 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				560FA0CB137991AD0017EE25 /* Moonlander.app */,
+				560FA0F4137991AE0017EE25 /* MoonlanderTests.octest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		560FA0CE137991AD0017EE25 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				560FA0CF137991AD0017EE25 /* UIKit.framework */,
+				560FA0D1137991AD0017EE25 /* Foundation.framework */,
+				560FA0D3137991AD0017EE25 /* CoreGraphics.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		560FA0D5137991AE0017EE25 /* Moonlander */ = {
+			isa = PBXGroup;
+			children = (
+				560FA0DE137991AE0017EE25 /* MoonlanderAppDelegate.h */,
+				560FA0DF137991AE0017EE25 /* MoonlanderAppDelegate.m */,
+				560FA0E1137991AE0017EE25 /* iPhone */,
+				560FA0E8137991AE0017EE25 /* iPad */,
+				560FA0D6137991AE0017EE25 /* Supporting Files */,
+			);
+			path = Moonlander;
+			sourceTree = "<group>";
+		};
+		560FA0D6137991AE0017EE25 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				560FA0D7137991AE0017EE25 /* Moonlander-Info.plist */,
+				560FA0D8137991AE0017EE25 /* InfoPlist.strings */,
+				560FA0DB137991AE0017EE25 /* Moonlander-Prefix.pch */,
+				560FA0DC137991AE0017EE25 /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		560FA0E1137991AE0017EE25 /* iPhone */ = {
+			isa = PBXGroup;
+			children = (
+				560FA0E2137991AE0017EE25 /* MoonlanderAppDelegate_iPhone.h */,
+				560FA0E3137991AE0017EE25 /* MoonlanderAppDelegate_iPhone.m */,
+				560FA0E5137991AE0017EE25 /* MainWindow_iPhone.xib */,
+			);
+			name = iPhone;
+			sourceTree = "<group>";
+		};
+		560FA0E8137991AE0017EE25 /* iPad */ = {
+			isa = PBXGroup;
+			children = (
+				560FA0E9137991AE0017EE25 /* MoonlanderAppDelegate_iPad.h */,
+				560FA0EA137991AE0017EE25 /* MoonlanderAppDelegate_iPad.m */,
+				560FA0EC137991AE0017EE25 /* MainWindow_iPad.xib */,
+			);
+			name = iPad;
+			sourceTree = "<group>";
+		};
+		560FA0FA137991AE0017EE25 /* MoonlanderTests */ = {
+			isa = PBXGroup;
+			children = (
+				560FA101137991AE0017EE25 /* MoonlanderTests.h */,
+				560FA103137991AE0017EE25 /* MoonlanderTests.m */,
+				560FA0FB137991AE0017EE25 /* Supporting Files */,
+			);
+			path = MoonlanderTests;
+			sourceTree = "<group>";
+		};
+		560FA0FB137991AE0017EE25 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				560FA0FC137991AE0017EE25 /* MoonlanderTests-Info.plist */,
+				560FA0FD137991AE0017EE25 /* InfoPlist.strings */,
+				560FA100137991AE0017EE25 /* MoonlanderTests-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		560FA0CA137991AD0017EE25 /* Moonlander */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 560FA107137991AE0017EE25 /* Build configuration list for PBXNativeTarget "Moonlander" */;
+			buildPhases = (
+				560FA0C7137991AD0017EE25 /* Sources */,
+				560FA0C8137991AD0017EE25 /* Frameworks */,
+				560FA0C9137991AD0017EE25 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Moonlander;
+			productName = Moonlander;
+			productReference = 560FA0CB137991AD0017EE25 /* Moonlander.app */;
+			productType = "com.apple.product-type.application";
+		};
+		560FA0F3137991AE0017EE25 /* MoonlanderTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 560FA10A137991AE0017EE25 /* Build configuration list for PBXNativeTarget "MoonlanderTests" */;
+			buildPhases = (
+				560FA0EF137991AE0017EE25 /* Sources */,
+				560FA0F0137991AE0017EE25 /* Frameworks */,
+				560FA0F1137991AE0017EE25 /* Resources */,
+				560FA0F2137991AE0017EE25 /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				560FA0F9137991AE0017EE25 /* PBXTargetDependency */,
+			);
+			name = MoonlanderTests;
+			productName = MoonlanderTests;
+			productReference = 560FA0F4137991AE0017EE25 /* MoonlanderTests.octest */;
+			productType = "com.apple.product-type.bundle";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		560FA0C2137991AD0017EE25 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				ORGANIZATIONNAME = "Silly Goose Software";
+			};
+			buildConfigurationList = 560FA0C5137991AD0017EE25 /* Build configuration list for PBXProject "Moonlander" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 560FA0C0137991AD0017EE25;
+			productRefGroup = 560FA0CC137991AD0017EE25 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				560FA0CA137991AD0017EE25 /* Moonlander */,
+				560FA0F3137991AE0017EE25 /* MoonlanderTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		560FA0C9137991AD0017EE25 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				560FA0DA137991AE0017EE25 /* InfoPlist.strings in Resources */,
+				560FA0E7137991AE0017EE25 /* MainWindow_iPhone.xib in Resources */,
+				560FA0EE137991AE0017EE25 /* MainWindow_iPad.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		560FA0F1137991AE0017EE25 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				560FA0FF137991AE0017EE25 /* InfoPlist.strings in Resources */,
+				560FA102137991AE0017EE25 /* MoonlanderTests.h in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		560FA0F2137991AE0017EE25 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		560FA0C7137991AD0017EE25 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				560FA0DD137991AE0017EE25 /* main.m in Sources */,
+				560FA0E0137991AE0017EE25 /* MoonlanderAppDelegate.m in Sources */,
+				560FA0E4137991AE0017EE25 /* MoonlanderAppDelegate_iPhone.m in Sources */,
+				560FA0EB137991AE0017EE25 /* MoonlanderAppDelegate_iPad.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		560FA0EF137991AE0017EE25 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				560FA104137991AE0017EE25 /* MoonlanderTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		560FA0F9137991AE0017EE25 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 560FA0CA137991AD0017EE25 /* Moonlander */;
+			targetProxy = 560FA0F8137991AE0017EE25 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		560FA0D8137991AE0017EE25 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				560FA0D9137991AE0017EE25 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		560FA0E5137991AE0017EE25 /* MainWindow_iPhone.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				560FA0E6137991AE0017EE25 /* en */,
+			);
+			name = MainWindow_iPhone.xib;
+			sourceTree = "<group>";
+		};
+		560FA0EC137991AE0017EE25 /* MainWindow_iPad.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				560FA0ED137991AE0017EE25 /* en */,
+			);
+			name = MainWindow_iPad.xib;
+			sourceTree = "<group>";
+		};
+		560FA0FD137991AE0017EE25 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				560FA0FE137991AE0017EE25 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		560FA105137991AE0017EE25 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = DEBUG;
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvmgcc42;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		560FA106137991AE0017EE25 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_VERSION = com.apple.compilers.llvmgcc42;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		560FA108137991AE0017EE25 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Moonlander/Moonlander-Prefix.pch";
+				INFOPLIST_FILE = "Moonlander/Moonlander-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		560FA109137991AE0017EE25 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Moonlander/Moonlander-Prefix.pch";
+				INFOPLIST_FILE = "Moonlander/Moonlander-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				VALIDATE_PRODUCT = YES;
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		560FA10B137991AE0017EE25 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Moonlander.app/Moonlander";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "MoonlanderTests/MoonlanderTests-Prefix.pch";
+				INFOPLIST_FILE = "MoonlanderTests/MoonlanderTests-Info.plist";
+				OTHER_LDFLAGS = (
+					"-framework",
+					SenTestingKit,
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Debug;
+		};
+		560FA10C137991AE0017EE25 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Moonlander.app/Moonlander";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "MoonlanderTests/MoonlanderTests-Prefix.pch";
+				INFOPLIST_FILE = "MoonlanderTests/MoonlanderTests-Info.plist";
+				OTHER_LDFLAGS = (
+					"-framework",
+					SenTestingKit,
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		560FA0C5137991AD0017EE25 /* Build configuration list for PBXProject "Moonlander" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				560FA105137991AE0017EE25 /* Debug */,
+				560FA106137991AE0017EE25 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		560FA107137991AE0017EE25 /* Build configuration list for PBXNativeTarget "Moonlander" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				560FA108137991AE0017EE25 /* Debug */,
+				560FA109137991AE0017EE25 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		560FA10A137991AE0017EE25 /* Build configuration list for PBXNativeTarget "MoonlanderTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				560FA10B137991AE0017EE25 /* Debug */,
+				560FA10C137991AE0017EE25 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 560FA0C2137991AD0017EE25 /* Project object */;
+}
