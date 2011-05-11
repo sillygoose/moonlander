@@ -27,28 +27,30 @@
     float _percentThrustRequested;
     float _actualThrust;
     float _fuelRemaining;
+    
     float _lemMass;
 
-    id <LanderPhysicsDataSource>  _dataSource ;
+    id <LanderPhysicsDataSource> _dataSource ;
 }
 
-@property (nonatomic) float clockTicks;
+@property (nonatomic) float clockTicks;             // seconds
 
-@property (nonatomic) float horizontalDistance;
-@property (nonatomic) float verticalDistance;
+@property (nonatomic) float horizontalDistance;     // feet
+@property (nonatomic) float verticalDistance;       // feet
 
-@property (nonatomic) float rateOfTurn;
-@property (nonatomic) float turnAngle;
-@property (nonatomic) float lemAcceleration;
-@property (nonatomic) float verticalAcceleration;
-@property (nonatomic) float horizonalAcceleration;
-@property (nonatomic) float verticalVelocity;
-@property (nonatomic) float horizontalVelocity;
+@property (nonatomic) float rateOfTurn;             // radians per second
+@property (nonatomic) float turnAngle;              // radians (0 is vertical)
+@property (nonatomic) float lemAcceleration;        // feet per seconds squared
+@property (nonatomic) float verticalAcceleration;   // feet per seconds squared
+@property (nonatomic) float horizontalAcceleration; // feet per seconds squared
+@property (nonatomic) float verticalVelocity;       // feet per second
+@property (nonatomic) float horizontalVelocity;     // feet per second
 
-@property (nonatomic) float percentThrustRequested;
-@property (nonatomic) float actualThrust;
-@property (nonatomic) float fuelRemaining;
-@property (nonatomic) float lemMass;
+@property (nonatomic) float percentThrustRequested; // percent
+@property (nonatomic) float actualThrust;           // lb
+
+@property (nonatomic) float fuelRemaining;          // lbs
+@property (nonatomic) float lemMass;                // lbs
 
 @property (assign) id <LanderPhysicsDataSource> dataSource;
 

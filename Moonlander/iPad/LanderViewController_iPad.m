@@ -13,6 +13,7 @@
 
 @synthesize landerModel=_landerModel;
 @synthesize landerImageView=_landerImageView;
+@synthesize thrustLevel=_thrustLevel;
 
 const float GameTimerInterval = 2.0f;
 
@@ -29,6 +30,7 @@ const float GameTimerInterval = 2.0f;
 {
     [_landerModel release];
     [_landerImageView release];
+    [_thrustLevel release];
     [super dealloc];
 }
 
@@ -47,6 +49,10 @@ const float GameTimerInterval = 2.0f;
     [super viewDidLoad];
     self.landerModel = [[[LanderPhysicsModel alloc] init] retain];
     self.landerModel.dataSource = self.landerModel;
+    
+    // Setup controls with model defaults
+    self.thrustLevel.value = [self.landerModel.dataSource thrustPercent];
+    
     
     // Do any additional setup after loading the view from its nib
 	[NSTimer scheduledTimerWithTimeInterval:GameTimerInterval target:self selector:@selector(gameLoop) userInfo:nil repeats:YES];
@@ -75,10 +81,10 @@ const float GameTimerInterval = 2.0f;
 {
 }
 
-// ###Put players in starting position
 - (void)gameLoop
 {
-    NSLog(@"%f - Thrust: %f  Angle:%f", [self.landerModel.dataSource updateTime:GameTimerInterval], [self.landerModel.dataSource thrust], [self.landerModel.dataSource rotation]);
+    [self.landerModel.dataSource updateTime:GameTimerInterval];
+    NSLog(@"%3.0f - Thrust: %5.0f  Angle:%2.0f  Weight:%5.0f  Fuel:%4.0f  HorizVel: %5.0f  VertVel: %5.0f  HorizAccel: %5.3f  VertAccel: %5.3f", [self.landerModel.dataSource time], [self.landerModel.dataSource thrust], [self.landerModel.dataSource rotationDegrees], [self.landerModel.dataSource weight], [self.landerModel.dataSource fuel], [self.landerModel.dataSource horizVel], [self.landerModel.dataSource vertVel], [self.landerModel.dataSource horizAccel], [self.landerModel.dataSource vertAccel]);
 }
 
 @end

@@ -11,9 +11,20 @@
 
 @protocol LanderPhysicsDataSource <NSObject>
 
-- (CGPoint)position;
+- (CGPoint)landerPosition;
+- (BOOL)lowFuelWarning;
+
 - (float)rotation;
+- (float)rotationDegrees;
 - (float)thrust;
+- (float)fuel;
+- (float)weight;
+- (float)horizVel;
+- (float)vertVel;
+- (float)horizAccel;
+- (float)vertAccel;
+- (float)thrustPercent;
+- (float)time;
 
 - (void)setThrust:(float)thrust;
 - (void)setRotation:(float)rotation;

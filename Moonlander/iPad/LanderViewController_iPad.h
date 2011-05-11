@@ -14,10 +14,12 @@
 @interface LanderViewController_iPad : UIViewController {
     LanderPhysicsModel *_landerModel;
     UIImageView *_landerImageView;
+    UISlider *_thrustLevel;
 }
 
 @property (nonatomic, retain) LanderPhysicsModel *landerModel;
 @property (nonatomic, retain) IBOutlet UIImageView *landerImageView;
+@property (nonatomic, retain) IBOutlet UISlider *thrustLevel;
 
 - (void)gameReset;
 - (void)updateLander;
