@@ -30,6 +30,9 @@
 		560FA1391379BEAB0017EE25 /* LanderViewController_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 560FA1361379BEAA0017EE25 /* LanderViewController_iPad.xib */; };
 		560FA13A1379BEAB0017EE25 /* LanderViewController_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 560FA1361379BEAA0017EE25 /* LanderViewController_iPad.xib */; };
 		560FA13D1379C3B20017EE25 /* redtank.png in Resources */ = {isa = PBXBuildFile; fileRef = 560FA13C1379C3B20017EE25 /* redtank.png */; };
+		563B158A137A1DD100E77EA8 /* lunar.bas in Resources */ = {isa = PBXBuildFile; fileRef = 563B1589137A1DD100E77EA8 /* lunar.bas */; };
+		563B158D137A1DFC00E77EA8 /* gtlem.mac in Resources */ = {isa = PBXBuildFile; fileRef = 563B158B137A1DFC00E77EA8 /* gtlem.mac */; };
+		563B158E137A1DFC00E77EA8 /* rtlem.mac in Resources */ = {isa = PBXBuildFile; fileRef = 563B158C137A1DFC00E77EA8 /* rtlem.mac */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -72,6 +75,9 @@
 		560FA1361379BEAA0017EE25 /* LanderViewController_iPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = LanderViewController_iPad.xib; path = iPad/en.lproj/LanderViewController_iPad.xib; sourceTree = "<group>"; };
 		560FA13C1379C3B20017EE25 /* redtank.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = redtank.png; sourceTree = "<group>"; };
 		560FA13E1379C95B0017EE25 /* LanderPhysicsDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LanderPhysicsDataSource.h; path = "Lander Model/LanderPhysicsDataSource.h"; sourceTree = "<group>"; };
+		563B1589137A1DD100E77EA8 /* lunar.bas */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = lunar.bas; sourceTree = "<group>"; };
+		563B158B137A1DFC00E77EA8 /* gtlem.mac */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = gtlem.mac; sourceTree = "<group>"; };
+		563B158C137A1DFC00E77EA8 /* rtlem.mac */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = rtlem.mac; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -102,6 +108,7 @@
 			isa = PBXGroup;
 			children = (
 				560FA0D5137991AE0017EE25 /* Moonlander */,
+				563B1586137A1D5600E77EA8 /* Documentation */,
 				560FA0FA137991AE0017EE25 /* MoonlanderTests */,
 				560FA0CE137991AD0017EE25 /* Frameworks */,
 				560FA0CC137991AD0017EE25 /* Products */,
@@ -213,6 +220,17 @@
 			name = Resources;
 			sourceTree = "<group>";
 		};
+		563B1586137A1D5600E77EA8 /* Documentation */ = {
+			isa = PBXGroup;
+			children = (
+				563B158B137A1DFC00E77EA8 /* gtlem.mac */,
+				563B158C137A1DFC00E77EA8 /* rtlem.mac */,
+				563B1589137A1DD100E77EA8 /* lunar.bas */,
+			);
+			name = Documentation;
+			path = Moonlander;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -288,6 +306,9 @@
 				560FA0EE137991AE0017EE25 /* Moonlander_iPad.xib in Resources */,
 				560FA1391379BEAB0017EE25 /* LanderViewController_iPad.xib in Resources */,
 				560FA13D1379C3B20017EE25 /* redtank.png in Resources */,
+				563B158A137A1DD100E77EA8 /* lunar.bas in Resources */,
+				563B158D137A1DFC00E77EA8 /* gtlem.mac in Resources */,
+				563B158E137A1DFC00E77EA8 /* rtlem.mac in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
