@@ -23,6 +23,7 @@
 - (float)vertVel;
 - (float)horizAccel;
 - (float)vertAccel;
+- (float)acceleration;
 - (float)thrustPercent;
 - (float)time;
 
