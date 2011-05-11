@@ -105,16 +105,16 @@ float RadiansToDegrees(float radians)
         self.lemAcceleration = 0.0f;
         self.horizontalAcceleration = 0.0f;
         self.verticalAcceleration = -self.lunarGravity;
-        self.lemMass = self.lemEmptyMass + self.fuelRemaining;
+        self.lemMass = self.lemEmptyMass;
     }
     else {
         self.actualThrust = self.percentThrustRequested * self.maxThrust / 100.0f;
-        float fuelUsed = self.actualThrust * timeElapsed / 350.0 ;
+        float fuelUsed = self.actualThrust * timeElapsed / 250.0f;
         self.fuelRemaining -= ( fuelUsed >= self.fuelRemaining ) ? self.fuelRemaining : fuelUsed;
         self.lemMass = self.fuelRemaining + self.lemEmptyMass;
-        float acceleration = self.actualThrust * self.earthGravity / self.lemMass;
-        self.horizontalAcceleration = acceleration * sinf(self.turnAngle);
-        self.verticalAcceleration = acceleration * cosf(self.turnAngle) - self.lunarGravity;
+        self.lemAcceleration = self.actualThrust * self.earthGravity / self.lemMass * 1.7f;
+        self.horizontalAcceleration = self.lemAcceleration * sinf(self.turnAngle);
+        self.verticalAcceleration = self.lemAcceleration * cosf(self.turnAngle) - self.lunarGravity;
     }
     
     // Update the simulation clock
@@ -160,6 +160,11 @@ float RadiansToDegrees(float radians)
 - (float)fuel
 {
     return self.fuelRemaining;
+}
+
+- (float)acceleration
+{
+    return self.lemAcceleration;
 }
 
 - (float)horizVel

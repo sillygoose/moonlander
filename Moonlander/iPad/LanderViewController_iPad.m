@@ -15,7 +15,7 @@
 @synthesize landerImageView=_landerImageView;
 @synthesize thrustLevel=_thrustLevel;
 
-const float GameTimerInterval = 2.0f;
+const float GameTimerInterval = 1.0f;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -84,7 +84,7 @@ const float GameTimerInterval = 2.0f;
 - (void)gameLoop
 {
     [self.landerModel.dataSource updateTime:GameTimerInterval];
-    NSLog(@"%3.0f - Thrust: %5.0f  Angle:%2.0f  Weight:%5.0f  Fuel:%4.0f  HorizVel: %5.0f  VertVel: %5.0f  HorizAccel: %5.3f  VertAccel: %5.3f", [self.landerModel.dataSource time], [self.landerModel.dataSource thrust], [self.landerModel.dataSource rotationDegrees], [self.landerModel.dataSource weight], [self.landerModel.dataSource fuel], [self.landerModel.dataSource horizVel], [self.landerModel.dataSource vertVel], [self.landerModel.dataSource horizAccel], [self.landerModel.dataSource vertAccel]);
+    NSLog(@"%3.2f - Thrust: %5.0f  Angle:%2.0f  Weight:%5.0f  Fuel:%4.0f  HorizVel: %5.0f  VertVel: %5.0f  Accel: %5.3f  HorizAccel: %5.3f  VertAccel: %5.3f", [self.landerModel.dataSource time], [self.landerModel.dataSource thrust], [self.landerModel.dataSource rotationDegrees], [self.landerModel.dataSource weight], [self.landerModel.dataSource fuel], [self.landerModel.dataSource horizVel], [self.landerModel.dataSource vertVel], [self.landerModel.dataSource acceleration], [self.landerModel.dataSource horizAccel], [self.landerModel.dataSource vertAccel]);
 }
 
 @end
