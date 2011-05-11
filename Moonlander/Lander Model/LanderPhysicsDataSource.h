@@ -12,7 +12,11 @@
 @protocol LanderPhysicsDataSource <NSObject>
 
 - (CGPoint)landerPosition;
+- (float)altitude;
+- (float)range;
+
 - (BOOL)lowFuelWarning;
+- (BOOL)onSurface;
 
 - (float)rotation;
 - (float)rotationDegrees;

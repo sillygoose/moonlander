@@ -14,8 +14,11 @@
 @synthesize landerModel=_landerModel;
 @synthesize landerImageView=_landerImageView;
 @synthesize thrustLevel=_thrustLevel;
+@synthesize simulationTimer=_simulationTimer;
+
 
 const float GameTimerInterval = 1.0f;
+const float GameTimerIntervalQuick = 0.01f;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -31,6 +34,7 @@ const float GameTimerInterval = 1.0f;
     [_landerModel release];
     [_landerImageView release];
     [_thrustLevel release];
+    [_simulationTimer release];
     [super dealloc];
 }
 
@@ -55,7 +59,7 @@ const float GameTimerInterval = 1.0f;
     
     
     // Do any additional setup after loading the view from its nib
-	[NSTimer scheduledTimerWithTimeInterval:GameTimerInterval target:self selector:@selector(gameLoop) userInfo:nil repeats:YES];
+	self.simulationTimer = [NSTimer scheduledTimerWithTimeInterval:GameTimerIntervalQuick target:self selector:@selector(gameLoop) userInfo:nil repeats:YES];
 }
 
 - (void)viewDidUnload
@@ -84,7 +88,11 @@ const float GameTimerInterval = 1.0f;
 - (void)gameLoop
 {
     [self.landerModel.dataSource updateTime:GameTimerInterval];
-    NSLog(@"%3.2f - Thrust: %5.0f  Angle:%2.0f  Weight:%5.0f  Fuel:%4.0f  HorizVel: %5.0f  VertVel: %5.0f  Accel: %5.3f  HorizAccel: %5.3f  VertAccel: %5.3f", [self.landerModel.dataSource time], [self.landerModel.dataSource thrust], [self.landerModel.dataSource rotationDegrees], [self.landerModel.dataSource weight], [self.landerModel.dataSource fuel], [self.landerModel.dataSource horizVel], [self.landerModel.dataSource vertVel], [self.landerModel.dataSource acceleration], [self.landerModel.dataSource horizAccel], [self.landerModel.dataSource vertAccel]);
+    NSLog(@"%3.2f - Thrust: %5.0f  Altitude: %5.0f  Downrange: %5.0f  Angle:%2.0f  Weight:%5.0f  Fuel:%4.0f  HorizVel: %5.0f  VertVel: %5.0f  Accel: %5.3f  HorizAccel: %5.3f  VertAccel: %5.3f", [self.landerModel.dataSource time], [self.landerModel.dataSource thrust], [self.landerModel.dataSource altitude], [self.landerModel.dataSource range], [self.landerModel.dataSource rotationDegrees], [self.landerModel.dataSource weight], [self.landerModel.dataSource fuel], [self.landerModel.dataSource horizVel], [self.landerModel.dataSource vertVel], [self.landerModel.dataSource acceleration], [self.landerModel.dataSource horizAccel], [self.landerModel.dataSource vertAccel]);
+    
+    if ([self.landerModel.dataSource altitude] == 0.0f) {
+        [self.simulationTimer invalidate];
+    }
 }
 
 @end

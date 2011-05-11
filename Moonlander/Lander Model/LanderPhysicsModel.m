@@ -5,6 +5,12 @@
 //  Created by Silly Goose on 5/10/11.
 //  Copyright 2011 Silly Goose Software. All rights reserved.
 //
+//  Classic game data
+//  Time     Fuel     HorizVel   VertVel
+//   52      1420
+//   52      1424
+//   52      1425
+//
 
 #import "LanderPhysicsModel.h"
 
@@ -112,10 +118,16 @@ float RadiansToDegrees(float radians)
         float fuelUsed = self.actualThrust * timeElapsed / 250.0f;
         self.fuelRemaining -= ( fuelUsed >= self.fuelRemaining ) ? self.fuelRemaining : fuelUsed;
         self.lemMass = self.fuelRemaining + self.lemEmptyMass;
-        self.lemAcceleration = self.actualThrust * self.earthGravity / self.lemMass * 1.7f;
+        self.lemAcceleration = self.actualThrust * self.earthGravity / self.lemMass * 1.6f;
         self.horizontalAcceleration = self.lemAcceleration * sinf(self.turnAngle);
         self.verticalAcceleration = self.lemAcceleration * cosf(self.turnAngle) - self.lunarGravity;
     }
+    
+    // Horizontal/vertical velocity/position updates
+    self.horizontalVelocity += self.horizontalAcceleration * timeElapsed;
+    self.verticalVelocity += self.verticalAcceleration * timeElapsed;
+    self.horizontalDistance += self.horizontalVelocity * timeElapsed;
+    self.verticalDistance += self.verticalVelocity * timeElapsed;
     
     // Update the simulation clock
     self.clockTicks += timeElapsed;
@@ -132,9 +144,24 @@ float RadiansToDegrees(float radians)
     return CGPointMake(self.horizontalDistance, self.verticalDistance);
 }
 
+- (float)altitude
+{
+    return (self.verticalDistance <= 0.0f) ? 0.0f : self.verticalDistance;
+}
+
+- (float)range
+{
+    return self.horizontalDistance;
+}
+
 - (BOOL)lowFuelWarning
 {
     return ((self.fuelRemaining > 0.0f) && (self.fuelRemaining <= self.lowFuelLimit)) ? YES : NO;
+}
+
+- (BOOL)onSurface
+{
+    return (self.verticalDistance <= 0);
 }
 
 - (float)rotation
@@ -213,8 +240,8 @@ float RadiansToDegrees(float radians)
 {
     self.rateOfTurn = 0.0f;
     self.turnAngle = DegreesToRadians(-70.0f);
-    self.horizontalVelocity = 10000.0f;
-    self.verticalVelocity = -5000.0f;
+    self.horizontalVelocity = 1000.0f;
+    self.verticalVelocity = -500.0f;
     self.horizontalDistance = -22000.0;
     self.verticalDistance = 23000.0f;
     self.percentThrustRequested = 75.0f;

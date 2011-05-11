@@ -15,11 +15,13 @@
     LanderPhysicsModel *_landerModel;
     UIImageView *_landerImageView;
     UISlider *_thrustLevel;
+    NSTimer *_simulationTimer;
 }
 
 @property (nonatomic, retain) LanderPhysicsModel *landerModel;
 @property (nonatomic, retain) IBOutlet UIImageView *landerImageView;
 @property (nonatomic, retain) IBOutlet UISlider *thrustLevel;
+@property (nonatomic, retain) NSTimer *simulationTimer;
 
 - (void)gameReset;
 - (void)updateLander;
