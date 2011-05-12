@@ -12,15 +12,21 @@
 @protocol LanderPhysicsDataSource <NSObject>
 
 - (CGPoint)landerPosition;
+
 - (float)altitude;
 - (float)range;
 
 - (BOOL)lowFuelWarning;
-- (BOOL)onSurface;
 
 - (float)angle;
 - (float)angleDegrees;
+- (void)setAngle:(float)angleRadians;
+- (void)setAngleDegrees:(float)angleDegrees;
+
 - (float)thrust;
+- (void)setThrust:(float)thrust;
+- (float)thrustPercent;
+
 - (float)fuel;
 - (float)weight;
 - (float)horizVel;
@@ -28,15 +34,6 @@
 - (float)horizAccel;
 - (float)vertAccel;
 - (float)acceleration;
-- (float)thrustPercent;
 - (float)time;
-
-- (void)setThrust:(float)thrust;
-- (void)setAngle:(float)angleRadians;
-- (void)setAngleDegrees:(float)angleDegrees;
-
-- (float)updateTime:(float)timeInterval;
-
-- (void)newGame;
 
 @end

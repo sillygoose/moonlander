@@ -13,6 +13,7 @@
 
 @interface LanderViewController_iPad : UIViewController {
     LanderPhysicsModel *_landerModel;
+    
     UIImageView *_landerImageView;
     
     NSTimer *_simulationTimer;

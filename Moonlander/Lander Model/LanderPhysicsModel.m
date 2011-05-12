@@ -13,22 +13,14 @@
 //
 
 #import "LanderPhysicsModel.h"
-
-
-@interface LanderPhysicsModel()
-// Moonlander constants
-@property (nonatomic, readonly) float maxThrust;        // lb
-@property (nonatomic, readonly) float minThrust;        // lb
-
-@property (nonatomic, readonly) float lunarGravity;     // feet per seconds squared
-@property (nonatomic, readonly) float earthGravity;     // feet per seconds squared
-@property (nonatomic, readonly) float lemEmptyMass;     // lbs
-@property (nonatomic, readonly) float lemInitalFuel;    // lbs
-@property (nonatomic, readonly) float lowFuelLimit;     // lbs
-@end
+#import "LanderPhysicsDelegate.h"
+#import "LanderPhysicsConstants.h"
 
 
 @implementation LanderPhysicsModel
+
+@synthesize dataSource=_dataSource;
+@synthesize delegate=_delegate;
 
 @synthesize clockTicks=_clockTicks;
 
@@ -48,7 +40,6 @@
 @synthesize fuelRemaining=_fuelRemaining;
 @synthesize lemMass=_lemMass;
 
-@synthesize dataSource=_dataSource;
 
 - (float)turnAngle
 {
@@ -69,41 +60,6 @@ float RadiansToDegrees(float radians)
 }
 
 #pragma mark Model Constants
-- (float)maxThrust
-{
-    return 10500.0f;
-}
-
-- (float)minThrust
-{
-    return 0.1f * self.maxThrust;
-}
-
-- (float)lunarGravity
-{
-    return 5.32f;
-}
-
-- (float)earthGravity
-{
-    return 32.174f;
-}
-
-- (float)lemEmptyMass
-{
-    return 14300.0f;
-}
-
-- (float)lemInitalFuel
-{
-    return 3000.0f;
-}
-
-- (float)lowFuelLimit
-{
-    return 200.0f;
-}
-
 - (void)stepLanderModel:(float)timeElapsed
 {
     // Calculate fuel and accelerations (ROCKET subroutine)
@@ -272,11 +228,11 @@ float RadiansToDegrees(float radians)
     [super dealloc] ;
 }
 
-
 - (void)newGame
 {
     [self initializeLanderModel];
 }
-     
+
+   
 
 @end

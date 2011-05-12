@@ -1,5 +1,5 @@
 //
-//  Lander Model.h
+//  LanderPhysicsModel.h
 //  Moonlander
 //
 //  Created by Silly Goose on 5/10/11.
@@ -7,9 +7,11 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "LanderPhysicsDataSource.h"
 
-@interface LanderPhysicsModel : NSObject <LanderPhysicsDataSource> {
+#import "LanderPhysicsDataSource.h"
+#import "LanderPhysicsDelegate.h"
+
+@interface LanderPhysicsModel : NSObject <LanderPhysicsDelegate,  LanderPhysicsDataSource> {
 @private
     float _clockTicks;
     
@@ -31,6 +33,7 @@
     float _lemMass;
 
     id <LanderPhysicsDataSource> _dataSource ;
+    id <LanderPhysicsDelegate> _delegate;
 }
 
 @property (nonatomic) float clockTicks;             // seconds
@@ -53,5 +56,6 @@
 @property (nonatomic) float lemMass;                // lbs
 
 @property (assign) id <LanderPhysicsDataSource> dataSource;
+@property (assign) id <LanderPhysicsDelegate> delegate;
 
 @end
