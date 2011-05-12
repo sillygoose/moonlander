@@ -52,7 +52,9 @@
 
 - (float)turnAngle
 {
-    if ( fabs(_turnAngle) >= M_PI ) _turnAngle = fmodf(_turnAngle, 2.0f * M_PI);
+    if ( fabs(_turnAngle) >= M_PI ) {
+        _turnAngle = fmodf(_turnAngle, 2.0f * M_PI);
+    }
     return _turnAngle;
 }
 
@@ -133,12 +135,12 @@ float RadiansToDegrees(float radians)
     self.clockTicks += timeElapsed;
 }
 
+#pragma mark Data source
 - (float)thrustPercent
 {
     return self.actualThrust / self.maxThrust * 100.0f;
 }
 
-#pragma mark Data source
 - (CGPoint)landerPosition
 {
     return CGPointMake(self.horizontalDistance, self.verticalDistance);
@@ -164,12 +166,12 @@ float RadiansToDegrees(float radians)
     return (self.verticalDistance <= 0);
 }
 
-- (float)rotation
+- (float)angle
 {
     return self.turnAngle;
 }
 
-- (float)rotationDegrees
+- (float)angleDegrees
 {
     return RadiansToDegrees(self.turnAngle);
 }
@@ -219,14 +221,22 @@ float RadiansToDegrees(float radians)
     return self.clockTicks;
 }
 
-- (void)setThrust:(float)thrust
+- (void)setThrust:(float)thrustPercent
 {
-    self.percentThrustRequested = thrust;
+    if (thrustPercent < 10.0f) {
+        thrustPercent = 10.0f;
+    }
+    self.percentThrustRequested = thrustPercent;
 }
 
-- (void)setRotation:(float)rotation
+- (void)setAngle:(float)angleRadians
 {
-    self.turnAngle = rotation;
+    self.turnAngle = angleRadians;
+}
+
+- (void)setAngleDegrees:(float)angleDegrees
+{
+    self.turnAngle = DegreesToRadians(angleDegrees);
 }
 
 - (float)updateTime:(float)timeElasped
@@ -261,5 +271,12 @@ float RadiansToDegrees(float radians)
 - (void)dealloc {
     [super dealloc] ;
 }
+
+
+- (void)newGame
+{
+    [self initializeLanderModel];
+}
+     
 
 @end

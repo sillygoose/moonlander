@@ -18,8 +18,8 @@
 - (BOOL)lowFuelWarning;
 - (BOOL)onSurface;
 
-- (float)rotation;
-- (float)rotationDegrees;
+- (float)angle;
+- (float)angleDegrees;
 - (float)thrust;
 - (float)fuel;
 - (float)weight;
@@ -32,8 +32,11 @@
 - (float)time;
 
 - (void)setThrust:(float)thrust;
-- (void)setRotation:(float)rotation;
+- (void)setAngle:(float)angleRadians;
+- (void)setAngleDegrees:(float)angleDegrees;
 
 - (float)updateTime:(float)timeInterval;
+
+- (void)newGame;
 
 @end

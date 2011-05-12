@@ -13,12 +13,29 @@
 
 @synthesize landerModel=_landerModel;
 @synthesize landerImageView=_landerImageView;
-@synthesize thrustLevel=_thrustLevel;
+
+@synthesize thrustSlider=_thrustSlider;
+@synthesize rotateLeftButton=_rotateLeftButton;
+@synthesize rotateRightButton=_rotateRightButton;
+@synthesize newGameButton=_newGameButton;
+
 @synthesize simulationTimer=_simulationTimer;
+@synthesize displayTimer=_displayTimer;
+
+@synthesize timeLabel=_timeLabel;
+@synthesize angleLabel=_angleLabel;
+@synthesize thrustLabel=_thrustLabel;
+@synthesize altitudeLabel=_altitudeLabel;
+@synthesize downrangeLabel=_downrangeLabel;
+@synthesize vertVelLabel=_vectVelLabel;
+@synthesize horizVelLabel=_horizVelLabel;
+@synthesize vertAccelLabel=_vertAccelLabel;
+@synthesize horizAccelLabel=_horizAccelLabel;
+@synthesize fuelRemainingLabel=_fuelRemainingLabel;
 
 
 const float GameTimerInterval = 1.0f;
-const float GameTimerIntervalQuick = 0.01f;
+const float GameTimerIntervalQuick = 1.0f;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -33,8 +50,27 @@ const float GameTimerIntervalQuick = 0.01f;
 {
     [_landerModel release];
     [_landerImageView release];
-    [_thrustLevel release];
+    
+    [_thrustSlider release];
+    [_rotateLeftButton release];
+    [_rotateRightButton release];
+    [_newGameButton release];
+    
     [_simulationTimer release];
+    [_displayTimer release];
+    
+    // release labels
+    [_timeLabel release];
+    [_angleLabel release];
+    [_thrustLabel release];
+    [_altitudeLabel release];
+    [_downrangeLabel release];
+    [_vertVelLabel release];
+    [_horizVelLabel release];
+    [_vertAccelLabel release];
+    [_horizAccelLabel release];
+    [_fuelRemainingLabel release];
+    
     [super dealloc];
 }
 
@@ -48,18 +84,24 @@ const float GameTimerIntervalQuick = 0.01f;
 
 #pragma mark - View lifecycle
 
+- (void)initGame
+{
+    [self.landerModel.dataSource newGame];
+    
+    // Setup controls with model defaults
+    self.thrustSlider.value = [self.landerModel.dataSource thrustPercent];
+    
+    // setup game timers
+	self.simulationTimer = [NSTimer scheduledTimerWithTimeInterval:GameTimerIntervalQuick target:self selector:@selector(gameLoop) userInfo:nil repeats:YES];
+	self.displayTimer = [NSTimer scheduledTimerWithTimeInterval:1.0f target:self selector:@selector(updateLander) userInfo:nil repeats:YES];
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     self.landerModel = [[[LanderPhysicsModel alloc] init] retain];
     self.landerModel.dataSource = self.landerModel;
-    
-    // Setup controls with model defaults
-    self.thrustLevel.value = [self.landerModel.dataSource thrustPercent];
-    
-    
-    // Do any additional setup after loading the view from its nib
-	self.simulationTimer = [NSTimer scheduledTimerWithTimeInterval:GameTimerIntervalQuick target:self selector:@selector(gameLoop) userInfo:nil repeats:YES];
+    [self initGame];
 }
 
 - (void)viewDidUnload
@@ -75,23 +117,62 @@ const float GameTimerIntervalQuick = 0.01f;
 	return YES;
 }
 
-// ###Put players in starting position
+- (IBAction)thrustChanged:(UISlider *)sender
+{
+    [self.landerModel.dataSource setThrust:sender.value];
+    sender.value = [self.landerModel.dataSource thrustPercent];
+}
+
+- (IBAction)rotateLeft
+{
+    float newAngle = [self.landerModel.dataSource angleDegrees];
+    newAngle -= 5.0f;
+    [self.landerModel.dataSource setAngleDegrees:newAngle];
+}
+
+- (IBAction)rotateRight
+{
+    float newAngle = [self.landerModel.dataSource angleDegrees];
+    newAngle += 5.0f;
+    [self.landerModel.dataSource setAngleDegrees:newAngle];
+}
+
+- (IBAction)newGame
+{
+    [self.simulationTimer invalidate];
+    [self.displayTimer invalidate];
+    [self initGame];
+}
+
 - (void)gameReset
 {
 }
 
+
 // ###rotate and move the tanks towards their destinations if need be
 - (void)updateLander
 {
+    self.timeLabel.text = [NSString stringWithFormat:@"Time: %3.0f", [self.landerModel.dataSource time]];
+    self.angleLabel.text = [NSString stringWithFormat:@"Angle: %3.0f", [self.landerModel.dataSource angleDegrees]];
+    self.thrustLabel.text = [NSString stringWithFormat:@"Thrust: %3.0f", [self.landerModel.dataSource thrustPercent]];
+    self.altitudeLabel.text = [NSString stringWithFormat:@"Altitude: %5.0f", [self.landerModel.dataSource altitude]];
+    self.downrangeLabel.text = [NSString stringWithFormat:@"Downrange: %5.0f", [self.landerModel.dataSource range]];
+    self.vertVelLabel.text = [NSString stringWithFormat:@"VertVel: %4.0f", [self.landerModel.dataSource vertVel]];
+    self.horizVelLabel.text = [NSString stringWithFormat:@"HorizVel: %4.0f", [self.landerModel.dataSource horizVel]];
+    self.vertAccelLabel.text = [NSString stringWithFormat:@"VertAccel: %2.0f", [self.landerModel.dataSource vertAccel]];
+    self.horizAccelLabel.text = [NSString stringWithFormat:@"HorizAccel: %2.0f", [self.landerModel.dataSource horizAccel]];
+    self.fuelRemainingLabel.text = [NSString stringWithFormat:@"Fuel: %4.0f", [self.landerModel.dataSource fuel]];
 }
 
 - (void)gameLoop
 {
     [self.landerModel.dataSource updateTime:GameTimerInterval];
-    NSLog(@"%3.2f - Thrust: %5.0f  Altitude: %5.0f  Downrange: %5.0f  Angle:%2.0f  Weight:%5.0f  Fuel:%4.0f  HorizVel: %5.0f  VertVel: %5.0f  Accel: %5.3f  HorizAccel: %5.3f  VertAccel: %5.3f", [self.landerModel.dataSource time], [self.landerModel.dataSource thrust], [self.landerModel.dataSource altitude], [self.landerModel.dataSource range], [self.landerModel.dataSource rotationDegrees], [self.landerModel.dataSource weight], [self.landerModel.dataSource fuel], [self.landerModel.dataSource horizVel], [self.landerModel.dataSource vertVel], [self.landerModel.dataSource acceleration], [self.landerModel.dataSource horizAccel], [self.landerModel.dataSource vertAccel]);
+    //NSLog(@"%3.2f - Thrust: %5.0f  Altitude: %5.0f  Downrange: %5.0f  Angle:%2.0f  Weight:%5.0f  Fuel:%4.0f  HorizVel: %5.0f  VertVel: %5.0f  Accel: %5.3f  HorizAccel: %5.3f  VertAccel: %5.3f", [self.landerModel.dataSource time], [self.landerModel.dataSource thrust], [self.landerModel.dataSource altitude], [self.landerModel.dataSource range], [self.landerModel.dataSource rotationDegrees], [self.landerModel.dataSource weight], [self.landerModel.dataSource fuel], [self.landerModel.dataSource horizVel], [self.landerModel.dataSource vertVel], [self.landerModel.dataSource acceleration], [self.landerModel.dataSource horizAccel], [self.landerModel.dataSource vertAccel]);
     
     if ([self.landerModel.dataSource altitude] == 0.0f) {
         [self.simulationTimer invalidate];
+        [self.displayTimer invalidate];
+        [self updateLander];
     }
 }
 
