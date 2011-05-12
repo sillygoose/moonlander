@@ -10,7 +10,9 @@
 
 #import "LanderPhysicsModel.h"
 
+
 @interface LanderPhysicsModel (LanderPhysicsConstants)
+
 @property (nonatomic, readonly) float maxThrust;        // lb
 @property (nonatomic, readonly) float minThrust;        // lb
 
@@ -19,4 +21,5 @@
 @property (nonatomic, readonly) float lemEmptyMass;     // lbs
 @property (nonatomic, readonly) float lemInitalFuel;    // lbs
 @property (nonatomic, readonly) float lowFuelLimit;     // lbs
+
 @end
