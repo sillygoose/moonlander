@@ -117,10 +117,10 @@ float RadiansToDegrees(float radians)
     }
     else {
         self.actualThrust = self.percentThrustRequested * self.maxThrust / 100.0f;
-        float fuelUsed = self.actualThrust * timeElapsed / 250.0f;
+        float fuelUsed = self.actualThrust * timeElapsed / 260.0f;
         self.fuelRemaining -= ( fuelUsed >= self.fuelRemaining ) ? self.fuelRemaining : fuelUsed;
         self.lemMass = self.fuelRemaining + self.lemEmptyMass;
-        self.lemAcceleration = self.actualThrust * self.earthGravity / self.lemMass * 1.6f;
+        self.lemAcceleration = self.actualThrust * self.earthGravity / self.lemMass * 1.50f;
         self.horizontalAcceleration = self.lemAcceleration * sinf(self.turnAngle);
         self.verticalAcceleration = self.lemAcceleration * cosf(self.turnAngle) - self.lunarGravity;
     }

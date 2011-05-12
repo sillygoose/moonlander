@@ -34,8 +34,8 @@
 @synthesize fuelRemainingLabel=_fuelRemainingLabel;
 
 
-const float GameTimerInterval = 1.0f;
-const float GameTimerIntervalQuick = 1.0f;
+const float GameTimerInterval = 1.0 / 12.0f;
+const float DisplayUpdateInterval = 1.0f;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -92,8 +92,8 @@ const float GameTimerIntervalQuick = 1.0f;
     self.thrustSlider.value = [self.landerModel.dataSource thrustPercent];
     
     // setup game timers
-	self.simulationTimer = [NSTimer scheduledTimerWithTimeInterval:GameTimerIntervalQuick target:self selector:@selector(gameLoop) userInfo:nil repeats:YES];
-	self.displayTimer = [NSTimer scheduledTimerWithTimeInterval:1.0f target:self selector:@selector(updateLander) userInfo:nil repeats:YES];
+	self.simulationTimer = [NSTimer scheduledTimerWithTimeInterval:GameTimerInterval target:self selector:@selector(gameLoop) userInfo:nil repeats:YES];
+	self.displayTimer = [NSTimer scheduledTimerWithTimeInterval:DisplayUpdateInterval target:self selector:@selector(updateLander) userInfo:nil repeats:YES];
 }
 
 - (void)viewDidLoad
@@ -120,7 +120,7 @@ const float GameTimerIntervalQuick = 1.0f;
 - (IBAction)thrustChanged:(UISlider *)sender
 {
     [self.landerModel.dataSource setThrust:sender.value];
-    sender.value = [self.landerModel.dataSource thrustPercent];
+    [sender setValue:[self.landerModel.dataSource thrustPercent] animated:YES];
 }
 
 - (IBAction)rotateLeft
@@ -162,6 +162,7 @@ const float GameTimerIntervalQuick = 1.0f;
     self.vertAccelLabel.text = [NSString stringWithFormat:@"VertAccel: %2.0f", [self.landerModel.dataSource vertAccel]];
     self.horizAccelLabel.text = [NSString stringWithFormat:@"HorizAccel: %2.0f", [self.landerModel.dataSource horizAccel]];
     self.fuelRemainingLabel.text = [NSString stringWithFormat:@"Fuel: %4.0f", [self.landerModel.dataSource fuel]];
+    [self.thrustSlider setValue:[self.landerModel.dataSource thrustPercent] animated:YES];
 }
 
 - (void)gameLoop
