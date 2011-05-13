@@ -37,6 +37,7 @@
 		563B158D137A1DFC00E77EA8 /* gtlem.mac in Resources */ = {isa = PBXBuildFile; fileRef = 563B158B137A1DFC00E77EA8 /* gtlem.mac */; };
 		563B158E137A1DFC00E77EA8 /* rtlem.mac in Resources */ = {isa = PBXBuildFile; fileRef = 563B158C137A1DFC00E77EA8 /* rtlem.mac */; };
 		56A480C3137C6C5500742877 /* LanderPhysicsConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 56A480C2137C6C5500742877 /* LanderPhysicsConstants.m */; };
+		56E8F0B3137D35990069C24D /* LanderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 56E8F0B2137D35990069C24D /* LanderView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -88,6 +89,8 @@
 		56A480B3137C5E3D00742877 /* LanderPhysicsDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LanderPhysicsDelegate.h; path = "Lander Model/LanderPhysicsDelegate.h"; sourceTree = "<group>"; };
 		56A480C1137C6C5500742877 /* LanderPhysicsConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LanderPhysicsConstants.h; path = "Lander Model/LanderPhysicsConstants.h"; sourceTree = "<group>"; };
 		56A480C2137C6C5500742877 /* LanderPhysicsConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LanderPhysicsConstants.m; path = "Lander Model/LanderPhysicsConstants.m"; sourceTree = "<group>"; };
+		56E8F0B1137D35990069C24D /* LanderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LanderView.h; sourceTree = "<group>"; };
+		56E8F0B2137D35990069C24D /* LanderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LanderView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -149,6 +152,8 @@
 			children = (
 				560FA0DE137991AE0017EE25 /* MoonlanderAppDelegate.h */,
 				560FA0DF137991AE0017EE25 /* MoonlanderAppDelegate.m */,
+				56E8F0B1137D35990069C24D /* LanderView.h */,
+				56E8F0B2137D35990069C24D /* LanderView.m */,
 				560FA0E1137991AE0017EE25 /* iPhone */,
 				560FA0E8137991AE0017EE25 /* iPad */,
 				560FA10D1379923D0017EE25 /* Lander Model */,
@@ -371,6 +376,7 @@
 				560FA110137992E40017EE25 /* LanderPhysicsModel.m in Sources */,
 				560FA1371379BEAB0017EE25 /* LanderViewController_iPad.m in Sources */,
 				56A480C3137C6C5500742877 /* LanderPhysicsConstants.m in Sources */,
+				56E8F0B3137D35990069C24D /* LanderView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
