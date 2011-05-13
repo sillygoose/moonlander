@@ -14,7 +14,11 @@
 @interface LanderViewController_iPad : UIViewController {
     LanderPhysicsModel *_landerModel;
     
-    UIImageView *_landerImageView;
+    UIView *_landerView;
+    //UIView *_littleLeftArrowView;
+    //UIView *_littleRightArrowView;
+    //UIView *_bigLeftArrowView;
+    //UIView *_bigRightArrowView;
     
     NSTimer *_simulationTimer;
     NSTimer *_displayTimer;
@@ -41,7 +45,7 @@
 @property (nonatomic, retain) NSTimer *simulationTimer;
 @property (nonatomic, retain) NSTimer *displayTimer;
 
-@property (nonatomic, retain) IBOutlet UIImageView *landerImageView;
+@property (nonatomic, retain) IBOutlet UIView *landerView;
 
 @property (nonatomic, retain) IBOutlet UISlider *thrustSlider;
 @property (nonatomic, retain) IBOutlet UIButton *rotateLeftButton;

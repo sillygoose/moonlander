@@ -12,7 +12,7 @@
 @implementation LanderViewController_iPad
 
 @synthesize landerModel=_landerModel;
-@synthesize landerImageView=_landerImageView;
+@synthesize landerView=_landerView;
 
 @synthesize thrustSlider=_thrustSlider;
 @synthesize rotateLeftButton=_rotateLeftButton;
@@ -49,7 +49,7 @@ const float DisplayUpdateInterval = 1.0f;
 - (void)dealloc
 {
     [_landerModel release];
-    [_landerImageView release];
+    [_landerView release];
     
     [_thrustSlider release];
     [_rotateLeftButton release];
@@ -90,10 +90,11 @@ const float DisplayUpdateInterval = 1.0f;
     
     // Setup controls with model defaults
     self.thrustSlider.value = [self.landerModel.dataSource thrustPercent];
-    
-    CGAffineTransform t = [self.landerImageView transform];
+        
+    // Place the lander in position
+    CGAffineTransform t = [self.landerView transform];
 	t = CGAffineTransformRotate(t, [self.landerModel.dataSource angle]);
-	[self.landerImageView setTransform:t];
+	[self.landerView setTransform:t];
 
     // setup game timers
 	self.simulationTimer = [NSTimer scheduledTimerWithTimeInterval:GameTimerInterval target:self selector:@selector(gameLoop) userInfo:nil repeats:YES];
@@ -134,9 +135,9 @@ const float DisplayUpdateInterval = 1.0f;
     newAngle -= 5.0f;
     [self.landerModel.dataSource setAngleDegrees:newAngle];
     
-	CGAffineTransform t = [self.landerImageView transform];
+	CGAffineTransform t = [self.landerView transform];
 	t = CGAffineTransformRotate(t, -5.0f * M_PI / 180);
-	[self.landerImageView setTransform:t];
+	[self.landerView setTransform:t];
 }
 
 - (IBAction)rotateRight
@@ -144,10 +145,10 @@ const float DisplayUpdateInterval = 1.0f;
     float newAngle = [self.landerModel.dataSource angleDegrees];
     newAngle += 5.0f;
     [self.landerModel.dataSource setAngleDegrees:newAngle];
-	CGAffineTransform t = [self.landerImageView transform];
     
+	CGAffineTransform t = [self.landerView transform];
 	t = CGAffineTransformRotate(t,  5.0f * M_PI / 180);
-	[self.landerImageView setTransform:t];
+	[self.landerView setTransform:t];
 }
 
 - (IBAction)newGame
