@@ -8,18 +8,43 @@
 
 #import "VGView.h"
 
+#if 0
+DESIGN:	.WORD	DRAWIN,170200		;LOAD STATUS.
+.WORD	DRAWIN,107124		;AND SHORT VECTORS, INTENSITY 4.
+.WORD	DRAWIS			;DRAW BODY OF SHIP NOW.
+.BYTE	-6.,0.
+.WORD	DRAWVS
+.BYTE	-14.,8.
+.WORD	DRAWVS
+.BYTE	-14.,20.
+.WORD	DRAWVS
+.BYTE	-6.,29.
+.WORD	DRAWVS
+#endif
 
 @implementation VGView
 
 @synthesize drawPaths=_drawPaths;
 
 
-- (id)initWithFrame:(CGRect)frame using:(NSArray *)paths
+- (id)initWithFile:(NSString *)fileName
 {
-    self = [super initWithFrame:frame];
-    if (self) {
-        self.drawPaths = paths;
+    // Open the vector XML file and create the view
+    NSDictionary *viewObject = [NSDictionary dictionaryWithContentsOfFile:fileName];
+    if (viewObject) {
+        NSArray *paths = [viewObject objectForKey:@"paths"];
+        NSDictionary *frame = [viewObject objectForKey:@"frame"];
+        NSDictionary *size = [frame objectForKey:@"size"];
+        NSDictionary *origin = [frame objectForKey:@"origin"];
+        CGRect frameRect = CGRectMake([[origin objectForKey:@"x"] floatValue], [[origin objectForKey:@"y"] floatValue], [[size objectForKey:@"width"] floatValue], [[size objectForKey:@"height"] floatValue]);
+    
+   
+        self = [super initWithFrame:frameRect];
+        if (self) {
+            self.drawPaths = paths;
+        }
     }
+    else self = nil;
     return self;
 }
 
@@ -35,34 +60,30 @@
     NSArray *currentPath;
     while ((currentPath = [pathEnumerator nextObject])) {
         NSEnumerator *vectorEnumerator = [currentPath objectEnumerator];
-        NSDictionary *currentVector = [vectorEnumerator nextObject];
-        for (unsigned i = 0; currentVector; i++, currentVector = [vectorEnumerator nextObject]) {
-            // Choices are "color", "line", "x", "y"
+        NSDictionary *currentVector;
+        while ((currentVector = [vectorEnumerator nextObject])) {
+            // Choices are "moveto", "color", "line", "x", "y"
+            if ([currentVector objectForKey:@"moveto"]) {
+                NSDictionary *moveTo = [currentVector objectForKey:@"moveto"];
+                CGFloat x = [[moveTo objectForKey:@"x"] floatValue];
+                CGFloat y = [[moveTo objectForKey:@"y"] floatValue];
+                CGContextMoveToPoint(context, midPoint.x + x, midPoint.y + y);
+            }
             if ([currentVector objectForKey:@"color"]) {
                 NSDictionary *colorStuff = [currentVector objectForKey:@"color"];
                 CGFloat r = [[colorStuff objectForKey:@"r"] floatValue];
                 CGFloat g = [[colorStuff objectForKey:@"g"] floatValue];
                 CGFloat b = [[colorStuff objectForKey:@"b"] floatValue];
                 CGFloat alpha = [[colorStuff objectForKey:@"alpha"] floatValue];
-                
-                // Set color stuff
                 CGContextSetRGBStrokeColor(context, r, g, b, alpha);
             }
             if ([currentVector objectForKey:@"line"]) {
                 // Set line stuff
             }
-            
             if ([currentVector objectForKey:@"x"]) {
                 CGFloat x = [[currentVector objectForKey:@"x"] floatValue];
                 CGFloat y = [[currentVector objectForKey:@"y"] floatValue];
-
-                // First point is move to, rest are line to operations
-                if ( i == 0 ) {
-                    CGContextMoveToPoint(context, midPoint.x + x, midPoint.y + y);
-                }
-                else {
-                    CGContextAddLineToPoint(context, midPoint.x + x, midPoint.y + y);
-                }
+                CGContextAddLineToPoint(context, midPoint.x + x, midPoint.y + y);
             }
         }
     }

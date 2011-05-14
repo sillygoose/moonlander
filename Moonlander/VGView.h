@@ -15,6 +15,6 @@
 
 @property (nonatomic, retain) NSArray *drawPaths;
 
-- (id)initWithFrame:(CGRect)frame using:(NSArray *)paths;
+- (id)initWithFile:(NSString *)fileName;
 
 @end

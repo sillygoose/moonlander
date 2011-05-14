@@ -87,18 +87,12 @@ const float DisplayUpdateInterval = 1.0f;
 - (void)initGame
 {
     // Create our view objects
-    NSString *initialDefaultsPath = [[NSBundle mainBundle] pathForResource:@"LanderView" ofType:@"plist"];
-    assert(initialDefaultsPath != nil);
+    NSString *landerObject = [[NSBundle mainBundle] pathForResource:@"LanderView" ofType:@"plist"];
+    assert(landerObject != nil);
     
-    NSDictionary *viewObject = [NSDictionary dictionaryWithContentsOfFile:initialDefaultsPath];
-    assert(viewObject != nil);
-    
-    NSDictionary *frame = [viewObject objectForKey:@"frame"];
-    NSDictionary *size = [frame objectForKey:@"size"];
-    NSDictionary *origin = [frame objectForKey:@"origin"];
-    CGRect frameRect = CGRectMake([[origin objectForKey:@"x"] floatValue], [[origin objectForKey:@"y"] floatValue], [[size objectForKey:@"width"] floatValue], [[size objectForKey:@"height"] floatValue]);
-    self.landerView = [[[VGView alloc] initWithFrame:frameRect using:[viewObject objectForKey:@"paths"]] retain];
+    self.landerView = [[[VGView alloc] initWithFile:landerObject] retain];
     [self.view addSubview:self.landerView];
+    
 
     [self.landerModel.delegate newGame];
     

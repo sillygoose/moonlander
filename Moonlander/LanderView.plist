@@ -25,19 +25,22 @@
 			<dict>
 				<key>color</key>
 				<dict>
-					<key>r</key>
-					<real>0.026</real>
-					<key>g</key>
+					<key>alpha</key>
 					<integer>1</integer>
 					<key>b</key>
 					<real>0.00121</real>
-					<key>alpha</key>
+					<key>g</key>
 					<integer>1</integer>
+					<key>r</key>
+					<real>0.026</real>
 				</dict>
-				<key>x</key>
-				<integer>-6</integer>
-				<key>y</key>
-				<integer>0</integer>
+				<key>moveto</key>
+				<dict>
+					<key>x</key>
+					<integer>-6</integer>
+					<key>y</key>
+					<integer>0</integer>
+				</dict>
 			</dict>
 			<dict>
 				<key>x</key>
@@ -90,10 +93,13 @@
 		</array>
 		<array>
 			<dict>
-				<key>x</key>
-				<integer>-17</integer>
-				<key>y</key>
-				<integer>0</integer>
+				<key>moveto</key>
+				<dict>
+					<key>x</key>
+					<integer>-17</integer>
+					<key>y</key>
+					<integer>0</integer>
+				</dict>
 			</dict>
 			<dict>
 				<key>x</key>
@@ -122,10 +128,13 @@
 		</array>
 		<array>
 			<dict>
-				<key>x</key>
-				<integer>-17</integer>
-				<key>y</key>
-				<integer>0</integer>
+				<key>moveto</key>
+				<dict>
+					<key>x</key>
+					<integer>-17</integer>
+					<key>y</key>
+					<integer>0</integer>
+				</dict>
 			</dict>
 			<dict>
 				<key>x</key>
@@ -136,10 +145,13 @@
 		</array>
 		<array>
 			<dict>
-				<key>x</key>
-				<integer>17</integer>
-				<key>y</key>
-				<integer>0</integer>
+				<key>moveto</key>
+				<dict>
+					<key>x</key>
+					<integer>17</integer>
+					<key>y</key>
+					<integer>0</integer>
+				</dict>
 			</dict>
 			<dict>
 				<key>x</key>
@@ -150,10 +162,13 @@
 		</array>
 		<array>
 			<dict>
-				<key>x</key>
-				<integer>36</integer>
-				<key>y</key>
-				<integer>24</integer>
+				<key>moveto</key>
+				<dict>
+					<key>x</key>
+					<integer>36</integer>
+					<key>y</key>
+					<integer>24</integer>
+				</dict>
 			</dict>
 			<dict>
 				<key>x</key>
@@ -164,10 +179,13 @@
 		</array>
 		<array>
 			<dict>
-				<key>x</key>
-				<integer>-28</integer>
-				<key>y</key>
-				<integer>24</integer>
+				<key>moveto</key>
+				<dict>
+					<key>x</key>
+					<integer>-28</integer>
+					<key>y</key>
+					<integer>24</integer>
+				</dict>
 			</dict>
 			<dict>
 				<key>x</key>
@@ -178,10 +196,13 @@
 		</array>
 		<array>
 			<dict>
-				<key>x</key>
-				<integer>-17</integer>
-				<key>y</key>
-				<integer>14</integer>
+				<key>moveto</key>
+				<dict>
+					<key>x</key>
+					<integer>-17</integer>
+					<key>y</key>
+					<integer>14</integer>
+				</dict>
 			</dict>
 			<dict>
 				<key>x</key>
@@ -192,10 +213,13 @@
 		</array>
 		<array>
 			<dict>
-				<key>x</key>
-				<integer>17</integer>
-				<key>y</key>
-				<integer>14</integer>
+				<key>moveto</key>
+				<dict>
+					<key>x</key>
+					<integer>17</integer>
+					<key>y</key>
+					<integer>14</integer>
+				</dict>
 			</dict>
 			<dict>
 				<key>x</key>
@@ -206,10 +230,13 @@
 		</array>
 		<array>
 			<dict>
-				<key>x</key>
-				<integer>-3</integer>
-				<key>y</key>
-				<integer>16</integer>
+				<key>moveto</key>
+				<dict>
+					<key>x</key>
+					<integer>-3</integer>
+					<key>y</key>
+					<integer>16</integer>
+				</dict>
 			</dict>
 			<dict>
 				<key>x</key>

@@ -29,8 +29,6 @@
 		560FA1381379BEAB0017EE25 /* LanderViewController_iPad.m in Sources */ = {isa = PBXBuildFile; fileRef = 560FA1351379BEAA0017EE25 /* LanderViewController_iPad.m */; };
 		560FA1391379BEAB0017EE25 /* LanderViewController_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 560FA1361379BEAA0017EE25 /* LanderViewController_iPad.xib */; };
 		560FA13A1379BEAB0017EE25 /* LanderViewController_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 560FA1361379BEAA0017EE25 /* LanderViewController_iPad.xib */; };
-		560FA13D1379C3B20017EE25 /* redtank.png in Resources */ = {isa = PBXBuildFile; fileRef = 560FA13C1379C3B20017EE25 /* redtank.png */; };
-		56345D7E137B58F1001D9389 /* lander.png in Resources */ = {isa = PBXBuildFile; fileRef = 56345D7D137B58F1001D9389 /* lander.png */; };
 		56345D82137B5C26001D9389 /* left arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 56345D80137B5C26001D9389 /* left arrow.png */; };
 		56345D83137B5C26001D9389 /* right arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 56345D81137B5C26001D9389 /* right arrow.png */; };
 		563B158A137A1DD100E77EA8 /* lunar.bas in Resources */ = {isa = PBXBuildFile; fileRef = 563B1589137A1DD100E77EA8 /* lunar.bas */; };
@@ -79,9 +77,7 @@
 		560FA1341379BEAA0017EE25 /* LanderViewController_iPad.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LanderViewController_iPad.h; path = iPad/LanderViewController_iPad.h; sourceTree = "<group>"; };
 		560FA1351379BEAA0017EE25 /* LanderViewController_iPad.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LanderViewController_iPad.m; path = iPad/LanderViewController_iPad.m; sourceTree = "<group>"; };
 		560FA1361379BEAA0017EE25 /* LanderViewController_iPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = LanderViewController_iPad.xib; path = iPad/en.lproj/LanderViewController_iPad.xib; sourceTree = "<group>"; };
-		560FA13C1379C3B20017EE25 /* redtank.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = redtank.png; path = Resources/redtank.png; sourceTree = "<group>"; };
 		560FA13E1379C95B0017EE25 /* LanderPhysicsDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LanderPhysicsDataSource.h; path = "Lander Model/LanderPhysicsDataSource.h"; sourceTree = "<group>"; };
-		56345D7D137B58F1001D9389 /* lander.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = lander.png; path = Resources/lander.png; sourceTree = "<group>"; };
 		56345D80137B5C26001D9389 /* left arrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "left arrow.png"; path = "Resources/left arrow.png"; sourceTree = "<group>"; };
 		56345D81137B5C26001D9389 /* right arrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "right arrow.png"; path = "Resources/right arrow.png"; sourceTree = "<group>"; };
 		563B1589137A1DD100E77EA8 /* lunar.bas */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = lunar.bas; sourceTree = "<group>"; };
@@ -237,8 +233,6 @@
 			children = (
 				56345D80137B5C26001D9389 /* left arrow.png */,
 				56345D81137B5C26001D9389 /* right arrow.png */,
-				56345D7D137B58F1001D9389 /* lander.png */,
-				560FA13C1379C3B20017EE25 /* redtank.png */,
 				56E80E4B137E4CC3009E7F15 /* LanderView.plist */,
 			);
 			name = Resources;
@@ -329,11 +323,9 @@
 				560FA0E7137991AE0017EE25 /* Moonlander_iPhone.xib in Resources */,
 				560FA0EE137991AE0017EE25 /* Moonlander_iPad.xib in Resources */,
 				560FA1391379BEAB0017EE25 /* LanderViewController_iPad.xib in Resources */,
-				560FA13D1379C3B20017EE25 /* redtank.png in Resources */,
 				563B158A137A1DD100E77EA8 /* lunar.bas in Resources */,
 				563B158D137A1DFC00E77EA8 /* gtlem.mac in Resources */,
 				563B158E137A1DFC00E77EA8 /* rtlem.mac in Resources */,
-				56345D7E137B58F1001D9389 /* lander.png in Resources */,
 				56345D82137B5C26001D9389 /* left arrow.png in Resources */,
 				56345D83137B5C26001D9389 /* right arrow.png in Resources */,
 				56E80E4C137E4CC3009E7F15 /* LanderView.plist in Resources */,
