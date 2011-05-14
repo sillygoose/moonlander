@@ -17,7 +17,7 @@
     
     VGView *_landerView;
     
-    //UIView *_littleLeftArrowView;
+    VGView *_smallLeftArrow;
     //UIView *_littleRightArrowView;
     //UIView *_bigLeftArrowView;
     //UIView *_bigRightArrowView;
@@ -48,6 +48,7 @@
 @property (nonatomic, retain) NSTimer *displayTimer;
 
 @property (nonatomic, retain) VGView *landerView;
+@property (nonatomic, retain) VGView *smallLeftArrow;
 
 @property (nonatomic, retain) IBOutlet UISlider *thrustSlider;
 @property (nonatomic, retain) IBOutlet UIButton *rotateLeftButton;

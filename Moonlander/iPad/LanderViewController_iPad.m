@@ -13,6 +13,7 @@
 
 @synthesize landerModel=_landerModel;
 @synthesize landerView=_landerView;
+@synthesize smallLeftArrow=_smallLeftArrow;
 
 @synthesize thrustSlider=_thrustSlider;
 @synthesize rotateLeftButton=_rotateLeftButton;
@@ -50,6 +51,7 @@ const float DisplayUpdateInterval = 1.0f;
 {
     [_landerModel release];
     [_landerView release];
+    [_smallLeftArrow release];
     
     [_thrustSlider release];
     [_rotateLeftButton release];
@@ -87,12 +89,16 @@ const float DisplayUpdateInterval = 1.0f;
 - (void)initGame
 {
     // Create our view objects
-    NSString *landerObject = [[NSBundle mainBundle] pathForResource:@"LanderView" ofType:@"plist"];
-    assert(landerObject != nil);
-    
-    self.landerView = [[[VGView alloc] initWithFile:landerObject] retain];
+    NSString *landerPath = [[NSBundle mainBundle] pathForResource:@"Lander" ofType:@"plist"];
+    assert(landerPath != nil);
+    self.landerView = [[[VGView alloc] initWithFile:landerPath] retain];
     [self.view addSubview:self.landerView];
-    
+
+    NSString *slaPath = [[NSBundle mainBundle] pathForResource:@"SmallLeftArrow" ofType:@"plist"];
+    assert(slaPath != nil);
+    self.smallLeftArrow = [[[VGView alloc] initWithFile:slaPath] retain];
+    [self.view addSubview:self.smallLeftArrow];
+
 
     [self.landerModel.delegate newGame];
     
