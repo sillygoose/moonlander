@@ -97,8 +97,7 @@ const float DisplayUpdateInterval = 1.0f;
     NSDictionary *size = [frame objectForKey:@"size"];
     NSDictionary *origin = [frame objectForKey:@"origin"];
     CGRect frameRect = CGRectMake([[origin objectForKey:@"x"] floatValue], [[origin objectForKey:@"y"] floatValue], [[size objectForKey:@"width"] floatValue], [[size objectForKey:@"height"] floatValue]);
-    self.landerView = [[[VGView alloc] initWithFrame:frameRect] retain];
-    self.landerView.drawPaths = [viewObject objectForKey:@"paths"];
+    self.landerView = [[[VGView alloc] initWithFrame:frameRect using:[viewObject objectForKey:@"paths"]] retain];
     [self.view addSubview:self.landerView];
 
     [self.landerModel.delegate newGame];

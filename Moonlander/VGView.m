@@ -12,14 +12,13 @@
 @implementation VGView
 
 @synthesize drawPaths=_drawPaths;
-@synthesize x=_x;
 
 
-- (id)initWithFrame:(CGRect)frame
+- (id)initWithFrame:(CGRect)frame using:(NSArray *)paths
 {
     self = [super initWithFrame:frame];
     if (self) {
-        // Initialization code
+        self.drawPaths = paths;
     }
     return self;
 }
@@ -52,11 +51,12 @@
             if ([currentVector objectForKey:@"line"]) {
                 // Set line stuff
             }
+            
             if ([currentVector objectForKey:@"x"]) {
                 CGFloat x = [[currentVector objectForKey:@"x"] floatValue];
                 CGFloat y = [[currentVector objectForKey:@"y"] floatValue];
 
-                // Set point stuff
+                // First point is move to, rest are line to operations
                 if ( i == 0 ) {
                     CGContextMoveToPoint(context, midPoint.x + x, midPoint.y + y);
                 }
@@ -72,6 +72,8 @@
 
 - (void)dealloc
 {
+    [_drawPaths release];
+    
     [super dealloc];
 }
 

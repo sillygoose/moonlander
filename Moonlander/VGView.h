@@ -11,10 +11,10 @@
 
 @interface VGView : UIView {
     NSArray *_drawPaths;
-    int _x ;
 }
 
 @property (nonatomic, retain) NSArray *drawPaths;
-@property (nonatomic) int x;
+
+- (id)initWithFrame:(CGRect)frame using:(NSArray *)paths;
 
 @end
