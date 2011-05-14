@@ -86,6 +86,21 @@ const float DisplayUpdateInterval = 1.0f;
 
 - (void)initGame
 {
+    // Create our view objects
+    NSString *initialDefaultsPath = [[NSBundle mainBundle] pathForResource:@"LanderView" ofType:@"plist"];
+    assert(initialDefaultsPath != nil);
+    
+    NSDictionary *viewObject = [NSDictionary dictionaryWithContentsOfFile:initialDefaultsPath];
+    assert(viewObject != nil);
+    
+    NSDictionary *frame = [viewObject objectForKey:@"frame"];
+    NSDictionary *size = [frame objectForKey:@"size"];
+    NSDictionary *origin = [frame objectForKey:@"origin"];
+    CGRect frameRect = CGRectMake([[origin objectForKey:@"x"] floatValue], [[origin objectForKey:@"y"] floatValue], [[size objectForKey:@"width"] floatValue], [[size objectForKey:@"height"] floatValue]);
+    self.landerView = [[[VGView alloc] initWithFrame:frameRect] retain];
+    self.landerView.drawPaths = [viewObject objectForKey:@"paths"];
+    [self.view addSubview:self.landerView];
+
     [self.landerModel.delegate newGame];
     
     // Setup controls with model defaults

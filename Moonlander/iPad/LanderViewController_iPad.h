@@ -8,13 +8,15 @@
 
 #import <UIKit/UIKit.h>
 
+#import "VGView.h"
 #import "LanderPhysicsModel.h"
 
 
 @interface LanderViewController_iPad : UIViewController {
     LanderPhysicsModel *_landerModel;
     
-    UIView *_landerView;
+    VGView *_landerView;
+    
     //UIView *_littleLeftArrowView;
     //UIView *_littleRightArrowView;
     //UIView *_bigLeftArrowView;
@@ -45,7 +47,7 @@
 @property (nonatomic, retain) NSTimer *simulationTimer;
 @property (nonatomic, retain) NSTimer *displayTimer;
 
-@property (nonatomic, retain) IBOutlet UIView *landerView;
+@property (nonatomic, retain) VGView *landerView;
 
 @property (nonatomic, retain) IBOutlet UISlider *thrustSlider;
 @property (nonatomic, retain) IBOutlet UIButton *rotateLeftButton;
