@@ -30,8 +30,6 @@
     NSTimer *_displayTimer;
 
     UISlider *_thrustSlider;
-    UIButton *_rotateLeftButton;
-    UIButton *_rotateRightButton;
     UIButton *_newGameButton;
     
     UILabel *_timeLabel;
@@ -60,8 +58,6 @@
 @property (nonatomic, retain) VGSlider *thrusterSlider;
 
 @property (nonatomic, retain) IBOutlet UISlider *thrustSlider;
-@property (nonatomic, retain) IBOutlet UIButton *rotateLeftButton;
-@property (nonatomic, retain) IBOutlet UIButton *rotateRightButton;
 @property (nonatomic, retain) IBOutlet UIButton *newGameButton;
 
 @property (nonatomic, retain) IBOutlet UILabel *timeLabel;

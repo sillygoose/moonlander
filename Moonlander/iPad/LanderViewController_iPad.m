@@ -22,8 +22,6 @@
 @synthesize thrusterSlider=_thrusterSlider;
 
 @synthesize thrustSlider=_thrustSlider;
-@synthesize rotateLeftButton=_rotateLeftButton;
-@synthesize rotateRightButton=_rotateRightButton;
 @synthesize newGameButton=_newGameButton;
 
 @synthesize simulationTimer=_simulationTimer;
@@ -65,8 +63,6 @@ const float DisplayUpdateInterval = 1.0f;
     [_thrusterSlider release];
     
     [_thrustSlider release];
-    [_rotateLeftButton release];
-    [_rotateRightButton release];
     [_newGameButton release];
     
     [_simulationTimer release];
