@@ -24,6 +24,7 @@
     VGButton *_smallRightArrow;
     VGButton *_largeLeftArrow;
     VGButton *_largeRightArrow;
+    
     VGSlider *_thrusterSlider;
     
     NSTimer *_simulationTimer;
@@ -55,6 +56,7 @@
 @property (nonatomic, retain) VGButton *smallRightArrow;
 @property (nonatomic, retain) VGButton *largeLeftArrow;
 @property (nonatomic, retain) VGButton *largeRightArrow;
+
 @property (nonatomic, retain) VGSlider *thrusterSlider;
 
 @property (nonatomic, retain) IBOutlet UISlider *thrustSlider;
@@ -72,12 +74,12 @@
 @property (nonatomic, retain) IBOutlet UILabel *fuelRemainingLabel;
 
 - (IBAction)thrustChanged:(UISlider *)sender;
-- (IBAction)rotateLeft;
-- (IBAction)rotateRight;
+- (IBAction)rotateLander:(id)sender;
 - (IBAction)newGame;
 
 - (void)gameReset;
 - (void)updateLander;
 - (void)gameLoop;
+- (void)disableFlightControls;
 
 @end

@@ -93,6 +93,14 @@ const float DisplayUpdateInterval = 1.0f;
 
 #pragma mark - View lifecycle
 
+- (void)disableFlightControls
+{
+    self.smallLeftArrow.enabled = NO;
+    self.smallRightArrow.enabled = NO;
+    self.largeLeftArrow.enabled = NO;
+    self.largeRightArrow.enabled = NO;
+}
+
 - (void)initGame
 {
     // Create the lander
@@ -101,48 +109,48 @@ const float DisplayUpdateInterval = 1.0f;
     self.landerView = [[[VGView alloc] initWithFile:landerPath] retain];
     [self.view addSubview:self.landerView];
 
+    // Create the roll control arrows
+    NSString *slaPath = [[NSBundle mainBundle] pathForResource:@"SmallLeftArrow" ofType:@"plist"];
+    assert(slaPath != nil);
+    self.smallLeftArrow = [[[VGButton alloc] initWithFile:slaPath andRepeat:0.5f] retain];
+	[self.smallLeftArrow addTarget:self 
+                            action:@selector(rotateLander:) 
+            forControlEvents:UIControlEventValueChanged];
+    [self.view addSubview:self.smallLeftArrow];
+
+    NSString *sraPath = [[NSBundle mainBundle] pathForResource:@"SmallRightArrow" ofType:@"plist"];
+    assert(sraPath != nil);
+    self.smallRightArrow = [[[VGButton alloc] initWithFile:sraPath andRepeat:0.5f] retain];
+	[self.smallRightArrow addTarget:self 
+                            action:@selector(rotateLander:) 
+                  forControlEvents:UIControlEventValueChanged];
+    [self.view addSubview:self.smallRightArrow];
+    
+    NSString *llaPath = [[NSBundle mainBundle] pathForResource:@"LargeLeftArrow" ofType:@"plist"];
+    assert(llaPath != nil);
+    self.largeLeftArrow = [[[VGButton alloc] initWithFile:llaPath andRepeat:0.5f] retain];
+	[self.largeLeftArrow addTarget:self 
+                            action:@selector(rotateLander:) 
+                  forControlEvents:UIControlEventValueChanged];
+    [self.view addSubview:self.largeLeftArrow];
+    
+    NSString *lraPath = [[NSBundle mainBundle] pathForResource:@"LargeRightArrow" ofType:@"plist"];
+    assert(lraPath != nil);
+    self.largeRightArrow = [[[VGButton alloc] initWithFile:lraPath andRepeat:0.5f] retain];
+	[self.largeRightArrow addTarget:self 
+                            action:@selector(rotateLander:) 
+                  forControlEvents:UIControlEventValueChanged];
+    [self.view addSubview:self.largeRightArrow];
+
     // Create the thruster control
     NSString *tcPath = [[NSBundle mainBundle] pathForResource:@"ThrusterControl" ofType:@"plist"];
     assert(tcPath != nil);
     self.thrusterSlider = [[[VGSlider alloc] initWithFile:tcPath] retain];
-    [self.view addSubview:self.thrusterSlider];
 	[self.thrusterSlider addTarget:self 
                             action:@selector(thrustChanged) 
                   forControlEvents:UIControlEventValueChanged];
+    [self.view addSubview:self.thrusterSlider];
     
-    // Create the roll control arrows
-    NSString *slaPath = [[NSBundle mainBundle] pathForResource:@"SmallLeftArrow" ofType:@"plist"];
-    assert(slaPath != nil);
-    self.smallLeftArrow = [[[VGButton alloc] initWithFile:slaPath] retain];
-    [self.view addSubview:self.smallLeftArrow];
-	[self.smallLeftArrow addTarget:self 
-                      action:@selector(smallRotateLeft) 
-            forControlEvents:UIControlEventTouchUpInside];
-
-    NSString *sraPath = [[NSBundle mainBundle] pathForResource:@"SmallRightArrow" ofType:@"plist"];
-    assert(sraPath != nil);
-    self.smallRightArrow = [[[VGButton alloc] initWithFile:sraPath] retain];
-    [self.view addSubview:self.smallRightArrow];
-	[self.smallRightArrow addTarget:self 
-                            action:@selector(smallRotateRight) 
-                  forControlEvents:UIControlEventTouchUpInside];
-    
-    NSString *llaPath = [[NSBundle mainBundle] pathForResource:@"LargeLeftArrow" ofType:@"plist"];
-    assert(llaPath != nil);
-    self.largeLeftArrow = [[[VGButton alloc] initWithFile:llaPath] retain];
-    [self.view addSubview:self.largeLeftArrow];
-	[self.largeLeftArrow addTarget:self 
-                            action:@selector(rotateLeft) 
-                  forControlEvents:UIControlEventTouchUpInside];
-    
-    NSString *lraPath = [[NSBundle mainBundle] pathForResource:@"LargeRightArrow" ofType:@"plist"];
-    assert(lraPath != nil);
-    self.largeRightArrow = [[[VGButton alloc] initWithFile:lraPath] retain];
-    [self.view addSubview:self.largeRightArrow];
-	[self.largeRightArrow addTarget:self 
-                            action:@selector(rotateRight) 
-                  forControlEvents:UIControlEventTouchUpInside];
-
     [self.landerModel.delegate newGame];
     
     // Setup controls with model defaults
@@ -186,47 +194,31 @@ const float DisplayUpdateInterval = 1.0f;
     [sender setValue:[self.landerModel.dataSource thrustPercent] animated:YES];
 }
 
-- (IBAction)rotateLeft
+- (IBAction)rotateLander:(id)sender
 {
-    float newAngle = [self.landerModel.dataSource angleDegrees];
-    newAngle -= 5.0f;
-    [self.landerModel.dataSource setAngleDegrees:newAngle];
+    float deltaAngle = 0.0f;
+    VGButton *buttonInUse = (VGButton *)sender;
+    if ( buttonInUse == self.smallLeftArrow) {
+        deltaAngle = -1.0f * M_PI / 180.0f;
+    }
+    else if (buttonInUse == self.smallRightArrow)
+    {
+        deltaAngle = 1.0f * M_PI / 180.0f;
+    }
+    else if (buttonInUse == self.largeLeftArrow) {
+        deltaAngle = -5.0f * M_PI / 180.0f;
+    }
+    else if ( buttonInUse == self.largeRightArrow) {
+        deltaAngle = 5.0f * M_PI / 180.0f;
+    }
+    else {
+        assert(TRUE);
+    }
+    
+    [self.landerModel.dataSource setAngle:([self.landerModel.dataSource angle] + deltaAngle)];
     
 	CGAffineTransform t = [self.landerView transform];
-	t = CGAffineTransformRotate(t, -5.0f * M_PI / 180);
-	[self.landerView setTransform:t];
-}
-
-- (IBAction)rotateRight
-{
-    float newAngle = [self.landerModel.dataSource angleDegrees];
-    newAngle += 5.0f;
-    [self.landerModel.dataSource setAngleDegrees:newAngle];
-    
-	CGAffineTransform t = [self.landerView transform];
-	t = CGAffineTransformRotate(t, 5.0f * M_PI / 180);
-	[self.landerView setTransform:t];
-}
-
-- (IBAction)smallRotateLeft
-{
-    float newAngle = [self.landerModel.dataSource angleDegrees];
-    newAngle -= 1.0f;
-    [self.landerModel.dataSource setAngleDegrees:newAngle];
-    
-	CGAffineTransform t = [self.landerView transform];
-	t = CGAffineTransformRotate(t, -1.0f * M_PI / 180);
-	[self.landerView setTransform:t];
-}
-
-- (IBAction)smallRotateRight
-{
-    float newAngle = [self.landerModel.dataSource angleDegrees];
-    newAngle += 1.0f;
-    [self.landerModel.dataSource setAngleDegrees:newAngle];
-    
-	CGAffineTransform t = [self.landerView transform];
-	t = CGAffineTransformRotate(t, 1.0f * M_PI / 180);
+	t = CGAffineTransformRotate(t, deltaAngle);
 	[self.landerView setTransform:t];
 }
 
@@ -242,7 +234,6 @@ const float DisplayUpdateInterval = 1.0f;
 }
 
 
-// ###rotate and move the tanks towards their destinations if need be
 - (void)updateLander
 {
     self.timeLabel.text = [NSString stringWithFormat:@"Time: %3.0f", [self.landerModel.dataSource time]];
@@ -264,6 +255,7 @@ const float DisplayUpdateInterval = 1.0f;
     //NSLog(@"%3.2f - Thrust: %5.0f  Altitude: %5.0f  Downrange: %5.0f  Angle:%2.0f  Weight:%5.0f  Fuel:%4.0f  HorizVel: %5.0f  VertVel: %5.0f  Accel: %5.3f  HorizAccel: %5.3f  VertAccel: %5.3f", [self.landerModel.dataSource time], [self.landerModel.dataSource thrust], [self.landerModel.dataSource altitude], [self.landerModel.dataSource range], [self.landerModel.dataSource rotationDegrees], [self.landerModel.dataSource weight], [self.landerModel.dataSource fuel], [self.landerModel.dataSource horizVel], [self.landerModel.dataSource vertVel], [self.landerModel.dataSource acceleration], [self.landerModel.dataSource horizAccel], [self.landerModel.dataSource vertAccel]);
     
     if ([self.landerModel.dataSource altitude] == 0.0f) {
+        [self disableFlightControls];
         [self.simulationTimer invalidate];
         [self.displayTimer invalidate];
         [self updateLander];

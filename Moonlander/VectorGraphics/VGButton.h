@@ -11,10 +11,15 @@
 
 @interface VGButton : UIControl {
     NSArray *_drawPaths;
+    NSTimer *_repeatTimer;
+    float _autoRepeatInterval;
 }
 
 @property (nonatomic, retain) NSArray *drawPaths;
+@property (nonatomic, retain) NSTimer *repeatTimer;
+@property (nonatomic) float autoRepeatInterval;
 
 - (id)initWithFile:(NSString *)fileName;
+- (id)initWithFile:(NSString *)fileName andRepeat:(float)repeatInterval;
 
 @end

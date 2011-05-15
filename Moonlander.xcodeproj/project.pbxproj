@@ -36,6 +36,7 @@
 		564BE59E13800F3400D790D9 /* VGButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 564BE59D13800F3400D790D9 /* VGButton.m */; };
 		564BE5C413801C0F00D790D9 /* VGSlider.m in Sources */ = {isa = PBXBuildFile; fileRef = 564BE5C313801C0F00D790D9 /* VGSlider.m */; };
 		564BE5C613801CAC00D790D9 /* ThrusterControl.plist in Resources */ = {isa = PBXBuildFile; fileRef = 564BE5C513801CAC00D790D9 /* ThrusterControl.plist */; };
+		564BE60B138064D700D790D9 /* Moon.plist in Resources */ = {isa = PBXBuildFile; fileRef = 564BE60A138064D700D790D9 /* Moon.plist */; };
 		5695F1DA137F753B0075CD26 /* LargeRightArrow.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5695F1D7137F753B0075CD26 /* LargeRightArrow.plist */; };
 		5695F1DB137F753B0075CD26 /* SmallLeftArrow.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5695F1D8137F753B0075CD26 /* SmallLeftArrow.plist */; };
 		5695F1DC137F753B0075CD26 /* SmallRightArrow.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5695F1D9137F753B0075CD26 /* SmallRightArrow.plist */; };
@@ -93,6 +94,7 @@
 		564BE5C313801C0F00D790D9 /* VGSlider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VGSlider.m; path = VectorGraphics/VGSlider.m; sourceTree = "<group>"; };
 		564BE5C513801CAC00D790D9 /* ThrusterControl.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = ThrusterControl.plist; path = Resources/ThrusterControl.plist; sourceTree = "<group>"; };
 		564BE5D013801E0200D790D9 /* VGKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VGKit.h; path = VectorGraphics/VGKit.h; sourceTree = "<group>"; };
+		564BE60A138064D700D790D9 /* Moon.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Moon.plist; path = Resources/Moon.plist; sourceTree = "<group>"; };
 		5695F1D7137F753B0075CD26 /* LargeRightArrow.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = LargeRightArrow.plist; path = Resources/LargeRightArrow.plist; sourceTree = "<group>"; };
 		5695F1D8137F753B0075CD26 /* SmallLeftArrow.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = SmallLeftArrow.plist; path = Resources/SmallLeftArrow.plist; sourceTree = "<group>"; };
 		5695F1D9137F753B0075CD26 /* SmallRightArrow.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = SmallRightArrow.plist; path = Resources/SmallRightArrow.plist; sourceTree = "<group>"; };
@@ -243,6 +245,7 @@
 		560FA13B1379C3900017EE25 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				564BE60A138064D700D790D9 /* Moon.plist */,
 				56E80E4B137E4CC3009E7F15 /* Lander.plist */,
 				5695F1D8137F753B0075CD26 /* SmallLeftArrow.plist */,
 				5695F1D9137F753B0075CD26 /* SmallRightArrow.plist */,
@@ -361,6 +364,7 @@
 				5695F1DB137F753B0075CD26 /* SmallLeftArrow.plist in Resources */,
 				5695F1DC137F753B0075CD26 /* SmallRightArrow.plist in Resources */,
 				564BE5C613801CAC00D790D9 /* ThrusterControl.plist in Resources */,
+				564BE60B138064D700D790D9 /* Moon.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

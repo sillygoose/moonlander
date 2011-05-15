@@ -8,10 +8,14 @@
 
 #import "VGButton.h"
 
+@interface VGButton()
+@end
 
 @implementation VGButton
 
 @synthesize drawPaths=_drawPaths;
+@synthesize repeatTimer=_repeatTimer;
+@synthesize autoRepeatInterval=_autoRepeatInterval;
 
 
 - (id)initWithFile:(NSString *)fileName
@@ -28,15 +32,26 @@
         self = [super initWithFrame:frameRect];
         if (self) {
             self.drawPaths = paths;
+            
+            [self addTarget:self action:@selector(buttonDown:) forControlEvents:UIControlEventTouchDown];
+            [self addTarget:self action:@selector(buttonUp:) forControlEvents:(UIControlEventTouchUpInside|UIControlEventTouchUpOutside|UIControlEventTouchCancel)];
         }
     }
     else self = nil;
     return self;
 }
 
+- (id)initWithFile:(NSString *)fileName andRepeat:(float)repeatInterval
+{
+    [self initWithFile:fileName];
+    self.autoRepeatInterval = repeatInterval;
+    return self;
+}
+
 - (void)dealloc
 {
     [_drawPaths release];
+    [_repeatTimer release];
     [super dealloc];
 }
 
@@ -88,5 +103,82 @@
     }
     CGContextStrokePath(context);
 }
+
+- (void)buttonRepeat:(id)sender
+{
+    [self sendActionsForControlEvents:UIControlEventValueChanged];
+}
+
+- (IBAction)buttonDown:(id)sender
+{
+    if (self.autoRepeatInterval) {
+        [self sendActionsForControlEvents:UIControlEventValueChanged];
+        self.repeatTimer = [NSTimer scheduledTimerWithTimeInterval:0.5f target:self selector:@selector(buttonRepeat:) userInfo:nil repeats:YES];
+    }
+}
+
+- (IBAction)buttonUp:(id)sender
+{
+    if (self.repeatTimer != nil) 
+        [self.repeatTimer invalidate];
+    self.repeatTimer = nil;
+    
+    if (!self.autoRepeatInterval) {
+        [self sendActionsForControlEvents:UIControlEventValueChanged];
+    }
+}
+
+#if 0
+#pragma mark Touch tracking
+
+- (BOOL)beginTrackingWithTouch:(UITouch *)touch withEvent:(UIEvent *)event
+{
+    NSLog(@"Beginning tracking: %@", event);
+    //[self sendActionsForControlEvents:UIControlEventValueChanged];
+    return YES;
+}
+
+- (BOOL)continueTrackingWithTouch:(UITouch *)touch withEvent:(UIEvent *)event
+{
+    NSLog(@"Continue tracking: %@", event);
+    // Send value changed alert
+    //[self sendActionsForControlEvents:UIControlEventValueChanged];
+    [self sendActionsForControlEvents:UIControlEventValueChanged];
+    return YES;
+}
+
+-(void)movePlayer:(id)sender
+{
+    NSLog(@"movePlayer: %@", sender);
+}
+
+- (void)endTrackingWithTouch:(UITouch *)touch withEvent:(UIEvent *)event
+{
+    NSLog(@"Ending tracking: %@", event);
+}
+
+- (void)touchesBegan:(NSSet*)touches  withEvent:(UIEvent*)event
+{
+    NSLog(@"touchesBegan: %@", event);
+    self.repeatTimer = [NSTimer scheduledTimerWithTimeInterval:0.5f target:self selector:@selector(movePlayer:) userInfo:nil repeats:YES];
+}
+
+- (void)touchesEnded:(NSSet*)touches withEvent:(UIEvent*)event
+{
+    NSLog(@"touchesEnded: %@", event);
+    if (self.repeatTimer != nil) 
+        [self.repeatTimer invalidate];
+    self.repeatTimer = nil;
+}
+
+- (void)touchesMoved:(NSSet*)touches withEvent:(UIEvent*)event
+{
+    NSLog(@"touchesMoved: %@", event);
+    if (self.repeatTimer != nil) {
+        [self.repeatTimer invalidate];
+        self.repeatTimer = nil;
+    }
+}
+#endif
 
 @end

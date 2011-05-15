@@ -9,7 +9,7 @@
 			<key>x</key>
 			<integer>500</integer>
 			<key>y</key>
-			<integer>425</integer>
+			<integer>475</integer>
 		</dict>
 		<key>size</key>
 		<dict>
@@ -23,11 +23,6 @@
 	<array>
 		<array>
 			<dict>
-				<key>line</key>
-				<dict>
-					<key>width</key>
-					<integer>2</integer>
-				</dict>
 				<key>color</key>
 				<dict>
 					<key>alpha</key>
@@ -38,6 +33,11 @@
 					<integer>1</integer>
 					<key>r</key>
 					<real>0.026</real>
+				</dict>
+				<key>line</key>
+				<dict>
+					<key>width</key>
+					<integer>2</integer>
 				</dict>
 				<key>moveto</key>
 				<dict>
