@@ -8,19 +8,6 @@
 
 #import "VGView.h"
 
-#if 0
-DESIGN:	.WORD	DRAWIN,170200		;LOAD STATUS.
-.WORD	DRAWIN,107124		;AND SHORT VECTORS, INTENSITY 4.
-.WORD	DRAWIS			;DRAW BODY OF SHIP NOW.
-.BYTE	-6.,0.
-.WORD	DRAWVS
-.BYTE	-14.,8.
-.WORD	DRAWVS
-.BYTE	-14.,20.
-.WORD	DRAWVS
-.BYTE	-6.,29.
-.WORD	DRAWVS
-#endif
 
 @implementation VGView
 
@@ -38,7 +25,6 @@ DESIGN:	.WORD	DRAWIN,170200		;LOAD STATUS.
         NSDictionary *origin = [frame objectForKey:@"origin"];
         CGRect frameRect = CGRectMake([[origin objectForKey:@"x"] floatValue], [[origin objectForKey:@"y"] floatValue], [[size objectForKey:@"width"] floatValue], [[size objectForKey:@"height"] floatValue]);
     
-   
         self = [super initWithFrame:frameRect];
         if (self) {
             self.drawPaths = paths;
@@ -78,7 +64,13 @@ DESIGN:	.WORD	DRAWIN,170200		;LOAD STATUS.
                 CGContextSetRGBStrokeColor(context, r, g, b, alpha);
             }
             if ([currentVector objectForKey:@"line"]) {
-                // Set line stuff
+                if ([currentVector objectForKey:@"line"]) {
+                    NSDictionary *lineStuff = [currentVector objectForKey:@"line"];
+                    if ([lineStuff objectForKey:@"width"]) {
+                        CGFloat width = [[lineStuff objectForKey:@"width"] floatValue];
+                        CGContextSetLineWidth(context, width);
+                    }
+                }
             }
             if ([currentVector objectForKey:@"x"]) {
                 CGFloat x = [[currentVector objectForKey:@"x"] floatValue];
@@ -87,14 +79,12 @@ DESIGN:	.WORD	DRAWIN,170200		;LOAD STATUS.
             }
         }
     }
-
     CGContextStrokePath(context);
 }
 
 - (void)dealloc
 {
     [_drawPaths release];
-    
     [super dealloc];
 }
 

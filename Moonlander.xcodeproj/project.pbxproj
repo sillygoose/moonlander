@@ -29,12 +29,18 @@
 		560FA1381379BEAB0017EE25 /* LanderViewController_iPad.m in Sources */ = {isa = PBXBuildFile; fileRef = 560FA1351379BEAA0017EE25 /* LanderViewController_iPad.m */; };
 		560FA1391379BEAB0017EE25 /* LanderViewController_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 560FA1361379BEAA0017EE25 /* LanderViewController_iPad.xib */; };
 		560FA13A1379BEAB0017EE25 /* LanderViewController_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 560FA1361379BEAA0017EE25 /* LanderViewController_iPad.xib */; };
-		562CB7BB137F3AE6003CB9B5 /* SmallLeftArrow.plist in Resources */ = {isa = PBXBuildFile; fileRef = 562CB7BA137F3AE6003CB9B5 /* SmallLeftArrow.plist */; };
+		562CB7BB137F3AE6003CB9B5 /* LargeLeftArrow.plist in Resources */ = {isa = PBXBuildFile; fileRef = 562CB7BA137F3AE6003CB9B5 /* LargeLeftArrow.plist */; };
 		56345D82137B5C26001D9389 /* left arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 56345D80137B5C26001D9389 /* left arrow.png */; };
 		56345D83137B5C26001D9389 /* right arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 56345D81137B5C26001D9389 /* right arrow.png */; };
 		563B158A137A1DD100E77EA8 /* lunar.bas in Resources */ = {isa = PBXBuildFile; fileRef = 563B1589137A1DD100E77EA8 /* lunar.bas */; };
 		563B158D137A1DFC00E77EA8 /* gtlem.mac in Resources */ = {isa = PBXBuildFile; fileRef = 563B158B137A1DFC00E77EA8 /* gtlem.mac */; };
 		563B158E137A1DFC00E77EA8 /* rtlem.mac in Resources */ = {isa = PBXBuildFile; fileRef = 563B158C137A1DFC00E77EA8 /* rtlem.mac */; };
+		564BE59E13800F3400D790D9 /* VGButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 564BE59D13800F3400D790D9 /* VGButton.m */; };
+		564BE5C413801C0F00D790D9 /* VGSlider.m in Sources */ = {isa = PBXBuildFile; fileRef = 564BE5C313801C0F00D790D9 /* VGSlider.m */; };
+		564BE5C613801CAC00D790D9 /* ThrusterControl.plist in Resources */ = {isa = PBXBuildFile; fileRef = 564BE5C513801CAC00D790D9 /* ThrusterControl.plist */; };
+		5695F1DA137F753B0075CD26 /* LargeRightArrow.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5695F1D7137F753B0075CD26 /* LargeRightArrow.plist */; };
+		5695F1DB137F753B0075CD26 /* SmallLeftArrow.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5695F1D8137F753B0075CD26 /* SmallLeftArrow.plist */; };
+		5695F1DC137F753B0075CD26 /* SmallRightArrow.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5695F1D9137F753B0075CD26 /* SmallRightArrow.plist */; };
 		56A480C3137C6C5500742877 /* LanderPhysicsConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 56A480C2137C6C5500742877 /* LanderPhysicsConstants.m */; };
 		56E80E4C137E4CC3009E7F15 /* Lander.plist in Resources */ = {isa = PBXBuildFile; fileRef = 56E80E4B137E4CC3009E7F15 /* Lander.plist */; };
 		56E80E60137E599E009E7F15 /* VGView.m in Sources */ = {isa = PBXBuildFile; fileRef = 56E80E5F137E599E009E7F15 /* VGView.m */; };
@@ -79,18 +85,27 @@
 		560FA1351379BEAA0017EE25 /* LanderViewController_iPad.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LanderViewController_iPad.m; path = iPad/LanderViewController_iPad.m; sourceTree = "<group>"; };
 		560FA1361379BEAA0017EE25 /* LanderViewController_iPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = LanderViewController_iPad.xib; path = iPad/en.lproj/LanderViewController_iPad.xib; sourceTree = "<group>"; };
 		560FA13E1379C95B0017EE25 /* LanderPhysicsDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LanderPhysicsDataSource.h; path = "Lander Model/LanderPhysicsDataSource.h"; sourceTree = "<group>"; };
-		562CB7BA137F3AE6003CB9B5 /* SmallLeftArrow.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = SmallLeftArrow.plist; path = Resources/SmallLeftArrow.plist; sourceTree = "<group>"; };
+		562CB7BA137F3AE6003CB9B5 /* LargeLeftArrow.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = LargeLeftArrow.plist; path = Resources/LargeLeftArrow.plist; sourceTree = "<group>"; };
 		56345D80137B5C26001D9389 /* left arrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "left arrow.png"; path = "Resources/left arrow.png"; sourceTree = "<group>"; };
 		56345D81137B5C26001D9389 /* right arrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "right arrow.png"; path = "Resources/right arrow.png"; sourceTree = "<group>"; };
-		563B1589137A1DD100E77EA8 /* lunar.bas */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = lunar.bas; sourceTree = "<group>"; };
-		563B158B137A1DFC00E77EA8 /* gtlem.mac */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = gtlem.mac; sourceTree = "<group>"; };
-		563B158C137A1DFC00E77EA8 /* rtlem.mac */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = rtlem.mac; sourceTree = "<group>"; };
+		563B1589137A1DD100E77EA8 /* lunar.bas */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = lunar.bas; path = Documentation/lunar.bas; sourceTree = "<group>"; };
+		563B158B137A1DFC00E77EA8 /* gtlem.mac */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = gtlem.mac; path = Documentation/gtlem.mac; sourceTree = "<group>"; };
+		563B158C137A1DFC00E77EA8 /* rtlem.mac */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = rtlem.mac; path = Documentation/rtlem.mac; sourceTree = "<group>"; };
+		564BE59C13800F3400D790D9 /* VGButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VGButton.h; path = VectorGraphics/VGButton.h; sourceTree = "<group>"; };
+		564BE59D13800F3400D790D9 /* VGButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VGButton.m; path = VectorGraphics/VGButton.m; sourceTree = "<group>"; };
+		564BE5C213801C0F00D790D9 /* VGSlider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VGSlider.h; path = VectorGraphics/VGSlider.h; sourceTree = "<group>"; };
+		564BE5C313801C0F00D790D9 /* VGSlider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VGSlider.m; path = VectorGraphics/VGSlider.m; sourceTree = "<group>"; };
+		564BE5C513801CAC00D790D9 /* ThrusterControl.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = ThrusterControl.plist; path = Resources/ThrusterControl.plist; sourceTree = "<group>"; };
+		564BE5D013801E0200D790D9 /* VGKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VGKit.h; path = VectorGraphics/VGKit.h; sourceTree = "<group>"; };
+		5695F1D7137F753B0075CD26 /* LargeRightArrow.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = LargeRightArrow.plist; path = Resources/LargeRightArrow.plist; sourceTree = "<group>"; };
+		5695F1D8137F753B0075CD26 /* SmallLeftArrow.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = SmallLeftArrow.plist; path = Resources/SmallLeftArrow.plist; sourceTree = "<group>"; };
+		5695F1D9137F753B0075CD26 /* SmallRightArrow.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = SmallRightArrow.plist; path = Resources/SmallRightArrow.plist; sourceTree = "<group>"; };
 		56A480B3137C5E3D00742877 /* LanderPhysicsDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LanderPhysicsDelegate.h; path = "Lander Model/LanderPhysicsDelegate.h"; sourceTree = "<group>"; };
 		56A480C1137C6C5500742877 /* LanderPhysicsConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LanderPhysicsConstants.h; path = "Lander Model/LanderPhysicsConstants.h"; sourceTree = "<group>"; };
 		56A480C2137C6C5500742877 /* LanderPhysicsConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LanderPhysicsConstants.m; path = "Lander Model/LanderPhysicsConstants.m"; sourceTree = "<group>"; };
 		56E80E4B137E4CC3009E7F15 /* Lander.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Lander.plist; path = Resources/Lander.plist; sourceTree = "<group>"; };
-		56E80E5E137E599D009E7F15 /* VGView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VGView.h; sourceTree = "<group>"; };
-		56E80E5F137E599E009E7F15 /* VGView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VGView.m; sourceTree = "<group>"; };
+		56E80E5E137E599D009E7F15 /* VGView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VGView.h; path = VectorGraphics/VGView.h; sourceTree = "<group>"; };
+		56E80E5F137E599E009E7F15 /* VGView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VGView.m; path = VectorGraphics/VGView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -152,10 +167,9 @@
 			children = (
 				560FA0DE137991AE0017EE25 /* MoonlanderAppDelegate.h */,
 				560FA0DF137991AE0017EE25 /* MoonlanderAppDelegate.m */,
-				56E80E5E137E599D009E7F15 /* VGView.h */,
-				56E80E5F137E599E009E7F15 /* VGView.m */,
 				560FA0E1137991AE0017EE25 /* iPhone */,
 				560FA0E8137991AE0017EE25 /* iPad */,
+				5695F1A9137F52B50075CD26 /* Vector Graphics */,
 				560FA10D1379923D0017EE25 /* Lander Model */,
 				560FA13B1379C3900017EE25 /* Resources */,
 				560FA0D6137991AE0017EE25 /* Supporting Files */,
@@ -233,10 +247,14 @@
 		560FA13B1379C3900017EE25 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				562CB7BA137F3AE6003CB9B5 /* SmallLeftArrow.plist */,
+				56E80E4B137E4CC3009E7F15 /* Lander.plist */,
+				5695F1D8137F753B0075CD26 /* SmallLeftArrow.plist */,
+				5695F1D9137F753B0075CD26 /* SmallRightArrow.plist */,
+				562CB7BA137F3AE6003CB9B5 /* LargeLeftArrow.plist */,
+				5695F1D7137F753B0075CD26 /* LargeRightArrow.plist */,
+				564BE5C513801CAC00D790D9 /* ThrusterControl.plist */,
 				56345D80137B5C26001D9389 /* left arrow.png */,
 				56345D81137B5C26001D9389 /* right arrow.png */,
-				56E80E4B137E4CC3009E7F15 /* Lander.plist */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -250,6 +268,20 @@
 			);
 			name = Documentation;
 			path = Moonlander;
+			sourceTree = "<group>";
+		};
+		5695F1A9137F52B50075CD26 /* Vector Graphics */ = {
+			isa = PBXGroup;
+			children = (
+				564BE5D013801E0200D790D9 /* VGKit.h */,
+				56E80E5E137E599D009E7F15 /* VGView.h */,
+				56E80E5F137E599E009E7F15 /* VGView.m */,
+				564BE59C13800F3400D790D9 /* VGButton.h */,
+				564BE59D13800F3400D790D9 /* VGButton.m */,
+				564BE5C213801C0F00D790D9 /* VGSlider.h */,
+				564BE5C313801C0F00D790D9 /* VGSlider.m */,
+			);
+			name = "Vector Graphics";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -332,7 +364,11 @@
 				56345D82137B5C26001D9389 /* left arrow.png in Resources */,
 				56345D83137B5C26001D9389 /* right arrow.png in Resources */,
 				56E80E4C137E4CC3009E7F15 /* Lander.plist in Resources */,
-				562CB7BB137F3AE6003CB9B5 /* SmallLeftArrow.plist in Resources */,
+				562CB7BB137F3AE6003CB9B5 /* LargeLeftArrow.plist in Resources */,
+				5695F1DA137F753B0075CD26 /* LargeRightArrow.plist in Resources */,
+				5695F1DB137F753B0075CD26 /* SmallLeftArrow.plist in Resources */,
+				5695F1DC137F753B0075CD26 /* SmallRightArrow.plist in Resources */,
+				564BE5C613801CAC00D790D9 /* ThrusterControl.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -377,6 +413,8 @@
 				560FA1371379BEAB0017EE25 /* LanderViewController_iPad.m in Sources */,
 				56A480C3137C6C5500742877 /* LanderPhysicsConstants.m in Sources */,
 				56E80E60137E599E009E7F15 /* VGView.m in Sources */,
+				564BE59E13800F3400D790D9 /* VGButton.m in Sources */,
+				564BE5C413801C0F00D790D9 /* VGSlider.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

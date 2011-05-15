@@ -9,14 +9,14 @@
 			<key>x</key>
 			<integer>500</integer>
 			<key>y</key>
-			<integer>375</integer>
+			<integer>425</integer>
 		</dict>
 		<key>size</key>
 		<dict>
 			<key>height</key>
 			<integer>24</integer>
 			<key>width</key>
-			<integer>24</integer>
+			<integer>48</integer>
 		</dict>
 	</dict>
 	<key>paths</key>
@@ -42,14 +42,14 @@
 				<key>moveto</key>
 				<dict>
 					<key>x</key>
-					<integer>10</integer>
+					<integer>20</integer>
 					<key>y</key>
 					<integer>0</integer>
 				</dict>
 			</dict>
 			<dict>
 				<key>x</key>
-				<integer>-10</integer>
+				<integer>-20</integer>
 				<key>y</key>
 				<integer>0</integer>
 			</dict>
@@ -59,14 +59,14 @@
 				<key>moveto</key>
 				<dict>
 					<key>x</key>
-					<integer>-10</integer>
+					<integer>-20</integer>
 					<key>y</key>
 					<integer>0</integer>
 				</dict>
 			</dict>
 			<dict>
 				<key>x</key>
-				<integer>-2</integer>
+				<integer>-12</integer>
 				<key>y</key>
 				<integer>6</integer>
 			</dict>
@@ -76,14 +76,14 @@
 				<key>moveto</key>
 				<dict>
 					<key>x</key>
-					<integer>-10</integer>
+					<integer>-20</integer>
 					<key>y</key>
 					<integer>0</integer>
 				</dict>
 			</dict>
 			<dict>
 				<key>x</key>
-				<integer>-2</integer>
+				<integer>-12</integer>
 				<key>y</key>
 				<integer>-6</integer>
 			</dict>
