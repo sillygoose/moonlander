@@ -13,13 +13,22 @@
 
 @synthesize drawPaths=_drawPaths;
 @synthesize vectorName=_vectorName;
+
 @synthesize minX=_minX;
 @synthesize minY=_minY;
 @synthesize maxX=_maxX;
 @synthesize maxY=_maxY;
-@synthesize value=_value;
-//@synthesize thrusterIndicator=thrusterIndicator;
 
+@synthesize value=_value;
+@synthesize thrusterIndicator=thrusterIndicator;
+
+
+- (void)setValue:(float)value
+{
+    _value = value;
+    CGRect newFrame = CGRectMake(self.thrusterIndicator.frame.origin.x, (self.frame.size.height - (2 * self.value)) - self.thrusterIndicator.frame.size.height/2, self.thrusterIndicator.frame.size.width, self.thrusterIndicator.frame.size.height);
+    [self.thrusterIndicator setFrame:newFrame];
+}
 
 - (id)initWithFrame:(CGRect)frameRect
 {
@@ -27,16 +36,14 @@
         [self addTarget:self action:@selector(buttonDown:) forControlEvents:(UIControlEventTouchDown|UIControlEventTouchDragEnter)];
         [self addTarget:self action:@selector(buttonRepeat:) forControlEvents:(UIControlEventTouchDownRepeat|UIControlEventTouchDragInside)];
         [self addTarget:self action:@selector(buttonUp:) forControlEvents:(UIControlEventTouchUpInside|UIControlEventTouchUpOutside|UIControlEventTouchCancel|UIControlEventTouchDragExit|UIControlEventTouchDragOutside)];
-#if 0
+
         // Thruster indicator
-        NSString *tiPath = [[NSBundle mainBundle] pathForResource:@"SmallLeftArrow" ofType:@"plist"];
-        assert(tiPath != nil);
-        self.thrusterIndicator = [[[VGView alloc] initWithFile:tiPath] retain];
-        
-        CGRect newFrameRect = CGRectMake(self.frame.origin.x - 10, self.frame.origin.y + self.frame.size.height, self.thrusterIndicator.frame.size.width, self.thrusterIndicator.frame.size.height);
-        [self.thrusterIndicator setFrame:newFrameRect] ;
+        NSString *tiPath = [[NSBundle mainBundle] pathForResource:@"ThrusterNeedle" ofType:@"plist"];
+        //NSLog(@"self: [%3.0f,%3.0f] and [%3.0f,%3.0f]", self.frame.origin.x, self.frame.origin.y, self.frame.origin.y, self.frame.size.height);
+        CGRect needleFrameRect = CGRectMake(100, 0/*self.frame.size.height - (self.frame.size.height * self.value*/, 75, 10);
+        //NSLog(@"newFraemrect: [%3.0f,%3.0f] and [%3.0f,%3.0f]", needleFrameRect.origin.x, needleFrameRect.origin.y, needleFrameRect.size.width, needleFrameRect.size.height);
+        self.thrusterIndicator = [[[VGView alloc] initWithFrame:needleFrameRect withPaths:tiPath] retain];
         [self addSubview:self.thrusterIndicator];
-#endif            
     }
     return self;
 }
@@ -216,7 +223,6 @@
 // If views are directly on top of each other, they move together.
 -(void)dispatchTouchEvent:(UIView *)theView toPosition:(CGPoint)position
 {
-    
     //NSLog(@"dispatchTouchEvent: (%f,%f)", position.x, position.y);
     self.value = 100.0f - position.y / theView.bounds.size.height * 100.0f;
     [self sendActionsForControlEvents:UIControlEventValueChanged];
@@ -226,7 +232,8 @@
 {
     for (UITouch *touch in touches) {
         if ([self pointInside:[touch locationInView:self] withEvent:event]) {
-            [self dispatchTouchEvent:[touch view] toPosition:[touch locationInView:self]];        }
+            [self dispatchTouchEvent:[touch view] toPosition:[touch locationInView:self]];
+        }
 	}	
 }
 
@@ -234,7 +241,8 @@
 {
     for (UITouch *touch in touches) {
         if ([self pointInside:[touch locationInView:self] withEvent:event]) {
-            [self dispatchTouchEvent:[touch view] toPosition:[touch locationInView:self]];        }
+            [self dispatchTouchEvent:[touch view] toPosition:[touch locationInView:self]];
+        }
 	}	
 }
 
@@ -242,7 +250,8 @@
 {
     for (UITouch *touch in touches) {
         if ([self pointInside:[touch locationInView:self] withEvent:event]) {
-            [self dispatchTouchEvent:[touch view] toPosition:[touch locationInView:self]];        }
+            [self dispatchTouchEvent:[touch view] toPosition:[touch locationInView:self]];
+        }
 	}	
 }
 #endif

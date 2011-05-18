@@ -21,7 +21,7 @@
     float _maxY;
 
     float _value;
-    //VGView *_thrusterIndicator;
+    VGView *_thrusterIndicator;
 }
 
 @property (nonatomic, retain) NSArray *drawPaths;
@@ -33,7 +33,7 @@
 @property (nonatomic) float maxY;
 
 @property (nonatomic) float value;
-//@property (nonatomic, retain) VGView *thrusterIndicator;
+@property (nonatomic, retain) VGView *thrusterIndicator;
 
 - (id)initWithFrame:(CGRect)frameRect;
 - (id)initWithFrame:(CGRect)frameRect withPaths:(NSString *)fileName;
