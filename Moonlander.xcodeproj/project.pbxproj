@@ -29,6 +29,8 @@
 		560FA1381379BEAB0017EE25 /* LanderViewController_iPad.m in Sources */ = {isa = PBXBuildFile; fileRef = 560FA1351379BEAA0017EE25 /* LanderViewController_iPad.m */; };
 		560FA1391379BEAB0017EE25 /* LanderViewController_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 560FA1361379BEAA0017EE25 /* LanderViewController_iPad.xib */; };
 		560FA13A1379BEAB0017EE25 /* LanderViewController_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 560FA1361379BEAA0017EE25 /* LanderViewController_iPad.xib */; };
+		562B108A13841BAA00CC5C97 /* VGLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 562B108913841BAA00CC5C97 /* VGLabel.m */; };
+		562B108D13841D5A00CC5C97 /* LanderMessages.plist in Resources */ = {isa = PBXBuildFile; fileRef = 562B108C13841D5A00CC5C97 /* LanderMessages.plist */; };
 		562CB7BB137F3AE6003CB9B5 /* LargeLeftArrow.plist in Resources */ = {isa = PBXBuildFile; fileRef = 562CB7BA137F3AE6003CB9B5 /* LargeLeftArrow.plist */; };
 		563B158A137A1DD100E77EA8 /* lunar.bas in Resources */ = {isa = PBXBuildFile; fileRef = 563B1589137A1DD100E77EA8 /* lunar.bas */; };
 		563B158D137A1DFC00E77EA8 /* gtlem.mac in Resources */ = {isa = PBXBuildFile; fileRef = 563B158B137A1DFC00E77EA8 /* gtlem.mac */; };
@@ -90,6 +92,9 @@
 		560FA1351379BEAA0017EE25 /* LanderViewController_iPad.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LanderViewController_iPad.m; path = iPad/LanderViewController_iPad.m; sourceTree = "<group>"; };
 		560FA1361379BEAA0017EE25 /* LanderViewController_iPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = LanderViewController_iPad.xib; path = iPad/en.lproj/LanderViewController_iPad.xib; sourceTree = "<group>"; };
 		560FA13E1379C95B0017EE25 /* LanderPhysicsDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LanderPhysicsDataSource.h; path = "Lander Model/LanderPhysicsDataSource.h"; sourceTree = "<group>"; };
+		562B108813841BAA00CC5C97 /* VGLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VGLabel.h; path = VectorGraphics/VGLabel.h; sourceTree = "<group>"; };
+		562B108913841BAA00CC5C97 /* VGLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VGLabel.m; path = VectorGraphics/VGLabel.m; sourceTree = "<group>"; };
+		562B108C13841D5A00CC5C97 /* LanderMessages.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = LanderMessages.plist; path = Resources/LanderMessages.plist; sourceTree = "<group>"; };
 		562CB7BA137F3AE6003CB9B5 /* LargeLeftArrow.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = LargeLeftArrow.plist; path = Resources/LargeLeftArrow.plist; sourceTree = "<group>"; };
 		563B1589137A1DD100E77EA8 /* lunar.bas */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = lunar.bas; path = Documentation/lunar.bas; sourceTree = "<group>"; };
 		563B158B137A1DFC00E77EA8 /* gtlem.mac */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = gtlem.mac; path = Documentation/gtlem.mac; sourceTree = "<group>"; };
@@ -269,6 +274,7 @@
 				564EBC4E13834A07007D477C /* Man.plist */,
 				564EBC5013834A17007D477C /* McDonalds.plist */,
 				569BB49B138398A2005E2C86 /* ThrusterNeedle.plist */,
+				562B108C13841D5A00CC5C97 /* LanderMessages.plist */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -295,6 +301,8 @@
 				564BE59D13800F3400D790D9 /* VGButton.m */,
 				564BE5C213801C0F00D790D9 /* VGSlider.h */,
 				564BE5C313801C0F00D790D9 /* VGSlider.m */,
+				562B108813841BAA00CC5C97 /* VGLabel.h */,
+				562B108913841BAA00CC5C97 /* VGLabel.m */,
 			);
 			name = "Vector Graphics";
 			sourceTree = "<group>";
@@ -389,6 +397,7 @@
 				564EBC4F13834A07007D477C /* Man.plist in Resources */,
 				564EBC5113834A17007D477C /* McDonalds.plist in Resources */,
 				569BB49C138398A2005E2C86 /* ThrusterNeedle.plist in Resources */,
+				562B108D13841D5A00CC5C97 /* LanderMessages.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -435,6 +444,7 @@
 				56E80E60137E599E009E7F15 /* VGView.m in Sources */,
 				564BE59E13800F3400D790D9 /* VGButton.m in Sources */,
 				564BE5C413801C0F00D790D9 /* VGSlider.m in Sources */,
+				562B108A13841BAA00CC5C97 /* VGLabel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
