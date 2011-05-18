@@ -2744,13 +2744,13 @@ SLEFTA:	.WORD	114020   ;point mode, blink off
 	.WORD	SLFTAX       ;X=945
 	.WORD	SLFTAY       ;Y=375
 	.WORD	113144       ;long vector mode, intensity 4, disable LP interrupts, solid line
-	.WORD	20.+LEFT+INT ;X 20 left. intensify
-	.WORD	0.           ;Y unchanged
-LEFTC:	.WORD	12.+INT  ;X 12 right, intensify
+	.WORD	20.+LEFT+INT ;X 20 left, (draw)
+	.WORD	0.           ;Y right
+LEFTC:	.WORD	12.+INT  ;X 12 right, (draw)
 	.WORD	8.           ;Y 8 up
-	.WORD	12.+LEFT     ;X 12 left
+	.WORD	12.+LEFT     ;X 12 left, (moveto)
 	.WORD	8.+DOWN      ;Y 8 down
-	.WORD	12.+INT      ;X 12 right
+	.WORD	12.+INT      ;X 12 right, (draw)
 	.WORD	8.+DOWN      ;Y 8 down
 	.WORD	DISTOP       ;display stop
 	.WORD	0
