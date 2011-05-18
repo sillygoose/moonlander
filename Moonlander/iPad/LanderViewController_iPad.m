@@ -19,9 +19,9 @@
 @synthesize smallRightArrow=_smallRightArrow;
 @synthesize largeLeftArrow=_largeLeftArrow;
 @synthesize largeRightArrow=_largeRightArrow;
+
 @synthesize thrusterSlider=_thrusterSlider;
 
-@synthesize thrustSlider=_thrustSlider;
 @synthesize newGameButton=_newGameButton;
 
 @synthesize simulationTimer=_simulationTimer;
@@ -60,9 +60,9 @@ const float DisplayUpdateInterval = 1.0f;
     [_smallRightArrow release];
     [_largeLeftArrow release];
     [_largeRightArrow release];
+    
     [_thrusterSlider release];
     
-    [_thrustSlider release];
     [_newGameButton release];
     
     [_simulationTimer release];
@@ -105,38 +105,34 @@ const float DisplayUpdateInterval = 1.0f;
 {
     // Create the lander
     NSString *landerPath = [[NSBundle mainBundle] pathForResource:@"Lander" ofType:@"plist"];
-    assert(landerPath != nil);
-    self.landerView = [[[VGView alloc] initWithFile:landerPath] retain];
+    self.landerView = [[[VGView alloc] initWithFrame:CGRectMake(200, 200, 72, 72)] retain];
+    [self.landerView addPathFile:landerPath]; 
     [self.view addSubview:self.landerView];
 
     // Create the roll control arrows
     NSString *slaPath = [[NSBundle mainBundle] pathForResource:@"SmallLeftArrow" ofType:@"plist"];
-    assert(slaPath != nil);
-    self.smallLeftArrow = [[[VGButton alloc] initWithFile:slaPath andRepeat:0.5f] retain];
+    self.smallLeftArrow = [[[VGButton alloc] initWithFrame:CGRectMake(500, 400, 24, 24) withPaths:slaPath andRepeat:0.5f] retain];
 	[self.smallLeftArrow addTarget:self 
                             action:@selector(rotateLander:) 
             forControlEvents:UIControlEventValueChanged];
     [self.view addSubview:self.smallLeftArrow];
 
     NSString *sraPath = [[NSBundle mainBundle] pathForResource:@"SmallRightArrow" ofType:@"plist"];
-    assert(sraPath != nil);
-    self.smallRightArrow = [[[VGButton alloc] initWithFile:sraPath andRepeat:0.5f] retain];
+    self.smallRightArrow = [[[VGButton alloc] initWithFrame:CGRectMake(550, 400, 24, 24) withPaths:sraPath andRepeat:0.5f] retain];
 	[self.smallRightArrow addTarget:self 
                             action:@selector(rotateLander:) 
                   forControlEvents:UIControlEventValueChanged];
     [self.view addSubview:self.smallRightArrow];
     
     NSString *llaPath = [[NSBundle mainBundle] pathForResource:@"LargeLeftArrow" ofType:@"plist"];
-    assert(llaPath != nil);
-    self.largeLeftArrow = [[[VGButton alloc] initWithFile:llaPath andRepeat:0.5f] retain];
+    self.largeLeftArrow = [[[VGButton alloc] initWithFrame:CGRectMake(475, 450, 48, 24) withPaths:llaPath andRepeat:0.5f] retain];
 	[self.largeLeftArrow addTarget:self 
                             action:@selector(rotateLander:) 
                   forControlEvents:UIControlEventValueChanged];
     [self.view addSubview:self.largeLeftArrow];
     
     NSString *lraPath = [[NSBundle mainBundle] pathForResource:@"LargeRightArrow" ofType:@"plist"];
-    assert(lraPath != nil);
-    self.largeRightArrow = [[[VGButton alloc] initWithFile:lraPath andRepeat:0.5f] retain];
+    self.largeRightArrow = [[[VGButton alloc] initWithFrame:CGRectMake(550, 450, 48, 24) withPaths:lraPath andRepeat:0.5f] retain];
 	[self.largeRightArrow addTarget:self 
                             action:@selector(rotateLander:) 
                   forControlEvents:UIControlEventValueChanged];
@@ -145,16 +141,19 @@ const float DisplayUpdateInterval = 1.0f;
     // Create the thruster control
     NSString *tcPath = [[NSBundle mainBundle] pathForResource:@"ThrusterControl" ofType:@"plist"];
     assert(tcPath != nil);
-    self.thrusterSlider = [[[VGSlider alloc] initWithFile:tcPath] retain];
+    self.thrusterSlider = [[[VGSlider alloc] initWithFrame:CGRectMake(400, 50, 200, 200) withPaths:tcPath] retain];
 	[self.thrusterSlider addTarget:self 
-                            action:@selector(thrustChanged) 
+                            action:@selector(thrusterChanged:) 
                   forControlEvents:UIControlEventValueChanged];
     [self.view addSubview:self.thrusterSlider];
+
+    
+    
     
     [self.landerModel.delegate newGame];
     
     // Setup controls with model defaults
-    self.thrustSlider.value = [self.landerModel.dataSource thrustPercent];
+    self.thrusterSlider.value = [self.landerModel.dataSource thrustPercent];
         
     // Place the lander in position
     CGAffineTransform t = [self.landerView transform];
@@ -188,10 +187,9 @@ const float DisplayUpdateInterval = 1.0f;
 	return YES;
 }
 
-- (IBAction)thrustChanged:(UISlider *)sender
+- (IBAction)thrusterChanged:(VGSlider *)sender
 {
     [self.landerModel.dataSource setThrust:sender.value];
-    [sender setValue:[self.landerModel.dataSource thrustPercent] animated:YES];
 }
 
 - (IBAction)rotateLander:(id)sender
@@ -246,7 +244,7 @@ const float DisplayUpdateInterval = 1.0f;
     self.vertAccelLabel.text = [NSString stringWithFormat:@"VertAccel: %3.1f", [self.landerModel.dataSource vertAccel]];
     self.horizAccelLabel.text = [NSString stringWithFormat:@"HorizAccel: %3.1f", [self.landerModel.dataSource horizAccel]];
     self.fuelRemainingLabel.text = [NSString stringWithFormat:@"Fuel: %4.0f", [self.landerModel.dataSource fuel]];
-    [self.thrustSlider setValue:[self.landerModel.dataSource thrustPercent] animated:YES];
+    [self.thrusterSlider setValue:[self.landerModel.dataSource thrustPercent]];
 }
 
 - (void)gameLoop

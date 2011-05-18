@@ -30,7 +30,6 @@
     NSTimer *_simulationTimer;
     NSTimer *_displayTimer;
 
-    UISlider *_thrustSlider;
     UIButton *_newGameButton;
     
     UILabel *_timeLabel;
@@ -59,7 +58,6 @@
 
 @property (nonatomic, retain) VGSlider *thrusterSlider;
 
-@property (nonatomic, retain) IBOutlet UISlider *thrustSlider;
 @property (nonatomic, retain) IBOutlet UIButton *newGameButton;
 
 @property (nonatomic, retain) IBOutlet UILabel *timeLabel;
@@ -73,7 +71,7 @@
 @property (nonatomic, retain) IBOutlet UILabel *horizAccelLabel;
 @property (nonatomic, retain) IBOutlet UILabel *fuelRemainingLabel;
 
-- (IBAction)thrustChanged:(UISlider *)sender;
+- (IBAction)thrusterChanged:(VGSlider *)sender;
 - (IBAction)rotateLander:(id)sender;
 - (IBAction)newGame;
 

@@ -36,10 +36,16 @@
 		564BE59E13800F3400D790D9 /* VGButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 564BE59D13800F3400D790D9 /* VGButton.m */; };
 		564BE5C413801C0F00D790D9 /* VGSlider.m in Sources */ = {isa = PBXBuildFile; fileRef = 564BE5C313801C0F00D790D9 /* VGSlider.m */; };
 		564BE5C613801CAC00D790D9 /* ThrusterControl.plist in Resources */ = {isa = PBXBuildFile; fileRef = 564BE5C513801CAC00D790D9 /* ThrusterControl.plist */; };
-		564BE60B138064D700D790D9 /* Moon.plist in Resources */ = {isa = PBXBuildFile; fileRef = 564BE60A138064D700D790D9 /* Moon.plist */; };
+		564EBC4D138349F2007D477C /* Flag.plist in Resources */ = {isa = PBXBuildFile; fileRef = 564EBC4C138349F2007D477C /* Flag.plist */; };
+		564EBC4F13834A07007D477C /* Man.plist in Resources */ = {isa = PBXBuildFile; fileRef = 564EBC4E13834A07007D477C /* Man.plist */; };
+		564EBC5113834A17007D477C /* McDonalds.plist in Resources */ = {isa = PBXBuildFile; fileRef = 564EBC5013834A17007D477C /* McDonalds.plist */; };
 		5695F1DA137F753B0075CD26 /* LargeRightArrow.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5695F1D7137F753B0075CD26 /* LargeRightArrow.plist */; };
 		5695F1DB137F753B0075CD26 /* SmallLeftArrow.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5695F1D8137F753B0075CD26 /* SmallLeftArrow.plist */; };
 		5695F1DC137F753B0075CD26 /* SmallRightArrow.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5695F1D9137F753B0075CD26 /* SmallRightArrow.plist */; };
+		569BB49C138398A2005E2C86 /* ThrusterNeedle.plist in Resources */ = {isa = PBXBuildFile; fileRef = 569BB49B138398A2005E2C86 /* ThrusterNeedle.plist */; };
+		569CC2AA13809BED00E6D82A /* Moon.plist in Resources */ = {isa = PBXBuildFile; fileRef = 569CC2A913809BED00E6D82A /* Moon.plist */; };
+		569CC2AD1380B13C00E6D82A /* VT-11 Instruction Set.txt in Resources */ = {isa = PBXBuildFile; fileRef = 569CC2AC1380B13C00E6D82A /* VT-11 Instruction Set.txt */; };
+		569CC2B31380CC3300E6D82A /* Rock.plist in Resources */ = {isa = PBXBuildFile; fileRef = 569CC2B21380CC3300E6D82A /* Rock.plist */; };
 		56A480C3137C6C5500742877 /* LanderPhysicsConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 56A480C2137C6C5500742877 /* LanderPhysicsConstants.m */; };
 		56E80E4C137E4CC3009E7F15 /* Lander.plist in Resources */ = {isa = PBXBuildFile; fileRef = 56E80E4B137E4CC3009E7F15 /* Lander.plist */; };
 		56E80E60137E599E009E7F15 /* VGView.m in Sources */ = {isa = PBXBuildFile; fileRef = 56E80E5F137E599E009E7F15 /* VGView.m */; };
@@ -94,10 +100,16 @@
 		564BE5C313801C0F00D790D9 /* VGSlider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VGSlider.m; path = VectorGraphics/VGSlider.m; sourceTree = "<group>"; };
 		564BE5C513801CAC00D790D9 /* ThrusterControl.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = ThrusterControl.plist; path = Resources/ThrusterControl.plist; sourceTree = "<group>"; };
 		564BE5D013801E0200D790D9 /* VGKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VGKit.h; path = VectorGraphics/VGKit.h; sourceTree = "<group>"; };
-		564BE60A138064D700D790D9 /* Moon.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Moon.plist; path = Resources/Moon.plist; sourceTree = "<group>"; };
+		564EBC4C138349F2007D477C /* Flag.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Flag.plist; path = Resources/Flag.plist; sourceTree = "<group>"; };
+		564EBC4E13834A07007D477C /* Man.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Man.plist; path = Resources/Man.plist; sourceTree = "<group>"; };
+		564EBC5013834A17007D477C /* McDonalds.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = McDonalds.plist; path = Resources/McDonalds.plist; sourceTree = "<group>"; };
 		5695F1D7137F753B0075CD26 /* LargeRightArrow.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = LargeRightArrow.plist; path = Resources/LargeRightArrow.plist; sourceTree = "<group>"; };
 		5695F1D8137F753B0075CD26 /* SmallLeftArrow.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = SmallLeftArrow.plist; path = Resources/SmallLeftArrow.plist; sourceTree = "<group>"; };
 		5695F1D9137F753B0075CD26 /* SmallRightArrow.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = SmallRightArrow.plist; path = Resources/SmallRightArrow.plist; sourceTree = "<group>"; };
+		569BB49B138398A2005E2C86 /* ThrusterNeedle.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = ThrusterNeedle.plist; path = Resources/ThrusterNeedle.plist; sourceTree = "<group>"; };
+		569CC2A913809BED00E6D82A /* Moon.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Moon.plist; path = Resources/Moon.plist; sourceTree = "<group>"; };
+		569CC2AC1380B13C00E6D82A /* VT-11 Instruction Set.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "VT-11 Instruction Set.txt"; path = "Documentation/VT-11 Instruction Set.txt"; sourceTree = "<group>"; };
+		569CC2B21380CC3300E6D82A /* Rock.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Rock.plist; path = Resources/Rock.plist; sourceTree = "<group>"; };
 		56A480B3137C5E3D00742877 /* LanderPhysicsDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LanderPhysicsDelegate.h; path = "Lander Model/LanderPhysicsDelegate.h"; sourceTree = "<group>"; };
 		56A480C1137C6C5500742877 /* LanderPhysicsConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LanderPhysicsConstants.h; path = "Lander Model/LanderPhysicsConstants.h"; sourceTree = "<group>"; };
 		56A480C2137C6C5500742877 /* LanderPhysicsConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LanderPhysicsConstants.m; path = "Lander Model/LanderPhysicsConstants.m"; sourceTree = "<group>"; };
@@ -245,13 +257,18 @@
 		560FA13B1379C3900017EE25 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				564BE60A138064D700D790D9 /* Moon.plist */,
+				569CC2B21380CC3300E6D82A /* Rock.plist */,
+				569CC2A913809BED00E6D82A /* Moon.plist */,
 				56E80E4B137E4CC3009E7F15 /* Lander.plist */,
 				5695F1D8137F753B0075CD26 /* SmallLeftArrow.plist */,
 				5695F1D9137F753B0075CD26 /* SmallRightArrow.plist */,
 				562CB7BA137F3AE6003CB9B5 /* LargeLeftArrow.plist */,
 				5695F1D7137F753B0075CD26 /* LargeRightArrow.plist */,
 				564BE5C513801CAC00D790D9 /* ThrusterControl.plist */,
+				564EBC4C138349F2007D477C /* Flag.plist */,
+				564EBC4E13834A07007D477C /* Man.plist */,
+				564EBC5013834A17007D477C /* McDonalds.plist */,
+				569BB49B138398A2005E2C86 /* ThrusterNeedle.plist */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -262,6 +279,7 @@
 				563B158B137A1DFC00E77EA8 /* gtlem.mac */,
 				563B158C137A1DFC00E77EA8 /* rtlem.mac */,
 				563B1589137A1DD100E77EA8 /* lunar.bas */,
+				569CC2AC1380B13C00E6D82A /* VT-11 Instruction Set.txt */,
 			);
 			name = Documentation;
 			path = Moonlander;
@@ -364,7 +382,13 @@
 				5695F1DB137F753B0075CD26 /* SmallLeftArrow.plist in Resources */,
 				5695F1DC137F753B0075CD26 /* SmallRightArrow.plist in Resources */,
 				564BE5C613801CAC00D790D9 /* ThrusterControl.plist in Resources */,
-				564BE60B138064D700D790D9 /* Moon.plist in Resources */,
+				569CC2AA13809BED00E6D82A /* Moon.plist in Resources */,
+				569CC2AD1380B13C00E6D82A /* VT-11 Instruction Set.txt in Resources */,
+				569CC2B31380CC3300E6D82A /* Rock.plist in Resources */,
+				564EBC4D138349F2007D477C /* Flag.plist in Resources */,
+				564EBC4F13834A07007D477C /* Man.plist in Resources */,
+				564EBC5113834A17007D477C /* McDonalds.plist in Resources */,
+				569BB49C138398A2005E2C86 /* ThrusterNeedle.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
