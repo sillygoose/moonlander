@@ -8,8 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-#import "VGKit.h"
-
 
 @interface VGView : UIView {
     NSArray *_drawPaths;
