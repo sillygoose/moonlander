@@ -24,51 +24,56 @@
 				</dict>
 				<key>moveto</key>
 				<dict>
+					<key>center</key>
+					<integer>0</integer>
+				</dict>
+			</dict>
+			<dict>
+				<key>moverel</key>
+				<dict>
 					<key>x</key>
 					<integer>0</integer>
 					<key>y</key>
-					<integer>150</integer>
+					<integer>-100</integer>
+				</dict>
+				<key>x</key>
+				<integer>0</integer>
+				<key>y</key>
+				<integer>200</integer>
+			</dict>
+		</array>
+		<array>
+			<dict>
+				<key>moverel</key>
+				<dict>
+					<key>x</key>
+					<integer>-4</integer>
+					<key>y</key>
+					<integer>0</integer>
 				</dict>
 			</dict>
 			<dict>
 				<key>x</key>
 				<integer>0</integer>
 				<key>y</key>
-				<integer>-150</integer>
+				<integer>-200</integer>
 			</dict>
 		</array>
 		<array>
 			<dict>
-				<key>moveto</key>
+				<key>moverel</key>
 				<dict>
 					<key>x</key>
-					<integer>-4</integer>
+					<integer>8</integer>
 					<key>y</key>
-					<integer>150</integer>
+					<integer>0</integer>
 				</dict>
 			</dict>
 			<dict>
 				<key>x</key>
-				<integer>-4</integer>
+				<integer>0</integer>
 				<key>y</key>
-				<integer>-150</integer>
-			</dict>
-		</array>
-		<array>
-			<dict>
-				<key>moveto</key>
-				<dict>
-					<key>x</key>
-					<integer>4</integer>
-					<key>y</key>
-					<integer>150</integer>
-				</dict>
-			</dict>
-			<dict>
-				<key>x</key>
-				<integer>4</integer>
-				<key>y</key>
-				<integer>-150</integer>
+				<integer>200</integer>
 			</dict>
 		</array>
 	</array>
