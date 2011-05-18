@@ -40,7 +40,7 @@
     self = [self initWithFrame:frameRect];
     
     self.drawPaths = [msg objectForKey:@"text"];
-    self.vectorName = [msg objectForKey:@"name"];
+    self.vectorName = msgName;
     
     return self;
 }
@@ -52,11 +52,8 @@
 
 - (void)drawRect:(CGRect)rect
 {
+#if 0
 	CGPoint prevPoint = CGPointMake(0.0f, 0.0f);
-    self.minX = FLT_MAX;
-    self.minY = FLT_MAX;
-    self.maxX = -FLT_MAX;
-    self.maxY = -FLT_MAX;
     
 	CGContextRef context = UIGraphicsGetCurrentContext();
     CGContextSetShouldAntialias (context, YES);
@@ -173,6 +170,7 @@
         }
     }
     CGContextStrokePath(context);
+#endif
     NSLog(@"Max coordinates for %@: (%3.0f,%3.0f), (%3.0f,%3.0f)", self.vectorName, self.minX, self.minY, self.maxX, self.maxY);
 }
 

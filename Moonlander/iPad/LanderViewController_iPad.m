@@ -8,6 +8,8 @@
 
 #import "LanderViewController_iPad.h"
 
+#import "VGLabel.h"
+
 
 @implementation LanderViewController_iPad
 
@@ -149,7 +151,8 @@ const float DisplayUpdateInterval = 1.0f;
     [self.view addSubview:self.thrusterSlider];
 
     
-    
+    VGLabel *msg = [[VGLabel alloc] initWithMessage:@"LeftEdge"];
+    [self.view addSubview:msg];
     
     [self.landerModel.delegate newGame];
     
