@@ -22,6 +22,10 @@
 - (id)initWithFrame:(CGRect)frameRect
 {
     if ((self = [super initWithFrame:frameRect])) {
+        self.minX = FLT_MAX;
+        self.minY = FLT_MAX;
+        self.maxX = -FLT_MAX;
+        self.maxY = -FLT_MAX;
     }
     return self;
 }
@@ -46,10 +50,6 @@
 - (void)drawRect:(CGRect)rect
 {
 	CGPoint prevPoint = CGPointMake(0.0f, 0.0f);
-    self.minX = FLT_MAX;
-    self.minY = FLT_MAX;
-    self.maxX = -FLT_MAX;
-    self.maxY = -FLT_MAX;
     
 	CGContextRef context = UIGraphicsGetCurrentContext();
     CGContextSetShouldAntialias (context, YES);
