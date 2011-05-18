@@ -8,13 +8,30 @@
 
 #import <UIKit/UIKit.h>
 
+#import "VGKit.h"
+
 
 @interface VGView : UIView {
     NSArray *_drawPaths;
+    NSString *_vectorName;
+    
+    float _minX;
+    float _minY;
+    float _maxX;
+    float _maxY;
 }
 
 @property (nonatomic, retain) NSArray *drawPaths;
+@property (nonatomic, copy) NSString *vectorName;
 
-- (id)initWithFile:(NSString *)fileName;
+@property (nonatomic) float minX;
+@property (nonatomic) float minY;
+@property (nonatomic) float maxX;
+@property (nonatomic) float maxY;
+
+- (id)initWithFrame:(CGRect)frameRect;
+- (id)initWithFrame:(CGRect)frameRect withPaths:(NSString *)fileName;
+
+- (void)addPathFile:(NSString *)fileName; 
 
 @end

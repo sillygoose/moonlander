@@ -14,36 +14,41 @@
 @implementation VGButton
 
 @synthesize drawPaths=_drawPaths;
+@synthesize vectorName=_vectorName;
+@synthesize minX=_minX;
+@synthesize minY=_minY;
+@synthesize maxX=_maxX;
+@synthesize maxY=_maxY;
 @synthesize repeatTimer=_repeatTimer;
 @synthesize autoRepeatInterval=_autoRepeatInterval;
 
 
-- (id)initWithFile:(NSString *)fileName
+- (id)initWithFrame:(CGRect)frameRect
 {
-    // Open the vector XML file and create the view
-    NSDictionary *viewObject = [NSDictionary dictionaryWithContentsOfFile:fileName];
-    if (viewObject) {
-        NSArray *paths = [viewObject objectForKey:@"paths"];
-        NSDictionary *frame = [viewObject objectForKey:@"frame"];
-        NSDictionary *size = [frame objectForKey:@"size"];
-        NSDictionary *origin = [frame objectForKey:@"origin"];
-        CGRect frameRect = CGRectMake([[origin objectForKey:@"x"] floatValue], [[origin objectForKey:@"y"] floatValue], [[size objectForKey:@"width"] floatValue], [[size objectForKey:@"height"] floatValue]);
-        
-        self = [super initWithFrame:frameRect];
-        if (self) {
-            self.drawPaths = paths;
-            
-            [self addTarget:self action:@selector(buttonDown:) forControlEvents:UIControlEventTouchDown];
-            [self addTarget:self action:@selector(buttonUp:) forControlEvents:(UIControlEventTouchUpInside|UIControlEventTouchUpOutside|UIControlEventTouchCancel)];
-        }
+    if ((self = [super initWithFrame:frameRect])) {
+        [self addTarget:self action:@selector(buttonDown:) forControlEvents:UIControlEventTouchDown];
+        [self addTarget:self action:@selector(buttonUp:) forControlEvents:(UIControlEventTouchUpInside|UIControlEventTouchUpOutside|UIControlEventTouchCancel)];
     }
-    else self = nil;
     return self;
 }
 
-- (id)initWithFile:(NSString *)fileName andRepeat:(float)repeatInterval
+- (id)initWithFrame:(CGRect)frameRect withPaths:(NSString *)fileName
 {
-    [self initWithFile:fileName];
+    self = [self initWithFrame:frameRect];
+    
+    NSDictionary *viewObject = [NSDictionary dictionaryWithContentsOfFile:fileName];
+    self.vectorName = [viewObject objectForKey:@"name"];
+    self.drawPaths = [viewObject objectForKey:@"paths"];
+    return self;
+}
+
+- (id)initWithFrame:(CGRect)frameRect withPaths:(NSString *)fileName andRepeat:(float)repeatInterval
+{
+    self = [self initWithFrame:frameRect];
+    
+    NSDictionary *viewObject = [NSDictionary dictionaryWithContentsOfFile:fileName];
+    self.vectorName = [viewObject objectForKey:@"name"];
+    self.drawPaths = [viewObject objectForKey:@"paths"];
     self.autoRepeatInterval = repeatInterval;
     return self;
 }
@@ -55,14 +60,24 @@
     [super dealloc];
 }
 
+- (void)addPathFile:(NSString *)fileName
+{
+    NSDictionary *viewObject = [NSDictionary dictionaryWithContentsOfFile:fileName];
+    self.vectorName = [viewObject objectForKey:@"name"];
+    self.drawPaths = [viewObject objectForKey:@"paths"];
+}
 
 - (void)drawRect:(CGRect)rect
 {
-	CGPoint midPoint;
-	midPoint.x = self.bounds.origin.x + self.bounds.size.width / 2;
-	midPoint.y = self.bounds.origin.y + self.bounds.size.height / 2;
-	
+	CGPoint prevPoint = CGPointMake(0.0f, 0.0f);
+    self.minX = FLT_MAX;
+    self.minY = FLT_MAX;
+    self.maxX = -FLT_MAX;
+    self.maxY = -FLT_MAX;
+    
 	CGContextRef context = UIGraphicsGetCurrentContext();
+    CGContextSetShouldAntialias (context, YES);
+    CGContextSetAllowsAntialiasing(context, YES);
     
     NSEnumerator *pathEnumerator = [self.drawPaths objectEnumerator];
     NSArray *currentPath;
@@ -70,38 +85,112 @@
         NSEnumerator *vectorEnumerator = [currentPath objectEnumerator];
         NSDictionary *currentVector;
         while ((currentVector = [vectorEnumerator nextObject])) {
-            // Choices are "moveto", "color", "line", "x", "y"
+            // Choices are "moveto", "color", "line", "x", "y", "center"
+            if ([currentVector objectForKey:@"stop"]) {
+                BOOL stopCommand = [[currentVector objectForKey:@"stop"] boolValue];
+                if (stopCommand) break;
+            }
+            
+            if ([currentVector objectForKey:@"break"]) {
+                BOOL breakCommand = [[currentVector objectForKey:@"break"] boolValue];
+                if (breakCommand) {
+                    NSLog(@"Set breakpoint point here");;
+                }
+            }
+            
+            // Move to a point
             if ([currentVector objectForKey:@"moveto"]) {
                 NSDictionary *moveTo = [currentVector objectForKey:@"moveto"];
-                CGFloat x = [[moveTo objectForKey:@"x"] floatValue];
-                CGFloat y = [[moveTo objectForKey:@"y"] floatValue];
-                CGContextMoveToPoint(context, midPoint.x + x, midPoint.y + y);
+                if ([moveTo objectForKey:@"center"]) {
+                    // Centering uses the view bounds and is not scaled
+                    CGPoint midPoint = CGPointMake(self.bounds.origin.x + self.bounds.size.width / 2, self.bounds.origin.y + self.bounds.size.height / 2);
+                    CGContextMoveToPoint(context, midPoint.x, midPoint.y);
+                    //NSLog(@"Move (%3.0f,%3.0f)", midPoint.x, midPoint.y);
+                    prevPoint = midPoint;
+                    //CGContextStrokePath(context);
+                }
+                else if ([moveTo objectForKey:@"x"]) {
+                    // Moving to a point in the view requires scaling
+                    CGFloat x = [[moveTo objectForKey:@"x"] floatValue];
+                    CGFloat y = [[moveTo objectForKey:@"y"] floatValue];
+                    CGPoint newPoint = CGPointMake(x, y);
+                    // ### Scaling here
+                    CGContextMoveToPoint(context, newPoint.x, newPoint.y);
+                    
+                    //NSLog(@"Move To (%3.0f,%3.0f)", newPoint.x, newPoint.y);
+                    prevPoint = newPoint;
+                    self.minX = MIN(newPoint.x, self.minX);
+                    self.minY = MIN(newPoint.y, self.minY);
+                    self.maxX = MAX(newPoint.x, self.maxX);
+                    self.maxY = MAX(newPoint.x, self.maxY);
+                    //CGContextStrokePath(context);
+                }
             }
+            
+            // Move to a point relative to the current position
+            if ([currentVector objectForKey:@"moverel"]) {
+                NSDictionary *moveRelative = [currentVector objectForKey:@"moverel"];
+                if ([moveRelative objectForKey:@"x"]) {
+                    // Moving to a point in the view requires scaling
+                    CGFloat x = [[moveRelative objectForKey:@"x"] floatValue];
+                    CGFloat y = [[moveRelative objectForKey:@"y"] floatValue];
+                    CGPoint newPoint = CGPointMake(prevPoint.x + x, prevPoint.y + y);
+                    // ### Scaling here
+                    CGContextMoveToPoint(context, newPoint.x, newPoint.y);
+                    
+                    //NSLog(@"Move Relative (%3.0f,%3.0f)", newPoint.x, newPoint.y);
+                    prevPoint = newPoint;
+                    self.minX = MIN(newPoint.x, self.minX);
+                    self.minY = MIN(newPoint.y, self.minY);
+                    self.maxX = MAX(newPoint.x, self.maxX);
+                    self.maxY = MAX(newPoint.x, self.maxY);
+                    //CGContextStrokePath(context);
+                }
+            }
+            
+            // Process color stuff
             if ([currentVector objectForKey:@"color"]) {
                 NSDictionary *colorStuff = [currentVector objectForKey:@"color"];
                 CGFloat r = [[colorStuff objectForKey:@"r"] floatValue];
                 CGFloat g = [[colorStuff objectForKey:@"g"] floatValue];
                 CGFloat b = [[colorStuff objectForKey:@"b"] floatValue];
                 CGFloat alpha = [[colorStuff objectForKey:@"alpha"] floatValue];
+                CGContextStrokePath(context);
                 CGContextSetRGBStrokeColor(context, r, g, b, alpha);
+                CGContextMoveToPoint(context, prevPoint.x, prevPoint.y);
             }
+            
+            // Process line stuff
             if ([currentVector objectForKey:@"line"]) {
                 if ([currentVector objectForKey:@"line"]) {
                     NSDictionary *lineStuff = [currentVector objectForKey:@"line"];
                     if ([lineStuff objectForKey:@"width"]) {
                         CGFloat width = [[lineStuff objectForKey:@"width"] floatValue];
+                        CGContextStrokePath(context);
                         CGContextSetLineWidth(context, width);
+                        CGContextMoveToPoint(context, prevPoint.x, prevPoint.y);
                     }
                 }
             }
+            
+            // Process a new path segment
             if ([currentVector objectForKey:@"x"]) {
                 CGFloat x = [[currentVector objectForKey:@"x"] floatValue];
                 CGFloat y = [[currentVector objectForKey:@"y"] floatValue];
-                CGContextAddLineToPoint(context, midPoint.x + x, midPoint.y + y);
+                CGPoint newPoint = CGPointMake(prevPoint.x + x, prevPoint.y + y);
+                // ### Scaling here
+                CGContextAddLineToPoint(context, newPoint.x, newPoint.y);
+                //NSLog(@"Draw from %-3.0f,%-3.0f to %-3.0f,%-3.0f", prevPoint.x, prevPoint.y, newPoint.x, newPoint.y);
+                prevPoint = newPoint;
+                self.minX = MIN(newPoint.x, self.minX);
+                self.minY = MIN(newPoint.y, self.minY);
+                self.maxX = MAX(newPoint.x, self.maxX);
+                self.maxY = MAX(newPoint.x, self.maxY);
             }
         }
     }
     CGContextStrokePath(context);
+    NSLog(@"Max coordinates for %@: (%3.0f,%3.0f), (%3.0f,%3.0f)", self.vectorName, self.minX, self.minY, self.maxX, self.maxY);
 }
 
 - (void)buttonRepeat:(id)sender
@@ -127,58 +216,5 @@
         [self sendActionsForControlEvents:UIControlEventValueChanged];
     }
 }
-
-#if 0
-#pragma mark Touch tracking
-
-- (BOOL)beginTrackingWithTouch:(UITouch *)touch withEvent:(UIEvent *)event
-{
-    NSLog(@"Beginning tracking: %@", event);
-    //[self sendActionsForControlEvents:UIControlEventValueChanged];
-    return YES;
-}
-
-- (BOOL)continueTrackingWithTouch:(UITouch *)touch withEvent:(UIEvent *)event
-{
-    NSLog(@"Continue tracking: %@", event);
-    // Send value changed alert
-    //[self sendActionsForControlEvents:UIControlEventValueChanged];
-    [self sendActionsForControlEvents:UIControlEventValueChanged];
-    return YES;
-}
-
--(void)movePlayer:(id)sender
-{
-    NSLog(@"movePlayer: %@", sender);
-}
-
-- (void)endTrackingWithTouch:(UITouch *)touch withEvent:(UIEvent *)event
-{
-    NSLog(@"Ending tracking: %@", event);
-}
-
-- (void)touchesBegan:(NSSet*)touches  withEvent:(UIEvent*)event
-{
-    NSLog(@"touchesBegan: %@", event);
-    self.repeatTimer = [NSTimer scheduledTimerWithTimeInterval:0.5f target:self selector:@selector(movePlayer:) userInfo:nil repeats:YES];
-}
-
-- (void)touchesEnded:(NSSet*)touches withEvent:(UIEvent*)event
-{
-    NSLog(@"touchesEnded: %@", event);
-    if (self.repeatTimer != nil) 
-        [self.repeatTimer invalidate];
-    self.repeatTimer = nil;
-}
-
-- (void)touchesMoved:(NSSet*)touches withEvent:(UIEvent*)event
-{
-    NSLog(@"touchesMoved: %@", event);
-    if (self.repeatTimer != nil) {
-        [self.repeatTimer invalidate];
-        self.repeatTimer = nil;
-    }
-}
-#endif
 
 @end

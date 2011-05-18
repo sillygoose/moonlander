@@ -8,13 +8,34 @@
 
 #import <Foundation/Foundation.h>
 
+#import "VGView.h"
 
 @interface VGSlider : UIControl {
     NSArray *_drawPaths;
+
+    NSString *_vectorName;
+    
+    float _minX;
+    float _minY;
+    float _maxX;
+    float _maxY;
+
+    float _value;
+    //VGView *_thrusterIndicator;
 }
 
 @property (nonatomic, retain) NSArray *drawPaths;
+@property (nonatomic, copy) NSString *vectorName;
 
-- (id)initWithFile:(NSString *)fileName;
+@property (nonatomic) float minX;
+@property (nonatomic) float minY;
+@property (nonatomic) float maxX;
+@property (nonatomic) float maxY;
+
+@property (nonatomic) float value;
+//@property (nonatomic, retain) VGView *thrusterIndicator;
+
+- (id)initWithFrame:(CGRect)frameRect;
+- (id)initWithFrame:(CGRect)frameRect withPaths:(NSString *)fileName;
 
 @end
