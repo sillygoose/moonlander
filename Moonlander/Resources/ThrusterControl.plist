@@ -32,7 +32,7 @@
 				<key>moverel</key>
 				<dict>
 					<key>x</key>
-					<integer>0</integer>
+					<integer>95</integer>
 					<key>y</key>
 					<integer>-100</integer>
 				</dict>
@@ -64,7 +64,7 @@
 				<key>moverel</key>
 				<dict>
 					<key>x</key>
-					<integer>8</integer>
+					<integer>-4</integer>
 					<key>y</key>
 					<integer>0</integer>
 				</dict>
