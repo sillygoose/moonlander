@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>name</key>
+	<string>Thruster Needle</string>
+	<key>paths</key>
+	<array>
+		<array>
+			<dict>
+				<key>color</key>
+				<dict>
+					<key>alpha</key>
+					<integer>1</integer>
+					<key>b</key>
+					<real>0.00121</real>
+					<key>g</key>
+					<integer>1</integer>
+					<key>r</key>
+					<real>0.026</real>
+				</dict>
+				<key>line</key>
+				<dict>
+					<key>width</key>
+					<integer>1</integer>
+				</dict>
+				<key>moveto</key>
+				<dict>
+					<key>center</key>
+					<integer>0</integer>
+				</dict>
+			</dict>
+			<dict>
+				<key>moverel</key>
+				<dict>
+					<key>x</key>
+					<integer>-35</integer>
+					<key>y</key>
+					<integer>0</integer>
+				</dict>
+				<key>x</key>
+				<integer>70</integer>
+				<key>y</key>
+				<integer>0</integer>
+			</dict>
+		</array>
+	</array>
+</dict>
+</plist>
