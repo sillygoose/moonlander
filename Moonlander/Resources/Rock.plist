@@ -29,7 +29,7 @@
 				</dict>
 			</dict>
 			<dict>
-				<key>moveto</key>
+				<key>moverel</key>
 				<dict>
 					<key>x</key>
 					<integer>-14</integer>
