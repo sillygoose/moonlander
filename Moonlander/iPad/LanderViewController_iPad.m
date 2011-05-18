@@ -99,13 +99,14 @@ const float DisplayUpdateInterval = 1.0f;
     self.smallRightArrow.enabled = NO;
     self.largeLeftArrow.enabled = NO;
     self.largeRightArrow.enabled = NO;
+    self.thrusterSlider.enabled = NO;
 }
 
 - (void)initGame
 {
     // Create the lander
     NSString *landerPath = [[NSBundle mainBundle] pathForResource:@"Lander" ofType:@"plist"];
-    self.landerView = [[[VGView alloc] initWithFrame:CGRectMake(200, 200, 72, 72)] retain];
+    self.landerView = [[[VGView alloc] initWithFrame:CGRectMake(200, 200, 96, 96)] retain];
     [self.landerView addPathFile:landerPath]; 
     [self.view addSubview:self.landerView];
 
@@ -190,6 +191,7 @@ const float DisplayUpdateInterval = 1.0f;
 - (IBAction)thrusterChanged:(VGSlider *)sender
 {
     [self.landerModel.dataSource setThrust:sender.value];
+    [self.thrusterSlider setValue:[self.landerModel.dataSource thrustPercent]];
 }
 
 - (IBAction)rotateLander:(id)sender
@@ -244,15 +246,16 @@ const float DisplayUpdateInterval = 1.0f;
     self.vertAccelLabel.text = [NSString stringWithFormat:@"VertAccel: %3.1f", [self.landerModel.dataSource vertAccel]];
     self.horizAccelLabel.text = [NSString stringWithFormat:@"HorizAccel: %3.1f", [self.landerModel.dataSource horizAccel]];
     self.fuelRemainingLabel.text = [NSString stringWithFormat:@"Fuel: %4.0f", [self.landerModel.dataSource fuel]];
-    [self.thrusterSlider setValue:[self.landerModel.dataSource thrustPercent]];
 }
 
 - (void)gameLoop
 {
     [self.landerModel.delegate updateTime:GameTimerInterval];
+    [self.thrusterSlider setValue:[self.landerModel.dataSource thrustPercent]];
     //NSLog(@"%3.2f - Thrust: %5.0f  Altitude: %5.0f  Downrange: %5.0f  Angle:%2.0f  Weight:%5.0f  Fuel:%4.0f  HorizVel: %5.0f  VertVel: %5.0f  Accel: %5.3f  HorizAccel: %5.3f  VertAccel: %5.3f", [self.landerModel.dataSource time], [self.landerModel.dataSource thrust], [self.landerModel.dataSource altitude], [self.landerModel.dataSource range], [self.landerModel.dataSource rotationDegrees], [self.landerModel.dataSource weight], [self.landerModel.dataSource fuel], [self.landerModel.dataSource horizVel], [self.landerModel.dataSource vertVel], [self.landerModel.dataSource acceleration], [self.landerModel.dataSource horizAccel], [self.landerModel.dataSource vertAccel]);
     
     if ([self.landerModel.dataSource altitude] == 0.0f) {
+        [self.thrusterSlider setValue:[self.landerModel.dataSource thrustPercent]];
         [self disableFlightControls];
         [self.simulationTimer invalidate];
         [self.displayTimer invalidate];

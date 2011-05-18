@@ -198,26 +198,6 @@
     NSLog(@"Max coordinates for %@: (%3.0f,%3.0f), (%3.0f,%3.0f)", self.vectorName, self.minX, self.minY, self.maxX, self.maxY);
 }
 
-- (void)buttonRepeat:(VGSlider *)sender
-{
-    NSLog(@"buttonRepeat");
-    [self sendActionsForControlEvents:UIControlEventValueChanged];
-}
-
-- (IBAction)buttonDown:(VGSlider *)sender
-{
-    NSLog(@"buttonDown");
-    [self sendActionsForControlEvents:UIControlEventValueChanged];
-}
-
-- (IBAction)buttonUp:(VGSlider *)sender
-{
-    NSLog(@"buttonUp");
-    self.value = 100.0;
-    [self sendActionsForControlEvents:UIControlEventValueChanged];
-}
-
-#if 1
 #pragma mark Touch tracking
 
 // If views are directly on top of each other, they move together.
@@ -254,6 +234,5 @@
         }
 	}	
 }
-#endif
 
 @end
