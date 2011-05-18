@@ -68,12 +68,12 @@
 				<integer>718</integer>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>-7</integer>
 				<key>y</key>
 				<integer>750</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
 				<key>x</key>
@@ -112,12 +112,12 @@
 				<integer>814</integer>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>0</integer>
 				<key>y</key>
 				<integer>780</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
 				<key>x</key>
@@ -270,12 +270,12 @@
 				<integer>72</integer>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>26</integer>
 				<key>y</key>
 				<integer>70</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
 				<key>x</key>
@@ -284,20 +284,20 @@
 				<integer>69</integer>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>28</integer>
 				<key>y</key>
 				<integer>99</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>29</integer>
 				<key>y</key>
 				<integer>98</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
 				<key>x</key>
@@ -384,12 +384,12 @@
 				<integer>156</integer>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>44</integer>
 				<key>y</key>
 				<integer>148</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
 				<key>x</key>
@@ -422,28 +422,28 @@
 				<integer>75</integer>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>50</integer>
 				<key>y</key>
 				<integer>182</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>51</integer>
 				<key>y</key>
 				<integer>161</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>52</integer>
 				<key>y</key>
 				<integer>236</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
 				<key>x</key>
@@ -452,20 +452,20 @@
 				<integer>120</integer>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>54</integer>
 				<key>y</key>
 				<integer>67</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>55</integer>
 				<key>y</key>
 				<integer>174</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
 				<key>x</key>
@@ -492,12 +492,12 @@
 				<integer>59</integer>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>60</integer>
 				<key>y</key>
 				<integer>866</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
 				<key>x</key>
@@ -506,12 +506,12 @@
 				<integer>123</integer>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>62</integer>
 				<key>y</key>
 				<integer>201</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
 				<key>x</key>
@@ -520,20 +520,20 @@
 				<integer>250</integer>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>64</integer>
 				<key>y</key>
 				<integer>275</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>65</integer>
 				<key>y</key>
 				<integer>300</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
 				<key>x</key>
@@ -542,20 +542,20 @@
 				<integer>375</integer>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>67</integer>
 				<key>y</key>
 				<integer>410</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>68</integer>
 				<key>y</key>
 				<integer>579</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
 				<key>x</key>
@@ -564,36 +564,36 @@
 				<integer>926</integer>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>70</integer>
 				<key>y</key>
 				<integer>1832</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>71</integer>
 				<key>y</key>
 				<integer>1907</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>72</integer>
 				<key>y</key>
 				<integer>2013</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>73</integer>
 				<key>y</key>
 				<integer>2119</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
 				<key>x</key>
@@ -602,20 +602,20 @@
 				<integer>2257</integer>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>75</integer>
 				<key>y</key>
 				<integer>2395</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>76</integer>
 				<key>y</key>
 				<integer>2533</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
 				<key>x</key>
@@ -624,12 +624,12 @@
 				<integer>2639</integer>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>78</integer>
 				<key>y</key>
 				<integer>2745</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
 				<key>x</key>
@@ -650,12 +650,12 @@
 				<integer>3128</integer>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>82</integer>
 				<key>y</key>
 				<integer>3226</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
 				<key>x</key>
@@ -670,20 +670,20 @@
 				<integer>3231</integer>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>85</integer>
 				<key>y</key>
 				<integer>3170</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>86</integer>
 				<key>y</key>
 				<integer>3140</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
 				<key>x</key>
@@ -704,12 +704,12 @@
 				<integer>3180</integer>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>90</integer>
 				<key>y</key>
 				<integer>3246</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
 				<key>x</key>
@@ -742,20 +742,20 @@
 				<integer>3387</integer>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>96</integer>
 				<key>y</key>
 				<integer>3390</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>97</integer>
 				<key>y</key>
 				<integer>3424</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
 				<key>x</key>
@@ -770,12 +770,12 @@
 				<integer>3429</integer>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>100</integer>
 				<key>y</key>
 				<integer>3440</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
 				<key>x</key>
@@ -784,28 +784,28 @@
 				<integer>3450</integer>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>102</integer>
 				<key>y</key>
 				<integer>3429</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>103</integer>
 				<key>y</key>
 				<integer>3407</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>104</integer>
 				<key>y</key>
 				<integer>3386</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
 				<key>x</key>
@@ -814,28 +814,28 @@
 				<integer>3396</integer>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>106</integer>
 				<key>y</key>
 				<integer>3375</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>107</integer>
 				<key>y</key>
 				<integer>3321</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>108</integer>
 				<key>y</key>
 				<integer>3300</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
 				<key>x</key>
@@ -844,12 +844,12 @@
 				<integer>3246</integer>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>110</integer>
 				<key>y</key>
 				<integer>3257</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
 				<key>x</key>
@@ -864,68 +864,68 @@
 				<integer>3182</integer>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>113</integer>
 				<key>y</key>
 				<integer>3128</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>114</integer>
 				<key>y</key>
 				<integer>3107</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>115</integer>
 				<key>y</key>
 				<integer>3085</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>116</integer>
 				<key>y</key>
 				<integer>3064</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>117</integer>
 				<key>y</key>
 				<integer>3074</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>118</integer>
 				<key>y</key>
 				<integer>3085</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>119</integer>
 				<key>y</key>
 				<integer>3095</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>120</integer>
 				<key>y</key>
 				<integer>3195</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
 				<key>x</key>
@@ -934,60 +934,60 @@
 				<integer>3167</integer>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>122</integer>
 				<key>y</key>
 				<integer>3139</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>123</integer>
 				<key>y</key>
 				<integer>3239</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>124</integer>
 				<key>y</key>
 				<integer>2954</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>125</integer>
 				<key>y</key>
 				<integer>2926</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>126</integer>
 				<key>y</key>
 				<integer>2834</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>127</integer>
 				<key>y</key>
 				<integer>2710</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>128</integer>
 				<key>y</key>
 				<integer>2746</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
 				<key>x</key>
@@ -996,28 +996,28 @@
 				<integer>2718</integer>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>130</integer>
 				<key>y</key>
 				<integer>2753</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>131</integer>
 				<key>y</key>
 				<integer>2469</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>132</integer>
 				<key>y</key>
 				<integer>2569</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
 				<key>x</key>
@@ -1026,60 +1026,60 @@
 				<integer>2509</integer>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>134</integer>
 				<key>y</key>
 				<integer>2513</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>135</integer>
 				<key>y</key>
 				<integer>2580</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>136</integer>
 				<key>y</key>
 				<integer>2584</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>137</integer>
 				<key>y</key>
 				<integer>2620</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>138</integer>
 				<key>y</key>
 				<integer>2720</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>139</integer>
 				<key>y</key>
 				<integer>2820</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>140</integer>
 				<key>y</key>
 				<integer>2919</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
 				<key>x</key>
@@ -1088,12 +1088,12 @@
 				<integer>2859</integer>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>142</integer>
 				<key>y</key>
 				<integer>2703</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
 				<key>x</key>
@@ -1102,36 +1102,36 @@
 				<integer>2739</integer>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>144</integer>
 				<key>y</key>
 				<integer>2967</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>145</integer>
 				<key>y</key>
 				<integer>2906</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>146</integer>
 				<key>y</key>
 				<integer>3134</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>147</integer>
 				<key>y</key>
 				<integer>3042</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
 				<key>x</key>
@@ -1140,60 +1140,60 @@
 				<integer>2918</integer>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>149</integer>
 				<key>y</key>
 				<integer>2858</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>150</integer>
 				<key>y</key>
 				<integer>2759</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>151</integer>
 				<key>y</key>
 				<integer>2468</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>152</integer>
 				<key>y</key>
 				<integer>2498</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>153</integer>
 				<key>y</key>
 				<integer>2399</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>154</integer>
 				<key>y</key>
 				<integer>2396</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>155</integer>
 				<key>y</key>
 				<integer>2362</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
 				<key>x</key>
@@ -1202,12 +1202,12 @@
 				<integer>2071</integer>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>157</integer>
 				<key>y</key>
 				<integer>1940</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
 				<key>x</key>
@@ -1222,28 +1222,28 @@
 				<integer>2063</integer>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>160</integer>
 				<key>y</key>
 				<integer>2028</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>161</integer>
 				<key>y</key>
 				<integer>1930</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>162</integer>
 				<key>y</key>
 				<integer>1799</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
 				<key>x</key>
@@ -1252,12 +1252,12 @@
 				<integer>1668</integer>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>164</integer>
 				<key>y</key>
 				<integer>1762</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
 				<key>x</key>
@@ -1266,76 +1266,76 @@
 				<integer>1823</integer>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>166</integer>
 				<key>y</key>
 				<integer>1660</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>167</integer>
 				<key>y</key>
 				<integer>1626</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>168</integer>
 				<key>y</key>
 				<integer>1527</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>169</integer>
 				<key>y</key>
 				<integer>1428</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>170</integer>
 				<key>y</key>
 				<integer>1650</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>171</integer>
 				<key>y</key>
 				<integer>1615</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>172</integer>
 				<key>y</key>
 				<integer>1676</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>173</integer>
 				<key>y</key>
 				<integer>1770</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>174</integer>
 				<key>y</key>
 				<integer>1703</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
 				<key>x</key>
@@ -1344,28 +1344,28 @@
 				<integer>1636</integer>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>176</integer>
 				<key>y</key>
 				<integer>1666</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>177</integer>
 				<key>y</key>
 				<integer>1599</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>178</integer>
 				<key>y</key>
 				<integer>1436</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
 				<key>x</key>
@@ -1380,20 +1380,20 @@
 				<integer>1431</integer>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>181</integer>
 				<key>y</key>
 				<integer>1332</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>182</integer>
 				<key>y</key>
 				<integer>1426</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
 				<key>x</key>
@@ -1402,124 +1402,124 @@
 				<integer>1647</integer>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>184</integer>
 				<key>y</key>
 				<integer>1516</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>185</integer>
 				<key>y</key>
 				<integer>1354</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>186</integer>
 				<key>y</key>
 				<integer>1319</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>187</integer>
 				<key>y</key>
 				<integer>1380</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>188</integer>
 				<key>y</key>
 				<integer>1090</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>189</integer>
 				<key>y</key>
 				<integer>1055</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>190</integer>
 				<key>y</key>
 				<integer>1148</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>191</integer>
 				<key>y</key>
 				<integer>1146</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>192</integer>
 				<key>y</key>
 				<integer>1207</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>193</integer>
 				<key>y</key>
 				<integer>1172</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>194</integer>
 				<key>y</key>
 				<integer>1202</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>195</integer>
 				<key>y</key>
 				<integer>1071</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>196</integer>
 				<key>y</key>
 				<integer>780</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>197</integer>
 				<key>y</key>
 				<integer>746</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>198</integer>
 				<key>y</key>
 				<integer>711</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
 				<key>x</key>
@@ -1546,12 +1546,12 @@
 				<integer>1539</integer>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>203</integer>
 				<key>y</key>
 				<integer>1827</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
 				<key>x</key>
@@ -1590,12 +1590,12 @@
 				<integer>2752</integer>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>210</integer>
 				<key>y</key>
 				<integer>2847</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
 				<key>x</key>
@@ -1658,28 +1658,28 @@
 				<integer>4449</integer>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>221</integer>
 				<key>y</key>
 				<integer>4711</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>222</integer>
 				<key>y</key>
 				<integer>4845</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>223</integer>
 				<key>y</key>
 				<integer>4883</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
 				<key>x</key>
@@ -1742,12 +1742,12 @@
 				<integer>6160</integer>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>234</integer>
 				<key>y</key>
 				<integer>6259</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
 				<key>x</key>
@@ -1780,12 +1780,12 @@
 				<integer>7008</integer>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>240</integer>
 				<key>y</key>
 				<integer>7138</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
 				<key>x</key>
@@ -1806,12 +1806,12 @@
 				<integer>7562</integer>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>244</integer>
 				<key>y</key>
 				<integer>7693</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
 				<key>x</key>
@@ -1844,12 +1844,12 @@
 				<integer>8345</integer>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>250</integer>
 				<key>y</key>
 				<integer>8400</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
 				<key>x</key>
@@ -1858,12 +1858,12 @@
 				<integer>8678</integer>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>252</integer>
 				<key>y</key>
 				<integer>8765</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
 				<key>x</key>
@@ -1944,12 +1944,12 @@
 				<integer>11312</integer>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>266</integer>
 				<key>y</key>
 				<integer>11370</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
 				<key>x</key>
@@ -2036,12 +2036,12 @@
 				<integer>13282</integer>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>281</integer>
 				<key>y</key>
 				<integer>13358</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
 				<key>x</key>
@@ -2152,36 +2152,36 @@
 				<integer>15000</integer>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>300</integer>
 				<key>y</key>
 				<integer>14754</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>301</integer>
 				<key>y</key>
 				<integer>14604</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>302</integer>
 				<key>y</key>
 				<integer>14326</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>303</integer>
 				<key>y</key>
 				<integer>14176</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
 				<key>x</key>
@@ -2190,36 +2190,36 @@
 				<integer>14090</integer>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>305</integer>
 				<key>y</key>
 				<integer>13940</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>306</integer>
 				<key>y</key>
 				<integer>13662</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>307</integer>
 				<key>y</key>
 				<integer>13480</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>308</integer>
 				<key>y</key>
 				<integer>13394</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
 				<key>x</key>
@@ -2228,28 +2228,28 @@
 				<integer>13116</integer>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>310</integer>
 				<key>y</key>
 				<integer>12548</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>311</integer>
 				<key>y</key>
 				<integer>11469</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>312</integer>
 				<key>y</key>
 				<integer>10582</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
 				<key>x</key>
@@ -2258,292 +2258,292 @@
 				<integer>10015</integer>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>314</integer>
 				<key>y</key>
 				<integer>9160</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>315</integer>
 				<key>y</key>
 				<integer>8960</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>316</integer>
 				<key>y</key>
 				<integer>8696</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>317</integer>
 				<key>y</key>
 				<integer>8432</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>318</integer>
 				<key>y</key>
 				<integer>8200</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>319</integer>
 				<key>y</key>
 				<integer>7936</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>320</integer>
 				<key>y</key>
 				<integer>7770</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>321</integer>
 				<key>y</key>
 				<integer>7509</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>322</integer>
 				<key>y</key>
 				<integer>7375</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>323</integer>
 				<key>y</key>
 				<integer>7210</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>324</integer>
 				<key>y</key>
 				<integer>7076</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>325</integer>
 				<key>y</key>
 				<integer>6911</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>326</integer>
 				<key>y</key>
 				<integer>6745</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>327</integer>
 				<key>y</key>
 				<integer>6644</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>328</integer>
 				<key>y</key>
 				<integer>6478</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>329</integer>
 				<key>y</key>
 				<integer>6185</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>330</integer>
 				<key>y</key>
 				<integer>6019</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>331</integer>
 				<key>y</key>
 				<integer>5758</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>332</integer>
 				<key>y</key>
 				<integer>5656</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>333</integer>
 				<key>y</key>
 				<integer>5491</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>334</integer>
 				<key>y</key>
 				<integer>5261</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>335</integer>
 				<key>y</key>
 				<integer>5096</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>336</integer>
 				<key>y</key>
 				<integer>4867</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>337</integer>
 				<key>y</key>
 				<integer>4712</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>338</integer>
 				<key>y</key>
 				<integer>4398</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>339</integer>
 				<key>y</key>
 				<integer>4020</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>340</integer>
 				<key>y</key>
 				<integer>3834</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>341</integer>
 				<key>y</key>
 				<integer>3296</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>342</integer>
 				<key>y</key>
 				<integer>3014</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>343</integer>
 				<key>y</key>
 				<integer>2668</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>344</integer>
 				<key>y</key>
 				<integer>2642</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>345</integer>
 				<key>y</key>
 				<integer>2424</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>346</integer>
 				<key>y</key>
 				<integer>2398</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>347</integer>
 				<key>y</key>
 				<integer>2212</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>348</integer>
 				<key>y</key>
 				<integer>2186</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>349</integer>
 				<key>y</key>
 				<integer>1840</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
 				<key>x</key>
@@ -2588,44 +2588,44 @@
 				<integer>2268</integer>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>357</integer>
 				<key>y</key>
 				<integer>2224</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>358</integer>
 				<key>y</key>
 				<integer>2276</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>359</integer>
 				<key>y</key>
 				<integer>2328</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>360</integer>
 				<key>y</key>
 				<integer>2413</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>361</integer>
 				<key>y</key>
 				<integer>2511</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
 				<key>x</key>
@@ -2724,12 +2724,12 @@
 				<integer>4694</integer>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>378</integer>
 				<key>y</key>
 				<integer>4824</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
 				<key>x</key>
@@ -2750,12 +2750,12 @@
 				<integer>5216</integer>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>382</integer>
 				<key>y</key>
 				<integer>5314</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
 				<key>x</key>
@@ -2776,12 +2776,12 @@
 				<integer>5705</integer>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>386</integer>
 				<key>y</key>
 				<integer>5804</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
 				<key>x</key>
@@ -2862,132 +2862,132 @@
 				<integer>7436</integer>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>400</integer>
 				<key>y</key>
 				<integer>7074</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>401</integer>
 				<key>y</key>
 				<integer>6809</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>402</integer>
 				<key>y</key>
 				<integer>6448</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>403</integer>
 				<key>y</key>
 				<integer>6118</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>404</integer>
 				<key>y</key>
 				<integer>5629</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>405</integer>
 				<key>y</key>
 				<integer>5268</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>406</integer>
 				<key>y</key>
 				<integer>5002</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>407</integer>
 				<key>y</key>
 				<integer>4769</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>408</integer>
 				<key>y</key>
 				<integer>4535</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>409</integer>
 				<key>y</key>
 				<integer>4270</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>410</integer>
 				<key>y</key>
 				<integer>3909</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>411</integer>
 				<key>y</key>
 				<integer>3515</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>412</integer>
 				<key>y</key>
 				<integer>3108</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>413</integer>
 				<key>y</key>
 				<integer>2796</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>414</integer>
 				<key>y</key>
 				<integer>2389</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>415</integer>
 				<key>y</key>
 				<integer>2077</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
 				<key>x</key>
@@ -2996,52 +2996,52 @@
 				<integer>1509</integer>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>417</integer>
 				<key>y</key>
 				<integer>1326</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>418</integer>
 				<key>y</key>
 				<integer>1078</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>419</integer>
 				<key>y</key>
 				<integer>895</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>420</integer>
 				<key>y</key>
 				<integer>583</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>421</integer>
 				<key>y</key>
 				<integer>144</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>422</integer>
 				<key>y</key>
 				<integer>64</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
 				<key>x</key>
@@ -3050,12 +3050,12 @@
 				<integer>-15</integer>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>424</integer>
 				<key>y</key>
 				<integer>-127</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
 				<key>x</key>
@@ -3088,12 +3088,12 @@
 				<integer>2</integer>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>430</integer>
 				<key>y</key>
 				<integer>-15</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
 				<key>x</key>
@@ -3120,12 +3120,12 @@
 				<integer>69</integer>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>435</integer>
 				<key>y</key>
 				<integer>82</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
 				<key>x</key>
@@ -3134,12 +3134,12 @@
 				<integer>95</integer>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>437</integer>
 				<key>y</key>
 				<integer>88</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
 				<key>x</key>
@@ -3220,12 +3220,12 @@
 				<integer>85</integer>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>451</integer>
 				<key>y</key>
 				<integer>171</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
 				<key>x</key>
@@ -3234,20 +3234,20 @@
 				<integer>256</integer>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>453</integer>
 				<key>y</key>
 				<integer>310</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>454</integer>
 				<key>y</key>
 				<integer>460</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
 				<key>x</key>
@@ -3274,20 +3274,20 @@
 				<integer>776</integer>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>459</integer>
 				<key>y</key>
 				<integer>839</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>460</integer>
 				<key>y</key>
 				<integer>870</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
 				<key>x</key>
@@ -3296,12 +3296,12 @@
 				<integer>933</integer>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>462</integer>
 				<key>y</key>
 				<integer>996</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
 				<key>x</key>
@@ -3310,28 +3310,28 @@
 				<integer>1092</integer>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>464</integer>
 				<key>y</key>
 				<integer>1187</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>465</integer>
 				<key>y</key>
 				<integer>1250</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>466</integer>
 				<key>y</key>
 				<integer>1345</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
 				<key>x</key>
@@ -3352,12 +3352,12 @@
 				<integer>1566</integer>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>470</integer>
 				<key>y</key>
 				<integer>1597</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
 				<key>x</key>
@@ -3366,12 +3366,12 @@
 				<integer>1628</integer>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>472</integer>
 				<key>y</key>
 				<integer>1692</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
 				<key>x</key>
@@ -3380,12 +3380,12 @@
 				<integer>1755</integer>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>474</integer>
 				<key>y</key>
 				<integer>1818</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
 				<key>x</key>
@@ -3406,12 +3406,12 @@
 				<integer>2007</integer>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>478</integer>
 				<key>y</key>
 				<integer>2070</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
 				<key>x</key>
@@ -3498,12 +3498,12 @@
 				<integer>2922</integer>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>493</integer>
 				<key>y</key>
 				<integer>2985</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
 				<key>x</key>
@@ -3542,116 +3542,116 @@
 				<integer>3396</integer>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>500</integer>
 				<key>y</key>
 				<integer>3356</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>501</integer>
 				<key>y</key>
 				<integer>3252</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>502</integer>
 				<key>y</key>
 				<integer>2957</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>503</integer>
 				<key>y</key>
 				<integer>3173</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>504</integer>
 				<key>y</key>
 				<integer>3390</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>505</integer>
 				<key>y</key>
 				<integer>3446</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>506</integer>
 				<key>y</key>
 				<integer>3406</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>507</integer>
 				<key>y</key>
 				<integer>3303</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>508</integer>
 				<key>y</key>
 				<integer>3231</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>509</integer>
 				<key>y</key>
 				<integer>3448</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>510</integer>
 				<key>y</key>
 				<integer>3142</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>511</integer>
 				<key>y</key>
 				<integer>3156</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>512</integer>
 				<key>y</key>
 				<integer>3107</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>513</integer>
 				<key>y</key>
 				<integer>3089</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
 				<key>x</key>
@@ -3660,12 +3660,12 @@
 				<integer>2944</integer>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>515</integer>
 				<key>y</key>
 				<integer>2835</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
 				<key>x</key>
@@ -3674,76 +3674,76 @@
 				<integer>2726</integer>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>517</integer>
 				<key>y</key>
 				<integer>2617</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>518</integer>
 				<key>y</key>
 				<integer>2476</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>519</integer>
 				<key>y</key>
 				<integer>2367</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>520</integer>
 				<key>y</key>
 				<integer>2373</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>521</integer>
 				<key>y</key>
 				<integer>2410</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>522</integer>
 				<key>y</key>
 				<integer>2511</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>523</integer>
 				<key>y</key>
 				<integer>2580</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>524</integer>
 				<key>y</key>
 				<integer>2618</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>525</integer>
 				<key>y</key>
 				<integer>2719</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
 				<key>x</key>
@@ -3752,68 +3752,68 @@
 				<integer>2724</integer>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>527</integer>
 				<key>y</key>
 				<integer>2793</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>528</integer>
 				<key>y</key>
 				<integer>2798</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>529</integer>
 				<key>y</key>
 				<integer>2772</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>530</integer>
 				<key>y</key>
 				<integer>2740</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>531</integer>
 				<key>y</key>
 				<integer>2709</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>532</integer>
 				<key>y</key>
 				<integer>2645</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>533</integer>
 				<key>y</key>
 				<integer>2614</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>534</integer>
 				<key>y</key>
 				<integer>2582</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
 				<key>x</key>
@@ -3822,20 +3822,20 @@
 				<integer>2551</integer>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>536</integer>
 				<key>y</key>
 				<integer>2519</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>537</integer>
 				<key>y</key>
 				<integer>2488</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
 				<key>x</key>
@@ -3844,12 +3844,12 @@
 				<integer>2456</integer>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>539</integer>
 				<key>y</key>
 				<integer>2425</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
 				<key>x</key>
@@ -3858,108 +3858,108 @@
 				<integer>2393</integer>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>541</integer>
 				<key>y</key>
 				<integer>2362</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>542</integer>
 				<key>y</key>
 				<integer>2362</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>543</integer>
 				<key>y</key>
 				<integer>2363</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>544</integer>
 				<key>y</key>
 				<integer>2363</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>545</integer>
 				<key>y</key>
 				<integer>2296</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>546</integer>
 				<key>y</key>
 				<integer>2228</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>547</integer>
 				<key>y</key>
 				<integer>2224</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>548</integer>
 				<key>y</key>
 				<integer>2092</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>549</integer>
 				<key>y</key>
 				<integer>2153</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>550</integer>
 				<key>y</key>
 				<integer>2032</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>551</integer>
 				<key>y</key>
 				<integer>2072</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>552</integer>
 				<key>y</key>
 				<integer>2144</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>553</integer>
 				<key>y</key>
 				<integer>2248</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
 				<key>x</key>
@@ -3968,140 +3968,140 @@
 				<integer>2128</integer>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>555</integer>
 				<key>y</key>
 				<integer>1976</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>556</integer>
 				<key>y</key>
 				<integer>2016</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>557</integer>
 				<key>y</key>
 				<integer>1864</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>558</integer>
 				<key>y</key>
 				<integer>1936</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>559</integer>
 				<key>y</key>
 				<integer>1912</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>560</integer>
 				<key>y</key>
 				<integer>1856</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>561</integer>
 				<key>y</key>
 				<integer>1704</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>562</integer>
 				<key>y</key>
 				<integer>1616</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>563</integer>
 				<key>y</key>
 				<integer>1496</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>564</integer>
 				<key>y</key>
 				<integer>1344</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>565</integer>
 				<key>y</key>
 				<integer>1320</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>566</integer>
 				<key>y</key>
 				<integer>1232</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>567</integer>
 				<key>y</key>
 				<integer>952</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>568</integer>
 				<key>y</key>
 				<integer>992</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>569</integer>
 				<key>y</key>
 				<integer>1032</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>570</integer>
 				<key>y</key>
 				<integer>1136</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>571</integer>
 				<key>y</key>
 				<integer>1048</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
 				<key>x</key>
@@ -4110,36 +4110,36 @@
 				<integer>1056</integer>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>573</integer>
 				<key>y</key>
 				<integer>968</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>574</integer>
 				<key>y</key>
 				<integer>688</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>575</integer>
 				<key>y</key>
 				<integer>792</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>576</integer>
 				<key>y</key>
 				<integer>768</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
 				<key>x</key>
@@ -4148,12 +4148,12 @@
 				<integer>744</integer>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>578</integer>
 				<key>y</key>
 				<integer>624</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
 				<key>x</key>
@@ -4162,12 +4162,12 @@
 				<integer>343</integer>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>580</integer>
 				<key>y</key>
 				<integer>298</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
 				<key>x</key>
@@ -4182,12 +4182,12 @@
 				<integer>494</integer>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>583</integer>
 				<key>y</key>
 				<integer>289</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
 				<key>x</key>
@@ -4196,124 +4196,124 @@
 				<integer>211</integer>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>585</integer>
 				<key>y</key>
 				<integer>165</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>586</integer>
 				<key>y</key>
 				<integer>152</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>587</integer>
 				<key>y</key>
 				<integer>74</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>588</integer>
 				<key>y</key>
 				<integer>156</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>589</integer>
 				<key>y</key>
 				<integer>174</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>590</integer>
 				<key>y</key>
 				<integer>225</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>591</integer>
 				<key>y</key>
 				<integer>147</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>592</integer>
 				<key>y</key>
 				<integer>-58</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>593</integer>
 				<key>y</key>
 				<integer>-39</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>594</integer>
 				<key>y</key>
 				<integer>-85</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>595</integer>
 				<key>y</key>
 				<integer>-163</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>596</integer>
 				<key>y</key>
 				<integer>143</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>597</integer>
 				<key>y</key>
 				<integer>449</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>598</integer>
 				<key>y</key>
 				<integer>755</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>599</integer>
 				<key>y</key>
 				<integer>934</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
 				<key>x</key>
@@ -4418,12 +4418,12 @@
 				<integer>46</integer>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>617</integer>
 				<key>y</key>
 				<integer>155</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
 				<key>x</key>
@@ -4432,12 +4432,12 @@
 				<integer>137</integer>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>619</integer>
 				<key>y</key>
 				<integer>183</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
 				<key>x</key>
@@ -4518,12 +4518,12 @@
 				<integer>328</integer>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>633</integer>
 				<key>y</key>
 				<integer>278</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
 				<key>x</key>
@@ -4586,12 +4586,12 @@
 				<integer>152</integer>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>644</integer>
 				<key>y</key>
 				<integer>132</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
 				<key>x</key>
@@ -4624,12 +4624,12 @@
 				<integer>63</integer>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>650</integer>
 				<key>y</key>
 				<integer>94</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
 				<key>x</key>
@@ -4740,28 +4740,28 @@
 				<integer>103</integer>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>669</integer>
 				<key>y</key>
 				<integer>134</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>670</integer>
 				<key>y</key>
 				<integer>165</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>671</integer>
 				<key>y</key>
 				<integer>131</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
 				<key>x</key>
@@ -4860,28 +4860,28 @@
 				<integer>204</integer>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>688</integer>
 				<key>y</key>
 				<integer>166</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>689</integer>
 				<key>y</key>
 				<integer>160</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>690</integer>
 				<key>y</key>
 				<integer>153</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
 				<key>x</key>
@@ -4956,6 +4956,8 @@
 				<integer>87</integer>
 			</dict>
 			<dict>
+				<key>mcdonalds</key>
+				<true/>
 				<key>x</key>
 				<integer>703</integer>
 				<key>y</key>
@@ -4980,28 +4982,28 @@
 				<integer>103</integer>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>707</integer>
 				<key>y</key>
 				<integer>125</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>708</integer>
 				<key>y</key>
 				<integer>140</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>709</integer>
 				<key>y</key>
 				<integer>152</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
 				<key>x</key>
@@ -5010,12 +5012,12 @@
 				<integer>135</integer>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>711</integer>
 				<key>y</key>
 				<integer>130</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
 				<key>x</key>
@@ -5036,12 +5038,12 @@
 				<integer>83</integer>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>715</integer>
 				<key>y</key>
 				<integer>46</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
 				<key>x</key>
@@ -5050,12 +5052,12 @@
 				<integer>40</integer>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>717</integer>
 				<key>y</key>
 				<integer>35</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
 				<key>x</key>
@@ -5070,36 +5072,36 @@
 				<integer>25</integer>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>720</integer>
 				<key>y</key>
 				<integer>52</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>721</integer>
 				<key>y</key>
 				<integer>47</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>722</integer>
 				<key>y</key>
 				<integer>42</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>723</integer>
 				<key>y</key>
 				<integer>37</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
 				<key>x</key>
@@ -5114,12 +5116,12 @@
 				<integer>61</integer>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>726</integer>
 				<key>y</key>
 				<integer>90</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
 				<key>x</key>
@@ -5146,20 +5148,20 @@
 				<integer>112</integer>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>731</integer>
 				<key>y</key>
 				<integer>78</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>732</integer>
 				<key>y</key>
 				<integer>75</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
 				<key>x</key>
@@ -5168,20 +5170,20 @@
 				<integer>104</integer>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>734</integer>
 				<key>y</key>
 				<integer>70</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>735</integer>
 				<key>y</key>
 				<integer>67</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
 				<key>x</key>
@@ -5190,12 +5192,12 @@
 				<integer>33</integer>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>737</integer>
 				<key>y</key>
 				<integer>62</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
 				<key>x</key>
@@ -5216,12 +5218,12 @@
 				<integer>55</integer>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>741</integer>
 				<key>y</key>
 				<integer>52</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
 				<key>x</key>
@@ -5230,20 +5232,20 @@
 				<integer>81</integer>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>743</integer>
 				<key>y</key>
 				<integer>111</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>744</integer>
 				<key>y</key>
 				<integer>140</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
 				<key>x</key>
@@ -5282,20 +5284,20 @@
 				<integer>137</integer>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>751</integer>
 				<key>y</key>
 				<integer>179</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>752</integer>
 				<key>y</key>
 				<integer>124</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
 				<key>x</key>
@@ -5322,12 +5324,12 @@
 				<integer>387</integer>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>757</integer>
 				<key>y</key>
 				<integer>301</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
 				<key>x</key>
@@ -5336,12 +5338,12 @@
 				<integer>406</integer>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>759</integer>
 				<key>y</key>
 				<integer>288</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
 				<key>x</key>
@@ -5374,12 +5376,12 @@
 				<integer>528</integer>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>765</integer>
 				<key>y</key>
 				<integer>506</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
 				<key>x</key>
@@ -5394,20 +5396,20 @@
 				<integer>365</integer>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>768</integer>
 				<key>y</key>
 				<integer>311</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>769</integer>
 				<key>y</key>
 				<integer>193</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
 				<key>x</key>
@@ -5416,12 +5418,12 @@
 				<integer>298</integer>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>771</integer>
 				<key>y</key>
 				<integer>436</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
 				<key>x</key>
@@ -5442,12 +5444,12 @@
 				<integer>465</integer>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>775</integer>
 				<key>y</key>
 				<integer>347</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
 				<key>x</key>
@@ -5468,12 +5470,12 @@
 				<integer>440</integer>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>779</integer>
 				<key>y</key>
 				<integer>417</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
 				<key>x</key>
@@ -5500,12 +5502,12 @@
 				<integer>232</integer>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>784</integer>
 				<key>y</key>
 				<integer>146</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
 				<key>x</key>
@@ -5634,12 +5636,12 @@
 				<integer>646</integer>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>806</integer>
 				<key>y</key>
 				<integer>514</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
 				<key>x</key>
@@ -5762,20 +5764,20 @@
 				<integer>2238</integer>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>827</integer>
 				<key>y</key>
 				<integer>2357</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>828</integer>
 				<key>y</key>
 				<integer>2412</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
 				<key>x</key>
@@ -5820,20 +5822,20 @@
 				<integer>2380</integer>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>836</integer>
 				<key>y</key>
 				<integer>2392</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>837</integer>
 				<key>y</key>
 				<integer>2404</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
 				<key>x</key>
@@ -5854,20 +5856,20 @@
 				<integer>2505</integer>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>841</integer>
 				<key>y</key>
 				<integer>2517</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>842</integer>
 				<key>y</key>
 				<integer>2562</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
 				<key>x</key>
@@ -5906,44 +5908,44 @@
 				<integer>2731</integer>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>849</integer>
 				<key>y</key>
 				<integer>2775</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>850</integer>
 				<key>y</key>
 				<integer>2849</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>851</integer>
 				<key>y</key>
 				<integer>2890</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>852</integer>
 				<key>y</key>
 				<integer>2932</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>853</integer>
 				<key>y</key>
 				<integer>2781</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
 				<key>x</key>
@@ -5952,108 +5954,108 @@
 				<integer>2759</integer>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>855</integer>
 				<key>y</key>
 				<integer>2832</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>856</integer>
 				<key>y</key>
 				<integer>2810</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>857</integer>
 				<key>y</key>
 				<integer>2787</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>858</integer>
 				<key>y</key>
 				<integer>2509</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>859</integer>
 				<key>y</key>
 				<integer>2742</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>860</integer>
 				<key>y</key>
 				<integer>2752</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>861</integer>
 				<key>y</key>
 				<integer>2825</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>862</integer>
 				<key>y</key>
 				<integer>2899</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>863</integer>
 				<key>y</key>
 				<integer>2844</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>864</integer>
 				<key>y</key>
 				<integer>2822</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>865</integer>
 				<key>y</key>
 				<integer>2543</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>866</integer>
 				<key>y</key>
 				<integer>2777</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>867</integer>
 				<key>y</key>
 				<integer>2882</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
 				<key>x</key>
@@ -6062,12 +6064,12 @@
 				<integer>2892</integer>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>869</integer>
 				<key>y</key>
 				<integer>2773</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
 				<key>x</key>
@@ -6076,36 +6078,36 @@
 				<integer>2879</integer>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>871</integer>
 				<key>y</key>
 				<integer>2792</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>872</integer>
 				<key>y</key>
 				<integer>2770</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>873</integer>
 				<key>y</key>
 				<integer>2747</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>874</integer>
 				<key>y</key>
 				<integer>2629</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
 				<key>x</key>
@@ -6114,68 +6116,68 @@
 				<integer>2670</integer>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>876</integer>
 				<key>y</key>
 				<integer>2391</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>877</integer>
 				<key>y</key>
 				<integer>2497</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>878</integer>
 				<key>y</key>
 				<integer>2570</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>879</integer>
 				<key>y</key>
 				<integer>2804</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>880</integer>
 				<key>y</key>
 				<integer>2781</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>881</integer>
 				<key>y</key>
 				<integer>2823</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>882</integer>
 				<key>y</key>
 				<integer>2544</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>883</integer>
 				<key>y</key>
 				<integer>2490</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
 				<key>x</key>
@@ -6190,204 +6192,204 @@
 				<integer>2477</integer>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>886</integer>
 				<key>y</key>
 				<integer>2518</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>887</integer>
 				<key>y</key>
 				<integer>2368</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>888</integer>
 				<key>y</key>
 				<integer>2313</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>889</integer>
 				<key>y</key>
 				<integer>2419</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>890</integer>
 				<key>y</key>
 				<integer>2524</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>891</integer>
 				<key>y</key>
 				<integer>2502</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>892</integer>
 				<key>y</key>
 				<integer>2479</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>893</integer>
 				<key>y</key>
 				<integer>2553</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>894</integer>
 				<key>y</key>
 				<integer>2562</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>895</integer>
 				<key>y</key>
 				<integer>2540</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>896</integer>
 				<key>y</key>
 				<integer>2549</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>897</integer>
 				<key>y</key>
 				<integer>2591</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>898</integer>
 				<key>y</key>
 				<integer>2664</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>899</integer>
 				<key>y</key>
 				<integer>2386</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>900</integer>
 				<key>y</key>
 				<integer>2455</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>901</integer>
 				<key>y</key>
 				<integer>2428</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>902</integer>
 				<key>y</key>
 				<integer>2145</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>903</integer>
 				<key>y</key>
 				<integer>2119</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>904</integer>
 				<key>y</key>
 				<integer>2156</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>905</integer>
 				<key>y</key>
 				<integer>2001</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>906</integer>
 				<key>y</key>
 				<integer>1974</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>907</integer>
 				<key>y</key>
 				<integer>2204</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>908</integer>
 				<key>y</key>
 				<integer>2145</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>909</integer>
 				<key>y</key>
 				<integer>2374</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 			<dict>
+				<key>rock</key>
+				<true/>
 				<key>x</key>
 				<integer>910</integer>
 				<key>y</key>
 				<integer>2476</integer>
-				<key>rock</key>
-				<true/>
 			</dict>
 		</array>
 	</array>

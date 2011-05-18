@@ -2,23 +2,6 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>frame</key>
-	<dict>
-		<key>origin</key>
-		<dict>
-			<key>x</key>
-			<integer>500</integer>
-			<key>y</key>
-			<integer>50</integer>
-		</dict>
-		<key>size</key>
-		<dict>
-			<key>height</key>
-			<integer>320</integer>
-			<key>width</key>
-			<integer>25</integer>
-		</dict>
-	</dict>
 	<key>paths</key>
 	<array>
 		<array>
@@ -89,5 +72,7 @@
 			</dict>
 		</array>
 	</array>
+	<key>name</key>
+	<string>Thruster Control</string>
 </dict>
 </plist>
