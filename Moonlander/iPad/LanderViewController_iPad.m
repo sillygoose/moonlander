@@ -150,9 +150,14 @@ const float DisplayUpdateInterval = 1.0f;
                   forControlEvents:UIControlEventValueChanged];
     [self.view addSubview:self.thrusterSlider];
 
-    
-    VGLabel *msg = [[VGLabel alloc] initWithMessage:@"LeftEdge"];
-    [self.view addSubview:msg];
+#if 1    
+    // ### Practice vector text labels
+    VGLabel *leMsg = [[VGLabel alloc] initWithMessage:@"LeftEdge"];
+    [self.view addSubview:leMsg];
+    VGLabel *reMsg = [[VGLabel alloc] initWithMessage:@"RightEdge"];
+    [self.view addSubview:reMsg];
+    // ###
+#endif
     
     [self.landerModel.delegate newGame];
     

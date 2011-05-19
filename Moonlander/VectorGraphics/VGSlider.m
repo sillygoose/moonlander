@@ -14,10 +14,7 @@
 @synthesize drawPaths=_drawPaths;
 @synthesize vectorName=_vectorName;
 
-@synthesize minX=_minX;
-@synthesize minY=_minY;
-@synthesize maxX=_maxX;
-@synthesize maxY=_maxY;
+@synthesize actualBounds=_actualBounds;
 
 @synthesize value=_value;
 @synthesize thrusterIndicator=thrusterIndicator;
@@ -33,6 +30,8 @@
 - (id)initWithFrame:(CGRect)frameRect
 {
     if ((self = [super initWithFrame:frameRect])) {
+        self.actualBounds = CGRectMake(FLT_MAX, FLT_MAX, -FLT_MAX, -FLT_MAX);
+
         [self addTarget:self action:@selector(buttonDown:) forControlEvents:(UIControlEventTouchDown|UIControlEventTouchDragEnter)];
         [self addTarget:self action:@selector(buttonRepeat:) forControlEvents:(UIControlEventTouchDownRepeat|UIControlEventTouchDragInside)];
         [self addTarget:self action:@selector(buttonUp:) forControlEvents:(UIControlEventTouchUpInside|UIControlEventTouchUpOutside|UIControlEventTouchCancel|UIControlEventTouchDragExit|UIControlEventTouchDragOutside)];
@@ -43,6 +42,7 @@
         CGRect needleFrameRect = CGRectMake(100, 0/*self.frame.size.height - (self.frame.size.height * self.value*/, 75, 10);
         //NSLog(@"newFraemrect: [%3.0f,%3.0f] and [%3.0f,%3.0f]", needleFrameRect.origin.x, needleFrameRect.origin.y, needleFrameRect.size.width, needleFrameRect.size.height);
         self.thrusterIndicator = [[[VGView alloc] initWithFrame:needleFrameRect withPaths:tiPath] retain];
+        self.thrusterIndicator.userInteractionEnabled = NO;
         [self addSubview:self.thrusterIndicator];
     }
     return self;
@@ -75,10 +75,6 @@
 - (void)drawRect:(CGRect)rect
 {
 	CGPoint prevPoint = CGPointMake(0.0f, 0.0f);
-    self.minX = FLT_MAX;
-    self.minY = FLT_MAX;
-    self.maxX = -FLT_MAX;
-    self.maxY = -FLT_MAX;
     
 	CGContextRef context = UIGraphicsGetCurrentContext();
     CGContextSetShouldAntialias (context, YES);
@@ -124,11 +120,7 @@
                     
                     //NSLog(@"Move To (%3.0f,%3.0f)", newPoint.x, newPoint.y);
                     prevPoint = newPoint;
-                    self.minX = MIN(newPoint.x, self.minX);
-                    self.minY = MIN(newPoint.y, self.minY);
-                    self.maxX = MAX(newPoint.x, self.maxX);
-                    self.maxY = MAX(newPoint.x, self.maxY);
-                    //CGContextStrokePath(context);
+                    self.actualBounds = CGRectMake(MIN(newPoint.x, self.actualBounds.origin.x), MIN(newPoint.y, self.actualBounds.origin.y), MAX(newPoint.x, self.actualBounds.size.width), MAX(newPoint.y, self.actualBounds.size.height));
                 }
             }
             
@@ -145,11 +137,7 @@
                     
                     //NSLog(@"Move Relative (%3.0f,%3.0f)", newPoint.x, newPoint.y);
                     prevPoint = newPoint;
-                    self.minX = MIN(newPoint.x, self.minX);
-                    self.minY = MIN(newPoint.y, self.minY);
-                    self.maxX = MAX(newPoint.x, self.maxX);
-                    self.maxY = MAX(newPoint.x, self.maxY);
-                    //CGContextStrokePath(context);
+                    self.actualBounds = CGRectMake(MIN(newPoint.x, self.actualBounds.origin.x), MIN(newPoint.y, self.actualBounds.origin.y), MAX(newPoint.x, self.actualBounds.size.width), MAX(newPoint.y, self.actualBounds.size.height));
                 }
             }
             
@@ -183,19 +171,18 @@
                 CGFloat x = [[currentVector objectForKey:@"x"] floatValue];
                 CGFloat y = [[currentVector objectForKey:@"y"] floatValue];
                 CGPoint newPoint = CGPointMake(prevPoint.x + x, prevPoint.y + y);
+                
                 // ### Scaling here
                 CGContextAddLineToPoint(context, newPoint.x, newPoint.y);
+                
                 //NSLog(@"Draw from %-3.0f,%-3.0f to %-3.0f,%-3.0f", prevPoint.x, prevPoint.y, newPoint.x, newPoint.y);
                 prevPoint = newPoint;
-                self.minX = MIN(newPoint.x, self.minX);
-                self.minY = MIN(newPoint.y, self.minY);
-                self.maxX = MAX(newPoint.x, self.maxX);
-                self.maxY = MAX(newPoint.x, self.maxY);
+                self.actualBounds = CGRectMake(MIN(newPoint.x, self.actualBounds.origin.x), MIN(newPoint.y, self.actualBounds.origin.y), MAX(newPoint.x, self.actualBounds.size.width), MAX(newPoint.y, self.actualBounds.size.height));
             }
         }
     }
     CGContextStrokePath(context);
-    NSLog(@"Max coordinates for %@: (%3.0f,%3.0f), (%3.0f,%3.0f)", self.vectorName, self.minX, self.minY, self.maxX, self.maxY);
+    NSLog(@"Max coordinates for %@: %@", self.vectorName, NSStringFromCGRect(self.actualBounds));
 }
 
 #pragma mark Touch tracking

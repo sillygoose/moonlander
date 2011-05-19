@@ -13,19 +13,14 @@
     NSArray *_drawPaths;
     NSString *_vectorName;
     
-    float _minX;
-    float _minY;
-    float _maxX;
-    float _maxY;
+    CGRect _actualBounds;
 }
 
 @property (nonatomic, retain) NSArray *drawPaths;
 @property (nonatomic, copy) NSString *vectorName;
 
-@property (nonatomic) float minX;
-@property (nonatomic) float minY;
-@property (nonatomic) float maxX;
-@property (nonatomic) float maxY;
+@property (nonatomic) CGRect actualBounds;
+
 
 - (id)initWithFrame:(CGRect)frameRect;
 - (id)initWithFrame:(CGRect)frameRect withPaths:(NSString *)fileName;

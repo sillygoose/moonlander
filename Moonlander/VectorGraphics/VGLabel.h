@@ -11,8 +11,10 @@
 #import "VGView.h"
 
 @interface VGLabel : VGView {
-    
+    CGFloat _fontSize;
 }
+
+@property (nonatomic) CGFloat fontSize;
 
 - (id)initWithMessage:(NSString *)msgName;
 

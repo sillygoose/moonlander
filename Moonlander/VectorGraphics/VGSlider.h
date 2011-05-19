@@ -15,10 +15,7 @@
 
     NSString *_vectorName;
     
-    float _minX;
-    float _minY;
-    float _maxX;
-    float _maxY;
+    CGRect _actualBounds;
 
     float _value;
     VGView *_thrusterIndicator;
@@ -27,10 +24,7 @@
 @property (nonatomic, retain) NSArray *drawPaths;
 @property (nonatomic, copy) NSString *vectorName;
 
-@property (nonatomic) float minX;
-@property (nonatomic) float minY;
-@property (nonatomic) float maxX;
-@property (nonatomic) float maxY;
+@property (nonatomic) CGRect actualBounds;
 
 @property (nonatomic) float value;
 @property (nonatomic, retain) VGView *thrusterIndicator;

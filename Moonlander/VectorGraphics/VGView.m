@@ -13,19 +13,13 @@
 
 @synthesize drawPaths=_drawPaths;
 @synthesize vectorName=_vectorName;
-@synthesize minX=_minX;
-@synthesize minY=_minY;
-@synthesize maxX=_maxX;
-@synthesize maxY=_maxY;
+@synthesize actualBounds=_actualBounds;
 
 
 - (id)initWithFrame:(CGRect)frameRect
 {
     if ((self = [super initWithFrame:frameRect])) {
-        self.minX = FLT_MAX;
-        self.minY = FLT_MAX;
-        self.maxX = -FLT_MAX;
-        self.maxY = -FLT_MAX;
+        self.actualBounds = CGRectMake(FLT_MAX, FLT_MAX, -FLT_MAX, -FLT_MAX);
     }
     return self;
 }
@@ -61,12 +55,13 @@
         NSEnumerator *vectorEnumerator = [currentPath objectEnumerator];
         NSDictionary *currentVector;
         while ((currentVector = [vectorEnumerator nextObject])) {
-            // Choices are "moveto", "color", "line", "x", "y", "center"
+            // "stop' allows early termination of a display list
             if ([currentVector objectForKey:@"stop"]) {
                 BOOL stopCommand = [[currentVector objectForKey:@"stop"] boolValue];
                 if (stopCommand) break;
             }
             
+            // "break" allows for complex breakpoints in a display list
             if ([currentVector objectForKey:@"break"]) {
                 BOOL breakCommand = [[currentVector objectForKey:@"break"] boolValue];
                 if (breakCommand) {
@@ -74,36 +69,31 @@
                 }
             }
             
-            // Move to a point
+            // "moveto" is used to a move to a point in the current rect
             if ([currentVector objectForKey:@"moveto"]) {
                 NSDictionary *moveTo = [currentVector objectForKey:@"moveto"];
                 if ([moveTo objectForKey:@"center"]) {
                     // Centering uses the view bounds and is not scaled
                     CGPoint midPoint = CGPointMake(self.bounds.origin.x + self.bounds.size.width / 2, self.bounds.origin.y + self.bounds.size.height / 2);
                     CGContextMoveToPoint(context, midPoint.x, midPoint.y);
-                    //NSLog(@"Move (%3.0f,%3.0f)", midPoint.x, midPoint.y);
                     prevPoint = midPoint;
-                    //CGContextStrokePath(context);
                 }
                 else if ([moveTo objectForKey:@"x"]) {
                     // Moving to a point in the view requires scaling
                     CGFloat x = [[moveTo objectForKey:@"x"] floatValue];
                     CGFloat y = [[moveTo objectForKey:@"y"] floatValue];
                     CGPoint newPoint = CGPointMake(x, y);
+                    
                     // ### Scaling here
                     CGContextMoveToPoint(context, newPoint.x, newPoint.y);
                     
                     //NSLog(@"Move To (%3.0f,%3.0f)", newPoint.x, newPoint.y);
                     prevPoint = newPoint;
-                    self.minX = MIN(newPoint.x, self.minX);
-                    self.minY = MIN(newPoint.y, self.minY);
-                    self.maxX = MAX(newPoint.x, self.maxX);
-                    self.maxY = MAX(newPoint.x, self.maxY);
-                    //CGContextStrokePath(context);
+                    self.actualBounds = CGRectMake(MIN(newPoint.x, self.actualBounds.origin.x), MIN(newPoint.y, self.actualBounds.origin.y), MAX(newPoint.x, self.actualBounds.size.width), MAX(newPoint.y, self.actualBounds.size.height));
                 }
             }
             
-            // Move to a point relative to the current position
+            // "moverel" is used to move to a point relative to the current position
             if ([currentVector objectForKey:@"moverel"]) {
                 NSDictionary *moveRelative = [currentVector objectForKey:@"moverel"];
                 if ([moveRelative objectForKey:@"x"]) {
@@ -116,15 +106,11 @@
                     
                     //NSLog(@"Move Relative (%3.0f,%3.0f)", newPoint.x, newPoint.y);
                     prevPoint = newPoint;
-                    self.minX = MIN(newPoint.x, self.minX);
-                    self.minY = MIN(newPoint.y, self.minY);
-                    self.maxX = MAX(newPoint.x, self.maxX);
-                    self.maxY = MAX(newPoint.x, self.maxY);
-                    //CGContextStrokePath(context);
+                    self.actualBounds = CGRectMake(MIN(newPoint.x, self.actualBounds.origin.x), MIN(newPoint.y, self.actualBounds.origin.y), MAX(newPoint.x, self.actualBounds.size.width), MAX(newPoint.y, self.actualBounds.size.height));
                 }
             }
             
-            // Process color stuff
+            // "color" is used to set the current color
             if ([currentVector objectForKey:@"color"]) {
                 NSDictionary *colorStuff = [currentVector objectForKey:@"color"];
                 CGFloat r = [[colorStuff objectForKey:@"r"] floatValue];
@@ -136,7 +122,7 @@
                 CGContextMoveToPoint(context, prevPoint.x, prevPoint.y);
             }
             
-            // Process line stuff
+            // "line" is used to set the line information
             if ([currentVector objectForKey:@"line"]) {
                 if ([currentVector objectForKey:@"line"]) {
                     NSDictionary *lineStuff = [currentVector objectForKey:@"line"];
@@ -149,24 +135,22 @@
                 }
             }
             
-            // Process a new path segment
+            // "x" and "y" specify a new point on the path
             if ([currentVector objectForKey:@"x"]) {
                 CGFloat x = [[currentVector objectForKey:@"x"] floatValue];
                 CGFloat y = [[currentVector objectForKey:@"y"] floatValue];
                 CGPoint newPoint = CGPointMake(prevPoint.x + x, prevPoint.y + y);
+                
                 // ### Scaling here
                 CGContextAddLineToPoint(context, newPoint.x, newPoint.y);
-                //NSLog(@"Draw from %-3.0f,%-3.0f to %-3.0f,%-3.0f", prevPoint.x, prevPoint.y, newPoint.x, newPoint.y);
+                
                 prevPoint = newPoint;
-                self.minX = MIN(newPoint.x, self.minX);
-                self.minY = MIN(newPoint.y, self.minY);
-                self.maxX = MAX(newPoint.x, self.maxX);
-                self.maxY = MAX(newPoint.x, self.maxY);
+                self.actualBounds = CGRectMake(MIN(newPoint.x, self.actualBounds.origin.x), MIN(newPoint.y, self.actualBounds.origin.y), MAX(newPoint.x, self.actualBounds.size.width), MAX(newPoint.y, self.actualBounds.size.height));
             }
         }
     }
     CGContextStrokePath(context);
-    NSLog(@"Max coordinates for %@: (%3.0f,%3.0f), (%3.0f,%3.0f)", self.vectorName, self.minX, self.minY, self.maxX, self.maxY);
+    NSLog(@"Max coordinates for %@: %@", self.vectorName, NSStringFromCGRect(self.actualBounds));
 }
 
 - (void)dealloc

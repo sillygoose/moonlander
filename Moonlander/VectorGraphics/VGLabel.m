@@ -11,11 +11,15 @@
 
 @implementation VGLabel
 
+@synthesize fontSize=_fontSize;
+
+
 - (id)initWithFrame:(CGRect)frameRect
 {
     self = [super initWithFrame:frameRect];
     if (self) {
-        // Initialization code
+        self.fontSize = 12;
+        self.opaque = NO;
     }
     return self;
 }
@@ -52,126 +56,96 @@
 
 - (void)drawRect:(CGRect)rect
 {
-#if 0
-	CGPoint prevPoint = CGPointMake(0.0f, 0.0f);
-    
+    CGPoint currentPosition = CGPointMake(0.0f, self.bounds.size.height);
+    CGFontRef fontRef = CGFontCreateWithFontName((CFStringRef)@"Courier");
+
 	CGContextRef context = UIGraphicsGetCurrentContext();
-    CGContextSetShouldAntialias (context, YES);
-    CGContextSetAllowsAntialiasing(context, YES);
-    
-    NSEnumerator *pathEnumerator = [self.drawPaths objectEnumerator];
-    NSArray *currentPath;
-    while ((currentPath = [pathEnumerator nextObject])) {
-        NSEnumerator *vectorEnumerator = [currentPath objectEnumerator];
-        NSDictionary *currentVector;
-        while ((currentVector = [vectorEnumerator nextObject])) {
-            // Choices are "moveto", "color", "line", "x", "y", "center"
-            if ([currentVector objectForKey:@"stop"]) {
-                BOOL stopCommand = [[currentVector objectForKey:@"stop"] boolValue];
-                if (stopCommand) break;
-            }
+    CGContextTranslateCTM (context, 0, self.bounds.size.height);
+    CGContextScaleCTM ( context, 1.0, -1.0 );
+//	CGContextSetTextMatrix(context, CGAffineTransformMakeScale(1.0, -1.0));
+
+    NSEnumerator *msgEnumerator = [self.drawPaths objectEnumerator];
+    NSDictionary *currentText;
+    while ((currentText = [msgEnumerator nextObject])) {
+        // "stop' allows early termination of a display list
+        if ([currentText objectForKey:@"stop"]) {
+            BOOL stopCommand = [[currentText objectForKey:@"stop"] boolValue];
+            if (stopCommand) break;
+        }
             
-            if ([currentVector objectForKey:@"break"]) {
-                BOOL breakCommand = [[currentVector objectForKey:@"break"] boolValue];
-                if (breakCommand) {
-                    NSLog(@"Set breakpoint point here");;
-                }
-            }
-            
-            // Move to a point
-            if ([currentVector objectForKey:@"moveto"]) {
-                NSDictionary *moveTo = [currentVector objectForKey:@"moveto"];
-                if ([moveTo objectForKey:@"center"]) {
-                    // Centering uses the view bounds and is not scaled
-                    CGPoint midPoint = CGPointMake(self.bounds.origin.x + self.bounds.size.width / 2, self.bounds.origin.y + self.bounds.size.height / 2);
-                    CGContextMoveToPoint(context, midPoint.x, midPoint.y);
-                    //NSLog(@"Move (%3.0f,%3.0f)", midPoint.x, midPoint.y);
-                    prevPoint = midPoint;
-                    //CGContextStrokePath(context);
-                }
-                else if ([moveTo objectForKey:@"x"]) {
-                    // Moving to a point in the view requires scaling
-                    CGFloat x = [[moveTo objectForKey:@"x"] floatValue];
-                    CGFloat y = [[moveTo objectForKey:@"y"] floatValue];
-                    CGPoint newPoint = CGPointMake(x, y);
-                    // ### Scaling here
-                    CGContextMoveToPoint(context, newPoint.x, newPoint.y);
-                    
-                    //NSLog(@"Move To (%3.0f,%3.0f)", newPoint.x, newPoint.y);
-                    prevPoint = newPoint;
-                    self.minX = MIN(newPoint.x, self.minX);
-                    self.minY = MIN(newPoint.y, self.minY);
-                    self.maxX = MAX(newPoint.x, self.maxX);
-                    self.maxY = MAX(newPoint.x, self.maxY);
-                    //CGContextStrokePath(context);
-                }
-            }
-            
-            // Move to a point relative to the current position
-            if ([currentVector objectForKey:@"moverel"]) {
-                NSDictionary *moveRelative = [currentVector objectForKey:@"moverel"];
-                if ([moveRelative objectForKey:@"x"]) {
-                    // Moving to a point in the view requires scaling
-                    CGFloat x = [[moveRelative objectForKey:@"x"] floatValue];
-                    CGFloat y = [[moveRelative objectForKey:@"y"] floatValue];
-                    CGPoint newPoint = CGPointMake(prevPoint.x + x, prevPoint.y + y);
-                    // ### Scaling here
-                    CGContextMoveToPoint(context, newPoint.x, newPoint.y);
-                    
-                    //NSLog(@"Move Relative (%3.0f,%3.0f)", newPoint.x, newPoint.y);
-                    prevPoint = newPoint;
-                    self.minX = MIN(newPoint.x, self.minX);
-                    self.minY = MIN(newPoint.y, self.minY);
-                    self.maxX = MAX(newPoint.x, self.maxX);
-                    self.maxY = MAX(newPoint.x, self.maxY);
-                    //CGContextStrokePath(context);
-                }
-            }
-            
-            // Process color stuff
-            if ([currentVector objectForKey:@"color"]) {
-                NSDictionary *colorStuff = [currentVector objectForKey:@"color"];
-                CGFloat r = [[colorStuff objectForKey:@"r"] floatValue];
-                CGFloat g = [[colorStuff objectForKey:@"g"] floatValue];
-                CGFloat b = [[colorStuff objectForKey:@"b"] floatValue];
-                CGFloat alpha = [[colorStuff objectForKey:@"alpha"] floatValue];
-                CGContextStrokePath(context);
-                CGContextSetRGBStrokeColor(context, r, g, b, alpha);
-                CGContextMoveToPoint(context, prevPoint.x, prevPoint.y);
-            }
-            
-            // Process line stuff
-            if ([currentVector objectForKey:@"line"]) {
-                if ([currentVector objectForKey:@"line"]) {
-                    NSDictionary *lineStuff = [currentVector objectForKey:@"line"];
-                    if ([lineStuff objectForKey:@"width"]) {
-                        CGFloat width = [[lineStuff objectForKey:@"width"] floatValue];
-                        CGContextStrokePath(context);
-                        CGContextSetLineWidth(context, width);
-                        CGContextMoveToPoint(context, prevPoint.x, prevPoint.y);
-                    }
-                }
-            }
-            
-            // Process a new path segment
-            if ([currentVector objectForKey:@"x"]) {
-                CGFloat x = [[currentVector objectForKey:@"x"] floatValue];
-                CGFloat y = [[currentVector objectForKey:@"y"] floatValue];
-                CGPoint newPoint = CGPointMake(prevPoint.x + x, prevPoint.y + y);
-                // ### Scaling here
-                CGContextAddLineToPoint(context, newPoint.x, newPoint.y);
-                //NSLog(@"Draw from %-3.0f,%-3.0f to %-3.0f,%-3.0f", prevPoint.x, prevPoint.y, newPoint.x, newPoint.y);
-                prevPoint = newPoint;
-                self.minX = MIN(newPoint.x, self.minX);
-                self.minY = MIN(newPoint.y, self.minY);
-                self.maxX = MAX(newPoint.x, self.maxX);
-                self.maxY = MAX(newPoint.x, self.maxY);
+        // "break" allows for complex breakpoints in a display list
+        if ([currentText objectForKey:@"break"]) {
+            BOOL breakCommand = [[currentText objectForKey:@"break"] boolValue];
+            if (breakCommand) {
+                NSLog(@"Set breakpoint point here");;
             }
         }
+            
+        // "color" is used to set the current color
+        if ([currentText objectForKey:@"color"]) {
+            NSDictionary *colorStuff = [currentText objectForKey:@"color"];
+            CGFloat r = [[colorStuff objectForKey:@"r"] floatValue];
+            CGFloat g = [[colorStuff objectForKey:@"g"] floatValue];
+            CGFloat b = [[colorStuff objectForKey:@"b"] floatValue];
+            CGFloat alpha = [[colorStuff objectForKey:@"alpha"] floatValue];
+            CGContextSetRGBFillColor(context, r, g, b, alpha);
+        }
+            
+        // "mode" is used to set the text drawing mode
+        if ([currentText objectForKey:@"mode"]) {
+            int textMode = [[currentText objectForKey:@"size"] intValue];
+            CGContextSetTextDrawingMode(context, textMode);
+        }
+        
+        // "font" is used to set the current font and size
+        if ([currentText objectForKey:@"font"]) {
+            NSDictionary *fontStuff = [currentText objectForKey:@"font"];
+            if ([fontStuff objectForKey:@"size"]) {
+                self.fontSize = [[fontStuff objectForKey:@"size"] floatValue];
+                CGContextSetFontSize(context, self.fontSize);
+                currentPosition.y -= self.fontSize;
+//                CGPoint newPosition = CGPointMake(x + currentPosition.x, self.bounds.size.height - (y + currentPosition.y - self.fontSize));
+
+            }
+            if ([fontStuff objectForKey:@"name"]) {
+                NSString *fontName = [fontStuff objectForKey:@"name"];
+                CGFontRelease(fontRef);
+                fontRef = CGFontCreateWithFontName((CFStringRef)fontName);
+                CGContextSetFont(context, fontRef);
+            }
+        }
+        
+        // Process a new path segment
+        if ([currentText objectForKey:@"text"]) {
+            NSString *msg = [currentText objectForKey:@"text"];
+            CGFloat x = [[currentText objectForKey:@"x"] floatValue];
+            CGFloat y = [[currentText objectForKey:@"y"] floatValue];
+            // prepare characters for printing
+            NSString *theText = [NSString stringWithString: msg];
+            int length = [theText length];
+            unichar chars[length];
+            CGGlyph glyphs[length];
+            [theText getCharacters:chars range:NSMakeRange(0, length)];
+            
+            // Loop through the entire length of the text.
+            int glyphOffset = -29;
+            for (int i = 0; i < length; ++i) {
+                // Store each letter in a Glyph and subtract the MagicNumber to get appropriate value.
+                glyphs[i] = [theText characterAtIndex:i] + glyphOffset;
+            }
+            
+            currentPosition.x += x;
+            currentPosition.y += y;
+            
+            CGContextShowGlyphsAtPoint(context, currentPosition.x, currentPosition.y, glyphs, length);
+            NSLog(@"Drawing text at %@", NSStringFromCGPoint(currentPosition));
+            
+            // get width of text for autosizing the frame later (perhaps)
+            currentPosition = CGContextGetTextPosition(context);
+        }
     }
-    CGContextStrokePath(context);
-#endif
-    NSLog(@"Max coordinates for %@: (%3.0f,%3.0f), (%3.0f,%3.0f)", self.vectorName, self.minX, self.minY, self.maxX, self.maxY);
+
+    CGFontRelease(fontRef);
 }
 
 @end

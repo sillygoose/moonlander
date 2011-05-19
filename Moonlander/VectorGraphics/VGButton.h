@@ -14,10 +14,7 @@
     NSArray *_drawPaths;
     NSString *_vectorName;
     
-    float _minX;
-    float _minY;
-    float _maxX;
-    float _maxY;
+    CGRect _actualBounds;
 
     NSTimer *_repeatTimer;
     float _autoRepeatInterval;
@@ -26,10 +23,7 @@
 @property (nonatomic, retain) NSArray *drawPaths;
 @property (nonatomic, copy) NSString *vectorName;
 
-@property (nonatomic) float minX;
-@property (nonatomic) float minY;
-@property (nonatomic) float maxX;
-@property (nonatomic) float maxY;
+@property (nonatomic) CGRect actualBounds;
 
 @property (nonatomic, retain) NSTimer *repeatTimer;
 @property (nonatomic) float autoRepeatInterval;
