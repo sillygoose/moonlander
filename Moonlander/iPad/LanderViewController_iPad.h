@@ -46,8 +46,8 @@
 
 @property (nonatomic, retain) LanderPhysicsModel *landerModel;
 
-@property (nonatomic, retain) NSTimer *simulationTimer;
-@property (nonatomic, retain) NSTimer *displayTimer;
+@property (nonatomic, assign) NSTimer *simulationTimer;
+@property (nonatomic, assign) NSTimer *displayTimer;
 
 @property (nonatomic, retain) VGView *landerView;
 

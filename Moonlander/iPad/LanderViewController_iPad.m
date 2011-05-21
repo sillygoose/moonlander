@@ -186,6 +186,12 @@ const float DisplayUpdateInterval = 1.0f;
 - (void)viewDidUnload
 {
     [super viewDidUnload];
+    
+    [_simulationTimer invalidate];
+    [_displayTimer invalidate];
+    _simulationTimer = nil;
+    _displayTimer = nil;
+    
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
 }
