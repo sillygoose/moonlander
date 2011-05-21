@@ -22,7 +22,7 @@
     if (self) {
         self.fontSize = 12;
         self.opaque = NO;
-        self.blinkTimer = [[NSTimer scheduledTimerWithTimeInterval:0.5f target:self selector:@selector(blinkIntervalPassed:) userInfo:nil repeats:YES] retain];
+        self.blinkTimer = [NSTimer scheduledTimerWithTimeInterval:0.5f target:self selector:@selector(blinkIntervalPassed:) userInfo:nil repeats:YES];
     }
     return self;
 }
