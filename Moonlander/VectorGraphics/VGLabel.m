@@ -56,14 +56,19 @@
 
 - (void)drawRect:(CGRect)rect
 {
-    CGPoint currentPosition = CGPointMake(0.0f, self.bounds.size.height);
-    CGFontRef fontRef = CGFontCreateWithFontName((CFStringRef)@"Courier");
-
 	CGContextRef context = UIGraphicsGetCurrentContext();
     CGContextTranslateCTM (context, 0, self.bounds.size.height);
     CGContextScaleCTM ( context, 1.0, -1.0 );
-//	CGContextSetTextMatrix(context, CGAffineTransformMakeScale(1.0, -1.0));
+	//CGContextSetTextMatrix(context, CGAffineTransformMakeScale(1.0, -1.0));
 
+    CGFontRef fontRef = CGFontCreateWithFontName((CFStringRef)@"Courier");
+    CGContextSetFont(context, fontRef);
+    CGContextSetFontSize(context, self.fontSize);
+    CGPoint currentPosition = CGPointMake(0.0f, self.bounds.size.height - self.fontSize);
+    
+    CGContextSetTextDrawingMode(context, kCGTextFill);
+    CGContextSetRGBFillColor(context, 0.026f, 1.0f, 0.00121f, 1.0f);
+    
     NSEnumerator *msgEnumerator = [self.drawPaths objectEnumerator];
     NSDictionary *currentText;
     while ((currentText = [msgEnumerator nextObject])) {
@@ -93,7 +98,7 @@
             
         // "mode" is used to set the text drawing mode
         if ([currentText objectForKey:@"mode"]) {
-            int textMode = [[currentText objectForKey:@"size"] intValue];
+            int textMode = [[currentText objectForKey:@"mode"] intValue];
             CGContextSetTextDrawingMode(context, textMode);
         }
         
@@ -103,9 +108,6 @@
             if ([fontStuff objectForKey:@"size"]) {
                 self.fontSize = [[fontStuff objectForKey:@"size"] floatValue];
                 CGContextSetFontSize(context, self.fontSize);
-                currentPosition.y -= self.fontSize;
-//                CGPoint newPosition = CGPointMake(x + currentPosition.x, self.bounds.size.height - (y + currentPosition.y - self.fontSize));
-
             }
             if ([fontStuff objectForKey:@"name"]) {
                 NSString *fontName = [fontStuff objectForKey:@"name"];
@@ -115,13 +117,21 @@
             }
         }
         
+        // "newline" is used to move the drawing position to the next line
+        if ([currentText objectForKey:@"newline"]) {
+            CGFloat nLines = [[currentText objectForKey:@"newline"] floatValue];
+            currentPosition.x = 0.0f;
+            currentPosition.y = currentPosition.y - (nLines * self.fontSize);
+            NSLog(@"Newline: %@", NSStringFromCGPoint(currentPosition));
+        }
+        
         // Process a new path segment
         if ([currentText objectForKey:@"text"]) {
             NSString *msg = [currentText objectForKey:@"text"];
-            CGFloat x = [[currentText objectForKey:@"x"] floatValue];
-            CGFloat y = [[currentText objectForKey:@"y"] floatValue];
+            //CGFloat x = [[currentText objectForKey:@"x"] floatValue];
+            //CGFloat y = [[currentText objectForKey:@"y"] floatValue];
             // prepare characters for printing
-            NSString *theText = [NSString stringWithString: msg];
+            NSString *theText = [NSString stringWithString:msg];
             int length = [theText length];
             unichar chars[length];
             CGGlyph glyphs[length];
@@ -133,9 +143,6 @@
                 // Store each letter in a Glyph and subtract the MagicNumber to get appropriate value.
                 glyphs[i] = [theText characterAtIndex:i] + glyphOffset;
             }
-            
-            currentPosition.x += x;
-            currentPosition.y += y;
             
             CGContextShowGlyphsAtPoint(context, currentPosition.x, currentPosition.y, glyphs, length);
             NSLog(@"Drawing text at %@", NSStringFromCGPoint(currentPosition));

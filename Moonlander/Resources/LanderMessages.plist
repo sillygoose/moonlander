@@ -26,42 +26,12 @@
 			<key>text</key>
 			<array>
 				<dict>
-					<key>color</key>
-					<dict>
-						<key>alpha</key>
-						<integer>1</integer>
-						<key>b</key>
-						<real>0.00121</real>
-						<key>g</key>
-						<integer>1</integer>
-						<key>r</key>
-						<real>0.026</real>
-					</dict>
-					<key>font</key>
-					<dict>
-						<key>name</key>
-						<string>Courier</string>
-						<key>size</key>
-						<integer>10</integer>
-					</dict>
-					<key>mode</key>
-					<integer>0</integer>
-				</dict>
-				<dict>
 					<key>text</key>
 					<string>BOY, ARE YOU</string>
-					<key>x</key>
-					<integer>0</integer>
-					<key>y</key>
-					<integer>0</integer>
 				</dict>
 				<dict>
 					<key>text</key>
 					<string> INEPT</string>
-					<key>x</key>
-					<integer>0</integer>
-					<key>y</key>
-					<integer>0</integer>
 				</dict>
 			</array>
 		</dict>
@@ -87,42 +57,14 @@
 			<key>text</key>
 			<array>
 				<dict>
-					<key>color</key>
-					<dict>
-						<key>alpha</key>
-						<integer>1</integer>
-						<key>b</key>
-						<real>0.00121</real>
-						<key>g</key>
-						<integer>1</integer>
-						<key>r</key>
-						<real>0.026</real>
-					</dict>
-					<key>font</key>
-					<dict>
-						<key>name</key>
-						<string>Courier</string>
-						<key>size</key>
-						<integer>10</integer>
-					</dict>
-					<key>mode</key>
-					<integer>0</integer>
-				</dict>
-				<dict>
 					<key>text</key>
 					<string>  YOU HAVE JUST CRASHED</string>
-					<key>x</key>
-					<integer>0</integer>
-					<key>y</key>
-					<integer>0</integer>
 				</dict>
 				<dict>
+					<key>newline</key>
+					<integer>1</integer>
 					<key>text</key>
 					<string>INTO THE EDGE OF THE MOON</string>
-					<key>x</key>
-					<integer>0</integer>
-					<key>y</key>
-					<integer>0</integer>
 				</dict>
 			</array>
 		</dict>
