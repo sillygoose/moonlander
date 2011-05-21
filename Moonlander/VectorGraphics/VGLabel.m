@@ -52,14 +52,9 @@
     return self;
 }
 
-- (void)viewDidUnload
-{
-    [self.blinkTimer invalidate];
-    self.blinkTimer = nil;
-}
-
 - (void)dealloc
 {
+    [_blinkTimer invalidate];
     [_blinkTimer release];
     [super dealloc];
 }
@@ -84,6 +79,7 @@
     
     CGContextSetRGBFillColor(context, 0.026f, 1.0f, 0.00121f, 1.0f);
     CGContextSetTextDrawingMode(context, kCGTextFill);
+    CGContextSetShouldSmoothFonts(context, YES);
     
     NSEnumerator *msgEnumerator = [self.drawPaths objectEnumerator];
     NSDictionary *currentText;
@@ -168,14 +164,14 @@
             
             if (doBlink) {
                 if (self.blinkOn) {
-                CGContextShowGlyphsAtPoint(context, currentPosition.x, currentPosition.y, glyphs, length);
+                    CGContextShowGlyphsAtPoint(context, currentPosition.x, currentPosition.y, glyphs, length);
                 }
                 else {
-                    // Change alpha to zero
-                    CGContextSetRGBFillColor(context, 0.026f, 1.0f, 0.00121f, 0.0f);
+                    // Change alpha to zero for this draw cycle
+                    CGContextSaveGState(context);
+                    CGContextSetAlpha(context, 0.0f);
                     CGContextShowGlyphsAtPoint(context, currentPosition.x, currentPosition.y, glyphs, length);
-                    // Restore alpha
-                    CGContextSetRGBFillColor(context, 0.026f, 1.0f, 0.00121f, 1.0f);
+                    CGContextRestoreGState(context);
                 }
             }
             else {

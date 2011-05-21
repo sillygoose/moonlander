@@ -16,7 +16,7 @@
     BOOL _blinkOn;
 }
 
-@property (nonatomic, retain) NSTimer *blinkTimer;
+@property (nonatomic, assign) NSTimer *blinkTimer;
 @property (nonatomic) BOOL blinkOn;
 @property (nonatomic) CGFloat fontSize;
 
