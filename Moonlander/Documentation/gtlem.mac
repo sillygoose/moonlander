@@ -2478,7 +2478,7 @@ LFTMSG:	.WORD	117520  ;point mode, intensity 6, blink off
 	.EVEN
 	.WORD	DISTOP
 	.WORD	0
-RGTMSG:	.WORD	117520
+RGTMSG:	.WORD	117520  ;point mode, intensity 6, blink off
 	.WORD	525.         ;X
 	.WORD	600.         ;Y
 	.WORD	100000      ;character mode
@@ -2496,7 +2496,7 @@ RGTMSG:	.WORD	117520
 	.EVEN
 	.WORD	DISTOP
 	.WORD	0
-TOPMSG:	.WORD	117520
+TOPMSG:	.WORD	117520  ;point mode, intensity 6, blink off
 	.WORD	50.
 	.WORD	650.
 	.WORD	100000
@@ -2510,17 +2510,17 @@ TOPMSG:	.WORD	117520
 ;
 ;		SPEED WARNING MASSAGES...
 ;
-VFAST:	.WORD	117530
+VFAST:	.WORD	117530      ;point mode, intensity 7, blink on
 	.WORD	100.
 	.WORD	2.
-	.WORD	100000
+	.WORD	100000          ;character mode
 	.ASCII	"TOO FAST. YOU'RE GOING TO CRASH"
 	.BYTE	0
 	.=.-1
 	.EVEN
 	.WORD	DISTOP
 	.WORD	0
-FAST:	.WORD	117520
+FAST:	.WORD	117520      ;point mode, intensity 6, blink off
 	.WORD	100.
 	.WORD	700.
 	.WORD	100000
@@ -2530,7 +2530,7 @@ FAST:	.WORD	117520
 	.EVEN
 	.WORD	DISTOP
 	.WORD	0
-N2FAST:	.WORD	117520
+N2FAST:	.WORD	117520      ;point mode, intensity 6, blink off
 	.WORD	100.
 	.WORD	2.
 	.WORD	100000
@@ -2540,7 +2540,7 @@ N2FAST:	.WORD	117520
 	.EVEN
 	.WORD	DISTOP
 	.WORD	0
-GREATM:	.WORD	117520
+GREATM:	.WORD	117520      ;point mode, intensity 6, blink off
 	.WORD	100.
 	.WORD	600.
 	.WORD	100000
