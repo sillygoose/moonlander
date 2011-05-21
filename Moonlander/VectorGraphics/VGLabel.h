@@ -12,8 +12,12 @@
 
 @interface VGLabel : VGView {
     CGFloat _fontSize;
+    NSTimer *_blinkTimer;
+    BOOL _blinkOn;
 }
 
+@property (nonatomic, retain) NSTimer *blinkTimer;
+@property (nonatomic) BOOL blinkOn;
 @property (nonatomic) CGFloat fontSize;
 
 - (id)initWithMessage:(NSString *)msgName;

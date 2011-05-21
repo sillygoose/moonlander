@@ -30,6 +30,8 @@
 					<string>BOY, ARE YOU</string>
 				</dict>
 				<dict>
+					<key>blink</key>
+					<true/>
 					<key>text</key>
 					<string> INEPT</string>
 				</dict>

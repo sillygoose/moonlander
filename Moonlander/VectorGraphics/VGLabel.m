@@ -11,6 +11,8 @@
 
 @implementation VGLabel
 
+@synthesize blinkTimer=_blinkTimer;
+@synthesize blinkOn=_blinkOn;
 @synthesize fontSize=_fontSize;
 
 
@@ -20,6 +22,7 @@
     if (self) {
         self.fontSize = 12;
         self.opaque = NO;
+        self.blinkTimer = [[NSTimer scheduledTimerWithTimeInterval:0.5f target:self selector:@selector(blinkIntervalPassed:) userInfo:nil repeats:YES] retain];
     }
     return self;
 }
@@ -49,9 +52,22 @@
     return self;
 }
 
+- (void)viewDidUnload
+{
+    [self.blinkTimer invalidate];
+    self.blinkTimer = nil;
+}
+
 - (void)dealloc
 {
+    [_blinkTimer release];
     [super dealloc];
+}
+
+- (void)blinkIntervalPassed:(NSTimer *)timer
+{
+    self.blinkOn = !self.blinkOn;
+    [self setNeedsDisplay];
 }
 
 - (void)drawRect:(CGRect)rect
@@ -66,12 +82,14 @@
     CGContextSetFontSize(context, self.fontSize);
     CGPoint currentPosition = CGPointMake(0.0f, self.bounds.size.height - self.fontSize);
     
-    CGContextSetTextDrawingMode(context, kCGTextFill);
     CGContextSetRGBFillColor(context, 0.026f, 1.0f, 0.00121f, 1.0f);
+    CGContextSetTextDrawingMode(context, kCGTextFill);
     
     NSEnumerator *msgEnumerator = [self.drawPaths objectEnumerator];
     NSDictionary *currentText;
     while ((currentText = [msgEnumerator nextObject])) {
+        BOOL doBlink = NO;
+        
         // "stop' allows early termination of a display list
         if ([currentText objectForKey:@"stop"]) {
             BOOL stopCommand = [[currentText objectForKey:@"stop"] boolValue];
@@ -122,7 +140,11 @@
             CGFloat nLines = [[currentText objectForKey:@"newline"] floatValue];
             currentPosition.x = 0.0f;
             currentPosition.y = currentPosition.y - (nLines * self.fontSize);
-            NSLog(@"Newline: %@", NSStringFromCGPoint(currentPosition));
+        }
+        
+        // "blink" is used to blink the text
+        if ([currentText objectForKey:@"blink"]) {
+            doBlink = [[currentText objectForKey:@"blink"] boolValue];
         }
         
         // Process a new path segment
@@ -144,8 +166,22 @@
                 glyphs[i] = [theText characterAtIndex:i] + glyphOffset;
             }
             
-            CGContextShowGlyphsAtPoint(context, currentPosition.x, currentPosition.y, glyphs, length);
-            NSLog(@"Drawing text at %@", NSStringFromCGPoint(currentPosition));
+            if (doBlink) {
+                if (self.blinkOn) {
+                CGContextShowGlyphsAtPoint(context, currentPosition.x, currentPosition.y, glyphs, length);
+                }
+                else {
+                    // Change alpha to zero
+                    CGContextSetRGBFillColor(context, 0.026f, 1.0f, 0.00121f, 0.0f);
+                    CGContextShowGlyphsAtPoint(context, currentPosition.x, currentPosition.y, glyphs, length);
+                    // Restore alpha
+                    CGContextSetRGBFillColor(context, 0.026f, 1.0f, 0.00121f, 1.0f);
+                }
+            }
+            else {
+                CGContextShowGlyphsAtPoint(context, currentPosition.x, currentPosition.y, glyphs, length);
+            }
+            //NSLog(@"Drawing text at %@", NSStringFromCGPoint(currentPosition));
             
             // get width of text for autosizing the frame later (perhaps)
             currentPosition = CGContextGetTextPosition(context);

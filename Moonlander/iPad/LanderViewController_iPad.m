@@ -154,8 +154,8 @@ const float DisplayUpdateInterval = 1.0f;
     // ### Practice vector text labels
     VGLabel *leMsg = [[VGLabel alloc] initWithMessage:@"LeftEdge"];
     [self.view addSubview:leMsg];
-    VGLabel *reMsg = [[VGLabel alloc] initWithMessage:@"RightEdge"];
-    [self.view addSubview:reMsg];
+//    VGLabel *reMsg = [[VGLabel alloc] initWithMessage:@"RightEdge"];
+//    [self.view addSubview:reMsg];
     // ###
 #endif
     
