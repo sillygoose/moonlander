@@ -177,6 +177,7 @@ const float DisplayUpdateInterval = 1.0f;
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
     self.landerModel = [[[LanderPhysicsModel alloc] init] retain];
     self.landerModel.dataSource = self.landerModel;
     self.landerModel.delegate = self.landerModel;
