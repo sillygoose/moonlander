@@ -51,7 +51,7 @@
 				<key>size</key>
 				<dict>
 					<key>height</key>
-					<integer>200</integer>
+					<integer>100</integer>
 					<key>width</key>
 					<integer>200</integer>
 				</dict>
@@ -67,6 +67,89 @@
 					<integer>1</integer>
 					<key>text</key>
 					<string>INTO THE EDGE OF THE MOON</string>
+				</dict>
+			</array>
+		</dict>
+		<key>TopEdge</key>
+		<dict>
+			<key>frame</key>
+			<dict>
+				<key>origin</key>
+				<dict>
+					<key>x</key>
+					<integer>50</integer>
+					<key>y</key>
+					<integer>650</integer>
+				</dict>
+				<key>size</key>
+				<dict>
+					<key>height</key>
+					<integer>100</integer>
+					<key>width</key>
+					<integer>200</integer>
+				</dict>
+			</dict>
+			<key>text</key>
+			<array>
+				<dict>
+					<key>text</key>
+					<string>SORRY, BUT WHEN YOU LOSE TV COVERAGE, YOU ALSO LOSE YOUR FUEL</string>
+				</dict>
+			</array>
+		</dict>
+		<key>VeryFast</key>
+		<dict>
+			<key>frame</key>
+			<dict>
+				<key>origin</key>
+				<dict>
+					<key>x</key>
+					<integer>100</integer>
+					<key>y</key>
+					<integer>10</integer>
+				</dict>
+				<key>size</key>
+				<dict>
+					<key>height</key>
+					<integer>100</integer>
+					<key>width</key>
+					<integer>200</integer>
+				</dict>
+			</dict>
+			<key>text</key>
+			<array>
+				<dict>
+					<key>blink</key>
+					<true/>
+					<key>text</key>
+					<string>TOO FAST. YOU&apos;RE GOING TO CRASH</string>
+				</dict>
+			</array>
+		</dict>
+		<key>Fast</key>
+		<dict>
+			<key>frame</key>
+			<dict>
+				<key>origin</key>
+				<dict>
+					<key>x</key>
+					<integer>100</integer>
+					<key>y</key>
+					<integer>700</integer>
+				</dict>
+				<key>size</key>
+				<dict>
+					<key>height</key>
+					<integer>100</integer>
+					<key>width</key>
+					<integer>200</integer>
+				</dict>
+			</dict>
+			<key>text</key>
+			<array>
+				<dict>
+					<key>text</key>
+					<string>BETTER START SLOWING IT UP PRETTY SOON</string>
 				</dict>
 			</array>
 		</dict>
