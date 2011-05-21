@@ -20,7 +20,7 @@
 {
     self = [super initWithFrame:frameRect];
     if (self) {
-        self.fontSize = 12;
+        self.fontSize = 11;
         self.opaque = NO;
         self.blinkTimer = [NSTimer scheduledTimerWithTimeInterval:0.5f target:self selector:@selector(blinkIntervalPassed:) userInfo:nil repeats:YES];
     }
@@ -78,7 +78,8 @@
     CGPoint currentPosition = CGPointMake(0.0f, self.bounds.size.height - self.fontSize);
     
     CGContextSetRGBFillColor(context, 0.026f, 1.0f, 0.00121f, 1.0f);
-    CGContextSetTextDrawingMode(context, kCGTextFill);
+    CGContextSetRGBStrokeColor(context, 0.026f, 1.0f, 0.00121f, 1.0f);
+    CGContextSetTextDrawingMode(context, kCGTextFillStroke);
     CGContextSetShouldSmoothFonts(context, YES);
     
     NSEnumerator *msgEnumerator = [self.drawPaths objectEnumerator];
@@ -146,9 +147,8 @@
         // Process a new path segment
         if ([currentText objectForKey:@"text"]) {
             NSString *msg = [currentText objectForKey:@"text"];
-            //CGFloat x = [[currentText objectForKey:@"x"] floatValue];
-            //CGFloat y = [[currentText objectForKey:@"y"] floatValue];
-            // prepare characters for printing
+
+            // Prepare characters for printing
             NSString *theText = [NSString stringWithString:msg];
             int length = [theText length];
             unichar chars[length];
@@ -179,7 +179,7 @@
             }
             //NSLog(@"Drawing text at %@", NSStringFromCGPoint(currentPosition));
             
-            // get width of text for autosizing the frame later (perhaps)
+            // Set our new position for the next text block
             currentPosition = CGContextGetTextPosition(context);
         }
     }
