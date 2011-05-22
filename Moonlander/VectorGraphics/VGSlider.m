@@ -11,9 +11,6 @@
 
 @implementation VGSlider
 
-@synthesize drawPaths=_drawPaths;
-@synthesize vectorName=_vectorName;
-
 @synthesize actualBounds=_actualBounds;
 
 @synthesize value=_value;
@@ -53,9 +50,7 @@
         self.thrusterValue = [[VGLabel alloc] initWithFrame:valueFrame];
         self.thrusterValue.userInteractionEnabled = NO;
         [self addSubview:self.thrusterValue];
-        
-        self.vectorName = @"initWithFrame";
-    }
+   }
     return self;
 }
 
@@ -81,19 +76,11 @@
 
 - (void)dealloc
 {
-    [_drawPaths release];
     [_thrusterSlider release];
     [_thrusterIndicator release];
     [_thrusterValue release];
     
     [super dealloc];
-}
-
-- (void)addPathFile:(NSString *)fileName
-{
-    NSDictionary *viewObject = [NSDictionary dictionaryWithContentsOfFile:fileName];
-    self.vectorName = [viewObject objectForKey:@"name"];
-    self.drawPaths = [viewObject objectForKey:@"paths"];
 }
 
 
@@ -109,8 +96,10 @@
 - (void)touchesBegan:(NSSet*)touches withEvent:(UIEvent*)event
 {
     for (UITouch *touch in touches) {
-        if ([self pointInside:[touch locationInView:self] withEvent:event]) {
-            [self dispatchTouchEvent:[touch view] toPosition:[touch locationInView:self]];
+        if ([touch view] == self.thrusterSlider) {
+            if ([self pointInside:[touch locationInView:self] withEvent:event]) {
+                [self dispatchTouchEvent:[touch view] toPosition:[touch locationInView:self]];
+            }
         }
 	}	
 }
@@ -118,8 +107,10 @@
 - (void)touchesEnded:(NSSet*)touches withEvent:(UIEvent*)event
 {
     for (UITouch *touch in touches) {
-        if ([self pointInside:[touch locationInView:self] withEvent:event]) {
-            [self dispatchTouchEvent:[touch view] toPosition:[touch locationInView:self]];
+        if ([touch view] == self.thrusterSlider) {
+            if ([self pointInside:[touch locationInView:self] withEvent:event]) {
+                [self dispatchTouchEvent:[touch view] toPosition:[touch locationInView:self]];
+            }
         }
 	}	
 }
@@ -127,8 +118,10 @@
 - (void)touchesMoved:(NSSet*)touches withEvent:(UIEvent*)event
 {
     for (UITouch *touch in touches) {
-        if ([self pointInside:[touch locationInView:self] withEvent:event]) {
-            [self dispatchTouchEvent:[touch view] toPosition:[touch locationInView:self]];
+        if ([touch view] == self.thrusterSlider) {
+            if ([self pointInside:[touch locationInView:self] withEvent:event]) {
+                [self dispatchTouchEvent:[touch view] toPosition:[touch locationInView:self]];
+            }
         }
 	}	
 }
