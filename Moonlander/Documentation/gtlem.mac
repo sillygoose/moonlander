@@ -2295,35 +2295,35 @@ DIALTC:	.WORD	DITEM1			;WHERE OUR TABLES ARE.
 ;
 DITEM1:	.WORD	170240			;ENABLE LIGHT PEN STUFF.
 	.WORD	117560			;AND MOVE THE POINTER AROUND.
-	.WORD	DX1
-	.WORD	DY1
+	.WORD	DX1             ;0
+	.WORD	DY1             ;730
 	.WORD	100000			;ENTER CHARACTER MODE NOW.
 	.ASCII	'      '		;SIX CHARACTERS OF ZERO,
 	.WORD	DISJMP			;AND NOW CALL THE NEXT SUBROUTINE.
 	.WORD	ITEMF1
-DITEM2:	.WORD	170240
-	.WORD	117560
-	.WORD	DX2
-	.WORD	DY2
-	.WORD	100000
+DITEM2:	.WORD	170240      ;LSA - intensified, normal font
+	.WORD	117560          ;point mode, intensity 7, blink off
+	.WORD	DX2             ;250
+	.WORD	DY2             ;730
+	.WORD	100000          ;character mode
 	.ASCII	'      '
-	.WORD	DISJMP
-	.WORD	ITEMF2
+	.WORD	DISJMP          ;display jump
+	.WORD	ITEMF2          ;ITEMF2
 DITEM3:	.WORD	170240
-	.WORD	117560
-	.WORD	DX3
-	.WORD	DY3
-	.WORD	100000
+	.WORD	117560          ;point mode, intensity 7, blink off
+	.WORD	DX3             ;500
+	.WORD	DY3             ;730
+	.WORD	100000          ;character mode
 	.ASCII	'      '
-	.WORD	DISJMP
+	.WORD	DISJMP          ;display jump
 	.WORD	ITEMF3
 DITEM4:	.WORD	170240
-	.WORD	117560
-	.WORD	DX4
-	.WORD	DY4
-	.WORD	100000
+	.WORD	117560          ;point mode, intensity 7, blink off
+	.WORD	DX4             ;750
+	.WORD	DY4             ;750
+	.WORD	100000          ;character mode
 	.ASCII	'      '
-	.WORD	DISJMP
+	.WORD	DISJMP          ;display jump
 	.WORD	ITEMF4
 ;
 ;		THESE TABLES CONTAIN THE ACTUAL MESSAGES THAT THE
