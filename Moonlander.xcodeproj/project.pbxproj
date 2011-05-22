@@ -49,6 +49,7 @@
 		569CC2AD1380B13C00E6D82A /* VT-11 Instruction Set.txt in Resources */ = {isa = PBXBuildFile; fileRef = 569CC2AC1380B13C00E6D82A /* VT-11 Instruction Set.txt */; };
 		569CC2B31380CC3300E6D82A /* Rock.plist in Resources */ = {isa = PBXBuildFile; fileRef = 569CC2B21380CC3300E6D82A /* Rock.plist */; };
 		56A480C3137C6C5500742877 /* LanderPhysicsConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 56A480C2137C6C5500742877 /* LanderPhysicsConstants.m */; };
+		56BC68641388BDE200403643 /* Labels.plist in Resources */ = {isa = PBXBuildFile; fileRef = 56BC68631388BDE200403643 /* Labels.plist */; };
 		56E80E4C137E4CC3009E7F15 /* Lander.plist in Resources */ = {isa = PBXBuildFile; fileRef = 56E80E4B137E4CC3009E7F15 /* Lander.plist */; };
 		56E80E60137E599E009E7F15 /* VGView.m in Sources */ = {isa = PBXBuildFile; fileRef = 56E80E5F137E599E009E7F15 /* VGView.m */; };
 /* End PBXBuildFile section */
@@ -118,6 +119,7 @@
 		56A480B3137C5E3D00742877 /* LanderPhysicsDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LanderPhysicsDelegate.h; path = "Lander Model/LanderPhysicsDelegate.h"; sourceTree = "<group>"; };
 		56A480C1137C6C5500742877 /* LanderPhysicsConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LanderPhysicsConstants.h; path = "Lander Model/LanderPhysicsConstants.h"; sourceTree = "<group>"; };
 		56A480C2137C6C5500742877 /* LanderPhysicsConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LanderPhysicsConstants.m; path = "Lander Model/LanderPhysicsConstants.m"; sourceTree = "<group>"; };
+		56BC68631388BDE200403643 /* Labels.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Labels.plist; path = Resources/Labels.plist; sourceTree = "<group>"; };
 		56E80E4B137E4CC3009E7F15 /* Lander.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Lander.plist; path = Resources/Lander.plist; sourceTree = "<group>"; };
 		56E80E5E137E599D009E7F15 /* VGView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VGView.h; path = VectorGraphics/VGView.h; sourceTree = "<group>"; };
 		56E80E5F137E599E009E7F15 /* VGView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VGView.m; path = VectorGraphics/VGView.m; sourceTree = "<group>"; };
@@ -262,6 +264,7 @@
 		560FA13B1379C3900017EE25 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				56BC68631388BDE200403643 /* Labels.plist */,
 				569CC2B21380CC3300E6D82A /* Rock.plist */,
 				569CC2A913809BED00E6D82A /* Moon.plist */,
 				56E80E4B137E4CC3009E7F15 /* Lander.plist */,
@@ -398,6 +401,7 @@
 				564EBC5113834A17007D477C /* McDonalds.plist in Resources */,
 				569BB49C138398A2005E2C86 /* ThrusterNeedle.plist in Resources */,
 				562B108D13841D5A00CC5C97 /* LanderMessages.plist in Resources */,
+				56BC68641388BDE200403643 /* Labels.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
