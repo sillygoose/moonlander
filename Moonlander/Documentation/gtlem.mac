@@ -2333,9 +2333,9 @@ ITEM1:	.WORD	RADARY
 	.WORD	0			;WHERE ITEM IS AND WHAT TO DIVIDE IT BY.
 ITEME1:	.WORD	170260  ;LSA intensify light pen, italics			;ACTUALLY DISPLAY PORTION HERE.
 	.WORD	117560      ;point mode, intensity 6, blink off
-	.WORD	ITEMX1      ;X=900
-	.WORD	ITEMY1      ;Y=247
-	.WORD	100000      ;character set mode
+	.WORD	ITEMX1      ;900
+	.WORD	ITEMY1      ;247
+	.WORD	100000      ;character mode
 ITEMF1:	.ASCII	' HEIGHT '
 	.WORD	DISTOP      ;LSA display stop
 	.WORD	0
@@ -2353,99 +2353,99 @@ ITEM3:	.WORD	HORDIS
 	.WORD	0
 ITEME3:	.WORD	170260  ;LSA intensify light pen, italics
 	.WORD	117560      ;point mode, intensity 6, blink off
-	.WORD	ITEMX3
-	.WORD	ITEMY3
-	.WORD	100000      ;character set mode
+	.WORD	ITEMX3      ;900
+	.WORD	ITEMY3      ;203
+	.WORD	100000      ;character  mode
 ITEMF3:	.ASCII	' DISTANCE '
 	.WORD	DISTOP      ;LSA display stop
 	.WORD	0
-ITEM4:	.WORD	FUEL
-	.WORD	10.
+ITEM4:	.WORD	FUEL    ;FUEL remaining (tenths)
+	.WORD	10.         ;divide by 10 for display
 ITEME4:	.WORD	170260  ;LSA intensify light pen, italics
-	.WORD	117560
-	.WORD	ITEMX4
-	.WORD	ITEMY4
-	.WORD	100000      ;character set mode
+	.WORD	117560      ;point mode
+	.WORD	ITEMX4      ;900
+	.WORD	ITEMY4      ;181
+	.WORD	100000      ;character mode
 ITEMF4:	.ASCII	' FUEL LEFT'
 	.WORD	DISTOP
 	.WORD	0
 ITEM5:	.WORD	WEIGHT
 	.WORD	0
 ITEME5:	.WORD	170260  ;LSA intensify light pen, italics
-	.WORD	117560
-	.WORD	ITEMX5
-	.WORD	ITEMY5
-	.WORD	100000
+	.WORD	117560      ;point mode, intensity 6, blink off
+	.WORD	ITEMX5      ;900
+	.WORD	ITEMY5      ;159
+	.WORD	100000      ;character mode
 ITEMF5:	.ASCII	' WEIGHT '
 	.WORD	DISTOP
 	.WORD	0
 ITEM6:	.WORD	THRUST
 	.WORD	0
 ITEME6:	.WORD	170260  ;LSA intensify light pen, italics
-	.WORD	117560
-	.WORD	ITEMX6
-	.WORD	ITEMY6
-	.WORD	100000
+	.WORD	117560      ;point mode, intensity 6, blink off
+	.WORD	ITEMX6      ;900
+	.WORD	ITEMY6      ;137
+	.WORD	100000      ;character mode
 ITEMF6:	.ASCII	' THRUST '
 	.WORD	DISTOP
 	.WORD	0
 ITEM7:	.WORD	ANGLE
 	.WORD	0
 ITEME7:	.WORD	170260  ;LSA intensify light pen, italics
-	.WORD	117560
-	.WORD	ITEMX7
-	.WORD	ITEMY7
-	.WORD	100000
+	.WORD	117560      ;point mode, intensity 6, blink off
+	.WORD	ITEMX7      ;900
+	.WORD	ITEMY7      ;115
+	.WORD	100000      ;character mode
 ITEMF7:	.ASCII	' ANGLE'
 	.WORD	DISTOP
 	.WORD	0
 ITEM8:	.WORD	VERVEL
 	.WORD	10.
 ITEME8:	.WORD	170260  ;LSA intensify light pen, italics
-	.WORD	117560
-	.WORD	ITEMX8
-	.WORD	ITEMY8
-	.WORD	100000
+	.WORD	117560      ;point mode, intensity 6, blink off
+	.WORD	ITEMX8      ;900
+	.WORD	ITEMY8      ;93
+	.WORD	100000      ;character mode
 ITEMF8:	.ASCII	' VER VEL'
 	.WORD	DISTOP
 	.WORD	0
 ITEM9:	.WORD	HORVEL
 	.WORD	10.
 ITEME9:	.WORD	170260  ;LSA intensify light pen, italics
-	.WORD	117560
-	.WORD	ITEMX9
-	.WORD	ITEMY9
-	.WORD	100000
+	.WORD	117560      ;point mode, intensity 6, blink off
+	.WORD	ITEMX9      ;900
+	.WORD	ITEMY9      ;71
+	.WORD	100000      ;character mode
 ITEMF9:	.ASCII	' HOR VEL'
 	.WORD	DISTOP
 	.WORD	0
 ITEM10:	.WORD	VERACC
 	.WORD	500.
 ITEMET:	.WORD	170260  ;LSA intensify light pen, italics
-	.WORD	117560
-	.WORD	ITEMXT
-	.WORD	ITEMYT
-	.WORD	100000
+	.WORD	117560      ;point mode, intensity 6, blink off
+	.WORD	ITEMXT      ;900
+	.WORD	ITEMYT      ;49
+	.WORD	100000      ;character mode
 ITEMFT:	.ASCII	' VER ACC'
 	.WORD	DISTOP
 	.WORD	0
 ITEM11:	.WORD	HORACC
 	.WORD	500.
 ITEMEE:	.WORD	170260  ;LSA intensify light pen, italics
-	.WORD	117560
-	.WORD	ITEMXE
-	.WORD	ITEMYE
-	.WORD	100000
+	.WORD	117560      ;point mode, intensity 6, blink off
+	.WORD	ITEMXE      ;900
+	.WORD	ITEMYE      ;27
+	.WORD	100000      ;character mode
 ITEMFE:	.ASCII	' HOR ACC'
 	.WORD	DISTOP
 	.WORD	0
 ITEM12:	.WORD	TIME
 	.WORD	60.
 ITEMES:	.WORD	170260  ;LSA intensify light pen, italics
-	.WORD	117560
-	.WORD	ITEMXS
-	.WORD	ITEMYS
-	.WORD	100000
+	.WORD	117560      ;point mode, intensity 6, blink off
+	.WORD	ITEMXS      ;900
+	.WORD	ITEMYS      ;5
+	.WORD	100000      ;character mode
 ITEMFS:	.ASCII	' SECONDS'
 	.WORD	DISTOP
 	.WORD	0
