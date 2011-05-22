@@ -20,6 +20,7 @@
 {
     if ((self = [super initWithFrame:frameRect])) {
         self.actualBounds = CGRectMake(FLT_MAX, FLT_MAX, -FLT_MAX, -FLT_MAX);
+        self.vectorName = @"initWithFrame";
     }
     return self;
 }
@@ -29,7 +30,8 @@
     self = [self initWithFrame:frameRect];
 
     NSDictionary *viewObject = [NSDictionary dictionaryWithContentsOfFile:fileName];
-    self.vectorName = [viewObject objectForKey:@"name"];
+    if (!(self.vectorName = [viewObject objectForKey:@"name"]))
+        self.vectorName = @"initWithFrame:withPaths:";
     self.drawPaths = [viewObject objectForKey:@"paths"];
     return self;
 }

@@ -9,16 +9,19 @@
 #import <Foundation/Foundation.h>
 
 #import "VGView.h"
+#import "VGLabel.h"
 
 @interface VGSlider : UIControl {
-    NSArray *_drawPaths;
-
-    NSString *_vectorName;
+    NSArray     *_drawPaths;
+    NSString    *_vectorName;
     
-    CGRect _actualBounds;
+    CGRect      _actualBounds;
 
-    float _value;
-    VGView *_thrusterIndicator;
+    float       _value;
+    
+    VGView      *_thrusterSlider;
+    VGView      *_thrusterIndicator;
+    VGLabel     *_thrusterValue;
 }
 
 @property (nonatomic, retain) NSArray *drawPaths;
@@ -27,9 +30,12 @@
 @property (nonatomic) CGRect actualBounds;
 
 @property (nonatomic) float value;
+
+@property (nonatomic, retain) VGView *thrusterSlider;
 @property (nonatomic, retain) VGView *thrusterIndicator;
+@property (nonatomic, retain) VGLabel *thrusterValue;
 
 - (id)initWithFrame:(CGRect)frameRect;
-- (id)initWithFrame:(CGRect)frameRect withPaths:(NSString *)fileName;
+//- (id)initWithFrame:(CGRect)frameRect withPaths:(NSString *)fileName;
 
 @end

@@ -16,6 +16,7 @@
 @synthesize fontSize=_fontSize;
 
 
+//###blink timer used all time, not just when a blink is requested
 - (id)initWithFrame:(CGRect)frameRect
 {
     self = [super initWithFrame:frameRect];
@@ -29,7 +30,6 @@
 
 - (id)initWithMessage:(NSString *)msgName
 {
-    
     NSString *msgsFile = [[NSBundle mainBundle] pathForResource:@"LanderMessages" ofType:@"plist"];
     NSDictionary *landerMessages = [NSDictionary dictionaryWithContentsOfFile:msgsFile];
     NSDictionary *msgs = [landerMessages objectForKey:@"messages"];
@@ -46,6 +46,7 @@
     frameRect.size.height = [[size objectForKey:@"height"] floatValue];
     self = [self initWithFrame:frameRect];
     
+    // Initialize the draw path from the plist
     self.drawPaths = [msg objectForKey:@"text"];
     self.vectorName = msgName;
     
@@ -164,10 +165,11 @@
             
             if (doBlink) {
                 if (self.blinkOn) {
+                    // Draw normally this cycle
                     CGContextShowGlyphsAtPoint(context, currentPosition.x, currentPosition.y, glyphs, length);
                 }
                 else {
-                    // Change alpha to zero for this draw cycle
+                    // Change alpha to zero for this draw cycle and then restore
                     CGContextSaveGState(context);
                     CGContextSetAlpha(context, 0.0f);
                     CGContextShowGlyphsAtPoint(context, currentPosition.x, currentPosition.y, glyphs, length);

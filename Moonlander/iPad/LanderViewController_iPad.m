@@ -114,7 +114,7 @@ const float DisplayUpdateInterval = 1.0f;
 
     // Create the roll control arrows
     NSString *slaPath = [[NSBundle mainBundle] pathForResource:@"SmallLeftArrow" ofType:@"plist"];
-    self.smallLeftArrow = [[[VGButton alloc] initWithFrame:CGRectMake(500, 400, 24, 24) withPaths:slaPath andRepeat:0.5f] retain];
+    self.smallLeftArrow = [[[VGButton alloc] initWithFrame:CGRectMake(500, 400, 24, 24) withPaths:slaPath andRepeat:0.5f] retain];//###retain?
 	[self.smallLeftArrow addTarget:self 
                             action:@selector(rotateLander:) 
             forControlEvents:UIControlEventValueChanged];
@@ -142,15 +142,13 @@ const float DisplayUpdateInterval = 1.0f;
     [self.view addSubview:self.largeRightArrow];
 
     // Create the thruster control
-    NSString *tcPath = [[NSBundle mainBundle] pathForResource:@"ThrusterControl" ofType:@"plist"];
-    assert(tcPath != nil);
-    self.thrusterSlider = [[[VGSlider alloc] initWithFrame:CGRectMake(400, 50, 200, 200) withPaths:tcPath] retain];
+    self.thrusterSlider = [[VGSlider alloc] initWithFrame:CGRectMake(400, 50, 200, 200)];
 	[self.thrusterSlider addTarget:self 
                             action:@selector(thrusterChanged:) 
                   forControlEvents:UIControlEventValueChanged];
     [self.view addSubview:self.thrusterSlider];
 
-#if 1    
+#if 0   
     // ### Practice vector text labels
     VGLabel *leMsg = [[VGLabel alloc] initWithMessage:@"LeftEdge"];
     [self.view addSubview:leMsg];
@@ -266,7 +264,7 @@ const float DisplayUpdateInterval = 1.0f;
 - (void)gameLoop
 {
     [self.landerModel.delegate updateTime:GameTimerInterval];
-    [self.thrusterSlider setValue:[self.landerModel.dataSource thrustPercent]];
+    //[self.thrusterSlider setValue:[self.landerModel.dataSource thrustPercent]];
     //NSLog(@"%3.2f - Thrust: %5.0f  Altitude: %5.0f  Downrange: %5.0f  Angle:%2.0f  Weight:%5.0f  Fuel:%4.0f  HorizVel: %5.0f  VertVel: %5.0f  Accel: %5.3f  HorizAccel: %5.3f  VertAccel: %5.3f", [self.landerModel.dataSource time], [self.landerModel.dataSource thrust], [self.landerModel.dataSource altitude], [self.landerModel.dataSource range], [self.landerModel.dataSource rotationDegrees], [self.landerModel.dataSource weight], [self.landerModel.dataSource fuel], [self.landerModel.dataSource horizVel], [self.landerModel.dataSource vertVel], [self.landerModel.dataSource acceleration], [self.landerModel.dataSource horizAccel], [self.landerModel.dataSource vertAccel]);
     
     if ([self.landerModel.dataSource altitude] == 0.0f) {

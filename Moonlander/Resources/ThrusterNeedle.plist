@@ -34,12 +34,12 @@
 				<key>moverel</key>
 				<dict>
 					<key>x</key>
-					<integer>-35</integer>
+					<integer>-25</integer>
 					<key>y</key>
 					<integer>0</integer>
 				</dict>
 				<key>x</key>
-				<integer>70</integer>
+				<integer>50</integer>
 				<key>y</key>
 				<integer>0</integer>
 			</dict>

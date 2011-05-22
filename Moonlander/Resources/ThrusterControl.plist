@@ -2,6 +2,8 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>name</key>
+	<string>Thruster Control</string>
 	<key>paths</key>
 	<array>
 		<array>
@@ -32,7 +34,7 @@
 				<key>moverel</key>
 				<dict>
 					<key>x</key>
-					<integer>95</integer>
+					<integer>0</integer>
 					<key>y</key>
 					<integer>-100</integer>
 				</dict>
@@ -77,7 +79,5 @@
 			</dict>
 		</array>
 	</array>
-	<key>name</key>
-	<string>Thruster Control</string>
 </dict>
 </plist>
