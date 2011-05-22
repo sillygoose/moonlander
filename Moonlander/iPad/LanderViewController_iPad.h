@@ -32,6 +32,24 @@
 
     UIButton *_newGameButton;
     
+    VGButton *_heightLabel;
+    VGButton *_verticalDistanceLabel;
+    VGButton *_distanceLabel;
+    VGButton *_fuelLeftLabel;
+    VGButton *_weightLabel;
+    VGButton *_thrustProducedLabel;
+    VGButton *_thrustAngleLabel;
+    VGButton *_verticalVelocityLabel;
+    VGButton *_horizontalVelocityLabel;
+    VGButton *_verticalAccelerationLabel;
+    VGButton *_horizontalAccelerationLabel;
+    VGButton *_secondslLabel;
+
+    VGLabel *_user1Label;
+    VGLabel *_user2Label;
+    VGLabel *_user3Label;
+    VGLabel *_user4Label;
+
     UILabel *_timeLabel;
     UILabel *_angleLabel;
     UILabel *_thrustLabel;
@@ -59,6 +77,24 @@
 @property (nonatomic, retain) VGSlider *thrusterSlider;
 
 @property (nonatomic, retain) IBOutlet UIButton *newGameButton;
+
+@property (nonatomic, retain) VGButton *heightLabel;
+@property (nonatomic, retain) VGButton *verticalDistanceLabel;
+@property (nonatomic, retain) VGButton *distanceLabel;
+@property (nonatomic, retain) VGButton *fuelLeftLabel;
+@property (nonatomic, retain) VGButton *weightLabel;
+@property (nonatomic, retain) VGButton *thrustProducedLabel;
+@property (nonatomic, retain) VGButton *thrustAngleLabel;
+@property (nonatomic, retain) VGButton *verticalVelocityLabel;
+@property (nonatomic, retain) VGButton *horizontalVelocityLabel;
+@property (nonatomic, retain) VGButton *verticalAccelerationLabel;
+@property (nonatomic, retain) VGButton *horizontalAccelerationLabel;
+@property (nonatomic, retain) VGButton *secondslLabel;
+
+@property (nonatomic, retain) VGLabel *user1Label;
+@property (nonatomic, retain) VGLabel *user2Label;
+@property (nonatomic, retain) VGLabel *user3Label;
+@property (nonatomic, retain) VGLabel *user4Label;
 
 @property (nonatomic, retain) IBOutlet UILabel *timeLabel;
 @property (nonatomic, retain) IBOutlet UILabel *angleLabel;

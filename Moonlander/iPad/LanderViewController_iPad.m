@@ -29,6 +29,24 @@
 @synthesize simulationTimer=_simulationTimer;
 @synthesize displayTimer=_displayTimer;
 
+@synthesize heightLabel=_heightLabel;
+@synthesize verticalDistanceLabel=_verticalDistanceLabel;
+@synthesize distanceLabel=_distanceLabel;
+@synthesize fuelLeftLabel=_fuelLeftLabel;
+@synthesize weightLabel=_weightLabel;
+@synthesize thrustProducedLabel=_thrustProducedLabel;
+@synthesize thrustAngleLabel=_thrustAngleLabel;
+@synthesize verticalVelocityLabel=_verticalVelocityLabel;
+@synthesize horizontalVelocityLabel=_horizontalVelocityLabel;
+@synthesize verticalAccelerationLabel=_verticalAccelerationLabel;
+@synthesize horizontalAccelerationLabel=_horizontalAccelerationLabel;
+@synthesize secondslLabel=_secondslLabel;
+
+@synthesize user1Label=_user1Label;
+@synthesize user2Label=_user2Label;
+@synthesize user3Label=_user3Label;
+@synthesize user4Label=_user4Label;
+
 @synthesize timeLabel=_timeLabel;
 @synthesize angleLabel=_angleLabel;
 @synthesize thrustLabel=_thrustLabel;
@@ -82,6 +100,11 @@ const float DisplayUpdateInterval = 1.0f;
     [_horizAccelLabel release];
     [_fuelRemainingLabel release];
     
+    [_user1Label release];
+    [_user2Label release];
+    [_user3Label release];
+    [_user4Label release];
+    
     [super dealloc];
 }
 
@@ -106,25 +129,48 @@ const float DisplayUpdateInterval = 1.0f;
 
 - (void)initGame
 {
+    [self.landerModel.delegate newGame];
+    
+    // Setup controls with model defaults
+    self.thrusterSlider.value = [self.landerModel.dataSource thrustPercent];
+
+    // Place the lander in the initial position
+    CGAffineTransform t = [self.landerView transform];
+	t = CGAffineTransformRotate(t, [self.landerModel.dataSource angle]);
+	[self.landerView setTransform:t];
+    
+    // setup game timers
+	self.simulationTimer = [NSTimer scheduledTimerWithTimeInterval:GameTimerInterval target:self selector:@selector(gameLoop) userInfo:nil repeats:YES];
+	self.displayTimer = [NSTimer scheduledTimerWithTimeInterval:DisplayUpdateInterval target:self selector:@selector(updateLander) userInfo:nil repeats:YES];
+}
+
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+    
+    self.landerModel = [[LanderPhysicsModel alloc] init];
+    self.landerModel.dataSource = self.landerModel;
+    self.landerModel.delegate = self.landerModel;
+    
     // Create the lander
     NSString *landerPath = [[NSBundle mainBundle] pathForResource:@"Lander" ofType:@"plist"];
     self.landerView = [[[VGView alloc] initWithFrame:CGRectMake(200, 200, 96, 96)] retain];
     [self.landerView addPathFile:landerPath]; 
     [self.view addSubview:self.landerView];
-
+    
     // Create the roll control arrows
     NSString *slaPath = [[NSBundle mainBundle] pathForResource:@"SmallLeftArrow" ofType:@"plist"];
     self.smallLeftArrow = [[[VGButton alloc] initWithFrame:CGRectMake(500, 400, 24, 24) withPaths:slaPath andRepeat:0.5f] retain];//###retain?
 	[self.smallLeftArrow addTarget:self 
                             action:@selector(rotateLander:) 
-            forControlEvents:UIControlEventValueChanged];
+                  forControlEvents:UIControlEventValueChanged];
     [self.view addSubview:self.smallLeftArrow];
-
+    
     NSString *sraPath = [[NSBundle mainBundle] pathForResource:@"SmallRightArrow" ofType:@"plist"];
     self.smallRightArrow = [[[VGButton alloc] initWithFrame:CGRectMake(550, 400, 24, 24) withPaths:sraPath andRepeat:0.5f] retain];
 	[self.smallRightArrow addTarget:self 
-                            action:@selector(rotateLander:) 
-                  forControlEvents:UIControlEventValueChanged];
+                             action:@selector(rotateLander:) 
+                   forControlEvents:UIControlEventValueChanged];
     [self.view addSubview:self.smallRightArrow];
     
     NSString *llaPath = [[NSBundle mainBundle] pathForResource:@"LargeLeftArrow" ofType:@"plist"];
@@ -137,48 +183,53 @@ const float DisplayUpdateInterval = 1.0f;
     NSString *lraPath = [[NSBundle mainBundle] pathForResource:@"LargeRightArrow" ofType:@"plist"];
     self.largeRightArrow = [[[VGButton alloc] initWithFrame:CGRectMake(550, 450, 48, 24) withPaths:lraPath andRepeat:0.5f] retain];
 	[self.largeRightArrow addTarget:self 
-                            action:@selector(rotateLander:) 
-                  forControlEvents:UIControlEventValueChanged];
+                             action:@selector(rotateLander:) 
+                   forControlEvents:UIControlEventValueChanged];
     [self.view addSubview:self.largeRightArrow];
-
+    
     // Create the thruster control
     self.thrusterSlider = [[VGSlider alloc] initWithFrame:CGRectMake(400, 50, 200, 200)];
 	[self.thrusterSlider addTarget:self 
                             action:@selector(thrusterChanged:) 
                   forControlEvents:UIControlEventValueChanged];
     [self.view addSubview:self.thrusterSlider];
-
-#if 0   
-    // ### Practice vector text labels
-    VGLabel *leMsg = [[VGLabel alloc] initWithMessage:@"LeftEdge"];
-    [self.view addSubview:leMsg];
-//    VGLabel *reMsg = [[VGLabel alloc] initWithMessage:@"RightEdge"];
-//    [self.view addSubview:reMsg];
-    // ###
+    
+#if 0
+    NSString *labelsPath = [[NSBundle mainBundle] pathForResource:@"Labels" ofType:@"plist"];
+    NSDictionary *labelsDict = [NSDictionary dictionaryWithContentsOfFile:labelsPath];
+    
+                                
+    // Create the labels for the display selection
+    self.heightLabel = [[VGButton alloc] initWithFrame:CGRectMake(550, 450, 48, 24)];
+    self.heightLabel.drawPaths = nil;
+    [self.view addSubview:self.heightLabel];
+	[self.heightLabel addTarget:self 
+                            action:@selector(buttonPressed:) 
+                  forControlEvents:UIControlEventValueChanged];
+    self.verticalDistanceLabel = [[VGButton alloc] initWithLabel:@"VertDistance" fromFile:@"Labels"];
+    [self.view addSubview:self.verticalDistanceLabel];
+    self.distanceLabel = [[VGButton alloc] initWithLabel:@"Distance" fromFile:@"Labels"];
+    [self.view addSubview:self.distanceLabel];
+    self.fuelLeftLabel = [[VGButton alloc] initWithLabel:@"Fuel" fromFile:@"Labels"];
+    [self.view addSubview:self.fuelLeftLabel];
+    self.weightLabel = [[VGButton alloc] initWithLabel:@"Weight" fromFile:@"Labels"];
+    [self.view addSubview:self.weightLabel];
+    self.thrustProducedLabel = [[VGButton alloc] initWithLabel:@"Thrust" fromFile:@"Labels"];
+    [self.view addSubview:self.thrustProducedLabel];
+    self.thrustAngleLabel = [[VGButton alloc] initWithLabel:@"Angle" fromFile:@"Labels"];
+    [self.view addSubview:self.thrustAngleLabel];
+    self.verticalVelocityLabel = [[VGButton alloc] initWithLabel:@"VertVel" fromFile:@"Labels"];
+    [self.view addSubview:self.verticalVelocityLabel];
+    self.horizontalVelocityLabel = [[VGButton alloc] initWithLabel:@"HorizVel" fromFile:@"Labels"];
+    [self.view addSubview:self.horizontalVelocityLabel];
+    self.verticalAccelerationLabel = [[VGButton alloc] initWithLabel:@"VertAccel" fromFile:@"Labels"];
+    [self.view addSubview:self.verticalAccelerationLabel];
+    self.horizontalAccelerationLabel = [[VGButton alloc] initWithLabel:@"HorizAccel" fromFile:@"Labels"];
+    [self.view addSubview:self.horizontalAccelerationLabel];
+    self.secondslLabel = [[VGButton alloc] initWithLabel:@"Seconds" fromFile:@"Labels"];
+    [self.view addSubview:self.secondslLabel];
 #endif
     
-    [self.landerModel.delegate newGame];
-    
-    // Setup controls with model defaults
-    self.thrusterSlider.value = [self.landerModel.dataSource thrustPercent];
-        
-    // Place the lander in position
-    CGAffineTransform t = [self.landerView transform];
-	t = CGAffineTransformRotate(t, [self.landerModel.dataSource angle]);
-	[self.landerView setTransform:t];
-
-    // setup game timers
-	self.simulationTimer = [NSTimer scheduledTimerWithTimeInterval:GameTimerInterval target:self selector:@selector(gameLoop) userInfo:nil repeats:YES];
-	self.displayTimer = [NSTimer scheduledTimerWithTimeInterval:DisplayUpdateInterval target:self selector:@selector(updateLander) userInfo:nil repeats:YES];
-}
-
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-    
-    self.landerModel = [[[LanderPhysicsModel alloc] init] retain];
-    self.landerModel.dataSource = self.landerModel;
-    self.landerModel.delegate = self.landerModel;
     [self initGame];
 }
 
@@ -186,19 +237,49 @@ const float DisplayUpdateInterval = 1.0f;
 {
     [super viewDidUnload];
     
-    [_simulationTimer invalidate];
-    [_displayTimer invalidate];
-    _simulationTimer = nil;
-    _displayTimer = nil;
+    self.heightLabel = nil;
+    self.verticalDistanceLabel = nil;
+    self.distanceLabel = nil;
+    self.fuelLeftLabel = nil;
+    self.weightLabel = nil;
+    self.thrustProducedLabel = nil;
+    self.thrustAngleLabel = nil;
+    self.verticalVelocityLabel = nil;
+    self.horizontalVelocityLabel = nil;
+    self.verticalAccelerationLabel = nil;
+    self.horizontalAccelerationLabel = nil;
+    self.secondslLabel = nil;
     
-    // Release any retained subviews of the main view.
-    // e.g. self.myOutlet = nil;
+    self.user1Label = nil;
+    self.user2Label = nil;
+    self.user3Label = nil;
+    self.user4Label = nil;
+    
+    self.newGameButton = nil;
+    
+    self.smallLeftArrow = nil;
+    self.smallRightArrow = nil;
+    self.largeLeftArrow = nil;
+    self.largeRightArrow = nil;
+    
+    self.thrusterSlider = nil;
+    
+    self.landerView = nil;
+    
+    [self.simulationTimer invalidate];
+    [self.displayTimer invalidate];
+    self.simulationTimer = nil;
+    self.displayTimer = nil;
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
     // Return YES for supported orientations
 	return YES;
+}
+
+- (IBAction)buttonPressed:(VGButton *)sender
+{
 }
 
 - (IBAction)thrusterChanged:(VGSlider *)sender
@@ -239,13 +320,18 @@ const float DisplayUpdateInterval = 1.0f;
 {
     [self.simulationTimer invalidate];
     [self.displayTimer invalidate];
+    
+    // Restore the lander in the initial position
+    CGAffineTransform t = [self.landerView transform];
+	t = CGAffineTransformRotate(t, -[self.landerModel.dataSource angle]);
+	[self.landerView setTransform:t];
+   
     [self initGame];
 }
 
 - (void)gameReset
 {
 }
-
 
 - (void)updateLander
 {
@@ -259,6 +345,8 @@ const float DisplayUpdateInterval = 1.0f;
     self.vertAccelLabel.text = [NSString stringWithFormat:@"VertAccel: %3.1f", [self.landerModel.dataSource vertAccel]];
     self.horizAccelLabel.text = [NSString stringWithFormat:@"HorizAccel: %3.1f", [self.landerModel.dataSource horizAccel]];
     self.fuelRemainingLabel.text = [NSString stringWithFormat:@"Fuel: %4.0f", [self.landerModel.dataSource fuel]];
+
+
 }
 
 - (void)gameLoop
