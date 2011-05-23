@@ -8,25 +8,20 @@
 
 #import <Foundation/Foundation.h>
 
-#import "VGKit.h"
+#import "VGLabel.h"
 
 @interface VGButton : UIControl {
-    NSArray *_drawPaths;
-    NSString *_vectorName;
+    VGLabel     *_titleLabel;
     
-    CGRect _actualBounds;
-
-    NSTimer *_repeatTimer;
-    float _autoRepeatInterval;
+    NSTimer     *_repeatTimer;
+    float       _autoRepeatInterval;
+    CGRect      _actualBounds;
 }
 
-@property (nonatomic, retain) NSArray *drawPaths;
-@property (nonatomic, copy) NSString *vectorName;
-
-@property (nonatomic) CGRect actualBounds;
-
+@property (nonatomic, retain) VGLabel *titleLabel;
 @property (nonatomic, retain) NSTimer *repeatTimer;
 @property (nonatomic) float autoRepeatInterval;
+@property (nonatomic) CGRect actualBounds;
 
 - (id)initWithFrame:(CGRect)frameRect;
 - (id)initWithFrame:(CGRect)frameRect withPaths:(NSString *)fileName;

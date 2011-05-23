@@ -10,14 +10,23 @@
 
 
 @interface VGView : UIView {
-    NSArray *_drawPaths;
-    NSString *_vectorName;
+    NSArray     *_drawPaths;
+    NSString    *_vectorName;
+  
+    //### shouyld be using a UIFont type here?
+    CGFloat     _fontSize;
+    NSTimer     *_blinkTimer;
     
-    CGRect _actualBounds;
+    BOOL        _blinkOn;
+    CGRect      _actualBounds;
 }
 
 @property (nonatomic, retain) NSArray *drawPaths;
 @property (nonatomic, copy) NSString *vectorName;
+
+@property (nonatomic, assign) NSTimer *blinkTimer;
+@property (nonatomic) BOOL blinkOn;
+@property (nonatomic) CGFloat fontSize;
 
 @property (nonatomic) CGRect actualBounds;
 

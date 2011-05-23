@@ -14,13 +14,19 @@
 @synthesize drawPaths=_drawPaths;
 @synthesize vectorName=_vectorName;
 @synthesize actualBounds=_actualBounds;
+@synthesize blinkTimer=_blinkTimer;
+@synthesize blinkOn=_blinkOn;
+@synthesize fontSize=_fontSize;
 
 
 - (id)initWithFrame:(CGRect)frameRect
 {
     if ((self = [super initWithFrame:frameRect])) {
+        self.fontSize = 11;
+        self.opaque = NO;
+        
         self.actualBounds = CGRectMake(FLT_MAX, FLT_MAX, -FLT_MAX, -FLT_MAX);
-        self.vectorName = @"initWithFrame";
+        self.vectorName = @"[VGView initWithFrame]";
     }
     return self;
 }
@@ -31,7 +37,7 @@
 
     NSDictionary *viewObject = [NSDictionary dictionaryWithContentsOfFile:fileName];
     if (!(self.vectorName = [viewObject objectForKey:@"name"]))
-        self.vectorName = @"initWithFrame:withPaths:";
+        self.vectorName = @"[VGView initWithFrame:withPaths:]";
     self.drawPaths = [viewObject objectForKey:@"paths"];
     return self;
 }
@@ -43,13 +49,40 @@
     self.drawPaths = [viewObject objectForKey:@"paths"];
 }
 
+
+- (void)dealloc
+{
+    [_blinkTimer invalidate];
+    [_blinkTimer release];
+    
+    [_drawPaths release];
+    [_vectorName release];
+    [super dealloc];
+}
+
+- (void)blinkIntervalPassed:(NSTimer *)timer
+{
+    self.blinkOn = !self.blinkOn;
+    [self setNeedsDisplay];
+}
+
 - (void)drawRect:(CGRect)rect
 {
-	CGPoint prevPoint = CGPointMake(0.0f, 0.0f);
+    CGPoint currentPosition = CGPointMake(0.0f, self.bounds.size.height - self.fontSize);
+    CGPoint prevPoint = CGPointZero;
     
 	CGContextRef context = UIGraphicsGetCurrentContext();
-    CGContextSetShouldAntialias (context, YES);
+    CGContextSetShouldAntialias(context, YES);
     CGContextSetAllowsAntialiasing(context, YES);
+
+    CGFontRef fontRef = CGFontCreateWithFontName((CFStringRef)@"Courier");
+    CGContextSetFont(context, fontRef);
+    CGContextSetFontSize(context, self.fontSize);
+    
+    CGContextSetRGBFillColor(context, 0.026f, 1.0f, 0.00121f, 1.0f);
+    CGContextSetRGBStrokeColor(context, 0.026f, 1.0f, 0.00121f, 1.0f);
+    CGContextSetTextDrawingMode(context, kCGTextFillStroke);
+    CGContextSetShouldSmoothFonts(context, YES);
     
     NSEnumerator *pathEnumerator = [self.drawPaths objectEnumerator];
     NSArray *currentPath;
@@ -57,17 +90,68 @@
         NSEnumerator *vectorEnumerator = [currentPath objectEnumerator];
         NSDictionary *currentVector;
         while ((currentVector = [vectorEnumerator nextObject])) {
+            BOOL doBlink = NO;//### make instance variable?
+            
+            // "break" allows for complex breakpoints in a display list
+            if ([currentVector objectForKey:@"break"]) {
+                BOOL breakCommand = [[currentVector objectForKey:@"break"] boolValue];
+                if (breakCommand) {
+                    raise(SIGTRAP);
+                }
+            }
+            
             // "stop' allows early termination of a display list
             if ([currentVector objectForKey:@"stop"]) {
                 BOOL stopCommand = [[currentVector objectForKey:@"stop"] boolValue];
                 if (stopCommand) break;
             }
             
-            // "break" allows for complex breakpoints in a display list
-            if ([currentVector objectForKey:@"break"]) {
-                BOOL breakCommand = [[currentVector objectForKey:@"break"] boolValue];
-                if (breakCommand) {
-                    NSLog(@"Set breakpoint point here");;
+            // "color" is used to set the current color
+            if ([currentVector objectForKey:@"color"]) {
+                NSDictionary *colorStuff = [currentVector objectForKey:@"color"];
+                CGFloat r = [[colorStuff objectForKey:@"r"] floatValue];
+                CGFloat g = [[colorStuff objectForKey:@"g"] floatValue];
+                CGFloat b = [[colorStuff objectForKey:@"b"] floatValue];
+                CGFloat alpha = [[colorStuff objectForKey:@"alpha"] floatValue];
+                CGContextStrokePath(context);
+                CGContextSetRGBStrokeColor(context, r, g, b, alpha);
+                CGContextSetRGBFillColor(context, r, g, b, alpha);
+                CGContextMoveToPoint(context, prevPoint.x, prevPoint.y);
+            }
+            
+            // "textmode" is used to set the text drawing mode
+            if ([currentVector objectForKey:@"mode"]) {
+                int textMode = [[currentVector objectForKey:@"mode"] intValue];
+                CGContextSetTextDrawingMode(context, textMode);
+            }
+            
+            // "font" is used to set the current font and size
+            if ([currentVector objectForKey:@"font"]) {
+                NSDictionary *fontStuff = [currentVector objectForKey:@"font"];
+                if ([fontStuff objectForKey:@"size"]) {
+                    self.fontSize = [[fontStuff objectForKey:@"size"] floatValue];
+                    CGContextSetFontSize(context, self.fontSize);
+                }
+                if ([fontStuff objectForKey:@"name"]) {
+                    NSString *fontName = [fontStuff objectForKey:@"name"];
+                    CGFontRelease(fontRef);
+                    fontRef = CGFontCreateWithFontName((CFStringRef)fontName);
+                    CGContextSetFont(context, fontRef);
+                }
+            }
+            
+            // "newline" is used to move the drawing position to the next line
+            if ([currentVector objectForKey:@"newline"]) {
+                CGFloat nLines = [[currentVector objectForKey:@"newline"] floatValue];
+                currentPosition.x = 0.0f;
+                currentPosition.y = currentPosition.y - (nLines * self.fontSize);
+            }
+            
+            // "blink" is used to blink the text
+            if ([currentVector objectForKey:@"blink"]) {
+                doBlink = [[currentVector objectForKey:@"blink"] boolValue];
+                if (doBlink && !self.blinkTimer) {
+                    self.blinkTimer = [NSTimer scheduledTimerWithTimeInterval:0.5f target:self selector:@selector(blinkIntervalPassed:) userInfo:nil repeats:YES];
                 }
             }
             
@@ -90,7 +174,8 @@
                     CGContextMoveToPoint(context, newPoint.x, newPoint.y);
                     
                     //NSLog(@"Move To (%3.0f,%3.0f)", newPoint.x, newPoint.y);
-                    prevPoint = newPoint;
+                    //prevPoint = newPoint;
+                    prevPoint = CGContextGetPathCurrentPoint(context);
                     self.actualBounds = CGRectMake(MIN(newPoint.x, self.actualBounds.origin.x), MIN(newPoint.y, self.actualBounds.origin.y), MAX(newPoint.x, self.actualBounds.size.width), MAX(newPoint.y, self.actualBounds.size.height));
                 }
             }
@@ -107,21 +192,10 @@
                     CGContextMoveToPoint(context, newPoint.x, newPoint.y);
                     
                     //NSLog(@"Move Relative (%3.0f,%3.0f)", newPoint.x, newPoint.y);
-                    prevPoint = newPoint;
+                    //prevPoint = newPoint;
+                    prevPoint = CGContextGetPathCurrentPoint(context);
                     self.actualBounds = CGRectMake(MIN(newPoint.x, self.actualBounds.origin.x), MIN(newPoint.y, self.actualBounds.origin.y), MAX(newPoint.x, self.actualBounds.size.width), MAX(newPoint.y, self.actualBounds.size.height));
                 }
-            }
-            
-            // "color" is used to set the current color
-            if ([currentVector objectForKey:@"color"]) {
-                NSDictionary *colorStuff = [currentVector objectForKey:@"color"];
-                CGFloat r = [[colorStuff objectForKey:@"r"] floatValue];
-                CGFloat g = [[colorStuff objectForKey:@"g"] floatValue];
-                CGFloat b = [[colorStuff objectForKey:@"b"] floatValue];
-                CGFloat alpha = [[colorStuff objectForKey:@"alpha"] floatValue];
-                CGContextStrokePath(context);
-                CGContextSetRGBStrokeColor(context, r, g, b, alpha);
-                CGContextMoveToPoint(context, prevPoint.x, prevPoint.y);
             }
             
             // "line" is used to set the line information
@@ -137,6 +211,53 @@
                 }
             }
             
+            // Process a text command
+            if ([currentVector objectForKey:@"text"]) {
+                CGContextTranslateCTM (context, 0, self.bounds.size.height);
+                CGContextScaleCTM(context, 1.0, -1.0 );
+                
+                NSString *msg = [currentVector objectForKey:@"text"];
+                
+                // Prepare characters for printing
+                NSString *theText = [NSString stringWithString:msg];
+                int length = [theText length];
+                unichar chars[length];
+                CGGlyph glyphs[length];
+                [theText getCharacters:chars range:NSMakeRange(0, length)];
+                
+                // Loop through the entire length of the text.
+                int glyphOffset = -29;
+                for (int i = 0; i < length; ++i) {
+                    // Store each letter in a Glyph and subtract the MagicNumber to get appropriate value.
+                    glyphs[i] = [theText characterAtIndex:i] + glyphOffset;
+                }
+                
+                // We do this only if blinking is requested
+                if (doBlink) {
+                    if (self.blinkOn) {
+                        // Draw normally this cycle
+                        CGContextShowGlyphsAtPoint(context, currentPosition.x, currentPosition.y, glyphs, length);
+                    }
+                    else {
+                        // Change alpha to zero for this draw cycle and then restore
+                        CGContextSaveGState(context);
+                        CGContextSetAlpha(context, 0.0f);
+                        CGContextShowGlyphsAtPoint(context, currentPosition.x, currentPosition.y, glyphs, length);
+                        CGContextRestoreGState(context);
+                    }
+                }
+                else {
+                    CGContextShowGlyphsAtPoint(context, currentPosition.x, currentPosition.y, glyphs, length);
+                }
+                //NSLog(@"Drawing text at %@", NSStringFromCGPoint(currentPosition));
+                
+                // Set our new position for the next text block
+                currentPosition = CGContextGetTextPosition(context);
+
+                CGContextTranslateCTM (context, 0, self.bounds.size.height);
+                CGContextScaleCTM(context, 1.0, -1.0 );
+            }
+            
             // "x" and "y" specify a new point on the path
             if ([currentVector objectForKey:@"x"]) {
                 CGFloat x = [[currentVector objectForKey:@"x"] floatValue];
@@ -146,20 +267,14 @@
                 // ### Scaling here
                 CGContextAddLineToPoint(context, newPoint.x, newPoint.y);
                 
-                prevPoint = newPoint;
+                //prevPoint = newPoint;
+                prevPoint = CGContextGetPathCurrentPoint(context);
                 self.actualBounds = CGRectMake(MIN(newPoint.x, self.actualBounds.origin.x), MIN(newPoint.y, self.actualBounds.origin.y), MAX(newPoint.x, self.actualBounds.size.width), MAX(newPoint.y, self.actualBounds.size.height));
             }
         }
     }
     CGContextStrokePath(context);
     NSLog(@"Max coordinates for %@: %@", self.vectorName, NSStringFromCGRect(self.actualBounds));
-}
-
-- (void)dealloc
-{
-    [_drawPaths release];
-    [_vectorName release];
-    [super dealloc];
 }
 
 @end

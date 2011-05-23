@@ -66,11 +66,12 @@
     CGRect newValueFrame = CGRectMake(self.thrusterValue.frame.origin.x, (self.frame.size.height - (2 * self.value)) - self.thrusterValue.frame.size.height/2, self.thrusterValue.frame.size.width, self.thrusterValue.frame.size.height);
     [self.thrusterValue setFrame:newValueFrame];
     
-    // Update the % thrust subview
+    // Update the % thrust subview by dynamically creating a draw path
     NSString *thrustValue = [NSString stringWithFormat:@"%3.0f%%", self.value];
     NSDictionary *currentThrustPath = [NSDictionary dictionaryWithObjectsAndKeys:thrustValue, @"text", nil];
-    NSArray *currentThrust = [NSArray arrayWithObject:currentThrustPath];
-    self.thrusterValue.drawPaths = currentThrust;
+    NSArray *path = [NSArray arrayWithObject:currentThrustPath];
+    NSArray *paths = [NSArray arrayWithObject:path];
+    self.thrusterValue.drawPaths = paths;
     [self.thrusterValue setNeedsDisplay];
 }
 
