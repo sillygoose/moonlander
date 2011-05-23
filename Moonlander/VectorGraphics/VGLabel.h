@@ -19,7 +19,6 @@
 @property (nonatomic, retain) UIFont *font;
 
 - (id)initWithFrame:(CGRect)frameRect;
-- (id)initWithMessage:(NSString *)msgName;
 
 @end
 
