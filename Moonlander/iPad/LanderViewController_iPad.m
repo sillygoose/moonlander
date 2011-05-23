@@ -139,9 +139,11 @@ const float DisplayUpdateInterval = 1.0f;
 	t = CGAffineTransformRotate(t, [self.landerModel.dataSource angle]);
 	[self.landerView setTransform:t];
     
-    // setup game timers
+    // Setup game timers
 	self.simulationTimer = [NSTimer scheduledTimerWithTimeInterval:GameTimerInterval target:self selector:@selector(gameLoop) userInfo:nil repeats:YES];
 	self.displayTimer = [NSTimer scheduledTimerWithTimeInterval:DisplayUpdateInterval target:self selector:@selector(updateLander) userInfo:nil repeats:YES];
+    
+    [self updateLander];
 }
 
 - (void)viewDidLoad
@@ -161,13 +163,13 @@ const float DisplayUpdateInterval = 1.0f;
     
     // Create the lander
     NSString *landerPath = [[NSBundle mainBundle] pathForResource:@"Lander" ofType:@"plist"];
-    self.landerView = [[[VGView alloc] initWithFrame:CGRectMake(200, 200, 96, 96)] retain];
+    self.landerView = [[VGView alloc] initWithFrame:CGRectMake(200, 200, 96, 96)];
     [self.landerView addPathFile:landerPath]; 
     [self.view addSubview:self.landerView];
     
     // Create the roll control arrows
     NSString *slaPath = [[NSBundle mainBundle] pathForResource:@"SmallLeftArrow" ofType:@"plist"];
-    self.smallLeftArrow = [[[VGButton alloc] initWithFrame:CGRectMake(500, 400, 24, 24) withPaths:slaPath andRepeat:0.5f] retain];//###retain?
+    self.smallLeftArrow = [[VGButton alloc] initWithFrame:CGRectMake(500, 400, 24, 24) withPaths:slaPath andRepeat:0.5f];
 	[self.smallLeftArrow addTarget:self 
                             action:@selector(rotateLander:) 
                   forControlEvents:UIControlEventValueChanged];
@@ -181,14 +183,14 @@ const float DisplayUpdateInterval = 1.0f;
     [self.view addSubview:self.smallRightArrow];
     
     NSString *llaPath = [[NSBundle mainBundle] pathForResource:@"LargeLeftArrow" ofType:@"plist"];
-    self.largeLeftArrow = [[[VGButton alloc] initWithFrame:CGRectMake(475, 450, 48, 24) withPaths:llaPath andRepeat:0.5f] retain];
+    self.largeLeftArrow = [[VGButton alloc] initWithFrame:CGRectMake(475, 450, 48, 24) withPaths:llaPath andRepeat:0.5f];
 	[self.largeLeftArrow addTarget:self 
                             action:@selector(rotateLander:) 
                   forControlEvents:UIControlEventValueChanged];
     [self.view addSubview:self.largeLeftArrow];
     
     NSString *lraPath = [[NSBundle mainBundle] pathForResource:@"LargeRightArrow" ofType:@"plist"];
-    self.largeRightArrow = [[[VGButton alloc] initWithFrame:CGRectMake(550, 450, 48, 24) withPaths:lraPath andRepeat:0.5f] retain];
+    self.largeRightArrow = [[VGButton alloc] initWithFrame:CGRectMake(550, 450, 48, 24) withPaths:lraPath andRepeat:0.5f];
 	[self.largeRightArrow addTarget:self 
                              action:@selector(rotateLander:) 
                    forControlEvents:UIControlEventValueChanged];
@@ -211,6 +213,34 @@ const float DisplayUpdateInterval = 1.0f;
     self.user4Label = [[VGLabel alloc] initWithFrame:CGRectMake(750, 0, 200, 24)];
     [self.view addSubview:self.user4Label];
 
+    // Create the labels for the display selection
+    self.heightLabel = [[VGButton alloc] initWithFrame:CGRectMake(550, 450, 80, 24)];
+	[self.heightLabel addTarget:self 
+                         action:@selector(labelPressed:) 
+               forControlEvents:UIControlEventValueChanged];
+    self.heightLabel.titleLabel.text = @"HEIGHT";
+    [self.view addSubview:self.heightLabel];
+
+    self.verticalDistanceLabel = [[VGButton alloc] initWithFrame:CGRectMake(550, 480, 80, 24)];
+	[self.verticalDistanceLabel addTarget:self 
+                         action:@selector(labelPressed:) 
+               forControlEvents:UIControlEventValueChanged];
+    self.verticalDistanceLabel.titleLabel.text = @"ALTITUDE";
+    [self.view addSubview:self.verticalDistanceLabel];
+
+    self.distanceLabel = [[VGButton alloc] initWithFrame:CGRectMake(550, 510, 80, 24)];
+	[self.distanceLabel addTarget:self 
+                                   action:@selector(labelPressed:) 
+                         forControlEvents:UIControlEventValueChanged];
+    self.distanceLabel.titleLabel.text = @"DISTANCE";
+    [self.view addSubview:self.distanceLabel];
+
+    self.fuelLeftLabel = [[VGButton alloc] initWithFrame:CGRectMake(550, 540, 80, 24)];
+	[self.fuelLeftLabel addTarget:self 
+                           action:@selector(labelPressed:) 
+                 forControlEvents:UIControlEventValueChanged];
+    self.fuelLeftLabel.titleLabel.text = @"FUEL LEFT";
+    [self.view addSubview:self.fuelLeftLabel];
 #if 0
     NSString *labelsPath = [[NSBundle mainBundle] pathForResource:@"Labels" ofType:@"plist"];
     NSDictionary *labelsDict = [NSDictionary dictionaryWithContentsOfFile:labelsPath];
@@ -295,11 +325,10 @@ const float DisplayUpdateInterval = 1.0f;
 	return YES;
 }
 
-#if 0
-- (IBAction)buttonPressed:(VGButton *)sender
+- (IBAction)labelPressed:(VGButton *)sender
 {
+//    sender.blink = YES;
 }
-#endif
 
 - (IBAction)thrusterChanged:(VGSlider *)sender
 {
