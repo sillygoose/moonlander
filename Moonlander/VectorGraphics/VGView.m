@@ -68,6 +68,8 @@
 
 - (void)drawRect:(CGRect)rect
 {
+    NSLog(@"UIView:drawRect%@", NSStringFromCGRect(rect));
+    
     CGPoint currentPosition = CGPointMake(0.0f, self.bounds.size.height - self.fontSize);
     CGPoint prevPoint = CGPointZero;
     
@@ -213,7 +215,7 @@
             
             // Process a text command
             if ([currentVector objectForKey:@"text"]) {
-                CGContextTranslateCTM (context, 0, self.bounds.size.height);
+                CGContextTranslateCTM(context, 0, self.bounds.size.height);
                 CGContextScaleCTM(context, 1.0, -1.0 );
                 
                 NSString *msg = [currentVector objectForKey:@"text"];
@@ -254,7 +256,8 @@
                 // Set our new position for the next text block
                 currentPosition = CGContextGetTextPosition(context);
 
-                CGContextTranslateCTM (context, 0, self.bounds.size.height);
+                // Restore our normal drawing translation
+                CGContextTranslateCTM(context, 0, self.bounds.size.height);
                 CGContextScaleCTM(context, 1.0, -1.0 );
             }
             
