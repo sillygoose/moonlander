@@ -11,7 +11,12 @@
 #import "VGView.h"
 
 @interface VGLabel : VGView {
+    NSString *_text;
+    UIFont *_font;
 }
+
+@property (nonatomic, copy) NSString *text;
+@property (nonatomic, retain) UIFont *font;
 
 - (id)initWithFrame:(CGRect)frameRect;
 - (id)initWithMessage:(NSString *)msgName;
