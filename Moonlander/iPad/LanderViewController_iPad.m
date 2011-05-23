@@ -201,6 +201,16 @@ const float DisplayUpdateInterval = 1.0f;
                   forControlEvents:UIControlEventValueChanged];
     [self.view addSubview:self.thrusterSlider];
     
+    // Create the user labels
+    self.user1Label = [[VGLabel alloc] initWithFrame:CGRectMake(0, 0, 200, 24)];
+    [self.view addSubview:self.user1Label];
+    self.user2Label = [[VGLabel alloc] initWithFrame:CGRectMake(250, 0, 200, 24)];
+    [self.view addSubview:self.user2Label];
+    self.user3Label = [[VGLabel alloc] initWithFrame:CGRectMake(500, 0, 200, 24)];
+    [self.view addSubview:self.user3Label];
+    self.user4Label = [[VGLabel alloc] initWithFrame:CGRectMake(750, 0, 200, 24)];
+    [self.view addSubview:self.user4Label];
+
 #if 0
     NSString *labelsPath = [[NSBundle mainBundle] pathForResource:@"Labels" ofType:@"plist"];
     NSDictionary *labelsDict = [NSDictionary dictionaryWithContentsOfFile:labelsPath];
@@ -344,6 +354,11 @@ const float DisplayUpdateInterval = 1.0f;
 
 - (void)updateLander
 {
+    self.user1Label.text = [NSString stringWithFormat:@"%6.0f HEIGHT", [self.landerModel.dataSource altitude]];
+    self.user2Label.text = [NSString stringWithFormat:@"%6.0f DISTANCE", [self.landerModel.dataSource range]];
+    self.user3Label.text = [NSString stringWithFormat:@"%6.0f VER VEL", [self.landerModel.dataSource vertVel]];
+    self.user4Label.text = [NSString stringWithFormat:@"%6.0f HOR VEL", [self.landerModel.dataSource horizVel]];
+    
     self.timeLabel.text = [NSString stringWithFormat:@"Time: %3.0f", [self.landerModel.dataSource time]];
     self.angleLabel.text = [NSString stringWithFormat:@"Angle: %3.0f", [self.landerModel.dataSource angleDegrees]];
     self.thrustLabel.text = [NSString stringWithFormat:@"Thrust: %3.0f", [self.landerModel.dataSource thrustPercent]];
@@ -363,8 +378,12 @@ const float DisplayUpdateInterval = 1.0f;
     if ([self.landerModel.dataSource altitude] == 0.0f) {
         [self.thrusterSlider setValue:[self.landerModel.dataSource thrustPercent]];
         [self disableFlightControls];
+        
         [self.simulationTimer invalidate];
+        self.simulationTimer = nil;
         [self.displayTimer invalidate];
+        self.displayTimer = nil;
+        
         [self updateLander];
     }
 }
