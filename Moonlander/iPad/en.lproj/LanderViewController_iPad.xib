@@ -46,10 +46,9 @@
 					<object class="IBUILabel" id="216637037">
 						<reference key="NSNextResponder" ref="766721923"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{34, 20}, {175, 21}}</string>
+						<string key="NSFrame">{{28, 65}, {175, 21}}</string>
 						<reference key="NSSuperview" ref="766721923"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClipsSubviews">YES</bool>
 						<int key="IBUIContentMode">7</int>
@@ -70,7 +69,7 @@
 					<object class="IBUILabel" id="830174747">
 						<reference key="NSNextResponder" ref="766721923"/>
 						<int key="NSvFlags">300</int>
-						<string key="NSFrame">{{34, 399}, {181, 21}}</string>
+						<string key="NSFrame">{{28, 444}, {181, 21}}</string>
 						<reference key="NSSuperview" ref="766721923"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="833499739"/>
@@ -92,7 +91,7 @@
 					<object class="IBUILabel" id="1005611829">
 						<reference key="NSNextResponder" ref="766721923"/>
 						<int key="NSvFlags">300</int>
-						<string key="NSFrame">{{34, 255}, {181, 21}}</string>
+						<string key="NSFrame">{{28, 300}, {181, 21}}</string>
 						<reference key="NSSuperview" ref="766721923"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="325932768"/>
@@ -114,7 +113,7 @@
 					<object class="IBUILabel" id="325932768">
 						<reference key="NSNextResponder" ref="766721923"/>
 						<int key="NSvFlags">300</int>
-						<string key="NSFrame">{{34, 300}, {181, 21}}</string>
+						<string key="NSFrame">{{28, 345}, {181, 21}}</string>
 						<reference key="NSSuperview" ref="766721923"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="567804555"/>
@@ -136,7 +135,7 @@
 					<object class="IBUILabel" id="550057938">
 						<reference key="NSNextResponder" ref="766721923"/>
 						<int key="NSvFlags">300</int>
-						<string key="NSFrame">{{34, 159}, {181, 21}}</string>
+						<string key="NSFrame">{{28, 204}, {181, 21}}</string>
 						<reference key="NSSuperview" ref="766721923"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="1012335029"/>
@@ -158,7 +157,7 @@
 					<object class="IBUILabel" id="667258987">
 						<reference key="NSNextResponder" ref="766721923"/>
 						<int key="NSvFlags">300</int>
-						<string key="NSFrame">{{34, 206}, {181, 21}}</string>
+						<string key="NSFrame">{{28, 251}, {181, 21}}</string>
 						<reference key="NSSuperview" ref="766721923"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="1005611829"/>
@@ -180,7 +179,7 @@
 					<object class="IBUILabel" id="380264875">
 						<reference key="NSNextResponder" ref="766721923"/>
 						<int key="NSvFlags">300</int>
-						<string key="NSFrame">{{34, 65}, {181, 21}}</string>
+						<string key="NSFrame">{{28, 110}, {181, 21}}</string>
 						<reference key="NSSuperview" ref="766721923"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="54073001"/>
@@ -202,7 +201,7 @@
 					<object class="IBUILabel" id="567804555">
 						<reference key="NSNextResponder" ref="766721923"/>
 						<int key="NSvFlags">300</int>
-						<string key="NSFrame">{{34, 349}, {181, 21}}</string>
+						<string key="NSFrame">{{28, 394}, {181, 21}}</string>
 						<reference key="NSSuperview" ref="766721923"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="830174747"/>
@@ -224,7 +223,7 @@
 					<object class="IBUILabel" id="54073001">
 						<reference key="NSNextResponder" ref="766721923"/>
 						<int key="NSvFlags">300</int>
-						<string key="NSFrame">{{34, 109}, {181, 21}}</string>
+						<string key="NSFrame">{{28, 154}, {181, 21}}</string>
 						<reference key="NSSuperview" ref="766721923"/>
 						<reference key="NSWindow"/>
 						<bool key="IBUIOpaque">NO</bool>
@@ -245,7 +244,7 @@
 					<object class="IBUILabel" id="833499739">
 						<reference key="NSNextResponder" ref="766721923"/>
 						<int key="NSvFlags">300</int>
-						<string key="NSFrame">{{34, 444}, {181, 21}}</string>
+						<string key="NSFrame">{{28, 489}, {181, 21}}</string>
 						<reference key="NSSuperview" ref="766721923"/>
 						<reference key="NSWindow"/>
 						<bool key="IBUIOpaque">NO</bool>
@@ -448,17 +447,17 @@
 						<reference key="object" ref="766721923"/>
 						<object class="NSMutableArray" key="children">
 							<bool key="EncodedWithXMLCoder">YES</bool>
-							<reference ref="216637037"/>
-							<reference ref="380264875"/>
-							<reference ref="54073001"/>
-							<reference ref="550057938"/>
-							<reference ref="325932768"/>
-							<reference ref="567804555"/>
-							<reference ref="667258987"/>
-							<reference ref="1005611829"/>
-							<reference ref="830174747"/>
-							<reference ref="833499739"/>
 							<reference ref="1012335029"/>
+							<reference ref="216637037"/>
+							<reference ref="830174747"/>
+							<reference ref="1005611829"/>
+							<reference ref="325932768"/>
+							<reference ref="550057938"/>
+							<reference ref="667258987"/>
+							<reference ref="380264875"/>
+							<reference ref="567804555"/>
+							<reference ref="54073001"/>
+							<reference ref="833499739"/>
 						</object>
 						<reference key="parent" ref="0"/>
 					</object>
@@ -593,13 +592,13 @@
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<string>newGame</string>
 							<string>rotateLander:</string>
-							<string>thrustChanged:</string>
+							<string>thrusterChanged:</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<string>id</string>
 							<string>id</string>
-							<string>UISlider</string>
+							<string>VGSlider</string>
 						</object>
 					</object>
 					<object class="NSMutableDictionary" key="actionInfosByName">
@@ -608,7 +607,7 @@
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<string>newGame</string>
 							<string>rotateLander:</string>
-							<string>thrustChanged:</string>
+							<string>thrusterChanged:</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
@@ -621,8 +620,8 @@
 								<string key="candidateClassName">id</string>
 							</object>
 							<object class="IBActionInfo">
-								<string key="name">thrustChanged:</string>
-								<string key="candidateClassName">UISlider</string>
+								<string key="name">thrusterChanged:</string>
+								<string key="candidateClassName">VGSlider</string>
 							</object>
 						</object>
 					</object>
@@ -638,7 +637,6 @@
 							<string>horizVelLabel</string>
 							<string>newGameButton</string>
 							<string>thrustLabel</string>
-							<string>thrustSlider</string>
 							<string>timeLabel</string>
 							<string>vertAccelLabel</string>
 							<string>vertVelLabel</string>
@@ -653,7 +651,6 @@
 							<string>UILabel</string>
 							<string>UIButton</string>
 							<string>UILabel</string>
-							<string>UISlider</string>
 							<string>UILabel</string>
 							<string>UILabel</string>
 							<string>UILabel</string>
@@ -671,7 +668,6 @@
 							<string>horizVelLabel</string>
 							<string>newGameButton</string>
 							<string>thrustLabel</string>
-							<string>thrustSlider</string>
 							<string>timeLabel</string>
 							<string>vertAccelLabel</string>
 							<string>vertVelLabel</string>
@@ -711,10 +707,6 @@
 								<string key="candidateClassName">UILabel</string>
 							</object>
 							<object class="IBToOneOutletInfo">
-								<string key="name">thrustSlider</string>
-								<string key="candidateClassName">UISlider</string>
-							</object>
-							<object class="IBToOneOutletInfo">
 								<string key="name">timeLabel</string>
 								<string key="candidateClassName">UILabel</string>
 							</object>
@@ -731,6 +723,14 @@
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
 						<string key="majorKey">IBProjectSource</string>
 						<string key="minorKey">./Classes/LanderViewController_iPad.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">VGSlider</string>
+					<string key="superclassName">UIControl</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBProjectSource</string>
+						<string key="minorKey">./Classes/VGSlider.h</string>
 					</object>
 				</object>
 			</object>
