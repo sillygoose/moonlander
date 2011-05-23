@@ -13,6 +13,7 @@
 
 @synthesize text=_text;
 @synthesize font=_font;
+@synthesize blink=_blink;
 
 
 - (id)initWithFrame:(CGRect)frameRect
@@ -24,6 +25,12 @@
         self.backgroundColor = [UIColor grayColor];
     }
     return self;
+}
+
+- (void)setBlink:(BOOL)blink
+{
+    _blink = blink;
+    self.text = self.text;
 }
 
 - (void)setText:(NSString *)newText
@@ -40,9 +47,11 @@
    
     //NSDictionary *font = [NSDictionary dictionaryWithObjectsAndKeys:r, @"font" ,nil];
 #endif
+
+    // Create a display dictionary with the text and blink attribute
+    NSDictionary *textDict = [NSDictionary dictionaryWithObjectsAndKeys:newText, @"text", [NSNumber numberWithBool:self.blink], @"blink", nil];
     
-    NSDictionary *text = [NSDictionary dictionaryWithObjectsAndKeys:newText, @"text", nil];
-    NSArray *path = [NSArray arrayWithObjects:text, nil];
+    NSArray *path = [NSArray arrayWithObjects:textDict, nil];
     NSArray *paths = [NSArray arrayWithObject:path];
     self.drawPaths = paths;
     [self setNeedsDisplay];
