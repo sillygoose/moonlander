@@ -8,7 +8,7 @@
 
 #import "LanderViewController_iPad.h"
 
-#import "VGLabel.h"
+#import "LanderMessage.h"
 
 
 @implementation LanderViewController_iPad
@@ -154,8 +154,8 @@ const float DisplayUpdateInterval = 1.0f;
     self.landerModel.dataSource = self.landerModel;
     self.landerModel.delegate = self.landerModel;
  
-#if 0
-    VGLabel *txt1 = [[VGLabel alloc] initWithMessage:@"OneSmallStep"];
+#if 1
+    LanderMessage *txt1 = [[LanderMessage alloc] initWithMessage:@"LeftEdge"];
     [self.view addSubview:txt1];
     //VGLabel *txt2 = [[VGLabel alloc] initWithMessage:@"HitLander"];
     //[self.view addSubview:txt2];
