@@ -12,7 +12,26 @@
 @implementation Lander
 
 @synthesize thrust=_thrust;
+@synthesize thrustData=_thrustData;
+@synthesize angleData=_angleData;
+@synthesize positionData=_positionData;
+@synthesize previousAngle=_previousAngle;
 
+
+- (void)setThrustData:(thrust_data_t)codeBlock
+{
+    _thrustData = codeBlock;
+}
+
+- (void)setAngleData:(angle_data_t)codeBlock
+{
+    _angleData = codeBlock;
+}
+
+- (void)setPositionData:(position_data_t)codeBlock
+{
+    _positionData = codeBlock;
+}
 
 - (id)init
 {
@@ -24,10 +43,10 @@
         self.drawPaths = [landerDict objectForKey:@"paths"];
         self.vectorName = @"[Lander initWithFrame]";
         
-        CGRect thrustRect = CGRectMake(32, 72, 32, 32);
+        CGRect thrustRect = CGRectMake(32, 72, 64, 24);
         self.thrust = [[VGView alloc] initWithFrame:thrustRect];
         //##
-        NSString *thrustValue = [NSString stringWithFormat:@"AAAAAAA"];
+        NSString *thrustValue = [NSString stringWithFormat:@"AAAAA"];
         NSDictionary *currentThrustPath = [NSDictionary dictionaryWithObjectsAndKeys:thrustValue, @"text", nil];
         NSArray *path = [NSArray arrayWithObject:currentThrustPath];
         NSArray *paths = [NSArray arrayWithObject:path];
@@ -38,8 +57,38 @@
     return self;
 }
 
--(void)updateDrawingDictonary
+-(void)updateLander
 {
+    float thrust = self.thrustData();
+    float angle = self.angleData();
+    CGPoint position = self.positionData();
+    //NSLog(@"thrust: %03f%%, angle: %03f, position:%@", thrust, angle, NSStringFromCGPoint(position));
+    
+    //##
+    NSString *tString;
+    if (thrust < 30) {
+        tString = [NSString stringWithFormat:@"AAA"];
+    }
+    else if (thrust < 70) {
+        tString = [NSString stringWithFormat:@"AAAAA"];
+    }
+    else {
+        tString = [NSString stringWithFormat:@"AAAAAAA"];
+    }
+    NSString *thrustValue = [NSString stringWithFormat:@"%@", tString];
+    NSDictionary *currentThrustPath = [NSDictionary dictionaryWithObjectsAndKeys:thrustValue, @"text", nil];
+    NSArray *path = [NSArray arrayWithObject:currentThrustPath];
+    NSArray *paths = [NSArray arrayWithObject:path];
+    self.thrust.drawPaths = paths;
+    [self.thrust setNeedsDisplay];
+    //##
+    
+    if (self.previousAngle != angle) {
+        CGAffineTransform t = [self transform];
+        t = CGAffineTransformRotate(t, angle - self.previousAngle);
+        [self setTransform:t];
+        self.previousAngle = angle;
+    }
     [self setNeedsDisplay];
 }
 
