@@ -62,12 +62,6 @@
     NSArray *paths = [NSArray arrayWithObject:path];
     self.drawPaths = paths;
     
-    // Release our unneeded objects
-    [fontDict release];
-    [colorDict release];
-    [drawDict release];
-    [path release];
-    
     [self setNeedsDisplay];
 }
 
