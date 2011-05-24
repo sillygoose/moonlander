@@ -51,6 +51,8 @@
 		56A480C3137C6C5500742877 /* LanderPhysicsConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 56A480C2137C6C5500742877 /* LanderPhysicsConstants.m */; };
 		56BC68641388BDE200403643 /* Labels.plist in Resources */ = {isa = PBXBuildFile; fileRef = 56BC68631388BDE200403643 /* Labels.plist */; };
 		56CE052F138B12A7004FA450 /* LanderMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 56CE052E138B12A7004FA450 /* LanderMessage.m */; };
+		56CE0535138B5277004FA450 /* Telemetry.m in Sources */ = {isa = PBXBuildFile; fileRef = 56CE0534138B5277004FA450 /* Telemetry.m */; };
+		56CE0538138B6C88004FA450 /* Instrument.m in Sources */ = {isa = PBXBuildFile; fileRef = 56CE0537138B6C88004FA450 /* Instrument.m */; };
 		56E80E4C137E4CC3009E7F15 /* Lander.plist in Resources */ = {isa = PBXBuildFile; fileRef = 56E80E4B137E4CC3009E7F15 /* Lander.plist */; };
 		56E80E60137E599E009E7F15 /* VGView.m in Sources */ = {isa = PBXBuildFile; fileRef = 56E80E5F137E599E009E7F15 /* VGView.m */; };
 /* End PBXBuildFile section */
@@ -122,6 +124,10 @@
 		56BC68631388BDE200403643 /* Labels.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Labels.plist; path = Resources/Labels.plist; sourceTree = "<group>"; };
 		56CE052D138B12A7004FA450 /* LanderMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LanderMessage.h; sourceTree = "<group>"; };
 		56CE052E138B12A7004FA450 /* LanderMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LanderMessage.m; sourceTree = "<group>"; };
+		56CE0533138B5277004FA450 /* Telemetry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Telemetry.h; sourceTree = "<group>"; };
+		56CE0534138B5277004FA450 /* Telemetry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Telemetry.m; sourceTree = "<group>"; };
+		56CE0536138B6C88004FA450 /* Instrument.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Instrument.h; sourceTree = "<group>"; };
+		56CE0537138B6C88004FA450 /* Instrument.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Instrument.m; sourceTree = "<group>"; };
 		56E80E4B137E4CC3009E7F15 /* Lander.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Lander.plist; path = Resources/Lander.plist; sourceTree = "<group>"; };
 		56E80E5E137E599D009E7F15 /* VGView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VGView.h; path = VectorGraphics/VGView.h; sourceTree = "<group>"; };
 		56E80E5F137E599E009E7F15 /* VGView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VGView.m; path = VectorGraphics/VGView.m; sourceTree = "<group>"; };
@@ -188,6 +194,10 @@
 				560FA0DF137991AE0017EE25 /* MoonlanderAppDelegate.m */,
 				56CE052D138B12A7004FA450 /* LanderMessage.h */,
 				56CE052E138B12A7004FA450 /* LanderMessage.m */,
+				56CE0533138B5277004FA450 /* Telemetry.h */,
+				56CE0534138B5277004FA450 /* Telemetry.m */,
+				56CE0536138B6C88004FA450 /* Instrument.h */,
+				56CE0537138B6C88004FA450 /* Instrument.m */,
 				560FA0E1137991AE0017EE25 /* iPhone */,
 				560FA0E8137991AE0017EE25 /* iPad */,
 				5695F1A9137F52B50075CD26 /* Vector Graphics */,
@@ -453,6 +463,8 @@
 				564BE5C413801C0F00D790D9 /* VGSlider.m in Sources */,
 				562B108A13841BAA00CC5C97 /* VGLabel.m in Sources */,
 				56CE052F138B12A7004FA450 /* LanderMessage.m in Sources */,
+				56CE0535138B5277004FA450 /* Telemetry.m in Sources */,
+				56CE0538138B6C88004FA450 /* Instrument.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
