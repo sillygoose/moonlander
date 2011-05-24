@@ -13,6 +13,8 @@
 #import "VGView.h"
 #import "VGButton.h"
 #import "VGSlider.h"
+#import "Telemetry.h"
+#import "Instrument.h"
 
 
 @interface LanderViewController_iPad : UIViewController {
@@ -31,24 +33,25 @@
     NSTimer *_displayTimer;
 
     UIButton *_newGameButton;
+    Telemetry *_selectedTelemetry;
     
-    VGButton *_heightLabel;
-    VGButton *_verticalDistanceLabel;
-    VGButton *_distanceLabel;
-    VGButton *_fuelLeftLabel;
-    VGButton *_weightLabel;
-    VGButton *_thrustProducedLabel;
-    VGButton *_thrustAngleLabel;
-    VGButton *_verticalVelocityLabel;
-    VGButton *_horizontalVelocityLabel;
-    VGButton *_verticalAccelerationLabel;
-    VGButton *_horizontalAccelerationLabel;
-    VGButton *_secondslLabel;
+    Telemetry *_heightData;
+    Telemetry *_altitudeData;
+    Telemetry *_distanceData;
+    Telemetry *_fuelLeftData;
+    Telemetry *_weightData;
+    Telemetry *_thrustData;
+    Telemetry *_thrustAngleData;
+    Telemetry *_verticalVelocityData;
+    Telemetry *_horizontalVelocityData;
+    Telemetry *_verticalAccelerationData;
+    Telemetry *_horizontalAccelerationData;
+    Telemetry *_secondsData;
 
-    VGLabel *_user1Label;
-    VGLabel *_user2Label;
-    VGLabel *_user3Label;
-    VGLabel *_user4Label;
+    Instrument *_instrument1;
+    Instrument *_instrument2;
+    Instrument *_instrument3;
+    Instrument *_instrument4;
 
     UILabel *_timeLabel;
     UILabel *_angleLabel;
@@ -77,24 +80,25 @@
 @property (nonatomic, retain) VGSlider *thrusterSlider;
 
 @property (nonatomic, retain) IBOutlet UIButton *newGameButton;
+@property (nonatomic, retain) Telemetry *selectedTelemetry;
 
-@property (nonatomic, retain) VGButton *heightLabel;
-@property (nonatomic, retain) VGButton *verticalDistanceLabel;
-@property (nonatomic, retain) VGButton *distanceLabel;
-@property (nonatomic, retain) VGButton *fuelLeftLabel;
-@property (nonatomic, retain) VGButton *weightLabel;
-@property (nonatomic, retain) VGButton *thrustProducedLabel;
-@property (nonatomic, retain) VGButton *thrustAngleLabel;
-@property (nonatomic, retain) VGButton *verticalVelocityLabel;
-@property (nonatomic, retain) VGButton *horizontalVelocityLabel;
-@property (nonatomic, retain) VGButton *verticalAccelerationLabel;
-@property (nonatomic, retain) VGButton *horizontalAccelerationLabel;
-@property (nonatomic, retain) VGButton *secondslLabel;
+@property (nonatomic, retain) Telemetry *heightData;
+@property (nonatomic, retain) Telemetry *altitudeData;
+@property (nonatomic, retain) Telemetry *distanceData;
+@property (nonatomic, retain) Telemetry *fuelLeftData;
+@property (nonatomic, retain) Telemetry *weightData;
+@property (nonatomic, retain) Telemetry *thrustData;
+@property (nonatomic, retain) Telemetry *thrustAngleData;
+@property (nonatomic, retain) Telemetry *verticalVelocityData;
+@property (nonatomic, retain) Telemetry *horizontalVelocityData;
+@property (nonatomic, retain) Telemetry *verticalAccelerationData;
+@property (nonatomic, retain) Telemetry *horizontalAccelerationData;
+@property (nonatomic, retain) Telemetry *secondsData;
 
-@property (nonatomic, retain) VGLabel *user1Label;
-@property (nonatomic, retain) VGLabel *user2Label;
-@property (nonatomic, retain) VGLabel *user3Label;
-@property (nonatomic, retain) VGLabel *user4Label;
+@property (nonatomic, retain) Instrument *instrument1;
+@property (nonatomic, retain) Instrument *instrument2;
+@property (nonatomic, retain) Instrument *instrument3;
+@property (nonatomic, retain) Instrument *instrument4;
 
 @property (nonatomic, retain) IBOutlet UILabel *timeLabel;
 @property (nonatomic, retain) IBOutlet UILabel *angleLabel;

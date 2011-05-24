@@ -25,27 +25,28 @@
 @synthesize thrusterSlider=_thrusterSlider;
 
 @synthesize newGameButton=_newGameButton;
+@synthesize selectedTelemetry=_selectedTelemetry;
 
 @synthesize simulationTimer=_simulationTimer;
 @synthesize displayTimer=_displayTimer;
 
-@synthesize heightLabel=_heightLabel;
-@synthesize verticalDistanceLabel=_verticalDistanceLabel;
-@synthesize distanceLabel=_distanceLabel;
-@synthesize fuelLeftLabel=_fuelLeftLabel;
-@synthesize weightLabel=_weightLabel;
-@synthesize thrustProducedLabel=_thrustProducedLabel;
-@synthesize thrustAngleLabel=_thrustAngleLabel;
-@synthesize verticalVelocityLabel=_verticalVelocityLabel;
-@synthesize horizontalVelocityLabel=_horizontalVelocityLabel;
-@synthesize verticalAccelerationLabel=_verticalAccelerationLabel;
-@synthesize horizontalAccelerationLabel=_horizontalAccelerationLabel;
-@synthesize secondslLabel=_secondslLabel;
+@synthesize heightData=_heightData;
+@synthesize altitudeData=_altitudeData;
+@synthesize distanceData=_distanceData;
+@synthesize fuelLeftData=_fuelLeftData;
+@synthesize weightData=_weightData;
+@synthesize thrustData=_thrustData;
+@synthesize thrustAngleData=_thrustAngleData;
+@synthesize verticalVelocityData=_verticalVelocityData;
+@synthesize horizontalVelocityData=_horizontalVelocityData;
+@synthesize verticalAccelerationData=_verticalAccelerationData;
+@synthesize horizontalAccelerationData=_horizontalAccelerationData;
+@synthesize secondsData=_secondsData;
 
-@synthesize user1Label=_user1Label;
-@synthesize user2Label=_user2Label;
-@synthesize user3Label=_user3Label;
-@synthesize user4Label=_user4Label;
+@synthesize instrument1=_instrument1;
+@synthesize instrument2=_instrument2;
+@synthesize instrument3=_instrument3;
+@synthesize instrument4=_instrument4;
 
 @synthesize timeLabel=_timeLabel;
 @synthesize angleLabel=_angleLabel;
@@ -88,7 +89,20 @@ const float DisplayUpdateInterval = 1.0f;
     [_simulationTimer release];
     [_displayTimer release];
     
-    // release labels
+    [_heightData release];
+    [_altitudeData release];
+    [_distanceData release];
+    [_fuelLeftData release];
+    [_weightData release];
+    [_thrustData release];
+    [_thrustAngleData release];
+    [_verticalVelocityData release];
+    [_horizontalVelocityData release];
+    [_verticalAccelerationData release];
+    [_horizontalAccelerationData release];
+    [_secondsData release];
+    
+    //### release labels
     [_timeLabel release];
     [_angleLabel release];
     [_thrustLabel release];
@@ -99,11 +113,12 @@ const float DisplayUpdateInterval = 1.0f;
     [_vertAccelLabel release];
     [_horizAccelLabel release];
     [_fuelRemainingLabel release];
+    //###
     
-    [_user1Label release];
-    [_user2Label release];
-    [_user3Label release];
-    [_user4Label release];
+    [_instrument1 release];
+    [_instrument2 release];
+    [_instrument3 release];
+    [_instrument4 release];
     
     [super dealloc];
 }
@@ -124,11 +139,50 @@ const float DisplayUpdateInterval = 1.0f;
     self.smallRightArrow.enabled = NO;
     self.largeLeftArrow.enabled = NO;
     self.largeRightArrow.enabled = NO;
+    
     self.thrusterSlider.enabled = NO;
+    
+    self.heightData.enabled = NO;
+    self.altitudeData.enabled = NO;
+    self.distanceData.enabled = NO;
+    self.fuelLeftData.enabled = NO;
+    self.weightData.enabled = NO;
+    self.thrustData.enabled = NO;
+    self.thrustAngleData.enabled = NO;
+    self.verticalVelocityData.enabled = NO;
+    self.horizontalVelocityData.enabled = NO;
+    self.verticalAccelerationData.enabled = NO;
+    self.horizontalAccelerationData.enabled = NO;
+    self.secondsData.enabled = NO;
+}
+
+- (void)enableFlightControls
+{
+    self.smallLeftArrow.enabled = YES;
+    self.smallRightArrow.enabled = YES;
+    self.largeLeftArrow.enabled = YES;
+    self.largeRightArrow.enabled = YES;
+    
+    self.thrusterSlider.enabled = YES;
+    
+    self.heightData.enabled = YES;
+    self.altitudeData.enabled = YES;
+    self.distanceData.enabled = YES;
+    self.fuelLeftData.enabled = YES;
+    self.weightData.enabled = YES;
+    self.thrustData.enabled = YES;
+    self.thrustAngleData.enabled = YES;
+    self.verticalVelocityData.enabled = YES;
+    self.horizontalVelocityData.enabled = YES;
+    self.verticalAccelerationData.enabled = YES;
+    self.horizontalAccelerationData.enabled = YES;
+    self.secondsData.enabled = YES;
 }
 
 - (void)initGame
 {
+    [self enableFlightControls];
+    
     [self.landerModel.delegate newGame];
     
     // Setup controls with model defaults
@@ -138,6 +192,12 @@ const float DisplayUpdateInterval = 1.0f;
     CGAffineTransform t = [self.landerView transform];
 	t = CGAffineTransformRotate(t, [self.landerModel.dataSource angle]);
 	[self.landerView setTransform:t];
+    
+    // Init displays
+    [self.instrument1 display];
+    [self.instrument2 display];
+    [self.instrument3 display];
+    [self.instrument4 display];
     
     // Setup game timers
 	self.simulationTimer = [NSTimer scheduledTimerWithTimeInterval:GameTimerInterval target:self selector:@selector(gameLoop) userInfo:nil repeats:YES];
@@ -154,22 +214,6 @@ const float DisplayUpdateInterval = 1.0f;
     self.landerModel.dataSource = self.landerModel;
     self.landerModel.delegate = self.landerModel;
  
-#if 0
-//    LanderMessage *txt1 = [[LanderMessage alloc] initWithMessage:@"LeftEdge"];
-//    [self.view addSubview:txt1];
-    VGLabel *txt2 = [[VGLabel alloc] initWithFrame:CGRectMake(200, 200, 200, 25)];
-    txt2.text = @"Not Blinking";
-    [self.view addSubview:txt2];
-    [txt2 release];
-    VGLabel *txt3 = [[VGLabel alloc] initWithFrame:CGRectMake(200, 250, 200, 25)];
-    txt3.text = @"Blinking";
-    txt3.blink = YES;
-    //txt3.textColor = [UIColor redColor];
-    //txt3.font = [UIFont fontWithName:@"Helvetica" size:18.0f];
-    [self.view addSubview:txt3];
-    [txt3 release];
-#endif
-    
     // Create the lander
     NSString *landerPath = [[NSBundle mainBundle] pathForResource:@"Lander" ofType:@"plist"];
     self.landerView = [[VGView alloc] initWithFrame:CGRectMake(200, 200, 96, 96)];
@@ -212,80 +256,146 @@ const float DisplayUpdateInterval = 1.0f;
                   forControlEvents:UIControlEventValueChanged];
     [self.view addSubview:self.thrusterSlider];
     
+    // Create the telemetry items
+    self.heightData = [[Telemetry alloc] initWithFrame:CGRectMake(600, 400, 100, 20)];
+    self.heightData.titleLabel.text = @"HEIGHT";
+    self.heightData.format = @"%6.0f %@";
+    self.heightData.data = Block_copy(^{return [self.landerModel.dataSource height];});;
+	[self.heightData addTarget:self 
+                           action:@selector(telemetrySelected:) 
+                 forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:self.heightData];
+    
+    self.altitudeData = [[Telemetry alloc] initWithFrame:CGRectMake(600, 420, 100, 20)];
+    self.altitudeData.titleLabel.text = @"ALTITUDE";
+    self.altitudeData.format = @"%6.0f %@";
+    self.altitudeData.data = Block_copy(^{ return [self.landerModel.dataSource altitude];});;
+	[self.altitudeData addTarget:self 
+                           action:@selector(telemetrySelected:) 
+                 forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:self.altitudeData];
+    
+    self.distanceData = [[Telemetry alloc] initWithFrame:CGRectMake(600, 440, 100, 20)];
+    self.distanceData.titleLabel.text = @"DISTANCE";
+    self.distanceData.format = @"%6.0f %@";
+    self.distanceData.data = Block_copy(^{ return [self.landerModel.dataSource distance];});;
+	[self.distanceData addTarget:self 
+                           action:@selector(telemetrySelected:) 
+                 forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:self.distanceData];
+    
+
+    self.fuelLeftData = [[Telemetry alloc] initWithFrame:CGRectMake(600, 460, 100, 20)];
+    self.fuelLeftData.titleLabel.text = @"FUEL LEFT";
+    self.fuelLeftData.format = @"%6.0f %@";
+    self.fuelLeftData.data = Block_copy(^{ return [self.landerModel.dataSource fuel];});;
+	[self.fuelLeftData addTarget:self 
+                         action:@selector(telemetrySelected:) 
+               forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:self.fuelLeftData];
+    
+    self.weightData = [[Telemetry alloc] initWithFrame:CGRectMake(600, 480, 100, 20)];
+    self.weightData.titleLabel.text = @"WEIGHT";
+    self.weightData.format = @"%6.0f %@";
+    self.weightData.data = Block_copy(^{ return [self.landerModel.dataSource weight];});;
+	[self.weightData addTarget:self 
+                                   action:@selector(telemetrySelected:) 
+                         forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:self.weightData];
+
+    self.thrustData = [[Telemetry alloc] initWithFrame:CGRectMake(600, 500, 100, 20)];
+    self.thrustData.titleLabel.text = @"THRUST";
+    self.thrustData.format = @"%6.0f %@";
+    self.thrustData.data = Block_copy(^{ return [self.landerModel.dataSource thrust];});;
+	[self.thrustData addTarget:self 
+                        action:@selector(telemetrySelected:) 
+              forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:self.thrustData];
+    
+    self.thrustAngleData = [[Telemetry alloc] initWithFrame:CGRectMake(600, 520, 100, 20)];
+    self.thrustAngleData.titleLabel.text = @"ANGLE";
+    self.thrustAngleData.format = @"%6.0f %@";
+    self.thrustAngleData.data = Block_copy(^{ return [self.landerModel.dataSource angleDegrees];});;
+	[self.thrustAngleData addTarget:self 
+                        action:@selector(telemetrySelected:) 
+              forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:self.thrustAngleData];
+    
+    self.verticalVelocityData = [[Telemetry alloc] initWithFrame:CGRectMake(600, 540, 100, 20)];
+    self.verticalVelocityData.titleLabel.text = @"VER VEL";
+    self.verticalVelocityData.format = @"%6.0f %@";
+    self.verticalVelocityData.data = Block_copy(^{ return [self.landerModel.dataSource vertVel];});;
+	[self.verticalVelocityData addTarget:self 
+                        action:@selector(telemetrySelected:) 
+              forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:self.verticalVelocityData];
+    
+    self.horizontalVelocityData = [[Telemetry alloc] initWithFrame:CGRectMake(600, 560, 100, 20)];
+    self.horizontalVelocityData.titleLabel.text = @"HOR VEL";
+    self.horizontalVelocityData.format = @"%6.0f %@";
+    self.horizontalVelocityData.data = Block_copy(^{ return [self.landerModel.dataSource horizVel];});;
+	[self.horizontalVelocityData addTarget:self 
+                        action:@selector(telemetrySelected:) 
+              forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:self.horizontalVelocityData];
+    
+    self.verticalAccelerationData = [[Telemetry alloc] initWithFrame:CGRectMake(600, 580, 100, 20)];
+    self.verticalAccelerationData.titleLabel.text = @"VER ACC";
+    self.verticalAccelerationData.format = @"%6.0f %@";
+    self.verticalAccelerationData.data = Block_copy(^{ return [self.landerModel.dataSource vertAccel];});;
+	[self.verticalAccelerationData addTarget:self 
+                        action:@selector(telemetrySelected:) 
+              forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:self.verticalAccelerationData];
+    
+    self.horizontalAccelerationData = [[Telemetry alloc] initWithFrame:CGRectMake(600, 600, 100, 20)];
+    self.horizontalAccelerationData.titleLabel.text = @"HOR ACC";
+    self.horizontalAccelerationData.format = @"%6.0f %@";
+    self.horizontalAccelerationData.data = Block_copy(^{ return [self.landerModel.dataSource horizAccel];});;
+	[self.horizontalAccelerationData addTarget:self 
+                        action:@selector(telemetrySelected:) 
+              forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:self.horizontalAccelerationData];
+    
+    self.secondsData = [[Telemetry alloc] initWithFrame:CGRectMake(600, 620, 100, 20)];
+    self.secondsData.titleLabel.text = @"SECONDS";
+    self.secondsData.format = @"%6.0f %@";
+    self.secondsData.data = Block_copy(^{ return [self.landerModel.dataSource time];});;
+	[self.secondsData addTarget:self 
+                        action:@selector(telemetrySelected:) 
+              forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:self.secondsData];
+    
     // Create the user labels
-    self.user1Label = [[VGLabel alloc] initWithFrame:CGRectMake(0, 0, 200, 24)];
-    [self.view addSubview:self.user1Label];
-    self.user2Label = [[VGLabel alloc] initWithFrame:CGRectMake(250, 0, 200, 24)];
-    [self.view addSubview:self.user2Label];
-    self.user3Label = [[VGLabel alloc] initWithFrame:CGRectMake(500, 0, 200, 24)];
-    [self.view addSubview:self.user3Label];
-    self.user4Label = [[VGLabel alloc] initWithFrame:CGRectMake(750, 0, 200, 24)];
-    [self.view addSubview:self.user4Label];
-
-    // Create the labels for the display selection
-    self.heightLabel = [[VGButton alloc] initWithFrame:CGRectMake(550, 450, 80, 24)];
-	[self.heightLabel addTarget:self 
-                         action:@selector(labelPressed:) 
-               forControlEvents:UIControlEventValueChanged];
-    self.heightLabel.titleLabel.text = @"HEIGHT";
-    [self.view addSubview:self.heightLabel];
-
-    self.verticalDistanceLabel = [[VGButton alloc] initWithFrame:CGRectMake(550, 480, 80, 24)];
-	[self.verticalDistanceLabel addTarget:self 
-                         action:@selector(labelPressed:) 
-               forControlEvents:UIControlEventValueChanged];
-    self.verticalDistanceLabel.titleLabel.text = @"ALTITUDE";
-    [self.view addSubview:self.verticalDistanceLabel];
-
-    self.distanceLabel = [[VGButton alloc] initWithFrame:CGRectMake(550, 510, 80, 24)];
-	[self.distanceLabel addTarget:self 
-                                   action:@selector(labelPressed:) 
-                         forControlEvents:UIControlEventValueChanged];
-    self.distanceLabel.titleLabel.text = @"DISTANCE";
-    [self.view addSubview:self.distanceLabel];
-
-    self.fuelLeftLabel = [[VGButton alloc] initWithFrame:CGRectMake(550, 540, 80, 24)];
-	[self.fuelLeftLabel addTarget:self 
-                           action:@selector(labelPressed:) 
-                 forControlEvents:UIControlEventValueChanged];
-    self.fuelLeftLabel.titleLabel.text = @"FUEL LEFT";
-    [self.view addSubview:self.fuelLeftLabel];
-#if 0
-    NSString *labelsPath = [[NSBundle mainBundle] pathForResource:@"Labels" ofType:@"plist"];
-    NSDictionary *labelsDict = [NSDictionary dictionaryWithContentsOfFile:labelsPath];
+    self.instrument1 = [[Instrument alloc] initWithFrame:CGRectMake(0, 0, 200, 24)];
+    self.instrument1.instrument = self.heightData;
+	[self.instrument1 addTarget:self 
+                         action:@selector(instrumentSelected:) 
+               forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:self.instrument1];
     
-                                
-    // Create the labels for the display selection
-    self.heightLabel = [[VGButton alloc] initWithFrame:CGRectMake(550, 450, 48, 24)];
-    self.heightLabel.drawPaths = nil;
-    [self.view addSubview:self.heightLabel];
-	[self.heightLabel addTarget:self 
-                            action:@selector(buttonPressed:) 
-                  forControlEvents:UIControlEventValueChanged];
-    self.verticalDistanceLabel = [[VGButton alloc] initWithLabel:@"VertDistance" fromFile:@"Labels"];
-    [self.view addSubview:self.verticalDistanceLabel];
-    self.distanceLabel = [[VGButton alloc] initWithLabel:@"Distance" fromFile:@"Labels"];
-    [self.view addSubview:self.distanceLabel];
-    self.fuelLeftLabel = [[VGButton alloc] initWithLabel:@"Fuel" fromFile:@"Labels"];
-    [self.view addSubview:self.fuelLeftLabel];
-    self.weightLabel = [[VGButton alloc] initWithLabel:@"Weight" fromFile:@"Labels"];
-    [self.view addSubview:self.weightLabel];
-    self.thrustProducedLabel = [[VGButton alloc] initWithLabel:@"Thrust" fromFile:@"Labels"];
-    [self.view addSubview:self.thrustProducedLabel];
-    self.thrustAngleLabel = [[VGButton alloc] initWithLabel:@"Angle" fromFile:@"Labels"];
-    [self.view addSubview:self.thrustAngleLabel];
-    self.verticalVelocityLabel = [[VGButton alloc] initWithLabel:@"VertVel" fromFile:@"Labels"];
-    [self.view addSubview:self.verticalVelocityLabel];
-    self.horizontalVelocityLabel = [[VGButton alloc] initWithLabel:@"HorizVel" fromFile:@"Labels"];
-    [self.view addSubview:self.horizontalVelocityLabel];
-    self.verticalAccelerationLabel = [[VGButton alloc] initWithLabel:@"VertAccel" fromFile:@"Labels"];
-    [self.view addSubview:self.verticalAccelerationLabel];
-    self.horizontalAccelerationLabel = [[VGButton alloc] initWithLabel:@"HorizAccel" fromFile:@"Labels"];
-    [self.view addSubview:self.horizontalAccelerationLabel];
-    self.secondslLabel = [[VGButton alloc] initWithLabel:@"Seconds" fromFile:@"Labels"];
-    [self.view addSubview:self.secondslLabel];
-#endif
+    self.instrument2 = [[Instrument alloc] initWithFrame:CGRectMake(250, 0, 200, 24)];
+    self.instrument2.instrument = self.distanceData;
+	[self.instrument2 addTarget:self 
+                         action:@selector(instrumentSelected:) 
+               forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:self.instrument2];
     
+    self.instrument3 = [[Instrument alloc] initWithFrame:CGRectMake(500, 0, 200, 24)];
+    self.instrument3.instrument = self.verticalVelocityData;
+	[self.instrument3 addTarget:self 
+                         action:@selector(instrumentSelected:) 
+               forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:self.instrument3];
+    
+    self.instrument4 = [[Instrument alloc] initWithFrame:CGRectMake(750, 0, 200, 24)];
+    self.instrument4.instrument = self.horizontalVelocityData;
+	[self.instrument4 addTarget:self 
+                         action:@selector(instrumentSelected:) 
+               forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:self.instrument4];
+
+    // Start the game
     [self initGame];
 }
 
@@ -293,23 +403,23 @@ const float DisplayUpdateInterval = 1.0f;
 {
     [super viewDidUnload];
     
-    self.heightLabel = nil;
-    self.verticalDistanceLabel = nil;
-    self.distanceLabel = nil;
-    self.fuelLeftLabel = nil;
-    self.weightLabel = nil;
-    self.thrustProducedLabel = nil;
-    self.thrustAngleLabel = nil;
-    self.verticalVelocityLabel = nil;
-    self.horizontalVelocityLabel = nil;
-    self.verticalAccelerationLabel = nil;
-    self.horizontalAccelerationLabel = nil;
-    self.secondslLabel = nil;
+    self.heightData = nil;
+    self.altitudeData = nil;
+    self.distanceData = nil;
+    self.fuelLeftData = nil;
+    self.weightData = nil;
+    self.thrustData = nil;
+    self.thrustAngleData = nil;
+    self.verticalVelocityData = nil;
+    self.horizontalVelocityData = nil;
+    self.verticalAccelerationData = nil;
+    self.horizontalAccelerationData = nil;
+    self.secondsData = nil;
     
-    self.user1Label = nil;
-    self.user2Label = nil;
-    self.user3Label = nil;
-    self.user4Label = nil;
+    self.instrument1 = nil;
+    self.instrument2 = nil;
+    self.instrument3 = nil;
+    self.instrument4 = nil;
     
     self.newGameButton = nil;
     
@@ -334,9 +444,30 @@ const float DisplayUpdateInterval = 1.0f;
 	return YES;
 }
 
-- (IBAction)labelPressed:(VGButton *)sender
+- (IBAction)telemetrySelected:(Telemetry *)sender
 {
-//    sender.blink = YES;
+    if (sender == self.selectedTelemetry) {
+        sender.titleLabel.blink = NO;
+        self.selectedTelemetry = nil;
+    }
+    else if (self.selectedTelemetry) {
+        self.selectedTelemetry.titleLabel.blink = NO;
+        sender.titleLabel.blink = YES;
+        self.selectedTelemetry = sender;
+    }
+    else {
+        sender.titleLabel.blink = YES;
+        self.selectedTelemetry = sender;
+    }
+}
+
+- (IBAction)instrumentSelected:(Instrument *)sender
+{
+    if (self.selectedTelemetry) {
+        sender.instrument = self.selectedTelemetry;
+        self.selectedTelemetry.titleLabel.blink = NO;
+        self.selectedTelemetry = nil;
+    }
 }
 
 - (IBAction)thrusterChanged:(VGSlider *)sender
@@ -392,16 +523,17 @@ const float DisplayUpdateInterval = 1.0f;
 
 - (void)updateLander
 {
-    self.user1Label.text = [NSString stringWithFormat:@"%6.0f HEIGHT", [self.landerModel.dataSource altitude]];
-    self.user2Label.text = [NSString stringWithFormat:@"%6.0f DISTANCE", [self.landerModel.dataSource range]];
-    self.user3Label.text = [NSString stringWithFormat:@"%6.0f VER VEL", [self.landerModel.dataSource vertVel]];
-    self.user4Label.text = [NSString stringWithFormat:@"%6.0f HOR VEL", [self.landerModel.dataSource horizVel]];
+    [self.instrument1 display];
+    [self.instrument2 display];
+    [self.instrument3 display];
+    [self.instrument4 display];
     
     self.timeLabel.text = [NSString stringWithFormat:@"Time: %3.0f", [self.landerModel.dataSource time]];
     self.angleLabel.text = [NSString stringWithFormat:@"Angle: %3.0f", [self.landerModel.dataSource angleDegrees]];
     self.thrustLabel.text = [NSString stringWithFormat:@"Thrust: %3.0f", [self.landerModel.dataSource thrustPercent]];
     self.altitudeLabel.text = [NSString stringWithFormat:@"Altitude: %5.0f", [self.landerModel.dataSource altitude]];
-    self.downrangeLabel.text = [NSString stringWithFormat:@"Downrange: %5.0f", [self.landerModel.dataSource range]];
+    self.downrangeLabel.text = [NSString stringWithFormat:@"Downrange: %5.0f", [self.landerModel.dataSource distance
+]];
     self.vertVelLabel.text = [NSString stringWithFormat:@"VertVel: %4.0f", [self.landerModel.dataSource vertVel]];
     self.horizVelLabel.text = [NSString stringWithFormat:@"HorizVel: %4.0f", [self.landerModel.dataSource horizVel]];
     self.vertAccelLabel.text = [NSString stringWithFormat:@"VertAccel: %3.1f", [self.landerModel.dataSource vertAccel]];
@@ -414,7 +546,14 @@ const float DisplayUpdateInterval = 1.0f;
     [self.landerModel.delegate updateTime:GameTimerInterval];
     
     if ([self.landerModel.dataSource altitude] == 0.0f) {
+        // Update the thruster display
         [self.thrusterSlider setValue:[self.landerModel.dataSource thrustPercent]];
+        if (self.selectedTelemetry) {
+            self.selectedTelemetry.titleLabel.blink = NO;
+            self.selectedTelemetry = nil;
+        }
+        
+        // Disable flight controls
         [self disableFlightControls];
         
         [self.simulationTimer invalidate];
