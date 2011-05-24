@@ -68,7 +68,7 @@
 
 - (void)drawRect:(CGRect)rect
 {
-    NSLog(@"UIView:drawRect%@", NSStringFromCGRect(rect));
+    //NSLog(@"UIView:drawRect%@", NSStringFromCGRect(rect));
     
     CGPoint currentPosition = CGPointMake(0.0f, self.bounds.size.height - self.fontSize);
     CGPoint prevPoint = CGPointZero;
@@ -278,7 +278,7 @@
     }
     CGContextStrokePath(context);
     CGFontRelease(fontRef);
-    NSLog(@"Max coordinates for %@: %@", self.vectorName, NSStringFromCGRect(self.actualBounds));
+//    NSLog(@"Max coordinates for %@: %@", self.vectorName, NSStringFromCGRect(self.actualBounds));
 }
 
 @end
