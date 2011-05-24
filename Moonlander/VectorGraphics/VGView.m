@@ -113,6 +113,15 @@
                 CGContextMoveToPoint(context, prevPoint.x, prevPoint.y);
             }
             
+            // "intensity" is used to set the display intensity
+            if ([currentVector objectForKey:@"intensity"]) {
+                int intensityLevel = [[currentVector objectForKey:@"intensity"] intValue];
+                CGContextStrokePath(context);
+                const CGFloat Intensities[] = { 0.0f, 0.20f, 0.40f, 0.60f, 0.70f, 0.80f, 0.90f, 1.0f };
+                CGContextSetAlpha(context, Intensities[intensityLevel % (sizeof(Intensities)/sizeof(Intensities[0]))]);
+                CGContextMoveToPoint(context, prevPoint.x, prevPoint.y);
+            }
+            
             // "textmode" is used to set the text drawing mode
             if ([currentVector objectForKey:@"mode"]) {
                 int textMode = [[currentVector objectForKey:@"mode"] intValue];
@@ -203,7 +212,7 @@
                 }
                 if ([lineStuff objectForKey:@"type"]) {
                     int type = [[lineStuff objectForKey:@"type"] intValue];
-                    CGFloat phase = 0;
+                    CGFloat phase = 0.0f;
                     size_t count = 0;
                     const CGFloat *lengths;
                     const CGFloat LongDash[] = {6.0f, 2.0f};
