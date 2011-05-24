@@ -61,7 +61,7 @@
 
 
 const float GameTimerInterval = 1.0 / 12.0f;
-const float DisplayUpdateInterval = 1.0f;
+const float DisplayUpdateInterval = 0.25f;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -188,11 +188,6 @@ const float DisplayUpdateInterval = 1.0f;
     // Setup controls with model defaults
     self.thrusterSlider.value = [self.landerModel.dataSource thrustPercent];
 
-    // Place the lander in the initial position
-    CGAffineTransform t = [self.landerView transform];
-	t = CGAffineTransformRotate(t, [self.landerModel.dataSource angle]);
-	[self.landerView setTransform:t];
-    
     // Init displays
     [self.instrument1 display];
     [self.instrument2 display];
@@ -210,14 +205,16 @@ const float DisplayUpdateInterval = 1.0f;
 {
     [super viewDidLoad];
     
+    // Create the lander simulation model
     self.landerModel = [[LanderPhysicsModel alloc] init];
     self.landerModel.dataSource = self.landerModel;
     self.landerModel.delegate = self.landerModel;
  
-    // Create the lander
-    NSString *landerPath = [[NSBundle mainBundle] pathForResource:@"Lander" ofType:@"plist"];
-    self.landerView = [[VGView alloc] initWithFrame:CGRectMake(200, 200, 96, 96)];
-    [self.landerView addPathFile:landerPath]; 
+    // Create the lander view with data sources
+    self.landerView = [[Lander alloc] init];
+    self.landerView.thrustData = Block_copy(^{ return [self.landerModel.dataSource thrustPercent];});
+    self.landerView.angleData = Block_copy(^{ return [self.landerModel.dataSource angle];});
+    self.landerView.positionData = Block_copy(^{ return [self.landerModel.dataSource landerPosition];});
     [self.view addSubview:self.landerView];
     
     // Create the roll control arrows
@@ -260,7 +257,7 @@ const float DisplayUpdateInterval = 1.0f;
     self.heightData = [[Telemetry alloc] initWithFrame:CGRectMake(600, 400, 100, 20)];
     self.heightData.titleLabel.text = @"HEIGHT";
     self.heightData.format = @"%6.0f %@";
-    self.heightData.data = Block_copy(^{return [self.landerModel.dataSource height];});;
+    self.heightData.data = Block_copy(^{return [self.landerModel.dataSource height];});
 	[self.heightData addTarget:self 
                            action:@selector(telemetrySelected:) 
                  forControlEvents:UIControlEventTouchUpInside];
@@ -269,7 +266,7 @@ const float DisplayUpdateInterval = 1.0f;
     self.altitudeData = [[Telemetry alloc] initWithFrame:CGRectMake(600, 420, 100, 20)];
     self.altitudeData.titleLabel.text = @"ALTITUDE";
     self.altitudeData.format = @"%6.0f %@";
-    self.altitudeData.data = Block_copy(^{ return [self.landerModel.dataSource altitude];});;
+    self.altitudeData.data = Block_copy(^{ return [self.landerModel.dataSource altitude];});
 	[self.altitudeData addTarget:self 
                            action:@selector(telemetrySelected:) 
                  forControlEvents:UIControlEventTouchUpInside];
@@ -278,7 +275,7 @@ const float DisplayUpdateInterval = 1.0f;
     self.distanceData = [[Telemetry alloc] initWithFrame:CGRectMake(600, 440, 100, 20)];
     self.distanceData.titleLabel.text = @"DISTANCE";
     self.distanceData.format = @"%6.0f %@";
-    self.distanceData.data = Block_copy(^{ return [self.landerModel.dataSource distance];});;
+    self.distanceData.data = Block_copy(^{ return [self.landerModel.dataSource distance];});
 	[self.distanceData addTarget:self 
                            action:@selector(telemetrySelected:) 
                  forControlEvents:UIControlEventTouchUpInside];
@@ -288,7 +285,7 @@ const float DisplayUpdateInterval = 1.0f;
     self.fuelLeftData = [[Telemetry alloc] initWithFrame:CGRectMake(600, 460, 100, 20)];
     self.fuelLeftData.titleLabel.text = @"FUEL LEFT";
     self.fuelLeftData.format = @"%6.0f %@";
-    self.fuelLeftData.data = Block_copy(^{ return [self.landerModel.dataSource fuel];});;
+    self.fuelLeftData.data = Block_copy(^{ return [self.landerModel.dataSource fuel];});
 	[self.fuelLeftData addTarget:self 
                          action:@selector(telemetrySelected:) 
                forControlEvents:UIControlEventTouchUpInside];
@@ -297,7 +294,7 @@ const float DisplayUpdateInterval = 1.0f;
     self.weightData = [[Telemetry alloc] initWithFrame:CGRectMake(600, 480, 100, 20)];
     self.weightData.titleLabel.text = @"WEIGHT";
     self.weightData.format = @"%6.0f %@";
-    self.weightData.data = Block_copy(^{ return [self.landerModel.dataSource weight];});;
+    self.weightData.data = Block_copy(^{ return [self.landerModel.dataSource weight];});
 	[self.weightData addTarget:self 
                                    action:@selector(telemetrySelected:) 
                          forControlEvents:UIControlEventTouchUpInside];
@@ -306,7 +303,7 @@ const float DisplayUpdateInterval = 1.0f;
     self.thrustData = [[Telemetry alloc] initWithFrame:CGRectMake(600, 500, 100, 20)];
     self.thrustData.titleLabel.text = @"THRUST";
     self.thrustData.format = @"%6.0f %@";
-    self.thrustData.data = Block_copy(^{ return [self.landerModel.dataSource thrust];});;
+    self.thrustData.data = Block_copy(^{ return [self.landerModel.dataSource thrust];});
 	[self.thrustData addTarget:self 
                         action:@selector(telemetrySelected:) 
               forControlEvents:UIControlEventTouchUpInside];
@@ -315,7 +312,7 @@ const float DisplayUpdateInterval = 1.0f;
     self.thrustAngleData = [[Telemetry alloc] initWithFrame:CGRectMake(600, 520, 100, 20)];
     self.thrustAngleData.titleLabel.text = @"ANGLE";
     self.thrustAngleData.format = @"%6.0f %@";
-    self.thrustAngleData.data = Block_copy(^{ return [self.landerModel.dataSource angleDegrees];});;
+    self.thrustAngleData.data = Block_copy(^{ return [self.landerModel.dataSource angleDegrees];});
 	[self.thrustAngleData addTarget:self 
                         action:@selector(telemetrySelected:) 
               forControlEvents:UIControlEventTouchUpInside];
@@ -324,7 +321,7 @@ const float DisplayUpdateInterval = 1.0f;
     self.verticalVelocityData = [[Telemetry alloc] initWithFrame:CGRectMake(600, 540, 100, 20)];
     self.verticalVelocityData.titleLabel.text = @"VER VEL";
     self.verticalVelocityData.format = @"%6.0f %@";
-    self.verticalVelocityData.data = Block_copy(^{ return [self.landerModel.dataSource vertVel];});;
+    self.verticalVelocityData.data = Block_copy(^{ return [self.landerModel.dataSource vertVel];});
 	[self.verticalVelocityData addTarget:self 
                         action:@selector(telemetrySelected:) 
               forControlEvents:UIControlEventTouchUpInside];
@@ -333,7 +330,7 @@ const float DisplayUpdateInterval = 1.0f;
     self.horizontalVelocityData = [[Telemetry alloc] initWithFrame:CGRectMake(600, 560, 100, 20)];
     self.horizontalVelocityData.titleLabel.text = @"HOR VEL";
     self.horizontalVelocityData.format = @"%6.0f %@";
-    self.horizontalVelocityData.data = Block_copy(^{ return [self.landerModel.dataSource horizVel];});;
+    self.horizontalVelocityData.data = Block_copy(^{ return [self.landerModel.dataSource horizVel];});
 	[self.horizontalVelocityData addTarget:self 
                         action:@selector(telemetrySelected:) 
               forControlEvents:UIControlEventTouchUpInside];
@@ -342,7 +339,7 @@ const float DisplayUpdateInterval = 1.0f;
     self.verticalAccelerationData = [[Telemetry alloc] initWithFrame:CGRectMake(600, 580, 100, 20)];
     self.verticalAccelerationData.titleLabel.text = @"VER ACC";
     self.verticalAccelerationData.format = @"%6.0f %@";
-    self.verticalAccelerationData.data = Block_copy(^{ return [self.landerModel.dataSource vertAccel];});;
+    self.verticalAccelerationData.data = Block_copy(^{ return [self.landerModel.dataSource vertAccel];});
 	[self.verticalAccelerationData addTarget:self 
                         action:@selector(telemetrySelected:) 
               forControlEvents:UIControlEventTouchUpInside];
@@ -351,7 +348,7 @@ const float DisplayUpdateInterval = 1.0f;
     self.horizontalAccelerationData = [[Telemetry alloc] initWithFrame:CGRectMake(600, 600, 100, 20)];
     self.horizontalAccelerationData.titleLabel.text = @"HOR ACC";
     self.horizontalAccelerationData.format = @"%6.0f %@";
-    self.horizontalAccelerationData.data = Block_copy(^{ return [self.landerModel.dataSource horizAccel];});;
+    self.horizontalAccelerationData.data = Block_copy(^{ return [self.landerModel.dataSource horizAccel];});
 	[self.horizontalAccelerationData addTarget:self 
                         action:@selector(telemetrySelected:) 
               forControlEvents:UIControlEventTouchUpInside];
@@ -360,7 +357,7 @@ const float DisplayUpdateInterval = 1.0f;
     self.secondsData = [[Telemetry alloc] initWithFrame:CGRectMake(600, 620, 100, 20)];
     self.secondsData.titleLabel.text = @"SECONDS";
     self.secondsData.format = @"%6.0f %@";
-    self.secondsData.data = Block_copy(^{ return [self.landerModel.dataSource time];});;
+    self.secondsData.data = Block_copy(^{ return [self.landerModel.dataSource time];});
 	[self.secondsData addTarget:self 
                         action:@selector(telemetrySelected:) 
               forControlEvents:UIControlEventTouchUpInside];
@@ -498,10 +495,6 @@ const float DisplayUpdateInterval = 1.0f;
     }
     
     [self.landerModel.dataSource setAngle:([self.landerModel.dataSource angle] + deltaAngle)];
-    
-	CGAffineTransform t = [self.landerView transform];
-	t = CGAffineTransformRotate(t, deltaAngle);
-	[self.landerView setTransform:t];
 }
 
 - (IBAction)newGame
@@ -523,6 +516,8 @@ const float DisplayUpdateInterval = 1.0f;
 
 - (void)updateLander
 {
+    [self.landerView updateLander];
+    
     [self.instrument1 display];
     [self.instrument2 display];
     [self.instrument3 display];
