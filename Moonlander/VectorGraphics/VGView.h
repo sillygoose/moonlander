@@ -34,6 +34,4 @@
 - (id)initWithFrame:(CGRect)frameRect;
 - (id)initWithFrame:(CGRect)frameRect withPaths:(NSString *)fileName;
 
-- (void)addPathFile:(NSString *)fileName; 
-
 @end

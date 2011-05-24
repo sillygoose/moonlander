@@ -42,14 +42,6 @@
     return self;
 }
 
-- (void)addPathFile:(NSString *)fileName
-{
-    NSDictionary *viewObject = [NSDictionary dictionaryWithContentsOfFile:fileName];
-    self.vectorName = [viewObject objectForKey:@"name"];
-    self.drawPaths = [viewObject objectForKey:@"paths"];
-}
-
-
 - (void)dealloc
 {
     [_blinkTimer invalidate];
