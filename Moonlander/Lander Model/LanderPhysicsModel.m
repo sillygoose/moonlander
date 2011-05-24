@@ -94,7 +94,7 @@ float RadiansToDegrees(float radians)
 #pragma mark Data source
 - (float)thrustPercent
 {
-    return self.actualThrust / self.maxThrust * 100.0f;
+    return (self.fuelRemaining > 0) ? self.actualThrust / self.maxThrust * 100.0f : 0.0f;
 }
 
 - (CGPoint)landerPosition
@@ -102,12 +102,18 @@ float RadiansToDegrees(float radians)
     return CGPointMake(self.horizontalDistance, self.verticalDistance);
 }
 
+//###
+- (float)height
+{
+    return (self.verticalDistance <= 0.0f) ? 0.0f : self.verticalDistance;
+}
+
 - (float)altitude
 {
     return (self.verticalDistance <= 0.0f) ? 0.0f : self.verticalDistance;
 }
 
-- (float)range
+- (float)distance
 {
     return self.horizontalDistance;
 }
@@ -134,7 +140,7 @@ float RadiansToDegrees(float radians)
 
 - (float)thrust
 {
-    return self.actualThrust;
+    return (self.verticalDistance <= 0.0f) ? 0.0f : self.actualThrust;
 }
 
 - (float)weight

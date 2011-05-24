@@ -13,8 +13,9 @@
 
 - (CGPoint)landerPosition;
 
+- (float)height;
 - (float)altitude;
-- (float)range;
+- (float)distance;
 
 - (BOOL)lowFuelWarning;
 
