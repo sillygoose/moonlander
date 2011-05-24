@@ -154,11 +154,20 @@ const float DisplayUpdateInterval = 1.0f;
     self.landerModel.dataSource = self.landerModel;
     self.landerModel.delegate = self.landerModel;
  
-#if 1
-    LanderMessage *txt1 = [[LanderMessage alloc] initWithMessage:@"LeftEdge"];
-    [self.view addSubview:txt1];
-    //VGLabel *txt2 = [[VGLabel alloc] initWithMessage:@"HitLander"];
-    //[self.view addSubview:txt2];
+#if 0
+//    LanderMessage *txt1 = [[LanderMessage alloc] initWithMessage:@"LeftEdge"];
+//    [self.view addSubview:txt1];
+    VGLabel *txt2 = [[VGLabel alloc] initWithFrame:CGRectMake(200, 200, 200, 25)];
+    txt2.text = @"Not Blinking";
+    [self.view addSubview:txt2];
+    [txt2 release];
+    VGLabel *txt3 = [[VGLabel alloc] initWithFrame:CGRectMake(200, 250, 200, 25)];
+    txt3.text = @"Blinking";
+    txt3.blink = YES;
+    //txt3.textColor = [UIColor redColor];
+    //txt3.font = [UIFont fontWithName:@"Helvetica" size:18.0f];
+    [self.view addSubview:txt3];
+    [txt3 release];
 #endif
     
     // Create the lander
