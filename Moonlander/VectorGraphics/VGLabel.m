@@ -13,6 +13,8 @@
 
 @synthesize text=_text;
 @synthesize font=_font;
+@synthesize textColor=_textColor;
+@synthesize textAlignment=_textAlignment;
 @synthesize blink=_blink;
 
 
@@ -21,44 +23,79 @@
     self = [super initWithFrame:frameRect];
     if (self) {
         self.font = [UIFont fontWithName:@"Courier" size:10.0f];
+        self.textColor = [UIColor colorWithRed:0.026f green:1.0f blue:0.00121f alpha:1.0f] ;
+        self.textAlignment = UITextAlignmentLeft;
+        
+        // For debugging purposes
         self.vectorName = @"[VGLabel initWithFrame]";
         self.backgroundColor = [UIColor grayColor];
     }
     return self;
 }
 
-- (void)setBlink:(BOOL)blink
+-(void)updateDrawingDictonary
 {
-    _blink = blink;
-    self.text = self.text;
+    // Get the font info
+    NSDictionary *fontDict = nil;
+    if (self.font) {
+        NSNumber *fontSize = [NSNumber numberWithFloat:self.font.pointSize];
+        fontDict = [NSDictionary dictionaryWithObjectsAndKeys:self.font.fontName, @"name", fontSize, @"size", nil];
+    }
+    
+    // Get the color info
+    NSDictionary *colorDict = nil;
+    if (self.textColor) {
+        size_t nComp = CGColorGetNumberOfComponents(self.textColor.CGColor);
+        if (nComp >= 4) {
+            const CGFloat *colorComp = CGColorGetComponents(self.textColor.CGColor);
+            NSNumber *r = [NSNumber numberWithFloat:colorComp[0]];
+            NSNumber *g = [NSNumber numberWithFloat:colorComp[1]];
+            NSNumber *b = [NSNumber numberWithFloat:colorComp[2]];
+            NSNumber *a = [NSNumber numberWithFloat:colorComp[3]];
+            colorDict = [NSDictionary dictionaryWithObjectsAndKeys:r, @"r", g, @"g", b, @"b", a, @"alpha", nil];
+        }
+    }
+    
+    // Build the draw dictionary
+    NSDictionary *drawDict = [NSDictionary dictionaryWithObjectsAndKeys:self.text, @"text", [NSNumber numberWithBool:self.blink], @"blink", fontDict, @"font", colorDict, @"color", nil];
+    NSArray *path = [NSArray arrayWithObjects:drawDict, nil];
+    NSArray *paths = [NSArray arrayWithObject:path];
+    self.drawPaths = paths;
+    [self setNeedsDisplay];
+}
+
+- (void)setBlink:(BOOL)blinkType
+{
+    _blink = blinkType;
+    [self updateDrawingDictonary];
+}
+
+- (void)setTextColor:(UIColor *)newColor
+{
+    [_textColor release];
+    _textColor = [newColor retain];
+    [self updateDrawingDictonary];
+}
+
+- (void)setFont:(UIFont *)newFont
+{                    
+    [_font release];
+    _font = [newFont retain];
+    [self updateDrawingDictonary];
 }
 
 - (void)setText:(NSString *)newText
 {
     [_text release];
     _text = [newText copy];
-    
-#if 0 // Get this info from the instance variable font
-    NSNumber *r = [NSNumber numberWithFloat:0.1f];
-    NSNumber *g = [NSNumber numberWithFloat:1.0f];
-    NSNumber *b = [NSNumber numberWithFloat:0.01f];
-    NSNumber *a = [NSNumber numberWithFloat:1.0f];
-    NSDictionary *color = [NSDictionary dictionaryWithObjectsAndKeys:r, @"r", g, @"g", b, @"b", a, @"alpha",nil];
-   
-    //NSDictionary *font = [NSDictionary dictionaryWithObjectsAndKeys:r, @"font" ,nil];
-#endif
-
-    // Create a display dictionary with the text and blink attribute
-    NSDictionary *textDict = [NSDictionary dictionaryWithObjectsAndKeys:newText, @"text", [NSNumber numberWithBool:self.blink], @"blink", nil];
-    
-    NSArray *path = [NSArray arrayWithObjects:textDict, nil];
-    NSArray *paths = [NSArray arrayWithObject:path];
-    self.drawPaths = paths;
-    [self setNeedsDisplay];
+    [self updateDrawingDictonary];
 }
 
 - (void)dealloc
 {
+    [_text release];
+    [_font release];
+    [_textColor release];
     [super dealloc];
 }
 
