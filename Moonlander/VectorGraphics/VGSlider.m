@@ -54,10 +54,10 @@
     return self;
 }
 
-- (void)setValue:(float)value
+- (void)setValue:(float)newValue
 {
     // Save our updated thruster value
-    _value = value;
+    _value = newValue;
     
     CGRect newNeedleFrame = CGRectMake(self.thrusterIndicator.frame.origin.x, (self.frame.size.height - (2 * self.value)) - self.thrusterIndicator.frame.size.height/2, self.thrusterIndicator.frame.size.width, self.thrusterIndicator.frame.size.height);
     [self.thrusterIndicator setFrame:newNeedleFrame];

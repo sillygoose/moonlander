@@ -54,9 +54,9 @@
 {
     [_blinkTimer invalidate];
     [_blinkTimer release];
-    
     [_drawPaths release];
     [_vectorName release];
+
     [super dealloc];
 }
 
@@ -277,6 +277,7 @@
         }
     }
     CGContextStrokePath(context);
+    CGFontRelease(fontRef);
     NSLog(@"Max coordinates for %@: %@", self.vectorName, NSStringFromCGRect(self.actualBounds));
 }
 
