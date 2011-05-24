@@ -13,9 +13,8 @@
     NSArray     *_drawPaths;
     NSString    *_vectorName;
   
-    //### shouyld be using a UIFont type here?
-    CGFloat     _fontSize;
-    NSTimer     *_blinkTimer;
+    CGFloat     _fontSize;      //Mark for removal
+    NSTimer     *_blinkTimer;   //Mark for removal
     
     BOOL        _blinkOn;
     CGRect      _actualBounds;

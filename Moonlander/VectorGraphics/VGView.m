@@ -194,14 +194,38 @@
             
             // "line" is used to set the line information
             if ([currentVector objectForKey:@"line"]) {
-                if ([currentVector objectForKey:@"line"]) {
-                    NSDictionary *lineStuff = [currentVector objectForKey:@"line"];
-                    if ([lineStuff objectForKey:@"width"]) {
-                        CGFloat width = [[lineStuff objectForKey:@"width"] floatValue];
-                        CGContextStrokePath(context);
-                        CGContextSetLineWidth(context, width);
-                        CGContextMoveToPoint(context, prevPoint.x, prevPoint.y);
+                NSDictionary *lineStuff = [currentVector objectForKey:@"line"];
+                if ([lineStuff objectForKey:@"width"]) {
+                    CGFloat width = [[lineStuff objectForKey:@"width"] floatValue];
+                    CGContextStrokePath(context);
+                    CGContextSetLineWidth(context, width);
+                    CGContextMoveToPoint(context, prevPoint.x, prevPoint.y);
+                }
+                if ([lineStuff objectForKey:@"type"]) {
+                    int type = [[lineStuff objectForKey:@"type"] intValue];
+                    CGFloat phase = 0;
+                    size_t count = 0;
+                    const CGFloat *lengths;
+                    const CGFloat LongDash[] = {6.0f, 2.0f};
+                    const CGFloat ShortDash[] = {3.0f, 1.0f};
+                    const CGFloat DotDash[] = {3.0f, 1.0f, 6.0f, 1.0f};
+                    CGContextStrokePath(context);
+                    switch (type) {
+                        case 1:
+                            lengths = LongDash;
+                            count = sizeof(LongDash)/sizeof(LongDash[0]);
+                            break;
+                        case 2:
+                            lengths = ShortDash;
+                            count = sizeof(ShortDash)/sizeof(ShortDash[0]);
+                            break;
+                        case 3:
+                            lengths = DotDash;
+                            count = sizeof(DotDash)/sizeof(DotDash[0]);
+                            break;
                     }
+                    CGContextSetLineDash(context, phase, lengths, count);
+                    CGContextMoveToPoint(context, prevPoint.x, prevPoint.y);
                 }
             }
             
