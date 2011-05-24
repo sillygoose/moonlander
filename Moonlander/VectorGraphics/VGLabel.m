@@ -57,10 +57,17 @@
     }
     
     // Build the draw dictionary
-    NSDictionary *drawDict = [NSDictionary dictionaryWithObjectsAndKeys:self.text, @"text", [NSNumber numberWithBool:self.blink], @"blink", fontDict, @"font", colorDict, @"color", nil];
+    NSDictionary *drawDict = [NSDictionary dictionaryWithObjectsAndKeys:self.text, @"text", [NSNumber numberWithBool:self.blink], @"blink", [NSNumber numberWithInt:self.textAlignment], @"alignment", fontDict, @"font", colorDict, @"color", nil];
     NSArray *path = [NSArray arrayWithObjects:drawDict, nil];
     NSArray *paths = [NSArray arrayWithObject:path];
     self.drawPaths = paths;
+    
+    // Release our unneeded objects
+    [fontDict release];
+    [colorDict release];
+    [drawDict release];
+    [path release];
+    
     [self setNeedsDisplay];
 }
 
