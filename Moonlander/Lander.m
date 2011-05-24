@@ -61,7 +61,7 @@
 {
     float thrust = self.thrustData();
     float angle = self.angleData();
-    CGPoint position = self.positionData();
+    //###CGPoint position = self.positionData();
     //NSLog(@"thrust: %03f%%, angle: %03f, position:%@", thrust, angle, NSStringFromCGPoint(position));
     
     //##
