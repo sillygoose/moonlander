@@ -11,6 +11,8 @@
 
 @protocol LanderPhysicsDataSource <NSObject>
 
+- (BOOL)onSurface;
+
 - (CGPoint)landerPosition;
 
 - (float)height;

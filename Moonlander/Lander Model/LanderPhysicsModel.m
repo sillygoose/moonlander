@@ -65,11 +65,11 @@ float RadiansToDegrees(float radians)
     // Calculate fuel and accelerations (ROCKET subroutine)
     if (self.fuelRemaining <= 0.0f) {
         self.fuelRemaining = 0.0f;
+        self.lemMass = self.lemEmptyMass;
         self.actualThrust = 0.0f;
         self.lemAcceleration = 0.0f;
         self.horizontalAcceleration = 0.0f;
         self.verticalAcceleration = -self.lunarGravity;
-        self.lemMass = self.lemEmptyMass;
     }
     else {
         self.actualThrust = self.percentThrustRequested * self.maxThrust / 100.0f;
@@ -86,12 +86,25 @@ float RadiansToDegrees(float radians)
     self.verticalVelocity += self.verticalAcceleration * timeElapsed;
     self.horizontalDistance += self.horizontalVelocity * timeElapsed;
     self.verticalDistance += self.verticalVelocity * timeElapsed;
-    
+
+    // On the surface, one way or another
+    if (self.verticalDistance <= 0.0f) {
+        self.actualThrust = 0.0f;
+        self.lemAcceleration = 0.0f;
+        self.horizontalAcceleration = 0.0f;
+        self.verticalAcceleration = -self.lunarGravity;
+    }
+
     // Update the simulation clock
     self.clockTicks += timeElapsed;
 }
 
 #pragma mark Data source
+- (BOOL)onSurface
+{
+    return self.verticalDistance <= 0.0;
+}
+
 - (float)thrustPercent
 {
     return (self.fuelRemaining > 0) ? self.actualThrust / self.maxThrust * 100.0f : 0.0f;
@@ -121,11 +134,6 @@ float RadiansToDegrees(float radians)
 - (BOOL)lowFuelWarning
 {
     return ((self.fuelRemaining > 0.0f) && (self.fuelRemaining <= self.lowFuelLimit)) ? YES : NO;
-}
-
-- (BOOL)onSurface
-{
-    return (self.verticalDistance <= 0);
 }
 
 - (float)angle

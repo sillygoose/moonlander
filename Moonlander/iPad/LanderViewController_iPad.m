@@ -502,11 +502,6 @@ const float DisplayUpdateInterval = 0.25f;
     [self.simulationTimer invalidate];
     [self.displayTimer invalidate];
     
-    // Restore the lander in the initial position
-    CGAffineTransform t = [self.landerView transform];
-	t = CGAffineTransformRotate(t, -[self.landerModel.dataSource angle]);
-	[self.landerView setTransform:t];
-   
     [self initGame];
 }
 
@@ -540,7 +535,7 @@ const float DisplayUpdateInterval = 0.25f;
 {
     [self.landerModel.delegate updateTime:GameTimerInterval];
     
-    if ([self.landerModel.dataSource altitude] == 0.0f) {
+    if ([self.landerModel.dataSource onSurface]) {
         // Update the thruster display
         [self.thrusterSlider setValue:[self.landerModel.dataSource thrustPercent]];
         if (self.selectedTelemetry) {
