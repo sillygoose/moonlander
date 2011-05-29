@@ -117,7 +117,7 @@
             if ([currentVector objectForKey:@"intensity"]) {
                 int intensityLevel = [[currentVector objectForKey:@"intensity"] intValue];
                 CGContextStrokePath(context);
-                const CGFloat Intensities[] = { 0.0f, 0.20f, 0.40f, 0.60f, 0.70f, 0.80f, 0.90f, 1.0f };
+                const CGFloat Intensities[] = { 0.3f, 0.4f, 0.5f, 0.6f, 0.7f, 0.8f, 0.9f, 1.0f };
                 CGContextSetAlpha(context, Intensities[intensityLevel % (sizeof(Intensities)/sizeof(Intensities[0]))]);
                 CGContextMoveToPoint(context, prevPoint.x, prevPoint.y);
             }
@@ -215,9 +215,9 @@
                     CGFloat phase = 0.0f;
                     size_t count = 0;
                     const CGFloat *lengths;
-                    const CGFloat LongDash[] = {6.0f, 2.0f};
-                    const CGFloat ShortDash[] = {3.0f, 1.0f};
-                    const CGFloat DotDash[] = {3.0f, 1.0f, 6.0f, 1.0f};
+                    const CGFloat LongDash[] = {12.0f, 4.0f};
+                    const CGFloat ShortDash[] = {6.0f, 2.0f};
+                    const CGFloat DotDash[] = {6.0f, 2.0f, 12.0f, 2.0f};
                     CGContextStrokePath(context);
                     switch (type) {
                         case 1:
