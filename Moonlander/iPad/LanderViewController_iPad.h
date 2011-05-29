@@ -22,7 +22,7 @@
 @interface LanderViewController_iPad : UIViewController {
     LanderPhysicsModel *_landerModel;
     
-    Lander *_landerView;
+    IBOutlet Lander *_landerView;
     
     VGButton *_smallLeftArrow;
     VGButton *_smallRightArrow;
@@ -34,9 +34,9 @@
     NSTimer *_simulationTimer;
     NSTimer *_displayTimer;
 
-    UIButton *_newGameButton;
-    Telemetry *_selectedTelemetry;
+    VGButton *_newGameButton;
     
+    Telemetry *_selectedTelemetry;
     Telemetry *_heightData;
     Telemetry *_altitudeData;
     Telemetry *_distanceData;
@@ -54,17 +54,11 @@
     Instrument *_instrument2;
     Instrument *_instrument3;
     Instrument *_instrument4;
-
-    UILabel *_timeLabel;
-    UILabel *_angleLabel;
-    UILabel *_thrustLabel;
-    UILabel *_altitudeLabel;
-    UILabel *_downrangeLabel;
-    UILabel *_vertVelLabel;
-    UILabel *_horizVelLabel;
-    UILabel *_vertAccelLabel;
-    UILabel *_horizAccelLabel;
-    UILabel *_fuelRemainingLabel;
+    
+    Instrument *_instrument5;
+    Instrument *_instrument6;
+    Instrument *_instrument7;
+    Instrument *_instrument8;
 }
 
 @property (nonatomic, retain) LanderPhysicsModel *landerModel;
@@ -72,7 +66,7 @@
 @property (nonatomic, assign) NSTimer *simulationTimer;
 @property (nonatomic, assign) NSTimer *displayTimer;
 
-@property (nonatomic, retain) Lander *landerView;
+@property (nonatomic, retain) IBOutlet Lander *landerView;
 
 @property (nonatomic, retain) VGButton *smallLeftArrow;
 @property (nonatomic, retain) VGButton *smallRightArrow;
@@ -81,9 +75,9 @@
 
 @property (nonatomic, retain) VGSlider *thrusterSlider;
 
-@property (nonatomic, retain) IBOutlet UIButton *newGameButton;
-@property (nonatomic, retain) Telemetry *selectedTelemetry;
+@property (nonatomic, retain) VGButton *newGameButton;
 
+@property (nonatomic, retain) Telemetry *selectedTelemetry;
 @property (nonatomic, retain) Telemetry *heightData;
 @property (nonatomic, retain) Telemetry *altitudeData;
 @property (nonatomic, retain) Telemetry *distanceData;
@@ -102,20 +96,13 @@
 @property (nonatomic, retain) Instrument *instrument3;
 @property (nonatomic, retain) Instrument *instrument4;
 
-@property (nonatomic, retain) IBOutlet UILabel *timeLabel;
-@property (nonatomic, retain) IBOutlet UILabel *angleLabel;
-@property (nonatomic, retain) IBOutlet UILabel *thrustLabel;
-@property (nonatomic, retain) IBOutlet UILabel *altitudeLabel;
-@property (nonatomic, retain) IBOutlet UILabel *downrangeLabel;
-@property (nonatomic, retain) IBOutlet UILabel *vertVelLabel;
-@property (nonatomic, retain) IBOutlet UILabel *horizVelLabel;
-@property (nonatomic, retain) IBOutlet UILabel *vertAccelLabel;
-@property (nonatomic, retain) IBOutlet UILabel *horizAccelLabel;
-@property (nonatomic, retain) IBOutlet UILabel *fuelRemainingLabel;
+@property (nonatomic, retain) Instrument *instrument5;
+@property (nonatomic, retain) Instrument *instrument6;
+@property (nonatomic, retain) Instrument *instrument7;
+@property (nonatomic, retain) Instrument *instrument8;
 
 - (IBAction)thrusterChanged:(VGSlider *)sender;
 - (IBAction)rotateLander:(id)sender;
-- (IBAction)newGame;
 
 - (void)gameReset;
 - (void)updateLander;

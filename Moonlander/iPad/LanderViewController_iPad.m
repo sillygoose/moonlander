@@ -11,6 +11,15 @@
 #import "LanderMessage.h"
 
 
+@interface LanderViewController_iPad ()
+- (CGPoint) convertPointFromGameToView:(CGPoint)gamePoint;
+- (CGPoint) convertPointFromViewToGame:(CGPoint)viewPoint;
+- (CGSize) convertSizeFromGameToView:(CGSize)gameSize;
+- (CGSize) convertSizeFromViewToGame:(CGSize)viewSize;
+- (CGRect) convertRectFromGameToView:(CGRect)gameRect;
+- (CGRect) convertRectFromViewToGame:(CGRect)viewRect;
+@end
+
 @implementation LanderViewController_iPad
 
 @synthesize landerModel=_landerModel;
@@ -48,26 +57,69 @@
 @synthesize instrument3=_instrument3;
 @synthesize instrument4=_instrument4;
 
-@synthesize timeLabel=_timeLabel;
-@synthesize angleLabel=_angleLabel;
-@synthesize thrustLabel=_thrustLabel;
-@synthesize altitudeLabel=_altitudeLabel;
-@synthesize downrangeLabel=_downrangeLabel;
-@synthesize vertVelLabel=_vectVelLabel;
-@synthesize horizVelLabel=_horizVelLabel;
-@synthesize vertAccelLabel=_vertAccelLabel;
-@synthesize horizAccelLabel=_horizAccelLabel;
-@synthesize fuelRemainingLabel=_fuelRemainingLabel;
+@synthesize instrument5=_instrument5;
+@synthesize instrument6=_instrument6;
+@synthesize instrument7=_instrument7;
+@synthesize instrument8=_instrument8;
 
 
 const float GameTimerInterval = 1.0 / 12.0f;
-const float DisplayUpdateInterval = 0.25f;
+const float DisplayUpdateInterval = 0.05f;
+
+
+- (CGPoint)convertPointFromGameToView:(CGPoint)gamePoint
+{
+    CGPoint viewPoint = CGPointZero;
+    viewPoint.x = gamePoint.x * self.view.bounds.size.width;
+	viewPoint.y = gamePoint.y * self.view.bounds.size.height;
+	return viewPoint;
+}
+
+- (CGPoint)convertPointFromViewToGame:(CGPoint)viewPoint;
+{
+    CGPoint gamePoint = CGPointZero;
+    gamePoint.x = viewPoint.x / self.view.bounds.size.width;
+	gamePoint.y = viewPoint.y / self.view.bounds.size.height;
+	return gamePoint;
+}
+
+- (CGSize)convertSizeFromGameToView:(CGSize)gameSize;
+{
+    CGSize viewSize = CGSizeZero;
+    viewSize.width = gameSize.width * self.view.bounds.size.width;
+	viewSize.height = gameSize.height * self.view.bounds.size.height;
+	return viewSize;
+}
+
+- (CGSize)convertSizeFromViewToGame:(CGSize)viewSize;
+{
+    CGSize gameSize = CGSizeZero;
+    gameSize.width = viewSize.width * self.view.bounds.size.width;
+	gameSize.height = viewSize.height * self.view.bounds.size.height;
+	return gameSize;
+}
+
+- (CGRect)convertRectFromGameToView:(CGRect)gameRect;
+{
+    CGRect viewRect = gameRect;
+    NSLog(@"gameRect:%@    viewFrame:%@", NSStringFromCGRect(gameRect), NSStringFromCGRect(self.view.frame));
+    NSLog(@"gameRect:%@    viewBounds:%@", NSStringFromCGRect(gameRect), NSStringFromCGRect(self.view.bounds));
+    viewRect.origin.y = self.view.bounds.size.width - gameRect.origin.y;
+	return viewRect;
+}
+
+- (CGRect)convertRectFromViewToGame:(CGRect)viewRect;
+{
+    CGRect gameRect = CGRectZero;
+    viewRect.origin.y = self.view.bounds.size.height - viewRect.origin.y;
+	return gameRect;
+}
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        // Custom initialization
+        self.wantsFullScreenLayout = YES;
     }
     return self;
 }
@@ -102,23 +154,15 @@ const float DisplayUpdateInterval = 0.25f;
     [_horizontalAccelerationData release];
     [_secondsData release];
     
-    //### release labels
-    [_timeLabel release];
-    [_angleLabel release];
-    [_thrustLabel release];
-    [_altitudeLabel release];
-    [_downrangeLabel release];
-    [_vertVelLabel release];
-    [_horizVelLabel release];
-    [_vertAccelLabel release];
-    [_horizAccelLabel release];
-    [_fuelRemainingLabel release];
-    //###
-    
     [_instrument1 release];
     [_instrument2 release];
     [_instrument3 release];
     [_instrument4 release];
+    
+    [_instrument5 release];
+    [_instrument6 release];
+    [_instrument7 release];
+    [_instrument8 release];
     
     [super dealloc];
 }
@@ -203,6 +247,7 @@ const float DisplayUpdateInterval = 0.25f;
 
 - (void)viewDidLoad
 {
+    [[UIApplication sharedApplication] setStatusBarHidden:YES withAnimation:NO];
     [super viewDidLoad];
     
     // Create the lander simulation model
@@ -217,44 +262,53 @@ const float DisplayUpdateInterval = 0.25f;
     self.landerView.positionData = Block_copy(^{ return [self.landerModel.dataSource landerPosition];});
     [self.view addSubview:self.landerView];
     
+    // New game button
+    self.newGameButton = [[VGButton alloc] initWithFrame:CGRectMake(960, 0, 64, 64)];
+    self.newGameButton.titleLabel.text = @"New Game";
+	[self.newGameButton addTarget:self 
+                           action:@selector(newGame:) 
+                 forControlEvents:UIControlEventValueChanged];
+    [self.view addSubview:self.newGameButton];
+    
     // Create the roll control arrows
     NSString *slaPath = [[NSBundle mainBundle] pathForResource:@"SmallLeftArrow" ofType:@"plist"];
-    self.smallLeftArrow = [[VGButton alloc] initWithFrame:CGRectMake(500, 400, 24, 24) withPaths:slaPath andRepeat:0.5f];
+    self.smallLeftArrow = [[VGButton alloc] initWithFrame:[self convertRectFromGameToView: CGRectMake(925, 375, 24, 12)]  withPaths:slaPath andRepeat:0.5f];
 	[self.smallLeftArrow addTarget:self 
                             action:@selector(rotateLander:) 
                   forControlEvents:UIControlEventValueChanged];
     [self.view addSubview:self.smallLeftArrow];
     
     NSString *sraPath = [[NSBundle mainBundle] pathForResource:@"SmallRightArrow" ofType:@"plist"];
-    self.smallRightArrow = [[[VGButton alloc] initWithFrame:CGRectMake(550, 400, 24, 24) withPaths:sraPath andRepeat:0.5f] retain];
+    self.smallRightArrow = [[VGButton alloc] initWithFrame:[self convertRectFromGameToView: CGRectMake(955, 375, 24, 12)] withPaths:sraPath andRepeat:0.5f];
 	[self.smallRightArrow addTarget:self 
                              action:@selector(rotateLander:) 
                    forControlEvents:UIControlEventValueChanged];
     [self.view addSubview:self.smallRightArrow];
     
     NSString *llaPath = [[NSBundle mainBundle] pathForResource:@"LargeLeftArrow" ofType:@"plist"];
-    self.largeLeftArrow = [[VGButton alloc] initWithFrame:CGRectMake(475, 450, 48, 24) withPaths:llaPath andRepeat:0.5f];
+    self.largeLeftArrow = [[VGButton alloc] initWithFrame:[self convertRectFromGameToView: CGRectMake(905, 330, 48, 24)] withPaths:llaPath andRepeat:0.5f];
 	[self.largeLeftArrow addTarget:self 
                             action:@selector(rotateLander:) 
                   forControlEvents:UIControlEventValueChanged];
     [self.view addSubview:self.largeLeftArrow];
     
     NSString *lraPath = [[NSBundle mainBundle] pathForResource:@"LargeRightArrow" ofType:@"plist"];
-    self.largeRightArrow = [[VGButton alloc] initWithFrame:CGRectMake(550, 450, 48, 24) withPaths:lraPath andRepeat:0.5f];
+    self.largeRightArrow = [[VGButton alloc] initWithFrame:
+                            [self convertRectFromGameToView: CGRectMake(955, 330, 48, 24)] withPaths:lraPath andRepeat:0.5f];
 	[self.largeRightArrow addTarget:self 
                              action:@selector(rotateLander:) 
                    forControlEvents:UIControlEventValueChanged];
     [self.view addSubview:self.largeRightArrow];
     
     // Create the thruster control
-    self.thrusterSlider = [[VGSlider alloc] initWithFrame:CGRectMake(400, 50, 200, 200)];
+    self.thrusterSlider = [[VGSlider alloc] initWithFrame:[self convertRectFromGameToView: CGRectMake(700, 700, 200, 200)]];
 	[self.thrusterSlider addTarget:self 
                             action:@selector(thrusterChanged:) 
                   forControlEvents:UIControlEventValueChanged];
     [self.view addSubview:self.thrusterSlider];
     
     // Create the telemetry items
-    self.heightData = [[Telemetry alloc] initWithFrame:CGRectMake(600, 400, 100, 20)];
+    self.heightData = [[Telemetry alloc] initWithFrame:[self convertRectFromGameToView: CGRectMake(900, 247, 100, 20)]];
     self.heightData.titleLabel.text = @"HEIGHT";
     self.heightData.format = @"%6.0f %@";
     self.heightData.data = Block_copy(^{return [self.landerModel.dataSource height];});
@@ -263,7 +317,7 @@ const float DisplayUpdateInterval = 0.25f;
                  forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:self.heightData];
     
-    self.altitudeData = [[Telemetry alloc] initWithFrame:CGRectMake(600, 420, 100, 20)];
+    self.altitudeData = [[Telemetry alloc] initWithFrame:[self convertRectFromGameToView: CGRectMake(900, 225, 100, 20)]];
     self.altitudeData.titleLabel.text = @"ALTITUDE";
     self.altitudeData.format = @"%6.0f %@";
     self.altitudeData.data = Block_copy(^{ return [self.landerModel.dataSource altitude];});
@@ -272,7 +326,7 @@ const float DisplayUpdateInterval = 0.25f;
                  forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:self.altitudeData];
     
-    self.distanceData = [[Telemetry alloc] initWithFrame:CGRectMake(600, 440, 100, 20)];
+    self.distanceData = [[Telemetry alloc] initWithFrame:[self convertRectFromGameToView: CGRectMake(900, 203, 100, 20)]];
     self.distanceData.titleLabel.text = @"DISTANCE";
     self.distanceData.format = @"%6.0f %@";
     self.distanceData.data = Block_copy(^{ return [self.landerModel.dataSource distance];});
@@ -282,7 +336,7 @@ const float DisplayUpdateInterval = 0.25f;
     [self.view addSubview:self.distanceData];
     
 
-    self.fuelLeftData = [[Telemetry alloc] initWithFrame:CGRectMake(600, 460, 100, 20)];
+    self.fuelLeftData = [[Telemetry alloc] initWithFrame:[self convertRectFromGameToView: CGRectMake(900, 181, 100, 20)]];
     self.fuelLeftData.titleLabel.text = @"FUEL LEFT";
     self.fuelLeftData.format = @"%6.0f %@";
     self.fuelLeftData.data = Block_copy(^{ return [self.landerModel.dataSource fuel];});
@@ -291,7 +345,7 @@ const float DisplayUpdateInterval = 0.25f;
                forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:self.fuelLeftData];
     
-    self.weightData = [[Telemetry alloc] initWithFrame:CGRectMake(600, 480, 100, 20)];
+    self.weightData = [[Telemetry alloc] initWithFrame:[self convertRectFromGameToView: CGRectMake(900, 159, 100, 20)]];
     self.weightData.titleLabel.text = @"WEIGHT";
     self.weightData.format = @"%6.0f %@";
     self.weightData.data = Block_copy(^{ return [self.landerModel.dataSource weight];});
@@ -300,7 +354,7 @@ const float DisplayUpdateInterval = 0.25f;
                          forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:self.weightData];
 
-    self.thrustData = [[Telemetry alloc] initWithFrame:CGRectMake(600, 500, 100, 20)];
+    self.thrustData = [[Telemetry alloc] initWithFrame:[self convertRectFromGameToView: CGRectMake(900, 137, 100, 20)]];
     self.thrustData.titleLabel.text = @"THRUST";
     self.thrustData.format = @"%6.0f %@";
     self.thrustData.data = Block_copy(^{ return [self.landerModel.dataSource thrust];});
@@ -309,7 +363,7 @@ const float DisplayUpdateInterval = 0.25f;
               forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:self.thrustData];
     
-    self.thrustAngleData = [[Telemetry alloc] initWithFrame:CGRectMake(600, 520, 100, 20)];
+    self.thrustAngleData = [[Telemetry alloc] initWithFrame:[self convertRectFromGameToView: CGRectMake(900, 115, 100, 20)]];
     self.thrustAngleData.titleLabel.text = @"ANGLE";
     self.thrustAngleData.format = @"%6.0f %@";
     self.thrustAngleData.data = Block_copy(^{ return [self.landerModel.dataSource angleDegrees];});
@@ -318,7 +372,7 @@ const float DisplayUpdateInterval = 0.25f;
               forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:self.thrustAngleData];
     
-    self.verticalVelocityData = [[Telemetry alloc] initWithFrame:CGRectMake(600, 540, 100, 20)];
+    self.verticalVelocityData = [[Telemetry alloc] initWithFrame:[self convertRectFromGameToView: CGRectMake(900, 93, 100, 20)]];
     self.verticalVelocityData.titleLabel.text = @"VER VEL";
     self.verticalVelocityData.format = @"%6.0f %@";
     self.verticalVelocityData.data = Block_copy(^{ return [self.landerModel.dataSource vertVel];});
@@ -327,7 +381,7 @@ const float DisplayUpdateInterval = 0.25f;
               forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:self.verticalVelocityData];
     
-    self.horizontalVelocityData = [[Telemetry alloc] initWithFrame:CGRectMake(600, 560, 100, 20)];
+    self.horizontalVelocityData = [[Telemetry alloc] initWithFrame:[self convertRectFromGameToView: CGRectMake(900, 71, 100, 20)]];
     self.horizontalVelocityData.titleLabel.text = @"HOR VEL";
     self.horizontalVelocityData.format = @"%6.0f %@";
     self.horizontalVelocityData.data = Block_copy(^{ return [self.landerModel.dataSource horizVel];});
@@ -336,7 +390,7 @@ const float DisplayUpdateInterval = 0.25f;
               forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:self.horizontalVelocityData];
     
-    self.verticalAccelerationData = [[Telemetry alloc] initWithFrame:CGRectMake(600, 580, 100, 20)];
+    self.verticalAccelerationData = [[Telemetry alloc] initWithFrame:[self convertRectFromGameToView: CGRectMake(900, 49, 100, 20)]];
     self.verticalAccelerationData.titleLabel.text = @"VER ACC";
     self.verticalAccelerationData.format = @"%6.0f %@";
     self.verticalAccelerationData.data = Block_copy(^{ return [self.landerModel.dataSource vertAccel];});
@@ -345,7 +399,7 @@ const float DisplayUpdateInterval = 0.25f;
               forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:self.verticalAccelerationData];
     
-    self.horizontalAccelerationData = [[Telemetry alloc] initWithFrame:CGRectMake(600, 600, 100, 20)];
+    self.horizontalAccelerationData = [[Telemetry alloc] initWithFrame:[self convertRectFromGameToView: CGRectMake(900, 27, 100, 20)]];
     self.horizontalAccelerationData.titleLabel.text = @"HOR ACC";
     self.horizontalAccelerationData.format = @"%6.0f %@";
     self.horizontalAccelerationData.data = Block_copy(^{ return [self.landerModel.dataSource horizAccel];});
@@ -354,7 +408,7 @@ const float DisplayUpdateInterval = 0.25f;
               forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:self.horizontalAccelerationData];
     
-    self.secondsData = [[Telemetry alloc] initWithFrame:CGRectMake(600, 620, 100, 20)];
+    self.secondsData = [[Telemetry alloc] initWithFrame:[self convertRectFromGameToView: CGRectMake(900, 5, 100, 20)]];
     self.secondsData.titleLabel.text = @"SECONDS";
     self.secondsData.format = @"%6.0f %@";
     self.secondsData.data = Block_copy(^{ return [self.landerModel.dataSource time];});
@@ -392,6 +446,34 @@ const float DisplayUpdateInterval = 0.25f;
                forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:self.instrument4];
 
+    self.instrument5 = [[Instrument alloc] initWithFrame:CGRectMake(0, 40, 200, 24)];
+    self.instrument5.instrument = self.secondsData;
+	[self.instrument5 addTarget:self 
+                         action:@selector(instrumentSelected:) 
+               forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:self.instrument5];
+    
+    self.instrument6 = [[Instrument alloc] initWithFrame:CGRectMake(250, 40, 200, 24)];
+    self.instrument6.instrument = self.fuelLeftData;
+	[self.instrument6 addTarget:self 
+                         action:@selector(instrumentSelected:) 
+               forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:self.instrument6];
+    
+    self.instrument7 = [[Instrument alloc] initWithFrame:CGRectMake(500, 40, 200, 24)];
+    self.instrument7.instrument = self.thrustAngleData;
+	[self.instrument7 addTarget:self 
+                         action:@selector(instrumentSelected:) 
+               forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:self.instrument7];
+    
+    self.instrument8 = [[Instrument alloc] initWithFrame:CGRectMake(750, 40, 200, 24)];
+    self.instrument8.instrument = self.weightData;
+	[self.instrument8 addTarget:self 
+                         action:@selector(instrumentSelected:) 
+               forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:self.instrument8];
+    
     // Start the game
     [self initGame];
 }
@@ -417,6 +499,11 @@ const float DisplayUpdateInterval = 0.25f;
     self.instrument2 = nil;
     self.instrument3 = nil;
     self.instrument4 = nil;
+    
+    self.instrument5 = nil;
+    self.instrument6 = nil;
+    self.instrument7 = nil;
+    self.instrument8 = nil;
     
     self.newGameButton = nil;
     
@@ -497,7 +584,7 @@ const float DisplayUpdateInterval = 0.25f;
     [self.landerModel.dataSource setAngle:([self.landerModel.dataSource angle] + deltaAngle)];
 }
 
-- (IBAction)newGame
+- (IBAction)newGame:(id)sender
 {
     [self.simulationTimer invalidate];
     [self.displayTimer invalidate];
@@ -518,17 +605,10 @@ const float DisplayUpdateInterval = 0.25f;
     [self.instrument3 display];
     [self.instrument4 display];
     
-    self.timeLabel.text = [NSString stringWithFormat:@"Time: %3.0f", [self.landerModel.dataSource time]];
-    self.angleLabel.text = [NSString stringWithFormat:@"Angle: %3.0f", [self.landerModel.dataSource angleDegrees]];
-    self.thrustLabel.text = [NSString stringWithFormat:@"Thrust: %3.0f", [self.landerModel.dataSource thrustPercent]];
-    self.altitudeLabel.text = [NSString stringWithFormat:@"Altitude: %5.0f", [self.landerModel.dataSource altitude]];
-    self.downrangeLabel.text = [NSString stringWithFormat:@"Downrange: %5.0f", [self.landerModel.dataSource distance
-]];
-    self.vertVelLabel.text = [NSString stringWithFormat:@"VertVel: %4.0f", [self.landerModel.dataSource vertVel]];
-    self.horizVelLabel.text = [NSString stringWithFormat:@"HorizVel: %4.0f", [self.landerModel.dataSource horizVel]];
-    self.vertAccelLabel.text = [NSString stringWithFormat:@"VertAccel: %3.1f", [self.landerModel.dataSource vertAccel]];
-    self.horizAccelLabel.text = [NSString stringWithFormat:@"HorizAccel: %3.1f", [self.landerModel.dataSource horizAccel]];
-    self.fuelRemainingLabel.text = [NSString stringWithFormat:@"Fuel: %4.0f", [self.landerModel.dataSource fuel]];
+    [self.instrument5 display];
+    [self.instrument6 display];
+    [self.instrument7 display];
+    [self.instrument8 display];
 }
 
 - (void)gameLoop

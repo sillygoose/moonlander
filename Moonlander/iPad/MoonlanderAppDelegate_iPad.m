@@ -16,6 +16,7 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     [super application:application didFinishLaunchingWithOptions:launchOptions];
+    
     [self.window addSubview:self.landerViewController.view];
     [self.window makeKeyAndVisible];
     return YES;

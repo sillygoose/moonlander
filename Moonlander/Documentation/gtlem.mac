@@ -2745,7 +2745,7 @@ SLEFTA:	.WORD	114020   ;point mode, blink off
 	.WORD	SLFTAY       ;Y=375
 	.WORD	113144       ;long vector mode, intensity 4, disable LP interrupts, solid line
 	.WORD	20.+LEFT+INT ;X 20 left, (draw)
-	.WORD	0.           ;Y right
+	.WORD	0.           ;Y up
 LEFTC:	.WORD	12.+INT  ;X 12 right, (draw)
 	.WORD	8.           ;Y 8 up
 	.WORD	12.+LEFT     ;X 12 left, (moveto)
@@ -2767,8 +2767,8 @@ BLEFTA:	.WORD	114020  ;point mode, blink off
 	.WORD	15.
 SRGTA:	.WORD	114020			;SMALL RIGHT ARROW.
 	.WORD	170240
-	.WORD	SRGTAX
-	.WORD	SRGTAY
+	.WORD	SRGTAX          ;X=955
+	.WORD	SRGTAY          ;Y=375
 	.WORD	113144
 	.WORD	20.+INT
 	.WORD	0
@@ -2783,8 +2783,8 @@ RGTC:	.WORD	12.+INT+LEFT
 	.WORD	100.
 BRGTA:	.WORD	114020
 	.WORD	170240
-	.WORD	BRGTAX
-	.WORD	BRGTAY
+	.WORD	BRGTAX          ;X=955
+	.WORD	BRGTAY          ;Y=330
 	.WORD	113144
 	.WORD	40.+INT
 	.WORD	0

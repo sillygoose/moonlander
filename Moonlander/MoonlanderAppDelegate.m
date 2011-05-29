@@ -18,8 +18,6 @@
 	// We don't want the screen to sleep during our game 
     application.idleTimerDisabled = YES;
     [self.window makeKeyAndVisible];
- 
-   
     return YES;
 }
 

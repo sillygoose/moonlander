@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface MoonlanderAppDelegate : NSObject <UIApplicationDelegate> {
-    //UIWindow *_window;
+    UIWindow *_window;
 }
 
 @property (nonatomic, retain) IBOutlet UIWindow *window;

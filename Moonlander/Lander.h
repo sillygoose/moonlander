@@ -16,9 +16,11 @@ typedef CGPoint (^position_data_t)();
 
 @interface Lander : VGView {
     VGView          *_thrust;
+    
     thrust_data_t   _thrustData;
     angle_data_t    _angleData;
     position_data_t _positionData;
+    
     float           _previousAngle;
     
 @private

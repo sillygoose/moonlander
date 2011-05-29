@@ -19,7 +19,6 @@
 @synthesize actualBounds=_actualBounds;
 
 
-
 - (id)initWithFrame:(CGRect)frameRect
 {
     if ((self = [super initWithFrame:frameRect])) {
