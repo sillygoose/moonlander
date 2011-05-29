@@ -14,6 +14,7 @@
 #import "VGButton.h"
 #import "VGSlider.h"
 
+#import "Moon.h"
 #import "Lander.h"
 #import "Telemetry.h"
 #import "Instrument.h"
@@ -22,6 +23,7 @@
 @interface LanderViewController_iPad : UIViewController {
     LanderPhysicsModel *_landerModel;
     
+    Moon            *_moonView;
     IBOutlet Lander *_landerView;
     
     VGButton *_smallLeftArrow;
@@ -66,6 +68,7 @@
 @property (nonatomic, assign) NSTimer *simulationTimer;
 @property (nonatomic, assign) NSTimer *displayTimer;
 
+@property (nonatomic, retain) Moon *moonView;
 @property (nonatomic, retain) IBOutlet Lander *landerView;
 
 @property (nonatomic, retain) VGButton *smallLeftArrow;

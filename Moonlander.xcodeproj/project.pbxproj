@@ -42,6 +42,7 @@
 		564EBC4F13834A07007D477C /* Man.plist in Resources */ = {isa = PBXBuildFile; fileRef = 564EBC4E13834A07007D477C /* Man.plist */; };
 		564EBC5113834A17007D477C /* McDonalds.plist in Resources */ = {isa = PBXBuildFile; fileRef = 564EBC5013834A17007D477C /* McDonalds.plist */; };
 		56755FDA138C0B8200455B52 /* Lander.m in Sources */ = {isa = PBXBuildFile; fileRef = 56755FD9138C0B8200455B52 /* Lander.m */; };
+		5694D1D813920A8C00A61F22 /* Moon.m in Sources */ = {isa = PBXBuildFile; fileRef = 5694D1D713920A8C00A61F22 /* Moon.m */; };
 		5695F1DA137F753B0075CD26 /* LargeRightArrow.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5695F1D7137F753B0075CD26 /* LargeRightArrow.plist */; };
 		5695F1DB137F753B0075CD26 /* SmallLeftArrow.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5695F1D8137F753B0075CD26 /* SmallLeftArrow.plist */; };
 		5695F1DC137F753B0075CD26 /* SmallRightArrow.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5695F1D9137F753B0075CD26 /* SmallRightArrow.plist */; };
@@ -114,6 +115,8 @@
 		564EBC5013834A17007D477C /* McDonalds.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = McDonalds.plist; path = Resources/McDonalds.plist; sourceTree = "<group>"; };
 		56755FD8138C0B8200455B52 /* Lander.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Lander.h; sourceTree = "<group>"; };
 		56755FD9138C0B8200455B52 /* Lander.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Lander.m; sourceTree = "<group>"; };
+		5694D1D613920A8C00A61F22 /* Moon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Moon.h; sourceTree = "<group>"; };
+		5694D1D713920A8C00A61F22 /* Moon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Moon.m; sourceTree = "<group>"; };
 		5695F1D7137F753B0075CD26 /* LargeRightArrow.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = LargeRightArrow.plist; path = Resources/LargeRightArrow.plist; sourceTree = "<group>"; };
 		5695F1D8137F753B0075CD26 /* SmallLeftArrow.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = SmallLeftArrow.plist; path = Resources/SmallLeftArrow.plist; sourceTree = "<group>"; };
 		5695F1D9137F753B0075CD26 /* SmallRightArrow.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = SmallRightArrow.plist; path = Resources/SmallRightArrow.plist; sourceTree = "<group>"; };
@@ -195,6 +198,8 @@
 			children = (
 				560FA0DE137991AE0017EE25 /* MoonlanderAppDelegate.h */,
 				560FA0DF137991AE0017EE25 /* MoonlanderAppDelegate.m */,
+				5694D1D613920A8C00A61F22 /* Moon.h */,
+				5694D1D713920A8C00A61F22 /* Moon.m */,
 				56755FD8138C0B8200455B52 /* Lander.h */,
 				56755FD9138C0B8200455B52 /* Lander.m */,
 				56CE052D138B12A7004FA450 /* LanderMessage.h */,
@@ -471,6 +476,7 @@
 				56CE0535138B5277004FA450 /* Telemetry.m in Sources */,
 				56CE0538138B6C88004FA450 /* Instrument.m in Sources */,
 				56755FDA138C0B8200455B52 /* Lander.m in Sources */,
+				5694D1D813920A8C00A61F22 /* Moon.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -24,6 +24,7 @@
 
 @synthesize landerModel=_landerModel;
 
+@synthesize moonView=_moonView;
 @synthesize landerView=_landerView;
 
 @synthesize smallLeftArrow=_smallLeftArrow;
@@ -104,7 +105,8 @@ const float DisplayUpdateInterval = 0.05f;
     CGRect viewRect = gameRect;
     NSLog(@"gameRect:%@    viewFrame:%@", NSStringFromCGRect(gameRect), NSStringFromCGRect(self.view.frame));
     NSLog(@"gameRect:%@    viewBounds:%@", NSStringFromCGRect(gameRect), NSStringFromCGRect(self.view.bounds));
-    viewRect.origin.y = self.view.bounds.size.width - gameRect.origin.y;
+    viewRect.origin.y = self.view.bounds.size.width - gameRect.origin.y - gameRect.size.height;
+    NSLog(@"gameRect:%@    viewRect:%@", NSStringFromCGRect(gameRect), NSStringFromCGRect(viewRect));
 	return viewRect;
 }
 
@@ -127,6 +129,8 @@ const float DisplayUpdateInterval = 0.05f;
 - (void)dealloc
 {
     [_landerModel release];
+    
+    [_moonView release];
     [_landerView release];
     
     [_smallLeftArrow release];
@@ -238,6 +242,11 @@ const float DisplayUpdateInterval = 0.05f;
     [self.instrument3 display];
     [self.instrument4 display];
     
+    [self.instrument5 display];
+    [self.instrument6 display];
+    [self.instrument7 display];
+    [self.instrument8 display];
+    
     // Setup game timers
 	self.simulationTimer = [NSTimer scheduledTimerWithTimeInterval:GameTimerInterval target:self selector:@selector(gameLoop) userInfo:nil repeats:YES];
 	self.displayTimer = [NSTimer scheduledTimerWithTimeInterval:DisplayUpdateInterval target:self selector:@selector(updateLander) userInfo:nil repeats:YES];
@@ -269,6 +278,10 @@ const float DisplayUpdateInterval = 0.05f;
                            action:@selector(newGame:) 
                  forControlEvents:UIControlEventValueChanged];
     [self.view addSubview:self.newGameButton];
+    
+    // Create the moon
+    self.moonView = [[Moon alloc] initWithFrame:[self convertRectFromGameToView: CGRectMake(0, 0, 1024, 768)]];
+    [self.view addSubview:self.moonView];
     
     // Create the roll control arrows
     NSString *slaPath = [[NSBundle mainBundle] pathForResource:@"SmallLeftArrow" ofType:@"plist"];
