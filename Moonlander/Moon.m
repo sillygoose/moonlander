@@ -44,12 +44,18 @@
         NSArray *drawPaths = [NSArray arrayWithObject:[self.moonDict objectForKey:@"paths"]];        
         NSArray *moonDataArray = [[drawPaths objectAtIndex:0] objectAtIndex:0];
         
-        //NSLog(@"drawPaths: %@", drawPaths);
-        //NSLog(@"moonDataArray: %@", moonDataArray);
+        // Intensity and line type variables
+        int DRAWTY = 0;
+        int DRAWTZ = 0;
+        unsigned DTYPE = 0;
+        unsigned DINT = 0;
+        const int nextIndex = 4;
+        const int firstIndex = 10;
+        const int secondIndex = firstIndex + nextIndex;
 
         // Should be X = 0 in the array
         CGPoint previousPoint = CGPointMake(0, 0);
-        NSDictionary *item = [moonDataArray objectAtIndex:10];
+        NSDictionary *item = [moonDataArray objectAtIndex:firstIndex];
         
         float x = [[item objectForKey:@"x"] floatValue];
         float y = [[item objectForKey:@"y"] floatValue];
@@ -63,10 +69,29 @@
         NSDictionary *moveToStartItem = [NSDictionary dictionaryWithObjectsAndKeys:startItem, @"moveto", nil];
         [path addObject:moveToStartItem];
         
-        for (int i = 14; i < moonDataArray.count; i += 4) {
+        for (int i = secondIndex; i < moonDataArray.count; i += nextIndex) {
             x = [[[moonDataArray objectAtIndex:i] objectForKey:@"x"] floatValue];
             y = [[[moonDataArray objectAtIndex:i] objectForKey:@"y"] floatValue];
             float scaledY = y / 32 + 23;
+            
+            // Intensity/line type update
+            DRAWTY--;
+            if (DRAWTY < 0) {
+                DRAWTZ++;
+                DRAWTZ &= 3;
+                DRAWTZ++;
+                DRAWTY = DRAWTZ;
+                DINT = (DINT + 5) % 8;
+                DTYPE = (DTYPE + 1) % 4;
+                
+                // Add line type and intensity
+                NSDictionary *lineType = [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInt:DTYPE], @"type", [NSNumber numberWithFloat:2.0f], @"width", nil];
+                NSDictionary *line = [NSDictionary dictionaryWithObjectsAndKeys:lineType, @"line", nil];
+                NSDictionary *intensity = [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInt:DINT], @"intensity", nil];
+                [path addObject:line];
+                [path addObject:intensity];
+                //NSLog(@"X: %f   Intensity: %d    Line type: %d", x, DINT, DTYPE);
+            }
             
             CGPoint drawToPoint = CGPointMake(x - previousPoint.x, scaledY - previousPoint.y);
             xCoordinate = [NSNumber numberWithInt:drawToPoint.x];
@@ -74,7 +99,7 @@
             NSMutableDictionary *drawItem = [NSDictionary dictionaryWithObjectsAndKeys:xCoordinate, @"x", yCoordinate, @"y", nil];
             [path addObject:drawItem];
             
-            NSLog(@"%d  %3.0f  %3.0f  %3.0f %@", i, x, y, scaledY, NSStringFromCGPoint(drawToPoint));
+            //NSLog(@"%d  %3.0f  %3.0f  %3.0f %@", i, x, y, scaledY, NSStringFromCGPoint(drawToPoint));
             previousPoint.x = x;
             previousPoint.y = scaledY;
         }
