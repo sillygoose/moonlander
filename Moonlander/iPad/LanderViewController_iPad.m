@@ -103,10 +103,10 @@ const float DisplayUpdateInterval = 0.05f;
 - (CGRect)convertRectFromGameToView:(CGRect)gameRect;
 {
     CGRect viewRect = gameRect;
-    NSLog(@"gameRect:%@    viewFrame:%@", NSStringFromCGRect(gameRect), NSStringFromCGRect(self.view.frame));
-    NSLog(@"gameRect:%@    viewBounds:%@", NSStringFromCGRect(gameRect), NSStringFromCGRect(self.view.bounds));
+    //NSLog(@"gameRect:%@    viewFrame:%@", NSStringFromCGRect(gameRect), NSStringFromCGRect(self.view.frame));
+    //NSLog(@"gameRect:%@    viewBounds:%@", NSStringFromCGRect(gameRect), NSStringFromCGRect(self.view.bounds));
     viewRect.origin.y = self.view.bounds.size.width - gameRect.origin.y - gameRect.size.height;
-    NSLog(@"gameRect:%@    viewRect:%@", NSStringFromCGRect(gameRect), NSStringFromCGRect(viewRect));
+    //NSLog(@"gameRect:%@    viewRect:%@", NSStringFromCGRect(gameRect), NSStringFromCGRect(viewRect));
 	return viewRect;
 }
 
@@ -266,10 +266,16 @@ const float DisplayUpdateInterval = 0.05f;
  
     // Create the lander view with data sources
     self.landerView = [[Lander alloc] init];
+    self.landerView.userInteractionEnabled = NO;
     self.landerView.thrustData = Block_copy(^{ return [self.landerModel.dataSource thrustPercent];});
     self.landerView.angleData = Block_copy(^{ return [self.landerModel.dataSource angle];});
     self.landerView.positionData = Block_copy(^{ return [self.landerModel.dataSource landerPosition];});
     [self.view addSubview:self.landerView];
+    
+    // Create the moon
+    self.moonView = [[Moon alloc] initWithFrame:[self convertRectFromGameToView: CGRectMake(0, 0, 1024, 768)]];
+    self.moonView.userInteractionEnabled = NO;
+    [self.view addSubview:self.moonView];
     
     // New game button
     self.newGameButton = [[VGButton alloc] initWithFrame:CGRectMake(960, 0, 64, 64)];
@@ -278,10 +284,6 @@ const float DisplayUpdateInterval = 0.05f;
                            action:@selector(newGame:) 
                  forControlEvents:UIControlEventValueChanged];
     [self.view addSubview:self.newGameButton];
-    
-    // Create the moon
-    self.moonView = [[Moon alloc] initWithFrame:[self convertRectFromGameToView: CGRectMake(0, 0, 1024, 768)]];
-    [self.view addSubview:self.moonView];
     
     // Create the roll control arrows
     NSString *slaPath = [[NSBundle mainBundle] pathForResource:@"SmallLeftArrow" ofType:@"plist"];
@@ -314,7 +316,7 @@ const float DisplayUpdateInterval = 0.05f;
     [self.view addSubview:self.largeRightArrow];
     
     // Create the thruster control
-    self.thrusterSlider = [[VGSlider alloc] initWithFrame:[self convertRectFromGameToView: CGRectMake(700, 700, 200, 200)]];
+    self.thrusterSlider = [[VGSlider alloc] initWithFrame:[self convertRectFromGameToView: CGRectMake(800, 450, 200, 200)]];
 	[self.thrusterSlider addTarget:self 
                             action:@selector(thrusterChanged:) 
                   forControlEvents:UIControlEventValueChanged];

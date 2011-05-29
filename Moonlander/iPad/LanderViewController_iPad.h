@@ -24,7 +24,7 @@
     LanderPhysicsModel *_landerModel;
     
     Moon            *_moonView;
-    IBOutlet Lander *_landerView;
+    Lander          *_landerView;
     
     VGButton *_smallLeftArrow;
     VGButton *_smallRightArrow;
@@ -69,7 +69,7 @@
 @property (nonatomic, assign) NSTimer *displayTimer;
 
 @property (nonatomic, retain) Moon *moonView;
-@property (nonatomic, retain) IBOutlet Lander *landerView;
+@property (nonatomic, retain) Lander *landerView;
 
 @property (nonatomic, retain) VGButton *smallLeftArrow;
 @property (nonatomic, retain) VGButton *smallRightArrow;
@@ -106,6 +106,7 @@
 
 - (IBAction)thrusterChanged:(VGSlider *)sender;
 - (IBAction)rotateLander:(id)sender;
+- (IBAction)newGame:(id)sender;
 
 - (void)gameReset;
 - (void)updateLander;
