@@ -115,12 +115,6 @@ float RadiansToDegrees(float radians)
     return CGPointMake(self.horizontalDistance, self.verticalDistance);
 }
 
-//###
-- (float)height
-{
-    return (self.verticalDistance <= 0.0f) ? 0.0f : self.verticalDistance;
-}
-
 - (float)altitude
 {
     return (self.verticalDistance <= 0.0f) ? 0.0f : self.verticalDistance;

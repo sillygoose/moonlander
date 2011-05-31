@@ -15,7 +15,6 @@
 
 - (CGPoint)landerPosition;
 
-- (float)height;
 - (float)altitude;
 - (float)distance;
 
