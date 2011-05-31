@@ -264,16 +264,9 @@ const float DisplayUpdateInterval = 0.05f;
     self.landerModel.dataSource = self.landerModel;
     self.landerModel.delegate = self.landerModel;
  
-    // Create the lander view with data sources
-    self.landerView = [[Lander alloc] init];
-    self.landerView.userInteractionEnabled = NO;
-    self.landerView.thrustData = Block_copy(^{ return [self.landerModel.dataSource thrustPercent];});
-    self.landerView.angleData = Block_copy(^{ return [self.landerModel.dataSource angle];});
-    self.landerView.positionData = Block_copy(^{ return [self.landerModel.dataSource landerPosition];});
-    [self.view addSubview:self.landerView];
-    
-    // Create the moon
+    // Create the moon - ###reduce frame size at some point
     self.moonView = [[Moon alloc] initWithFrame:[self convertRectFromGameToView: CGRectMake(0, 0, 1024, 768)]];
+    self.moonView.dataSource = self.moonView;
     self.moonView.userInteractionEnabled = NO;
     [self.view addSubview:self.moonView];
     
@@ -326,7 +319,7 @@ const float DisplayUpdateInterval = 0.05f;
     self.heightData = [[Telemetry alloc] initWithFrame:[self convertRectFromGameToView: CGRectMake(900, 247, 100, 20)]];
     self.heightData.titleLabel.text = @"HEIGHT";
     self.heightData.format = @"%6.0f %@";
-    self.heightData.data = Block_copy(^{return [self.landerModel.dataSource height];});
+    self.heightData.data = Block_copy(^{return [self.landerModel.dataSource altitude];});
 	[self.heightData addTarget:self 
                            action:@selector(telemetrySelected:) 
                  forControlEvents:UIControlEventTouchUpInside];
@@ -489,6 +482,15 @@ const float DisplayUpdateInterval = 0.05f;
                forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:self.instrument8];
     
+    // Create the lander view with data sources
+    self.landerView = [[Lander alloc] init];
+    self.landerView.userInteractionEnabled = NO;
+    self.landerView.contentMode = UIViewContentModeRedraw;
+    self.landerView.thrustData = Block_copy(^{ return [self.landerModel.dataSource thrustPercent];});
+    self.landerView.angleData = Block_copy(^{ return [self.landerModel.dataSource angle];});
+    self.landerView.positionData = Block_copy(^{ return [self.landerModel.dataSource landerPosition];});
+    [self.view addSubview:self.landerView];
+    
     // Start the game
     [self initGame];
 }
@@ -575,6 +577,12 @@ const float DisplayUpdateInterval = 0.05f;
     [self.thrusterSlider setValue:[self.landerModel.dataSource thrustPercent]];
 }
 
+//
+// ###Need to emulate better, original code uses +-15 and +-100 degrees per second for the roll
+// rates using a calculation
+//
+// (rate_of_turn * clock_ticks) / clock_frequency
+//
 - (IBAction)rotateLander:(id)sender
 {
     float deltaAngle = 0.0f;
@@ -630,6 +638,15 @@ const float DisplayUpdateInterval = 0.05f;
 {
     [self.landerModel.delegate updateTime:GameTimerInterval];
     
+    // Move the lander
+    float SHOWX = ([self.landerModel.dataSource distance] + 22400.0f) / 32.0f;
+    float SHOWY = ([self.landerModel.dataSource height] / 32.0f) + 43.0f;
+    CGPoint newFrame = self.landerView.center;
+    newFrame.x = SHOWX;
+    newFrame.y = self.view.frame.size.width - SHOWY;
+    self.landerView.center = newFrame;
+    
+    // Test for game events
     if ([self.landerModel.dataSource onSurface]) {
         // Update the thruster display
         [self.thrusterSlider setValue:[self.landerModel.dataSource thrustPercent]];

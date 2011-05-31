@@ -26,41 +26,41 @@
     Moon            *_moonView;
     Lander          *_landerView;
     
-    VGButton *_smallLeftArrow;
-    VGButton *_smallRightArrow;
-    VGButton *_largeLeftArrow;
-    VGButton *_largeRightArrow;
+    VGButton        *_smallLeftArrow;
+    VGButton        *_smallRightArrow;
+    VGButton        *_largeLeftArrow;
+    VGButton        *_largeRightArrow;
     
-    VGSlider *_thrusterSlider;
+    VGSlider        *_thrusterSlider;
     
-    NSTimer *_simulationTimer;
-    NSTimer *_displayTimer;
+    NSTimer         *_simulationTimer;
+    NSTimer         *_displayTimer;
 
-    VGButton *_newGameButton;
+    VGButton        *_newGameButton;
     
-    Telemetry *_selectedTelemetry;
-    Telemetry *_heightData;
-    Telemetry *_altitudeData;
-    Telemetry *_distanceData;
-    Telemetry *_fuelLeftData;
-    Telemetry *_weightData;
-    Telemetry *_thrustData;
-    Telemetry *_thrustAngleData;
-    Telemetry *_verticalVelocityData;
-    Telemetry *_horizontalVelocityData;
-    Telemetry *_verticalAccelerationData;
-    Telemetry *_horizontalAccelerationData;
-    Telemetry *_secondsData;
+    Telemetry       *_selectedTelemetry;
+    Telemetry       *_heightData;
+    Telemetry       *_altitudeData;
+    Telemetry       *_distanceData;
+    Telemetry       *_fuelLeftData;
+    Telemetry       *_weightData;
+    Telemetry       *_thrustData;
+    Telemetry       *_thrustAngleData;
+    Telemetry       *_verticalVelocityData;
+    Telemetry       *_horizontalVelocityData;
+    Telemetry       *_verticalAccelerationData;
+    Telemetry       *_horizontalAccelerationData;
+    Telemetry       *_secondsData;
 
-    Instrument *_instrument1;
-    Instrument *_instrument2;
-    Instrument *_instrument3;
-    Instrument *_instrument4;
+    Instrument      *_instrument1;
+    Instrument      *_instrument2;
+    Instrument      *_instrument3;
+    Instrument      *_instrument4;
     
-    Instrument *_instrument5;
-    Instrument *_instrument6;
-    Instrument *_instrument7;
-    Instrument *_instrument8;
+    Instrument      *_instrument5;
+    Instrument      *_instrument6;
+    Instrument      *_instrument7;
+    Instrument      *_instrument8;
 }
 
 @property (nonatomic, retain) LanderPhysicsModel *landerModel;
