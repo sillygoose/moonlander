@@ -20,6 +20,9 @@
 {
     self = [super initWithFrame:moonRect];
     if (self) {
+        // No events for the moon
+        self.userInteractionEnabled = NO;
+        
         NSString *moonPath = [[NSBundle mainBundle] pathForResource:@"Moon" ofType:@"plist"];
         self.moonDict = [NSDictionary dictionaryWithContentsOfFile:moonPath];
         self.vectorName = @"[Moon init]";
