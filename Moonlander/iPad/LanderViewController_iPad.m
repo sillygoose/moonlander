@@ -27,6 +27,9 @@
 @synthesize moonView=_moonView;
 @synthesize landerView=_landerView;
 
+@synthesize SHOWX=_SHOWX;
+@synthesize SHOWY=_SHOWY;
+
 @synthesize smallLeftArrow=_smallLeftArrow;
 @synthesize smallRightArrow=_smallRightArrow;
 @synthesize largeLeftArrow=_largeLeftArrow;
@@ -319,7 +322,7 @@ const float DisplayUpdateInterval = 0.05f;
     self.heightData = [[Telemetry alloc] initWithFrame:[self convertRectFromGameToView: CGRectMake(900, 247, 100, 20)]];
     self.heightData.titleLabel.text = @"HEIGHT";
     self.heightData.format = @"%6.0f %@";
-    self.heightData.data = Block_copy(^{return [self.landerModel.dataSource altitude];});
+    self.heightData.data = Block_copy(^{return [self.landerModel.dataSource altitude]- [self.moonView.dataSource terrainHeight:self.SHOWX];});
 	[self.heightData addTarget:self 
                            action:@selector(telemetrySelected:) 
                  forControlEvents:UIControlEventTouchUpInside];
@@ -639,14 +642,24 @@ const float DisplayUpdateInterval = 0.05f;
     [self.landerModel.delegate updateTime:GameTimerInterval];
     
     // Move the lander
-    float SHOWX = ([self.landerModel.dataSource distance] + 22400.0f) / 32.0f;
-    float SHOWY = ([self.landerModel.dataSource height] / 32.0f) + 43.0f;
+    self.SHOWX = ([self.landerModel.dataSource distance] + 22400.0f) / 32.0f;
+    self.SHOWY = ([self.landerModel.dataSource altitude] / 32.0f) + 43.0f;
     CGPoint newFrame = self.landerView.center;
-    newFrame.x = SHOWX;
-    newFrame.y = self.view.frame.size.width - SHOWY;
+    newFrame.x = self.SHOWX;
+    newFrame.y = self.view.frame.size.width - self.SHOWY;
     self.landerView.center = newFrame;
     
-    // Test for game events
+    // Test for extreme game events
+    if (self.SHOWX < 0) {
+        // Off the left edge
+    }
+    else if (self.SHOWX > 1024) {
+        // Off the right edge
+    }
+    else if (self.SHOWY > self.view.frame.size.width) {
+        // Off the top edge
+    }
+    
     if ([self.landerModel.dataSource onSurface]) {
         // Update the thruster display
         [self.thrusterSlider setValue:[self.landerModel.dataSource thrustPercent]];

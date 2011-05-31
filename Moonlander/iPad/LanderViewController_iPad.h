@@ -26,6 +26,9 @@
     Moon            *_moonView;
     Lander          *_landerView;
     
+    float           _SHOWX;
+    float           _SHOWY;
+    
     VGButton        *_smallLeftArrow;
     VGButton        *_smallRightArrow;
     VGButton        *_largeLeftArrow;
@@ -67,6 +70,9 @@
 
 @property (nonatomic, assign) NSTimer *simulationTimer;
 @property (nonatomic, assign) NSTimer *displayTimer;
+
+@property (nonatomic) float SHOWX;
+@property (nonatomic) float SHOWY;
 
 @property (nonatomic, retain) Moon *moonView;
 @property (nonatomic, retain) Lander *landerView;
