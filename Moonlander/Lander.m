@@ -54,9 +54,12 @@
 
 - (id)init
 {
-    CGRect landerRect = CGRectMake(200, 200, 96, 96);
+    CGRect landerRect = CGRectMake(0, 0, 96, 96);
     self = [super initWithFrame:landerRect];
     if (self) {
+        // No events for the lander
+        self.userInteractionEnabled = NO;
+        
         NSString *landerPath = [[NSBundle mainBundle] pathForResource:@"Lander" ofType:@"plist"];
         NSDictionary *landerDict = [NSDictionary dictionaryWithContentsOfFile:landerPath];
         self.drawPaths = [landerDict objectForKey:@"paths"];
