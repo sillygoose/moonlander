@@ -35,18 +35,19 @@
 
 - (float)terrainHeight:(int)xCoordinate
 {
-    unsigned averageHeight = 0;
+    float averageHeight = 0.0f;
     if (xCoordinate >= 0 && xCoordinate < self.moonArray.count) {
         if (xCoordinate == (self.moonArray.count - 1)) {
-            float elevation1 = [[[self.moonArray objectAtIndex:(xCoordinate)] objectForKey:@"x"] floatValue];
-            averageHeight = (int)elevation1;
+            float elevation1 = [[[self.moonArray objectAtIndex:(xCoordinate)] objectForKey:@"y"] floatValue];
+            averageHeight = elevation1;
         }
         else {
-            float elevation1 = [[[self.moonArray objectAtIndex:(xCoordinate)] objectForKey:@"x"] floatValue];
-            float elevation2 = [[[self.moonArray objectAtIndex:(xCoordinate+1)] objectForKey:@"x"] floatValue];
-            averageHeight = (int)((elevation1 + elevation2) / 2);
+            float elevation1 = [[[self.moonArray objectAtIndex:(xCoordinate)] objectForKey:@"y"] floatValue];
+            float elevation2 = [[[self.moonArray objectAtIndex:(xCoordinate+1)] objectForKey:@"y"] floatValue];
+            averageHeight = (elevation1 + elevation2) / 2;
         }
     }
+    NSLog(@"X:%d  avgHeight:%5.0f", xCoordinate, averageHeight);
     return averageHeight;
 }
 
