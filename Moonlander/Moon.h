@@ -12,16 +12,20 @@
 #import "Lander.h"
 
 
-@interface Moon : VGView {
-    //Lander          *_lander;
-    NSDictionary    *_moonDict;
+@protocol MoonDataSource <NSObject>
+- (float)terrainHeight:(int)xCoordinate;
+@end
 
-    position_data_t _positionData;
+@interface Moon : VGView <MoonDataSource> {
+    NSDictionary        *_moonDict;
+    NSArray             *_moonArray;
+    
+    id <MoonDataSource> _dataSource ;
 }
 
-//@property (nonatomic, retain) Lander *lander;
 @property (nonatomic, retain) NSDictionary *moonDict;
-@property (nonatomic, copy) position_data_t positionData;
+@property (nonatomic, retain) NSArray *moonArray;
+@property (assign) id <MoonDataSource> dataSource;
 
 - (id)initWithFrame:(CGRect)frameRect;
 
