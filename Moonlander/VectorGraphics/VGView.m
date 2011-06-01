@@ -214,7 +214,7 @@
                     int type = [[lineStuff objectForKey:@"type"] intValue];
                     CGFloat phase = 0.0f;
                     size_t count = 0;
-                    const CGFloat *lengths;
+                    const CGFloat *lengths = NULL;
                     const CGFloat LongDash[] = {12.0f, 4.0f};
                     const CGFloat ShortDash[] = {6.0f, 2.0f};
                     const CGFloat DotDash[] = {6.0f, 2.0f, 12.0f, 2.0f};
