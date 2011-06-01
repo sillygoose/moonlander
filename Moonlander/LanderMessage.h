@@ -15,6 +15,9 @@
     
 }
 
+- (id)initWithFrame:(CGRect)frameRect;
 - (id)initWithMessage:(NSString *)msgName;
+
+- (void)addMessage:(NSString *)message;
 
 @end

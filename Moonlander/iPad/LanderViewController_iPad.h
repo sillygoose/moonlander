@@ -18,6 +18,7 @@
 #import "Lander.h"
 #import "Telemetry.h"
 #import "Instrument.h"
+#import "LanderMessage.h"
 
 
 @interface LanderViewController_iPad : UIViewController {
@@ -64,6 +65,8 @@
     Instrument      *_instrument6;
     Instrument      *_instrument7;
     Instrument      *_instrument8;
+    
+    LanderMessage   *_systemMessage;
 }
 
 @property (nonatomic, retain) LanderPhysicsModel *landerModel;
@@ -109,6 +112,9 @@
 @property (nonatomic, retain) Instrument *instrument6;
 @property (nonatomic, retain) Instrument *instrument7;
 @property (nonatomic, retain) Instrument *instrument8;
+
+@property (nonatomic, retain) LanderMessage *systemMessage;
+
 
 - (IBAction)thrusterChanged:(VGSlider *)sender;
 - (IBAction)rotateLander:(id)sender;

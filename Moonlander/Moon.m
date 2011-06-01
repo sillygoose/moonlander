@@ -27,7 +27,7 @@
         self.moonDict = [NSDictionary dictionaryWithContentsOfFile:moonPath];
         self.vectorName = @"[Moon init]";
         
-        // Cache the terrain data
+        // Cache the lunar terrain data
         self.moonArray = [[[NSArray arrayWithObject:[self.moonDict objectForKey:@"paths"]] objectAtIndex:0] objectAtIndex:0];
     }
     return self;
@@ -47,7 +47,7 @@
             averageHeight = (elevation1 + elevation2) / 2;
         }
     }
-    NSLog(@"X:%d  avgHeight:%5.0f", xCoordinate, averageHeight);
+    //NSLog(@"X:%d  avgHeight:%5.0f", xCoordinate, averageHeight);
     return averageHeight;
 }
 

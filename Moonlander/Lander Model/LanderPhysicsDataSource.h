@@ -17,6 +17,7 @@
 
 - (float)altitude;
 - (float)distance;
+- (void)setDistance:(float)newDistance;
 
 - (BOOL)lowFuelWarning;
 
@@ -30,9 +31,12 @@
 - (float)thrustPercent;
 
 - (float)fuel;
+- (void)setFuel:(float)fuel;
 - (float)weight;
 - (float)horizVel;
+- (void)setHorizVel:(float)newVel;
 - (float)vertVel;
+- (void)setVertVel:(float)newVel;
 - (float)horizAccel;
 - (float)vertAccel;
 - (float)acceleration;

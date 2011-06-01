@@ -66,6 +66,8 @@
 @synthesize instrument7=_instrument7;
 @synthesize instrument8=_instrument8;
 
+@synthesize systemMessage=_systemMessage;
+
 
 const float GameTimerInterval = 1.0 / 12.0f;
 const float DisplayUpdateInterval = 0.05f;
@@ -171,6 +173,8 @@ const float DisplayUpdateInterval = 0.05f;
     [_instrument7 release];
     [_instrument8 release];
     
+    [_systemMessage release];
+    
     [super dealloc];
 }
 
@@ -268,10 +272,15 @@ const float DisplayUpdateInterval = 0.05f;
     self.landerModel.delegate = self.landerModel;
  
     // Create the moon - ###reduce frame size at some point
-    self.moonView = [[Moon alloc] initWithFrame:[self convertRectFromGameToView: CGRectMake(0, 0, 1024, 768)]];
+    self.moonView = [[Moon alloc] initWithFrame:[self convertRectFromGameToView:CGRectMake(0, 0, 1024, 768)]];
     self.moonView.dataSource = self.moonView;
     self.moonView.userInteractionEnabled = NO;
     [self.view addSubview:self.moonView];
+    
+    // Add an empty system message for future use
+    self.systemMessage = [[LanderMessage alloc] initWithFrame:CGRectMake(0, 0, 500, 100)];
+    self.systemMessage.hidden = NO; //### chnage to YES when working
+    [self.view addSubview:self.systemMessage];
     
     // New game button
     self.newGameButton = [[VGButton alloc] initWithFrame:CGRectMake(960, 0, 64, 64)];
@@ -458,7 +467,7 @@ const float DisplayUpdateInterval = 0.05f;
     [self.view addSubview:self.instrument4];
 
     self.instrument5 = [[Instrument alloc] initWithFrame:CGRectMake(0, 40, 200, 24)];
-    self.instrument5.instrument = self.secondsData;
+    self.instrument5.instrument = self.altitudeData;
 	[self.instrument5 addTarget:self 
                          action:@selector(instrumentSelected:) 
                forControlEvents:UIControlEventTouchUpInside];
@@ -479,7 +488,7 @@ const float DisplayUpdateInterval = 0.05f;
     [self.view addSubview:self.instrument7];
     
     self.instrument8 = [[Instrument alloc] initWithFrame:CGRectMake(750, 40, 200, 24)];
-    self.instrument8.instrument = self.weightData;
+    self.instrument8.instrument = self.secondsData;
 	[self.instrument8 addTarget:self 
                          action:@selector(instrumentSelected:) 
                forControlEvents:UIControlEventTouchUpInside];
@@ -535,6 +544,7 @@ const float DisplayUpdateInterval = 0.05f;
     self.thrusterSlider = nil;
     
     self.landerView = nil;
+    self.systemMessage = nil;
     
     [self.simulationTimer invalidate];
     [self.displayTimer invalidate];
@@ -612,6 +622,9 @@ const float DisplayUpdateInterval = 0.05f;
 
 - (IBAction)newGame:(id)sender
 {
+    // Clear any system message from the last game
+    self.systemMessage.hidden = YES;
+    
     [self.simulationTimer invalidate];
     [self.displayTimer invalidate];
     
@@ -637,6 +650,23 @@ const float DisplayUpdateInterval = 0.05f;
     [self.instrument8 display];
 }
 
+- (void)OFFCOM:(float)xPosition withMessage:(NSString *)message
+{
+    float newHDistance = xPosition * 32 -22400.0;
+    float newVertVel = [self.landerModel.dataSource altitude] / 40;
+    if (newVertVel >= 0) {
+        newVertVel = -newVertVel;
+    }
+    
+    [self.landerModel.dataSource setDistance:newHDistance];    
+    [self.landerModel.dataSource setFuel:0.0f];    
+    [self.landerModel.dataSource setHorizVel:0.0f];   
+    [self.landerModel.dataSource setVertVel:newVertVel];   
+    
+    [self.systemMessage addMessage:message];
+    self.systemMessage.hidden = NO;
+}
+
 - (void)gameLoop
 {
     [self.landerModel.delegate updateTime:GameTimerInterval];
@@ -652,12 +682,15 @@ const float DisplayUpdateInterval = 0.05f;
     // Test for extreme game events
     if (self.SHOWX < 0) {
         // Off the left edge
+        [self OFFCOM:13 withMessage:@"LeftEdge"];
     }
-    else if (self.SHOWX > 1024) {
+    else if (self.SHOWX > 890) {
         // Off the right edge
+        [self OFFCOM:887 withMessage:@"RightEdge"];
     }
-    else if (self.SHOWY > self.view.frame.size.width) {
+    else if ([self.landerModel.dataSource altitude] > 25000) {
         // Off the top edge
+        [self OFFCOM:self.SHOWX withMessage:@"TopEdge"];
     }
     
     if ([self.landerModel.dataSource onSurface]) {

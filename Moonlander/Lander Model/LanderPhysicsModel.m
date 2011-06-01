@@ -125,6 +125,11 @@ float RadiansToDegrees(float radians)
     return self.horizontalDistance;
 }
 
+- (void)setDistance:(float)newDistance
+{
+    self.horizontalDistance = newDistance;
+}
+
 - (BOOL)lowFuelWarning
 {
     return ((self.fuelRemaining > 0.0f) && (self.fuelRemaining <= self.lowFuelLimit)) ? YES : NO;
@@ -155,6 +160,11 @@ float RadiansToDegrees(float radians)
     return self.fuelRemaining;
 }
 
+- (void)setFuel:(float)fuel
+{
+    self.fuelRemaining = fuel;
+}
+
 - (float)acceleration
 {
     return self.lemAcceleration;
@@ -165,9 +175,19 @@ float RadiansToDegrees(float radians)
     return self.horizontalVelocity;
 }
 
+- (void)setHorizVel:(float)newVel
+{
+    self.horizontalVelocity = newVel;
+}
+
 - (float)vertVel
 {
     return self.verticalVelocity;
+}
+
+- (void)setVertVel:(float)newVel
+{
+    self.verticalVelocity = newVel;
 }
 
 - (float)horizAccel
