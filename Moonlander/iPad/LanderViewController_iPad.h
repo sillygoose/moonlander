@@ -29,6 +29,7 @@
     
     float           _SHOWX;
     float           _SHOWY;
+    float           _HEIGHT;
     
     VGButton        *_smallLeftArrow;
     VGButton        *_smallRightArrow;
@@ -76,6 +77,7 @@
 
 @property (nonatomic) float SHOWX;
 @property (nonatomic) float SHOWY;
+@property (nonatomic) float HEIGHT;
 
 @property (nonatomic, retain) Moon *moonView;
 @property (nonatomic, retain) Lander *landerView;

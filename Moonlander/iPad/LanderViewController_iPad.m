@@ -29,6 +29,7 @@
 
 @synthesize SHOWX=_SHOWX;
 @synthesize SHOWY=_SHOWY;
+@synthesize HEIGHT=_HEIGHT;
 
 @synthesize smallLeftArrow=_smallLeftArrow;
 @synthesize smallRightArrow=_smallRightArrow;
@@ -275,6 +276,7 @@ const float DisplayUpdateInterval = 0.05f;
     self.moonView = [[Moon alloc] initWithFrame:[self convertRectFromGameToView:CGRectMake(0, 0, 1024, 768)]];
     self.moonView.dataSource = self.moonView;
     self.moonView.userInteractionEnabled = NO;
+    [self.moonView viewNormal];
     [self.view addSubview:self.moonView];
     
     // Add an empty system message for future use
@@ -331,7 +333,7 @@ const float DisplayUpdateInterval = 0.05f;
     self.heightData = [[Telemetry alloc] initWithFrame:[self convertRectFromGameToView: CGRectMake(900, 247, 100, 20)]];
     self.heightData.titleLabel.text = @"HEIGHT";
     self.heightData.format = @"%6.0f %@";
-    self.heightData.data = Block_copy(^{return [self.landerModel.dataSource altitude]- [self.moonView.dataSource terrainHeight:self.SHOWX];});
+    self.heightData.data = Block_copy(^{return [self.landerModel.dataSource altitude] - [self.moonView.dataSource terrainHeight:self.SHOWX];});
 	[self.heightData addTarget:self 
                            action:@selector(telemetrySelected:) 
                  forControlEvents:UIControlEventTouchUpInside];
@@ -639,6 +641,14 @@ const float DisplayUpdateInterval = 0.05f;
 {
     [self.landerView updateLander];
     
+    // Move the lander
+    self.SHOWX = ([self.landerModel.dataSource distance] + 22400.0f) / 32.0f;
+    self.SHOWY = ([self.landerModel.dataSource altitude] / 32.0f) + 43.0f;
+    CGPoint newFrame = self.landerView.center;
+    newFrame.x = self.SHOWX;
+    newFrame.y = self.view.frame.size.width - self.SHOWY;
+    self.landerView.center = newFrame;
+    
     [self.instrument1 display];
     [self.instrument2 display];
     [self.instrument3 display];
@@ -679,6 +689,8 @@ const float DisplayUpdateInterval = 0.05f;
     newFrame.y = self.view.frame.size.width - self.SHOWY;
     self.landerView.center = newFrame;
     
+    self.HEIGHT = [self.landerModel.dataSource altitude] - [self.moonView.dataSource terrainHeight:self.SHOWX];
+    
     // Test for extreme game events
     if (self.SHOWX < 0) {
         // Off the left edge
@@ -691,6 +703,14 @@ const float DisplayUpdateInterval = 0.05f;
     else if ([self.landerModel.dataSource altitude] > 25000) {
         // Off the top edge
         [self OFFCOM:self.SHOWX withMessage:@"TopEdge"];
+    }
+    
+    // Switch views if we hit a critical altitude
+    if ([self.landerModel.dataSource altitude]) {
+        [self.moonView viewCloseUp:self.SHOWX - 9];
+    }
+    else {
+        [self.moonView viewNormal];
     }
     
     if ([self.landerModel.dataSource onSurface]) {

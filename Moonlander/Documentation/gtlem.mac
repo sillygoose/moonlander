@@ -823,7 +823,7 @@ OFFCMD:
 ;		BACK TO IDLE VIA THE OLD PC ON THE STACK
 ;		<OR IT SHOULD, ANYWAY.>.
 ;
-CLSEUP:
+CLSEUP:                     ;(SP) is the return PC, MOON is zero first time
     CMP	MOON,(SP)           ;SEE IF WE HAVE THE MOON IN SIGHT.
 	BEQ	CLSEC1              ;YES.
 	MOV	BIGXCT,IN1          ;NO. GET CURRENT RASTOR POSITION.
@@ -876,6 +876,7 @@ CLSEOK:
 
 CLSEF1:
     JSR	PC,DIVTWO
+
 CLSEF2:
     MOV	RET2,TEMP           ;MOVE OVER HEIGHT FOR DFAKE TO USE.
 	ASR	RET2                ;NOW CONTINUING FUDING TERRAIN BY KNOWN STANDARDS.
@@ -1740,7 +1741,7 @@ EXGENP:
 ;		IN MAY GO HERE.
 ;
 DRAWM2:
-    JSR	PC,DRAWMC           ;THIS ROUTINE WILL THE CLOSE-UP
+    JSR	PC,DRAWMC           ;THIS ROUTINE WILL DRAW THE CLOSE-UP
 	CLR	DFUDGE              ;VIEW OF THE MOON.
 	MOV	LEFTEDGE,IN1		;PICK UP LEFT SIDE OF THE SCREEN.
 	ASL	IN1
@@ -1760,59 +1761,63 @@ DRW2L5:
 DRW2M:
     MOV	TEMP,(TEMP2)+		;INSERT STARTING Y INTO BUFFER.
 	MOV	TEMP,LASTY          ;ESTABLISH LAST Y POSITION NOW.
-	MOV	#SETSVM,(TEMP2)+	;INSERT THE GRAPH PLOT MODE COMMAND <Y>.
+	MOV	#SETSVM,(TEMP2)+	;small vector mode      INSERT THE GRAPH PLOT MODE COMMAND <Y>.
 
 DRW2L:
-    MOV	TEMP,-(SP)          ;NOW GET Y(NEW) AND DELTA Y.
-	MOV	(IN1)+,TEMP
-	JSR	PC,DFAKE
-	MOV	TEMP,IN2
-	MOV	(SP)+,TEMP
+    MOV	TEMP,-(SP)          ;push old Y             NOW GET Y(NEW) AND DELTA Y.
+	MOV	(IN1)+,TEMP         ;newY
+	JSR	PC,DFAKE            ;scaledY in TEMP
+	MOV	TEMP,IN2            ;scaledY in IN2
+	MOV	(SP)+,TEMP          ;previousY in TEMP
 	CLR	RET1                ;CLEAR AWAY LEFT MOST PART FOR THE DIVIDE.
-	MOV	IN1,-(SP)           ;SAVE IN1 NOW.
+	MOV	IN1,-(SP)           ;SAVE IN1 (current terrain index) NOW.
 	MOV	#12.,IN1            ;PICK UP A TWELVE FOR THE DIVIDE.
-	SUB	TEMP,IN2            ;GET DELTA Y NOW.
+	SUB	TEMP,IN2            ;IN2 (deltaY)          GET DELTA Y NOW.
 	BPL	DRAW2G
-	SUB	#6.,IN2
-	NEG	IN2                 ;MAKE IN2 POSITIVE NOW.
+
+	SUB	#6.,IN2             ;deltaY = deltaY - 6
+	NEG	IN2                 ;deltaY = -deltaY       MAKE IN2 POSITIVE NOW.
 	MOV	IN2,RET2            ;MOVE OVER TO DIVISOR PART.
-	JSR	PC,DIVTWO           ;DIVIDE BY TWO NOW.
-	NEG	RET2                ;NEGATE THE ANSWER NOW.
+	JSR	PC,DIVTWO           ;deltaY = deltaY / 12   DIVIDE BY TWO NOW.
+	NEG	RET2                ;deltaY = -deltaY       NEGATE THE ANSWER NOW.
 	BR	DRAW2H
 
 DRAW2G:
-    ADD	#6.,IN2
+    ADD	#6.,IN2             ;deltaY = deltaY + 6
 	MOV	IN2,RET2            ;MOVE IT OVER NOW.
-	JSR	PC,DIVTWO           ;DO THE DIVISION NOW.
+	JSR	PC,DIVTWO           ;deltaY = deltaY / 12   DO THE DIVISION NOW.
 
-DRAW2H:	
-    MOV	RET2,IN2            ;MOVE OVER THE DELTA NOW.
-	MOV	IN1,RET1            ;ESTABLISH THE COUNT NOW.
+DRAW2H:                     ;deltaY (RET2) is now scaled
+    MOV	RET2,IN2            ;deltaY (IN2)           MOVE OVER THE DELTA NOW.
+	MOV	IN1,RET1            ;IN1/RET1 = 12               ESTABLISH THE COUNT NOW.
 	MOV	(SP)+,IN1           ;RESTORE THE REGISTER NOW.
 
-DRAW22:
-    INC	@#DFUDGE		;---<<INSTRUCTION CHANGED>>---
-	CMP	DFUDGE,#3.
-	BLT	DRAW2V
-	MOV	(PC)+,@(PC)+
+DRAW22:                     ;Wow!  ???---<<INSTRUCTION CHANGED>>---
+    INC	@#DFUDGE            ;This will be INC/DEC instruction (self modifying code)
+	CMP	DFUDGE,#3.          ;Compare to 3
+	BLT	DRAW2V              ;Less than takes the branch
+
+	MOV	(PC)+,@(PC)+        ;move DEC opcode to DRAW22
 	DEC	@(PC)+
 	.WORD	DRAW22
-	BR	DRAW2W
+	BR	DRAW2W              ;continue at DRAW2W
 
 DRAW2V:	
-    CMP	DFUDGE,#-3.
-	BGT	DRAW2W
-	MOV	(PC)+,@(PC)+
+    CMP	DFUDGE,#-3.         ;Compare to -3
+	BGT	DRAW2W              ;continue if greater
+
+	MOV	(PC)+,@(PC)+        ;move INC opcode to DRAW22
 	INC	@(PC)+
 	.WORD	DRAW22
+                            ;fall-thru
 
 DRAW2W:
     ADD	DFUDGE,TEMP         ;PERTIBATE SURFACE NOW.
 	ADD	IN2,TEMP            ;UPDATE TEMP NOW.
 	MOV	TEMP,-(SP)          ;SAVE Y FOR A SECOND.
 	JSR	PC,DRAWIC           ;INSERT
-	BR	DRAW2C              ;STILL GOING.
-	BR	DRAW2X              ;GONE.
+	BR	DRAW2C              ;DRAWCT > 0    STILL GOING.
+	BR	DRAW2X              ;DRAWCT == 0   GONE.
 
 DRAW2C:	
     MOV	(SP)+,TEMP          ;RECALL THE Y NOW.
@@ -1820,25 +1825,26 @@ DRAW2C:
 	BGT	DRAW22              ;NO.
 	BR	DRW2L               ;YES.
 
-DRAW2X:	
+DRAW2X:                     ;surface drawn, add features
     MOV	LEFTEDGE,RET1		;PICK UP LEFTEDGE AGAIN.
 	MOV	#19.,(SP)           ;PREPARE TO EXAMINE THE TERAIN NOW.
 	MOV	#24.,IN1
 	MOV	RET1,RET2           ;SET UP TWO POINTERS NOW.
 	ASL	RET2
-	ADD	#TERAIN,RET2
+	ADD	#TERAIN,RET2        ;lookup Y for feature use
 
 DRAW2Y:
     MOV	RET1,-(SP)          ;PUSH FEATURE INDEX ONTO THE STACK.
 	INC	RET1                ;INCREMENT INDEX POINTER TO NEXT FEATURE.
 	JSR	PC,GETFET           ;GET THE FEATURE NOW.
-	MOV	(SP)+,TEMP          ;AND PUT IT IN A USEFUL REGISTER.
+	MOV	(SP)+,TEMP          ;feature index in TEMP   AND PUT IT IN A USEFUL REGISTER.
 	ASL	TEMP                ;MAKE IT INTO A GOOD INDEX.
-	JSR	PC,@DRAWTB(TEMP)
+	JSR	PC,@DRAWTB(TEMP)    ;lookup the feature in the AHTAB
 	TST	(RET2)+             ;BYPASS
 	ADD	#48.,IN1
 	DEC	(SP)
 	BGT	DRAW2Y              ;KEEP LOOKING NOW.
+
 	TST	(SP)+               ;ELSE UPDATE.
 	MOV	#DISTOP,(TEMP2)+	;TERMINATE THE DISPLAY NOW.
 	CLR	(TEMP2)
@@ -5447,19 +5453,17 @@ COSTAB:	040000			;   90 DEGREES.
 ;		THIS IS THE SHIP BUFFER FOR STORING THE SPACE SHIP.
 ;		THERE ARE TWO OF THEM TO AVOID PROBLEMS.
 ;
-SHIPLC:
-        .WORD	SHIPB1			;BUFFER POINTERS.
+SHIPLC: .WORD	SHIPB1			;BUFFER POINTERS.
         .WORD	SHIPB2
-DRWSHP:
-        .WORD	114120			;BASIC SHIP START.
+
+DRWSHP: .WORD	114120			;BASIC SHIP START.
         .WORD	170200
-SHOWX:
-        .WORD	0
-SHOWY:
-        .WORD	0
+
+SHOWX:  .WORD	0
+SHOWY:  .WORD	0
         .WORD	DISTOP			;THE SUBROUTINE CALL NOW.
-SHIPDP:
-        .WORD	0
+
+SHIPDP: .WORD	0
         .WORD	DISTOP
         .WORD	0
 
