@@ -59,7 +59,7 @@
 - (NSArray *)buildInitialLunarSurface
 {
     // Start building the draw path now
-    NSMutableArray *path = [[NSMutableArray alloc] init];
+    NSMutableArray *path = [[[NSMutableArray alloc] init] autorelease];
     NSArray *paths = [NSArray arrayWithObject:path];
     
     // Intensity and line type variables
@@ -124,16 +124,14 @@
     return paths;
 }
 
-- (NSArray *)buildMoonSurface
+- (void)buildMoonSurface
 {
-    return [self buildInitialLunarSurface];
+    self.drawPaths = [self buildInitialLunarSurface];
 }
 
 - (void)drawRect:(CGRect)rect
 {
-    // Build the lunar surface (detailed or not)
-    self.drawPaths = [self buildMoonSurface];
-    
+    [self buildMoonSurface];
 	CGContextRef context = UIGraphicsGetCurrentContext();
     CGContextSaveGState(context);
     CGContextTranslateCTM(context, 0, self.bounds.size.height);
