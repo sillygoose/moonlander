@@ -85,6 +85,7 @@
         NSDictionary *currentVector;
         while ((currentVector = [vectorEnumerator nextObject])) {
             BOOL doBlink = NO;//### make instance variable?
+            CGPoint savedPosition;
             
             // "break" allows for complex breakpoints in a display list
             if ([currentVector objectForKey:@"break"]) {
@@ -98,6 +99,32 @@
             if ([currentVector objectForKey:@"stop"]) {
                 BOOL stopCommand = [[currentVector objectForKey:@"stop"] boolValue];
                 if (stopCommand) break;
+            }
+            
+            // "push' saves the graphics context
+            if ([currentVector objectForKey:@"push"]) {
+                NSDictionary *pushStuff = [currentVector objectForKey:@"push"];
+                if ([pushStuff objectForKey:@"gstate"]) {
+                    CGContextStrokePath(context);
+                    CGContextMoveToPoint(context, prevPoint.x, prevPoint.y);
+                    CGContextSaveGState(context);
+                }
+                if ([pushStuff objectForKey:@"position"]) {
+                    savedPosition = prevPoint;
+                }
+            }
+            
+            // "pop' saves the graphics context
+            if ([currentVector objectForKey:@"pop"]) {
+                NSDictionary *popStuff = [currentVector objectForKey:@"pop"];
+                if ([popStuff objectForKey:@"gstate"]) {
+                    CGContextStrokePath(context);
+                    CGContextMoveToPoint(context, prevPoint.x, prevPoint.y);
+                    CGContextRestoreGState(context);
+                }
+                if ([popStuff objectForKey:@"position"]) {
+                    prevPoint = savedPosition;
+                }
             }
             
             // "color" is used to set the current color
