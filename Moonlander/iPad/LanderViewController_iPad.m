@@ -29,7 +29,14 @@
 
 @synthesize SHOWX=_SHOWX;
 @synthesize SHOWY=_SHOWY;
+@synthesize BIGXCT=_BIGXCT;
+@synthesize LEFTEDGE=_LEFTEDGE;
+@synthesize LEFEET=_LEFEET;
+@synthesize INDEXL=_INDEXL;
 @synthesize HEIGHT=_HEIGHT;
+@synthesize RADARY=_RADARY;
+@synthesize AVERY=_AVERY;
+@synthesize AVERT=_AVERT;
 
 @synthesize smallLeftArrow=_smallLeftArrow;
 @synthesize smallRightArrow=_smallRightArrow;
@@ -237,6 +244,9 @@ const float DisplayUpdateInterval = 0.05f;
 
 - (void)initGame
 {
+    self.SHOWX = 0;
+    self.SHOWY = 0;
+    
     [self enableFlightControls];
     
     [self.landerModel.delegate newGame];
@@ -641,6 +651,7 @@ const float DisplayUpdateInterval = 0.05f;
 {
     [self.landerView updateLander];
     
+#if 0
     // Move the lander
     self.SHOWX = ([self.landerModel.dataSource distance] + 22400.0f) / 32.0f;
     self.SHOWY = ([self.landerModel.dataSource altitude] / 32.0f) + 43.0f;
@@ -648,6 +659,7 @@ const float DisplayUpdateInterval = 0.05f;
     newFrame.x = self.SHOWX;
     newFrame.y = self.view.frame.size.width - self.SHOWY;
     self.landerView.center = newFrame;
+#endif
     
     [self.instrument1 display];
     [self.instrument2 display];
@@ -677,26 +689,26 @@ const float DisplayUpdateInterval = 0.05f;
     self.systemMessage.hidden = NO;
 }
 
+- (short)DFAKE:(short)yValue
+{
+    short y = yValue;
+    y = (y * 3) / 8 + 23;
+    return y;
+}
+
 - (void)gameLoop
 {
     [self.landerModel.delegate updateTime:GameTimerInterval];
     
-    // Move the lander
-    self.SHOWX = ([self.landerModel.dataSource distance] + 22400.0f) / 32.0f;
-    self.SHOWY = ([self.landerModel.dataSource altitude] / 32.0f) + 43.0f;
-    CGPoint newFrame = self.landerView.center;
-    newFrame.x = self.SHOWX;
-    newFrame.y = self.view.frame.size.width - self.SHOWY;
-    self.landerView.center = newFrame;
+    self.BIGXCT = ((short)([self.landerModel.dataSource distance]) + 22400) / 32;
+    self.HEIGHT = (short)([self.landerModel.dataSource altitude]) - (short)([self.moonView.dataSource terrainHeight:self.BIGXCT]);
     
-    self.HEIGHT = [self.landerModel.dataSource altitude] - [self.moonView.dataSource terrainHeight:self.SHOWX];
-    
-    // Test for extreme game events
-    if (self.SHOWX < 0) {
+    // Test for extreme game events that end the simulation
+    if (self.BIGXCT < 0) {
         // Off the left edge
         [self OFFCOM:13 withMessage:@"LeftEdge"];
     }
-    else if (self.SHOWX > 890) {
+    else if (self.BIGXCT > 890) {
         // Off the right edge
         [self OFFCOM:887 withMessage:@"RightEdge"];
     }
@@ -706,11 +718,51 @@ const float DisplayUpdateInterval = 0.05f;
     }
     
     // Switch views if we hit a critical altitude
-    if ([self.landerModel.dataSource altitude]) {
-        [self.moonView viewCloseUp:self.SHOWX - 9];
+    if ([self.landerModel.dataSource altitude] < 450.0) {
+        // Select the closeup view
+        self.LEFTEDGE = self.BIGXCT - 9;
+        self.LEFEET = (self.LEFTEDGE * 32) - 22400;
+        [self.moonView viewCloseUp:self.LEFTEDGE];
+        
+        // Find our horizontal position in the closeup view
+        short xPos = (short)([self.landerModel.dataSource distance]) - self.LEFEET;
+        self.SHOWX = (xPos * 3) / 2;
+        
+        // Index to terrain/feature to left of lander
+        self.INDEXL = self.LEFTEDGE + (self.SHOWX / 48);
+        short showxRemainder = (self.SHOWX % 48);
+        
+        // Get the terrain information
+        short thl = (short)([self.moonView.dataSource terrainHeight:self.INDEXL]) * (48 - showxRemainder);
+        short thr = (short)([self.moonView.dataSource terrainHeight:(self.INDEXL+1)]) * showxRemainder;
+        short th = (thl + thr) / 48;
+        self.AVERY = th >> 2;
+        self.AVERT = [self DFAKE:th];
+        
+        short RET2 = (((short)([self.landerModel.dataSource altitude]) * 3) / 2) + 23;
+        self.SHOWY = RET2;
+        self.SHOWY += 24;
+        
+        RET2 -= self.AVERT;
+        self.RADARY = (RET2 * 2) / 3;
+        
+        // Move the lander
+        CGPoint newFrame = self.landerView.center;
+        newFrame.x = self.SHOWX;
+        newFrame.y = self.view.frame.size.width - self.SHOWY;
+        self.landerView.center = newFrame;
     }
     else {
+        // Make sure the view is displayed (we might drift up)
         [self.moonView viewNormal];
+        
+        // Move the lander
+        self.SHOWX = self.BIGXCT;
+        self.SHOWY = ([self.landerModel.dataSource altitude] / 32.0f) + 43.0f;
+        CGPoint newFrame = self.landerView.center;
+        newFrame.x = self.SHOWX;
+        newFrame.y = self.view.frame.size.width - self.SHOWY;
+        self.landerView.center = newFrame;
     }
     
     if ([self.landerModel.dataSource onSurface]) {
