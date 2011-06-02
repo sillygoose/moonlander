@@ -81,6 +81,8 @@
     unsigned DINT = 0;
     const int nextIndex = 1;
     const int terrainIndex = self.LEFTEDGE;
+    //NSLog(@"Initial X is %d", terrainIndex);
+    
     //const int secondIndex = terrainIndex + nextIndex;
     
     // Should be X = 0 in the array
@@ -105,6 +107,9 @@
     int DFUDGE_INC = 1;
     unsigned lineSegments = 0;
     for (int i = terrainIndex; lineSegments < 225; i += nextIndex) {
+        BOOL processedRock = NO;
+        BOOL processedMcDonalds = NO;
+        
         //x = [[[self.moonArray objectAtIndex:i] objectForKey:@"x"] floatValue];
         float IN2 = [[[self.moonArray objectAtIndex:i] objectForKey:@"y"] floatValue];
         IN2 = [self DFAKE:IN2];
@@ -154,7 +159,7 @@
             TEMP = TEMP - LASTY;
             LASTY += TEMP;
             
-            CGPoint drawToPoint = CGPointMake(4, TEMP);
+            //CGPoint drawToPoint = CGPointMake(4, TEMP);
             xCoordinate = [NSNumber numberWithInt:4];
             yCoordinate = [NSNumber numberWithInt:TEMP];
             NSMutableDictionary *drawItem = [NSDictionary dictionaryWithObjectsAndKeys:xCoordinate, @"x", yCoordinate, @"y", nil];
@@ -163,11 +168,52 @@
             TEMP = S_TEMP;
             lineSegments++;
             
-            NSLog(@"i: %d  lineSeg: %d  TEMP: %3.0f  IN2: %3.0f  LASTY: %3.0f  drawTo: %@", i, lineSegments, TEMP, IN2, LASTY, NSStringFromCGPoint(drawToPoint));
-       }
-
-        // Now add the rocks and other surface details
-        //###
+            //NSLog(@"i: %d  lineSeg: %d  TEMP: %3.0f  IN2: %3.0f  LASTY: %3.0f  drawTo: %@", i, lineSegments, TEMP, IN2, LASTY, NSStringFromCGPoint(drawToPoint));
+            
+            // Now add the rocks
+            NSDictionary *rockDict = nil;
+            NSArray *rockArray = nil;
+            if ([[[self.moonArray objectAtIndex:i] objectForKey:@"rock"] boolValue] && !processedRock) {
+                //NSLog(@"has rock at X=%d", i);
+                if (!rockDict) {
+                    NSString *rockPath = [[NSBundle mainBundle] pathForResource:@"Rock" ofType:@"plist"];
+                    rockDict = [NSDictionary dictionaryWithContentsOfFile:rockPath];
+                    rockArray = [rockDict objectForKey:@"paths"];
+                }
+                
+                // Add the rock to the draw path
+                NSEnumerator *pathEnumerator = [rockArray objectEnumerator];
+                NSArray *currentEntry;
+                while ((currentEntry = [pathEnumerator nextObject])) {
+                    [path addObject:currentEntry];
+                }
+                
+                // Processed this rock
+                processedRock = YES;
+            }
+            
+            // And maybe a McDonalds
+            NSDictionary *macDict = nil;
+            NSArray *macArray = nil;
+            if ([[[self.moonArray objectAtIndex:i] objectForKey:@"mcdonalds"] boolValue] && !processedMcDonalds) {
+                //NSLog(@"has macdonalds at X=%d", i);
+                if (!macDict) {
+                    NSString *macPath = [[NSBundle mainBundle] pathForResource:@"McDonalds" ofType:@"plist"];
+                    macDict = [NSDictionary dictionaryWithContentsOfFile:macPath];
+                    macArray = [macDict objectForKey:@"paths"];
+                }
+                
+                // Add McDonalds to the draw path
+                NSEnumerator *pathEnumerator = [macArray objectEnumerator];
+                NSArray *currentEntry;
+                while ((currentEntry = [pathEnumerator nextObject])) {
+                    [path addObject:currentEntry];
+                }
+                
+                // And McDondald's is drawn
+                processedMcDonalds = YES;
+            }
+        }
     }
     return paths;
 }
@@ -266,7 +312,9 @@
 
 - (void)drawRect:(CGRect)rect
 {
+    // Decide which view to show
     [self buildMoonSurface];
+    
 	CGContextRef context = UIGraphicsGetCurrentContext();
     CGContextSaveGState(context);
     CGContextTranslateCTM(context, 0, self.bounds.size.height);
