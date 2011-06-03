@@ -343,7 +343,7 @@ const float DisplayUpdateInterval = 0.05f;
     self.heightData = [[Telemetry alloc] initWithFrame:[self convertRectFromGameToView: CGRectMake(900, 247, 100, 20)]];
     self.heightData.titleLabel.text = @"HEIGHT";
     self.heightData.format = @"%6.0f %@";
-    self.heightData.data = Block_copy(^{return [self.landerModel.dataSource altitude] - [self.moonView.dataSource terrainHeight:self.SHOWX];});
+    self.heightData.data = Block_copy(^{return [self.landerModel.dataSource altitude] - [self.moonView.dataSource terrainHeight:self.BIGXCT];});
 	[self.heightData addTarget:self 
                            action:@selector(telemetrySelected:) 
                  forControlEvents:UIControlEventTouchUpInside];
@@ -702,6 +702,9 @@ const float DisplayUpdateInterval = 0.05f;
     
     self.BIGXCT = ((short)([self.landerModel.dataSource distance]) + 22400) / 32;
     self.HEIGHT = (short)([self.landerModel.dataSource altitude]) - (short)([self.moonView.dataSource terrainHeight:self.BIGXCT]);
+    if (self.HEIGHT < 0) {
+        NSLog(@"HEIGHT at %d is messed up: %d", self.BIGXCT, self.HEIGHT);
+    }
     
     // Test for extreme game events that end the simulation
     if (self.BIGXCT < 0) {
