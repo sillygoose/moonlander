@@ -7,24 +7,24 @@
 	<key>paths</key>
 	<array>
 		<dict>
-			<key>push</key>
-			<dict>
-				<key>position</key>
-				<integer>0</integer>
-				<key>gstate</key>
-				<integer>0</integer>
-			</dict>
+			<key>intensity</key>
+			<integer>7</integer>
 			<key>line</key>
 			<dict>
 				<key>type</key>
 				<integer>0</integer>
 				<key>width</key>
-				<integer>1</integer>
+				<real>1.5</real>
 			</dict>
-			<key>intensity</key>
-			<integer>7</integer>
 			<key>name</key>
 			<string>Building</string>
+			<key>push</key>
+			<dict>
+				<key>gstate</key>
+				<integer>0</integer>
+				<key>position</key>
+				<integer>0</integer>
+			</dict>
 		</dict>
 		<dict>
 			<key>moverel</key>
@@ -109,6 +109,13 @@
 			<string>Left Arch</string>
 		</dict>
 		<dict>
+			<key>line</key>
+			<dict>
+				<key>type</key>
+				<integer>0</integer>
+				<key>width</key>
+				<integer>3</integer>
+			</dict>
 			<key>moverel</key>
 			<dict>
 				<key>x</key>
@@ -445,15 +452,6 @@
 			<integer>1</integer>
 			<key>y</key>
 			<integer>-10</integer>
-		</dict>
-		<dict>
-			<key>moverel</key>
-			<dict>
-				<key>x</key>
-				<integer>-17</integer>
-				<key>y</key>
-				<integer>-3</integer>
-			</dict>
 		</dict>
 		<dict>
 			<key>pop</key>
