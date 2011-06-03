@@ -101,7 +101,7 @@
                 if (stopCommand) break;
             }
             
-            // "push' saves the graphics context
+            // "push' saves the graphics context or position
             if ([currentVector objectForKey:@"push"]) {
                 NSDictionary *pushStuff = [currentVector objectForKey:@"push"];
                 if ([pushStuff objectForKey:@"gstate"]) {
@@ -114,7 +114,7 @@
                 }
             }
             
-            // "pop' saves the graphics context
+            // "pop' restores the graphics context or position
             if ([currentVector objectForKey:@"pop"]) {
                 NSDictionary *popStuff = [currentVector objectForKey:@"pop"];
                 if ([popStuff objectForKey:@"gstate"]) {
@@ -124,6 +124,7 @@
                 }
                 if ([popStuff objectForKey:@"position"]) {
                     prevPoint = savedPosition;
+                    CGContextMoveToPoint(context, prevPoint.x, prevPoint.y);
                 }
             }
             
