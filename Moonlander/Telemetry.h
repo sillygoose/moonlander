@@ -10,7 +10,7 @@
 
 #include "VGButton.h"
 
-typedef float (^telemetry_data_t)();
+typedef short (^telemetry_data_t)();
 
 @interface Telemetry : VGButton {
     NSString            *_format;

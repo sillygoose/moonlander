@@ -26,7 +26,7 @@
 {
     NSString *format = self.instrument.format;
     NSString *title = self.instrument.name;
-    float datum = self.instrument.data();
+    short datum = self.instrument.data();
     NSString *instrumentText = [NSString stringWithFormat:format, datum, title];
     self.titleLabel.text = instrumentText;
 }
