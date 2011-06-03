@@ -7,13 +7,6 @@
 	<key>paths</key>
 	<array>
 		<dict>
-			<key>push</key>
-			<dict>
-				<key>position</key>
-				<integer>0</integer>
-				<key>gstate</key>
-				<integer>0</integer>
-			</dict>
 			<key>intensity</key>
 			<integer>7</integer>
 			<key>line</key>
@@ -22,6 +15,13 @@
 				<integer>0</integer>
 				<key>width</key>
 				<integer>1</integer>
+			</dict>
+			<key>push</key>
+			<dict>
+				<key>gstate</key>
+				<integer>0</integer>
+				<key>position</key>
+				<integer>0</integer>
 			</dict>
 		</dict>
 		<dict>
@@ -134,15 +134,6 @@
 			<integer>-2</integer>
 			<key>y</key>
 			<integer>-8</integer>
-		</dict>
-		<dict>
-			<key>moverel</key>
-			<dict>
-				<key>x</key>
-				<integer>-18</integer>
-				<key>y</key>
-				<integer>8</integer>
-			</dict>
 		</dict>
 		<dict>
 			<key>pop</key>
