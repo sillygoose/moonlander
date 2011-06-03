@@ -302,6 +302,11 @@
     }
 }
 
+- (BOOL)viewIsCloseup
+{
+    return (self.LEFTEDGE > 0);
+}
+
 - (void)buildMoonSurface
 {
     if (self.LEFTEDGE > 0)

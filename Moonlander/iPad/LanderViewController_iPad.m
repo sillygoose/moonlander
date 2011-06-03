@@ -719,13 +719,28 @@ const float DisplayUpdateInterval = 0.05f;
     
     // Switch views if we hit a critical altitude
     if ([self.landerModel.dataSource altitude] < 450.0) {
-        // Select the closeup view
-        self.LEFTEDGE = self.BIGXCT - 9;
-        self.LEFEET = (self.LEFTEDGE * 32) - 22400;
-        [self.moonView viewCloseUp:self.LEFTEDGE];
-        
         // Find our horizontal position in the closeup view
         short xPos = (short)([self.landerModel.dataSource distance]) - self.LEFEET;
+ 
+        if (![self.moonView viewIsCloseup]) {
+            // Select the closeup view
+            self.LEFTEDGE = self.BIGXCT - 9;
+            self.LEFEET = (self.LEFTEDGE * 32) - 22400;
+            [self.moonView viewCloseUp:self.LEFTEDGE];
+        }
+        else if (xPos < 30) {
+            // Move the closeup view
+            self.LEFTEDGE = self.BIGXCT - 17;
+            self.LEFEET = (self.LEFTEDGE * 32) - 22400;
+            [self.moonView viewCloseUp:self.LEFTEDGE];
+        }
+        else if (xPos > 580) {
+            // Move the closeup view
+            self.LEFTEDGE = self.BIGXCT - 1;
+            self.LEFEET = (self.LEFTEDGE * 32) - 22400;
+            [self.moonView viewCloseUp:self.LEFTEDGE];
+        }
+        
         self.SHOWX = (xPos * 3) / 2;
         
         // Index to terrain/feature to left of lander
@@ -751,6 +766,9 @@ const float DisplayUpdateInterval = 0.05f;
         newFrame.x = self.SHOWX;
         newFrame.y = self.view.frame.size.width - self.SHOWY;
         self.landerView.center = newFrame;
+        
+        // Call INTEL
+        // Call DUST
     }
     else {
         // Make sure the view is displayed (we might drift up)

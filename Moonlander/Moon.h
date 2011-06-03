@@ -34,5 +34,6 @@
 
 - (void)viewCloseUp:(float)xCoordinate;
 - (void)viewNormal;
+- (BOOL)viewIsCloseup;
 
 @end
