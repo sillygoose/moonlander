@@ -87,24 +87,11 @@ float RadiansToDegrees(float radians)
     self.horizontalDistance += self.horizontalVelocity * timeElapsed;
     self.verticalDistance += self.verticalVelocity * timeElapsed;
 
-    // On the surface, one way or another
-    if (self.verticalDistance <= 0.0f) {
-        self.actualThrust = 0.0f;
-        self.lemAcceleration = 0.0f;
-        self.horizontalAcceleration = 0.0f;
-        self.verticalAcceleration = -self.lunarGravity;
-    }
-
     // Update the simulation clock
     self.clockTicks += timeElapsed;
 }
 
 #pragma mark Data source
-- (BOOL)onSurface
-{
-    return self.verticalDistance <= 0.0;
-}
-
 - (float)thrustPercent
 {
     return (self.fuelRemaining > 0) ? self.actualThrust / self.maxThrust * 100.0f : 0.0f;
@@ -229,6 +216,14 @@ float RadiansToDegrees(float radians)
     return self.clockTicks;
 }
 
+- (void)landerDown
+{
+    self.actualThrust = 0.0f;
+    self.lemAcceleration = 0.0f;
+    self.horizontalAcceleration = 0.0f;
+    self.verticalAcceleration = -self.lunarGravity;
+}
+
 #pragma mark Model initialization
 - (void)initializeLanderModel
 {
@@ -237,7 +232,7 @@ float RadiansToDegrees(float radians)
     self.turnAngle = DegreesToRadians(0.0f);
     self.horizontalVelocity = 0.0f;
     self.verticalVelocity = -5.0f;
-    self.horizontalDistance = 650.0;
+    self.horizontalDistance = 450.0;
     self.verticalDistance = 500.0f;
     self.percentThrustRequested = 10.0f;
     self.actualThrust = self.percentThrustRequested * self.maxThrust / 100.0;
