@@ -101,8 +101,41 @@
 			<array>
 				<array>
 					<dict>
+						<key>blink</key>
+						<true/>
 						<key>text</key>
 						<string>WELL, YOU CERTAINLY BLEW THAT ONE. THERE WERE NO SURVIRORS</string>
+					</dict>
+				</array>
+			</array>
+		</dict>
+		<key>FuelLow</key>
+		<dict>
+			<key>frame</key>
+			<dict>
+				<key>origin</key>
+				<dict>
+					<key>x</key>
+					<integer>350</integer>
+					<key>y</key>
+					<integer>700</integer>
+				</dict>
+				<key>size</key>
+				<dict>
+					<key>height</key>
+					<integer>40</integer>
+					<key>width</key>
+					<integer>400</integer>
+				</dict>
+			</dict>
+			<key>text</key>
+			<array>
+				<array>
+					<dict>
+						<key>blink</key>
+						<true/>
+						<key>text</key>
+						<string>FUEL LOW</string>
 					</dict>
 				</array>
 			</array>
