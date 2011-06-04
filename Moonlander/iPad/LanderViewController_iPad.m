@@ -683,7 +683,7 @@ const float DisplayUpdateInterval = 0.05f;
     [self.landerModel.dataSource setVertVel:newVertVel];   
 
     // Add the message to the display
-    [self.landerMessages addLanderMessage:message];
+    [self.landerMessages addSystemMessage:message];
 }
 
 - (short)DFAKE:(short)yValue
@@ -728,29 +728,31 @@ const float DisplayUpdateInterval = 0.05f;
     if (self.RADARY <= -10) {
         [self gameOver];
         //DEAD
-        [self.landerMessages addLanderMessage:@"DeadLanding"];
+        [self.landerMessages addSystemMessage:@"DeadLanding"];
         //goto QUICK
     }
     else if (self.RADARY > 3) {
         short vervel = (short)([self.landerModel.dataSource vertVel]);
         if (vervel < -60) {
             //AHAH
-            [self.landerMessages addLanderMessage:@"VeryFast"];
+            [self.landerMessages addSystemMessage:@"VeryFast"];
             //goto AHAHC
         }
         else if (vervel < -30) {
             //AHAH2
-            [self.landerMessages addLanderMessage:@"Fast"];
+            [self.landerMessages addSystemMessage:@"Fast"];
             //goto AHAHC
         }
         else if (vervel < -15) {
             //AHAH3
-            [self.landerMessages addLanderMessage:@"Not2Fast"];
+            [self.landerMessages addSystemMessage:@"Not2Fast"];
             //goto AHAHC
         }
         else {
-            [self.landerMessages removeLanderMessage:@"Not2Fast"];
             // Delete not too fast message if displayed
+            //if ([self.landerMessages currentSystemMessage] == @"Not2Fast") {
+                [self.landerMessages removeSystemMessage:@"Not2Fast"];
+            //}
             //goto AHAHC
         }
     }
@@ -761,23 +763,23 @@ const float DisplayUpdateInterval = 0.05f;
         //VD
         short vervel = (short)([self.landerModel.dataSource vertVel]);
         if (vervel < -60) {
-            [self.landerMessages addLanderMessage:@"DeadLanding"];
+            [self.landerMessages addSystemMessage:@"DeadLanding"];
             QUICK = YES;
         }
         else if (vervel < -30) {
-            [self.landerMessages addLanderMessage:@"CrippledLanding"];
+            [self.landerMessages addSystemMessage:@"CrippledLanding"];
             MAYBE = YES;
         }
         else if (vervel < -15) {
-            [self.landerMessages addLanderMessage:@"RoughLanding"];
+            [self.landerMessages addSystemMessage:@"RoughLanding"];
             MAYBE = YES;
         }
         else if (vervel < -8) {
-            [self.landerMessages addLanderMessage:@"GoodLanding"];
+            [self.landerMessages addSystemMessage:@"GoodLanding"];
             MAYBE = YES;
         }
         else {
-            [self.landerMessages addLanderMessage:@"GreatLanding"];
+            [self.landerMessages addSystemMessage:@"GreatLanding"];
             MAYBE = YES;
         }
     }
@@ -796,12 +798,12 @@ const float DisplayUpdateInterval = 0.05f;
         short horizvel = (short)([self.landerModel.dataSource horizVel]);
         short angle = (short)([self.landerModel.dataSource angleDegrees]);
         if (horizvel < -10 || horizvel > 10) {
-            [self.landerMessages addLanderMessage:@"FastSideways"];
+            [self.landerMessages addFlameMessage:@"FastSideways"];
             TiltDirection = horizvel;
         }
         else if (angle < -15 || angle > 15) {
             // Check the roll angle
-            [self.landerMessages addLanderMessage:@"TippedOver"];
+            [self.landerMessages addFlameMessage:@"TippedOver"];
             TiltDirection = angle;
         }
         else {
@@ -809,7 +811,7 @@ const float DisplayUpdateInterval = 0.05f;
             short thl = (short)([self.moonView.dataSource terrainHeight:self.INDEXL]);
             short thr = (short)([self.moonView.dataSource terrainHeight:(self.INDEXL+1)]);
             if (((thl - thr) < -48) || ((thl - thr) > 48)) {
-                [self.landerMessages addLanderMessage:@"BumpyLanding"];
+                [self.landerMessages addFlameMessage:@"BumpyLanding"];
                 TiltDirection = thl - thr;
             }
         }
@@ -837,11 +839,11 @@ const float DisplayUpdateInterval = 0.05f;
     
     // Display a low fuel message
     if ((short)([self.landerModel.dataSource fuel]) <= 0) {
-        [self.landerMessages removeLanderMessage:@"FuelLow"];
+        [self.landerMessages removeFuelMessage];
         [self disableRollThrusters];
     }
     else if ((short)([self.landerModel.dataSource fuel]) < 200) {
-        [self.landerMessages addLanderMessage:@"FuelLow"];
+        [self.landerMessages addFuelMessage];
     }
     
     // Test for extreme game events that end the simulation
