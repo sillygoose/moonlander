@@ -2922,8 +2922,8 @@ TOPMSG:
 ;
 VFAST:	.WORD	117530      ;point mode, intensity 7, blink on
 	.WORD	100.            ;X
-	.WORD	2.              ;Y
-	.WORD	100000          ;character mode
+	.WORD	2.              ;Y (750)
+    .WORD	100000          ;character mode
 	.ASCII	"TOO FAST. YOU'RE GOING TO CRASH"
 	.BYTE	0
 	.=.-1
@@ -2932,7 +2932,7 @@ VFAST:	.WORD	117530      ;point mode, intensity 7, blink on
 	.WORD	0
 FAST:	.WORD	117520      ;point mode, intensity 6, blink off
 	.WORD	100.            ;X
-	.WORD	700.            ;Y
+	.WORD	700.            ;Y (70)
 	.WORD	100000          ;character mode
 	.ASCII	'BETTER START SLOWING IT UP PRETTY SOON'
 	.BYTE	0
@@ -2942,7 +2942,7 @@ FAST:	.WORD	117520      ;point mode, intensity 6, blink off
 	.WORD	0
 N2FAST:	.WORD	117520      ;point mode, intensity 6, blink off
 	.WORD	100.            ;X
-	.WORD	2.              ;Y
+	.WORD	2.              ;Y (750)
 	.WORD	100000          ;character mode
 	.ASCII	'TAKE IT NICE AND EASY. A PERFECT LANDING IS UNDER 8 FPS'
 	.BYTE	0
@@ -2952,7 +2952,7 @@ N2FAST:	.WORD	117520      ;point mode, intensity 6, blink off
 	.WORD	0
 GREATM:	.WORD	117520      ;point mode, intensity 6, blink off
 	.WORD	100.            ;X
-	.WORD	600.            ;Y
+	.WORD	600.            ;Y (170)
 	.WORD	100000          ;character mode
 	.ASCII	'FANTASTIC, A PERFECT LANDING'
 	.BYTE	0
@@ -2962,7 +2962,7 @@ GREATM:	.WORD	117520      ;point mode, intensity 6, blink off
 	.WORD	0
 GOODM:	.WORD	117520      ;point mode, intensity 6, blink off
 	.WORD	100.            ;X
-	.WORD	600.            ;Y
+	.WORD	600.            ;Y (170)
 	.WORD	100000          ;character mode
 	.ASCII	'CONGRATULATIONS ON A GOOD LANDING'
 	.BYTE	0
@@ -2972,7 +2972,7 @@ GOODM:	.WORD	117520      ;point mode, intensity 6, blink off
 	.WORD	0
 ROUGHM:	.WORD	117520      ;point mode, intensity 6, blink off
 	.WORD	100.            ;X
-	.WORD	600.            ;Y
+	.WORD	600.            ;Y (170)
 	.WORD	100000          ;character mode
 	.ASCII	'THE LANDING WAS A LITTLE FAST'
 	.BYTE	0
@@ -2982,7 +2982,7 @@ ROUGHM:	.WORD	117520      ;point mode, intensity 6, blink off
 	.WORD	0
 CRIPM:	.WORD	117520      ;point mode, intensity 6, blink off
 	.WORD	100.            ;X
-	.WORD	600.            ;Y
+	.WORD	600.            ;Y (170)
 	.WORD	100000          ;character mode
 	.ASCII	'THE LANDING WAS TOO FAST AND DAMAGE WAS DONE TO THE SHIP'
 	.BYTE	0
@@ -2992,7 +2992,7 @@ CRIPM:	.WORD	117520      ;point mode, intensity 6, blink off
 	.WORD	0
 DEADM:	.WORD	117530      ;point mode, intensity 6, blink on
 	.WORD	100.            ;X
-	.WORD	550.            ;Y
+	.WORD	550.            ;Y (220)
 	.WORD	100000          ;character mode
 	.ASCII	'WELL, YOU CERTAINLY BLEW THAT ONE. THERE WERE NO SURVIRORS'
 	.BYTE	0
@@ -3002,15 +3002,15 @@ DEADM:	.WORD	117530      ;point mode, intensity 6, blink on
 	.WORD	0
 ANGLEM:	.WORD	117520      ;point mode, intensity 6, blink off
 	.WORD	100.            ;X
-	.WORD	570.            ;Y
+	.WORD	570.            ;Y (200)
 	.WORD	100000          ;character mode
 	.ASCII	'BUT THE ANGLE WAS TOO GREAT AND THE SHIP TIPPED OVER'
 	.BYTE	0
 	.=.-1
-	.EVEN
+	.EVEN                   ;fall-thru
 ANGLEJ:	.WORD	117520      ;point mode, intensity 6, blink off
 	.WORD	100.            ;X
-	.WORD	540.            ;Y
+	.WORD	540.            ;Y (230)
 	.WORD	100000          ;character mode
 	.ASCII	'SORRY, BUT THERE WERE '
 	.BYTE	0
@@ -3027,7 +3027,7 @@ ANGLEJ:	.WORD	117520      ;point mode, intensity 6, blink off
 	.WORD	0
 SIDEM:	.WORD	117520      ;point mode, intensity 6, blink off
 	.WORD	100.            ;X
-	.WORD	570.            ;Y
+	.WORD	570.            ;Y (200)
 	.WORD	100000          ;character mode
 	.ASCII	'BUT THE HORIZONTAL VELOCITY WAS TOO GREAT, AND YOU CRASHED ANYWAY'
 	.BYTE	0
@@ -3037,7 +3037,7 @@ SIDEM:	.WORD	117520      ;point mode, intensity 6, blink off
 	.WORD	ANGLEJ			;DO A DISPLAY JUMP INTO ANGLEM.
 BUMPYM:	.WORD	117520      ;point mode, intensity 6, blink off
 	.WORD	100.            ;X
-	.WORD	570.            ;Y
+	.WORD	570.            ;Y (200)
 	.WORD	100000          ;character mode
 	.ASCII	'BUT THE TERRAIN IS TOO ROUGH, AND YOU TIPPED OVER'
 	.BYTE	0
@@ -3047,7 +3047,7 @@ BUMPYM:	.WORD	117520      ;point mode, intensity 6, blink off
 	.WORD	ANGLEJ
 ROCKMS:	.WORD	117520      ;point mode, intensity 6, blink off
 	.WORD	100.            ;X
-	.WORD	570.            ;Y
+	.WORD	570.            ;Y (200)
 	.WORD	100000          ;character mode
 	.ASCII	'YOU JUST CRASHED INTO THAT ROCK'
 	.BYTE	0
@@ -3057,7 +3057,7 @@ ROCKMS:	.WORD	117520      ;point mode, intensity 6, blink off
 	.WORD	ANGLEJ
 OLDMS:	.WORD	117520      ;point mode, intensity 6, blink off
 	.WORD	100.            ;X
-	.WORD	570.            ;Y
+	.WORD	570.            ;Y (200)
 	.WORD	100000          ;character mode
 	.ASCII	'YOU JUST CRASHED ON TOP OF AN OLD LUNAR MODULE'
 	.BYTE	0
@@ -3067,7 +3067,7 @@ OLDMS:	.WORD	117520      ;point mode, intensity 6, blink off
 	.WORD	ANGLEJ
 FLAGMS:	.WORD	117520      ;point mode, intensity 6, blink off
 	.WORD	50.             ;X
-	.WORD	3.              ;Y
+	.WORD	3.              ;Y (750)
 	.WORD	100000          ;character mode
 	.ASCII	'YOU HAVE JUST VAPORIZED A PREVIOUSLY PLANTED AMERICAN FLAG'
 	.BYTE	0
@@ -3077,7 +3077,7 @@ FLAGMS:	.WORD	117520      ;point mode, intensity 6, blink off
 	.WORD	0
 OLDTLT:	.WORD	117520      ;point mode, intensity 6, blink off
 	.WORD	100.            ;X
-	.WORD	570.            ;Y
+	.WORD	570.            ;Y (200)
 	.WORD	100000          ;character mode
 	.ASCII	'NICE WORK. YOU JUST CRASHED INTO A PREVIOUSLY CRASHED SHIP'
 	.BYTE	0
@@ -3087,7 +3087,7 @@ OLDTLT:	.WORD	117520      ;point mode, intensity 6, blink off
 	.WORD	ANGLEJ          ;ANGLEJ routine
 MACDED:	.WORD	117520      ;point mode, intensity 6, blink off
 	.WORD	10.             ;X
-	.WORD	570.            ;Y
+	.WORD	570.            ;Y (200)
 	.WORD	100000          ;character mode
 	.ASCII	'W'
 	.BYTE	145,154,154 ; 'ell'
@@ -3108,7 +3108,7 @@ MACDED:	.WORD	117520      ;point mode, intensity 6, blink off
 	.EVEN
 	.WORD	117520          ;point mode, intensity 6, blink off
 	.WORD	10.             ;X
-	.WORD	540.            ;Y
+	.WORD	540.            ;Y (230)
 	.WORD	100000          ;character mode
 	.BYTE	157,156,40,164,150,145,40,155,157,157,156 ;'on he moon
 	.ASCII	'. W'
@@ -3121,7 +3121,7 @@ MACDED:	.WORD	117520      ;point mode, intensity 6, blink off
 	.WORD	0
 ORDER:	.WORD	117520      ;point mode, intensity 6, blink off
 	.WORD	150.            ;X
-	.WORD	2.              ;Y
+	.WORD	2.              ;Y (750)
 	.WORD	100000          ;character mode
 	.WORD	170260          ;LSA intensify light pen, italics 
 	.ASCII	'TWO CHEESEBURGERS AND A BIG MAC TO GO.'
@@ -3132,7 +3132,7 @@ ORDER:	.WORD	117520      ;point mode, intensity 6, blink off
 	.WORD	0
 MANMSG:	.WORD	117520      ;point mode, intensity 6, blink off
 	.WORD	50.             ;X
-	.WORD	2.              ;Y
+	.WORD	2.              ;Y (750)
 	.WORD	100000          ;character mode
 	.WORD	170260          ;LSA intensify light pen, italics
 	.ASCII	"THAT'S ONE SMALL STEP FOR A MAN, ONE GIANT LEAP FOR MANKIND."
