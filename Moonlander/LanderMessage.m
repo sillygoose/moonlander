@@ -14,7 +14,7 @@
 
 @synthesize landerMessages=_landerMessages;
 @synthesize displayedMessages=_displayedMessages;
-
+@synthesize fuelWarningOn=_fuelWarningOn;
 
 - (id)init
 {
@@ -28,31 +28,17 @@
     return self;
 }
 
-- (void)addLanderMessage:(NSString *)message
+- (CGRect)getRect:(NSDictionary *)message
 {
-    if (![self.displayedMessages objectForKey:message]) {
-        NSDictionary *landerMessage = [self.landerMessages objectForKey:message];
-
-        CGRect frameRect ;
-        NSDictionary *frame = [landerMessage objectForKey:@"frame"];
-        NSDictionary *origin = [frame objectForKey:@"origin"];
-        NSDictionary *size = [frame objectForKey:@"size"];
-        frameRect.origin.x = [[origin objectForKey:@"x"] floatValue];
-        frameRect.origin.y = [[origin objectForKey:@"y"] floatValue];
-        frameRect.size.width = [[size objectForKey:@"width"] floatValue];
-        frameRect.size.height = [[size objectForKey:@"height"] floatValue];
-        
-        // Create a label and add it as a subview and to the dictionary
-        VGLabel *messageLabel = [[[VGLabel alloc] initWithFrame:frameRect] retain];
-        messageLabel.drawPaths = [landerMessage objectForKey:@"text"];
-        messageLabel.vectorName = message;
-        [self addSubview:messageLabel];
-        [self.displayedMessages setObject:messageLabel forKey:message];
-        [messageLabel release];
-
-        // Request an update
-        [self setNeedsDisplay];
-    }
+    CGRect rect ;
+    NSDictionary *frame = [message objectForKey:@"frame"];
+    NSDictionary *origin = [frame objectForKey:@"origin"];
+    NSDictionary *size = [frame objectForKey:@"size"];
+    rect.origin.x = [[origin objectForKey:@"x"] floatValue];
+    rect.origin.y = [[origin objectForKey:@"y"] floatValue];
+    rect.size.width = [[size objectForKey:@"width"] floatValue];
+    rect.size.height = [[size objectForKey:@"height"] floatValue];
+    return rect;
 }
 
 - (void)removeLanderMessage:(NSString *)message
@@ -73,6 +59,96 @@
     while ((key = [keyEnumerator nextObject])) {
         [self removeLanderMessage:key];
     }    
+}
+
+- (void)addFuelMessage
+{
+    if (!self.fuelWarningOn) {
+        NSDictionary *fuelMessage = [self.landerMessages objectForKey:@"FuelLow"];
+        CGRect frameRect = [self getRect:fuelMessage];
+        
+        // Create a label and add it as a subview and to the dictionary
+        VGLabel *fuelLabel = [[[VGLabel alloc] initWithFrame:frameRect] retain];
+        fuelLabel.drawPaths = [fuelMessage objectForKey:@"text"];
+        fuelLabel.vectorName = @"FuelLow";
+        [self addSubview:fuelLabel];
+        [self.displayedMessages setObject:fuelLabel forKey:@"FuelLow"];
+        [fuelLabel release];
+        self.fuelWarningOn = YES;
+        
+        // Request an update
+        [self setNeedsDisplay];        
+    }
+}
+
+- (void)removeFuelMessage
+{
+    if (self.fuelWarningOn) {
+        [self removeLanderMessage:@"FuelLow"];
+        self.fuelWarningOn = NO;
+    }
+}
+
+- (NSString *)currentSystemMessage
+{
+    VGLabel *msg = [self.displayedMessages objectForKey:@"SYSMES"];
+    return msg.vectorName;
+}
+
+- (void)addSystemMessage:(NSString *)message
+{
+    if (!([self currentSystemMessage] == message)) {
+        NSDictionary *sysMessage = [self.landerMessages objectForKey:message];
+        CGRect frameRect = [self getRect:sysMessage];
+        
+        // Create a label and add it as a subview and to the dictionary
+        VGLabel *sysLabel = [[[VGLabel alloc] initWithFrame:frameRect] retain];
+        sysLabel.drawPaths = [sysMessage objectForKey:@"text"];
+        sysLabel.vectorName = message;
+        [self addSubview:sysLabel];
+        [self.displayedMessages setObject:sysLabel forKey:@"SYSMES"];
+        [sysLabel release];
+        
+        // Request an update
+        [self setNeedsDisplay];     
+    }
+}
+
+- (void)removeSystemMessage:(NSString *)message
+{
+    VGLabel *msg = [self.displayedMessages objectForKey:@"SYSMES"];
+    if (msg) {
+        if (message == nil || msg.vectorName == message) {
+            [self removeLanderMessage:@"SYSMES"];
+        }
+    }
+}
+
+- (void)addFlameMessage:(NSString *)message
+{
+    NSDictionary *flameMessage = [self.landerMessages objectForKey:message];
+    CGRect frameRect = [self getRect:flameMessage];
+    
+    // Create a label and add it as a subview and to the dictionary
+    VGLabel *flameLabel = [[[VGLabel alloc] initWithFrame:frameRect] retain];
+    flameLabel.drawPaths = [flameMessage objectForKey:@"text"];
+    flameLabel.vectorName = message;
+    [self addSubview:flameLabel];
+    [self.displayedMessages setObject:flameLabel forKey:@"FSUBC"];
+    [flameLabel release];
+    
+    // Request an update
+    [self setNeedsDisplay];        
+}
+
+- (void)removeFlameMessage:(NSString *)message
+{
+    VGLabel *msg = [self.displayedMessages objectForKey:@"FSUBC"];
+    if (msg) {
+        if (message == nil || msg.vectorName == message) {
+            [self removeLanderMessage:@"FSUBC"];
+        }
+    }
 }
 
 - (void)dealloc

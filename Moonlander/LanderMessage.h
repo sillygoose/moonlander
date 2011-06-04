@@ -12,14 +12,28 @@
 @interface LanderMessages : UIView {
     NSDictionary            *_landerMessages;
     NSMutableDictionary     *_displayedMessages;
+    
+    BOOL                    _fuelWarningOn;
 }
 
 @property (nonatomic, retain) NSDictionary *landerMessages;
 @property (nonatomic, retain) NSMutableDictionary *displayedMessages;
 
+@property (nonatomic) BOOL fuelWarningOn;
+
+
 - (id)init;
-- (void)addLanderMessage:(NSString *)msgName;
-- (void)removeLanderMessage:(NSString *)message;
+
 - (void)removeAllLanderMessages;
+
+- (void)addSystemMessage:(NSString *)message;
+- (void)removeSystemMessage:(NSString *)message;
+- (NSString *)currentSystemMessage;
+
+- (void)addFlameMessage:(NSString *)message;
+- (void)removeFlameMessage:(NSString *)message;
+
+- (void)addFuelMessage;
+- (void)removeFuelMessage;
 
 @end
