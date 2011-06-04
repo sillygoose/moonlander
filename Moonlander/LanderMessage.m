@@ -7,66 +7,82 @@
 //
 
 #import "LanderMessage.h"
+#import "VGLabel.h"
 
-@implementation LanderMessage
 
-- (id)initWithFrame:(CGRect)frameRect
+@implementation LanderMessages
+
+@synthesize landerMessages=_landerMessages;
+@synthesize displayedMessages=_displayedMessages;
+
+
+- (id)init
 {
-    self = [super initWithFrame:frameRect];
-    return self;
-}
-
-- (id)initWithMessage:(NSString *)msgName
-{
-    NSString *msgsFile = [[NSBundle mainBundle] pathForResource:@"LanderMessages" ofType:@"plist"];
-    NSDictionary *landerMessages = [NSDictionary dictionaryWithContentsOfFile:msgsFile];
-    NSDictionary *msgs = [landerMessages objectForKey:@"messages"];
-    NSDictionary *msg = [msgs objectForKey:msgName];
-    
-    NSDictionary *frame = [msg objectForKey:@"frame"];
-    NSDictionary *origin = [frame objectForKey:@"origin"];
-    NSDictionary *size = [frame objectForKey:@"size"];
-    
-    CGRect frameRect ;
-    frameRect.origin.x = [[origin objectForKey:@"x"] floatValue];
-    frameRect.origin.y = [[origin objectForKey:@"y"] floatValue];
-    frameRect.size.width = [[size objectForKey:@"width"] floatValue];
-    frameRect.size.height = [[size objectForKey:@"height"] floatValue];
-    self = [self initWithFrame:frameRect];
+    self = [super init];
     if (self) {
-        // Initialize the draw path from the plist
-        self.drawPaths = [msg objectForKey:@"text"];
-        self.vectorName = msgName;
-        [self setNeedsDisplay];
+        NSString *msgsFile = [[NSBundle mainBundle] pathForResource:@"LanderMessages" ofType:@"plist"];
+        NSDictionary *messages = [NSDictionary dictionaryWithContentsOfFile:msgsFile];
+        self.landerMessages = [messages objectForKey:@"messages"];
+        self.displayedMessages = [[NSMutableDictionary alloc] init];
     }
     return self;
 }
 
-- (void)addMessage:(NSString *)message
+- (void)addLanderMessage:(NSString *)message
 {
-    NSString *msgsFile = [[NSBundle mainBundle] pathForResource:@"LanderMessages" ofType:@"plist"];
-    NSDictionary *landerMessages = [NSDictionary dictionaryWithContentsOfFile:msgsFile];
-    NSDictionary *msgs = [landerMessages objectForKey:@"messages"];
-    NSDictionary *msg = [msgs objectForKey:message];
+    if (![self.displayedMessages objectForKey:message]) {
+        NSDictionary *landerMessage = [self.landerMessages objectForKey:message];
+
+        CGRect frameRect ;
+        NSDictionary *frame = [landerMessage objectForKey:@"frame"];
+        NSDictionary *origin = [frame objectForKey:@"origin"];
+        NSDictionary *size = [frame objectForKey:@"size"];
+        frameRect.origin.x = [[origin objectForKey:@"x"] floatValue];
+        frameRect.origin.y = [[origin objectForKey:@"y"] floatValue];
+        frameRect.size.width = [[size objectForKey:@"width"] floatValue];
+        frameRect.size.height = [[size objectForKey:@"height"] floatValue];
+        
+        // Create a label and add it as a subview and to the dictionary
+        VGLabel *messageLabel = [[[VGLabel alloc] initWithFrame:frameRect] retain];
+        messageLabel.drawPaths = [landerMessage objectForKey:@"text"];
+        messageLabel.vectorName = message;
+        [self addSubview:messageLabel];
+        [self.displayedMessages setObject:messageLabel forKey:message];
+        [messageLabel release];
+
+        // Request an update
+        [self setNeedsDisplay];
+    }
+}
+
+- (void)removeLanderMessage:(NSString *)message
+{
+    VGLabel *label = [self.displayedMessages objectForKey:message];
+    if (label) {
+        [self.displayedMessages removeObjectForKey:message];
+        [label removeFromSuperview];
+        [self setNeedsDisplay];
+    }
+}
+
+- (void)removeAllLanderMessages
+{
+    NSArray *allMessageKeys = [self.displayedMessages allKeys];
+    NSEnumerator *keyEnumerator = [allMessageKeys objectEnumerator];
+    NSString *key;
+    while ((key = [keyEnumerator nextObject])) {
+        [self removeLanderMessage:key];
+    }    
+}
+
+- (void)dealloc
+{
+    [self removeAllLanderMessages];
     
-    NSDictionary *frame = [msg objectForKey:@"frame"];
-    NSDictionary *origin = [frame objectForKey:@"origin"];
-    //NSDictionary *size = [frame objectForKey:@"size"];
+    [_landerMessages release];
+    [_displayedMessages release];
     
-    CGRect frameRect ;
-    frameRect.origin.x = [[origin objectForKey:@"x"] floatValue];
-    frameRect.origin.y = [[origin objectForKey:@"y"] floatValue];
-    //frameRect.size.width = [[size objectForKey:@"width"] floatValue];
-    //frameRect.size.height = [[size objectForKey:@"height"] floatValue];
-    
-    CGPoint newCenter;
-    newCenter.x = frameRect.origin.x + self.bounds.size.width / 2;
-    newCenter.y = (self.superview.frame.size.width - frameRect.origin.y) + self.bounds.size.height / 2;
-    self.center = newCenter;
-    
-    self.drawPaths = [msg objectForKey:@"text"];
-    self.vectorName = message;
-    [self setNeedsDisplay];
+    [super dealloc];
 }
 
 @end

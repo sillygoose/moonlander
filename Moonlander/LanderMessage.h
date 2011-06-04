@@ -8,16 +8,18 @@
 
 #import <Foundation/Foundation.h>
 
-#import "VGLabel.h"
 
-
-@interface LanderMessage : VGLabel {
-    
+@interface LanderMessages : UIView {
+    NSDictionary            *_landerMessages;
+    NSMutableDictionary     *_displayedMessages;
 }
 
-- (id)initWithFrame:(CGRect)frameRect;
-- (id)initWithMessage:(NSString *)msgName;
+@property (nonatomic, retain) NSDictionary *landerMessages;
+@property (nonatomic, retain) NSMutableDictionary *displayedMessages;
 
-- (void)addMessage:(NSString *)message;
+- (id)init;
+- (void)addLanderMessage:(NSString *)msgName;
+- (void)removeLanderMessage:(NSString *)message;
+- (void)removeAllLanderMessages;
 
 @end
