@@ -140,8 +140,8 @@
     unsigned lineSegments = 0;
     for (int i = terrainIndex; lineSegments < 225; i += nextIndex) {
         BOOL processedRock = NO;
-        BOOL processedFlag = NO;
-        BOOL processedLander = NO;
+        //BOOL processedFlag = NO;
+        //BOOL processedLander = NO;
         BOOL processedMcDonalds = NO;
         
         float IN2 = [self terrainHeight:i];//[[[self.moonArray objectAtIndex:i] objectForKey:@"y"] floatValue];
