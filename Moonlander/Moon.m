@@ -36,22 +36,33 @@
     return self;
 }
 
-- (float)terrainHeight:(int)xCoordinate
+- (float)terrainHeight:(short)xCoordinate
 {
     float averageHeight = 0.0f;
-    if (xCoordinate >= 0 && xCoordinate < self.moonArray.count) {
-        if (xCoordinate == (self.moonArray.count - 1)) {
-            float elevation1 = [[[self.moonArray objectAtIndex:(xCoordinate)] objectForKey:@"y"] floatValue];
+    short x = xCoordinate + 10;
+    if (x >= 0 && x < self.moonArray.count) {
+        if (x == (self.moonArray.count - 1)) {
+            float elevation1 = [[[self.moonArray objectAtIndex:(x)] objectForKey:@"y"] floatValue];
             averageHeight = elevation1;
         }
         else {
-            float elevation1 = [[[self.moonArray objectAtIndex:(xCoordinate)] objectForKey:@"y"] floatValue];
-            float elevation2 = [[[self.moonArray objectAtIndex:(xCoordinate+1)] objectForKey:@"y"] floatValue];
+            float elevation1 = [[[self.moonArray objectAtIndex:(x)] objectForKey:@"y"] floatValue];
+            float elevation2 = [[[self.moonArray objectAtIndex:(x+1)] objectForKey:@"y"] floatValue];
             averageHeight = (elevation1 + elevation2) / 2;
         }
     }
     //NSLog(@"X:%d  avgHeight:%5.0f", xCoordinate, averageHeight);
     return averageHeight;
+}
+
+- (BOOL)hasFeature:(NSString *)feature atIndex:(short)index
+{
+    BOOL hasFeature = NO;
+    index += 10;
+    if (index >= 0 && index < self.moonArray.count) {
+        hasFeature = ([[self.moonArray objectAtIndex:index] objectForKey:feature] != nil);
+    }
+    return hasFeature;
 }
 
 - (void)DRAWIC
@@ -83,12 +94,7 @@
     const int terrainIndex = self.LEFTEDGE;
     //NSLog(@"Initial X is %d", terrainIndex);
     
-    //const int secondIndex = terrainIndex + nextIndex;
-    
-    // Should be X = 0 in the array
-    //CGPoint previousPoint = CGPointMake(0, 0);
-    NSDictionary *item = [self.moonArray objectAtIndex:terrainIndex];
-    float TEMP = [[item objectForKey:@"y"] floatValue];
+    float TEMP = [self terrainHeight:terrainIndex];//[[item objectForKey:@"y"] floatValue];
     TEMP = [self DFAKE:TEMP];
     if (TEMP < 0)
         TEMP = 0;
@@ -110,8 +116,7 @@
         BOOL processedRock = NO;
         BOOL processedMcDonalds = NO;
         
-        //x = [[[self.moonArray objectAtIndex:i] objectForKey:@"x"] floatValue];
-        float IN2 = [[[self.moonArray objectAtIndex:i] objectForKey:@"y"] floatValue];
+        float IN2 = [self terrainHeight:i];//[[[self.moonArray objectAtIndex:i] objectForKey:@"y"] floatValue];
         IN2 = [self DFAKE:IN2];
         IN2 = IN2 - TEMP;
         if (IN2 < 0) {
@@ -159,7 +164,6 @@
             TEMP = TEMP - LASTY;
             LASTY += TEMP;
             
-            //CGPoint drawToPoint = CGPointMake(4, TEMP);
             xCoordinate = [NSNumber numberWithInt:4];
             yCoordinate = [NSNumber numberWithInt:TEMP];
             NSMutableDictionary *drawItem = [NSDictionary dictionaryWithObjectsAndKeys:xCoordinate, @"x", yCoordinate, @"y", nil];
@@ -173,7 +177,7 @@
             // Now add the rocks
             NSDictionary *rockDict = nil;
             NSArray *rockArray = nil;
-            if ([[[self.moonArray objectAtIndex:i] objectForKey:@"rock"] boolValue] && !processedRock) {
+            if (!processedRock && [self hasFeature:@"rock" atIndex:i]) {
                 //NSLog(@"has rock at X=%d", i);
                 if (!rockDict) {
                     NSString *rockPath = [[NSBundle mainBundle] pathForResource:@"Rock" ofType:@"plist"];
@@ -195,7 +199,7 @@
             // And maybe a McDonalds
             NSDictionary *macDict = nil;
             NSArray *macArray = nil;
-            if ([[[self.moonArray objectAtIndex:i] objectForKey:@"mcdonalds"] boolValue] && !processedMcDonalds) {
+            if (!processedMcDonalds && [self hasFeature:@"mcdonalds" atIndex:i]) {
                 //NSLog(@"has macdonalds at X=%d", i);
                 if (!macDict) {
                     NSString *macPath = [[NSBundle mainBundle] pathForResource:@"McDonalds" ofType:@"plist"];

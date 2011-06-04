@@ -13,7 +13,7 @@
 
 
 @protocol MoonDataSource <NSObject>
-- (float)terrainHeight:(int)xCoordinate;
+- (float)terrainHeight:(short)xCoordinate;
 @end
 
 @interface Moon : VGView <MoonDataSource> {
