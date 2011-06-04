@@ -228,15 +228,15 @@ float RadiansToDegrees(float radians)
 - (void)initializeLanderModel
 {
 #if 1
-    self.rateOfTurn = 0.0f;
+    self.rateOfTurn = 0;
     self.turnAngle = DegreesToRadians(0.0f);
-    self.horizontalVelocity = 0.0f;
-    self.verticalVelocity = -5.0f;
-    self.horizontalDistance = 450.0;
-    self.verticalDistance = 500.0f;
-    self.percentThrustRequested = 10.0f;
+    self.horizontalVelocity = 0;
+    self.verticalVelocity = -5;
+    self.horizontalDistance = 150;
+    self.verticalDistance = 300;
+    self.percentThrustRequested = 10;
     self.actualThrust = self.percentThrustRequested * self.maxThrust / 100.0;
-    self.fuelRemaining = self.lemInitalFuel;
+    self.fuelRemaining = 206;//self.lemInitalFuel;
     self.clockTicks = 0.0f;
 #else
     self.rateOfTurn = 0.0f;
