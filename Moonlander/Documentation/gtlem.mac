@@ -2695,7 +2695,8 @@ DIALTC:	.WORD	DITEM1			;WHERE OUR TABLES ARE.
 ;
 ;		VALUE DISPLAY ITEMS.
 ;
-DITEM1:	.WORD	170240			;ENABLE LIGHT PEN STUFF.
+DITEM1:
+    .WORD	170240			;ENABLE LIGHT PEN STUFF.
 	.WORD	117560			;AND MOVE THE POINTER AROUND.
 	.WORD	DX1             ;0
 	.WORD	DY1             ;730
@@ -2703,7 +2704,8 @@ DITEM1:	.WORD	170240			;ENABLE LIGHT PEN STUFF.
 	.ASCII	'      '		;SIX CHARACTERS OF ZERO,
 	.WORD	DISJMP			;AND NOW CALL THE NEXT SUBROUTINE.
 	.WORD	ITEMF1
-DITEM2:	.WORD	170240      ;LSA - intensified, normal font
+DITEM2:
+    .WORD	170240          ;LSA - intensified, normal font
 	.WORD	117560          ;point mode, intensity 7, blink off
 	.WORD	DX2             ;250
 	.WORD	DY2             ;730
@@ -2711,7 +2713,8 @@ DITEM2:	.WORD	170240      ;LSA - intensified, normal font
 	.ASCII	'      '
 	.WORD	DISJMP          ;display jump
 	.WORD	ITEMF2          ;ITEMF2
-DITEM3:	.WORD	170240
+DITEM3:
+    .WORD	170240
 	.WORD	117560          ;point mode, intensity 7, blink off
 	.WORD	DX3             ;500
 	.WORD	DY3             ;730
@@ -2719,7 +2722,8 @@ DITEM3:	.WORD	170240
 	.ASCII	'      '
 	.WORD	DISJMP          ;display jump
 	.WORD	ITEMF3
-DITEM4:	.WORD	170240
+DITEM4:
+    .WORD	170240
 	.WORD	117560          ;point mode, intensity 7, blink off
 	.WORD	DX4             ;750
 	.WORD	DY4             ;750
@@ -2731,124 +2735,160 @@ DITEM4:	.WORD	170240
 ;		THESE TABLES CONTAIN THE ACTUAL MESSAGES THAT THE
 ;		USER HAS A CHOICE OF SEEING.
 ;
-ITEM1:	.WORD	RADARY
+ITEM1:
+    .WORD	RADARY
 	.WORD	0               ;WHERE ITEM IS AND WHAT TO DIVIDE IT BY.
-ITEME1:	.WORD	170260      ;LSA intensify light pen, italics			;ACTUALLY DISPLAY PORTION HERE.
+ITEME1:
+    .WORD	170260          ;LSA intensify light pen, italics   ACTUALLY DISPLAY PORTION HERE.
 	.WORD	117560          ;point mode, intensity 6, blink off
 	.WORD	ITEMX1          ;900
 	.WORD	ITEMY1          ;247
 	.WORD	100000          ;character mode
-ITEMF1:	.ASCII	' HEIGHT '
+ITEMF1:
+    .ASCII	' HEIGHT '
 	.WORD	DISTOP          ;LSA display stop
 	.WORD	0
-ITEM2:	.WORD	VERDIS      ;height above mean sea level
+ITEM2:
+    .WORD	VERDIS          ;height above mean sea level
 	.WORD	0               ;no divisor
-ITEME2:	.WORD	170260      ;LSA intensify light pen, italics
+ITEME2:
+    .WORD	170260          ;LSA intensify light pen, italics
 	.WORD	117560          ;point mode, intensity 6, blink off
 	.WORD	ITEMX2          ;900
 	.WORD	ITEMY2          ;225
 	.WORD	100000          ;character set mode
-ITEMF2:	.ASCII	' ALTITUDE '
+ITEMF2:
+    .ASCII	' ALTITUDE '
 	.WORD	DISTOP          ;LSA display stop
 	.WORD	0
-ITEM3:	.WORD	HORDIS
+ITEM3:
+    .WORD	HORDIS
 	.WORD	0
-ITEME3:	.WORD	170260      ;LSA intensify light pen, italics
+ITEME3:
+    .WORD	170260          ;LSA intensify light pen, italics
 	.WORD	117560          ;point mode, intensity 6, blink off
 	.WORD	ITEMX3          ;900
 	.WORD	ITEMY3          ;203
 	.WORD	100000          ;character  mode
-ITEMF3:	.ASCII	' DISTANCE '
+ITEMF3:
+    .ASCII	' DISTANCE '
 	.WORD	DISTOP          ;LSA display stop
 	.WORD	0
-ITEM4:	.WORD	FUEL        ;FUEL remaining (tenths)
+ITEM4:
+    .WORD	FUEL            ;FUEL remaining (tenths)
 	.WORD	10.             ;divide by 10 for display
-ITEME4:	.WORD	170260      ;LSA intensify light pen, italics
+ITEME4:
+    .WORD	170260          ;LSA intensify light pen, italics
 	.WORD	117560          ;point mode
 	.WORD	ITEMX4          ;900
 	.WORD	ITEMY4          ;181
 	.WORD	100000          ;character mode
-ITEMF4:	.ASCII	' FUEL LEFT'
+ITEMF4:
+    .ASCII	' FUEL LEFT'
 	.WORD	DISTOP
 	.WORD	0
-ITEM5:	.WORD	WEIGHT
+ITEM5:
+    .WORD	WEIGHT
 	.WORD	0
-ITEME5:	.WORD	170260      ;LSA intensify light pen, italics
+ITEME5:
+    .WORD	170260          ;LSA intensify light pen, italics
 	.WORD	117560          ;point mode, intensity 6, blink off
 	.WORD	ITEMX5          ;900
 	.WORD	ITEMY5          ;159
 	.WORD	100000          ;character mode
-ITEMF5:	.ASCII	' WEIGHT '
+ITEMF5:
+    .ASCII	' WEIGHT '
 	.WORD	DISTOP
 	.WORD	0
-ITEM6:	.WORD	THRUST
+ITEM6:
+    .WORD	THRUST
 	.WORD	0
-ITEME6:	.WORD	170260      ;LSA intensify light pen, italics
+ITEME6:
+    .WORD	170260          ;LSA intensify light pen, italics
 	.WORD	117560          ;point mode, intensity 6, blink off
 	.WORD	ITEMX6          ;900
 	.WORD	ITEMY6          ;137
 	.WORD	100000          ;character mode
-ITEMF6:	.ASCII	' THRUST '
+ITEMF6:
+    .ASCII	' THRUST '
 	.WORD	DISTOP
 	.WORD	0
-ITEM7:	.WORD	ANGLE
+ITEM7:
+    .WORD	ANGLE
 	.WORD	0
-ITEME7:	.WORD	170260      ;LSA intensify light pen, italics
+ITEME7:
+    .WORD	170260          ;LSA intensify light pen, italics
 	.WORD	117560          ;point mode, intensity 6, blink off
 	.WORD	ITEMX7          ;900
 	.WORD	ITEMY7          ;115
 	.WORD	100000          ;character mode
-ITEMF7:	.ASCII	' ANGLE'
+ITEMF7:
+    .ASCII	' ANGLE'
 	.WORD	DISTOP
 	.WORD	0
-ITEM8:	.WORD	VERVEL
+ITEM8:
+    .WORD	VERVEL
 	.WORD	10.
-ITEME8:	.WORD	170260      ;LSA intensify light pen, italics
+ITEME8:
+    .WORD	170260          ;LSA intensify light pen, italics
 	.WORD	117560          ;point mode, intensity 6, blink off
 	.WORD	ITEMX8          ;900
 	.WORD	ITEMY8          ;93
 	.WORD	100000          ;character mode
-ITEMF8:	.ASCII	' VER VEL'
+ITEMF8:
+    .ASCII	' VER VEL'
 	.WORD	DISTOP
 	.WORD	0
-ITEM9:	.WORD	HORVEL
+ITEM9:
+    .WORD	HORVEL
 	.WORD	10.
-ITEME9:	.WORD	170260      ;LSA intensify light pen, italics
+ITEME9:
+    .WORD	170260          ;LSA intensify light pen, italics
 	.WORD	117560          ;point mode, intensity 6, blink off
 	.WORD	ITEMX9          ;900
 	.WORD	ITEMY9          ;71
 	.WORD	100000          ;character mode
-ITEMF9:	.ASCII	' HOR VEL'
+ITEMF9:
+    .ASCII	' HOR VEL'
 	.WORD	DISTOP
 	.WORD	0
-ITEM10:	.WORD	VERACC
+ITEM10:
+    .WORD	VERACC
 	.WORD	500.
-ITEMET:	.WORD	170260      ;LSA intensify light pen, italics
+ITEMET:
+    .WORD	170260          ;LSA intensify light pen, italics
 	.WORD	117560          ;point mode, intensity 6, blink off
 	.WORD	ITEMXT          ;900
 	.WORD	ITEMYT          ;49
 	.WORD	100000          ;character mode
-ITEMFT:	.ASCII	' VER ACC'
+ITEMFT:
+    .ASCII	' VER ACC'
 	.WORD	DISTOP
 	.WORD	0
-ITEM11:	.WORD	HORACC
+ITEM11:
+    .WORD	HORACC
 	.WORD	500.
-ITEMEE:	.WORD	170260      ;LSA intensify light pen, italics
+ITEMEE:	
+    .WORD	170260          ;LSA intensify light pen, italics
 	.WORD	117560          ;point mode, intensity 6, blink off
 	.WORD	ITEMXE          ;900
 	.WORD	ITEMYE          ;27
 	.WORD	100000          ;character mode
-ITEMFE:	.ASCII	' HOR ACC'
+ITEMFE:	
+    .ASCII	' HOR ACC'
 	.WORD	DISTOP
 	.WORD	0
-ITEM12:	.WORD	TIME
+ITEM12:
+    .WORD	TIME
 	.WORD	60.
-ITEMES:	.WORD	170260      ;LSA intensify light pen, italics
+ITEMES:
+    .WORD	170260          ;LSA intensify light pen, italics
 	.WORD	117560          ;point mode, intensity 6, blink off
 	.WORD	ITEMXS          ;900
 	.WORD	ITEMYS          ;5
 	.WORD	100000          ;character mode
-ITEMFS:	.ASCII	' SECONDS'
+ITEMFS:
+    .ASCII	' SECONDS'
 	.WORD	DISTOP
 	.WORD	0
 
@@ -2920,7 +2960,8 @@ TOPMSG:
 ;
 ;		SPEED WARNING MASSAGES...
 ;
-VFAST:	.WORD	117530      ;point mode, intensity 7, blink on
+VFAST:
+    .WORD	117530          ;point mode, intensity 7, blink on
 	.WORD	100.            ;X
 	.WORD	2.              ;Y (750)
     .WORD	100000          ;character mode
@@ -2930,7 +2971,8 @@ VFAST:	.WORD	117530      ;point mode, intensity 7, blink on
 	.EVEN
 	.WORD	DISTOP
 	.WORD	0
-FAST:	.WORD	117520      ;point mode, intensity 6, blink off
+FAST:
+    .WORD	117520          ;point mode, intensity 6, blink off
 	.WORD	100.            ;X
 	.WORD	700.            ;Y (70)
 	.WORD	100000          ;character mode
@@ -2940,7 +2982,8 @@ FAST:	.WORD	117520      ;point mode, intensity 6, blink off
 	.EVEN
 	.WORD	DISTOP
 	.WORD	0
-N2FAST:	.WORD	117520      ;point mode, intensity 6, blink off
+N2FAST:
+    .WORD	117520          ;point mode, intensity 6, blink off
 	.WORD	100.            ;X
 	.WORD	2.              ;Y (750)
 	.WORD	100000          ;character mode
@@ -2950,7 +2993,8 @@ N2FAST:	.WORD	117520      ;point mode, intensity 6, blink off
 	.EVEN
 	.WORD	DISTOP
 	.WORD	0
-GREATM:	.WORD	117520      ;point mode, intensity 6, blink off
+GREATM:
+    .WORD	117520          ;point mode, intensity 6, blink off
 	.WORD	100.            ;X
 	.WORD	600.            ;Y (170)
 	.WORD	100000          ;character mode
@@ -2960,7 +3004,8 @@ GREATM:	.WORD	117520      ;point mode, intensity 6, blink off
 	.EVEN
 	.WORD	DISTOP
 	.WORD	0
-GOODM:	.WORD	117520      ;point mode, intensity 6, blink off
+GOODM:
+    .WORD	117520          ;point mode, intensity 6, blink off
 	.WORD	100.            ;X
 	.WORD	600.            ;Y (170)
 	.WORD	100000          ;character mode
@@ -2970,7 +3015,8 @@ GOODM:	.WORD	117520      ;point mode, intensity 6, blink off
 	.EVEN
 	.WORD	DISTOP
 	.WORD	0
-ROUGHM:	.WORD	117520      ;point mode, intensity 6, blink off
+ROUGHM:
+    .WORD	117520          ;point mode, intensity 6, blink off
 	.WORD	100.            ;X
 	.WORD	600.            ;Y (170)
 	.WORD	100000          ;character mode
@@ -2980,7 +3026,8 @@ ROUGHM:	.WORD	117520      ;point mode, intensity 6, blink off
 	.EVEN
 	.WORD	DISTOP
 	.WORD	0
-CRIPM:	.WORD	117520      ;point mode, intensity 6, blink off
+CRIPM:
+    .WORD	117520          ;point mode, intensity 6, blink off
 	.WORD	100.            ;X
 	.WORD	600.            ;Y (170)
 	.WORD	100000          ;character mode
@@ -2990,7 +3037,8 @@ CRIPM:	.WORD	117520      ;point mode, intensity 6, blink off
 	.EVEN
 	.WORD	DISTOP
 	.WORD	0
-DEADM:	.WORD	117530      ;point mode, intensity 6, blink on
+DEADM:
+    .WORD	117530          ;point mode, intensity 6, blink on
 	.WORD	100.            ;X
 	.WORD	550.            ;Y (220)
 	.WORD	100000          ;character mode
@@ -3000,7 +3048,8 @@ DEADM:	.WORD	117530      ;point mode, intensity 6, blink on
 	.EVEN
 	.WORD	DISTOP
 	.WORD	0
-ANGLEM:	.WORD	117520      ;point mode, intensity 6, blink off
+ANGLEM:
+    .WORD	117520          ;point mode, intensity 6, blink off
 	.WORD	100.            ;X
 	.WORD	570.            ;Y (200)
 	.WORD	100000          ;character mode
@@ -3008,7 +3057,8 @@ ANGLEM:	.WORD	117520      ;point mode, intensity 6, blink off
 	.BYTE	0
 	.=.-1
 	.EVEN                   ;fall-thru
-ANGLEJ:	.WORD	117520      ;point mode, intensity 6, blink off
+ANGLEJ:
+    .WORD	117520          ;point mode, intensity 6, blink off
 	.WORD	100.            ;X
 	.WORD	540.            ;Y (230)
 	.WORD	100000          ;character mode
@@ -3025,7 +3075,8 @@ ANGLEJ:	.WORD	117520      ;point mode, intensity 6, blink off
 	.EVEN
 	.WORD	DISTOP
 	.WORD	0
-SIDEM:	.WORD	117520      ;point mode, intensity 6, blink off
+SIDEM:
+    .WORD	117520          ;point mode, intensity 6, blink off
 	.WORD	100.            ;X
 	.WORD	570.            ;Y (200)
 	.WORD	100000          ;character mode
@@ -3035,7 +3086,8 @@ SIDEM:	.WORD	117520      ;point mode, intensity 6, blink off
 	.EVEN
 	.WORD	DISJMP
 	.WORD	ANGLEJ			;DO A DISPLAY JUMP INTO ANGLEM.
-BUMPYM:	.WORD	117520      ;point mode, intensity 6, blink off
+BUMPYM:
+    .WORD	117520          ;point mode, intensity 6, blink off
 	.WORD	100.            ;X
 	.WORD	570.            ;Y (200)
 	.WORD	100000          ;character mode
@@ -3045,7 +3097,8 @@ BUMPYM:	.WORD	117520      ;point mode, intensity 6, blink off
 	.EVEN
 	.WORD	DISJMP
 	.WORD	ANGLEJ
-ROCKMS:	.WORD	117520      ;point mode, intensity 6, blink off
+ROCKMS:
+    .WORD	117520          ;point mode, intensity 6, blink off
 	.WORD	100.            ;X
 	.WORD	570.            ;Y (200)
 	.WORD	100000          ;character mode
@@ -3055,7 +3108,8 @@ ROCKMS:	.WORD	117520      ;point mode, intensity 6, blink off
 	.EVEN
 	.WORD	DISJMP
 	.WORD	ANGLEJ
-OLDMS:	.WORD	117520      ;point mode, intensity 6, blink off
+OLDMS:
+    .WORD	117520          ;point mode, intensity 6, blink off
 	.WORD	100.            ;X
 	.WORD	570.            ;Y (200)
 	.WORD	100000          ;character mode
@@ -3065,7 +3119,8 @@ OLDMS:	.WORD	117520      ;point mode, intensity 6, blink off
 	.EVEN
 	.WORD	DISJMP
 	.WORD	ANGLEJ
-FLAGMS:	.WORD	117520      ;point mode, intensity 6, blink off
+FLAGMS:
+    .WORD	117520          ;point mode, intensity 6, blink off
 	.WORD	50.             ;X
 	.WORD	3.              ;Y (750)
 	.WORD	100000          ;character mode
@@ -3075,7 +3130,8 @@ FLAGMS:	.WORD	117520      ;point mode, intensity 6, blink off
 	.EVEN
 	.WORD	DISTOP
 	.WORD	0
-OLDTLT:	.WORD	117520      ;point mode, intensity 6, blink off
+OLDTLT:
+    .WORD	117520          ;point mode, intensity 6, blink off
 	.WORD	100.            ;X
 	.WORD	570.            ;Y (200)
 	.WORD	100000          ;character mode
@@ -3085,7 +3141,8 @@ OLDTLT:	.WORD	117520      ;point mode, intensity 6, blink off
 	.EVEN
 	.WORD	DISJMP          ;display jump
 	.WORD	ANGLEJ          ;ANGLEJ routine
-MACDED:	.WORD	117520      ;point mode, intensity 6, blink off
+MACDED:
+    .WORD	117520          ;point mode, intensity 6, blink off
 	.WORD	10.             ;X
 	.WORD	570.            ;Y (200)
 	.WORD	100000          ;character mode
@@ -3119,7 +3176,8 @@ MACDED:	.WORD	117520      ;point mode, intensity 6, blink off
 	.EVEN
 	.WORD	DISTOP
 	.WORD	0
-ORDER:	.WORD	117520      ;point mode, intensity 6, blink off
+ORDER:
+    .WORD	117520          ;point mode, intensity 6, blink off
 	.WORD	150.            ;X
 	.WORD	2.              ;Y (750)
 	.WORD	100000          ;character mode
@@ -3130,7 +3188,8 @@ ORDER:	.WORD	117520      ;point mode, intensity 6, blink off
 	.EVEN
 	.WORD	DISTOP
 	.WORD	0
-MANMSG:	.WORD	117520      ;point mode, intensity 6, blink off
+MANMSG:
+    .WORD	117520          ;point mode, intensity 6, blink off
 	.WORD	50.             ;X
 	.WORD	2.              ;Y (750)
 	.WORD	100000          ;character mode
@@ -3218,7 +3277,8 @@ BRGTA:
 ;		THIS IS THE LIGHT PEN BAR WHICH CONTROLS THE
 ;		THRUST OF THE ROCKET ENGINE.
 ;
-LPBAR:	.WORD	116764
+LPBAR:
+    .WORD	116764
 	.WORD	170200
 	.WORD	BARLX+0
 	.WORD	BARTY
@@ -3235,15 +3295,18 @@ LPBAR:	.WORD	116764
 	.WORD	BARSIZ+DOWN
 	.WORD	114100
 	.WORD	BARMXR              ;NOW MOVE OVER TO THE BAR POSITION.
-LPBARY:	.WORD	0               ;VERTICAL HEIGHT GOES HERE.
+LPBARY:
+    .WORD	0                   ;VERTICAL HEIGHT GOES HERE.
 	.WORD	110000
 	.WORD	BARMXL+INT          ;BE CAREFULL OF SIGN OF THIS ONE.
 	.WORD	0
 	.WORD	BAREST
 	.WORD	0
 	.WORD	100000              ;ENTER CHARACTER MODE NOW.
-LPBARC:	.ASCII	'      % '		;OVERLAYED WITH A NUMBER.
-LPSW:	.WORD	DISTOP			;0 ON FUEL LOW--FALL TO NEXT MSG
+LPBARC:
+    .ASCII	'      % '          ;OVERLAYED WITH A NUMBER.
+LPSW:
+    .WORD	DISTOP              ;0 ON FUEL LOW--FALL TO NEXT MSG
 	.WORD	0
 	.WORD	117130              ;point mode, blink
 	.WORD	350.                ;X = 350
@@ -3252,14 +3315,18 @@ LPSW:	.WORD	DISTOP			;0 ON FUEL LOW--FALL TO NEXT MSG
 	.ASCII	'FUEL LOW'
 	.WORD	DISTOP              ;display stop
 	.WORD	0
+
 	.PAGE
 ;
 ;			;THIS IS THE BASIC ROCK COMMANDS.
 ;
-ROCKL:	.WORD	116727                  ;point mode, intensity 3, dot-dash line type
+ROCKL:
+    .WORD	116727                      ;point mode, intensity 3, dot-dash line type
 	.WORD	170240                      ;LSA - LP intensity off, normal font
-ROCKX:	.WORD	0                       ;X
-ROCKY:	.WORD	0                       ;Y
+ROCKX:
+    .WORD	0                           ;X
+ROCKY:
+    .WORD	0                           ;Y
 	.WORD	104000                      ;short vector mode
 	.WORD	14.+OTHER*200+8.+OTHER      ;X left 14, Y down 8 (moveto)
 	.WORD	OTHER+6+INTTWO*200+8.       ;X left 6, Y up 8, (draw)
@@ -3282,15 +3349,19 @@ ROCKY:	.WORD	0                       ;Y
 	.WORD	2+OTHER+INTTWO*200+8.+OTHER ;X left 2, Y down 8, (draw)
 	.WORD	DISTOP                      ;display stop, interrupt CPU
 	.WORD	0
-ROCKEN:					;NEXT LOCATION AFTER ROCKS.
+ROCKEN:                                 ;NEXT LOCATION AFTER ROCKS.
+
 	.PAGE
 ;
 ;		THIS LIST EXPLAINS HOW TO DRAW THE MACDONALD'S.
 ;
-MACS:	117724                  ;point mode, intensity 7, LP off, blink off, solid line
-    170240                      ;LSA - LP intensifed off, italics off
-MACX:	.WORD	0               ;X
-MACY:	.WORD	0               ;Y
+MACS:
+    .WORD   117724              ;point mode, intensity 7, LP off, blink off, solid line
+    .WORD   170240              ;LSA - LP intensifed off, italics off
+MACX:
+    .WORD	0                   ;X
+MACY:
+    .WORD	0                   ;Y
 	.WORD	104000;             ;short vector mode
 	.WORD	18.*200             ;X right 18, Y up 0 (moveto)
 	.WORD	107000              ;short vector mode, intensity 4
@@ -3315,7 +3386,8 @@ MACY:	.WORD	0               ;Y
 ;		NOTICE HOW I FALL THROUGH TO DRAW THE
 ;		SECOND ARCH. CLEVER, CLEVER.
 ;
-ARCH:	.WORD	107724          ;short vector mode, intensity 7, LP off, blink off, solid line
+ARCH:
+    .WORD	107724          ;short vector mode, intensity 7, LP off, blink off, solid line
 	.WORD	17.+OTHER*200+OTHER+3.;X left 17, Y down 3, (moveto)
 	.WORD	1*200+10.+INT       ;X right 1, Y up 10, (draw)
 	.WORD	1*200+9.+INT        ;X right 1, Y up 9, (draw)
@@ -3345,13 +3417,17 @@ ARCH:	.WORD	107724          ;short vector mode, intensity 7, LP off, blink off, 
 	.WORD	17.+OTHER*200+3.    ;X left 17, Y up 3, (moveto)
 	.WORD	DISTOP              ;display stop, interrupt CPU
 	.WORD	0
+
 	.PAGE
 ;
 ;		THIS LIST EXPLAINS HOW TO DRAW A MAN.
 ;
-MAN:	.WORD	116720			;DON'T MAKE HIM TOO BRIGHT.
-MANX:	.WORD	0
-MANY:	.WORD	0
+MAN:
+    .WORD	116720              ;DON'T MAKE HIM TOO BRIGHT.
+MANX:
+    .WORD	0
+MANY:
+    .WORD	0
 	.WORD	104000              ;ALL SHORT VECTORS.
 	.WORD	400                 ;X right 2, Y up 0, (moveto)    INVISIBLE 2 RIGHT.
 	.WORD	INT+20000+404		;X left 2, Y up 4, (draw)       LEFT TWO, UP FOUR.
@@ -3373,41 +3449,47 @@ MANY:	.WORD	0
 	.WORD	INT+20000+1403		;X left 6, Y up 3, (draw)       LEFT SIX, UP THREE.
 	.WORD	DISTOP              ;display stop, interrupt CPU
 	.WORD	0
+
 	.PAGE
 ;
 ;		THIS LIST EXPLAINS HOW TO DRAW A FLAG.
 ;
-FLAGL:	.WORD	115324  ;
-	.WORD	170240      ;
-FLAGX:	.WORD	0       ;X
-FLAGY:	.WORD	0       ;X
-	.WORD	104000      ;short vector mode
-	.WORD	18.+INT     ;X right 0, Y up 18, (draw)
-	.WORD	112727      ;long vector mode, intensity 3, LP disable, blink off, dot-dash line
-	.WORD	16.+INT     ;X right 16, Y up 0, (draw)
-	.WORD	0           ;
-	.WORD	INT         ;X right 0, Y down 8, (draw)
-	.WORD	8.+DOWN     ;
-	.WORD	16.+INT+LEFT;X left 16, Y up 0, (draw)
-	.WORD	0           ;
-	.WORD	112326      ;long vector mode, intensity 1, LP off, blink off, short dash
-	.WORD	0           ;X right 0, Y up 3, (moveto)
-	.WORD	3           ;
-	.WORD	16.+INT     ;X right 16, Y up 0, (draw)
-	.WORD	0           ;
-	.WORD	0           ;X right 0, Y up 2, (moveto)
-	.WORD	2           ;
-	.WORD	16.+INT+LEFT;X left 16, Y up 0, (draw)
-	.WORD	0           ;
-	.WORD	DISTOP      ;LSA - display stop, interrupt, 
+FLAGL:
+    .WORD	115324              ;
+	.WORD	170240              ;
+FLAGX:
+    .WORD	0                   ;X
+FLAGY:
+    .WORD	0                   ;X
+	.WORD	104000              ;short vector mode
+	.WORD	18.+INT             ;X right 0, Y up 18, (draw)
+	.WORD	112727              ;long vector mode, intensity 3, LP disable, blink off, dot-dash line
+	.WORD	16.+INT             ;X right 16, Y up 0, (draw)
+	.WORD	0                   ;
+	.WORD	INT                 ;X right 0, Y down 8, (draw)
+	.WORD	8.+DOWN             ;
+	.WORD	16.+INT+LEFT        ;X left 16, Y up 0, (draw)
+	.WORD	0                   ;
+	.WORD	112326              ;long vector mode, intensity 1, LP off, blink off, short dash
+	.WORD	0                   ;X right 0, Y up 3, (moveto)
+	.WORD	3                   ;
+	.WORD	16.+INT             ;X right 16, Y up 0, (draw)
+	.WORD	0                   ;
+	.WORD	0                   ;X right 0, Y up 2, (moveto)
+	.WORD	2                   ;
+	.WORD	16.+INT+LEFT        ;X left 16, Y up 0, (draw)
+	.WORD	0                   ;
+	.WORD	DISTOP              ;LSA - display stop, interrupt, 
 	.WORD	0
-FLAGEN:					;NEXT LOCATION AFTER FLAG.
+FLAGEN:                         ;NEXT LOCATION AFTER FLAG.
+
 	.PAGE
 ;
 ;	COMMANDS FOR DISPLAYING THE LUNAR MODULE. (coordinates are absolute, need to make relative)
 ;
-DESIGN:	.WORD	DRAWIN,170200   ;LSA - interrupt on stop            ;LOAD STATUS.
-	.WORD	DRAWIN,107124       ;short vector mode, intensity 4     AND SHORT VECTORS, INTENSITY 4.
+DESIGN:
+    .WORD	DRAWIN,170200       ;LSA - interrupt on stop     LOAD STATUS.
+	.WORD	DRAWIN,107124       ;SHORT VECTORS, INTENSITY 4.
 	.WORD	DRAWIS              ;DRAW BODY OF SHIP NOW.
 	.BYTE	-6.,0.              ;X left -6, Y up 0, (moveto)
 	.WORD	DRAWVS
@@ -3426,7 +3508,7 @@ DESIGN:	.WORD	DRAWIN,170200   ;LSA - interrupt on stop            ;LOAD STATUS.
 	.BYTE	6.,0.               ;X left 8, Y down 8, (draw)
 	.WORD	DRAWVS
 	.BYTE	-6.,0.              ;X left 6, Y up 0, (draw)
-;TOP OF SHIP DONE <OCTAGON>.
+    ;TOP OF SHIP DONE <OCTAGON>.
 
 	.WORD	DRAWIS
 	.BYTE	-17.,0.             ;X left 11, Y up 0 (moveto)
@@ -3438,7 +3520,7 @@ DESIGN:	.WORD	DRAWIN,170200   ;LSA - interrupt on stop            ;LOAD STATUS.
 	.BYTE	17.,0.              ;X right 0, Y up 16, (draw)
 	.WORD	DRAWVS
 	.BYTE	-17.,0.             ;X left 34, Y up 0, (draw)
-;LOWER BODY OF SHIP DONE.
+    ;LOWER BODY OF SHIP DONE.
 
     .WORD	DRAWIN,107524		;CHANGE TO LEVEL 3 INTENSITY.
 	.WORD	DRAWVS              ;DRAW LANDING LEGS NOW.
@@ -3456,9 +3538,9 @@ DESIGN:	.WORD	DRAWIN,170200   ;LSA - interrupt on stop            ;LOAD STATUS.
 	.BYTE	17.,-14.            ;X right 45, Y up 4, (moveto)
 	.WORD	DRAWVS
 	.BYTE	28.,-18.            ;X right 11, Y down 4, (draw)
-;LOWER LANDING BRACE DONE.
+                                ;LOWER LANDING BRACE DONE.
 
-;INTENSITY 4 FOR LANDING PODS.
+                                ;INTENSITY 4 FOR LANDING PODS.
 	.WORD	DRAWIN,107124
 	.WORD	DRAWIS
 	.BYTE	36.,-24.            ;X left 8, Y up 0, (moveto)
@@ -3468,9 +3550,9 @@ DESIGN:	.WORD	DRAWIN,170200   ;LSA - interrupt on stop            ;LOAD STATUS.
 	.BYTE	-28.,-24.           ;X left 8, Y up 0, (moveto)
 	.WORD	DRAWVS
 	.BYTE	-36.,-24.           ;X left 8, Y up 0, (draw)
-;END OF LANDING PODS.
+                                ;END OF LANDING PODS.
 
-;DRAW THE ENGINE NOW.
+                                ;DRAW THE ENGINE NOW.
 	.WORD	DRAWIS			
 	.BYTE	-3.,-16.            ;X left 8, Y up 0, (moveto)
 	.WORD	DRAWVS
@@ -3479,11 +3561,12 @@ DESIGN:	.WORD	DRAWIN,170200   ;LSA - interrupt on stop            ;LOAD STATUS.
 	.BYTE	7.,-21.             ;X right 14, Y up 0, (draw)
 	.WORD	DRAWVS
 	.BYTE	3.,-16.             ;X left 4, Y up 5, (draw)
-;END OF THE ENGINE.
+                                ;END OF THE ENGINE.
 
-.WORD	DRAWIS			;NOW BRING VECTOR BACK UP TO CENTER
-	.BYTE	0,0             ;X left 8, Y up 0, (moveto)  ;OF THE LUNAR MODULE.
-	.WORD	DRAWDN			;AND TERMINATE THE PICTURE.
+    .WORD	DRAWIS              ;NOW BRING VECTOR BACK UP TO CENTER
+	.BYTE	0,0                 ;X left 8, Y up 0, (moveto)  ;OF THE LUNAR MODULE.
+	.WORD	DRAWDN              ;AND TERMINATE THE PICTURE.
+
 	.PAGE
 ;
 ;	THESE TABLES CONTROL THE DRAWING OF THE ROCKET
@@ -3491,34 +3574,40 @@ DESIGN:	.WORD	DRAWIN,170200   ;LSA - interrupt on stop            ;LOAD STATUS.
 ;	Y THRUST TABLE ACCORDING TO PERCENTAGE THROTTLE.
 ;	13 SEGMENTS, EACH ONE APPROX 8% THROTTLE.
 ;
-YTHRST:	.BYTE	0.,-30.,-31.,-32.,-34.,-36.,-38.,-41.,-44.,-47.,-50.,-53.,-56.
+YTHRST:
+    .BYTE	0.,-30.,-31.,-32.,-34.,-36.,-38.,-41.,-44.,-47.,-50.,-53.,-56.
 
 ;
 ;	Y UP DOWN IS A TABLE WHICH WILL SORT OF
 ;	RANDOMIZE THE HEIGHT OF THE FLAME AND SHOULD ENHANCE THE
 ;	FLICKERING APPEARANCE.
 ;
-YUPDWN:	.BYTE	0,1,3,6,4,3,1,-2,-6,-7,-5,-2,2,3,5,6,2,1
+YUPDWN:	
+    .BYTE	0,1,3,6,4,3,1,-2,-6,-7,-5,-2,2,3,5,6,2,1
 	.BYTE	-1,-4,-6,-5,-3,0,4,5,7,4,0,-1,-3,-1
 ;
 ;	"FLAME BOTTOM" CONTAINS THE TABLE OF THE X VALUES
 ;	FOR THE BOTTOM OF THE ROCKET FLAME. THEY ARE INDEXED SLIGHTLY
 ;	RANDOMLY AT TIMES.
 ;
-FLAMBT:	.BYTE	-20.,-16.,-13.,-10.,-7.,-4.,-2.
+FLAMBT:	
+    .BYTE	-20.,-16.,-13.,-10.,-7.,-4.,-2.
 	.BYTE	0.,2.,4.,7.,10.,13.,16.,20.
 ;
 ;	THIS SECTION CONTAINS THE ACTUAL LIST OF COMMANDS TO
 ;	BE FOLLOWED WHEN DRAWING THE ROCKET FLAME.
 ;
 	.EVEN                           ;REALIGN NOW IF NECESSARY.
-FLAMDO:	.WORD	DRAWIN,170200		;LSA - intensify   LOAD STATUS PROPERLY.
+FLAMDO:	
+    .WORD	DRAWIN,170200		;LSA - intensify   LOAD STATUS PROPERLY.
 	.WORD	DRAWIN                  ;INSERT COMMAND NOW.
-FLAMEX:	.WORD	0                   ;FLAME COMMAND GOES HERE.
+FLAMEX:	
+    .WORD	0                   ;FLAME COMMAND GOES HERE.
 	.WORD	DRAWIS                  ;MOVE POINTER OVER TO BOTTOM
 	.BYTE	-6.,-21.                ;OFF THE ROCKET ENGINE.
 	.WORD	DRAWVS                  ;NOW DRAW THE VECTORS
-FLAMXS:	.BYTE	0.,0.               ;WHICH WE SHOULD SET UP HERE.
+FLAMXS:	
+    .BYTE	0.,0.               ;WHICH WE SHOULD SET UP HERE.
 	.WORD	DRAWVS                  ;AND MOVE BACK UP AGAIN.
 	.BYTE	-5.,-21.                ;BOTTOM OF THE ENGINE.
 	.WORD	DRAWVS
@@ -3569,6 +3658,7 @@ FLAMXS:	.BYTE	0.,0.               ;WHICH WE SHOULD SET UP HERE.
 	.BYTE	0.,0.
 	.WORD	DRAWDN			;AND END THE COMMAND LIST.
 	FLEN=12.			;NUMBER OF ITEMS TO INSERT IN THE TABLE.
+
 	.PAGE
 ;
 ;		THESE ARE THE HIDEOUS TABLES THAT THE
@@ -3581,7 +3671,8 @@ FLAMXS:	.BYTE	0.,0.               ;WHICH WE SHOULD SET UP HERE.
 ;		NUMBER LESS THAN 100 TO AN ASCII STRING. SEE THE
 ;		SUBROUTINE "ASCII".
 ;
-TENTAB:	.BYTE	'0,'0
+TENTAB:
+    .BYTE	'0,'0
 	.BYTE	'0,'1
 	.BYTE	'0,'2
 	.BYTE	'0,'3
@@ -3697,7 +3788,8 @@ TENTAB:	.BYTE	'0,'0
 	.WORD	   782.			;X= -3
 	.WORD	   782.			;X= -2
 	.WORD	   814.			;X= -1
-TERAIN:	.WORD	   780.			;X=  0
+TERAIN:
+    .WORD	   780.			;X=  0
 	.WORD	   750.			;X=  1
 	.WORD	   703.			;X=  2
 	.WORD	   650.			;X=  3
@@ -4626,7 +4718,8 @@ TERAIN:	.WORD	   780.			;X=  0
 	.BYTE	0*20+0			;X= -5	X= -6
 	.BYTE	0*20+0			;X= -3	X= -4
 	.BYTE	0*20+0			;X= -1	X= -2
-FEATUR:	.BYTE	0*20+5			;X=  1	X=  0
+FEATUR:
+    .BYTE	0*20+5			;X=  1	X=  0
 	.BYTE	0*20+0			;X=  3	X=  2
 	.BYTE	0*20+0			;X=  5	X=  4
 	.BYTE	0*20+0			;X=  7	X=  6
