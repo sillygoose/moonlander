@@ -203,6 +203,9 @@
                     
                     // ### Scaling here
                     CGContextMoveToPoint(context, newPoint.x, newPoint.y);
+                    currentPosition = CGPointMake(x, self.bounds.size.height - y);
+                    CGContextSetTextPosition(context, currentPosition.x, currentPosition.y);
+
                     
                     //NSLog(@"Move To (%3.0f,%3.0f)", newPoint.x, newPoint.y);
                     //prevPoint = newPoint;
@@ -221,6 +224,9 @@
                     CGPoint newPoint = CGPointMake(prevPoint.x + x, prevPoint.y + y);
                     // ### Scaling here
                     CGContextMoveToPoint(context, newPoint.x, newPoint.y);
+                    newPoint.x = currentPosition.x + x;
+                    newPoint.y = currentPosition.y + y;
+                    CGContextSetTextPosition(context, newPoint.x, newPoint.y);
                     
                     //NSLog(@"Move Relative (%3.0f,%3.0f)", newPoint.x, newPoint.y);
                     //prevPoint = newPoint;
