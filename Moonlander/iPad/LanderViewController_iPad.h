@@ -33,7 +33,6 @@
     short           _LEFTEDGE;
     short           _LEFEET;
     short           _INDEXL;
-    short           _HEIGHT;
     short           _RADARY;
     short           _AVERY;
     short           _AVERT;
@@ -74,7 +73,7 @@
     Instrument      *_instrument7;
     Instrument      *_instrument8;
     
-    LanderMessage   *_systemMessage;
+    LanderMessages  *_landerMessages;
 }
 
 @property (nonatomic, retain) LanderPhysicsModel *landerModel;
@@ -88,7 +87,6 @@
 @property (nonatomic) short LEFTEDGE;
 @property (nonatomic) short LEFEET;
 @property (nonatomic) short INDEXL;
-@property (nonatomic) short HEIGHT;
 @property (nonatomic) short RADARY;
 @property (nonatomic) short AVERY;
 @property (nonatomic) short AVERT;
@@ -129,7 +127,7 @@
 @property (nonatomic, retain) Instrument *instrument7;
 @property (nonatomic, retain) Instrument *instrument8;
 
-@property (nonatomic, retain) LanderMessage *systemMessage;
+@property (nonatomic, retain) LanderMessages *landerMessages;
 
 
 - (IBAction)thrusterChanged:(VGSlider *)sender;

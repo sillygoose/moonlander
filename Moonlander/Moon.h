@@ -17,15 +17,13 @@
 @end
 
 @interface Moon : VGView <MoonDataSource> {
-    NSDictionary        *_moonDict;
-    NSArray             *_moonArray;
+    NSMutableArray      *_moonArray;
     float               _LEFTEDGE;
     
     id <MoonDataSource> _dataSource ;
 }
 
-@property (nonatomic, retain) NSDictionary *moonDict;
-@property (nonatomic, retain) NSArray *moonArray;
+@property (nonatomic, retain) NSMutableArray *moonArray;
 @property (nonatomic) float LEFTEDGE;
 
 @property (assign) id <MoonDataSource> dataSource;
@@ -35,5 +33,7 @@
 - (void)viewCloseUp:(float)xCoordinate;
 - (void)viewNormal;
 - (BOOL)viewIsCloseup;
+
+- (void)addFeature:(int)feature atPosition:(int)index;
 
 @end

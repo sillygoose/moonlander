@@ -11,7 +11,6 @@
 
 @implementation Moon
 
-@synthesize moonDict=_moonDict;
 @synthesize moonArray=_moonArray;
 @synthesize LEFTEDGE=_LEFTEDGE;
 @synthesize dataSource=_dataSource;
@@ -23,17 +22,44 @@
     if (self) {
         self.LEFTEDGE = -1.0;
         
-        // No events for the moon
+        // No events for the moon surface
         self.userInteractionEnabled = NO;
         
         NSString *moonPath = [[NSBundle mainBundle] pathForResource:@"Moon" ofType:@"plist"];
-        self.moonDict = [NSDictionary dictionaryWithContentsOfFile:moonPath];
+        NSMutableDictionary *moonDict = [NSMutableDictionary dictionaryWithContentsOfFile:moonPath];
         self.vectorName = @"[Moon init]";
         
         // Cache the lunar terrain data
-        self.moonArray = [[[NSArray arrayWithObject:[self.moonDict objectForKey:@"paths"]] objectAtIndex:0] objectAtIndex:0];
+        self.moonArray = [[[NSMutableArray arrayWithObject:[moonDict objectForKey:@"paths"]] objectAtIndex:0] objectAtIndex:0];
     }
     return self;
+}
+
+- (void)addFeature:(int)feature atPosition:(int)index
+{
+    index = index + 10;
+    if (index >= 0 && index < self.moonArray.count) {
+        NSDictionary *item = [self.moonArray objectAtIndex:index];
+        if (item) {
+            NSMutableDictionary *modifiedItem = [NSMutableDictionary dictionaryWithDictionary:item];
+            NSNumber *yes = [NSNumber numberWithBool:YES];
+            switch (feature) {
+                case 1:
+                    [modifiedItem setObject:yes forKey:@"lander"];
+                    break;
+                case 2:
+                    [modifiedItem setObject:yes forKey:@"flag"];
+                    break;
+                case 3:
+                    [modifiedItem setObject:yes forKey:@"tipped_left"];
+                    break;
+                case 4:
+                    [modifiedItem setObject:yes forKey:@"tipped_right"];
+                    break;
+            }
+            [self.moonArray replaceObjectAtIndex:index withObject:modifiedItem];
+        }
+    }
 }
 
 - (float)terrainHeight:(short)xCoordinate
@@ -114,6 +140,8 @@
     unsigned lineSegments = 0;
     for (int i = terrainIndex; lineSegments < 225; i += nextIndex) {
         BOOL processedRock = NO;
+        BOOL processedFlag = NO;
+        BOOL processedLander = NO;
         BOOL processedMcDonalds = NO;
         
         float IN2 = [self terrainHeight:i];//[[[self.moonArray objectAtIndex:i] objectForKey:@"y"] floatValue];
@@ -195,6 +223,54 @@
                 // Processed this rock
                 processedRock = YES;
             }
+
+#if 0
+            // Now add the flags
+            NSDictionary *flagDict = nil;
+            NSArray *flagArray = nil;
+            if (!processedFlag && [self hasFeature:@"flag" atIndex:i]) {
+                if (!flagDict) {
+                    NSString *flagPath = [[NSBundle mainBundle] pathForResource:@"Flag" ofType:@"plist"];
+                    flagDict = [NSDictionary dictionaryWithContentsOfFile:flagPath];
+                    flagArray = [rockDict objectForKey:@"paths"];
+                }
+                
+                // Add the flag to the draw path
+                NSEnumerator *pathEnumerator = [flagArray objectEnumerator];
+                NSArray *currentEntry;
+                while ((currentEntry = [pathEnumerator nextObject])) {
+                    [path addObject:currentEntry];
+                }
+                
+                // Processed this flag
+                processedFlag = YES;
+            }
+            
+            // Now add the landers
+            NSDictionary *landerDict = nil;
+            NSArray *landerArray = nil;
+            if (!processedLander && [self hasFeature:@"lander" atIndex:i]) {
+                if (!landerDict) {
+                    NSString *landerPath = [[NSBundle mainBundle] pathForResource:@"Lander" ofType:@"plist"];
+                    landerDict = [NSDictionary dictionaryWithContentsOfFile:landerPath];
+                    landerArray = [landerDict objectForKey:@"paths"];
+                }
+                
+                // Add the lander to the draw path
+                NSEnumerator *pathEnumerator = [landerArray objectEnumerator];
+                NSArray *outerEntry;
+                while ((outerEntry = [pathEnumerator nextObject])) {
+                    NSEnumerator *vectorEnumerator = [outerEntry objectEnumerator];
+                    NSArray *innerEntry;
+                    while ((innerEntry = [vectorEnumerator nextObject])) {
+                        [path addObject:innerEntry];
+                    }
+                }
+                
+                // Processed this lander
+                processedLander = YES;
+            }
+#endif
             
             // And maybe a McDonalds
             NSDictionary *macDict = nil;
@@ -334,7 +410,7 @@
 
 - (void)dealloc
 {
-    [_moonDict release];
+    [_moonArray release];
     
     [super dealloc];
 }

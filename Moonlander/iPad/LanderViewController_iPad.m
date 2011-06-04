@@ -33,7 +33,6 @@
 @synthesize LEFTEDGE=_LEFTEDGE;
 @synthesize LEFEET=_LEFEET;
 @synthesize INDEXL=_INDEXL;
-@synthesize HEIGHT=_HEIGHT;
 @synthesize RADARY=_RADARY;
 @synthesize AVERY=_AVERY;
 @synthesize AVERT=_AVERT;
@@ -74,7 +73,7 @@
 @synthesize instrument7=_instrument7;
 @synthesize instrument8=_instrument8;
 
-@synthesize systemMessage=_systemMessage;
+@synthesize landerMessages=_landerMessages;
 
 
 const float GameTimerInterval = 1.0 / 12.0f;
@@ -181,7 +180,7 @@ const float DisplayUpdateInterval = 0.05f;
     [_instrument7 release];
     [_instrument8 release];
     
-    [_systemMessage release];
+    [_landerMessages release];
     
     [super dealloc];
 }
@@ -242,6 +241,15 @@ const float DisplayUpdateInterval = 0.05f;
     self.secondsData.enabled = YES;
 }
 
+- (void)disableRollThrusters
+{
+    self.thrusterSlider.enabled = NO;
+    self.smallLeftArrow.enabled = NO;
+    self.smallRightArrow.enabled = NO;
+    self.largeLeftArrow.enabled = NO;
+    self.largeRightArrow.enabled = NO;
+}
+
 - (void)initGame
 {
     self.SHOWX = 0;
@@ -288,11 +296,10 @@ const float DisplayUpdateInterval = 0.05f;
     self.moonView.userInteractionEnabled = NO;
     [self.moonView viewNormal];
     [self.view addSubview:self.moonView];
-    
-    // Add an empty system message for future use
-    self.systemMessage = [[LanderMessage alloc] initWithFrame:CGRectMake(0, 0, 500, 100)];
-    self.systemMessage.hidden = NO; //### chnage to YES when working
-    [self.view addSubview:self.systemMessage];
+
+    // Create the message manager
+    self.landerMessages = [[LanderMessages alloc] init];
+    [self.view addSubview:self.landerMessages];
     
     // New game button
     self.newGameButton = [[VGButton alloc] initWithFrame:CGRectMake(960, 0, 64, 64)];
@@ -342,8 +349,8 @@ const float DisplayUpdateInterval = 0.05f;
     // Create the telemetry items
     self.heightData = [[Telemetry alloc] initWithFrame:[self convertRectFromGameToView: CGRectMake(900, 247, 100, 20)]];
     self.heightData.titleLabel.text = @"HEIGHT";
-    self.heightData.format = @"%6.0f %@";
-    self.heightData.data = Block_copy(^{return [self.landerModel.dataSource altitude] - [self.moonView.dataSource terrainHeight:self.BIGXCT];});
+    self.heightData.format = @"%6d %@";
+    self.heightData.data = Block_copy(^{return self.RADARY;});
 	[self.heightData addTarget:self 
                            action:@selector(telemetrySelected:) 
                  forControlEvents:UIControlEventTouchUpInside];
@@ -351,8 +358,8 @@ const float DisplayUpdateInterval = 0.05f;
     
     self.altitudeData = [[Telemetry alloc] initWithFrame:[self convertRectFromGameToView: CGRectMake(900, 225, 100, 20)]];
     self.altitudeData.titleLabel.text = @"ALTITUDE";
-    self.altitudeData.format = @"%6.0f %@";
-    self.altitudeData.data = Block_copy(^{ return [self.landerModel.dataSource altitude];});
+    self.altitudeData.format = @"%6d %@";
+    self.altitudeData.data = Block_copy(^{ return (short)([self.landerModel.dataSource altitude]);});
 	[self.altitudeData addTarget:self 
                            action:@selector(telemetrySelected:) 
                  forControlEvents:UIControlEventTouchUpInside];
@@ -360,8 +367,8 @@ const float DisplayUpdateInterval = 0.05f;
     
     self.distanceData = [[Telemetry alloc] initWithFrame:[self convertRectFromGameToView: CGRectMake(900, 203, 100, 20)]];
     self.distanceData.titleLabel.text = @"DISTANCE";
-    self.distanceData.format = @"%6.0f %@";
-    self.distanceData.data = Block_copy(^{ return [self.landerModel.dataSource distance];});
+    self.distanceData.format = @"%6d %@";
+    self.distanceData.data = Block_copy(^{ return (short)([self.landerModel.dataSource distance]);});
 	[self.distanceData addTarget:self 
                            action:@selector(telemetrySelected:) 
                  forControlEvents:UIControlEventTouchUpInside];
@@ -370,8 +377,8 @@ const float DisplayUpdateInterval = 0.05f;
 
     self.fuelLeftData = [[Telemetry alloc] initWithFrame:[self convertRectFromGameToView: CGRectMake(900, 181, 100, 20)]];
     self.fuelLeftData.titleLabel.text = @"FUEL LEFT";
-    self.fuelLeftData.format = @"%6.0f %@";
-    self.fuelLeftData.data = Block_copy(^{ return [self.landerModel.dataSource fuel];});
+    self.fuelLeftData.format = @"%6d %@";
+    self.fuelLeftData.data = Block_copy(^{ return (short)([self.landerModel.dataSource fuel]);});
 	[self.fuelLeftData addTarget:self 
                          action:@selector(telemetrySelected:) 
                forControlEvents:UIControlEventTouchUpInside];
@@ -379,8 +386,8 @@ const float DisplayUpdateInterval = 0.05f;
     
     self.weightData = [[Telemetry alloc] initWithFrame:[self convertRectFromGameToView: CGRectMake(900, 159, 100, 20)]];
     self.weightData.titleLabel.text = @"WEIGHT";
-    self.weightData.format = @"%6.0f %@";
-    self.weightData.data = Block_copy(^{ return [self.landerModel.dataSource weight];});
+    self.weightData.format = @"%6d %@";
+    self.weightData.data = Block_copy(^{ return (short)([self.landerModel.dataSource weight]);});
 	[self.weightData addTarget:self 
                                    action:@selector(telemetrySelected:) 
                          forControlEvents:UIControlEventTouchUpInside];
@@ -388,8 +395,8 @@ const float DisplayUpdateInterval = 0.05f;
 
     self.thrustData = [[Telemetry alloc] initWithFrame:[self convertRectFromGameToView: CGRectMake(900, 137, 100, 20)]];
     self.thrustData.titleLabel.text = @"THRUST";
-    self.thrustData.format = @"%6.0f %@";
-    self.thrustData.data = Block_copy(^{ return [self.landerModel.dataSource thrust];});
+    self.thrustData.format = @"%6d %@";
+    self.thrustData.data = Block_copy(^{ return (short)([self.landerModel.dataSource thrust]);});
 	[self.thrustData addTarget:self 
                         action:@selector(telemetrySelected:) 
               forControlEvents:UIControlEventTouchUpInside];
@@ -397,8 +404,8 @@ const float DisplayUpdateInterval = 0.05f;
     
     self.thrustAngleData = [[Telemetry alloc] initWithFrame:[self convertRectFromGameToView: CGRectMake(900, 115, 100, 20)]];
     self.thrustAngleData.titleLabel.text = @"ANGLE";
-    self.thrustAngleData.format = @"%6.0f %@";
-    self.thrustAngleData.data = Block_copy(^{ return [self.landerModel.dataSource angleDegrees];});
+    self.thrustAngleData.format = @"%6d %@";
+    self.thrustAngleData.data = Block_copy(^{ return (short)([self.landerModel.dataSource angleDegrees]);});
 	[self.thrustAngleData addTarget:self 
                         action:@selector(telemetrySelected:) 
               forControlEvents:UIControlEventTouchUpInside];
@@ -406,8 +413,8 @@ const float DisplayUpdateInterval = 0.05f;
     
     self.verticalVelocityData = [[Telemetry alloc] initWithFrame:[self convertRectFromGameToView: CGRectMake(900, 93, 100, 20)]];
     self.verticalVelocityData.titleLabel.text = @"VER VEL";
-    self.verticalVelocityData.format = @"%6.0f %@";
-    self.verticalVelocityData.data = Block_copy(^{ return [self.landerModel.dataSource vertVel];});
+    self.verticalVelocityData.format = @"%6d %@";
+    self.verticalVelocityData.data = Block_copy(^{ return (short)([self.landerModel.dataSource vertVel]);});
 	[self.verticalVelocityData addTarget:self 
                         action:@selector(telemetrySelected:) 
               forControlEvents:UIControlEventTouchUpInside];
@@ -415,8 +422,8 @@ const float DisplayUpdateInterval = 0.05f;
     
     self.horizontalVelocityData = [[Telemetry alloc] initWithFrame:[self convertRectFromGameToView: CGRectMake(900, 71, 100, 20)]];
     self.horizontalVelocityData.titleLabel.text = @"HOR VEL";
-    self.horizontalVelocityData.format = @"%6.0f %@";
-    self.horizontalVelocityData.data = Block_copy(^{ return [self.landerModel.dataSource horizVel];});
+    self.horizontalVelocityData.format = @"%6d %@";
+    self.horizontalVelocityData.data = Block_copy(^{ return (short)([self.landerModel.dataSource horizVel]);});
 	[self.horizontalVelocityData addTarget:self 
                         action:@selector(telemetrySelected:) 
               forControlEvents:UIControlEventTouchUpInside];
@@ -424,8 +431,8 @@ const float DisplayUpdateInterval = 0.05f;
     
     self.verticalAccelerationData = [[Telemetry alloc] initWithFrame:[self convertRectFromGameToView: CGRectMake(900, 49, 100, 20)]];
     self.verticalAccelerationData.titleLabel.text = @"VER ACC";
-    self.verticalAccelerationData.format = @"%6.0f %@";
-    self.verticalAccelerationData.data = Block_copy(^{ return [self.landerModel.dataSource vertAccel];});
+    self.verticalAccelerationData.format = @"%6d %@";
+    self.verticalAccelerationData.data = Block_copy(^{ return (short)([self.landerModel.dataSource vertAccel]);});
 	[self.verticalAccelerationData addTarget:self 
                         action:@selector(telemetrySelected:) 
               forControlEvents:UIControlEventTouchUpInside];
@@ -433,8 +440,8 @@ const float DisplayUpdateInterval = 0.05f;
     
     self.horizontalAccelerationData = [[Telemetry alloc] initWithFrame:[self convertRectFromGameToView: CGRectMake(900, 27, 100, 20)]];
     self.horizontalAccelerationData.titleLabel.text = @"HOR ACC";
-    self.horizontalAccelerationData.format = @"%6.0f %@";
-    self.horizontalAccelerationData.data = Block_copy(^{ return [self.landerModel.dataSource horizAccel];});
+    self.horizontalAccelerationData.format = @"%6d %@";
+    self.horizontalAccelerationData.data = Block_copy(^{ return (short)([self.landerModel.dataSource horizAccel]);});
 	[self.horizontalAccelerationData addTarget:self 
                         action:@selector(telemetrySelected:) 
               forControlEvents:UIControlEventTouchUpInside];
@@ -442,8 +449,8 @@ const float DisplayUpdateInterval = 0.05f;
     
     self.secondsData = [[Telemetry alloc] initWithFrame:[self convertRectFromGameToView: CGRectMake(900, 5, 100, 20)]];
     self.secondsData.titleLabel.text = @"SECONDS";
-    self.secondsData.format = @"%6.0f %@";
-    self.secondsData.data = Block_copy(^{ return [self.landerModel.dataSource time];});
+    self.secondsData.format = @"%6d %@";
+    self.secondsData.data = Block_copy(^{ return (short)([self.landerModel.dataSource time]);});
 	[self.secondsData addTarget:self 
                         action:@selector(telemetrySelected:) 
               forControlEvents:UIControlEventTouchUpInside];
@@ -556,7 +563,7 @@ const float DisplayUpdateInterval = 0.05f;
     self.thrusterSlider = nil;
     
     self.landerView = nil;
-    self.systemMessage = nil;
+    self.landerMessages = nil;
     
     [self.simulationTimer invalidate];
     [self.displayTimer invalidate];
@@ -634,9 +641,9 @@ const float DisplayUpdateInterval = 0.05f;
 
 - (IBAction)newGame:(id)sender
 {
-    // Clear any system message from the last game
-    self.systemMessage.hidden = YES;
+    [self.moonView setNeedsDisplay];
     
+    [self.landerMessages removeAllLanderMessages];
     [self.simulationTimer invalidate];
     [self.displayTimer invalidate];
     
@@ -651,16 +658,6 @@ const float DisplayUpdateInterval = 0.05f;
 {
     [self.landerView updateLander];
     
-#if 0
-    // Move the lander
-    self.SHOWX = ([self.landerModel.dataSource distance] + 22400.0f) / 32.0f;
-    self.SHOWY = ([self.landerModel.dataSource altitude] / 32.0f) + 43.0f;
-    CGPoint newFrame = self.landerView.center;
-    newFrame.x = self.SHOWX;
-    newFrame.y = self.view.frame.size.width - self.SHOWY;
-    self.landerView.center = newFrame;
-#endif
-    
     [self.instrument1 display];
     [self.instrument2 display];
     [self.instrument3 display];
@@ -674,8 +671,8 @@ const float DisplayUpdateInterval = 0.05f;
 
 - (void)OFFCOM:(float)xPosition withMessage:(NSString *)message
 {
-    float newHDistance = xPosition * 32 -22400.0;
-    float newVertVel = [self.landerModel.dataSource altitude] / 40;
+    short newHDistance = xPosition * 32 - 22400;
+    short newVertVel = (short)([self.landerModel.dataSource altitude]) / 40;
     if (newVertVel >= 0) {
         newVertVel = -newVertVel;
     }
@@ -684,9 +681,9 @@ const float DisplayUpdateInterval = 0.05f;
     [self.landerModel.dataSource setFuel:0.0f];    
     [self.landerModel.dataSource setHorizVel:0.0f];   
     [self.landerModel.dataSource setVertVel:newVertVel];   
-    
-    [self.systemMessage addMessage:message];
-    self.systemMessage.hidden = NO;
+
+    // Add the message to the display
+    [self.landerMessages addLanderMessage:message];
 }
 
 - (short)DFAKE:(short)yValue
@@ -696,17 +693,159 @@ const float DisplayUpdateInterval = 0.05f;
     return y;
 }
 
+- (void)gameOver
+{
+    // Tell model we are on surface
+    [self.landerModel landerDown];
+    
+    // Remove a fuel low message if present
+    [self.landerMessages removeAllLanderMessages];
+
+    // Update the thruster display
+    [self.thrusterSlider setValue:[self.landerModel.dataSource thrustPercent]];
+    if (self.selectedTelemetry) {
+        self.selectedTelemetry.titleLabel.blink = NO;
+        self.selectedTelemetry = nil;
+    }
+    
+    // Disable flight controls
+    [self disableFlightControls];
+    
+    [self.simulationTimer invalidate];
+    self.simulationTimer = nil;
+    [self.displayTimer invalidate];
+    self.displayTimer = nil;
+    
+    [self updateLander];
+}
+
+- (void)INTEL
+{
+    BOOL MAYBE = NO;
+    BOOL QUICK = NO;
+    
+    //NSLog(@"RADARY: %d", self.RADARY);
+    if (self.RADARY <= -10) {
+        [self gameOver];
+        //DEAD
+        [self.landerMessages addLanderMessage:@"DeadLanding"];
+        //goto QUICK
+    }
+    else if (self.RADARY > 3) {
+        short vervel = (short)([self.landerModel.dataSource vertVel]);
+        if (vervel < -60) {
+            //AHAH
+            [self.landerMessages addLanderMessage:@"VeryFast"];
+            //goto AHAHC
+        }
+        else if (vervel < -30) {
+            //AHAH2
+            [self.landerMessages addLanderMessage:@"Fast"];
+            //goto AHAHC
+        }
+        else if (vervel < -15) {
+            //AHAH3
+            [self.landerMessages addLanderMessage:@"Not2Fast"];
+            //goto AHAHC
+        }
+        else {
+            [self.landerMessages removeLanderMessage:@"Not2Fast"];
+            // Delete not too fast message if displayed
+            //goto AHAHC
+        }
+    }
+    else if (self.RADARY <= 3) {
+        //VERYLO turn off fuel, flames, and dust
+        [self gameOver];
+
+        //VD
+        short vervel = (short)([self.landerModel.dataSource vertVel]);
+        if (vervel < -60) {
+            [self.landerMessages addLanderMessage:@"DeadLanding"];
+            QUICK = YES;
+        }
+        else if (vervel < -30) {
+            [self.landerMessages addLanderMessage:@"CrippledLanding"];
+            MAYBE = YES;
+        }
+        else if (vervel < -15) {
+            [self.landerMessages addLanderMessage:@"RoughLanding"];
+            MAYBE = YES;
+        }
+        else if (vervel < -8) {
+            [self.landerMessages addLanderMessage:@"GoodLanding"];
+            MAYBE = YES;
+        }
+        else {
+            [self.landerMessages addLanderMessage:@"GreatLanding"];
+            MAYBE = YES;
+        }
+    }
+    
+    if (QUICK) {
+        //ALTER surface
+        //Redraw moon
+        //Remove ship
+        //Explode
+    }
+    else if (MAYBE) {
+        // None is 0, left is < 0, right is > 0
+        int TiltDirection = 0;
+        
+        // Check horizonatal velocity, roll angle, and terrain slope
+        short horizvel = (short)([self.landerModel.dataSource horizVel]);
+        short angle = (short)([self.landerModel.dataSource angleDegrees]);
+        if (horizvel < -10 || horizvel > 10) {
+            [self.landerMessages addLanderMessage:@"FastSideways"];
+            TiltDirection = horizvel;
+        }
+        else if (angle < -15 || angle > 15) {
+            // Check the roll angle
+            [self.landerMessages addLanderMessage:@"TippedOver"];
+            TiltDirection = angle;
+        }
+        else {
+            // Check terrain slope
+            short thl = (short)([self.moonView.dataSource terrainHeight:self.INDEXL]);
+            short thr = (short)([self.moonView.dataSource terrainHeight:(self.INDEXL+1)]);
+            if (((thl - thr) < -48) || ((thl - thr) > 48)) {
+                [self.landerMessages addLanderMessage:@"BumpyLanding"];
+                TiltDirection = thl - thr;
+            }
+        }
+        
+        // Tilt the ship if indicated
+        if (TiltDirection != 0) {
+            if (TiltDirection < 0)
+                [self.moonView addFeature:3 atPosition:self.INDEXL];
+            else
+                [self.moonView addFeature:4 atPosition:self.INDEXL];
+        }
+        else {
+            [self.moonView addFeature:1 atPosition:self.INDEXL];
+        }
+    }
+}
+
+- (void)DUST
+{
+}
+
 - (void)gameLoop
 {
     [self.landerModel.delegate updateTime:GameTimerInterval];
     
-    self.BIGXCT = ((short)([self.landerModel.dataSource distance]) + 22400) / 32;
-    self.HEIGHT = (short)([self.landerModel.dataSource altitude]) - (short)([self.moonView.dataSource terrainHeight:self.BIGXCT]);
-    if (self.HEIGHT < 0) {
-        NSLog(@"HEIGHT at %d is messed up: %d", self.BIGXCT, self.HEIGHT);
+    // Display a low fuel message
+    if ((short)([self.landerModel.dataSource fuel]) <= 0) {
+        [self.landerMessages removeLanderMessage:@"FuelLow"];
+        [self disableRollThrusters];
+    }
+    else if ((short)([self.landerModel.dataSource fuel]) < 200) {
+        [self.landerMessages addLanderMessage:@"FuelLow"];
     }
     
     // Test for extreme game events that end the simulation
+    self.BIGXCT = ((short)([self.landerModel.dataSource distance]) + 22400) / 32;
     if (self.BIGXCT < 0) {
         // Off the left edge
         [self OFFCOM:13 withMessage:@"LeftEdge"];
@@ -721,26 +860,28 @@ const float DisplayUpdateInterval = 0.05f;
     }
     
     // Switch views if we hit a critical altitude
-    if ([self.landerModel.dataSource altitude] < 450.0) {
+    if ([self.landerModel.dataSource altitude] < 450) {
         // Find our horizontal position in the closeup view
-        short xPos = (short)([self.landerModel.dataSource distance]) - self.LEFEET;
- 
         if (![self.moonView viewIsCloseup]) {
             // Select the closeup view
             self.LEFTEDGE = self.BIGXCT - 9;
             self.LEFEET = (self.LEFTEDGE * 32) - 22400;
             [self.moonView viewCloseUp:self.LEFTEDGE];
         }
-        else if (xPos < 30) {
-            // Move the closeup view
+
+        short xPos = (short)([self.landerModel.dataSource distance]) - self.LEFEET;
+        if (xPos <= 30) {
+            // Move the closeup view left
             self.LEFTEDGE = self.BIGXCT - 17;
             self.LEFEET = (self.LEFTEDGE * 32) - 22400;
+            xPos = (short)([self.landerModel.dataSource distance]) - self.LEFEET;
             [self.moonView viewCloseUp:self.LEFTEDGE];
         }
         else if (xPos > 580) {
-            // Move the closeup view
+            // Move the closeup view right
             self.LEFTEDGE = self.BIGXCT - 1;
             self.LEFEET = (self.LEFTEDGE * 32) - 22400;
+            xPos = (short)([self.landerModel.dataSource distance]) - self.LEFEET;
             [self.moonView viewCloseUp:self.LEFTEDGE];
         }
         
@@ -764,45 +905,28 @@ const float DisplayUpdateInterval = 0.05f;
         RET2 -= self.AVERT;
         self.RADARY = (RET2 * 2) / 3;
         
+        [self INTEL];
+        [self DUST];
+
         // Move the lander
         CGPoint newFrame = self.landerView.center;
         newFrame.x = self.SHOWX;
         newFrame.y = self.view.frame.size.width - self.SHOWY;
         self.landerView.center = newFrame;
-        
-        // Call INTEL
-        // Call DUST
     }
     else {
+        self.RADARY = (short)([self.landerModel.dataSource altitude]) - (short)([self.moonView.dataSource terrainHeight:self.BIGXCT]);
+
         // Make sure the view is displayed (we might drift up)
         [self.moonView viewNormal];
         
         // Move the lander
         self.SHOWX = self.BIGXCT;
-        self.SHOWY = ([self.landerModel.dataSource altitude] / 32.0f) + 43.0f;
+        self.SHOWY = ([self.landerModel.dataSource altitude] / 32) + 43;
         CGPoint newFrame = self.landerView.center;
         newFrame.x = self.SHOWX;
         newFrame.y = self.view.frame.size.width - self.SHOWY;
         self.landerView.center = newFrame;
-    }
-    
-    if ([self.landerModel.dataSource onSurface]) {
-        // Update the thruster display
-        [self.thrusterSlider setValue:[self.landerModel.dataSource thrustPercent]];
-        if (self.selectedTelemetry) {
-            self.selectedTelemetry.titleLabel.blink = NO;
-            self.selectedTelemetry = nil;
-        }
-        
-        // Disable flight controls
-        [self disableFlightControls];
-        
-        [self.simulationTimer invalidate];
-        self.simulationTimer = nil;
-        [self.displayTimer invalidate];
-        self.displayTimer = nil;
-        
-        [self updateLander];
     }
 }
 
