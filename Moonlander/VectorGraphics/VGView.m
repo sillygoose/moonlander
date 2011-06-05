@@ -61,6 +61,8 @@
 - (void)drawRect:(CGRect)rect
 {
     //NSLog(@"UIView:drawRect%@", NSStringFromCGRect(rect));
+    CGPoint positionStack[4];
+    unsigned positionCount = 0;
     
     CGPoint currentPosition = CGPointMake(0.0f, self.bounds.size.height - self.fontSize);
     CGPoint prevPoint = CGPointZero;
@@ -85,7 +87,6 @@
         NSDictionary *currentVector;
         while ((currentVector = [vectorEnumerator nextObject])) {
             BOOL doBlink = NO;//### make instance variable?
-            CGPoint savedPosition;
             
             // "break" allows for complex breakpoints in a display list
             if ([currentVector objectForKey:@"break"]) {
@@ -101,19 +102,6 @@
                 if (stopCommand) break;
             }
             
-            // "push' saves the graphics context or position
-            if ([currentVector objectForKey:@"push"]) {
-                NSDictionary *pushStuff = [currentVector objectForKey:@"push"];
-                if ([pushStuff objectForKey:@"gstate"]) {
-                    CGContextStrokePath(context);
-                    CGContextMoveToPoint(context, prevPoint.x, prevPoint.y);
-                    CGContextSaveGState(context);
-                }
-                if ([pushStuff objectForKey:@"position"]) {
-                    savedPosition = prevPoint;
-                }
-            }
-            
             // "pop' restores the graphics context or position
             if ([currentVector objectForKey:@"pop"]) {
                 NSDictionary *popStuff = [currentVector objectForKey:@"pop"];
@@ -123,8 +111,25 @@
                     CGContextRestoreGState(context);
                 }
                 if ([popStuff objectForKey:@"position"]) {
-                    prevPoint = savedPosition;
+                    if (positionCount > 0) {
+                        prevPoint = positionStack[--positionCount];
+                        CGContextMoveToPoint(context, prevPoint.x, prevPoint.y);
+                    }
+                }
+            }
+            
+            // "push' saves the graphics context or position
+            if ([currentVector objectForKey:@"push"]) {
+                NSDictionary *pushStuff = [currentVector objectForKey:@"push"];
+                if ([pushStuff objectForKey:@"gstate"]) {
+                    CGContextStrokePath(context);
                     CGContextMoveToPoint(context, prevPoint.x, prevPoint.y);
+                    CGContextSaveGState(context);
+                }
+                if ([pushStuff objectForKey:@"position"]) {
+                    if (positionCount < (sizeof(positionStack)/sizeof(positionStack[0]))) {
+                        positionStack[positionCount++] = prevPoint;
+                    }
                 }
             }
             
