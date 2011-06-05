@@ -11,6 +11,7 @@
 #import "VGView.h"
 #import "Lander.h"
 
+enum LanderFeatures { FeatureLander = 1, FeatureFlag, FeatureTippedLeft, FeatureTippedRight };
 
 @protocol MoonDataSource <NSObject>
 - (float)terrainHeight:(short)xCoordinate;
