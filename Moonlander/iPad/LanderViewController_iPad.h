@@ -33,6 +33,7 @@
     short           _LEFTEDGE;
     short           _LEFEET;
     short           _INDEXL;
+    short           _INDEXLR;
     short           _RADARY;
     short           _AVERY;
     short           _AVERT;
@@ -87,9 +88,16 @@
 @property (nonatomic) short LEFTEDGE;
 @property (nonatomic) short LEFEET;
 @property (nonatomic) short INDEXL;
+@property (nonatomic) short INDEXLR;
 @property (nonatomic) short RADARY;
 @property (nonatomic) short AVERY;
 @property (nonatomic) short AVERT;
+
+@property (nonatomic, readonly) short PERTRS;
+@property (nonatomic, readonly) short ANGLE;
+@property (nonatomic, readonly) short HORVEL;
+@property (nonatomic, readonly) short VERVEL;
+@property (nonatomic, readonly) short THRUST;
 
 @property (nonatomic, retain) Moon *moonView;
 @property (nonatomic, retain) Lander *landerView;

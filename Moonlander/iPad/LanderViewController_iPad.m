@@ -33,6 +33,7 @@
 @synthesize LEFTEDGE=_LEFTEDGE;
 @synthesize LEFEET=_LEFEET;
 @synthesize INDEXL=_INDEXL;
+@synthesize INDEXLR=_INDEXLR;
 @synthesize RADARY=_RADARY;
 @synthesize AVERY=_AVERY;
 @synthesize AVERT=_AVERT;
@@ -136,6 +137,31 @@ const float DisplayUpdateInterval = 0.05f;
         self.wantsFullScreenLayout = YES;
     }
     return self;
+}
+
+- (short)PERTRS
+{
+    return (short)([self.landerModel.dataSource thrustPercent]);
+}
+
+- (short)ANGLE
+{
+    return (short)([self.landerModel.dataSource angleDegrees]);
+}
+
+- (short)HORVEL
+{
+    return (short)([self.landerModel.dataSource horizVel]);
+}
+
+- (short)VERVEL
+{
+    return (short)([self.landerModel.dataSource vertVel]);
+}
+
+- (short)THRUST
+{
+    return (short)([self.landerModel.dataSource thrust]);
 }
 
 - (void)dealloc
@@ -723,6 +749,7 @@ const float DisplayUpdateInterval = 0.05f;
 {
     BOOL MAYBE = NO;
     BOOL QUICK = NO;
+    BOOL AHAHC = NO;
     
     //NSLog(@"RADARY: %d", self.RADARY);
     if (self.RADARY <= -10) {
@@ -736,24 +763,22 @@ const float DisplayUpdateInterval = 0.05f;
         if (vervel < -60) {
             //AHAH
             [self.landerMessages addSystemMessage:@"VeryFast"];
-            //goto AHAHC
+            AHAHC = YES;
         }
         else if (vervel < -30) {
             //AHAH2
             [self.landerMessages addSystemMessage:@"Fast"];
-            //goto AHAHC
+            AHAHC = YES;
         }
         else if (vervel < -15) {
             //AHAH3
             [self.landerMessages addSystemMessage:@"Not2Fast"];
-            //goto AHAHC
+            AHAHC = YES;
         }
         else {
             // Delete not too fast message if displayed
-            //if ([self.landerMessages currentSystemMessage] == @"Not2Fast") {
-                [self.landerMessages removeSystemMessage:@"Not2Fast"];
-            //}
-            //goto AHAHC
+            [self.landerMessages removeSystemMessage:@"Not2Fast"];
+            AHAHC = YES;
         }
     }
     else if (self.RADARY <= 3) {
@@ -790,6 +815,49 @@ const float DisplayUpdateInterval = 0.05f;
         //Remove ship
         //Explode
     }
+    else if (AHAHC) {
+        // Check for features 
+        if ([self.moonView hasFeature:FeatureLander atIndex:self.INDEXL]) {
+            if (self.RADARY <= 26) {
+                if (self.VERVEL <= 60) {
+                    //GODEAD
+                }
+                else {
+                    [self.landerMessages addSystemMessage:@"HitLander"];
+                    if (self.HORVEL < 0)
+                        [self.moonView addFeature:FeatureTippedLeft atIndex:self.INDEXL];
+                    else
+                        [self.moonView addFeature:FeatureTippedRight atIndex:self.INDEXL];
+                    self.SHOWY -= 16;
+                    [self.moonView setNeedsDisplay];
+                    //EXPLOD
+                }
+            }
+        }
+        else if ([self.moonView hasFeature:FeatureRock atIndex:self.INDEXL]) {
+        }
+        else if ([self.moonView hasFeature:FeatureFlag atIndex:self.INDEXL]) {
+            if (self.RADARY <= 26) {
+                if (self.THRUST) {
+                    [self.moonView removeFeature:FeatureFlag atIndex:self.INDEXL];
+                    [self.landerMessages addSystemMessage:@"HitLander"];
+                    [self.moonView setNeedsDisplay];
+                }
+            }
+        }
+        else if ([self.moonView hasFeature:FeatureTippedLeft atIndex:self.INDEXL]) {
+        }
+        else if ([self.moonView hasFeature:FeatureTippedRight atIndex:self.INDEXL]) {
+        }
+        else if ([self.moonView hasFeature:FeatureMcDonalds atIndex:self.INDEXL]) {
+            if (self.RADARY <= 30) {
+                [self.moonView removeFeature:FeatureMcDonalds atIndex:self.INDEXL];
+                [self.landerMessages addSystemMessage:@"HitMcDonalds"];
+                [self.moonView setNeedsDisplay];
+                //ALTER
+            }
+        }
+    }
     else if (MAYBE) {
         // None is 0, left is < 0, right is > 0
         int TiltDirection = 0;
@@ -819,18 +887,23 @@ const float DisplayUpdateInterval = 0.05f;
         // Tilt the ship if indicated
         if (TiltDirection != 0) {
             if (TiltDirection < 0)
-                [self.moonView addFeature:3 atPosition:self.INDEXL];
+                [self.moonView addFeature:FeatureTippedLeft atIndex:self.INDEXL];
             else
-                [self.moonView addFeature:4 atPosition:self.INDEXL];
+                [self.moonView addFeature:FeatureTippedRight atIndex:self.INDEXL];
         }
         else {
-            [self.moonView addFeature:1 atPosition:self.INDEXL];
+            [self.moonView addFeature:FeatureLander atIndex:self.INDEXL];
         }
     }
 }
 
 - (void)DUST
 {
+    if (self.RADARY < 150) {
+        if (self.ANGLE > -45 || self.ANGLE < 45) {
+            //short percentThrust = (self.PERTRS > 63) ? 63 : self.PERTRS;
+        }
+    }
 }
 
 - (void)gameLoop
@@ -886,16 +959,15 @@ const float DisplayUpdateInterval = 0.05f;
             xPos = (short)([self.landerModel.dataSource distance]) - self.LEFEET;
             [self.moonView viewCloseUp:self.LEFTEDGE];
         }
-        
         self.SHOWX = (xPos * 3) / 2;
         
         // Index to terrain/feature to left of lander
         self.INDEXL = self.LEFTEDGE + (self.SHOWX / 48);
-        short showxRemainder = (self.SHOWX % 48);
+        self.INDEXLR = (self.SHOWX % 48);
         
         // Get the terrain information
-        short thl = (short)([self.moonView.dataSource terrainHeight:self.INDEXL]) * (48 - showxRemainder);
-        short thr = (short)([self.moonView.dataSource terrainHeight:(self.INDEXL+1)]) * showxRemainder;
+        short thl = (short)([self.moonView.dataSource terrainHeight:self.INDEXL]) * (48 - self.INDEXLR);
+        short thr = (short)([self.moonView.dataSource terrainHeight:(self.INDEXL+1)]) * self.INDEXLR;
         short th = (thl + thr) / 48;
         self.AVERY = th >> 2;
         self.AVERT = [self DFAKE:th];
