@@ -35,7 +35,65 @@
     return self;
 }
 
-- (void)addFeature:(int)feature atPosition:(int)index
+- (float)terrainHeight:(short)xCoordinate
+{
+    float averageHeight = 0.0f;
+    short x = xCoordinate + 10;
+    if (x >= 0 && x < self.moonArray.count) {
+        if (x == (self.moonArray.count - 1)) {
+            float elevation1 = [[[self.moonArray objectAtIndex:(x)] objectForKey:@"y"] floatValue];
+            averageHeight = elevation1;
+        }
+        else {
+            float elevation1 = [[[self.moonArray objectAtIndex:(x)] objectForKey:@"y"] floatValue];
+            float elevation2 = [[[self.moonArray objectAtIndex:(x+1)] objectForKey:@"y"] floatValue];
+            averageHeight = (elevation1 + elevation2) / 2;
+        }
+    }
+    //NSLog(@"X:%d  avgHeight:%5.0f", xCoordinate, averageHeight);
+    return averageHeight;
+}
+
+- (BOOL)hasFeature:(LanderFeature)feature atIndex:(short)index
+{
+    BOOL hasFeature = NO;
+    NSString *featureName = nil;
+    switch (feature) {
+        case FeatureLander:
+            featureName = @"lander";
+            break;
+        case FeatureFlag:
+            featureName = @"flag";
+            break;
+        case FeatureTippedLeft:
+            featureName = @"tipped_left";
+            break;
+        case FeatureTippedRight:
+            featureName = @"tipped_right";
+            break;
+        case FeatureRock:
+            featureName = @"rock";
+            break;
+        case FeatureMcDonaldsEdge:
+            featureName = @"mcd_edge";
+            break;
+        case FeatureMcDonalds:
+            featureName = @"mcdonalds";
+            break;
+        default:
+            break;
+    }
+    
+    if (featureName) {
+        index += 10;
+        if (index >= 0 && index < self.moonArray.count) {
+            hasFeature = ([[self.moonArray objectAtIndex:index] objectForKey:featureName] != nil);
+        }
+    }
+    return hasFeature;
+}
+
+- (void)addFeature:(LanderFeature)feature atIndex:(short)index
 {
     index = index + 10;
     if (index >= 0 && index < self.moonArray.count) {
@@ -56,39 +114,50 @@
                 case FeatureTippedRight:
                     [modifiedItem setObject:yes forKey:@"tipped_right"];
                     break;
+                default:
+                    break;
             }
             [self.moonArray replaceObjectAtIndex:index withObject:modifiedItem];
         }
     }
 }
 
-- (float)terrainHeight:(short)xCoordinate
+- (void)removeFeature:(LanderFeature)feature atIndex:(short)index
 {
-    float averageHeight = 0.0f;
-    short x = xCoordinate + 10;
-    if (x >= 0 && x < self.moonArray.count) {
-        if (x == (self.moonArray.count - 1)) {
-            float elevation1 = [[[self.moonArray objectAtIndex:(x)] objectForKey:@"y"] floatValue];
-            averageHeight = elevation1;
-        }
-        else {
-            float elevation1 = [[[self.moonArray objectAtIndex:(x)] objectForKey:@"y"] floatValue];
-            float elevation2 = [[[self.moonArray objectAtIndex:(x+1)] objectForKey:@"y"] floatValue];
-            averageHeight = (elevation1 + elevation2) / 2;
+    NSString *featureName = nil;
+    switch (feature) {
+        case FeatureLander:
+            featureName = @"lander";
+            break;
+        case FeatureFlag:
+            featureName = @"flag";
+            break;
+        case FeatureTippedLeft:
+            featureName = @"tipped_left";
+            break;
+        case FeatureTippedRight:
+            featureName = @"tipped_right";
+            break;
+        case FeatureRock:
+            featureName = @"rock";
+            break;
+        case FeatureMcDonaldsEdge:
+            featureName = @"mcd_edge";
+            break;
+        case FeatureMcDonalds:
+            featureName = @"mcdonalds";
+            break;
+        default:
+            break;
+    }
+    
+    if (featureName) {
+        index += 10;
+        if (index >= 0 && index < self.moonArray.count) {
+            NSMutableDictionary *stuff = [self.moonArray objectAtIndex:index];
+            [stuff removeObjectForKey:featureName];
         }
     }
-    //NSLog(@"X:%d  avgHeight:%5.0f", xCoordinate, averageHeight);
-    return averageHeight;
-}
-
-- (BOOL)hasFeature:(NSString *)feature atIndex:(short)index
-{
-    BOOL hasFeature = NO;
-    index += 10;
-    if (index >= 0 && index < self.moonArray.count) {
-        hasFeature = ([[self.moonArray objectAtIndex:index] objectForKey:feature] != nil);
-    }
-    return hasFeature;
 }
 
 - (void)DRAWIC
@@ -205,7 +274,7 @@
             // Now add the rocks
             NSDictionary *rockDict = nil;
             NSArray *rockArray = nil;
-            if (!processedRock && [self hasFeature:@"rock" atIndex:i]) {
+            if (!processedRock && [self hasFeature:FeatureRock atIndex:i]) {
                 //NSLog(@"has rock at X=%d", i);
                 if (!rockDict) {
                     NSString *rockPath = [[NSBundle mainBundle] pathForResource:@"Rock" ofType:@"plist"];
@@ -227,7 +296,7 @@
             // Check for a flag
             NSDictionary *flagDict = nil;
             NSArray *flagArray = nil;
-            if (!processedFlag && [self hasFeature:@"flag" atIndex:i]) {
+            if (!processedFlag && [self hasFeature:FeatureFlag atIndex:i]) {
                 if (!flagDict) {
                     NSString *flagPath = [[NSBundle mainBundle] pathForResource:@"Flag" ofType:@"plist"];
                     flagDict = [NSDictionary dictionaryWithContentsOfFile:flagPath];
@@ -248,7 +317,7 @@
             // Now check for landers
             NSDictionary *landerDict = nil;
             NSArray *landerArray = nil;
-            if (!processedLander && [self hasFeature:@"lander" atIndex:i]) {
+            if (!processedLander && [self hasFeature:FeatureLander atIndex:i]) {
                 if (!landerDict) {
                     NSString *landerPath = [[NSBundle mainBundle] pathForResource:@"Lander2" ofType:@"plist"];
                     landerDict = [NSDictionary dictionaryWithContentsOfFile:landerPath];
@@ -268,7 +337,7 @@
             // And maybe a McDonalds
             NSDictionary *macDict = nil;
             NSArray *macArray = nil;
-            if (!processedMcDonalds && [self hasFeature:@"mcdonalds" atIndex:i]) {
+            if (!processedMcDonalds && [self hasFeature:FeatureMcDonalds atIndex:i]) {
                 //NSLog(@"has macdonalds at X=%d", i);
                 if (!macDict) {
                     NSString *macPath = [[NSBundle mainBundle] pathForResource:@"McDonalds" ofType:@"plist"];

@@ -11,7 +11,8 @@
 #import "VGView.h"
 #import "Lander.h"
 
-enum LanderFeatures { FeatureLander = 1, FeatureFlag, FeatureTippedLeft, FeatureTippedRight };
+typedef enum { FeatureNothing = 0, FeatureLander, FeatureFlag, FeatureTippedLeft, FeatureTippedRight, FeatureRock, FeatureMcDonaldsEdge, FeatureMcDonalds } LanderFeature;
+
 
 @protocol MoonDataSource <NSObject>
 - (float)terrainHeight:(short)xCoordinate;
@@ -35,6 +36,8 @@ enum LanderFeatures { FeatureLander = 1, FeatureFlag, FeatureTippedLeft, Feature
 - (void)viewNormal;
 - (BOOL)viewIsCloseup;
 
-- (void)addFeature:(int)feature atPosition:(int)index;
+- (BOOL)hasFeature:(LanderFeature)feature atIndex:(short)index;
+- (void)addFeature:(LanderFeature)feature atIndex:(short)index;
+- (void)removeFeature:(LanderFeature)feature atIndex:(short)index;
 
 @end
