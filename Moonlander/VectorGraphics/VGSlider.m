@@ -51,7 +51,7 @@
         self.thrusterValue = [[VGLabel alloc] initWithFrame:valueFrame];
         self.thrusterValue.userInteractionEnabled = NO;
         [self addSubview:self.thrusterValue];
-   }
+    }
     return self;
 }
 
