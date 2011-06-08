@@ -11,33 +11,40 @@
 #import "VGView.h"
 #import "Lander.h"
 
-typedef enum { FeatureNothing = 0, FeatureLander, FeatureFlag, FeatureTippedLeft, FeatureTippedRight, FeatureRock, FeatureMcDonaldsEdge, FeatureMcDonalds } LanderFeature;
+typedef enum { TF_Nothing = 0, TF_OldLander, TF_OldFlag, TF_OldLanderTippedLeft, TF_OldLanderTippedRight, TF_Rock, TF_McDonaldsEdge, TF_McDonalds } TerrainFeature;
+
+typedef enum { TV_Unknown, TV_Normal, TV_Detailed } TerrainView;
 
 
 @protocol MoonDataSource <NSObject>
-- (float)terrainHeight:(short)xCoordinate;
+- (short)terrainHeight:(short)xCoordinate;
 @end
 
 @interface Moon : VGView <MoonDataSource> {
     NSMutableArray      *_moonArray;
-    float               _LEFTEDGE;
+    
+    TerrainView         _currentView;
+    short               _LEFTEDGE;
     
     id <MoonDataSource> _dataSource ;
 }
 
 @property (nonatomic, retain) NSMutableArray *moonArray;
-@property (nonatomic) float LEFTEDGE;
+
+@property (nonatomic) TerrainView currentView;
+@property (nonatomic) short LEFTEDGE;
 
 @property (assign) id <MoonDataSource> dataSource;
 
 - (id)initWithFrame:(CGRect)frameRect;
 
-- (void)viewCloseUp:(float)xCoordinate;
-- (void)viewNormal;
-- (BOOL)viewIsCloseup;
+- (void)useCloseUpView:(short)xCoordinate;
+- (void)useNormalView;
+- (BOOL)viewIsDetailed;
 
-- (BOOL)hasFeature:(LanderFeature)feature atIndex:(short)index;
-- (void)addFeature:(LanderFeature)feature atIndex:(short)index;
-- (void)removeFeature:(LanderFeature)feature atIndex:(short)index;
+- (TerrainFeature)featureAtIndex:(short)index;
+- (BOOL)hasFeature:(TerrainFeature)feature atIndex:(short)index;
+- (void)addFeature:(TerrainFeature)feature atIndex:(short)index;
+- (void)removeFeature:(TerrainFeature)feature atIndex:(short)index;
 
 @end

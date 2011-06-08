@@ -12,7 +12,10 @@
 @implementation Moon
 
 @synthesize moonArray=_moonArray;
+
+@synthesize currentView=_currentView;
 @synthesize LEFTEDGE=_LEFTEDGE;
+
 @synthesize dataSource=_dataSource;
 
 
@@ -28,6 +31,9 @@
         NSString *moonPath = [[NSBundle mainBundle] pathForResource:@"Moon" ofType:@"plist"];
         NSMutableDictionary *moonDict = [NSMutableDictionary dictionaryWithContentsOfFile:moonPath];
         self.vectorName = @"[Moon init]";
+
+        // We need to change the coordinate space to (0,0) in the lower left
+        self.transform = CGAffineTransformMake(1, 0, 0, -1, 0, 0);
         
         // Cache the lunar terrain data
         self.moonArray = [[[NSMutableArray arrayWithObject:[moonDict objectForKey:@"paths"]] objectAtIndex:0] objectAtIndex:0];
@@ -35,7 +41,7 @@
     return self;
 }
 
-- (float)terrainHeight:(short)xCoordinate
+- (short)terrainHeight:(short)xCoordinate
 {
     float averageHeight = 0.0f;
     short x = xCoordinate + 10;
@@ -54,127 +60,126 @@
     return averageHeight;
 }
 
-- (BOOL)hasFeature:(LanderFeature)feature atIndex:(short)index
+- (TerrainFeature)featureAtIndex:(short)index
+{
+    TerrainFeature tf = TF_Nothing;
+    index += 10;
+    NSNumber *feature = [[self.moonArray objectAtIndex:index] objectForKey:@"feature"
+     ];
+    if (feature) {
+        tf = [feature intValue];
+    }
+    return tf;
+}
+
+- (BOOL)hasFeature:(TerrainFeature)feature atIndex:(short)index
 {
     BOOL hasFeature = NO;
-    NSString *featureName = nil;
-    switch (feature) {
-        case FeatureLander:
-            featureName = @"lander";
-            break;
-        case FeatureFlag:
-            featureName = @"flag";
-            break;
-        case FeatureTippedLeft:
-            featureName = @"tipped_left";
-            break;
-        case FeatureTippedRight:
-            featureName = @"tipped_right";
-            break;
-        case FeatureRock:
-            featureName = @"rock";
-            break;
-        case FeatureMcDonaldsEdge:
-            featureName = @"mcd_edge";
-            break;
-        case FeatureMcDonalds:
-            featureName = @"mcdonalds";
-            break;
-        default:
-            break;
-    }
-    
-    if (featureName) {
-        index += 10;
-        if (index >= 0 && index < self.moonArray.count) {
-            hasFeature = ([[self.moonArray objectAtIndex:index] objectForKey:featureName] != nil);
-        }
+    index += 10;
+    if (index >= 0 && index < self.moonArray.count) {
+        hasFeature = ([[self.moonArray objectAtIndex:index] objectForKey:@"feature"
+                       ] != nil);
     }
     return hasFeature;
 }
 
-- (void)addFeature:(LanderFeature)feature atIndex:(short)index
+- (void)addFeature:(TerrainFeature)feature atIndex:(short)index
 {
     index = index + 10;
     if (index >= 0 && index < self.moonArray.count) {
-        NSDictionary *item = [self.moonArray objectAtIndex:index];
+        NSMutableDictionary *item = [self.moonArray objectAtIndex:index];
         if (item) {
-            NSMutableDictionary *modifiedItem = [NSMutableDictionary dictionaryWithDictionary:item];
-            NSNumber *yes = [NSNumber numberWithBool:YES];
-            switch (feature) {
-                case FeatureLander:
-                    [modifiedItem setObject:yes forKey:@"lander"];
-                    break;
-                case FeatureFlag:
-                    [modifiedItem setObject:yes forKey:@"flag"];
-                    break;
-                case FeatureTippedLeft:
-                    [modifiedItem setObject:yes forKey:@"tipped_left"];
-                    break;
-                case FeatureTippedRight:
-                    [modifiedItem setObject:yes forKey:@"tipped_right"];
-                    break;
-                default:
-                    break;
+            TerrainFeature tf = [[item objectForKey:@"feature"] intValue];
+            if (tf != TF_Rock) {
+                NSNumber *newFeature = [NSNumber numberWithInt:feature];
+                [item setObject:newFeature forKey:@"feature"];
+                [self.moonArray replaceObjectAtIndex:index withObject:item];
             }
-            [self.moonArray replaceObjectAtIndex:index withObject:modifiedItem];
         }
     }
 }
 
-- (void)removeFeature:(LanderFeature)feature atIndex:(short)index
+- (void)removeFeature:(TerrainFeature)feature atIndex:(short)index
 {
-    NSString *featureName = nil;
-    switch (feature) {
-        case FeatureLander:
-            featureName = @"lander";
-            break;
-        case FeatureFlag:
-            featureName = @"flag";
-            break;
-        case FeatureTippedLeft:
-            featureName = @"tipped_left";
-            break;
-        case FeatureTippedRight:
-            featureName = @"tipped_right";
-            break;
-        case FeatureRock:
-            featureName = @"rock";
-            break;
-        case FeatureMcDonaldsEdge:
-            featureName = @"mcd_edge";
-            break;
-        case FeatureMcDonalds:
-            featureName = @"mcdonalds";
-            break;
-        default:
-            break;
-    }
-    
-    if (featureName) {
-        index += 10;
-        if (index >= 0 && index < self.moonArray.count) {
-            NSMutableDictionary *stuff = [self.moonArray objectAtIndex:index];
-            [stuff removeObjectForKey:featureName];
+    index += 10;
+    if (index >= 0 && index < self.moonArray.count) {
+        NSMutableDictionary *terrainFeature = [self.moonArray objectAtIndex:index];
+        TerrainFeature tf = [[terrainFeature objectForKey:@"feature"] intValue];
+        if (tf != TF_Rock) {
+            [terrainFeature removeObjectForKey:@"feature"];
         }
     }
+}
+
+- (short)DFAKE:(short)yValue
+{
+    short y = yValue;
+    y = (y * 3) / 8 + 23;
+    return y;
 }
 
 - (void)DRAWIC
 {
 }
 
-- (float)DFAKE:(float)yValue
+- (void)addFeatureToView:(TerrainFeature)tf atOrigin:(CGPoint)point
 {
-    unsigned short y = (unsigned short)yValue;
-    y = (y * 3) / 8 + 23;
-    return (float)y;
+    const char *featureFiles[] = { NULL, "Lander2", "Flag", "Lander2", "Lander2", "Rock", NULL, "McDonalds" };
+    const CGSize featureSizes[] = { CGSizeMake(0, 0), CGSizeMake(72, 64), CGSizeMake(22, 22), CGSizeMake(72, 64), CGSizeMake(72, 64), CGSizeMake(48, 42), CGSizeMake(0, 0), CGSizeMake(140, 64) };
+    CGFloat featureRotation[] = { 0.0f, 0.0f, 0.0f, M_PI_2, -M_PI_2, 0.0f, 0.0f, 0.0f };
+    CGFloat featureTranslation[] = { 0.0f, 0.0f, 0.0f, -1.0f, 0.0f, 0.0f, 0.0f, 0.0f };
+    CGFloat verticalAdjust[] = { 0.0f, 48.0f, 0.0f, 32.0f, 32.0f, 32.0f, 0.0f, 50.0f };
+    CGFloat verticalClip[] = { 0.0f, 0.0f, 0.0f, 30.0f, 30.0f, 0.0f, 0.0f, 0.0f };
+
+    if (!(tf == TF_Nothing || tf == TF_McDonaldsEdge)) {
+        float angleAdjust = 0;
+        if (tf == TF_OldLanderTippedLeft || tf == TF_OldLanderTippedRight) {
+            short leftHeight = [self DFAKE:[self terrainHeight:self.LEFTEDGE]];
+            short rightHeight = [self DFAKE:[self terrainHeight:(self.LEFTEDGE+1)]];
+            short averageHeight = (leftHeight + rightHeight) / 2;
+            point.y = averageHeight;
+            if (leftHeight - rightHeight) {
+                angleAdjust = (leftHeight - rightHeight) ? (M_PI_4 / 2) : (-M_PI_4 / 2);
+            }
+        }
+        
+        CGRect frameRect;
+        frameRect.origin = point;
+        frameRect.size = featureSizes[tf];
+        frameRect.origin.y += verticalAdjust[tf];
+        frameRect.origin.y = frameRect.origin.y - frameRect.size.height;
+        
+        //NSLog(@"Feature %d at %@", tf, NSStringFromCGPoint(point));
+        NSString *featureFile = [[NSBundle mainBundle] pathForResource:[NSString stringWithUTF8String:featureFiles[tf]] ofType:@"plist"];
+        VGView *featureView = [[VGView alloc] initWithFrame:frameRect withPaths:featureFile];
+        
+        featureView.clipsToBounds = YES;
+        featureView.backgroundColor = [UIColor grayColor];
+        CGRect clipped = CGRectMake(featureView.bounds.origin.x, featureView.bounds.origin.y, featureView.bounds.size.width - verticalClip[tf], featureView.bounds.size.height);
+        featureView.bounds = clipped;
+
+        if (featureRotation[tf]) {
+            // Add the rotation to the subview
+            CGAffineTransform t = featureView.transform;
+            t = CGAffineTransformRotate(t, featureRotation[tf] + angleAdjust);
+            featureView.transform = t;
+        }
+
+        if (featureTranslation[tf]) {
+            // Add the rotation to the subview
+            CGAffineTransform t = featureView.transform;
+            t = CGAffineTransformScale(t, featureTranslation[tf], 1.0f);
+            featureView.transform = t;
+        }
+
+        [self addSubview:featureView];
+    }
 }
 
 - (NSArray *)buildDetailedLunarSurface
 {
     // This is the display index
-    float x = 0;
+    short x = 0;
     
     // Start building the draw path now
     NSMutableArray *path = [[[NSMutableArray alloc] init] autorelease];
@@ -189,17 +194,17 @@
     const int terrainIndex = self.LEFTEDGE;
     //NSLog(@"Initial X is %d", terrainIndex);
     
-    float TEMP = [self terrainHeight:terrainIndex];//[[item objectForKey:@"y"] floatValue];
+    short TEMP = [self terrainHeight:terrainIndex];
     TEMP = [self DFAKE:TEMP];
     if (TEMP < 0)
         TEMP = 0;
-    else if (TEMP >= 768)
+    else if (TEMP > 768)
         TEMP = 768;
-    
-    float LASTY = TEMP;
+    short LASTY = TEMP;
 
-    NSNumber *xCoordinate = [NSNumber numberWithFloat:x];
-    NSNumber *yCoordinate = [NSNumber numberWithFloat:TEMP];
+    //NSLog(@"x: %d  TEMP: %d", x, TEMP);
+    NSNumber *xCoordinate = [NSNumber numberWithInt:x];
+    NSNumber *yCoordinate = [NSNumber numberWithInt:TEMP];
     NSDictionary *startItem = [NSDictionary dictionaryWithObjectsAndKeys:xCoordinate, @"x", yCoordinate, @"y", nil];
     NSDictionary *moveToStartItem = [NSDictionary dictionaryWithObjectsAndKeys:startItem, @"moveto", nil];
     [path addObject:moveToStartItem];
@@ -207,13 +212,8 @@
     int DFUDGE = 0;
     int DFUDGE_INC = 1;
     unsigned lineSegments = 0;
-    for (int i = terrainIndex; lineSegments < 225; i += nextIndex) {
-        BOOL processedRock = NO;
-        BOOL processedFlag = NO;
-        BOOL processedLander = NO;
-        BOOL processedMcDonalds = NO;
-        
-        float IN2 = [self terrainHeight:i];//[[[self.moonArray objectAtIndex:i] objectForKey:@"y"] floatValue];
+    for (short i = terrainIndex; lineSegments < 225; i += nextIndex) {
+        short IN2 = [self terrainHeight:i];
         IN2 = [self DFAKE:IN2];
         IN2 = IN2 - TEMP;
         if (IN2 < 0) {
@@ -261,6 +261,9 @@
             TEMP = TEMP - LASTY;
             LASTY += TEMP;
             
+            x += 4;
+            
+            //NSLog(@"TEMP: %d", TEMP);
             xCoordinate = [NSNumber numberWithInt:4];
             yCoordinate = [NSNumber numberWithInt:TEMP];
             NSMutableDictionary *drawItem = [NSDictionary dictionaryWithObjectsAndKeys:xCoordinate, @"x", yCoordinate, @"y", nil];
@@ -270,90 +273,13 @@
             lineSegments++;
             
             //NSLog(@"i: %d  lineSeg: %d  TEMP: %3.0f  IN2: %3.0f  LASTY: %3.0f  drawTo: %@", i, lineSegments, TEMP, IN2, LASTY, NSStringFromCGPoint(drawToPoint));
-            
-            // Now add the rocks
-            NSDictionary *rockDict = nil;
-            NSArray *rockArray = nil;
-            if (!processedRock && [self hasFeature:FeatureRock atIndex:i]) {
-                //NSLog(@"has rock at X=%d", i);
-                if (!rockDict) {
-                    NSString *rockPath = [[NSBundle mainBundle] pathForResource:@"Rock" ofType:@"plist"];
-                    rockDict = [NSDictionary dictionaryWithContentsOfFile:rockPath];
-                    rockArray = [rockDict objectForKey:@"paths"];
+          
+            // See if there are features to add (added to center of terrain index)
+            if (k == 11) {
+                TerrainFeature tf = [self featureAtIndex:i];
+                if (tf > TF_Nothing && tf != TF_McDonaldsEdge) {
+                    [self addFeatureToView:tf atOrigin:CGPointMake(x, TEMP)];
                 }
-                
-                // Add the rock to the draw path
-                NSEnumerator *pathEnumerator = [rockArray objectEnumerator];
-                NSArray *currentEntry;
-                while ((currentEntry = [pathEnumerator nextObject])) {
-                    [path addObject:currentEntry];
-                }
-                
-                // Processed this rock
-                processedRock = YES;
-            }
-
-            // Check for a flag
-            NSDictionary *flagDict = nil;
-            NSArray *flagArray = nil;
-            if (!processedFlag && [self hasFeature:FeatureFlag atIndex:i]) {
-                if (!flagDict) {
-                    NSString *flagPath = [[NSBundle mainBundle] pathForResource:@"Flag" ofType:@"plist"];
-                    flagDict = [NSDictionary dictionaryWithContentsOfFile:flagPath];
-                    flagArray = [flagDict objectForKey:@"paths"];
-                }
-                
-                // Add the flag to the draw path
-                NSEnumerator *pathEnumerator = [flagArray objectEnumerator];
-                NSArray *currentEntry;
-                while ((currentEntry = [pathEnumerator nextObject])) {
-                    [path addObject:currentEntry];
-                }
-                
-                // Processed this flag
-                processedFlag = YES;
-            }
-            
-            // Now check for landers
-            NSDictionary *landerDict = nil;
-            NSArray *landerArray = nil;
-            if (!processedLander && [self hasFeature:FeatureLander atIndex:i]) {
-                if (!landerDict) {
-                    NSString *landerPath = [[NSBundle mainBundle] pathForResource:@"Lander2" ofType:@"plist"];
-                    landerDict = [NSDictionary dictionaryWithContentsOfFile:landerPath];
-                    landerArray = [landerDict objectForKey:@"paths"];
-                }
-                
-                NSEnumerator *pathEnumerator = [landerArray objectEnumerator];
-                NSArray *currentEntry;
-                while ((currentEntry = [pathEnumerator nextObject])) {
-                    [path addObject:currentEntry];
-                }
-                
-                // Processed this lander
-                processedLander = YES;
-            }
-            
-            // And maybe a McDonalds
-            NSDictionary *macDict = nil;
-            NSArray *macArray = nil;
-            if (!processedMcDonalds && [self hasFeature:FeatureMcDonalds atIndex:i]) {
-                //NSLog(@"has macdonalds at X=%d", i);
-                if (!macDict) {
-                    NSString *macPath = [[NSBundle mainBundle] pathForResource:@"McDonalds" ofType:@"plist"];
-                    macDict = [NSDictionary dictionaryWithContentsOfFile:macPath];
-                    macArray = [macDict objectForKey:@"paths"];
-                }
-                
-                // Add McDonalds to the draw path
-                NSEnumerator *pathEnumerator = [macArray objectEnumerator];
-                NSArray *currentEntry;
-                while ((currentEntry = [pathEnumerator nextObject])) {
-                    [path addObject:currentEntry];
-                }
-                
-                // And McDondald's is drawn
-                processedMcDonalds = YES;
             }
         }
     }
@@ -382,6 +308,7 @@
     float x = [[item objectForKey:@"x"] floatValue];
     float y = [[item objectForKey:@"y"] floatValue];
     y = y / 32 + 23;
+
     previousPoint.x = x;
     previousPoint.y = y;
     
@@ -428,46 +355,43 @@
     return paths;
 }
 
-- (void)viewCloseUp:(float)xCoordinate
+- (void)useCloseUpView:(short)xCoordinate
 {
-    if (self.LEFTEDGE < 0 || (self.LEFTEDGE >= 0 && self.LEFTEDGE != xCoordinate)) {
+    if (self.currentView == TV_Normal || (self.currentView == TV_Detailed && self.LEFTEDGE != xCoordinate)) {
+        // Remove the subviews whenever we change
+        for (UIView *subView in [self subviews]) {
+            [subView removeFromSuperview];
+        }
+        
+        self.currentView = TV_Detailed;
         self.LEFTEDGE = xCoordinate;
-        [self setNeedsDisplay];
-    }
-}
-
-- (void)viewNormal
-{
-    if (self.LEFTEDGE >= 0) {
-        self.LEFTEDGE = -1.0;
-        [self setNeedsDisplay];
-    }
-}
-
-- (BOOL)viewIsCloseup
-{
-    return (self.LEFTEDGE > 0);
-}
-
-- (void)buildMoonSurface
-{
-    if (self.LEFTEDGE > 0)
         self.drawPaths = [self buildDetailedLunarSurface];
-    else
+        [self setNeedsDisplay];
+    }
+}
+
+- (void)useNormalView
+{
+    if (self.currentView != TV_Normal) {
+        // Remove the subviews whenever we change
+        for (UIView *subView in [self subviews]) {
+            [subView removeFromSuperview];
+        }
+
+        self.currentView = TV_Normal;
         self.drawPaths = [self buildLunarSurface];
+        [self setNeedsDisplay];
+    }
+}
+
+- (BOOL)viewIsDetailed
+{
+    return (self.currentView == TV_Detailed);
 }
 
 - (void)drawRect:(CGRect)rect
 {
-    // Decide which view to show
-    [self buildMoonSurface];
-    
-	CGContextRef context = UIGraphicsGetCurrentContext();
-    CGContextSaveGState(context);
-    CGContextTranslateCTM(context, 0, self.bounds.size.height);
-    CGContextScaleCTM(context, 1.0, -1.0 );
     [super drawRect:rect];
-    CGContextRestoreGState(context);
 }
 
 - (void)dealloc
