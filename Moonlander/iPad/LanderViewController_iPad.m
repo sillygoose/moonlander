@@ -278,12 +278,17 @@ const float DisplayUpdateInterval = 0.05f;
 
 - (void)initGame
 {
+    // Start with a normal view
+    [self.moonView useNormalView];
+    [self.landerModel newGame];
+    
+    // Starting posiition
     self.SHOWX = 0;
     self.SHOWY = 0;
     
     [self enableFlightControls];
     
-    [self.landerModel.delegate newGame];
+    //###[self.landerModel.delegate newGame];
     
     // Setup controls with model defaults
     self.thrusterSlider.value = [self.landerModel.dataSource thrustPercent];
@@ -320,7 +325,7 @@ const float DisplayUpdateInterval = 0.05f;
     self.moonView = [[Moon alloc] initWithFrame:[self convertRectFromGameToView:CGRectMake(0, 0, 1024, 768)]];
     self.moonView.dataSource = self.moonView;
     self.moonView.userInteractionEnabled = NO;
-    [self.moonView viewNormal];
+    [self.moonView useNormalView];
     [self.view addSubview:self.moonView];
 
     // Create the message manager
@@ -667,8 +672,6 @@ const float DisplayUpdateInterval = 0.05f;
 
 - (IBAction)newGame:(id)sender
 {
-    [self.moonView setNeedsDisplay];
-    
     [self.landerMessages removeAllLanderMessages];
     [self.simulationTimer invalidate];
     [self.displayTimer invalidate];
@@ -816,8 +819,9 @@ const float DisplayUpdateInterval = 0.05f;
         //Explode
     }
     else if (AHAHC) {
-        // Check for features 
-        if ([self.moonView hasFeature:FeatureLander atIndex:self.INDEXL]) {
+        // Check for features we might have hit
+        TerrainFeature tf = [self.moonView featureAtIndex:self.INDEXL];
+        if (tf == TF_OldLander || tf == TF_OldLanderTippedLeft || tf == TF_OldLanderTippedRight) {
             if (self.RADARY <= 26) {
                 if (self.VERVEL <= 60) {
                     //GODEAD
@@ -825,33 +829,29 @@ const float DisplayUpdateInterval = 0.05f;
                 else {
                     [self.landerMessages addSystemMessage:@"HitLander"];
                     if (self.HORVEL < 0)
-                        [self.moonView addFeature:FeatureTippedLeft atIndex:self.INDEXL];
+                        [self.moonView addFeature:TF_OldLanderTippedLeft atIndex:self.INDEXL];
                     else
-                        [self.moonView addFeature:FeatureTippedRight atIndex:self.INDEXL];
+                        [self.moonView addFeature:TF_OldLanderTippedRight atIndex:self.INDEXL];
                     self.SHOWY -= 16;
                     [self.moonView setNeedsDisplay];
                     //EXPLOD
                 }
             }
         }
-        else if ([self.moonView hasFeature:FeatureRock atIndex:self.INDEXL]) {
+        else if (tf == TF_Rock) {
         }
-        else if ([self.moonView hasFeature:FeatureFlag atIndex:self.INDEXL]) {
+        else if (tf == TF_OldFlag) {
             if (self.RADARY <= 26) {
                 if (self.THRUST) {
-                    [self.moonView removeFeature:FeatureFlag atIndex:self.INDEXL];
-                    [self.landerMessages addSystemMessage:@"HitLander"];
+                    [self.moonView removeFeature:TF_OldFlag atIndex:self.INDEXL];
+                    [self.landerMessages addSystemMessage:@"HitOldFlag"];
                     [self.moonView setNeedsDisplay];
                 }
             }
         }
-        else if ([self.moonView hasFeature:FeatureTippedLeft atIndex:self.INDEXL]) {
-        }
-        else if ([self.moonView hasFeature:FeatureTippedRight atIndex:self.INDEXL]) {
-        }
-        else if ([self.moonView hasFeature:FeatureMcDonalds atIndex:self.INDEXL]) {
+        else if (tf == TF_McDonalds) {
             if (self.RADARY <= 30) {
-                [self.moonView removeFeature:FeatureMcDonalds atIndex:self.INDEXL];
+                [self.moonView removeFeature:TF_McDonalds atIndex:self.INDEXL];
                 [self.landerMessages addSystemMessage:@"HitMcDonalds"];
                 [self.moonView setNeedsDisplay];
                 //ALTER
@@ -886,13 +886,16 @@ const float DisplayUpdateInterval = 0.05f;
         
         // Tilt the ship if indicated
         if (TiltDirection != 0) {
-            if (TiltDirection < 0)
-                [self.moonView addFeature:FeatureTippedLeft atIndex:self.INDEXL];
-            else
-                [self.moonView addFeature:FeatureTippedRight atIndex:self.INDEXL];
+            if (TiltDirection < 0) {
+                [self.moonView addFeature:TF_OldLanderTippedLeft atIndex:self.INDEXL];
+            }
+            else {
+                [self.moonView addFeature:TF_OldLanderTippedRight atIndex:self.INDEXL];
+            }
         }
         else {
-            [self.moonView addFeature:FeatureLander atIndex:self.INDEXL];
+            [self.moonView addFeature:TF_OldLander atIndex:self.INDEXL];
+            [self.moonView addFeature:TF_OldFlag atIndex:(self.INDEXL+2)];
         }
     }
 }
@@ -937,27 +940,28 @@ const float DisplayUpdateInterval = 0.05f;
     // Switch views if we hit a critical altitude
     if ([self.landerModel.dataSource altitude] < 450) {
         // Find our horizontal position in the closeup view
-        if (![self.moonView viewIsCloseup]) {
+        if (![self.moonView viewIsDetailed]) {
             // Select the closeup view
             self.LEFTEDGE = self.BIGXCT - 9;
             self.LEFEET = (self.LEFTEDGE * 32) - 22400;
-            [self.moonView viewCloseUp:self.LEFTEDGE];
+            [self.moonView useCloseUpView:self.LEFTEDGE];
         }
 
+        // Check if we are at the left/right edger and need to redraw
         short xPos = (short)([self.landerModel.dataSource distance]) - self.LEFEET;
         if (xPos <= 30) {
             // Move the closeup view left
             self.LEFTEDGE = self.BIGXCT - 17;
             self.LEFEET = (self.LEFTEDGE * 32) - 22400;
             xPos = (short)([self.landerModel.dataSource distance]) - self.LEFEET;
-            [self.moonView viewCloseUp:self.LEFTEDGE];
+            [self.moonView useCloseUpView:self.LEFTEDGE];
         }
         else if (xPos > 580) {
             // Move the closeup view right
             self.LEFTEDGE = self.BIGXCT - 1;
             self.LEFEET = (self.LEFTEDGE * 32) - 22400;
             xPos = (short)([self.landerModel.dataSource distance]) - self.LEFEET;
-            [self.moonView viewCloseUp:self.LEFTEDGE];
+            [self.moonView useCloseUpView:self.LEFTEDGE];
         }
         self.SHOWX = (xPos * 3) / 2;
         
@@ -989,11 +993,11 @@ const float DisplayUpdateInterval = 0.05f;
         self.landerView.center = newFrame;
     }
     else {
+        // Make sure the view is displayed (we might have drifted up)
+        [self.moonView useNormalView];
+        
         self.RADARY = (short)([self.landerModel.dataSource altitude]) - (short)([self.moonView.dataSource terrainHeight:self.BIGXCT]);
 
-        // Make sure the view is displayed (we might drift up)
-        [self.moonView viewNormal];
-        
         // Move the lander
         self.SHOWX = self.BIGXCT;
         self.SHOWY = ([self.landerModel.dataSource altitude] / 32) + 43;
