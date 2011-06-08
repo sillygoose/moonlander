@@ -16,6 +16,13 @@
 				<key>width</key>
 				<real>1.5</real>
 			</dict>
+			<key>moveto</key>
+			<dict>
+				<key>x</key>
+				<integer>75</integer>
+				<key>y</key>
+				<integer>4</integer>
+			</dict>
 			<key>name</key>
 			<string>Building</string>
 			<key>push</key>

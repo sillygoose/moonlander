@@ -6,298 +6,308 @@
 	<string>Lander</string>
 	<key>paths</key>
 	<array>
-		<dict>
-			<key>intensity</key>
-			<integer>7</integer>
-			<key>line</key>
+		<array>
 			<dict>
-				<key>type</key>
-				<integer>0</integer>
-				<key>width</key>
-				<integer>1</integer>
+				<key>color</key>
+				<dict>
+					<key>alpha</key>
+					<integer>1</integer>
+					<key>b</key>
+					<real>0.00121</real>
+					<key>g</key>
+					<integer>1</integer>
+					<key>r</key>
+					<real>0.026</real>
+				</dict>
+				<key>line</key>
+				<dict>
+					<key>width</key>
+					<integer>1</integer>
+				</dict>
 			</dict>
-			<key>push</key>
+		</array>
+		<array>
 			<dict>
-				<key>gstate</key>
-				<integer>0</integer>
-				<key>position</key>
-				<integer>0</integer>
+				<key>moveto</key>
+				<dict>
+					<key>x</key>
+					<integer>36</integer>
+					<key>y</key>
+					<integer>32</integer>
+				</dict>
+				<key>name</key>
+				<string>Ascent Module</string>
 			</dict>
-		</dict>
-		<dict>
-			<key>name</key>
-			<string>Ascent Module</string>
-			<key>moverel</key>
+			<dict>
+				<key>moverel</key>
+				<dict>
+					<key>x</key>
+					<integer>-6</integer>
+					<key>y</key>
+					<integer>0</integer>
+				</dict>
+			</dict>
+			<dict>
+				<key>x</key>
+				<integer>-8</integer>
+				<key>y</key>
+				<integer>8</integer>
+			</dict>
 			<dict>
 				<key>x</key>
 				<integer>0</integer>
 				<key>y</key>
-				<integer>24</integer>
+				<integer>12</integer>
 			</dict>
-		</dict>
-		<dict>
-			<key>moverel</key>
 			<dict>
 				<key>x</key>
-				<integer>-6</integer>
+				<integer>8</integer>
+				<key>y</key>
+				<integer>9</integer>
+			</dict>
+			<dict>
+				<key>x</key>
+				<integer>12</integer>
 				<key>y</key>
 				<integer>0</integer>
 			</dict>
-		</dict>
-		<dict>
-			<key>x</key>
-			<integer>-8</integer>
-			<key>y</key>
-			<integer>8</integer>
-		</dict>
-		<dict>
-			<key>x</key>
-			<integer>0</integer>
-			<key>y</key>
-			<integer>12</integer>
-		</dict>
-		<dict>
-			<key>x</key>
-			<integer>8</integer>
-			<key>y</key>
-			<integer>9</integer>
-		</dict>
-		<dict>
-			<key>x</key>
-			<integer>12</integer>
-			<key>y</key>
-			<integer>0</integer>
-		</dict>
-		<dict>
-			<key>x</key>
-			<integer>8</integer>
-			<key>y</key>
-			<integer>-9</integer>
-		</dict>
-		<dict>
-			<key>x</key>
-			<integer>0</integer>
-			<key>y</key>
-			<integer>-12</integer>
-		</dict>
-		<dict>
-			<key>x</key>
-			<integer>-8</integer>
-			<key>y</key>
-			<integer>-8</integer>
-		</dict>
-		<dict>
-			<key>name</key>
-			<string>Finished Ascent Module</string>
-			<key>x</key>
-			<integer>-6</integer>
-			<key>y</key>
-			<integer>0</integer>
-		</dict>
-		<dict>
-			<key>push</key>
-			<dict>
-				<key>position</key>
-				<integer>0</integer>
-			</dict>
-		</dict>
-		<dict>
-			<key>push</key>
-			<dict>
-				<key>position</key>
-				<integer>0</integer>
-			</dict>
-			<key>moverel</key>
 			<dict>
 				<key>x</key>
-				<integer>-17</integer>
+				<integer>8</integer>
 				<key>y</key>
-				<integer>0</integer>
+				<integer>-9</integer>
 			</dict>
-			<key>name</key>
-			<string>Descent Module</string>
-			<key>x</key>
-			<integer>0</integer>
-			<key>y</key>
-			<integer>-16</integer>
-		</dict>
-		<dict>
-			<key>x</key>
-			<integer>34</integer>
-			<key>y</key>
-			<integer>0</integer>
-		</dict>
-		<dict>
-			<key>x</key>
-			<integer>0</integer>
-			<key>y</key>
-			<integer>16</integer>
-		</dict>
-		<dict>
-			<key>name</key>
-			<string>Finished Descent Module</string>
-			<key>x</key>
-			<integer>-34</integer>
-			<key>y</key>
-			<integer>0</integer>
-		</dict>
-		<dict>
-			<key>push</key>
-			<dict>
-				<key>position</key>
-				<integer>0</integer>
-			</dict>
-			<key>name</key>
-			<string>Left Leg</string>
-			<key>x</key>
-			<integer>-15</integer>
-			<key>y</key>
-			<integer>-24</integer>
-		</dict>
-		<dict>
-			<key>moverel</key>
-			<dict>
-				<key>x</key>
-				<integer>-4</integer>
-				<key>y</key>
-				<integer>0</integer>
-			</dict>
-			<key>name</key>
-			<string>Left Leg Pad</string>
-			<key>x</key>
-			<integer>8</integer>
-			<key>y</key>
-			<integer>0</integer>
-		</dict>
-		<dict>
-			<key>pop</key>
-			<dict>
-				<key>position</key>
-				<integer>0</integer>
-			</dict>
-			<key>name</key>
-			<string>Left Leg Strut</string>
-		</dict>
-		<dict>
-			<key>moverel</key>
 			<dict>
 				<key>x</key>
 				<integer>0</integer>
 				<key>y</key>
-				<integer>-13</integer>
+				<integer>-12</integer>
 			</dict>
-			<key>x</key>
-			<integer>-11</integer>
-			<key>y</key>
-			<integer>-4</integer>
-		</dict>
-		<dict>
-			<key>pop</key>
-			<dict>
-				<key>position</key>
-				<integer>0</integer>
-			</dict>
-			<key>moverel</key>
 			<dict>
 				<key>x</key>
-				<integer>17</integer>
+				<integer>-8</integer>
+				<key>y</key>
+				<integer>-8</integer>
+			</dict>
+			<dict>
+				<key>x</key>
+				<integer>-12</integer>
 				<key>y</key>
 				<integer>0</integer>
 			</dict>
-			<key>name</key>
-			<string>Right Leg</string>
-		</dict>
-		<dict>
-			<key>push</key>
+		</array>
+		<array>
 			<dict>
-				<key>position</key>
-				<integer>0</integer>
+				<key>moveto</key>
+				<dict>
+					<key>x</key>
+					<integer>36</integer>
+					<key>y</key>
+					<integer>32</integer>
+				</dict>
+				<key>name</key>
+				<string>Descent Module</string>
 			</dict>
-			<key>x</key>
-			<integer>15</integer>
-			<key>y</key>
-			<integer>-24</integer>
-		</dict>
-		<dict>
-			<key>moverel</key>
 			<dict>
-				<key>x</key>
-				<integer>-4</integer>
-				<key>y</key>
-				<integer>0</integer>
-			</dict>
-			<key>name</key>
-			<string>Right Leg Pad</string>
-			<key>x</key>
-			<integer>8</integer>
-			<key>y</key>
-			<integer>0</integer>
-		</dict>
-		<dict>
-			<key>pop</key>
-			<dict>
-				<key>position</key>
-				<integer>0</integer>
-			</dict>
-			<key>name</key>
-			<string>Right Leg Strut</string>
-		</dict>
-		<dict>
-			<key>moverel</key>
-			<dict>
+				<key>moverel</key>
+				<dict>
+					<key>x</key>
+					<integer>-17</integer>
+					<key>y</key>
+					<integer>0</integer>
+				</dict>
 				<key>x</key>
 				<integer>0</integer>
-				<key>y</key>
-				<integer>-13</integer>
-			</dict>
-			<key>x</key>
-			<integer>11</integer>
-			<key>y</key>
-			<integer>-4</integer>
-		</dict>
-		<dict>
-			<key>pop</key>
-			<dict>
-				<key>position</key>
-				<integer>0</integer>
-			</dict>
-			<key>name</key>
-			<string>Engine Nozzle</string>
-		</dict>
-		<dict>
-			<key>moverel</key>
-			<dict>
-				<key>x</key>
-				<integer>-3</integer>
 				<key>y</key>
 				<integer>-16</integer>
 			</dict>
-			<key>x</key>
-			<integer>-4</integer>
-			<key>y</key>
-			<integer>-5</integer>
-		</dict>
-		<dict>
-			<key>x</key>
-			<integer>14</integer>
-			<key>y</key>
-			<integer>0</integer>
-		</dict>
-		<dict>
-			<key>x</key>
-			<integer>-4</integer>
-			<key>y</key>
-			<integer>5</integer>
-		</dict>
-		<dict>
-			<key>pop</key>
 			<dict>
-				<key>gstate</key>
-				<integer>0</integer>
-				<key>position</key>
+				<key>x</key>
+				<integer>34</integer>
+				<key>y</key>
 				<integer>0</integer>
 			</dict>
-		</dict>
+			<dict>
+				<key>x</key>
+				<integer>0</integer>
+				<key>y</key>
+				<integer>16</integer>
+			</dict>
+			<dict>
+				<key>x</key>
+				<integer>-34</integer>
+				<key>y</key>
+				<integer>0</integer>
+			</dict>
+		</array>
+		<array>
+			<dict>
+				<key>moveto</key>
+				<dict>
+					<key>x</key>
+					<integer>36</integer>
+					<key>y</key>
+					<integer>32</integer>
+				</dict>
+				<key>name</key>
+				<string>Lander Legs</string>
+			</dict>
+			<dict>
+				<key>moverel</key>
+				<dict>
+					<key>x</key>
+					<integer>-17</integer>
+					<key>y</key>
+					<integer>0</integer>
+				</dict>
+				<key>name</key>
+				<string>Left Leg</string>
+				<key>x</key>
+				<integer>-15</integer>
+				<key>y</key>
+				<integer>-24</integer>
+			</dict>
+			<dict>
+				<key>moverel</key>
+				<dict>
+					<key>x</key>
+					<integer>-4</integer>
+					<key>y</key>
+					<integer>0</integer>
+				</dict>
+				<key>name</key>
+				<string>Left Leg Pad</string>
+				<key>x</key>
+				<integer>8</integer>
+				<key>y</key>
+				<integer>0</integer>
+			</dict>
+			<dict>
+				<key>moveto</key>
+				<dict>
+					<key>x</key>
+					<integer>36</integer>
+					<key>y</key>
+					<integer>32</integer>
+				</dict>
+				<key>name</key>
+				<string>Left Leg Strut</string>
+			</dict>
+			<dict>
+				<key>moverel</key>
+				<dict>
+					<key>x</key>
+					<integer>-17</integer>
+					<key>y</key>
+					<integer>-14</integer>
+				</dict>
+				<key>x</key>
+				<integer>-11</integer>
+				<key>y</key>
+				<integer>-4</integer>
+			</dict>
+			<dict>
+				<key>moveto</key>
+				<dict>
+					<key>x</key>
+					<integer>36</integer>
+					<key>y</key>
+					<integer>32</integer>
+				</dict>
+				<key>name</key>
+				<string>Right Leg</string>
+			</dict>
+			<dict>
+				<key>moverel</key>
+				<dict>
+					<key>x</key>
+					<integer>17</integer>
+					<key>y</key>
+					<integer>0</integer>
+				</dict>
+				<key>x</key>
+				<integer>15</integer>
+				<key>y</key>
+				<integer>-24</integer>
+			</dict>
+			<dict>
+				<key>moverel</key>
+				<dict>
+					<key>x</key>
+					<integer>-4</integer>
+					<key>y</key>
+					<integer>0</integer>
+				</dict>
+				<key>name</key>
+				<string>Right Leg Pad</string>
+				<key>x</key>
+				<integer>8</integer>
+				<key>y</key>
+				<integer>0</integer>
+			</dict>
+			<dict>
+				<key>moveto</key>
+				<dict>
+					<key>x</key>
+					<integer>36</integer>
+					<key>y</key>
+					<integer>32</integer>
+				</dict>
+				<key>name</key>
+				<string>Right Leg Strut</string>
+			</dict>
+			<dict>
+				<key>moverel</key>
+				<dict>
+					<key>x</key>
+					<integer>17</integer>
+					<key>y</key>
+					<integer>-14</integer>
+				</dict>
+				<key>x</key>
+				<integer>11</integer>
+				<key>y</key>
+				<integer>-4</integer>
+			</dict>
+		</array>
+		<array>
+			<dict>
+				<key>moveto</key>
+				<dict>
+					<key>x</key>
+					<integer>36</integer>
+					<key>y</key>
+					<integer>32</integer>
+				</dict>
+				<key>name</key>
+				<string>Engine Nozzle</string>
+			</dict>
+			<dict>
+				<key>moverel</key>
+				<dict>
+					<key>x</key>
+					<integer>-3</integer>
+					<key>y</key>
+					<integer>-16</integer>
+				</dict>
+				<key>x</key>
+				<integer>-4</integer>
+				<key>y</key>
+				<integer>-5</integer>
+			</dict>
+			<dict>
+				<key>x</key>
+				<integer>14</integer>
+				<key>y</key>
+				<integer>0</integer>
+			</dict>
+			<dict>
+				<key>x</key>
+				<integer>-4</integer>
+				<key>y</key>
+				<integer>5</integer>
+			</dict>
+		</array>
 	</array>
 </dict>
 </plist>

@@ -16,6 +16,11 @@
 				<key>width</key>
 				<integer>1</integer>
 			</dict>
+			<key>moveto</key>
+			<dict>
+				<key>center</key>
+				<integer>0</integer>
+			</dict>
 			<key>push</key>
 			<dict>
 				<key>gstate</key>
@@ -28,12 +33,19 @@
 			<key>moverel</key>
 			<dict>
 				<key>x</key>
+				<integer>0</integer>
+				<key>y</key>
+				<integer>-4</integer>
+			</dict>
+		</dict>
+		<dict>
+			<key>moverel</key>
+			<dict>
+				<key>x</key>
 				<integer>-14</integer>
 				<key>y</key>
 				<integer>-6</integer>
 			</dict>
-		</dict>
-		<dict>
 			<key>x</key>
 			<integer>-6</integer>
 			<key>y</key>
