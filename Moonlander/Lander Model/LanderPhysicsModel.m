@@ -232,11 +232,11 @@ float RadiansToDegrees(float radians)
     self.turnAngle = DegreesToRadians(0.0f);
     self.horizontalVelocity = 0;
     self.verticalVelocity = -5;
-    self.horizontalDistance = 180;
-    self.verticalDistance = 50;
+    self.horizontalDistance = 400;
+    self.verticalDistance = 150;
     self.percentThrustRequested = 14;
     self.actualThrust = self.percentThrustRequested * self.maxThrust / 100.0;
-    self.fuelRemaining = 206;//self.lemInitalFuel;
+    self.fuelRemaining = 2006;//self.lemInitalFuel;
     self.clockTicks = 0.0f;
 #else
     self.rateOfTurn = 0.0f;
