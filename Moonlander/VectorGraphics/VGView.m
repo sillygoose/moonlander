@@ -244,6 +244,26 @@
             }
         }
         
+        // "rect" is used to draw a simple rectangle
+        if ([currentVector objectForKey:@"rect"]) {
+            NSDictionary *rectStuff = [currentVector objectForKey:@"rect"];
+            
+            NSDictionary *frameStuff = [rectStuff objectForKey:@"frame"];
+            NSDictionary *originStuff = [frameStuff objectForKey:@"origin"];
+            NSDictionary *sizeStuff = [frameStuff objectForKey:@"size"];
+            CGFloat x = [[originStuff objectForKey:@"x"] floatValue];
+            CGFloat y = [[originStuff objectForKey:@"y"] floatValue];
+            CGFloat width = [[sizeStuff objectForKey:@"width"] floatValue];
+            CGFloat height = [[sizeStuff objectForKey:@"height"] floatValue];
+            
+            CGRect rect = CGRectMake(x, y, width, height);
+            CGContextSaveGState(context);
+            //set line stuff
+            CGContextAddRect(context, rect);
+            CGContextStrokePath(context);
+            CGContextRestoreGState(context);
+        }
+        
         // "line" is used to set the line information
         if ([currentVector objectForKey:@"line"]) {
             NSDictionary *lineStuff = [currentVector objectForKey:@"line"];
