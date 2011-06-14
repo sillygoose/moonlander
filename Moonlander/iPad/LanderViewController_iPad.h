@@ -92,12 +92,16 @@
 @property (nonatomic) short RADARY;
 @property (nonatomic) short AVERY;
 @property (nonatomic) short AVERT;
+@property (nonatomic) short DUSTX;
 
 @property (nonatomic, readonly) short PERTRS;
 @property (nonatomic, readonly) short ANGLE;
+@property (nonatomic, readonly) short ANGLED;
 @property (nonatomic, readonly) short HORVEL;
 @property (nonatomic, readonly) short VERVEL;
+@property (nonatomic, readonly) short VERACC;
 @property (nonatomic, readonly) short THRUST;
+@property (nonatomic, readonly) short TIME;
 
 @property (nonatomic, retain) Moon *moonView;
 @property (nonatomic, retain) Lander *landerView;

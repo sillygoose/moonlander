@@ -37,6 +37,7 @@
 @synthesize RADARY=_RADARY;
 @synthesize AVERY=_AVERY;
 @synthesize AVERT=_AVERT;
+@synthesize DUSTX=_DUSTX;
 
 @synthesize smallLeftArrow=_smallLeftArrow;
 @synthesize smallRightArrow=_smallRightArrow;
@@ -130,6 +131,7 @@ const float DisplayUpdateInterval = 0.05f;
 	return gameRect;
 }
 
+//### Is this used?
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -146,6 +148,11 @@ const float DisplayUpdateInterval = 0.05f;
 
 - (short)ANGLE
 {
+    return (short)([self.landerModel.dataSource angle]);
+}
+
+- (short)ANGLED
+{
     return (short)([self.landerModel.dataSource angleDegrees]);
 }
 
@@ -159,9 +166,19 @@ const float DisplayUpdateInterval = 0.05f;
     return (short)([self.landerModel.dataSource vertVel]);
 }
 
+- (short)VERACC
+{
+    return (short)([self.landerModel.dataSource vertAccel]*10);
+}
+
 - (short)THRUST
 {
     return (short)([self.landerModel.dataSource thrust]);
+}
+
+- (short)TIME
+{
+    return (short)([self.landerModel.dataSource time]);
 }
 
 - (void)dealloc
@@ -178,11 +195,12 @@ const float DisplayUpdateInterval = 0.05f;
     
     [_thrusterSlider release];
     
-    [_newGameButton release];
-    
     [_simulationTimer release];
     [_displayTimer release];
     
+    [_newGameButton release];
+    
+    [_selectedTelemetry release];
     [_heightData release];
     [_altitudeData release];
     [_distanceData release];
@@ -316,6 +334,9 @@ const float DisplayUpdateInterval = 0.05f;
     [[UIApplication sharedApplication] setStatusBarHidden:YES withAnimation:NO];
     [super viewDidLoad];
     
+    // We need to change the coordinate space to (0,0) in the lower left
+    self.view.transform = CGAffineTransformMake(1, 0, 0, -1, 0, 0);
+
     // Create the lander simulation model
     self.landerModel = [[LanderPhysicsModel alloc] init];
     self.landerModel.dataSource = self.landerModel;
@@ -561,6 +582,7 @@ const float DisplayUpdateInterval = 0.05f;
 {
     [super viewDidUnload];
     
+    self.selectedTelemetry = nil;
     self.heightData = nil;
     self.altitudeData = nil;
     self.distanceData = nil;
@@ -895,17 +917,100 @@ const float DisplayUpdateInterval = 0.05f;
         }
         else {
             [self.moonView addFeature:TF_OldLander atIndex:self.INDEXL];
-            [self.moonView addFeature:TF_OldFlag atIndex:(self.INDEXL+2)];
         }
     }
 }
 
 - (void)DUST
 {
-    if (self.RADARY < 150) {
-        if (self.ANGLE > -45 || self.ANGLE < 45) {
-            //short percentThrust = (self.PERTRS > 63) ? 63 : self.PERTRS;
+    // Wait till 150 feet above surface before kicking up dust
+    if (self.RADARY < 150 && (self.ANGLED > -45 || self.ANGLED < 45)) {
+        const short MaxDust = 241;
+        
+        // Magnitude of dust determines intensity level
+        short percentThrust = (self.PERTRS > 63) ? 63 : self.PERTRS;
+        short displayIntensity = (percentThrust >> 3) & 0x7;
+        short sinAngle = (short)(sin(self.ANGLE));
+        short cosAngle = (short)(cos(self.ANGLE));
+        if (sinAngle < 0) {
+            sinAngle = -sinAngle;
         }
+        
+        // DUSTP1
+        short deltaY = self.SHOWY - self.AVERT;
+        short tanDeltaY = sinAngle * deltaY;
+        if (cosAngle != 0) {
+            tanDeltaY = tanDeltaY / cosAngle;
+        }
+      
+        short flameDistance = tanDeltaY + deltaY;
+        if (sinAngle >= 0) {
+            tanDeltaY = -tanDeltaY;
+        }
+        
+        // DUSTP2
+        short xCenterPos = self.SHOWX + tanDeltaY;
+        short yCenterPos = self.AVERT;
+        
+        flameDistance -= 150;
+        if (flameDistance < 0) {
+            flameDistance = -flameDistance;
+            short count = ((flameDistance * self.PERTRS) >> 4);
+            if (count > MaxDust)
+                count = MaxDust;
+            
+            //NSLog(@"DUST Center: (%d, %d) FD: %d  %d items at intensity %d", xCenterPos, yCenterPos, flameDistance, count, displayIntensity);
+            if (count) {
+                short xValues[MaxDust];
+                short yValues[MaxDust];
+                short valueIndex = 0;
+                
+                // DUSTWF
+                const short YThrust[] = { 0, -30, -31, -32, -34, -36, -38, -41, -44, -47, -50, -53, -56, 0, 1, 3, 6, 4, 3, 1, -2, -6, -7, -5, -2, 2, 3, 5, 6, 2, 1, -1, -4, -6, -5, -3, 0, 4, 5, 7, 4, 0, -1, -3, -1, -20, -16, -13, -10, -7, -4, -2, 0, 2, 4, 7, 10, 13, 16, 20, 0, -30, -31 };
+                const short dimYThrust = sizeof(YThrust)/sizeof(YThrust[0]);
+
+                short random = self.DUSTX;
+                // DUSTL
+                while (count--) {
+                    random += self.TIME + 1;
+                    random &= dimYThrust;
+                    
+                    // X coordinate
+                    short xPos = YThrust[random] & 0x3f;
+                    random += self.VERACC;
+                    random &= dimYThrust;
+                    
+                    // Toggle the direction bit for X
+                    flameDistance = ~flameDistance;
+                    if (flameDistance < 0) {
+                        xPos *= -1;
+                    }
+                    
+                    // Now the Y value (always positive)
+                    short yPos = YThrust[random];
+                    yPos &= 0x3f;
+                
+                    xValues[valueIndex] = xPos;
+                    yValues[valueIndex] = yPos;
+                    valueIndex++;
+
+                    // Flip signs and do a moveto (INT = 0)
+                    // This does a move back to center of dust to prep for the next point
+
+                    // Draw command
+                    //NSLog(@"DUST: X:%d, Y:%d", xCenterPos + xPos, yCenterPos + yPos);
+                }
+                
+                // Terminate draw list
+                self.DUSTX = random;
+                
+                // Add dust to view
+                //###
+            }
+        }
+    }
+    else {
+        // Remove dust view
     }
 }
 
