@@ -16,6 +16,7 @@
 
 #import "Moon.h"
 #import "Lander.h"
+#import "Dust.h"
 #import "Telemetry.h"
 #import "Instrument.h"
 #import "LanderMessage.h"
@@ -26,6 +27,7 @@
     
     Moon            *_moonView;
     Lander          *_landerView;
+    Dust            *_dustView;
     
     short           _SHOWX;
     short           _SHOWY;
@@ -105,6 +107,7 @@
 
 @property (nonatomic, retain) Moon *moonView;
 @property (nonatomic, retain) Lander *landerView;
+@property (nonatomic, retain) Dust *dustView;
 
 @property (nonatomic, retain) VGButton *smallLeftArrow;
 @property (nonatomic, retain) VGButton *smallRightArrow;

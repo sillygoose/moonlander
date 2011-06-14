@@ -26,6 +26,7 @@
 
 @synthesize moonView=_moonView;
 @synthesize landerView=_landerView;
+@synthesize dustView=_dustView;
 
 @synthesize SHOWX=_SHOWX;
 @synthesize SHOWY=_SHOWY;
@@ -131,16 +132,6 @@ const float DisplayUpdateInterval = 0.05f;
 	return gameRect;
 }
 
-//### Is this used?
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        self.wantsFullScreenLayout = YES;
-    }
-    return self;
-}
-
 - (short)PERTRS
 {
     return (short)([self.landerModel.dataSource thrustPercent]);
@@ -178,7 +169,7 @@ const float DisplayUpdateInterval = 0.05f;
 
 - (short)TIME
 {
-    return (short)([self.landerModel.dataSource time]);
+    return (short)([self.landerModel.dataSource time]*60.0f);
 }
 
 - (void)dealloc
@@ -187,6 +178,7 @@ const float DisplayUpdateInterval = 0.05f;
     
     [_moonView release];
     [_landerView release];
+    [_dustView release];
     
     [_smallLeftArrow release];
     [_smallRightArrow release];
@@ -752,6 +744,13 @@ const float DisplayUpdateInterval = 0.05f;
     // Remove a fuel low message if present
     [self.landerMessages removeAllLanderMessages];
 
+    // Remove dust view
+    if (self.dustView) {
+        self.dustView.drawPaths = nil;
+        [self.dustView removeFromSuperview];
+        self.dustView = nil;
+    }
+
     // Update the thruster display
     [self.thrusterSlider setValue:[self.landerModel.dataSource thrustPercent]];
     if (self.selectedTelemetry) {
@@ -961,13 +960,21 @@ const float DisplayUpdateInterval = 0.05f;
             
             //NSLog(@"DUST Center: (%d, %d) FD: %d  %d items at intensity %d", xCenterPos, yCenterPos, flameDistance, count, displayIntensity);
             if (count) {
-                short xValues[MaxDust];
-                short yValues[MaxDust];
-                short valueIndex = 0;
+                //short xValues[MaxDust];
+                //short yValues[MaxDust];
+                //short valueIndex = 0;
+                
+                NSMutableArray *path = [[NSMutableArray alloc] init];
+                NSArray *paths = [NSArray arrayWithObject:path];
+                
+                NSNumber *intensity = [NSNumber numberWithInt:displayIntensity];
+                NSNumber *width = [NSNumber numberWithFloat:1.0f];
+                NSNumber *height = [NSNumber numberWithFloat:1.0f];
                 
                 // DUSTWF
                 const short YThrust[] = { 0, -30, -31, -32, -34, -36, -38, -41, -44, -47, -50, -53, -56, 0, 1, 3, 6, 4, 3, 1, -2, -6, -7, -5, -2, 2, 3, 5, 6, 2, 1, -1, -4, -6, -5, -3, 0, 4, 5, 7, 4, 0, -1, -3, -1, -20, -16, -13, -10, -7, -4, -2, 0, 2, 4, 7, 10, 13, 16, 20, 0, -30, -31 };
                 const short dimYThrust = sizeof(YThrust)/sizeof(YThrust[0]);
+                assert(dimYThrust == 63);
 
                 short random = self.DUSTX;
                 // DUSTL
@@ -976,7 +983,7 @@ const float DisplayUpdateInterval = 0.05f;
                     random &= dimYThrust;
                     
                     // X coordinate
-                    short xPos = YThrust[random] & 0x3f;
+                    short xPos = YThrust[random];
                     random += self.VERACC;
                     random &= dimYThrust;
                     
@@ -985,32 +992,68 @@ const float DisplayUpdateInterval = 0.05f;
                     if (flameDistance < 0) {
                         xPos *= -1;
                     }
+                    //xPos &= 0x3f;
+                    xPos += 64;
                     
                     // Now the Y value (always positive)
                     short yPos = YThrust[random];
                     yPos &= 0x3f;
+                    yPos = 63 - yPos;
                 
-                    xValues[valueIndex] = xPos;
-                    yValues[valueIndex] = yPos;
-                    valueIndex++;
+                    //xValues[valueIndex] = xPos;
+                    //yValues[valueIndex] = yPos;
+                    //valueIndex++;
 
                     // Flip signs and do a moveto (INT = 0)
                     // This does a move back to center of dust to prep for the next point
+                    
+                    // Draw rect command
+                    //NSLog(@"DUST: X:%d, Y:%d", xPos, yPos);
+                    NSNumber *x = [NSNumber numberWithFloat:xPos];
+                    NSNumber *y = [NSNumber numberWithFloat:yPos];
 
-                    // Draw command
-                    //NSLog(@"DUST: X:%d, Y:%d", xCenterPos + xPos, yCenterPos + yPos);
+                    NSDictionary *originItem = [NSDictionary dictionaryWithObjectsAndKeys:x, @"x", y, @"y", nil];
+                    NSDictionary *sizeItem = [NSDictionary dictionaryWithObjectsAndKeys:width, @"width", height, @"height", nil];
+                    NSDictionary *frameItem = [NSDictionary dictionaryWithObjectsAndKeys:originItem, @"origin", sizeItem, @"size", nil];
+                    NSDictionary *rectItem = [NSDictionary dictionaryWithObjectsAndKeys:frameItem, @"frame", nil];
+                    NSDictionary *pathItem = [NSDictionary dictionaryWithObjectsAndKeys:rectItem, @"rect", intensity, @"intensity", nil];
+                    [path addObject:pathItem];
                 }
                 
-                // Terminate draw list
+                // This is a hack - fixme!
+                xCenterPos -= 64;
+                yCenterPos = 768 - yCenterPos - yCenterPos;
+                
+                // Save our random number for next time
                 self.DUSTX = random;
                 
-                // Add dust to view
-                //###
+                // Create the view if needed
+                if (!self.dustView) {
+                    CGRect frameRect = CGRectMake(xCenterPos, yCenterPos, 128, 64);
+                    self.dustView = [[Dust alloc] initWithFrame:frameRect];
+                    [self.view addSubview:self.dustView];
+                }
+                else if (self.dustView.frame.origin.x != xCenterPos || self.dustView.frame.origin.y != yCenterPos) {
+                    // remove old dust view and create a new one
+                    [self.dustView removeFromSuperview];
+                    CGRect frameRect = CGRectMake(xCenterPos, yCenterPos, 128, 64);
+                    self.dustView = [[Dust alloc] initWithFrame:frameRect];
+                    [self.view addSubview:self.dustView];
+                }
+                
+                // Add the draw paths and update the display
+                self.dustView.drawPaths = paths;
+                [self.dustView setNeedsDisplay];
             }
         }
     }
     else {
         // Remove dust view
+        if (self.dustView) {
+            self.dustView.drawPaths = nil;
+            [self.dustView removeFromSuperview];
+            self.dustView = nil;
+        }
     }
 }
 
