@@ -1,4 +1,4 @@
-DEC VT11 Graphic Display Processor Instruction Set
+  DEC VT11 Graphic Display Processor Instruction Set
 
 From: aek@Apple.COM (Al Kossow)
 Subject: VT11 instruction set
@@ -119,6 +119,9 @@ LONG VECTOR DATA FORMAT (mode 0010)
 POINT DATA MODE (mode 0011)
 
 | 0 | INT | - - - - | 10 bits X |
++---+-----+---------+-----------+
+
+| 0 |  -  | - - - - | 10 bits Y |
 +---+-----+---------+-----------+
 
 GRAPHPLOT X (mode 0100)
