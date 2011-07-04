@@ -97,7 +97,12 @@
 
 - (void)addSystemMessage:(NSString *)message
 {
-    if (!([self currentSystemMessage] == message)) {
+    if (([self currentSystemMessage] != message)) {
+        VGLabel *prevMsg = [self.displayedMessages objectForKey:@"SYSMES"];
+        if (prevMsg) {
+            [prevMsg removeFromSuperview];
+        }
+
         NSDictionary *sysMessage = [self.landerMessages objectForKey:message];
         CGRect frameRect = [self getRect:sysMessage];
         
@@ -126,6 +131,11 @@
 
 - (void)addFlameMessage:(NSString *)message
 {
+    VGLabel *prevMsg = [self.displayedMessages objectForKey:@"FSUBC"];
+    if (prevMsg) {
+        [prevMsg removeFromSuperview];
+    }
+    
     NSDictionary *flameMessage = [self.landerMessages objectForKey:message];
     CGRect frameRect = [self getRect:flameMessage];
     
