@@ -425,6 +425,35 @@
 				</array>
 			</array>
 		</dict>
+		<key>HitOldFlag</key>
+		<dict>
+			<key>frame</key>
+			<dict>
+				<key>origin</key>
+				<dict>
+					<key>x</key>
+					<integer>50</integer>
+					<key>y</key>
+					<integer>750</integer>
+				</dict>
+				<key>size</key>
+				<dict>
+					<key>height</key>
+					<integer>30</integer>
+					<key>width</key>
+					<integer>450</integer>
+				</dict>
+			</dict>
+			<key>text</key>
+			<array>
+				<array>
+					<dict>
+						<key>text</key>
+						<string>YOU HAVE JUST VAPORIZED A PREVIOUSLY PLANTED AMERICAN FLAG</string>
+					</dict>
+				</array>
+			</array>
+		</dict>
 		<key>HitRock</key>
 		<dict>
 			<key>frame</key>
@@ -585,35 +614,6 @@
 					<dict>
 						<key>text</key>
 						<string>TAKE IT NICE AND EASY. A PERFECT LANDING IS UNDER 8 FPS</string>
-					</dict>
-				</array>
-			</array>
-		</dict>
-		<key>HitOldFlag</key>
-		<dict>
-			<key>frame</key>
-			<dict>
-				<key>origin</key>
-				<dict>
-					<key>x</key>
-					<integer>50</integer>
-					<key>y</key>
-					<integer>750</integer>
-				</dict>
-				<key>size</key>
-				<dict>
-					<key>height</key>
-					<integer>30</integer>
-					<key>width</key>
-					<integer>450</integer>
-				</dict>
-			</dict>
-			<key>text</key>
-			<array>
-				<array>
-					<dict>
-						<key>text</key>
-						<string>YOU HAVE JUST VAPORIZED A PREVIOUSLY PLANTED AMERICAN FLAG</string>
 					</dict>
 				</array>
 			</array>
@@ -808,7 +808,7 @@
 					<key>height</key>
 					<integer>30</integer>
 					<key>width</key>
-					<integer>200</integer>
+					<integer>250</integer>
 				</dict>
 			</dict>
 			<key>text</key>
