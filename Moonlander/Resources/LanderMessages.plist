@@ -312,29 +312,29 @@
 						<key>text</key>
 						<string>NICE WORK. YOU JUST CRASHED INTO A PREVIOUSLY CRASHED SHIP</string>
 					</dict>
-					<array>
+				</array>
+				<array>
+					<dict>
+						<key>moveto</key>
 						<dict>
-							<key>moveto</key>
-							<dict>
-								<key>x</key>
-								<integer>0</integer>
-								<key>y</key>
-								<integer>30</integer>
-							</dict>
-							<key>text</key>
-							<string>SORRY, BUT THERE WERE </string>
+							<key>x</key>
+							<integer>0</integer>
+							<key>y</key>
+							<integer>30</integer>
 						</dict>
-						<dict>
-							<key>blink</key>
-							<true/>
-							<key>text</key>
-							<string>NO</string>
-						</dict>
-						<dict>
-							<key>text</key>
-							<string> SURVIVORS</string>
-						</dict>
-					</array>
+						<key>text</key>
+						<string>SORRY, BUT THERE WERE </string>
+					</dict>
+					<dict>
+						<key>blink</key>
+						<true/>
+						<key>text</key>
+						<string>NO</string>
+					</dict>
+					<dict>
+						<key>text</key>
+						<string> SURVIVORS</string>
+					</dict>
 				</array>
 			</array>
 		</dict>
@@ -354,7 +354,7 @@
 					<key>height</key>
 					<integer>50</integer>
 					<key>width</key>
-					<integer>220</integer>
+					<integer>350</integer>
 				</dict>
 			</dict>
 			<key>text</key>
@@ -364,29 +364,29 @@
 						<key>text</key>
 						<string>YOU JUST CRASHED ON TOP OF AN OLD LUNAR MODULE</string>
 					</dict>
-					<array>
+				</array>
+				<array>
+					<dict>
+						<key>moveto</key>
 						<dict>
-							<key>moveto</key>
-							<dict>
-								<key>x</key>
-								<integer>0</integer>
-								<key>y</key>
-								<integer>30</integer>
-							</dict>
-							<key>text</key>
-							<string>SORRY, BUT THERE WERE </string>
+							<key>x</key>
+							<integer>0</integer>
+							<key>y</key>
+							<integer>30</integer>
 						</dict>
-						<dict>
-							<key>blink</key>
-							<true/>
-							<key>text</key>
-							<string>NO</string>
-						</dict>
-						<dict>
-							<key>text</key>
-							<string> SURVIVORS</string>
-						</dict>
-					</array>
+						<key>text</key>
+						<string>SORRY, BUT THERE WERE </string>
+					</dict>
+					<dict>
+						<key>blink</key>
+						<true/>
+						<key>text</key>
+						<string>NO</string>
+					</dict>
+					<dict>
+						<key>text</key>
+						<string> SURVIVORS</string>
+					</dict>
 				</array>
 			</array>
 		</dict>
@@ -480,29 +480,29 @@
 						<key>text</key>
 						<string>YOU JUST CRASHED INTO THAT ROCK</string>
 					</dict>
-					<array>
+				</array>
+				<array>
+					<dict>
+						<key>moveto</key>
 						<dict>
-							<key>moveto</key>
-							<dict>
-								<key>x</key>
-								<integer>0</integer>
-								<key>y</key>
-								<integer>30</integer>
-							</dict>
-							<key>text</key>
-							<string>SORRY, BUT THERE WERE </string>
+							<key>x</key>
+							<integer>0</integer>
+							<key>y</key>
+							<integer>30</integer>
 						</dict>
-						<dict>
-							<key>blink</key>
-							<true/>
-							<key>text</key>
-							<string>NO</string>
-						</dict>
-						<dict>
-							<key>text</key>
-							<string> SURVIVORS</string>
-						</dict>
-					</array>
+						<key>text</key>
+						<string>SORRY, BUT THERE WERE </string>
+					</dict>
+					<dict>
+						<key>blink</key>
+						<true/>
+						<key>text</key>
+						<string>NO</string>
+					</dict>
+					<dict>
+						<key>text</key>
+						<string> SURVIVORS</string>
+					</dict>
 				</array>
 			</array>
 		</dict>
