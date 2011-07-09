@@ -406,7 +406,7 @@
 					<key>height</key>
 					<integer>50</integer>
 					<key>width</key>
-					<integer>300</integer>
+					<integer>350</integer>
 				</dict>
 			</dict>
 			<key>text</key>
@@ -416,11 +416,18 @@
 						<key>text</key>
 						<string>Well you&apos;ve just destroyed the only MacDonald&apos;s</string>
 					</dict>
+				</array>
+				<array>
 					<dict>
-						<key>newline</key>
-						<integer>2</integer>
+						<key>moveto</key>
+						<dict>
+							<key>x</key>
+							<integer>0</integer>
+							<key>y</key>
+							<integer>30</integer>
+						</dict>
 						<key>text</key>
-						<string>What a CLOD.</string>
+						<string>on the moon. What a CLOD.</string>
 					</dict>
 				</array>
 			</array>
