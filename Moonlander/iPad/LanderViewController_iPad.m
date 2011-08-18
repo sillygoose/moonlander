@@ -132,6 +132,16 @@ const float DisplayUpdateInterval = 0.05f;
 	return gameRect;
 }
 
+- (short)VERDIS
+{
+    return (short)([self.landerModel.dataSource altitude]);
+}
+
+- (short)HORDIS
+{
+    return (short)([self.landerModel.dataSource distance]);
+}
+
 - (short)PERTRS
 {
     return (short)([self.landerModel.dataSource thrustPercent]);
@@ -170,6 +180,11 @@ const float DisplayUpdateInterval = 0.05f;
 - (short)TIME
 {
     return (short)([self.landerModel.dataSource time]*60.0f);
+}
+
+- (short)FUEL
+{
+    return (short)([self.landerModel.dataSource fuel]);
 }
 
 - (void)dealloc
@@ -296,6 +311,8 @@ const float DisplayUpdateInterval = 0.05f;
     self.SHOWX = 0;
     self.SHOWY = 0;
     
+    self.landerView.hidden = NO;
+
     [self enableFlightControls];
     
     //###[self.landerModel.delegate newGame];
@@ -715,7 +732,7 @@ const float DisplayUpdateInterval = 0.05f;
 - (void)OFFCOM:(float)xPosition withMessage:(NSString *)message
 {
     short newHDistance = xPosition * 32 - 22400;
-    short newVertVel = (short)([self.landerModel.dataSource altitude]) / 40;
+    short newVertVel = self.VERDIS / 40;
     if (newVertVel >= 0) {
         newVertVel = -newVertVel;
     }
@@ -742,7 +759,7 @@ const float DisplayUpdateInterval = 0.05f;
     [self.landerModel landerDown];
     
     // Remove a fuel low message if present
-    [self.landerMessages removeAllLanderMessages];
+    //###[self.landerMessages removeAllLanderMessages];
 
     // Remove dust view
     if (self.dustView) {
@@ -769,157 +786,6 @@ const float DisplayUpdateInterval = 0.05f;
     [self updateLander];
 }
 
-- (void)INTEL
-{
-    BOOL MAYBE = NO;
-    BOOL QUICK = NO;
-    BOOL AHAHC = NO;
-    
-    //NSLog(@"RADARY: %d", self.RADARY);
-    if (self.RADARY <= -10) {
-        [self gameOver];
-        //DEAD
-        [self.landerMessages addSystemMessage:@"DeadLanding"];
-        //goto QUICK
-    }
-    else if (self.RADARY > 3) {
-        short vervel = (short)([self.landerModel.dataSource vertVel]);
-        if (vervel < -60) {
-            //AHAH
-            [self.landerMessages addSystemMessage:@"VeryFast"];
-            AHAHC = YES;
-        }
-        else if (vervel < -30) {
-            //AHAH2
-            [self.landerMessages addSystemMessage:@"Fast"];
-            AHAHC = YES;
-        }
-        else if (vervel < -15) {
-            //AHAH3
-            [self.landerMessages addSystemMessage:@"Not2Fast"];
-            AHAHC = YES;
-        }
-        else {
-            // Delete not too fast message if displayed
-            [self.landerMessages removeSystemMessage:@"Not2Fast"];
-            AHAHC = YES;
-        }
-    }
-    else if (self.RADARY <= 3) {
-        //VERYLO turn off fuel, flames, and dust
-        [self gameOver];
-
-        //VD
-        short vervel = (short)([self.landerModel.dataSource vertVel]);
-        if (vervel < -60) {
-            [self.landerMessages addSystemMessage:@"DeadLanding"];
-            QUICK = YES;
-        }
-        else if (vervel < -30) {
-            [self.landerMessages addSystemMessage:@"CrippledLanding"];
-            MAYBE = YES;
-        }
-        else if (vervel < -15) {
-            [self.landerMessages addSystemMessage:@"RoughLanding"];
-            MAYBE = YES;
-        }
-        else if (vervel < -8) {
-            [self.landerMessages addSystemMessage:@"GoodLanding"];
-            MAYBE = YES;
-        }
-        else {
-            [self.landerMessages addSystemMessage:@"GreatLanding"];
-            MAYBE = YES;
-        }
-    }
-    
-    if (QUICK) {
-        //ALTER surface
-        //Redraw moon
-        //Remove ship
-        //Explode
-    }
-    else if (AHAHC) {
-        // Check for features we might have hit
-        TerrainFeature tf = [self.moonView featureAtIndex:self.INDEXL];
-        if (tf == TF_OldLander || tf == TF_OldLanderTippedLeft || tf == TF_OldLanderTippedRight) {
-            if (self.RADARY <= 26) {
-                if (self.VERVEL <= 60) {
-                    //GODEAD
-                }
-                else {
-                    [self.landerMessages addSystemMessage:@"HitLander"];
-                    if (self.HORVEL < 0)
-                        [self.moonView addFeature:TF_OldLanderTippedLeft atIndex:self.INDEXL];
-                    else
-                        [self.moonView addFeature:TF_OldLanderTippedRight atIndex:self.INDEXL];
-                    self.SHOWY -= 16;
-                    [self.moonView setNeedsDisplay];
-                    //EXPLOD
-                }
-            }
-        }
-        else if (tf == TF_Rock) {
-        }
-        else if (tf == TF_OldFlag) {
-            if (self.RADARY <= 26) {
-                if (self.THRUST) {
-                    [self.moonView removeFeature:TF_OldFlag atIndex:self.INDEXL];
-                    [self.landerMessages addSystemMessage:@"HitOldFlag"];
-                    [self.moonView setNeedsDisplay];
-                }
-            }
-        }
-        else if (tf == TF_McDonalds) {
-            if (self.RADARY <= 30) {
-                [self.moonView removeFeature:TF_McDonalds atIndex:self.INDEXL];
-                [self.landerMessages addSystemMessage:@"HitMcDonalds"];
-                [self.moonView setNeedsDisplay];
-                //ALTER
-            }
-        }
-    }
-    else if (MAYBE) {
-        // None is 0, left is < 0, right is > 0
-        int TiltDirection = 0;
-        
-        // Check horizonatal velocity, roll angle, and terrain slope
-        short horizvel = (short)([self.landerModel.dataSource horizVel]);
-        short angle = (short)([self.landerModel.dataSource angleDegrees]);
-        if (horizvel < -10 || horizvel > 10) {
-            [self.landerMessages addFlameMessage:@"FastSideways"];
-            TiltDirection = horizvel;
-        }
-        else if (angle < -15 || angle > 15) {
-            // Check the roll angle
-            [self.landerMessages addFlameMessage:@"TippedOver"];
-            TiltDirection = angle;
-        }
-        else {
-            // Check terrain slope
-            short thl = (short)([self.moonView.dataSource terrainHeight:self.INDEXL]);
-            short thr = (short)([self.moonView.dataSource terrainHeight:(self.INDEXL+1)]);
-            if (((thl - thr) < -48) || ((thl - thr) > 48)) {
-                [self.landerMessages addFlameMessage:@"BumpyLanding"];
-                TiltDirection = thl - thr;
-            }
-        }
-        
-        // Tilt the ship if indicated
-        if (TiltDirection != 0) {
-            if (TiltDirection < 0) {
-                [self.moonView addFeature:TF_OldLanderTippedLeft atIndex:self.INDEXL];
-            }
-            else {
-                [self.moonView addFeature:TF_OldLanderTippedRight atIndex:self.INDEXL];
-            }
-        }
-        else {
-            [self.moonView addFeature:TF_OldLander atIndex:self.INDEXL];
-        }
-    }
-}
-
 - (void)DUST
 {
     // Wait till 150 feet above surface before kicking up dust
@@ -941,7 +807,7 @@ const float DisplayUpdateInterval = 0.05f;
         if (cosAngle != 0) {
             tanDeltaY = tanDeltaY / cosAngle;
         }
-      
+        
         short flameDistance = tanDeltaY + deltaY;
         if (sinAngle >= 0) {
             tanDeltaY = -tanDeltaY;
@@ -964,7 +830,7 @@ const float DisplayUpdateInterval = 0.05f;
                 //short yValues[MaxDust];
                 //short valueIndex = 0;
                 
-                NSMutableArray *path = [[NSMutableArray alloc] init];
+                NSMutableArray *path = [[[NSMutableArray alloc] init] autorelease];
                 NSArray *paths = [NSArray arrayWithObject:path];
                 
                 NSNumber *intensity = [NSNumber numberWithInt:displayIntensity];
@@ -975,7 +841,7 @@ const float DisplayUpdateInterval = 0.05f;
                 const short YThrust[] = { 0, -30, -31, -32, -34, -36, -38, -41, -44, -47, -50, -53, -56, 0, 1, 3, 6, 4, 3, 1, -2, -6, -7, -5, -2, 2, 3, 5, 6, 2, 1, -1, -4, -6, -5, -3, 0, 4, 5, 7, 4, 0, -1, -3, -1, -20, -16, -13, -10, -7, -4, -2, 0, 2, 4, 7, 10, 13, 16, 20, 0, -30, -31 };
                 const short dimYThrust = sizeof(YThrust)/sizeof(YThrust[0]);
                 assert(dimYThrust == 63);
-
+                
                 short random = self.DUSTX;
                 // DUSTL
                 while (count--) {
@@ -999,11 +865,11 @@ const float DisplayUpdateInterval = 0.05f;
                     short yPos = YThrust[random];
                     yPos &= 0x3f;
                     yPos = 63 - yPos;
-                
+                    
                     //xValues[valueIndex] = xPos;
                     //yValues[valueIndex] = yPos;
                     //valueIndex++;
-
+                    
                     // Flip signs and do a moveto (INT = 0)
                     // This does a move back to center of dust to prep for the next point
                     
@@ -1011,7 +877,7 @@ const float DisplayUpdateInterval = 0.05f;
                     //NSLog(@"DUST: X:%d, Y:%d", xPos, yPos);
                     NSNumber *x = [NSNumber numberWithFloat:xPos];
                     NSNumber *y = [NSNumber numberWithFloat:yPos];
-
+                    
                     NSDictionary *originItem = [NSDictionary dictionaryWithObjectsAndKeys:x, @"x", y, @"y", nil];
                     NSDictionary *sizeItem = [NSDictionary dictionaryWithObjectsAndKeys:width, @"width", height, @"height", nil];
                     NSDictionary *frameItem = [NSDictionary dictionaryWithObjectsAndKeys:originItem, @"origin", sizeItem, @"size", nil];
@@ -1057,22 +923,301 @@ const float DisplayUpdateInterval = 0.05f;
     }
 }
 
+- (void)EXPLOD
+{
+    // Shut down
+    [self gameOver];
+    
+    // Ring the bell
+    //###
+    
+#if 0
+    short RADIUS = 0;
+    
+    // Work on the randomizer
+    static short XTYPE = 0;
+    XTYPE++;
+    swab(&XTYPE, &XTYPE, sizeof(XTYPE));
+    short temp = (XTYPE & 0x8000) != 0;
+#endif
+}
+
+- (void)MOVMAN_X:(short)deltaX Y:(short)deltaY
+{
+}
+
+- (void)PALSY
+{
+    // Delay 4 seconds
+    //[NSThread sleepForTimeInterval:4.0];
+    double delayInSeconds = 4.0;
+    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * NSEC_PER_SEC);
+    dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+        // code to be executed on main thread.If you want to run in another thread, create other queue
+    });
+    
+    // Put the man in position
+    //###
+    
+    // Is MacDonalds present (not correct code)
+    TerrainFeature tf = [self.moonView featureAtIndex:self.INDEXL];
+    if (tf == TF_McDonalds) {
+        // Visit to Macdonald's
+    }
+    else {
+        //(PALNOR) Plant a flag
+        [self.moonView addFeature:TF_OldLander atIndex:self.INDEXL];
+        short deltaY = -24;
+        short deltaX = 48;
+        if (self.TIME & 1) {
+            deltaX = -deltaX;
+        }
+        
+        //(PALN1)
+        [self MOVMAN_X:deltaX Y:deltaY];
+        deltaY = 0;
+        [self MOVMAN_X:deltaX Y:deltaY];
+        
+        [self.moonView addFeature:TF_OldFlag atIndex:self.INDEXL];
+        
+        // Display message and wait 10 sec
+        [self.landerMessages addSystemMessage:@"OneSmallStep"];
+        //[NSThread sleepForTimeInterval:10.0];
+        
+        // Remove man view
+        //###
+    }
+}
+
+- (void)ALTER:(short)alterValue
+{
+    [self.moonView alterMoon:alterValue atIndex:self.BIGXCT];
+    [self.moonView setNeedsDisplay];
+}
+
+- (void)INTEL
+{
+    BOOL MAYBE = NO;
+    BOOL QUICK = NO;
+    BOOL AHAHC = NO;
+    
+    if (self.RADARY < -10) {
+        //INTELM
+        [self gameOver];
+        //DEAD
+        [self.landerMessages addSystemMessage:@"DeadLanding"];
+        QUICK = YES;
+    }
+        
+    if (self.RADARY <= 3) {
+        //VERYLO turn off fuel, flames, and dust
+        [self gameOver];
+        
+        //VD
+        short vervel = (short)([self.landerModel.dataSource vertVel]);
+        if (vervel < -60) {
+            [self.landerMessages addSystemMessage:@"DeadLanding"];
+            QUICK = YES;
+        }
+        else if (vervel < -30) {
+            [self.landerMessages addSystemMessage:@"CrippledLanding"];
+            MAYBE = YES;
+        }
+        else if (vervel < -15) {
+            [self.landerMessages addSystemMessage:@"RoughLanding"];
+            MAYBE = YES;
+        }
+        else if (vervel < -8) {
+            [self.landerMessages addSystemMessage:@"GoodLanding"];
+            MAYBE = YES;
+        }
+        else {
+            [self.landerMessages addSystemMessage:@"GreatLanding"];
+            MAYBE = YES;
+        }
+    }
+    else {
+        short vervel = (short)([self.landerModel.dataSource vertVel]);
+        if (vervel < -60) {
+            //AHAH
+            [self.landerMessages addSystemMessage:@"VeryFast"];
+            AHAHC = YES;
+        }
+        else if (vervel < -30) {
+            //AHAH2
+            [self.landerMessages addSystemMessage:@"Fast"];
+            AHAHC = YES;
+        }
+        else if (vervel < -15) {
+            //AHAH3
+            [self.landerMessages addSystemMessage:@"Not2Fast"];
+            AHAHC = YES;
+        }
+        else {
+            // Delete not too fast message if displayed
+            [self.landerMessages removeSystemMessage:@"Not2Fast"];
+            AHAHC = YES;
+        }
+    }
+        
+    if (AHAHC) {
+        // Check for features we might have hit
+        TerrainFeature tf = [self.moonView featureAtIndex:self.INDEXL];
+        if (tf == TF_OldLander) {
+            if (self.RADARY <= 26) {
+                if (self.VERVEL <= -60) {
+                    //GODEAD
+                    [self.landerMessages addSystemMessage:@"DeadLanding"];
+                    QUICK = YES;
+                }
+                else {
+                    [self.landerMessages addSystemMessage:@"HitLander"];
+                    if (self.HORVEL < 0)
+                        [self.moonView addFeature:TF_OldLanderTippedLeft atIndex:self.INDEXL];
+                    else
+                        [self.moonView addFeature:TF_OldLanderTippedRight atIndex:self.INDEXL];
+                    self.SHOWY -= 16;
+                    
+                    // Move the lander
+                    //CGPoint newFrame = self.landerView.center;
+                    //newFrame.x = self.SHOWX;
+                    //newFrame.y = self.view.frame.size.width - self.SHOWY;
+                    //self.landerView.center = newFrame;
+                    //[self.moonView setNeedsDisplay];
+                    
+                    self.landerView.hidden = YES;
+                    [self EXPLOD];
+                }
+            }
+        }
+        else if (tf == TF_OldLanderTippedLeft || tf == TF_OldLanderTippedRight) {
+            if (self.RADARY <= 17) {
+                if (self.VERVEL <= -60) {
+                    //GODEAD
+                    [self.landerMessages addSystemMessage:@"DeadLanding"];
+                    QUICK = YES;
+                }
+                else {
+                    [self.landerMessages addSystemMessage:@"HitCrashedLander"];
+                    self.landerView.hidden = YES;
+                    [self EXPLOD];
+                }
+            }
+        }
+        else if (tf == TF_Rock) {
+            //AHROCK
+            if (self.RADARY <= 15) {
+                if (self.VERVEL <= -60) {
+                    //GODEAD
+                    [self.landerMessages addSystemMessage:@"DeadLanding"];
+                    QUICK = YES;
+                }
+                else {
+                    [self.landerMessages addSystemMessage:@"HitRock"];
+                    self.landerView.hidden = YES;
+                    [self EXPLOD];
+                }
+            }
+        }
+        else if (tf == TF_OldFlag) {
+            if (self.RADARY <= 26) {
+                if (self.THRUST) {
+                    [self.moonView removeFeature:TF_OldFlag atIndex:self.INDEXL];
+                    [self.landerMessages addSystemMessage:@"HitOldFlag"];
+                }
+            }
+        }
+        else if (tf == TF_McDonalds) {
+            if (self.RADARY <= 30) {
+                [self.moonView removeFeature:TF_McDonalds atIndex:self.INDEXL];
+                [self.landerMessages addSystemMessage:@"HitMcdonalds"];
+                QUICK = YES;
+            }
+        }
+    }
+    
+    if (MAYBE) {
+        // None is 0, left is < 0, right is > 0
+        int TiltDirection = 0;
+        
+        // Check horizonatal velocity, roll angle, and terrain slope
+        short horizvel = (short)([self.landerModel.dataSource horizVel]);
+        short angle = (short)([self.landerModel.dataSource angleDegrees]);
+        if (horizvel < -10 || horizvel > 10) {
+            [self.landerMessages addFlameMessage:@"FastSideways"];
+            TiltDirection = horizvel;
+        }
+        else if (angle < -15 || angle > 15) {
+            // Check the roll angle
+            [self.landerMessages addFlameMessage:@"TippedOver"];
+            TiltDirection = angle;
+        }
+        else {
+            // Check terrain slope
+            short thl = (short)([self.moonView.dataSource averageTerrainHeight:self.INDEXL]);
+            short thr = (short)([self.moonView.dataSource averageTerrainHeight:(self.INDEXL+1)]);
+            if (((thl - thr) < -48) || ((thl - thr) > 48)) {
+                [self.landerMessages addFlameMessage:@"BumpyLanding"];
+                TiltDirection = thl - thr;
+            }
+            else {
+                // Plant a flag or get a burger
+                //###[self PALSY];
+            }
+        }
+        
+        // Tilt the ship if indicated
+        if (TiltDirection != 0) {
+            if (TiltDirection < 0) {
+                [self.moonView addFeature:TF_OldLanderTippedLeft atIndex:self.INDEXL];
+            }
+            else {
+                [self.moonView addFeature:TF_OldLanderTippedRight atIndex:self.INDEXL];
+            }
+        }
+        else {
+            [self.moonView addFeature:TF_OldLander atIndex:self.INDEXL];
+        }
+        
+        // Hide the lander view
+        self.landerView.hidden = YES;
+    }
+    
+    if (QUICK) {
+        // Hide the lander view
+        self.landerView.hidden = YES;
+        
+        [self ALTER:32];
+        [self EXPLOD];
+    }
+}
+
 - (void)gameLoop
 {
     [self.landerModel.delegate updateTime:GameTimerInterval];
     
     // Display a low fuel message
-    if ((short)([self.landerModel.dataSource fuel]) <= 0) {
+    if (self.FUEL <= 0) {
         [self.landerMessages removeFuelMessage];
         [self disableRollThrusters];
     }
-    else if ((short)([self.landerModel.dataSource fuel]) < 200) {
+    else if (self.FUEL < 200) {
         [self.landerMessages addFuelMessage];
+        //### Ring bell
     }
     
-    // Test for extreme game events that end the simulation
-    self.BIGXCT = ((short)([self.landerModel.dataSource distance]) + 22400) / 32;
-    if (self.BIGXCT < 0) {
+    //(SHOWNT) Test for extreme game events that end the simulation
+    self.BIGXCT = (self.HORDIS + 22400) / 32;
+
+    // Get the terrain information
+    short tIndex = self.BIGXCT;
+    short thl = [self.moonView.dataSource averageTerrainHeight:tIndex];
+    short thr = [self.moonView.dataSource averageTerrainHeight:tIndex+1];
+    self.AVERY = (thl + thr) / 2;
+    self.RADARY = self.VERDIS - self.AVERY;
+    
+    //(YSFLAM) Test for the edges
+    if (self.BIGXCT < 10) {
         // Off the left edge
         [self OFFCOM:13 withMessage:@"LeftEdge"];
     }
@@ -1080,51 +1225,51 @@ const float DisplayUpdateInterval = 0.05f;
         // Off the right edge
         [self OFFCOM:887 withMessage:@"RightEdge"];
     }
-    else if ([self.landerModel.dataSource altitude] > 25000) {
+    else if (self.VERDIS > 25000) {
         // Off the top edge
         [self OFFCOM:self.SHOWX withMessage:@"TopEdge"];
     }
     
     // Switch views if we hit a critical altitude
-    if ([self.landerModel.dataSource altitude] < 450) {
-        // Find our horizontal position in the closeup view
+    if (self.VERDIS < 450) {
+        //(CLSEUP) Find our horizontal position in the closeup view
         if (![self.moonView viewIsDetailed]) {
             // Select the closeup view
             self.LEFTEDGE = self.BIGXCT - 9;
-            self.LEFEET = (self.LEFTEDGE * 32) - 22400;
+            self.LEFEET = self.LEFTEDGE * 32 - 22400;
             [self.moonView useCloseUpView:self.LEFTEDGE];
         }
 
-        // Check if we are at the left/right edger and need to redraw
-        short xPos = (short)([self.landerModel.dataSource distance]) - self.LEFEET;
+        //(CLSEC1) Check if we are at the left/right edger and need to redraw
+        short xPos = self.HORDIS - self.LEFEET;
         if (xPos <= 30) {
             // Move the closeup view left
             self.LEFTEDGE = self.BIGXCT - 17;
-            self.LEFEET = (self.LEFTEDGE * 32) - 22400;
-            xPos = (short)([self.landerModel.dataSource distance]) - self.LEFEET;
+            self.LEFEET = self.LEFTEDGE * 32 - 22400;
+            xPos = self.HORDIS - self.LEFEET;
             [self.moonView useCloseUpView:self.LEFTEDGE];
         }
         else if (xPos > 580) {
             // Move the closeup view right
             self.LEFTEDGE = self.BIGXCT - 1;
-            self.LEFEET = (self.LEFTEDGE * 32) - 22400;
-            xPos = (short)([self.landerModel.dataSource distance]) - self.LEFEET;
+            self.LEFEET = self.LEFTEDGE * 32 - 22400;
+            xPos = self.HORDIS - self.LEFEET;
             [self.moonView useCloseUpView:self.LEFTEDGE];
         }
         self.SHOWX = (xPos * 3) / 2;
         
         // Index to terrain/feature to left of lander
         self.INDEXL = self.LEFTEDGE + (self.SHOWX / 48);
-        self.INDEXLR = (self.SHOWX % 48);
+        self.INDEXLR = self.SHOWX % 48;
         
         // Get the terrain information
-        short thl = (short)([self.moonView.dataSource terrainHeight:self.INDEXL]) * (48 - self.INDEXLR);
-        short thr = (short)([self.moonView.dataSource terrainHeight:(self.INDEXL+1)]) * self.INDEXLR;
+        short thl = (short)([self.moonView.dataSource averageTerrainHeight:self.INDEXL]) * (48 - self.INDEXLR);
+        short thr = (short)([self.moonView.dataSource averageTerrainHeight:(self.INDEXL+1)]) * self.INDEXLR;
         short th = (thl + thr) / 48;
         self.AVERY = th >> 2;
         self.AVERT = [self DFAKE:th];
         
-        short RET2 = (((short)([self.landerModel.dataSource altitude]) * 3) / 2) + 23;
+        short RET2 = ((self.VERDIS * 3) / 2) + 23;
         self.SHOWY = RET2;
         self.SHOWY += 24;
         
@@ -1133,6 +1278,9 @@ const float DisplayUpdateInterval = 0.05f;
         
         [self INTEL];
         [self DUST];
+
+        // Redraw surface if changed
+        [self.moonView useCloseUpView:self.LEFTEDGE];
 
         // Move the lander
         CGPoint newFrame = self.landerView.center;
@@ -1144,15 +1292,19 @@ const float DisplayUpdateInterval = 0.05f;
         // Make sure the view is displayed (we might have drifted up)
         [self.moonView useNormalView];
         
-        self.RADARY = (short)([self.landerModel.dataSource altitude]) - (short)([self.moonView.dataSource terrainHeight:self.BIGXCT]);
-
         // Move the lander
         self.SHOWX = self.BIGXCT;
-        self.SHOWY = ([self.landerModel.dataSource altitude] / 32) + 43;
+        self.SHOWY = self.VERDIS / 32 + 43;
         CGPoint newFrame = self.landerView.center;
         newFrame.x = self.SHOWX;
         newFrame.y = self.view.frame.size.width - self.SHOWY;
         self.landerView.center = newFrame;
+        
+        // Test for contact with surface
+        if ((self.RADARY - 16) < 0) {
+            [self ALTER:640];
+            [self EXPLOD];
+        }
     }
 }
 

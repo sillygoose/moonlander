@@ -17,11 +17,12 @@ typedef enum { TV_Unknown, TV_Normal, TV_Detailed } TerrainView;
 
 
 @protocol MoonDataSource <NSObject>
-- (short)terrainHeight:(short)xCoordinate;
+- (short)averageTerrainHeight:(short)index;
 @end
 
 @interface Moon : VGView <MoonDataSource> {
     NSMutableArray      *_moonArray;
+    BOOL                _dirtySurface;
     
     TerrainView         _currentView;
     short               _LEFTEDGE;
@@ -30,6 +31,7 @@ typedef enum { TV_Unknown, TV_Normal, TV_Detailed } TerrainView;
 }
 
 @property (nonatomic, retain) NSMutableArray *moonArray;
+@property (nonatomic) BOOL dirtySurface;
 
 @property (nonatomic) TerrainView currentView;
 @property (nonatomic) short LEFTEDGE;
@@ -42,9 +44,16 @@ typedef enum { TV_Unknown, TV_Normal, TV_Detailed } TerrainView;
 - (void)useNormalView;
 - (BOOL)viewIsDetailed;
 
+- (short)terrainHeight:(short)index;
+- (short)averageTerrainHeight:(short)index;
+- (void)setTerrainHeight:(short)newHeight atIndex:(short)index;
+- (void)modifyTerrainHeight:(short)deltaHeight atIndex:(short)index;
+
 - (TerrainFeature)featureAtIndex:(short)index;
 - (BOOL)hasFeature:(TerrainFeature)feature atIndex:(short)index;
 - (void)addFeature:(TerrainFeature)feature atIndex:(short)index;
 - (void)removeFeature:(TerrainFeature)feature atIndex:(short)index;
+
+- (void)alterMoon:(short)alterMoon atIndex:(short)index;
 
 @end

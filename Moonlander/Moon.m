@@ -12,6 +12,7 @@
 @implementation Moon
 
 @synthesize moonArray=_moonArray;
+@synthesize dirtySurface=_dirtySurface;
 
 @synthesize currentView=_currentView;
 @synthesize LEFTEDGE=_LEFTEDGE;
@@ -41,23 +42,43 @@
     return self;
 }
 
-- (short)terrainHeight:(short)xCoordinate
+- (short)terrainHeight:(short)index
 {
-    float averageHeight = 0.0f;
-    short x = xCoordinate + 10;
-    if (x >= 0 && x < self.moonArray.count) {
-        if (x == (self.moonArray.count - 1)) {
-            float elevation1 = [[[self.moonArray objectAtIndex:(x)] objectForKey:@"y"] floatValue];
-            averageHeight = elevation1;
-        }
-        else {
-            float elevation1 = [[[self.moonArray objectAtIndex:(x)] objectForKey:@"y"] floatValue];
-            float elevation2 = [[[self.moonArray objectAtIndex:(x+1)] objectForKey:@"y"] floatValue];
-            averageHeight = (elevation1 + elevation2) / 2;
+    short terrainHeight = 0;
+    short ti = index + 10;
+    if (ti >= 0 && ti < self.moonArray.count) {
+        terrainHeight = [[[self.moonArray objectAtIndex:ti] objectForKey:@"y"] intValue];
+    }
+    return terrainHeight;
+}
+
+- (short)averageTerrainHeight:(short)index
+{
+    short leftHeight = [self terrainHeight:index];
+    short rightHeight = [self terrainHeight:index+1];
+    short averageHeight = (leftHeight + rightHeight) / 2;
+    return averageHeight;
+}
+
+- (void)setTerrainHeight:(short)height atIndex:(short)index
+{
+    short ti = index + 10;
+    if (ti >= 0 && ti < self.moonArray.count) {
+        NSMutableDictionary *item = [self.moonArray objectAtIndex:ti];
+        if (item) {
+            NSNumber *newHeight = [NSNumber numberWithInt:height];
+            [item setObject:newHeight forKey:@"y"];
+            [self.moonArray replaceObjectAtIndex:ti withObject:item];
         }
     }
-    //NSLog(@"X:%d  avgHeight:%5.0f", xCoordinate, averageHeight);
-    return averageHeight;
+}
+
+- (void)modifyTerrainHeight:(short)deltaHeight atIndex:(short)index
+{
+    short oldHeight = [self terrainHeight:index];
+    oldHeight -= deltaHeight;
+    [self setTerrainHeight:oldHeight atIndex:index];
+    self.dirtySurface = YES;
 }
 
 - (TerrainFeature)featureAtIndex:(short)index
@@ -93,7 +114,9 @@
             if (tf != TF_Rock) {
                 NSNumber *newFeature = [NSNumber numberWithInt:feature];
                 [item setObject:newFeature forKey:@"feature"];
+                //### need this?
                 [self.moonArray replaceObjectAtIndex:index withObject:item];
+                self.dirtySurface = YES;
             }
         }
     }
@@ -108,6 +131,34 @@
         if (tf != TF_Rock) {
             [terrainFeature removeObjectForKey:@"feature"];
         }
+    }
+}
+
+- (void)alterMoon:(short)alterChange atIndex:(short)terrainIndex
+{
+    //ALTER
+    TerrainFeature oldShip = TF_OldLanderTippedLeft;
+    short leftIndex = terrainIndex;
+    short rightIndex = terrainIndex + 1;
+    short leftElevation = [self terrainHeight:leftIndex];
+    short rightElevation = [self terrainHeight:rightIndex];
+    if ((rightElevation - leftElevation) >= 0) {
+        oldShip = TF_OldLanderTippedRight;
+    }
+    
+    //ALTERP
+    [self addFeature:oldShip atIndex:leftIndex];
+    
+    //ALTERL
+    while (alterChange) {
+        [self modifyTerrainHeight:alterChange atIndex:leftIndex];
+        [self modifyTerrainHeight:alterChange atIndex:rightIndex];
+        leftIndex--;
+        rightIndex++;
+        
+        // Alter out till done
+        alterChange /= 2;
+        alterChange = -alterChange;
     }
 }
 
@@ -305,8 +356,8 @@
     CGPoint previousPoint = CGPointMake(0, 0);
     NSDictionary *item = [self.moonArray objectAtIndex:firstIndex];
     
-    float x = [[item objectForKey:@"x"] floatValue];
-    float y = [[item objectForKey:@"y"] floatValue];
+    short x = [[item objectForKey:@"x"] intValue];
+    short y = [[item objectForKey:@"y"] intValue];
     y = y / 32 + 23;
 
     previousPoint.x = x;
@@ -319,9 +370,9 @@
     [path addObject:moveToStartItem];
     
     for (int i = secondIndex; i < self.moonArray.count; i += nextIndex) {
-        x = [[[self.moonArray objectAtIndex:i] objectForKey:@"x"] floatValue];
-        y = [[[self.moonArray objectAtIndex:i] objectForKey:@"y"] floatValue];
-        float scaledY = y / 32 + 23;
+        x = [[[self.moonArray objectAtIndex:i] objectForKey:@"x"] intValue];
+        y = [[[self.moonArray objectAtIndex:i] objectForKey:@"y"] intValue];
+        short scaledY = y / 32 + 23;
         
         // Intensity/line type update
         DRAWTY--;
@@ -357,7 +408,7 @@
 
 - (void)useCloseUpView:(short)xCoordinate
 {
-    if (self.currentView == TV_Normal || (self.currentView == TV_Detailed && self.LEFTEDGE != xCoordinate)) {
+    if ((self.currentView == TV_Normal) || (self.currentView == TV_Detailed && self.LEFTEDGE != xCoordinate) || self.dirtySurface) {
         // Remove the subviews whenever we change
         for (UIView *subView in [self subviews]) {
             [subView removeFromSuperview];
@@ -366,6 +417,7 @@
         self.currentView = TV_Detailed;
         self.LEFTEDGE = xCoordinate;
         self.drawPaths = [self buildDetailedLunarSurface];
+        self.dirtySurface = NO;
         [self setNeedsDisplay];
     }
 }
@@ -387,6 +439,11 @@
 - (BOOL)viewIsDetailed
 {
     return (self.currentView == TV_Detailed);
+}
+
+- (void)drawRect:(CGRect)rect
+{
+    [super drawRect:rect];
 }
 
 - (void)dealloc

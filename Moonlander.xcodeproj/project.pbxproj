@@ -386,6 +386,7 @@
 		560FA0C2137991AD0017EE25 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				LastUpgradeCheck = 0420;
 				ORGANIZATIONNAME = "Silly Goose Software";
 			};
 			buildConfigurationList = 560FA0C5137991AD0017EE25 /* Build configuration list for PBXProject "Moonlander" */;
