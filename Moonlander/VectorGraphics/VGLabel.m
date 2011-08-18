@@ -28,7 +28,7 @@
         
         // For debugging purposes
         self.vectorName = @"[VGLabel initWithFrame]";
-        self.backgroundColor = [UIColor grayColor];
+        //self.backgroundColor = [UIColor grayColor];
     }
     return self;
 }
