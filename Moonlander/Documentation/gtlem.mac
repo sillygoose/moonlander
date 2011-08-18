@@ -1635,13 +1635,14 @@ ALTER:
     MOV	BIGXCT,IN2          ;PICK UP PRESENT INDEX.
 	MOV	IN2,TEMP            ;WORK BOTH FORWARD AND BACKWARD.
 	ASL	IN2                 ;Convert to a terrain index
-	ADD	#TERAIN,IN2
-	MOV	#3,-(SP)            ;INDICATE A CRASHED SHIP.
-	MOV	(IN2)+,TEMP2		;PICK UP Y.
-	MOV	IN2,RET2
+	ADD	#TERAIN,IN2         ;IN2 is the terrain location to modify
+
+	MOV	#3,-(SP)            ;INDICATE A CRASHED SHIP. (tilt left)
+	MOV	(IN2)+,TEMP2		;PICK UP Y and advance to next elevation
+	MOV	IN2,RET2            ;Save current index position
 	SUB	(IN2),TEMP2         ;FIGURE OUT WHICH WAY TO TILT SHIP.
 	BMI	ALERTP              ;LEAVE TILTED TO LEFT.
-	INC	(SP)
+	INC	(SP)                ;Tilt ship to the right
 
 ALERTP: 
     MOV	TEMP,-(SP)          ;PUSH THE INDEX ONTO THE STACK.
