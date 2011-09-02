@@ -23,7 +23,7 @@
         NSString *msgsFile = [[NSBundle mainBundle] pathForResource:@"LanderMessages" ofType:@"plist"];
         NSDictionary *messages = [NSDictionary dictionaryWithContentsOfFile:msgsFile];
         self.landerMessages = [messages objectForKey:@"messages"];
-        self.displayedMessages = [[NSMutableDictionary alloc] init];
+        self.displayedMessages = [NSMutableDictionary dictionaryWithCapacity:4];
     }
     return self;
 }
@@ -68,12 +68,11 @@
         CGRect frameRect = [self getRect:fuelMessage];
         
         // Create a label and add it as a subview and to the dictionary
-        VGLabel *fuelLabel = [[[VGLabel alloc] initWithFrame:frameRect] retain];
+        VGLabel *fuelLabel = [[[VGLabel alloc] initWithFrame:frameRect] autorelease];
         fuelLabel.drawPaths = [fuelMessage objectForKey:@"text"];
         fuelLabel.vectorName = @"FuelLow";
         [self addSubview:fuelLabel];
         [self.displayedMessages setObject:fuelLabel forKey:@"FuelLow"];
-        [fuelLabel release];
         self.fuelWarningOn = YES;
         
         // Request an update
@@ -107,12 +106,11 @@
         CGRect frameRect = [self getRect:sysMessage];
         
         // Create a label and add it as a subview and to the dictionary
-        VGLabel *sysLabel = [[[VGLabel alloc] initWithFrame:frameRect] retain];
+        VGLabel *sysLabel = [[[VGLabel alloc] initWithFrame:frameRect] autorelease];
         sysLabel.drawPaths = [sysMessage objectForKey:@"text"];
         sysLabel.vectorName = message;
         [self addSubview:sysLabel];
         [self.displayedMessages setObject:sysLabel forKey:@"SYSMES"];
-        [sysLabel release];
         
         // Request an update
         [self setNeedsDisplay];     
@@ -140,12 +138,11 @@
     CGRect frameRect = [self getRect:flameMessage];
     
     // Create a label and add it as a subview and to the dictionary
-    VGLabel *flameLabel = [[[VGLabel alloc] initWithFrame:frameRect] retain];
+    VGLabel *flameLabel = [[[VGLabel alloc] initWithFrame:frameRect] autorelease];
     flameLabel.drawPaths = [flameMessage objectForKey:@"text"];
     flameLabel.vectorName = message;
     [self addSubview:flameLabel];
     [self.displayedMessages setObject:flameLabel forKey:@"FSUBC"];
-    [flameLabel release];
     
     // Request an update
     [self setNeedsDisplay];        

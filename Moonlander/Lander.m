@@ -66,7 +66,7 @@
         self.vectorName = @"[Lander init]";
         
         CGRect thrustRect = CGRectMake(0, 0, 100, 100);
-        self.thrust = [[VGView alloc] initWithFrame:thrustRect];
+        self.thrust = [[[VGView alloc] initWithFrame:thrustRect] autorelease];
         self.thrust.vectorName = @"thrustRect";
         [self addSubview:self.thrust];
     }
@@ -106,7 +106,7 @@
         self.flameIntensity += 3;
 
         // Start drawing now
-        NSMutableArray *path = [[NSMutableArray alloc] init];
+        NSMutableArray *path = [[[NSMutableArray alloc] init] autorelease];
         paths = [NSArray arrayWithObject:path];
         
     #if 0
@@ -155,6 +155,9 @@
             NSDictionary *moveRelXYItem = [NSDictionary dictionaryWithObjectsAndKeys:moveRelItem, @"moverel", nil];
             [path addObject:moveRelXYItem];
         }
+        
+        [xCoordinates release];
+        [yCoordinates release];
     }
     
     self.thrust.drawPaths = paths;

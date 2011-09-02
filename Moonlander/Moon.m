@@ -205,7 +205,7 @@
         VGView *featureView = [[VGView alloc] initWithFrame:frameRect withPaths:featureFile];
         
         featureView.clipsToBounds = YES;
-        featureView.backgroundColor = [UIColor grayColor];
+        //featureView.backgroundColor = [UIColor grayColor];
         CGRect clipped = CGRectMake(featureView.bounds.origin.x, featureView.bounds.origin.y, featureView.bounds.size.width - verticalClip[tf], featureView.bounds.size.height);
         featureView.bounds = clipped;
 
@@ -224,6 +224,7 @@
         }
 
         [self addSubview:featureView];
+        [featureView release];
     }
 }
 

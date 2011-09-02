@@ -50,7 +50,7 @@
     NSTimer         *_simulationTimer;
     NSTimer         *_displayTimer;
 
-    VGButton        *_newGameButton;
+    VGButton        *_nextGameButton;
     
     Telemetry       *_selectedTelemetry;
     Telemetry       *_heightData;
@@ -119,7 +119,7 @@
 
 @property (nonatomic, retain) VGSlider *thrusterSlider;
 
-@property (nonatomic, retain) VGButton *newGameButton;
+@property (nonatomic, retain) VGButton *nextGameButton;
 
 @property (nonatomic, retain) Telemetry *selectedTelemetry;
 @property (nonatomic, retain) Telemetry *heightData;

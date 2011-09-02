@@ -39,18 +39,18 @@
         
         // Thruster slider subview
         NSString *tsPath = [[NSBundle mainBundle] pathForResource:@"ThrusterControl" ofType:@"plist"];
-        self.thrusterSlider = [[VGView alloc] initWithFrame:sliderFrame withPaths:tsPath];
+        self.thrusterSlider = [[[VGView alloc] initWithFrame:sliderFrame withPaths:tsPath] autorelease];
         self.thrusterSlider.userInteractionEnabled = YES;
         [self addSubview:self.thrusterSlider];
         
         // Thruster needle indicator subview
         NSString *tiPath = [[NSBundle mainBundle] pathForResource:@"ThrusterNeedle" ofType:@"plist"];
-        self.thrusterIndicator = [[VGView alloc] initWithFrame:needleFrame withPaths:tiPath];
+        self.thrusterIndicator = [[[VGView alloc] initWithFrame:needleFrame withPaths:tiPath] autorelease];
         self.thrusterIndicator.userInteractionEnabled = NO;
         [self addSubview:self.thrusterIndicator];
         
         // Thruster numeric value subview
-        self.thrusterValue = [[VGLabel alloc] initWithFrame:valueFrame];
+        self.thrusterValue = [[[VGLabel alloc] initWithFrame:valueFrame] autorelease];
         self.thrusterValue.userInteractionEnabled = NO;
         [self addSubview:self.thrusterValue];
     }

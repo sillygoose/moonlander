@@ -24,7 +24,7 @@
     if ((self = [super initWithFrame:frameRect])) {
         self.opaque = NO;
 
-        self.titleLabel = [[VGLabel alloc] initWithFrame:CGRectMake(0, 0, frameRect.size.width, frameRect.size.height)];
+        self.titleLabel = [[[VGLabel alloc] initWithFrame:CGRectMake(0, 0, frameRect.size.width, frameRect.size.height)] autorelease];
         [self addTarget:self action:@selector(buttonDown:) forControlEvents:UIControlEventTouchDown];
         [self addTarget:self action:@selector(buttonUp:) forControlEvents:(UIControlEventTouchUpInside|UIControlEventTouchUpOutside|UIControlEventTouchCancel)];
         self.titleLabel.userInteractionEnabled = NO;
