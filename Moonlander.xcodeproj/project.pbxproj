@@ -33,6 +33,14 @@
 		562B108A13841BAA00CC5C97 /* VGLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 562B108913841BAA00CC5C97 /* VGLabel.m */; };
 		562B108D13841D5A00CC5C97 /* LanderMessages.plist in Resources */ = {isa = PBXBuildFile; fileRef = 562B108C13841D5A00CC5C97 /* LanderMessages.plist */; };
 		562CB7BB137F3AE6003CB9B5 /* LargeLeftArrow.plist in Resources */ = {isa = PBXBuildFile; fileRef = 562CB7BA137F3AE6003CB9B5 /* LargeLeftArrow.plist */; };
+		562F269D141664FA0069169B /* DEC GT44 Users Guide.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 562F2695141664FA0069169B /* DEC GT44 Users Guide.pdf */; };
+		562F269E141664FA0069169B /* gtlem.mac in Resources */ = {isa = PBXBuildFile; fileRef = 562F2696141664FA0069169B /* gtlem.mac */; };
+		562F269F141664FA0069169B /* lunar.bas in Resources */ = {isa = PBXBuildFile; fileRef = 562F2697141664FA0069169B /* lunar.bas */; };
+		562F26A0141664FA0069169B /* Original GTLEM Source in Resources */ = {isa = PBXBuildFile; fileRef = 562F2698141664FA0069169B /* Original GTLEM Source */; };
+		562F26A1141664FA0069169B /* rtlem.mac in Resources */ = {isa = PBXBuildFile; fileRef = 562F2699141664FA0069169B /* rtlem.mac */; };
+		562F26A2141664FA0069169B /* VT-11 Instruction Set.txt in Resources */ = {isa = PBXBuildFile; fileRef = 562F269A141664FA0069169B /* VT-11 Instruction Set.txt */; };
+		562F26A3141664FA0069169B /* VT11 Graphic Display Processor.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 562F269B141664FA0069169B /* VT11 Graphic Display Processor.pdf */; };
+		562F26A4141664FA0069169B /* working_gtlem.mac in Resources */ = {isa = PBXBuildFile; fileRef = 562F269C141664FA0069169B /* working_gtlem.mac */; };
 		56320A94141662490064ADD7 /* gtlem.lda in Resources */ = {isa = PBXBuildFile; fileRef = 56320A92141662490064ADD7 /* gtlem.lda */; };
 		56320A95141662490064ADD7 /* pdp11 in Resources */ = {isa = PBXBuildFile; fileRef = 56320A93141662490064ADD7 /* pdp11 */; };
 		56320A991416625E0064ADD7 /* putr.com in Resources */ = {isa = PBXBuildFile; fileRef = 56320A971416625E0064ADD7 /* putr.com */; };
@@ -106,6 +114,14 @@
 		562B108913841BAA00CC5C97 /* VGLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VGLabel.m; path = VectorGraphics/VGLabel.m; sourceTree = "<group>"; };
 		562B108C13841D5A00CC5C97 /* LanderMessages.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = LanderMessages.plist; path = Resources/LanderMessages.plist; sourceTree = "<group>"; };
 		562CB7BA137F3AE6003CB9B5 /* LargeLeftArrow.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = LargeLeftArrow.plist; path = Resources/LargeLeftArrow.plist; sourceTree = "<group>"; };
+		562F2695141664FA0069169B /* DEC GT44 Users Guide.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = "DEC GT44 Users Guide.pdf"; sourceTree = "<group>"; };
+		562F2696141664FA0069169B /* gtlem.mac */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = gtlem.mac; sourceTree = "<group>"; };
+		562F2697141664FA0069169B /* lunar.bas */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = lunar.bas; sourceTree = "<group>"; };
+		562F2698141664FA0069169B /* Original GTLEM Source */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "Original GTLEM Source"; sourceTree = "<group>"; };
+		562F2699141664FA0069169B /* rtlem.mac */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = rtlem.mac; sourceTree = "<group>"; };
+		562F269A141664FA0069169B /* VT-11 Instruction Set.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "VT-11 Instruction Set.txt"; sourceTree = "<group>"; };
+		562F269B141664FA0069169B /* VT11 Graphic Display Processor.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = "VT11 Graphic Display Processor.pdf"; sourceTree = "<group>"; };
+		562F269C141664FA0069169B /* working_gtlem.mac */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = working_gtlem.mac; sourceTree = "<group>"; };
 		56320A92141662490064ADD7 /* gtlem.lda */ = {isa = PBXFileReference; lastKnownFileType = file; path = gtlem.lda; sourceTree = "<group>"; };
 		56320A93141662490064ADD7 /* pdp11 */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = pdp11; sourceTree = "<group>"; };
 		56320A971416625E0064ADD7 /* putr.com */ = {isa = PBXFileReference; lastKnownFileType = file; path = putr.com; sourceTree = "<group>"; };
@@ -175,6 +191,7 @@
 			children = (
 				560D212814115314000F3A22 /* README */,
 				560FA0D5137991AE0017EE25 /* Moonlander */,
+				562F2694141664FA0069169B /* Documentation */,
 				56320A91141662490064ADD7 /* Binaries */,
 				56320A961416625E0064ADD7 /* Utilities */,
 				560FA0FA137991AE0017EE25 /* MoonlanderTests */,
@@ -318,6 +335,21 @@
 			name = Resources;
 			sourceTree = "<group>";
 		};
+		562F2694141664FA0069169B /* Documentation */ = {
+			isa = PBXGroup;
+			children = (
+				562F2696141664FA0069169B /* gtlem.mac */,
+				562F2698141664FA0069169B /* Original GTLEM Source */,
+				562F2699141664FA0069169B /* rtlem.mac */,
+				562F269C141664FA0069169B /* working_gtlem.mac */,
+				562F2697141664FA0069169B /* lunar.bas */,
+				562F269A141664FA0069169B /* VT-11 Instruction Set.txt */,
+				562F269B141664FA0069169B /* VT11 Graphic Display Processor.pdf */,
+				562F2695141664FA0069169B /* DEC GT44 Users Guide.pdf */,
+			);
+			path = Documentation;
+			sourceTree = "<group>";
+		};
 		56320A91141662490064ADD7 /* Binaries */ = {
 			isa = PBXGroup;
 			children = (
@@ -446,6 +478,14 @@
 				56320A95141662490064ADD7 /* pdp11 in Resources */,
 				56320A991416625E0064ADD7 /* putr.com in Resources */,
 				56320A9A1416625E0064ADD7 /* putr.txt in Resources */,
+				562F269D141664FA0069169B /* DEC GT44 Users Guide.pdf in Resources */,
+				562F269E141664FA0069169B /* gtlem.mac in Resources */,
+				562F269F141664FA0069169B /* lunar.bas in Resources */,
+				562F26A0141664FA0069169B /* Original GTLEM Source in Resources */,
+				562F26A1141664FA0069169B /* rtlem.mac in Resources */,
+				562F26A2141664FA0069169B /* VT-11 Instruction Set.txt in Resources */,
+				562F26A3141664FA0069169B /* VT11 Graphic Display Processor.pdf in Resources */,
+				562F26A4141664FA0069169B /* working_gtlem.mac in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
