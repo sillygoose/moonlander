@@ -6,8 +6,6 @@
 //  Copyright 2011 Silly Goose Software. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
-
 #import "VGView.h"
 
 @interface Dust : VGView {
