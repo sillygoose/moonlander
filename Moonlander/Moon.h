@@ -24,6 +24,10 @@ typedef enum { TV_Unknown, TV_Normal, TV_Detailed } TerrainView;
     NSMutableArray      *_moonArray;
     BOOL                _dirtySurface;
     
+    short               _MACX;
+    short               _MACY;
+    BOOL                _hasMcDonalds;
+    
     TerrainView         _currentView;
     short               _LEFTEDGE;
     
@@ -32,6 +36,10 @@ typedef enum { TV_Unknown, TV_Normal, TV_Detailed } TerrainView;
 
 @property (nonatomic, retain) NSMutableArray *moonArray;
 @property (nonatomic) BOOL dirtySurface;
+
+@property (nonatomic) short MACX;
+@property (nonatomic) short MACY;
+@property (nonatomic) BOOL hasMcDonalds;
 
 @property (nonatomic) TerrainView currentView;
 @property (nonatomic) short LEFTEDGE;

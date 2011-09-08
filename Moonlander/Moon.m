@@ -14,6 +14,10 @@
 @synthesize moonArray=_moonArray;
 @synthesize dirtySurface=_dirtySurface;
 
+@synthesize MACX=_MACX;
+@synthesize MACY=_MACY;
+@synthesize hasMcDonalds=_hasMcDonalds;
+
 @synthesize currentView=_currentView;
 @synthesize LEFTEDGE=_LEFTEDGE;
 
@@ -24,7 +28,7 @@
 {
     self = [super initWithFrame:moonRect];
     if (self) {
-        self.LEFTEDGE = -1.0;
+        self.LEFTEDGE = -1;
         
         // No events for the moon surface
         self.userInteractionEnabled = NO;
@@ -179,7 +183,7 @@
     const CGSize featureSizes[] = { CGSizeMake(0, 0), CGSizeMake(72, 64), CGSizeMake(22, 22), CGSizeMake(72, 64), CGSizeMake(72, 64), CGSizeMake(48, 42), CGSizeMake(0, 0), CGSizeMake(140, 64) };
     CGFloat featureRotation[] = { 0.0f, 0.0f, 0.0f, M_PI_2, -M_PI_2, 0.0f, 0.0f, 0.0f };
     CGFloat featureTranslation[] = { 0.0f, 0.0f, 0.0f, -1.0f, 0.0f, 0.0f, 0.0f, 0.0f };
-    CGFloat verticalAdjust[] = { 0.0f, 48.0f, 0.0f, 32.0f, 32.0f, 32.0f, 0.0f, 50.0f };
+    CGFloat verticalAdjust[] = { 0.0f, 48.0f, 0.0f, 32.0f, 32.0f, 32.0f, 0.0f, 40.0f };
     CGFloat verticalClip[] = { 0.0f, 0.0f, 0.0f, 30.0f, 30.0f, 0.0f, 0.0f, 0.0f };
 
     if (!(tf == TF_Nothing || tf == TF_McDonaldsEdge)) {
@@ -230,6 +234,9 @@
 
 - (NSArray *)buildDetailedLunarSurface
 {
+    // Assume no McDonalds
+    self.hasMcDonalds = NO;
+    
     // This is the display index
     short x = 0;
     
@@ -248,6 +255,7 @@
     
     short TEMP = [self terrainHeight:terrainIndex];
     TEMP = [self DFAKE:TEMP];
+    // DRW2L5:
     if (TEMP < 0)
         TEMP = 0;
     else if (TEMP > 768)
@@ -265,6 +273,7 @@
     int DFUDGE_INC = 1;
     unsigned lineSegments = 0;
     for (short i = terrainIndex; lineSegments < 225; i += nextIndex) {
+        // DRW2L:
         short IN2 = [self terrainHeight:i];
         IN2 = [self DFAKE:IN2];
         IN2 = IN2 - TEMP;
@@ -275,6 +284,7 @@
             IN2 = -IN2;
         }
         else {
+            // DRAW2G:
             IN2 += 6;
             IN2 /= 12;
         }
@@ -282,6 +292,7 @@
         int k = 12;
         while (k-- > 0) {
             DFUDGE += DFUDGE_INC;
+            // DRAW2V:	
             if (DFUDGE == 3) {
                 DFUDGE_INC = -1;
             }
@@ -306,6 +317,7 @@
                 [path addObject:intensity];
             }
             
+            // DRAW2W:
             TEMP = TEMP + DFUDGE;
             TEMP = TEMP + IN2;
             
@@ -325,16 +337,37 @@
             lineSegments++;
             
             //NSLog(@"i: %d  lineSeg: %d  TEMP: %3.0f  IN2: %3.0f  LASTY: %3.0f  drawTo: %@", i, lineSegments, TEMP, IN2, LASTY, NSStringFromCGPoint(drawToPoint));
-          
-            // See if there are features to add (added to center of terrain index)
-            if (k == 11) {
-                TerrainFeature tf = [self featureAtIndex:i];
-                if (tf > TF_Nothing && tf != TF_McDonaldsEdge) {
+        }
+    }
+    
+    // Add the features to the detailed surface
+    x = 0;
+    for (short i = terrainIndex, n = 19, IN1 = 24; n > 0; i++, n--, IN1 += 48, x += 48) {
+        // See if there are features to add (added to center of terrain index)
+        TerrainFeature tf = [self featureAtIndex:i];
+        if (tf > TF_Nothing && tf != TF_McDonaldsEdge) {
+            if (tf == TF_McDonalds) {
+                if (IN1 > 25 && IN1 < 880) {
+                    // MACDON: todo
+                    //;MOV	2(RET2),TEMP		;PICK UP RIGHT Y NOW.
+                    //;CMP	(RET2),TEMP         ;AND SEE IF IT'S SMALLER THAN LEFT Y.
+                    //;BGE	MACB1               ;IT IS.
+                    //;MOV	(RET2),TEMP         ;IT ISN'T. PICK SMALLEST Y NOW.
+                    
+                    // MACB1:
+                    self.MACY = [self DFAKE:[self terrainHeight:i]];
+                    self.MACX = IN1;
+                    self.hasMcDonalds = YES;
+                    
                     [self addFeatureToView:tf atOrigin:CGPointMake(x, TEMP)];
                 }
             }
+            else {
+                [self addFeatureToView:tf atOrigin:CGPointMake(x, TEMP)];
+            }
         }
     }
+    
     return paths;
 }
 
