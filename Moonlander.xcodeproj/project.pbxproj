@@ -41,6 +41,7 @@
 		562F26A2141664FA0069169B /* VT-11 Instruction Set.txt in Resources */ = {isa = PBXBuildFile; fileRef = 562F269A141664FA0069169B /* VT-11 Instruction Set.txt */; };
 		562F26A3141664FA0069169B /* VT11 Graphic Display Processor.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 562F269B141664FA0069169B /* VT11 Graphic Display Processor.pdf */; };
 		562F26A4141664FA0069169B /* working_gtlem.mac in Resources */ = {isa = PBXBuildFile; fileRef = 562F269C141664FA0069169B /* working_gtlem.mac */; };
+		562F26A81417A22E0069169B /* Man.m in Sources */ = {isa = PBXBuildFile; fileRef = 562F26A71417A22E0069169B /* Man.m */; };
 		56320A94141662490064ADD7 /* gtlem.lda in Resources */ = {isa = PBXBuildFile; fileRef = 56320A92141662490064ADD7 /* gtlem.lda */; };
 		56320A95141662490064ADD7 /* pdp11 in Resources */ = {isa = PBXBuildFile; fileRef = 56320A93141662490064ADD7 /* pdp11 */; };
 		56320A991416625E0064ADD7 /* putr.com in Resources */ = {isa = PBXBuildFile; fileRef = 56320A971416625E0064ADD7 /* putr.com */; };
@@ -61,6 +62,7 @@
 		569CC2AA13809BED00E6D82A /* Moon.plist in Resources */ = {isa = PBXBuildFile; fileRef = 569CC2A913809BED00E6D82A /* Moon.plist */; };
 		569CC2B31380CC3300E6D82A /* Rock.plist in Resources */ = {isa = PBXBuildFile; fileRef = 569CC2B21380CC3300E6D82A /* Rock.plist */; };
 		56A480C3137C6C5500742877 /* LanderPhysicsConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 56A480C2137C6C5500742877 /* LanderPhysicsConstants.m */; };
+		56B4D62D1417D9AF00029FC8 /* Flag.m in Sources */ = {isa = PBXBuildFile; fileRef = 56B4D62C1417D9AF00029FC8 /* Flag.m */; };
 		56BC68641388BDE200403643 /* Labels.plist in Resources */ = {isa = PBXBuildFile; fileRef = 56BC68631388BDE200403643 /* Labels.plist */; };
 		56C94AA913A7A7AE001B7EF9 /* Dust.m in Sources */ = {isa = PBXBuildFile; fileRef = 56C94AA813A7A7AE001B7EF9 /* Dust.m */; };
 		56CE052F138B12A7004FA450 /* LanderMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 56CE052E138B12A7004FA450 /* LanderMessage.m */; };
@@ -122,6 +124,8 @@
 		562F269A141664FA0069169B /* VT-11 Instruction Set.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "VT-11 Instruction Set.txt"; sourceTree = "<group>"; };
 		562F269B141664FA0069169B /* VT11 Graphic Display Processor.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = "VT11 Graphic Display Processor.pdf"; sourceTree = "<group>"; };
 		562F269C141664FA0069169B /* working_gtlem.mac */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = working_gtlem.mac; sourceTree = "<group>"; };
+		562F26A61417A22E0069169B /* Man.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Man.h; sourceTree = "<group>"; };
+		562F26A71417A22E0069169B /* Man.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Man.m; sourceTree = "<group>"; };
 		56320A92141662490064ADD7 /* gtlem.lda */ = {isa = PBXFileReference; lastKnownFileType = file; path = gtlem.lda; sourceTree = "<group>"; };
 		56320A93141662490064ADD7 /* pdp11 */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = pdp11; sourceTree = "<group>"; };
 		56320A971416625E0064ADD7 /* putr.com */ = {isa = PBXFileReference; lastKnownFileType = file; path = putr.com; sourceTree = "<group>"; };
@@ -148,6 +152,8 @@
 		56A480B3137C5E3D00742877 /* LanderPhysicsDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LanderPhysicsDelegate.h; path = "Lander Model/LanderPhysicsDelegate.h"; sourceTree = "<group>"; };
 		56A480C1137C6C5500742877 /* LanderPhysicsConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LanderPhysicsConstants.h; path = "Lander Model/LanderPhysicsConstants.h"; sourceTree = "<group>"; };
 		56A480C2137C6C5500742877 /* LanderPhysicsConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LanderPhysicsConstants.m; path = "Lander Model/LanderPhysicsConstants.m"; sourceTree = "<group>"; };
+		56B4D62B1417D9AF00029FC8 /* Flag.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Flag.h; sourceTree = "<group>"; };
+		56B4D62C1417D9AF00029FC8 /* Flag.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Flag.m; sourceTree = "<group>"; };
 		56BC68631388BDE200403643 /* Labels.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Labels.plist; path = Resources/Labels.plist; sourceTree = "<group>"; };
 		56C94AA713A7A7AE001B7EF9 /* Dust.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Dust.h; sourceTree = "<group>"; };
 		56C94AA813A7A7AE001B7EF9 /* Dust.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Dust.m; sourceTree = "<group>"; };
@@ -230,6 +236,10 @@
 				56755FD9138C0B8200455B52 /* Lander.m */,
 				56C94AA713A7A7AE001B7EF9 /* Dust.h */,
 				56C94AA813A7A7AE001B7EF9 /* Dust.m */,
+				56B4D62B1417D9AF00029FC8 /* Flag.h */,
+				56B4D62C1417D9AF00029FC8 /* Flag.m */,
+				562F26A61417A22E0069169B /* Man.h */,
+				562F26A71417A22E0069169B /* Man.m */,
 				56CE052D138B12A7004FA450 /* LanderMessage.h */,
 				56CE052E138B12A7004FA450 /* LanderMessage.m */,
 				56CE0533138B5277004FA450 /* Telemetry.h */,
@@ -539,6 +549,8 @@
 				56755FDA138C0B8200455B52 /* Lander.m in Sources */,
 				5694D1D813920A8C00A61F22 /* Moon.m in Sources */,
 				56C94AA913A7A7AE001B7EF9 /* Dust.m in Sources */,
+				562F26A81417A22E0069169B /* Man.m in Sources */,
+				56B4D62D1417D9AF00029FC8 /* Flag.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
