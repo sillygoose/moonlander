@@ -1839,7 +1839,7 @@ DRAW2Y:
     MOV	RET1,-(SP)          ;PUSH FEATURE INDEX ONTO THE STACK.
 	INC	RET1                ;INCREMENT INDEX POINTER TO NEXT FEATURE.
 	JSR	PC,GETFET           ;GET THE FEATURE NOW.
-	MOV	(SP)+,TEMP          ;feature index in TEMP   AND PUT IT IN A USEFUL REGISTER.
+	MOV	(SP)+,TEMP          ;feature type in TEMP   AND PUT IT IN A USEFUL REGISTER.
 	ASL	TEMP                ;MAKE IT INTO A GOOD INDEX.
 	JSR	PC,@DRAWTB(TEMP)    ;lookup the feature in the AHTAB
 	TST	(RET2)+             ;BYPASS
@@ -2014,6 +2014,11 @@ ROCKLP:
 ROCKRT:
     RTS	PC                  ;RETURN NOW.
 
+;
+;		THIS ROUTINE WILL DRAW McDonalds.
+; Inputs:   IN1     24
+;           RET2    Terrain height
+;
 MACDON:
     TST	MACTHR              ;IS MACDONALD'S STILL IN EXISTANCE.
 	BEQ	MACEX               ;NO. EXIT.
