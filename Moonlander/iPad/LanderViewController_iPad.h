@@ -17,6 +17,8 @@
 #import "Moon.h"
 #import "Lander.h"
 #import "Dust.h"
+#import "Man.h"
+#import "Flag.h"
 #import "Telemetry.h"
 #import "Instrument.h"
 #import "LanderMessage.h"
@@ -28,6 +30,8 @@
     Moon            *_moonView;
     Lander          *_landerView;
     Dust            *_dustView;
+    Man             *_manView;
+    Flag             *_flagView;
     
     short           _SHOWX;
     short           _SHOWY;
@@ -49,6 +53,7 @@
     
     NSTimer         *_simulationTimer;
     NSTimer         *_displayTimer;
+    NSTimer         *_palsyTimer;
 
     VGButton        *_nextGameButton;
     
@@ -83,6 +88,7 @@
 
 @property (nonatomic, assign) NSTimer *simulationTimer;
 @property (nonatomic, assign) NSTimer *displayTimer;
+@property (nonatomic, assign) NSTimer *palsyTimer;
 
 @property (nonatomic) short SHOWX;
 @property (nonatomic) short SHOWY;
@@ -96,21 +102,23 @@
 @property (nonatomic) short AVERT;
 @property (nonatomic) short DUSTX;
 
-@property (nonatomic, readonly) short VERDIS;
+@property (nonatomic) short VERDIS;
 @property (nonatomic, readonly) short HORDIS;
 @property (nonatomic, readonly) short PERTRS;
-@property (nonatomic, readonly) short ANGLE;
+@property (nonatomic) short ANGLE;
 @property (nonatomic, readonly) short ANGLED;
-@property (nonatomic, readonly) short HORVEL;
-@property (nonatomic, readonly) short VERVEL;
+@property (nonatomic) short HORVEL;
+@property (nonatomic) short VERVEL;
 @property (nonatomic, readonly) short VERACC;
-@property (nonatomic, readonly) short THRUST;
+@property (nonatomic) short THRUST;
 @property (nonatomic, readonly) short TIME;
-@property (nonatomic, readonly) short FUEL;
+@property (nonatomic) short FUEL;
 
 @property (nonatomic, retain) Moon *moonView;
 @property (nonatomic, retain) Lander *landerView;
 @property (nonatomic, retain) Dust *dustView;
+@property (nonatomic, retain) Man *manView;
+@property (nonatomic, retain) Flag *flagView;
 
 @property (nonatomic, retain) VGButton *smallLeftArrow;
 @property (nonatomic, retain) VGButton *smallRightArrow;

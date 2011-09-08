@@ -27,6 +27,8 @@
 @synthesize moonView=_moonView;
 @synthesize landerView=_landerView;
 @synthesize dustView=_dustView;
+@synthesize manView=_manView;
+@synthesize flagView=_flagView;
 
 @synthesize SHOWX=_SHOWX;
 @synthesize SHOWY=_SHOWY;
@@ -52,6 +54,7 @@
 
 @synthesize simulationTimer=_simulationTimer;
 @synthesize displayTimer=_displayTimer;
+@synthesize palsyTimer=_palsyTimer;
 
 @synthesize heightData=_heightData;
 @synthesize altitudeData=_altitudeData;
@@ -137,6 +140,11 @@ const float DisplayUpdateInterval = 0.05f;
     return (short)([self.landerModel.dataSource altitude]);
 }
 
+- (void)setVERDIS:(short)value
+{
+    [self.landerModel.dataSource setAltitude:value];
+}
+
 - (short)HORDIS
 {
     return (short)([self.landerModel.dataSource distance]);
@@ -152,6 +160,11 @@ const float DisplayUpdateInterval = 0.05f;
     return (short)([self.landerModel.dataSource angle]);
 }
 
+- (void)setANGLE:(short)value
+{
+    [self.landerModel.dataSource setAngle:value];
+}
+
 - (short)ANGLED
 {
     return (short)([self.landerModel.dataSource angleDegrees]);
@@ -162,9 +175,19 @@ const float DisplayUpdateInterval = 0.05f;
     return (short)([self.landerModel.dataSource horizVel]);
 }
 
+- (void)setHORVEL:(short)value
+{
+    [self.landerModel.dataSource setHorizVel:value];
+}
+
 - (short)VERVEL
 {
     return (short)([self.landerModel.dataSource vertVel]);
+}
+
+- (void)setVERVEL:(short)value
+{
+    [self.landerModel.dataSource setVertVel:value];
 }
 
 - (short)VERACC
@@ -177,6 +200,11 @@ const float DisplayUpdateInterval = 0.05f;
     return (short)([self.landerModel.dataSource thrust]);
 }
 
+- (void)setTHRUST:(short)value
+{
+    [self.landerModel.dataSource setThrust:value];
+}
+
 - (short)TIME
 {
     return (short)([self.landerModel.dataSource time]*60.0f);
@@ -185,6 +213,11 @@ const float DisplayUpdateInterval = 0.05f;
 - (short)FUEL
 {
     return (short)([self.landerModel.dataSource fuel]);
+}
+
+- (void)setFUEL:(short)value
+{
+    [self.landerModel.dataSource setFuel:value];
 }
 
 - (void)dealloc
@@ -306,6 +339,11 @@ const float DisplayUpdateInterval = 0.05f;
     // Start with a normal view
     [self.moonView useNormalView];
     [self.landerModel newGame];
+
+    if (self.flagView) {
+        [self.flagView removeFromSuperview];
+        self.flagView = nil;
+    }
     
     // Starting posiition
     self.SHOWX = 0;
@@ -628,8 +666,10 @@ const float DisplayUpdateInterval = 0.05f;
     
     [self.simulationTimer invalidate];
     [self.displayTimer invalidate];
+    [self.palsyTimer invalidate];
     self.simulationTimer = nil;
     self.displayTimer = nil;
+    self.palsyTimer = nil;
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -705,6 +745,7 @@ const float DisplayUpdateInterval = 0.05f;
     [self.landerMessages removeAllLanderMessages];
     [self.simulationTimer invalidate];
     [self.displayTimer invalidate];
+    [self.palsyTimer invalidate];
     
     [self initGame];
 }
@@ -757,9 +798,6 @@ const float DisplayUpdateInterval = 0.05f;
     // Tell model we are on surface
     [self.landerModel landerDown];
     
-    // Remove a fuel low message if present
-    //###[self.landerMessages removeAllLanderMessages];
-
     // Remove dust view
     if (self.dustView) {
         self.dustView.drawPaths = nil;
@@ -781,6 +819,8 @@ const float DisplayUpdateInterval = 0.05f;
     self.simulationTimer = nil;
     [self.displayTimer invalidate];
     self.displayTimer = nil;
+    [self.palsyTimer invalidate];
+    self.palsyTimer = nil;
     
     [self updateLander];
 }
@@ -941,51 +981,246 @@ const float DisplayUpdateInterval = 0.05f;
 #endif
 }
 
-- (void)MOVMAN_X:(short)deltaX Y:(short)deltaY
+
+#if 0
+const float landingDelay = 4.0f;
+const float moveInterval = 0.16f;
+const float initialFoodDelay = 8.0f;
+const float secondFoodDelay = 2.0f;
+const float launchDelay = 2.0f;
+const float endDelay = 3.0f;
+#else
+// sped up timings
+const float landingDelay = 0.5f;
+const float moveInterval = 0.03f;
+const float initialFoodDelay = 1.0f;
+const float secondFoodDelay = 0.5f;
+const float launchDelay = 0.5f;
+const float endDelay = 1.0f;
+#endif
+
+- (void)drawMcMan7
 {
+    // All done
+    [self gameOver];
+}
+
+- (void)drawMcMan6
+{
+    [self.landerMessages removeAllLanderMessages];
+    self.HORVEL = 0;
+    self.THRUST = 30;
+    self.ANGLE = 0;
+    [self.thrusterSlider setValue:[self.landerModel.dataSource thrustPercent]];
+    
+    if (![self.moonView viewIsDetailed]) {
+        [self.palsyTimer invalidate];
+        self.palsyTimer = nil;
+        
+        // Hide the lander 
+        self.landerView.hidden = YES;
+
+        // Wait a bit
+        self.palsyTimer = [NSTimer scheduledTimerWithTimeInterval:endDelay target:self selector:@selector(drawMcMan7) userInfo:nil repeats:NO];
+    }
+}
+
+- (void)drawMcMan5
+{
+    [self.palsyTimer invalidate];
+    self.palsyTimer = nil;
+    
+    // Remove the man view
+    [self.manView removeFromSuperview];
+    self.manView = nil;
+    
+    [self.landerMessages removeAllLanderMessages];
+
+    // Now take off
+    self.VERDIS += 4;
+    self.FUEL += 200;
+    self.ANGLE = 0;
+    self.VERVEL = 0;
+    self.HORVEL = 0;
+    self.THRUST = 30;
+
+    [self enableFlightControls];
+    
+    // Setup game timers
+	self.simulationTimer = [NSTimer scheduledTimerWithTimeInterval:GameTimerInterval target:self selector:@selector(gameLoop) userInfo:nil repeats:YES];
+	self.displayTimer = [NSTimer scheduledTimerWithTimeInterval:DisplayUpdateInterval target:self selector:@selector(updateLander) userInfo:nil repeats:YES];
+    
+    [self updateLander];
+    
+    self.palsyTimer = [NSTimer scheduledTimerWithTimeInterval:moveInterval target:self selector:@selector(drawMcMan6) userInfo:nil repeats:YES];
+}
+
+- (void)drawMcMan4
+{
+    BOOL done = [self.manView moveMan];
+    if (done) {
+        [self.palsyTimer invalidate];
+        self.palsyTimer = nil;
+        
+        self.palsyTimer = [NSTimer scheduledTimerWithTimeInterval:launchDelay target:self selector:@selector(drawMcMan5) userInfo:nil repeats:NO];
+    }
+}
+ 
+- (void)drawMcMan3
+{
+    BOOL done = [self.manView moveMan];
+    if (done) {
+        [self.palsyTimer invalidate];
+        self.palsyTimer = nil;
+        
+        short deltaY = abs(self.manView.initialY - self.manView.Y);
+        self.manView.deltaY = deltaY;
+
+        self.palsyTimer = [NSTimer scheduledTimerWithTimeInterval:moveInterval target:self selector:@selector(drawMcMan4) userInfo:nil repeats:YES];
+    }
+}
+
+- (void)waitForFood2
+{
+    [self.palsyTimer invalidate];
+    self.palsyTimer = nil;
+    
+    // Move back to the lander
+    short deltaX = abs(self.manView.initialX - self.manView.X);
+    short deltaY = abs(self.manView.initialY - self.manView.Y);
+    self.manView.deltaX = deltaX - deltaY;
+    self.manView.deltaY = 0;
+    self.manView.incrementX = -self.manView.incrementX;
+    self.manView.incrementY = -self.manView.incrementY;
+    
+    self.palsyTimer = [NSTimer scheduledTimerWithTimeInterval:moveInterval target:self selector:@selector(drawMcMan3) userInfo:nil repeats:YES];
+}
+ 
+- (void)waitForFood1
+{
+    [self.palsyTimer invalidate];
+    self.palsyTimer = nil;
+
+    [self.landerMessages removeSystemMessage:@"YourOrder"];
+    self.palsyTimer = [NSTimer scheduledTimerWithTimeInterval:secondFoodDelay target:self selector:@selector(waitForFood2) userInfo:nil repeats:NO];
+}
+
+- (void)drawMcMan2
+{
+    BOOL done = [self.manView moveMan];
+    if (done) {
+        [self.palsyTimer invalidate];
+        self.palsyTimer = nil;
+        
+        // Order some food and wait
+        [self.landerMessages addSystemMessage:@"YourOrder"];
+        self.palsyTimer = [NSTimer scheduledTimerWithTimeInterval:initialFoodDelay target:self selector:@selector(waitForFood1) userInfo:nil repeats:NO];
+    }        
+}
+
+- (void)drawMcMan1
+{
+    BOOL done = [self.manView moveMan];
+    if (done) {
+        [self.palsyTimer invalidate];
+        self.palsyTimer = nil;
+        
+        // Next position
+        self.manView.deltaX = 100;
+        self.manView.deltaY = 0;
+        
+        self.palsyTimer = [NSTimer scheduledTimerWithTimeInterval:moveInterval target:self selector:@selector(drawMcMan2) userInfo:nil repeats:YES];
+    }
+}
+
+- (void)waitMan
+{
+    [self.palsyTimer invalidate];
+    self.palsyTimer = nil;
+    
+    [self.manView removeFromSuperview];
+    self.manView = nil;
+    
+    [self.landerMessages removeAllLanderMessages];
+    [self.moonView addFeature:TF_OldLander atIndex:self.INDEXL];
+}
+
+- (void)drawMan1
+{
+    // Move the man to ground level and then setup the horizontal move
+    BOOL done = [self.manView moveMan];
+    if (done) {
+        [self.palsyTimer invalidate];
+        self.palsyTimer = nil;
+        
+        // Next position
+        self.manView.deltaX = 48;
+        self.manView.deltaY = 0;
+        
+        self.palsyTimer = [NSTimer scheduledTimerWithTimeInterval:moveInterval target:self selector:@selector(drawMan2) userInfo:nil repeats:YES];
+    }
+}
+
+- (void)drawMan2
+{
+    BOOL done = [self.manView moveMan];
+    if (done) {
+        [self.palsyTimer invalidate];
+        self.palsyTimer = nil;
+    
+    // Put the flag in position
+    short flagX = self.manView.X + 20 * self.manView.incrementX;
+    CGPoint origin = CGPointMake(flagX, self.manView.Y);
+    self.flagView = [[[Flag alloc] initWithOrigin:origin] autorelease];
+    [self.view addSubview:self.flagView];
+    
+    // Add the flag and message
+    short flagIndex = self.INDEXL + 2 * self.manView.incrementX;
+    [self.moonView addFeature:TF_OldFlag atIndex:flagIndex];
+    [self.landerMessages addSystemMessage:@"OneSmallStep"];
+    
+    // Use a timer to wait (10 secs)
+    const float finalDelay = 5.0f;
+    self.palsyTimer = [NSTimer scheduledTimerWithTimeInterval:finalDelay target:self selector:@selector(waitMan) userInfo:nil repeats:NO];
+    }
+}
+
+- (void)moveMan
+{
+    [self.palsyTimer invalidate];
+    self.palsyTimer = nil;
+    
+    if (self.moonView.hasMcDonalds) {
+        // Visit to Macdonald's, need coordinates
+        // Put the man in position
+        short deltaX = self.moonView.MACX - self.SHOWX;
+        short deltaY = self.moonView.MACY - self.SHOWY + 45;
+        CGPoint start = CGPointMake(self.SHOWX, self.view.frame.size.width - self.SHOWY);
+        CGPoint delta = CGPointMake(deltaX, deltaY);
+        self.manView = [[[Man alloc] initWithOrigin:start andDelta:delta] autorelease];
+        [self.view addSubview:self.manView];
+        
+        // Use a timer to animate our guy
+        self.palsyTimer = [NSTimer scheduledTimerWithTimeInterval:moveInterval target:self selector:@selector(drawMcMan1) userInfo:nil repeats:YES];
+    }
+    else {
+        // Put the man in position
+        CGPoint start = CGPointMake(self.SHOWX, self.view.frame.size.width - self.SHOWY);
+        CGPoint delta = CGPointMake(48, 24);
+        self.manView = [[[Man alloc] initWithOrigin:start andDelta:delta] autorelease];
+        [self.view addSubview:self.manView];
+       
+        // Use a timer to animate our guy
+        self.palsyTimer = [NSTimer scheduledTimerWithTimeInterval:moveInterval target:self selector:@selector(drawMan1) userInfo:nil repeats:YES];
+    }
 }
 
 - (void)PALSY
 {
-    // Delay 4 seconds
-    //[NSThread sleepForTimeInterval:4.0];
-    double delayInSeconds = 4.0;
-    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * NSEC_PER_SEC);
-    dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
-        // code to be executed on main thread.If you want to run in another thread, create other queue
-    });
+    [self.landerMessages removeAllLanderMessages];
     
-    // Put the man in position
-    //###
-    
-    // Is MacDonalds present (not correct code)
-    TerrainFeature tf = [self.moonView featureAtIndex:self.INDEXL];
-    if (tf == TF_McDonalds) {
-        // Visit to Macdonald's
-    }
-    else {
-        //(PALNOR) Plant a flag
-        [self.moonView addFeature:TF_OldLander atIndex:self.INDEXL];
-        short deltaY = -24;
-        short deltaX = 48;
-        if (self.TIME & 1) {
-            deltaX = -deltaX;
-        }
-        
-        //(PALN1)
-        [self MOVMAN_X:deltaX Y:deltaY];
-        deltaY = 0;
-        [self MOVMAN_X:deltaX Y:deltaY];
-        
-        [self.moonView addFeature:TF_OldFlag atIndex:self.INDEXL];
-        
-        // Display message and wait 10 sec
-        [self.landerMessages addSystemMessage:@"OneSmallStep"];
-        //[NSThread sleepForTimeInterval:10.0];
-        
-        // Remove man view
-        //###
-    }
+    // Start with a delay of 4 seconds
+	self.palsyTimer = [NSTimer scheduledTimerWithTimeInterval:landingDelay target:self selector:@selector(moveMan) userInfo:nil repeats:NO];
 }
 
 - (void)ALTER:(short)alterValue
@@ -1161,7 +1396,7 @@ const float DisplayUpdateInterval = 0.05f;
             }
             else {
                 // Plant a flag or get a burger
-                //###[self PALSY];
+                [self PALSY];
             }
         }
         
@@ -1175,11 +1410,11 @@ const float DisplayUpdateInterval = 0.05f;
             }
         }
         else {
-            [self.moonView addFeature:TF_OldLander atIndex:self.INDEXL];
+            //###[self.moonView addFeature:TF_OldLander atIndex:self.INDEXL];
         }
         
         // Hide the lander view
-        self.landerView.hidden = YES;
+        //###self.landerView.hidden = YES;
     }
     
     if (QUICK) {
