@@ -107,6 +107,11 @@ float RadiansToDegrees(float radians)
     return (self.verticalDistance <= 0.0f) ? 0.0f : self.verticalDistance;
 }
 
+- (void)setAltitude:(float)value
+{
+    self.verticalDistance = value;
+}
+
 - (float)distance
 {
     return self.horizontalDistance;
@@ -122,19 +127,18 @@ float RadiansToDegrees(float radians)
     return ((self.fuelRemaining > 0.0f) && (self.fuelRemaining <= self.lowFuelLimit)) ? YES : NO;
 }
 
-- (float)angle
-{
-    return self.turnAngle;
-}
-
-- (float)angleDegrees
-{
-    return RadiansToDegrees(self.turnAngle);
-}
-
 - (float)thrust
 {
     return (self.verticalDistance <= 0.0f) ? 0.0f : self.actualThrust;
+}
+
+- (void)setThrust:(float)thrustPercent
+{
+    if (thrustPercent < 10.0f) {
+        thrustPercent = 10.0f;
+    }
+    self.percentThrustRequested = thrustPercent;
+    self.actualThrust = self.percentThrustRequested * self.maxThrust / 100.0;
 }
 
 - (float)weight
@@ -192,17 +196,19 @@ float RadiansToDegrees(float radians)
     return self.clockTicks;
 }
 
-- (void)setThrust:(float)thrustPercent
+- (float)angle
 {
-    if (thrustPercent < 10.0f) {
-        thrustPercent = 10.0f;
-    }
-    self.percentThrustRequested = thrustPercent;
+    return self.turnAngle;
 }
 
 - (void)setAngle:(float)angleRadians
 {
     self.turnAngle = angleRadians;
+}
+
+- (float)angleDegrees
+{
+    return RadiansToDegrees(self.turnAngle);
 }
 
 - (void)setAngleDegrees:(float)angleDegrees
@@ -222,6 +228,10 @@ float RadiansToDegrees(float radians)
     self.lemAcceleration = 0.0f;
     self.horizontalAcceleration = 0.0f;
     self.verticalAcceleration = -self.lunarGravity;
+    
+    // These don't chnage since you like to see the landing stats
+    //self.horizontalVelocity = 0.0f;
+    //self.verticalVelocity = 0.0f;
 }
 
 #pragma mark Model initialization
@@ -231,12 +241,12 @@ float RadiansToDegrees(float radians)
     self.rateOfTurn = 0;
     self.turnAngle = DegreesToRadians(0.0f);
     self.horizontalVelocity = 0;
-    self.verticalVelocity = -150;
-    self.horizontalDistance = -100;
-    self.verticalDistance = 650;
-    self.percentThrustRequested = 14;
+    self.verticalVelocity = -8;
+    self.horizontalDistance = 70;
+    self.verticalDistance = 75;
+    self.percentThrustRequested = 15;
     self.actualThrust = self.percentThrustRequested * self.maxThrust / 100.0;
-    self.fuelRemaining = 2006;//self.lemInitalFuel;
+    self.fuelRemaining = self.lemInitalFuel;
     self.clockTicks = 0.0f;
 #else
     self.rateOfTurn = 0.0f;
