@@ -34,6 +34,15 @@
 				<key>moverel</key>
 				<dict>
 					<key>x</key>
+					<integer>0</integer>
+					<key>y</key>
+					<integer>6</integer>
+				</dict>
+			</dict>
+			<dict>
+				<key>moverel</key>
+				<dict>
+					<key>x</key>
 					<integer>2</integer>
 					<key>y</key>
 					<integer>0</integer>
