@@ -16,4 +16,8 @@ build/*
 *.perspectivev3
 *.pbxuser
 *.xcworkspace
+<<<<<<< HEAD
 xcuserdata/*
+=======
+xcuserdata/*
+>>>>>>> Take out all xcode files
