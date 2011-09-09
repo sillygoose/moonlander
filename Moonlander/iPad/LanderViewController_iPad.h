@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <AudioToolbox/AudioServices.h>
 
 #import "LanderPhysicsModel.h"
 
@@ -82,6 +83,9 @@
     Instrument      *_instrument8;
     
     LanderMessages  *_landerMessages;
+    
+    BOOL            _didFuelAlert;
+
 }
 
 @property (nonatomic, retain) LanderPhysicsModel *landerModel;
@@ -155,12 +159,15 @@
 
 @property (nonatomic, retain) LanderMessages *landerMessages;
 
+@property (nonatomic) BOOL didFuelAlert;
+
 
 - (IBAction)thrusterChanged:(VGSlider *)sender;
 - (IBAction)rotateLander:(id)sender;
 - (IBAction)newGame:(id)sender;
 
 - (void)gameReset;
+- (void)gameOver;
 - (void)updateLander;
 - (void)gameLoop;
 - (void)disableFlightControls;
