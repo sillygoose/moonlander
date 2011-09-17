@@ -196,7 +196,6 @@
 		560FA0C0137991AD0017EE25 = {
 			isa = PBXGroup;
 			children = (
-				5693700B141A644500B8EC3E /* AudioToolbox.framework */,
 				560D212814115314000F3A22 /* README */,
 				560FA0D5137991AE0017EE25 /* Moonlander */,
 				562F2694141664FA0069169B /* Documentation */,
@@ -221,6 +220,7 @@
 			isa = PBXGroup;
 			children = (
 				560FA0CF137991AD0017EE25 /* UIKit.framework */,
+				5693700B141A644500B8EC3E /* AudioToolbox.framework */,
 				560FA0D1137991AD0017EE25 /* Foundation.framework */,
 				560FA0D3137991AD0017EE25 /* CoreGraphics.framework */,
 			);
