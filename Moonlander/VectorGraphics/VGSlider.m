@@ -34,24 +34,27 @@
         [self addTarget:self action:@selector(buttonUp:) forControlEvents:(UIControlEventTouchUpInside|UIControlEventTouchUpOutside|UIControlEventTouchCancel|UIControlEventTouchDragExit|UIControlEventTouchDragOutside)];
 
         CGRect sliderFrame = CGRectMake(100, 0, frameRect.size.width / 3, frameRect.size.height);
-        CGRect needleFrame = CGRectMake(30, frameRect.size.height, frameRect.size.width / 3, 10);
-        CGRect valueFrame = CGRectMake(0, frameRect.size.height, 40, 16);
+        CGRect needleFrame = CGRectMake(60, frameRect.size.height, frameRect.size.width / 3, 10);
+        CGRect valueFrame = CGRectMake(25, frameRect.size.height, 40, 16);
         
         // Thruster slider subview
         NSString *tsPath = [[NSBundle mainBundle] pathForResource:@"ThrusterControl" ofType:@"plist"];
         self.thrusterSlider = [[[VGView alloc] initWithFrame:sliderFrame withPaths:tsPath] autorelease];
         self.thrusterSlider.userInteractionEnabled = YES;
+        //self.thrusterSlider.backgroundColor = [UIColor grayColor];
         [self addSubview:self.thrusterSlider];
         
         // Thruster needle indicator subview
         NSString *tiPath = [[NSBundle mainBundle] pathForResource:@"ThrusterNeedle" ofType:@"plist"];
         self.thrusterIndicator = [[[VGView alloc] initWithFrame:needleFrame withPaths:tiPath] autorelease];
         self.thrusterIndicator.userInteractionEnabled = NO;
+        self.thrusterIndicator.backgroundColor = [UIColor grayColor];
         [self addSubview:self.thrusterIndicator];
         
         // Thruster numeric value subview
         self.thrusterValue = [[[VGLabel alloc] initWithFrame:valueFrame] autorelease];
         self.thrusterValue.userInteractionEnabled = NO;
+        //self.thrusterValue.backgroundColor = [UIColor grayColor];
         [self addSubview:self.thrusterValue];
     }
     return self;
