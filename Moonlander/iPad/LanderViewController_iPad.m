@@ -450,7 +450,7 @@ const float DisplayUpdateInterval = 0.05f;
     [self.view addSubview:self.largeRightArrow];
     
     // Create the thruster control
-    self.thrusterSlider = [[[VGSlider alloc] initWithFrame:[self convertRectFromGameToView: CGRectMake(800, 450, 200, 200)]] autorelease];
+    self.thrusterSlider = [[[VGSlider alloc] initWithFrame:[self convertRectFromGameToView: CGRectMake(820, 450, 200, 200)]] autorelease];
 	[self.thrusterSlider addTarget:self 
                             action:@selector(thrusterChanged:) 
                   forControlEvents:UIControlEventValueChanged];
