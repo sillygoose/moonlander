@@ -22,7 +22,7 @@
 - (id)initWithFrame:(CGRect)frameRect
 {
     if ((self = [super initWithFrame:frameRect])) {
-        self.fontSize = 11;
+        self.fontSize = 12;
         self.opaque = NO;
         
         self.actualBounds = CGRectMake(FLT_MAX, FLT_MAX, -FLT_MAX, -FLT_MAX);
