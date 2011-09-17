@@ -22,13 +22,13 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          isPathRelative = "1"
-         filePath = "Moonlander/iPad/LanderViewController_iPad.m"
-         timestampString = "336584064.84579"
+         filePath = "Moonlander/Moon.m"
+         timestampString = "337892044.903746"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "1057"
-         endingLineNumber = "1057"
-         landmarkName = "-INTEL"
+         startingLineNumber = "458"
+         endingLineNumber = "458"
+         landmarkName = "-useCloseUpView:"
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
@@ -37,26 +37,12 @@
          continueAfterRunningActions = "No"
          isPathRelative = "1"
          filePath = "Moonlander/Moon.m"
-         timestampString = "332132219.786715"
+         timestampString = "337892930.12464"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "79"
-         endingLineNumber = "79"
-         landmarkName = "-modifyTerrainHeight:atIndex:"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "No"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         isPathRelative = "1"
-         filePath = "Moonlander/Moon.m"
-         timestampString = "336572240.637168"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "447"
-         endingLineNumber = "447"
-         landmarkName = "-drawRect:"
+         startingLineNumber = "367"
+         endingLineNumber = "367"
+         landmarkName = "-buildDetailedLunarSurface"
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
@@ -65,12 +51,110 @@
          continueAfterRunningActions = "No"
          isPathRelative = "1"
          filePath = "Moonlander/iPad/LanderViewController_iPad.m"
-         timestampString = "336584064.84579"
+         timestampString = "337919560.432936"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "1170"
-         endingLineNumber = "1170"
-         landmarkName = "-INTEL"
+         startingLineNumber = "1209"
+         endingLineNumber = "1209"
+         landmarkName = "-moveMan"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         isPathRelative = "1"
+         filePath = "Moonlander/iPad/LanderViewController_iPad.m"
+         timestampString = "337919560.432936"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "1139"
+         endingLineNumber = "1139"
+         landmarkName = "-moveMcManVertHoriz"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         isPathRelative = "1"
+         filePath = "Moonlander/iPad/LanderViewController_iPad.m"
+         timestampString = "337919560.432936"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "1523"
+         endingLineNumber = "1523"
+         landmarkName = "-gameLoop"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         isPathRelative = "1"
+         filePath = "Moonlander/VectorGraphics/VGView.m"
+         timestampString = "337897206.394138"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "242"
+         endingLineNumber = "242"
+         landmarkName = "-drawSomethingUsing:"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         isPathRelative = "1"
+         filePath = "Moonlander/VectorGraphics/VGView.m"
+         timestampString = "337897206.394138"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "357"
+         endingLineNumber = "357"
+         landmarkName = "-drawSomethingUsing:"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         isPathRelative = "1"
+         filePath = "Moonlander/VectorGraphics/VGView.m"
+         timestampString = "337895945.270297"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "215"
+         endingLineNumber = "215"
+         landmarkName = "-drawSomethingUsing:"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "Yes"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         isPathRelative = "1"
+         filePath = "Moonlander/VectorGraphics/VGView.m"
+         timestampString = "337895955.272668"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "186"
+         endingLineNumber = "186"
+         landmarkName = "-drawSomethingUsing:"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         isPathRelative = "1"
+         filePath = "Moonlander/VectorGraphics/VGView.m"
+         timestampString = "337897206.394138"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "233"
+         endingLineNumber = "233"
+         landmarkName = "-drawSomethingUsing:"
          landmarkType = "5">
       </FileBreakpoint>
    </FileBreakpoints>
