@@ -59,14 +59,15 @@
 {
     BOOL done;
     if (self.deltaY == 0) {
-        self.X += self.incrementX;
-        self.deltaX -= 1;
-        
-        // MOVLUP:
-        CGPoint pos = self.center;
-        pos.x += self.incrementX;
-        self.center = pos;
-        
+        if (self.deltaX > 0) {
+            self.X += self.incrementX;
+            self.deltaX -= 1;
+            
+            // MOVLUP:
+            CGPoint pos = self.center;
+            pos.x += self.incrementX;
+            self.center = pos;
+        }
         done = (self.deltaX == 0);
     }
     else {
