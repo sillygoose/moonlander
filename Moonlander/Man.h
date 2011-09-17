@@ -11,7 +11,7 @@
 @interface Man : VGView {
     short           _X;
     short           _Y;
-    short           _initalX;
+    short           _initialX;
     short           _initialY;
     
     short           _deltaX;
