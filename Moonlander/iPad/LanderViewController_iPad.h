@@ -32,7 +32,7 @@
     Lander          *_landerView;
     Dust            *_dustView;
     Man             *_manView;
-    Flag             *_flagView;
+    Flag            *_flagView;
     
     short           _SHOWX;
     short           _SHOWY;
