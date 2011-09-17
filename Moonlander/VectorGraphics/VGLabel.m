@@ -22,7 +22,7 @@
 {
     self = [super initWithFrame:frameRect];
     if (self) {
-        self.font = [UIFont fontWithName:@"Courier" size:10.0f];
+        self.font = [UIFont fontWithName:@"Courier" size:12.0f];
         self.textColor = [UIColor colorWithRed:0.026f green:1.0f blue:0.00121f alpha:1.0f] ;
         self.textAlignment = UITextAlignmentLeft;
         
