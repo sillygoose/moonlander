@@ -53,7 +53,6 @@
 		564EBC5113834A17007D477C /* McDonalds.plist in Resources */ = {isa = PBXBuildFile; fileRef = 564EBC5013834A17007D477C /* McDonalds.plist */; };
 		56678FCC139A7D4D00026588 /* Lander2.plist in Resources */ = {isa = PBXBuildFile; fileRef = 56678FCB139A7D4D00026588 /* Lander2.plist */; };
 		56755FDA138C0B8200455B52 /* Lander.m in Sources */ = {isa = PBXBuildFile; fileRef = 56755FD9138C0B8200455B52 /* Lander.m */; };
-		5693700C141A644500B8EC3E /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5693700B141A644500B8EC3E /* AudioToolbox.framework */; };
 		5694D1D813920A8C00A61F22 /* Moon.m in Sources */ = {isa = PBXBuildFile; fileRef = 5694D1D713920A8C00A61F22 /* Moon.m */; };
 		5695F1DA137F753B0075CD26 /* LargeRightArrow.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5695F1D7137F753B0075CD26 /* LargeRightArrow.plist */; };
 		5695F1DB137F753B0075CD26 /* SmallLeftArrow.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5695F1D8137F753B0075CD26 /* SmallLeftArrow.plist */; };
@@ -140,7 +139,6 @@
 		56678FCB139A7D4D00026588 /* Lander2.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Lander2.plist; path = Resources/Lander2.plist; sourceTree = "<group>"; };
 		56755FD8138C0B8200455B52 /* Lander.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Lander.h; sourceTree = "<group>"; };
 		56755FD9138C0B8200455B52 /* Lander.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Lander.m; sourceTree = "<group>"; };
-		5693700B141A644500B8EC3E /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		5694D1D613920A8C00A61F22 /* Moon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Moon.h; sourceTree = "<group>"; };
 		5694D1D713920A8C00A61F22 /* Moon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Moon.m; sourceTree = "<group>"; };
 		5695F1D7137F753B0075CD26 /* LargeRightArrow.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = LargeRightArrow.plist; path = Resources/LargeRightArrow.plist; sourceTree = "<group>"; };
@@ -173,7 +171,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5693700C141A644500B8EC3E /* AudioToolbox.framework in Frameworks */,
 				560FA0D0137991AD0017EE25 /* UIKit.framework in Frameworks */,
 				560FA0D2137991AD0017EE25 /* Foundation.framework in Frameworks */,
 				560FA0D4137991AD0017EE25 /* CoreGraphics.framework in Frameworks */,
@@ -220,7 +217,6 @@
 			isa = PBXGroup;
 			children = (
 				560FA0CF137991AD0017EE25 /* UIKit.framework */,
-				5693700B141A644500B8EC3E /* AudioToolbox.framework */,
 				560FA0D1137991AD0017EE25 /* Foundation.framework */,
 				560FA0D3137991AD0017EE25 /* CoreGraphics.framework */,
 			);
