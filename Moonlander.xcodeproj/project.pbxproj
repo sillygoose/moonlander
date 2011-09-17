@@ -40,7 +40,6 @@
 		562F26A1141664FA0069169B /* rtlem.mac in Resources */ = {isa = PBXBuildFile; fileRef = 562F2699141664FA0069169B /* rtlem.mac */; };
 		562F26A2141664FA0069169B /* VT-11 Instruction Set.txt in Resources */ = {isa = PBXBuildFile; fileRef = 562F269A141664FA0069169B /* VT-11 Instruction Set.txt */; };
 		562F26A3141664FA0069169B /* VT11 Graphic Display Processor.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 562F269B141664FA0069169B /* VT11 Graphic Display Processor.pdf */; };
-		562F26A4141664FA0069169B /* working_gtlem.mac in Resources */ = {isa = PBXBuildFile; fileRef = 562F269C141664FA0069169B /* working_gtlem.mac */; };
 		562F26A81417A22E0069169B /* Man.m in Sources */ = {isa = PBXBuildFile; fileRef = 562F26A71417A22E0069169B /* Man.m */; };
 		56320A94141662490064ADD7 /* gtlem.lda in Resources */ = {isa = PBXBuildFile; fileRef = 56320A92141662490064ADD7 /* gtlem.lda */; };
 		56320A95141662490064ADD7 /* pdp11 in Resources */ = {isa = PBXBuildFile; fileRef = 56320A93141662490064ADD7 /* pdp11 */; };
@@ -54,6 +53,7 @@
 		564EBC5113834A17007D477C /* McDonalds.plist in Resources */ = {isa = PBXBuildFile; fileRef = 564EBC5013834A17007D477C /* McDonalds.plist */; };
 		56678FCC139A7D4D00026588 /* Lander2.plist in Resources */ = {isa = PBXBuildFile; fileRef = 56678FCB139A7D4D00026588 /* Lander2.plist */; };
 		56755FDA138C0B8200455B52 /* Lander.m in Sources */ = {isa = PBXBuildFile; fileRef = 56755FD9138C0B8200455B52 /* Lander.m */; };
+		5693700C141A644500B8EC3E /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5693700B141A644500B8EC3E /* AudioToolbox.framework */; };
 		5694D1D813920A8C00A61F22 /* Moon.m in Sources */ = {isa = PBXBuildFile; fileRef = 5694D1D713920A8C00A61F22 /* Moon.m */; };
 		5695F1DA137F753B0075CD26 /* LargeRightArrow.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5695F1D7137F753B0075CD26 /* LargeRightArrow.plist */; };
 		5695F1DB137F753B0075CD26 /* SmallLeftArrow.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5695F1D8137F753B0075CD26 /* SmallLeftArrow.plist */; };
@@ -123,7 +123,6 @@
 		562F2699141664FA0069169B /* rtlem.mac */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = rtlem.mac; sourceTree = "<group>"; };
 		562F269A141664FA0069169B /* VT-11 Instruction Set.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "VT-11 Instruction Set.txt"; sourceTree = "<group>"; };
 		562F269B141664FA0069169B /* VT11 Graphic Display Processor.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = "VT11 Graphic Display Processor.pdf"; sourceTree = "<group>"; };
-		562F269C141664FA0069169B /* working_gtlem.mac */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = working_gtlem.mac; sourceTree = "<group>"; };
 		562F26A61417A22E0069169B /* Man.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Man.h; sourceTree = "<group>"; };
 		562F26A71417A22E0069169B /* Man.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Man.m; sourceTree = "<group>"; };
 		56320A92141662490064ADD7 /* gtlem.lda */ = {isa = PBXFileReference; lastKnownFileType = file; path = gtlem.lda; sourceTree = "<group>"; };
@@ -141,6 +140,7 @@
 		56678FCB139A7D4D00026588 /* Lander2.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Lander2.plist; path = Resources/Lander2.plist; sourceTree = "<group>"; };
 		56755FD8138C0B8200455B52 /* Lander.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Lander.h; sourceTree = "<group>"; };
 		56755FD9138C0B8200455B52 /* Lander.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Lander.m; sourceTree = "<group>"; };
+		5693700B141A644500B8EC3E /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		5694D1D613920A8C00A61F22 /* Moon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Moon.h; sourceTree = "<group>"; };
 		5694D1D713920A8C00A61F22 /* Moon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Moon.m; sourceTree = "<group>"; };
 		5695F1D7137F753B0075CD26 /* LargeRightArrow.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = LargeRightArrow.plist; path = Resources/LargeRightArrow.plist; sourceTree = "<group>"; };
@@ -173,6 +173,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5693700C141A644500B8EC3E /* AudioToolbox.framework in Frameworks */,
 				560FA0D0137991AD0017EE25 /* UIKit.framework in Frameworks */,
 				560FA0D2137991AD0017EE25 /* Foundation.framework in Frameworks */,
 				560FA0D4137991AD0017EE25 /* CoreGraphics.framework in Frameworks */,
@@ -195,6 +196,7 @@
 		560FA0C0137991AD0017EE25 = {
 			isa = PBXGroup;
 			children = (
+				5693700B141A644500B8EC3E /* AudioToolbox.framework */,
 				560D212814115314000F3A22 /* README */,
 				560FA0D5137991AE0017EE25 /* Moonlander */,
 				562F2694141664FA0069169B /* Documentation */,
@@ -326,19 +328,19 @@
 		560FA13B1379C3900017EE25 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				56678FCB139A7D4D00026588 /* Lander2.plist */,
-				56BC68631388BDE200403643 /* Labels.plist */,
-				569CC2B21380CC3300E6D82A /* Rock.plist */,
 				569CC2A913809BED00E6D82A /* Moon.plist */,
+				56678FCB139A7D4D00026588 /* Lander2.plist */,
+				564EBC4C138349F2007D477C /* Flag.plist */,
+				564EBC4E13834A07007D477C /* Man.plist */,
+				569CC2B21380CC3300E6D82A /* Rock.plist */,
+				56BC68631388BDE200403643 /* Labels.plist */,
 				56E80E4B137E4CC3009E7F15 /* Lander.plist */,
 				5695F1D8137F753B0075CD26 /* SmallLeftArrow.plist */,
 				5695F1D9137F753B0075CD26 /* SmallRightArrow.plist */,
 				562CB7BA137F3AE6003CB9B5 /* LargeLeftArrow.plist */,
 				5695F1D7137F753B0075CD26 /* LargeRightArrow.plist */,
-				564BE5C513801CAC00D790D9 /* ThrusterControl.plist */,
-				564EBC4C138349F2007D477C /* Flag.plist */,
-				564EBC4E13834A07007D477C /* Man.plist */,
 				564EBC5013834A17007D477C /* McDonalds.plist */,
+				564BE5C513801CAC00D790D9 /* ThrusterControl.plist */,
 				569BB49B138398A2005E2C86 /* ThrusterNeedle.plist */,
 				562B108C13841D5A00CC5C97 /* LanderMessages.plist */,
 			);
@@ -351,7 +353,6 @@
 				562F2696141664FA0069169B /* gtlem.mac */,
 				562F2698141664FA0069169B /* Original GTLEM Source */,
 				562F2699141664FA0069169B /* rtlem.mac */,
-				562F269C141664FA0069169B /* working_gtlem.mac */,
 				562F2697141664FA0069169B /* lunar.bas */,
 				562F269A141664FA0069169B /* VT-11 Instruction Set.txt */,
 				562F269B141664FA0069169B /* VT11 Graphic Display Processor.pdf */,
@@ -495,7 +496,6 @@
 				562F26A1141664FA0069169B /* rtlem.mac in Resources */,
 				562F26A2141664FA0069169B /* VT-11 Instruction Set.txt in Resources */,
 				562F26A3141664FA0069169B /* VT11 Graphic Display Processor.pdf in Resources */,
-				562F26A4141664FA0069169B /* working_gtlem.mac in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -653,6 +653,10 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				COPY_PHASE_STRIP = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)\"",
+				);
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Moonlander/Moonlander-Prefix.pch";
@@ -667,6 +671,10 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				COPY_PHASE_STRIP = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)\"",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Moonlander/Moonlander-Prefix.pch";
 				INFOPLIST_FILE = "Moonlander/Moonlander-Info.plist";
