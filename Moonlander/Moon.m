@@ -134,6 +134,7 @@
         TerrainFeature tf = [[terrainFeature objectForKey:@"feature"] intValue];
         if (tf != TF_Rock) {
             [terrainFeature removeObjectForKey:@"feature"];
+            self.dirtySurface = YES;
         }
     }
 }
@@ -164,6 +165,8 @@
         alterChange /= 2;
         alterChange = -alterChange;
     }
+    
+    [self setNeedsDisplay];
 }
 
 - (short)DFAKE:(short)yValue
@@ -183,7 +186,7 @@
     const CGSize featureSizes[] = { CGSizeMake(0, 0), CGSizeMake(72, 64), CGSizeMake(22, 22), CGSizeMake(72, 64), CGSizeMake(72, 64), CGSizeMake(48, 42), CGSizeMake(0, 0), CGSizeMake(140, 64) };
     CGFloat featureRotation[] = { 0.0f, 0.0f, 0.0f, M_PI_2, -M_PI_2, 0.0f, 0.0f, 0.0f };
     CGFloat featureTranslation[] = { 0.0f, 0.0f, 0.0f, -1.0f, 0.0f, 0.0f, 0.0f, 0.0f };
-    CGFloat verticalAdjust[] = { 0.0f, 48.0f, 0.0f, 32.0f, 32.0f, 32.0f, 0.0f, 40.0f };
+    CGFloat verticalAdjust[] = { 0.0f, 48.0f, 0.0f, 32.0f, 32.0f, 32.0f, 0.0f, 55.0f };
     CGFloat verticalClip[] = { 0.0f, 0.0f, 0.0f, 30.0f, 30.0f, 0.0f, 0.0f, 0.0f };
 
     if (!(tf == TF_Nothing || tf == TF_McDonaldsEdge)) {
@@ -234,7 +237,7 @@
 
 - (NSArray *)buildDetailedLunarSurface
 {
-    // Assume no McDonalds
+    // Assume we have no McDonalds
     self.hasMcDonalds = NO;
     
     // This is the display index
@@ -249,6 +252,8 @@
     int DRAWTZ = 0;
     unsigned DTYPE = 0;
     unsigned DINT = 0;
+    
+    // Index increment and index inthe terrain map
     const int nextIndex = 1;
     const int terrainIndex = self.LEFTEDGE;
     //NSLog(@"Initial X is %d", terrainIndex);
@@ -337,33 +342,39 @@
             lineSegments++;
             
             //NSLog(@"i: %d  lineSeg: %d  TEMP: %3.0f  IN2: %3.0f  LASTY: %3.0f  drawTo: %@", i, lineSegments, TEMP, IN2, LASTY, NSStringFromCGPoint(drawToPoint));
-        }
-    }
-    
-    // Add the features to the detailed surface
-    x = 0;
-    for (short i = terrainIndex, n = 19, IN1 = 24; n > 0; i++, n--, IN1 += 48, x += 48) {
-        // See if there are features to add (added to center of terrain index)
-        TerrainFeature tf = [self featureAtIndex:i];
-        if (tf > TF_Nothing && tf != TF_McDonaldsEdge) {
-            if (tf == TF_McDonalds) {
-                if (IN1 > 25 && IN1 < 880) {
-                    // MACDON: todo
-                    //;MOV	2(RET2),TEMP		;PICK UP RIGHT Y NOW.
-                    //;CMP	(RET2),TEMP         ;AND SEE IF IT'S SMALLER THAN LEFT Y.
-                    //;BGE	MACB1               ;IT IS.
-                    //;MOV	(RET2),TEMP         ;IT ISN'T. PICK SMALLEST Y NOW.
-                    
-                    // MACB1:
-                    self.MACY = [self DFAKE:[self terrainHeight:i]];
-                    self.MACX = IN1;
-                    self.hasMcDonalds = YES;
-                    
-                    [self addFeatureToView:tf atOrigin:CGPointMake(x, TEMP)];
+            
+            // See if there are features to add (added to center of terrain index)
+            if (k == 11) {
+                TerrainFeature tf = [self featureAtIndex:i];
+                if (tf > TF_Nothing && tf != TF_McDonaldsEdge) {
+                    if (tf == TF_McDonalds) {
+                        // Draw if space exists
+                        if (x > 25 && x < 880) {
+                            short leftHeight = [self terrainHeight:i];
+                            // MACDON: todo
+                            short rightHeight = [self terrainHeight:i+1];
+                            //;MOV	2(RET2),TEMP		;PICK UP RIGHT Y NOW.
+                            //;CMP	(RET2),TEMP         ;AND SEE IF IT'S SMALLER THAN LEFT Y.
+                            //;BGE	MACB1               ;IT IS.
+                            //;MOV	(RET2),TEMP         ;IT ISN'T. PICK SMALLEST Y NOW.
+                            
+                            // MACB1:
+                            self.MACY = [self DFAKE:(leftHeight < rightHeight) ? leftHeight : rightHeight];
+                            self.MACX = x;
+                            
+                            self.hasMcDonalds = YES;
+                            
+                            [self addFeatureToView:tf atOrigin:CGPointMake(self.MACX, self.MACY)];
+                            
+                            // Fudge values to McD door- need fixin ###
+                            self.MACX += 75;
+                            self.MACY += 48;
+                        }
+                    }
+                    else {
+                        [self addFeatureToView:tf atOrigin:CGPointMake(x, TEMP)];
+                    }
                 }
-            }
-            else {
-                [self addFeatureToView:tf atOrigin:CGPointMake(x, TEMP)];
             }
         }
     }
