@@ -48,7 +48,7 @@
         NSString *tiPath = [[NSBundle mainBundle] pathForResource:@"ThrusterNeedle" ofType:@"plist"];
         self.thrusterIndicator = [[[VGView alloc] initWithFrame:needleFrame withPaths:tiPath] autorelease];
         self.thrusterIndicator.userInteractionEnabled = NO;
-        self.thrusterIndicator.backgroundColor = [UIColor grayColor];
+        //self.thrusterIndicator.backgroundColor = [UIColor grayColor];
         [self addSubview:self.thrusterIndicator];
         
         // Thruster numeric value subview
