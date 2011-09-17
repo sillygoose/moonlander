@@ -231,6 +231,8 @@ const float DisplayUpdateInterval = 0.05f;
     [_moonView release];
     [_landerView release];
     [_dustView release];
+    [_manView release];
+    [_flagView release];
     
     [_smallLeftArrow release];
     [_smallRightArrow release];
@@ -640,6 +642,15 @@ const float DisplayUpdateInterval = 0.05f;
 {
     [super viewDidUnload];
     
+    // Kill any active timers
+    [self.simulationTimer invalidate];
+    self.simulationTimer = nil;
+    [self.displayTimer invalidate];
+    self.displayTimer = nil;
+    [self.palsyTimer invalidate];
+    self.palsyTimer = nil;
+
+    // Disable telemetry
     self.selectedTelemetry = nil;
     self.heightData = nil;
     self.altitudeData = nil;
@@ -654,6 +665,7 @@ const float DisplayUpdateInterval = 0.05f;
     self.horizontalAccelerationData = nil;
     self.secondsData = nil;
     
+    // Disable instruments
     self.instrument1 = nil;
     self.instrument2 = nil;
     self.instrument3 = nil;
@@ -675,20 +687,15 @@ const float DisplayUpdateInterval = 0.05f;
     
     self.landerView = nil;
     self.landerMessages = nil;
-    //### other views such as flag, man, etc?
-    
-    [self.simulationTimer invalidate];
-    self.simulationTimer = nil;
-    [self.displayTimer invalidate];
-    self.displayTimer = nil;
-    [self.palsyTimer invalidate];
-    self.palsyTimer = nil;
+    self.dustView = nil;
+    self.manView = nil;
+    self.flagView = nil;
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
     // Return YES for supported orientations
-	return YES;
+	return (interfaceOrientation == UIInterfaceOrientationLandscapeLeft || interfaceOrientation == UIInterfaceOrientationLandscapeRight);
 }
 
 - (IBAction)telemetrySelected:(Telemetry *)sender
