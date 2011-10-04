@@ -88,6 +88,7 @@ const int BeepSound = 1052;
 
 const float GameTimerInterval = 1.0 / 12.0f;
 const float DisplayUpdateInterval = 0.05f;
+const float SplashScreenInterval = 10.0f;
 
 
 - (CGPoint)convertPointFromGameToView:(CGPoint)gamePoint
@@ -340,12 +341,17 @@ const float DisplayUpdateInterval = 0.05f;
     self.largeRightArrow.enabled = NO;
 }
 
-- (void)initGame
+- (void)askNewGame
+{
+    
+}
+
+- (void)getStarted
 {
     // Start with a normal view
     [self.moonView useNormalView];
     [self.landerModel newGame];
-
+    
     // Remove the flag if present
     if (self.flagView) {
         [self.flagView removeFromSuperview];
@@ -357,27 +363,28 @@ const float DisplayUpdateInterval = 0.05f;
         [self.manView removeFromSuperview];
         self.manView = nil;
     }
-
+    
     // Starting posiition
     self.SHOWX = 0;
     self.SHOWY = 0;
     self.didFuelAlert = NO;
     
     self.landerView.hidden = NO;
-
+    
     [self enableFlightControls];
     
     //###[self.landerModel.delegate newGame];
     
     // Setup controls with model defaults
     self.thrusterSlider.value = [self.landerModel.dataSource thrustPercent];
-
+    
     // Init displays
     [self.instrument1 display];
     [self.instrument2 display];
     [self.instrument3 display];
     [self.instrument4 display];
     
+    // These are hidden normally
     [self.instrument5 display];
     [self.instrument6 display];
     [self.instrument7 display];
@@ -388,6 +395,52 @@ const float DisplayUpdateInterval = 0.05f;
 	self.displayTimer = [NSTimer scheduledTimerWithTimeInterval:DisplayUpdateInterval target:self selector:@selector(updateLander) userInfo:nil repeats:YES];
     
     [self updateLander];
+}
+
+
+- (void)initGame
+{
+    // Splash screen
+    [self.palsyTimer invalidate];
+    self.palsyTimer = nil;
+    
+    [self.landerMessages addSystemMessage:@"SplashScreen"];
+    self.palsyTimer = [NSTimer scheduledTimerWithTimeInterval:SplashScreenInterval target:self selector:@selector(initGame2) userInfo:nil repeats:NO];
+}
+
+- (void)initGame2
+{
+    // Remove splash screen (if present)
+    [self.palsyTimer invalidate];
+    self.palsyTimer = nil;
+    [self.landerMessages removeSystemMessage:@"SplashScreen"];
+    
+    // Unhide the views to get started after splash screen
+    self.moonView.hidden = NO;
+    self.landerMessages.hidden = NO;
+    self.nextGameButton.hidden = NO;
+    self.smallLeftArrow.hidden = NO;
+    self.smallRightArrow.hidden = NO;
+    self.largeLeftArrow.hidden = NO;
+    self.largeRightArrow.hidden = NO;
+    self.thrusterSlider.hidden = NO;
+
+    self.heightData.hidden = NO;
+    self.altitudeData.hidden = NO;
+    self.distanceData.hidden = NO;
+    self.fuelLeftData.hidden = NO;
+    self.weightData.hidden = NO;
+    self.thrustData.hidden = NO;
+    self.thrustAngleData.hidden = NO;
+    self.verticalVelocityData.hidden = NO;
+    self.horizontalVelocityData.hidden = NO;
+    self.verticalAccelerationData.hidden = NO;
+    self.horizontalAccelerationData.hidden = NO;
+    self.secondsData.hidden = NO;
+    
+    self.landerView.hidden = NO;
+
+    [self getStarted];
 }
 
 - (void)viewDidLoad
@@ -407,11 +460,13 @@ const float DisplayUpdateInterval = 0.05f;
     self.moonView = [[[Moon alloc] initWithFrame:[self convertRectFromGameToView:CGRectMake(0, 0, 1024, 768)]] autorelease];
     self.moonView.dataSource = self.moonView;
     self.moonView.userInteractionEnabled = NO;
+    self.moonView.hidden = YES;
     [self.moonView useNormalView];
     [self.view addSubview:self.moonView];
 
     // Create the message manager
     self.landerMessages = [[[LanderMessages alloc] init] autorelease];
+    self.landerMessages.hidden = NO;
     [self.view addSubview:self.landerMessages];
     
     // New/next game button
@@ -420,6 +475,7 @@ const float DisplayUpdateInterval = 0.05f;
 	[self.nextGameButton addTarget:self 
                             action:@selector(newGame:) 
                   forControlEvents:UIControlEventValueChanged];
+    self.nextGameButton.hidden = YES;
     [self.view addSubview:self.nextGameButton];
     
     // Create the roll control arrows
@@ -428,6 +484,7 @@ const float DisplayUpdateInterval = 0.05f;
 	[self.smallLeftArrow addTarget:self 
                             action:@selector(rotateLander:) 
                   forControlEvents:UIControlEventValueChanged];
+    self.smallLeftArrow.hidden = YES;
     [self.view addSubview:self.smallLeftArrow];
     
     NSString *sraPath = [[NSBundle mainBundle] pathForResource:@"SmallRightArrow" ofType:@"plist"];
@@ -435,6 +492,7 @@ const float DisplayUpdateInterval = 0.05f;
 	[self.smallRightArrow addTarget:self 
                              action:@selector(rotateLander:) 
                    forControlEvents:UIControlEventValueChanged];
+    self.smallRightArrow.hidden = YES;
     [self.view addSubview:self.smallRightArrow];
     
     NSString *llaPath = [[NSBundle mainBundle] pathForResource:@"LargeLeftArrow" ofType:@"plist"];
@@ -442,6 +500,7 @@ const float DisplayUpdateInterval = 0.05f;
 	[self.largeLeftArrow addTarget:self 
                             action:@selector(rotateLander:) 
                   forControlEvents:UIControlEventValueChanged];
+    self.largeLeftArrow.hidden = YES;
     [self.view addSubview:self.largeLeftArrow];
     
     NSString *lraPath = [[NSBundle mainBundle] pathForResource:@"LargeRightArrow" ofType:@"plist"];
@@ -449,6 +508,7 @@ const float DisplayUpdateInterval = 0.05f;
 	[self.largeRightArrow addTarget:self 
                              action:@selector(rotateLander:) 
                    forControlEvents:UIControlEventValueChanged];
+    self.largeRightArrow.hidden = YES;
     [self.view addSubview:self.largeRightArrow];
     
     // Create the thruster control
@@ -456,6 +516,7 @@ const float DisplayUpdateInterval = 0.05f;
 	[self.thrusterSlider addTarget:self 
                             action:@selector(thrusterChanged:) 
                   forControlEvents:UIControlEventValueChanged];
+    self.thrusterSlider.hidden = YES;
     [self.view addSubview:self.thrusterSlider];
     
     // Create the telemetry items
@@ -466,6 +527,7 @@ const float DisplayUpdateInterval = 0.05f;
 	[self.heightData addTarget:self 
                            action:@selector(telemetrySelected:) 
                  forControlEvents:UIControlEventTouchUpInside];
+    self.heightData.hidden = YES;
     [self.view addSubview:self.heightData];
     
     self.altitudeData = [[[Telemetry alloc] initWithFrame:[self convertRectFromGameToView: CGRectMake(900, 225, 100, 20)]] autorelease];
@@ -475,6 +537,7 @@ const float DisplayUpdateInterval = 0.05f;
 	[self.altitudeData addTarget:self 
                            action:@selector(telemetrySelected:) 
                  forControlEvents:UIControlEventTouchUpInside];
+    self.altitudeData.hidden = YES;
     [self.view addSubview:self.altitudeData];
     
     self.distanceData = [[[Telemetry alloc] initWithFrame:[self convertRectFromGameToView: CGRectMake(900, 203, 100, 20)]] autorelease];
@@ -484,6 +547,7 @@ const float DisplayUpdateInterval = 0.05f;
 	[self.distanceData addTarget:self 
                            action:@selector(telemetrySelected:) 
                  forControlEvents:UIControlEventTouchUpInside];
+    self.distanceData.hidden = YES;
     [self.view addSubview:self.distanceData];
     
 
@@ -494,6 +558,7 @@ const float DisplayUpdateInterval = 0.05f;
 	[self.fuelLeftData addTarget:self 
                          action:@selector(telemetrySelected:) 
                forControlEvents:UIControlEventTouchUpInside];
+    self.fuelLeftData.hidden = YES;
     [self.view addSubview:self.fuelLeftData];
     
     self.weightData = [[[Telemetry alloc] initWithFrame:[self convertRectFromGameToView: CGRectMake(900, 159, 100, 20)]] autorelease];
@@ -503,6 +568,7 @@ const float DisplayUpdateInterval = 0.05f;
 	[self.weightData addTarget:self 
                                    action:@selector(telemetrySelected:) 
                          forControlEvents:UIControlEventTouchUpInside];
+    self.weightData.hidden = YES;
     [self.view addSubview:self.weightData];
 
     self.thrustData = [[[Telemetry alloc] initWithFrame:[self convertRectFromGameToView: CGRectMake(900, 137, 100, 20)]] autorelease];
@@ -512,6 +578,7 @@ const float DisplayUpdateInterval = 0.05f;
 	[self.thrustData addTarget:self 
                         action:@selector(telemetrySelected:) 
               forControlEvents:UIControlEventTouchUpInside];
+    self.thrustData.hidden = YES;
     [self.view addSubview:self.thrustData];
     
     self.thrustAngleData = [[[Telemetry alloc] initWithFrame:[self convertRectFromGameToView: CGRectMake(900, 115, 100, 20)]] autorelease];
@@ -521,6 +588,7 @@ const float DisplayUpdateInterval = 0.05f;
 	[self.thrustAngleData addTarget:self 
                         action:@selector(telemetrySelected:) 
               forControlEvents:UIControlEventTouchUpInside];
+    self.thrustAngleData.hidden = YES;
     [self.view addSubview:self.thrustAngleData];
     
     self.verticalVelocityData = [[[Telemetry alloc] initWithFrame:[self convertRectFromGameToView: CGRectMake(900, 93, 100, 20)]] autorelease];
@@ -530,6 +598,7 @@ const float DisplayUpdateInterval = 0.05f;
 	[self.verticalVelocityData addTarget:self 
                         action:@selector(telemetrySelected:) 
               forControlEvents:UIControlEventTouchUpInside];
+    self.verticalVelocityData.hidden = YES;
     [self.view addSubview:self.verticalVelocityData];
     
     self.horizontalVelocityData = [[[Telemetry alloc] initWithFrame:[self convertRectFromGameToView: CGRectMake(900, 71, 100, 20)]] autorelease];
@@ -539,6 +608,7 @@ const float DisplayUpdateInterval = 0.05f;
 	[self.horizontalVelocityData addTarget:self 
                         action:@selector(telemetrySelected:) 
               forControlEvents:UIControlEventTouchUpInside];
+    self.horizontalVelocityData.hidden = YES;
     [self.view addSubview:self.horizontalVelocityData];
     
     self.verticalAccelerationData = [[[Telemetry alloc] initWithFrame:[self convertRectFromGameToView: CGRectMake(900, 49, 100, 20)]] autorelease];
@@ -548,6 +618,7 @@ const float DisplayUpdateInterval = 0.05f;
 	[self.verticalAccelerationData addTarget:self 
                         action:@selector(telemetrySelected:) 
               forControlEvents:UIControlEventTouchUpInside];
+    self.verticalAccelerationData.hidden = YES;
     [self.view addSubview:self.verticalAccelerationData];
     
     self.horizontalAccelerationData = [[[Telemetry alloc] initWithFrame:[self convertRectFromGameToView: CGRectMake(900, 27, 100, 20)]] autorelease];
@@ -557,6 +628,7 @@ const float DisplayUpdateInterval = 0.05f;
 	[self.horizontalAccelerationData addTarget:self 
                         action:@selector(telemetrySelected:) 
               forControlEvents:UIControlEventTouchUpInside];
+    self.horizontalAccelerationData.hidden = YES;
     [self.view addSubview:self.horizontalAccelerationData];
     
     self.secondsData = [[[Telemetry alloc] initWithFrame:[self convertRectFromGameToView: CGRectMake(900, 5, 100, 20)]] autorelease];
@@ -566,9 +638,10 @@ const float DisplayUpdateInterval = 0.05f;
 	[self.secondsData addTarget:self 
                         action:@selector(telemetrySelected:) 
               forControlEvents:UIControlEventTouchUpInside];
+    self.secondsData.hidden = YES;
     [self.view addSubview:self.secondsData];
     
-    // Create the user labels
+    // Create the instrumentation labels
     self.instrument1 = [[[Instrument alloc] initWithFrame:CGRectMake(0, 0, 200, 24)] autorelease];
     self.instrument1.instrument = self.heightData;
 	[self.instrument1 addTarget:self 
@@ -602,6 +675,7 @@ const float DisplayUpdateInterval = 0.05f;
 	[self.instrument5 addTarget:self 
                          action:@selector(instrumentSelected:) 
                forControlEvents:UIControlEventTouchUpInside];
+    self.instrument5.hidden = YES;
     [self.view addSubview:self.instrument5];
     
     self.instrument6 = [[[Instrument alloc] initWithFrame:CGRectMake(250, 40, 200, 24)] autorelease];
@@ -609,6 +683,7 @@ const float DisplayUpdateInterval = 0.05f;
 	[self.instrument6 addTarget:self 
                          action:@selector(instrumentSelected:) 
                forControlEvents:UIControlEventTouchUpInside];
+    self.instrument6.hidden = YES;
     [self.view addSubview:self.instrument6];
     
     self.instrument7 = [[[Instrument alloc] initWithFrame:CGRectMake(500, 40, 200, 24)] autorelease];
@@ -616,6 +691,7 @@ const float DisplayUpdateInterval = 0.05f;
 	[self.instrument7 addTarget:self 
                          action:@selector(instrumentSelected:) 
                forControlEvents:UIControlEventTouchUpInside];
+    self.instrument7.hidden = YES;
     [self.view addSubview:self.instrument7];
     
     self.instrument8 = [[[Instrument alloc] initWithFrame:CGRectMake(750, 40, 200, 24)] autorelease];
@@ -623,6 +699,7 @@ const float DisplayUpdateInterval = 0.05f;
 	[self.instrument8 addTarget:self 
                          action:@selector(instrumentSelected:) 
                forControlEvents:UIControlEventTouchUpInside];
+    self.instrument8.hidden = YES;
     [self.view addSubview:self.instrument8];
     
     // Create the lander view with data sources
@@ -632,6 +709,7 @@ const float DisplayUpdateInterval = 0.05f;
     self.landerView.thrustData = Block_copy(^{ return [self.landerModel.dataSource thrustPercent];});
     self.landerView.angleData = Block_copy(^{ return [self.landerModel.dataSource angle];});
     self.landerView.positionData = Block_copy(^{ return [self.landerModel.dataSource landerPosition];});
+    self.landerView.hidden = YES;
     [self.view addSubview:self.landerView];
     
     // Start the game
@@ -772,7 +850,7 @@ const float DisplayUpdateInterval = 0.05f;
     self.palsyTimer = nil;
     
     [self gameOver];
-    [self initGame];
+    [self initGame2];
 }
 
 - (void)gameReset
@@ -990,8 +1068,8 @@ const float DisplayUpdateInterval = 0.05f;
 - (void)EXPLOD
 {
     // Shut down things and ring bell
-    [self gameOver];
     AudioServicesPlayAlertSound(BeepSound);
+    [self gameOver];
     
 #if 0
     short RADIUS = 0;

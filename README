@@ -3,9 +3,12 @@ Moonlander, the classic video game
 Here is the to do list
 
 - iphone/ipad icons
+- play again dialog after landing or crash
+- initial menu screen
 - splash screen
-- menu screen
-- classic splash screen
-- classic game restart
 - dust improvements
 - flame improvements
+- mcd not placed correctly
+- calc terrain features correctly so man walks to mcd correctly and
+  exits lander at correct position
+- time runs while on lunar surface
