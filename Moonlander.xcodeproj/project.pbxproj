@@ -29,6 +29,7 @@
 		560FA1381379BEAB0017EE25 /* LanderViewController_iPad.m in Sources */ = {isa = PBXBuildFile; fileRef = 560FA1351379BEAA0017EE25 /* LanderViewController_iPad.m */; };
 		560FA1391379BEAB0017EE25 /* LanderViewController_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 560FA1361379BEAA0017EE25 /* LanderViewController_iPad.xib */; };
 		560FA13A1379BEAB0017EE25 /* LanderViewController_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 560FA1361379BEAA0017EE25 /* LanderViewController_iPad.xib */; };
+		5613DDE8143A85F80059077A /* VGDialog.m in Sources */ = {isa = PBXBuildFile; fileRef = 5613DDE7143A85F80059077A /* VGDialog.m */; };
 		562B108A13841BAA00CC5C97 /* VGLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 562B108913841BAA00CC5C97 /* VGLabel.m */; };
 		562B108D13841D5A00CC5C97 /* LanderMessages.plist in Resources */ = {isa = PBXBuildFile; fileRef = 562B108C13841D5A00CC5C97 /* LanderMessages.plist */; };
 		562CB7BB137F3AE6003CB9B5 /* LargeLeftArrow.plist in Resources */ = {isa = PBXBuildFile; fileRef = 562CB7BA137F3AE6003CB9B5 /* LargeLeftArrow.plist */; };
@@ -100,6 +101,8 @@
 		560FA1351379BEAA0017EE25 /* LanderViewController_iPad.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LanderViewController_iPad.m; path = iPad/LanderViewController_iPad.m; sourceTree = "<group>"; };
 		560FA1361379BEAA0017EE25 /* LanderViewController_iPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = LanderViewController_iPad.xib; path = iPad/en.lproj/LanderViewController_iPad.xib; sourceTree = "<group>"; };
 		560FA13E1379C95B0017EE25 /* LanderPhysicsDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LanderPhysicsDataSource.h; path = "Lander Model/LanderPhysicsDataSource.h"; sourceTree = "<group>"; };
+		5613DDE6143A85F80059077A /* VGDialog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VGDialog.h; path = VectorGraphics/VGDialog.h; sourceTree = "<group>"; };
+		5613DDE7143A85F80059077A /* VGDialog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VGDialog.m; path = VectorGraphics/VGDialog.m; sourceTree = "<group>"; };
 		562B108813841BAA00CC5C97 /* VGLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VGLabel.h; path = VectorGraphics/VGLabel.h; sourceTree = "<group>"; };
 		562B108913841BAA00CC5C97 /* VGLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VGLabel.m; path = VectorGraphics/VGLabel.m; sourceTree = "<group>"; };
 		562B108C13841D5A00CC5C97 /* LanderMessages.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = LanderMessages.plist; path = Resources/LanderMessages.plist; sourceTree = "<group>"; };
@@ -378,6 +381,8 @@
 				564BE5C313801C0F00D790D9 /* VGSlider.m */,
 				562B108813841BAA00CC5C97 /* VGLabel.h */,
 				562B108913841BAA00CC5C97 /* VGLabel.m */,
+				5613DDE6143A85F80059077A /* VGDialog.h */,
+				5613DDE7143A85F80059077A /* VGDialog.m */,
 			);
 			name = "Vector Graphics";
 			sourceTree = "<group>";
@@ -527,6 +532,7 @@
 				56C94AA913A7A7AE001B7EF9 /* Dust.m in Sources */,
 				562F26A81417A22E0069169B /* Man.m in Sources */,
 				56B4D62D1417D9AF00029FC8 /* Flag.m in Sources */,
+				5613DDE8143A85F80059077A /* VGDialog.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
