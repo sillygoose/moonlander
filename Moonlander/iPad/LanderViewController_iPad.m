@@ -51,7 +51,6 @@ const int BeepSound = 1052;
 
 @synthesize thrusterSlider=_thrusterSlider;
 
-@synthesize nextGameButton=_nextGameButton;
 @synthesize selectedTelemetry=_selectedTelemetry;
 
 @synthesize simulationTimer=_simulationTimer;
@@ -83,12 +82,37 @@ const int BeepSound = 1052;
 
 @synthesize landerMessages=_landerMessages;
 
+@synthesize anotherGameDialog=_anotherGameDialog;
+
 @synthesize didFuelAlert=_didFuelAlert;
 
 
 const float GameTimerInterval = 1.0 / 12.0f;
 const float DisplayUpdateInterval = 0.05f;
+
+#if 0
 const float SplashScreenInterval = 10.0f;
+const float landingDelay = 4.0f;
+const float moveInterval = 0.16f;
+const float initialFoodDelay = 8.0f;
+const float secondFoodDelay = 2.0f;
+const float launchDelay = 2.0f;
+const float endDelay = 3.0f;
+const float newGameDelay = 3.0f;
+const float flagFinalDelay = 10.0f;
+#else
+// sped up timings for debug
+const float SplashScreenInterval = 2.0f;
+const float landingDelay = 0.5f;
+const float moveInterval = 0.03f;
+const float initialFoodDelay = 1.0f;
+const float secondFoodDelay = 0.5f;
+const float launchDelay = 0.5f;
+const float endDelay = 1.0f;
+const float newGameDelay = 1.0f;
+const float flagFinalDelay = 2.0f;
+#endif
+
 
 
 - (CGPoint)convertPointFromGameToView:(CGPoint)gamePoint
@@ -245,8 +269,6 @@ const float SplashScreenInterval = 10.0f;
     [_simulationTimer release];
     [_displayTimer release];
     
-    [_nextGameButton release];
-    
     [_selectedTelemetry release];
     [_heightData release];
     [_altitudeData release];
@@ -272,6 +294,8 @@ const float SplashScreenInterval = 10.0f;
     [_instrument8 release];
     
     [_landerMessages release];
+    
+    [_anotherGameDialog release];
     
     [super dealloc];
 }
@@ -373,8 +397,6 @@ const float SplashScreenInterval = 10.0f;
     
     [self enableFlightControls];
     
-    //###[self.landerModel.delegate newGame];
-    
     // Setup controls with model defaults
     self.thrusterSlider.value = [self.landerModel.dataSource thrustPercent];
     
@@ -418,7 +440,6 @@ const float SplashScreenInterval = 10.0f;
     // Unhide the views to get started after splash screen
     self.moonView.hidden = NO;
     self.landerMessages.hidden = NO;
-    self.nextGameButton.hidden = NO;
     self.smallLeftArrow.hidden = NO;
     self.smallRightArrow.hidden = NO;
     self.largeLeftArrow.hidden = NO;
@@ -456,6 +477,7 @@ const float SplashScreenInterval = 10.0f;
     self.landerModel.dataSource = self.landerModel;
     self.landerModel.delegate = self.landerModel;
  
+    
     // Create the moon - ###reduce frame size at some point
     self.moonView = [[[Moon alloc] initWithFrame:[self convertRectFromGameToView:CGRectMake(0, 0, 1024, 768)]] autorelease];
     self.moonView.dataSource = self.moonView;
@@ -468,15 +490,6 @@ const float SplashScreenInterval = 10.0f;
     self.landerMessages = [[[LanderMessages alloc] init] autorelease];
     self.landerMessages.hidden = NO;
     [self.view addSubview:self.landerMessages];
-    
-    // New/next game button
-    self.nextGameButton = [[[VGButton alloc] initWithFrame:CGRectMake(960, 0, 64, 64)] autorelease];
-    self.nextGameButton.titleLabel.text = @"New Game";
-	[self.nextGameButton addTarget:self 
-                            action:@selector(newGame:) 
-                  forControlEvents:UIControlEventValueChanged];
-    self.nextGameButton.hidden = YES;
-    [self.view addSubview:self.nextGameButton];
     
     // Create the roll control arrows
     NSString *slaPath = [[NSBundle mainBundle] pathForResource:@"SmallLeftArrow" ofType:@"plist"];
@@ -520,7 +533,8 @@ const float SplashScreenInterval = 10.0f;
     [self.view addSubview:self.thrusterSlider];
     
     // Create the telemetry items
-    self.heightData = [[[Telemetry alloc] initWithFrame:[self convertRectFromGameToView: CGRectMake(900, 247, 100, 20)]] autorelease];
+    const float telemetryX = 925;
+    self.heightData = [[[Telemetry alloc] initWithFrame:[self convertRectFromGameToView: CGRectMake(telemetryX, 247, 100, 20)]] autorelease];
     self.heightData.titleLabel.text = @"HEIGHT";
     self.heightData.format = @"%6d %@";
     self.heightData.data = Block_copy(^{return self.RADARY;});
@@ -530,7 +544,7 @@ const float SplashScreenInterval = 10.0f;
     self.heightData.hidden = YES;
     [self.view addSubview:self.heightData];
     
-    self.altitudeData = [[[Telemetry alloc] initWithFrame:[self convertRectFromGameToView: CGRectMake(900, 225, 100, 20)]] autorelease];
+    self.altitudeData = [[[Telemetry alloc] initWithFrame:[self convertRectFromGameToView: CGRectMake(telemetryX, 225, 100, 20)]] autorelease];
     self.altitudeData.titleLabel.text = @"ALTITUDE";
     self.altitudeData.format = @"%6d %@";
     self.altitudeData.data = Block_copy(^{ return (short)([self.landerModel.dataSource altitude]);});
@@ -540,7 +554,7 @@ const float SplashScreenInterval = 10.0f;
     self.altitudeData.hidden = YES;
     [self.view addSubview:self.altitudeData];
     
-    self.distanceData = [[[Telemetry alloc] initWithFrame:[self convertRectFromGameToView: CGRectMake(900, 203, 100, 20)]] autorelease];
+    self.distanceData = [[[Telemetry alloc] initWithFrame:[self convertRectFromGameToView: CGRectMake(telemetryX, 203, 100, 20)]] autorelease];
     self.distanceData.titleLabel.text = @"DISTANCE";
     self.distanceData.format = @"%6d %@";
     self.distanceData.data = Block_copy(^{ return (short)([self.landerModel.dataSource distance]);});
@@ -551,7 +565,7 @@ const float SplashScreenInterval = 10.0f;
     [self.view addSubview:self.distanceData];
     
 
-    self.fuelLeftData = [[[Telemetry alloc] initWithFrame:[self convertRectFromGameToView: CGRectMake(900, 181, 100, 20)]] autorelease];
+    self.fuelLeftData = [[[Telemetry alloc] initWithFrame:[self convertRectFromGameToView: CGRectMake(telemetryX, 181, 100, 20)]] autorelease];
     self.fuelLeftData.titleLabel.text = @"FUEL LEFT";
     self.fuelLeftData.format = @"%6d %@";
     self.fuelLeftData.data = Block_copy(^{ return (short)([self.landerModel.dataSource fuel]);});
@@ -561,7 +575,7 @@ const float SplashScreenInterval = 10.0f;
     self.fuelLeftData.hidden = YES;
     [self.view addSubview:self.fuelLeftData];
     
-    self.weightData = [[[Telemetry alloc] initWithFrame:[self convertRectFromGameToView: CGRectMake(900, 159, 100, 20)]] autorelease];
+    self.weightData = [[[Telemetry alloc] initWithFrame:[self convertRectFromGameToView: CGRectMake(telemetryX, 159, 100, 20)]] autorelease];
     self.weightData.titleLabel.text = @"WEIGHT";
     self.weightData.format = @"%6d %@";
     self.weightData.data = Block_copy(^{ return (short)([self.landerModel.dataSource weight]);});
@@ -571,7 +585,7 @@ const float SplashScreenInterval = 10.0f;
     self.weightData.hidden = YES;
     [self.view addSubview:self.weightData];
 
-    self.thrustData = [[[Telemetry alloc] initWithFrame:[self convertRectFromGameToView: CGRectMake(900, 137, 100, 20)]] autorelease];
+    self.thrustData = [[[Telemetry alloc] initWithFrame:[self convertRectFromGameToView: CGRectMake(telemetryX, 137, 100, 20)]] autorelease];
     self.thrustData.titleLabel.text = @"THRUST";
     self.thrustData.format = @"%6d %@";
     self.thrustData.data = Block_copy(^{ return (short)([self.landerModel.dataSource thrust]);});
@@ -581,7 +595,7 @@ const float SplashScreenInterval = 10.0f;
     self.thrustData.hidden = YES;
     [self.view addSubview:self.thrustData];
     
-    self.thrustAngleData = [[[Telemetry alloc] initWithFrame:[self convertRectFromGameToView: CGRectMake(900, 115, 100, 20)]] autorelease];
+    self.thrustAngleData = [[[Telemetry alloc] initWithFrame:[self convertRectFromGameToView: CGRectMake(telemetryX, 115, 100, 20)]] autorelease];
     self.thrustAngleData.titleLabel.text = @"ANGLE";
     self.thrustAngleData.format = @"%6d %@";
     self.thrustAngleData.data = Block_copy(^{ return (short)([self.landerModel.dataSource angleDegrees]);});
@@ -591,7 +605,7 @@ const float SplashScreenInterval = 10.0f;
     self.thrustAngleData.hidden = YES;
     [self.view addSubview:self.thrustAngleData];
     
-    self.verticalVelocityData = [[[Telemetry alloc] initWithFrame:[self convertRectFromGameToView: CGRectMake(900, 93, 100, 20)]] autorelease];
+    self.verticalVelocityData = [[[Telemetry alloc] initWithFrame:[self convertRectFromGameToView: CGRectMake(telemetryX, 93, 100, 20)]] autorelease];
     self.verticalVelocityData.titleLabel.text = @"VER VEL";
     self.verticalVelocityData.format = @"%6d %@";
     self.verticalVelocityData.data = Block_copy(^{ return (short)([self.landerModel.dataSource vertVel]);});
@@ -601,7 +615,7 @@ const float SplashScreenInterval = 10.0f;
     self.verticalVelocityData.hidden = YES;
     [self.view addSubview:self.verticalVelocityData];
     
-    self.horizontalVelocityData = [[[Telemetry alloc] initWithFrame:[self convertRectFromGameToView: CGRectMake(900, 71, 100, 20)]] autorelease];
+    self.horizontalVelocityData = [[[Telemetry alloc] initWithFrame:[self convertRectFromGameToView: CGRectMake(telemetryX, 71, 100, 20)]] autorelease];
     self.horizontalVelocityData.titleLabel.text = @"HOR VEL";
     self.horizontalVelocityData.format = @"%6d %@";
     self.horizontalVelocityData.data = Block_copy(^{ return (short)([self.landerModel.dataSource horizVel]);});
@@ -611,7 +625,7 @@ const float SplashScreenInterval = 10.0f;
     self.horizontalVelocityData.hidden = YES;
     [self.view addSubview:self.horizontalVelocityData];
     
-    self.verticalAccelerationData = [[[Telemetry alloc] initWithFrame:[self convertRectFromGameToView: CGRectMake(900, 49, 100, 20)]] autorelease];
+    self.verticalAccelerationData = [[[Telemetry alloc] initWithFrame:[self convertRectFromGameToView: CGRectMake(telemetryX, 49, 100, 20)]] autorelease];
     self.verticalAccelerationData.titleLabel.text = @"VER ACC";
     self.verticalAccelerationData.format = @"%6d %@";
     self.verticalAccelerationData.data = Block_copy(^{ return (short)([self.landerModel.dataSource vertAccel]);});
@@ -621,7 +635,7 @@ const float SplashScreenInterval = 10.0f;
     self.verticalAccelerationData.hidden = YES;
     [self.view addSubview:self.verticalAccelerationData];
     
-    self.horizontalAccelerationData = [[[Telemetry alloc] initWithFrame:[self convertRectFromGameToView: CGRectMake(900, 27, 100, 20)]] autorelease];
+    self.horizontalAccelerationData = [[[Telemetry alloc] initWithFrame:[self convertRectFromGameToView: CGRectMake(telemetryX, 27, 100, 20)]] autorelease];
     self.horizontalAccelerationData.titleLabel.text = @"HOR ACC";
     self.horizontalAccelerationData.format = @"%6d %@";
     self.horizontalAccelerationData.data = Block_copy(^{ return (short)([self.landerModel.dataSource horizAccel]);});
@@ -631,7 +645,7 @@ const float SplashScreenInterval = 10.0f;
     self.horizontalAccelerationData.hidden = YES;
     [self.view addSubview:self.horizontalAccelerationData];
     
-    self.secondsData = [[[Telemetry alloc] initWithFrame:[self convertRectFromGameToView: CGRectMake(900, 5, 100, 20)]] autorelease];
+    self.secondsData = [[[Telemetry alloc] initWithFrame:[self convertRectFromGameToView: CGRectMake(telemetryX, 5, 100, 20)]] autorelease];
     self.secondsData.titleLabel.text = @"SECONDS";
     self.secondsData.format = @"%6d %@";
     self.secondsData.data = Block_copy(^{ return (short)([self.landerModel.dataSource time]);});
@@ -754,8 +768,6 @@ const float SplashScreenInterval = 10.0f;
     self.instrument7 = nil;
     self.instrument8 = nil;
     
-    self.nextGameButton = nil;
-    
     self.smallLeftArrow = nil;
     self.smallRightArrow = nil;
     self.largeLeftArrow = nil;
@@ -764,10 +776,12 @@ const float SplashScreenInterval = 10.0f;
     self.thrusterSlider = nil;
     
     self.landerView = nil;
-    self.landerMessages = nil;
     self.dustView = nil;
     self.manView = nil;
     self.flagView = nil;
+    
+    self.landerMessages = nil;
+    self.anotherGameDialog = nil;
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -838,7 +852,7 @@ const float SplashScreenInterval = 10.0f;
     [self.landerModel.dataSource setAngle:([self.landerModel.dataSource angle] + deltaAngle)];
 }
 
-- (IBAction)newGame:(id)sender
+- (void)newGame
 {
     [self.landerMessages removeAllLanderMessages];
     
@@ -1083,29 +1097,46 @@ const float SplashScreenInterval = 10.0f;
 }
 
 
-#if 1
-const float landingDelay = 4.0f;
-const float moveInterval = 0.16f;
-const float initialFoodDelay = 8.0f;
-const float secondFoodDelay = 2.0f;
-const float launchDelay = 2.0f;
-const float endDelay = 3.0f;
-const float flagFinalDelay = 10.0f;
-#else
-// sped up timings for debug
-const float landingDelay = 0.5f;
-const float moveInterval = 0.03f;
-const float initialFoodDelay = 1.0f;
-const float secondFoodDelay = 0.5f;
-const float launchDelay = 0.5f;
-const float endDelay = 1.0f;
-const float flagFinalDelay = 2.0f;
-#endif
+- (void)startGameDelay
+{
+    [self newGame];
+}
+
+- (void)getYesNo
+{
+    // Start the next game - ### does this go here?
+    [self gameOver];
+    
+    // Get the user's input
+    BOOL result = [self.anotherGameDialog dialogResult];
+    
+    // Remove the dialog
+    [self.anotherGameDialog removeFromSuperview];
+    self.anotherGameDialog = nil;
+
+    // Decide what to do
+    if (result == YES) {
+        // Delay a bit before starting the new game
+        self.palsyTimer = [NSTimer scheduledTimerWithTimeInterval:newGameDelay target:self selector:@selector(startGameDelay) userInfo:nil repeats:NO];
+    }
+    else {
+        // Return to the main menu
+    }
+}
+
+- (void)waitNewGame
+{
+    self.palsyTimer = nil;
+
+    CGRect dialogRect = CGRectMake(450, 300, 200, 100);
+    self.anotherGameDialog = [[VGDialog alloc] initWithFrame:dialogRect addTarget:self onSelection:@selector(getYesNo)];
+    [self.view addSubview:self.anotherGameDialog];
+}
 
 - (void)drawMcMan7
 {
-    // All done
-    [self gameOver];
+    // Let's delay a bit before presenting the new game dialog
+    self.palsyTimer = [NSTimer scheduledTimerWithTimeInterval:newGameDelay target:self selector:@selector(waitNewGame) userInfo:nil repeats:NO];
 }
 
 - (void)drawMcMan6
@@ -1238,6 +1269,9 @@ const float flagFinalDelay = 2.0f;
     // Remove messages and add flag to terrain
     [self.landerMessages removeAllLanderMessages];
     [self.moonView addFeature:TF_OldLander atIndex:self.INDEXL];
+
+    // Let's delay a bit before presenting the new game dialog
+    self.palsyTimer = [NSTimer scheduledTimerWithTimeInterval:newGameDelay target:self selector:@selector(waitNewGame) userInfo:nil repeats:NO];
 }
 
 - (void)drawFlagMan1
