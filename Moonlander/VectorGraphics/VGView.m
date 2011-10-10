@@ -61,6 +61,7 @@
 - (void)drawSomethingUsing:(NSArray *)arrayOfVectors
 {
     BOOL logCommand = NO;
+    UITextAlignment textAlignment = UITextAlignmentLeft;
 
     // Simple stack for push/pop support
     CGPoint positionStack[4];
@@ -148,6 +149,11 @@
             CGContextSetRGBStrokeColor(context, r, g, b, alpha);
             CGContextSetRGBFillColor(context, r, g, b, alpha);
             CGContextMoveToPoint(context, prevPoint.x, prevPoint.y);
+        }
+        
+        // "alignment" is used to select the alignment of text
+        if ([currentVector objectForKey:@"alignment"]) {
+            textAlignment = [[currentVector objectForKey:@"alignment"] intValue];
         }
         
         // "intensity" is used to set the display intensity
@@ -320,6 +326,41 @@
             for (int i = 0; i < length; ++i) {
                 // Store each letter in a Glyph and subtract the MagicNumber to get appropriate value.
                 glyphs[i] = [theText characterAtIndex:i] + glyphOffset;
+            }
+            
+            // Need to deal with the requested text alignment
+            if (textAlignment == UITextAlignmentLeft) {
+                // Do nothing for left alignment
+            }
+            else if (textAlignment == UITextAlignmentCenter) {
+                // Find the length of the string
+                CGContextSaveGState(context);
+                CGContextGetTextPosition(context);
+                CGContextSetTextDrawingMode(context, kCGTextInvisible);
+                CGContextShowGlyphsAtPoint(context, currentPosition.x, currentPosition.y, glyphs, length);
+                CGContextRestoreGState(context);
+                CGPoint endPoint = CGContextGetTextPosition(context);
+                
+                // Determine the length
+                int textLength = endPoint.x - currentPosition.x ;
+                
+                // Adjust the current position to center the text
+                currentPosition.x = (self.bounds.size.width / 2) - (textLength / 2);
+            }
+            else if (textAlignment == UITextAlignmentRight) {
+                // Find the length of the string
+                CGContextSaveGState(context);
+                CGContextGetTextPosition(context);
+                CGContextSetTextDrawingMode(context, kCGTextInvisible);
+                CGContextShowGlyphsAtPoint(context, currentPosition.x, currentPosition.y, glyphs, length);
+                CGContextRestoreGState(context);
+                CGPoint endPoint = CGContextGetTextPosition(context);
+                
+                // Determine the length
+                int textLength = endPoint.x - currentPosition.x ;
+                
+                // Adjust the current position to right align the text
+                currentPosition.x = self.bounds.size.width - textLength;
             }
             
             // We do this only if blinking is requested
