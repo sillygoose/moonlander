@@ -166,8 +166,6 @@
 - (IBAction)thrusterChanged:(VGSlider *)sender;
 - (IBAction)rotateLander:(id)sender;
 
-- (void)gameReset;
-- (void)gameOver;
 - (void)updateLander;
 - (void)gameLoop;
 - (void)disableFlightControls;
