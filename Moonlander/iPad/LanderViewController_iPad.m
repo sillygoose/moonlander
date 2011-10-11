@@ -90,7 +90,7 @@ const int BeepSound = 1052;
 const float GameTimerInterval = 1.0 / 12.0f;
 const float DisplayUpdateInterval = 0.05f;
 
-#if 0
+#if 1
 const float SplashScreenInterval = 10.0f;
 const float landingDelay = 4.0f;
 const float moveInterval = 0.16f;

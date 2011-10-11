@@ -257,7 +257,7 @@ float RadiansToDegrees(float radians)
 - (void)initializeLanderModel
 {
     self.lemOnSurface = NO;
-#if 1
+#if 0
     self.rateOfTurn = 0;
     self.turnAngle = DegreesToRadians(0.0f);
     self.horizontalVelocity = 0;
