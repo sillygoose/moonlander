@@ -1168,7 +1168,7 @@ const float offcomDelay = 2.0f;
     
     // Setup our dialog for a new game
     CGRect dialogRect = CGRectMake(450, 300, 200, 100);
-    self.anotherGameDialog = [[VGDialog alloc] initWithFrame:dialogRect addTarget:self onSelection:@selector(getYesNo)];
+    self.anotherGameDialog = [[[VGDialog alloc] initWithFrame:dialogRect addTarget:self onSelection:@selector(getYesNo)] autorelease];
     [self.view addSubview:self.anotherGameDialog];
 }
 
