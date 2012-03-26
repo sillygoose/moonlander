@@ -90,7 +90,7 @@ const int BeepSound = 1052;
 const float GameTimerInterval = 1.0 / 12.0f;
 const float DisplayUpdateInterval = 0.05f;
 
-#if 1
+#if 0
 const float SplashScreenInterval = 10.0f;
 const float landingDelay = 4.0f;
 const float moveInterval = 0.16f;
@@ -1427,7 +1427,7 @@ const float offcomDelay = 2.0f;
         //VERYLO turn off fuel, flames, and dust
         [self.landerMessages removeFuelMessage];
 
-        // Needs work, keep display and sim timers running
+        // We landed or crashed
         [self landerDown];
         
         //VD
@@ -1495,6 +1495,7 @@ const float offcomDelay = 2.0f;
                         [self.moonView addFeature:TF_OldLanderTippedRight atIndex:self.INDEXL];
                     self.SHOWY -= 16;
                     
+                    // Explode
                     self.landerView.hidden = YES;
                     [self EXPLOD];
                 }
@@ -1554,24 +1555,27 @@ const float offcomDelay = 2.0f;
         short horizvel = (short)([self.landerModel.dataSource horizVel]);
         short angle = (short)([self.landerModel.dataSource angleDegrees]);
         if (horizvel < -10 || horizvel > 10) {
+            // Too much horizontal velocity - tipped
             [self.landerMessages addFlameMessage:@"FastSideways"];
             TiltDirection = horizvel;
         }
         else if (angle < -15 || angle > 15) {
-            // Check the roll angle
+            // Too much roll angle - tipped
             [self.landerMessages addFlameMessage:@"TippedOver"];
             TiltDirection = angle;
         }
         else {
-            // Check terrain slope
+            // Check terrain slope using difference between left and right terrain elevations
             short thl = (short)([self.moonView.dataSource averageTerrainHeight:self.INDEXL]);
             short thr = (short)([self.moonView.dataSource averageTerrainHeight:(self.INDEXL+1)]);
-            if (((thl - thr) < -48) || ((thl - thr) > 48)) {
+            short tdiff = thl - thr;
+            if (tdiff < -48 || tdiff > 48) {
+                // Terrain slope too great - tipped
                 [self.landerMessages addFlameMessage:@"BumpyLanding"];
-                TiltDirection = thl - thr;
+                TiltDirection = tdiff;
             }
             else {
-                // Plant a flag or get a burger
+                // Got it done, plant a flag or get a burger
                 [self PALSY];
             }
         }
@@ -1584,6 +1588,13 @@ const float offcomDelay = 2.0f;
             else {
                 [self.moonView addFeature:TF_OldLanderTippedRight atIndex:self.INDEXL];
             }
+            
+            // We are down but tipped for some reason remove the lander
+            self.landerView.hidden = YES;
+            [self.landerModel landerDown];
+            
+            // Let's delay a bit before presenting the new game dialog
+            self.palsyTimer = [NSTimer scheduledTimerWithTimeInterval:explodeDelay target:self selector:@selector(waitNewGame) userInfo:nil repeats:NO];
         }
     }
     
@@ -1591,6 +1602,7 @@ const float offcomDelay = 2.0f;
         // Hide the lander view
         self.landerView.hidden = YES;
         
+        // Deform the moon surface and explode
         [self ALTER:32];
         [self EXPLOD];
     }
