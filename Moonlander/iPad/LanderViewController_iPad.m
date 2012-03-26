@@ -520,7 +520,8 @@ const float SplashScreenInterval = 10.0f;
     [self.view addSubview:self.thrusterSlider];
     
     // Create the telemetry items
-    self.heightData = [[[Telemetry alloc] initWithFrame:[self convertRectFromGameToView: CGRectMake(900, 247, 100, 20)]] autorelease];
+	const short TelemetryXPos = 930;
+    self.heightData = [[[Telemetry alloc] initWithFrame:[self convertRectFromGameToView: CGRectMake(TelemetryXPos, 247, 100, 20)]] autorelease];
     self.heightData.titleLabel.text = @"HEIGHT";
     self.heightData.format = @"%6d %@";
     self.heightData.data = Block_copy(^{return self.RADARY;});
@@ -530,7 +531,7 @@ const float SplashScreenInterval = 10.0f;
     self.heightData.hidden = YES;
     [self.view addSubview:self.heightData];
     
-    self.altitudeData = [[[Telemetry alloc] initWithFrame:[self convertRectFromGameToView: CGRectMake(900, 225, 100, 20)]] autorelease];
+    self.altitudeData = [[[Telemetry alloc] initWithFrame:[self convertRectFromGameToView: CGRectMake(TelemetryXPos, 225, 100, 20)]] autorelease];
     self.altitudeData.titleLabel.text = @"ALTITUDE";
     self.altitudeData.format = @"%6d %@";
     self.altitudeData.data = Block_copy(^{ return (short)([self.landerModel.dataSource altitude]);});
@@ -540,7 +541,7 @@ const float SplashScreenInterval = 10.0f;
     self.altitudeData.hidden = YES;
     [self.view addSubview:self.altitudeData];
     
-    self.distanceData = [[[Telemetry alloc] initWithFrame:[self convertRectFromGameToView: CGRectMake(900, 203, 100, 20)]] autorelease];
+    self.distanceData = [[[Telemetry alloc] initWithFrame:[self convertRectFromGameToView: CGRectMake(TelemetryXPos, 203, 100, 20)]] autorelease];
     self.distanceData.titleLabel.text = @"DISTANCE";
     self.distanceData.format = @"%6d %@";
     self.distanceData.data = Block_copy(^{ return (short)([self.landerModel.dataSource distance]);});
@@ -551,7 +552,7 @@ const float SplashScreenInterval = 10.0f;
     [self.view addSubview:self.distanceData];
     
 
-    self.fuelLeftData = [[[Telemetry alloc] initWithFrame:[self convertRectFromGameToView: CGRectMake(900, 181, 100, 20)]] autorelease];
+    self.fuelLeftData = [[[Telemetry alloc] initWithFrame:[self convertRectFromGameToView: CGRectMake(TelemetryXPos, 181, 100, 20)]] autorelease];
     self.fuelLeftData.titleLabel.text = @"FUEL LEFT";
     self.fuelLeftData.format = @"%6d %@";
     self.fuelLeftData.data = Block_copy(^{ return (short)([self.landerModel.dataSource fuel]);});
@@ -561,7 +562,7 @@ const float SplashScreenInterval = 10.0f;
     self.fuelLeftData.hidden = YES;
     [self.view addSubview:self.fuelLeftData];
     
-    self.weightData = [[[Telemetry alloc] initWithFrame:[self convertRectFromGameToView: CGRectMake(900, 159, 100, 20)]] autorelease];
+    self.weightData = [[[Telemetry alloc] initWithFrame:[self convertRectFromGameToView: CGRectMake(TelemetryXPos, 159, 100, 20)]] autorelease];
     self.weightData.titleLabel.text = @"WEIGHT";
     self.weightData.format = @"%6d %@";
     self.weightData.data = Block_copy(^{ return (short)([self.landerModel.dataSource weight]);});
@@ -571,7 +572,7 @@ const float SplashScreenInterval = 10.0f;
     self.weightData.hidden = YES;
     [self.view addSubview:self.weightData];
 
-    self.thrustData = [[[Telemetry alloc] initWithFrame:[self convertRectFromGameToView: CGRectMake(900, 137, 100, 20)]] autorelease];
+    self.thrustData = [[[Telemetry alloc] initWithFrame:[self convertRectFromGameToView: CGRectMake(TelemetryXPos, 137, 100, 20)]] autorelease];
     self.thrustData.titleLabel.text = @"THRUST";
     self.thrustData.format = @"%6d %@";
     self.thrustData.data = Block_copy(^{ return (short)([self.landerModel.dataSource thrust]);});
@@ -581,7 +582,7 @@ const float SplashScreenInterval = 10.0f;
     self.thrustData.hidden = YES;
     [self.view addSubview:self.thrustData];
     
-    self.thrustAngleData = [[[Telemetry alloc] initWithFrame:[self convertRectFromGameToView: CGRectMake(900, 115, 100, 20)]] autorelease];
+    self.thrustAngleData = [[[Telemetry alloc] initWithFrame:[self convertRectFromGameToView: CGRectMake(TelemetryXPos, 115, 100, 20)]] autorelease];
     self.thrustAngleData.titleLabel.text = @"ANGLE";
     self.thrustAngleData.format = @"%6d %@";
     self.thrustAngleData.data = Block_copy(^{ return (short)([self.landerModel.dataSource angleDegrees]);});
@@ -591,7 +592,7 @@ const float SplashScreenInterval = 10.0f;
     self.thrustAngleData.hidden = YES;
     [self.view addSubview:self.thrustAngleData];
     
-    self.verticalVelocityData = [[[Telemetry alloc] initWithFrame:[self convertRectFromGameToView: CGRectMake(900, 93, 100, 20)]] autorelease];
+    self.verticalVelocityData = [[[Telemetry alloc] initWithFrame:[self convertRectFromGameToView: CGRectMake(TelemetryXPos, 93, 100, 20)]] autorelease];
     self.verticalVelocityData.titleLabel.text = @"VER VEL";
     self.verticalVelocityData.format = @"%6d %@";
     self.verticalVelocityData.data = Block_copy(^{ return (short)([self.landerModel.dataSource vertVel]);});
@@ -601,7 +602,7 @@ const float SplashScreenInterval = 10.0f;
     self.verticalVelocityData.hidden = YES;
     [self.view addSubview:self.verticalVelocityData];
     
-    self.horizontalVelocityData = [[[Telemetry alloc] initWithFrame:[self convertRectFromGameToView: CGRectMake(900, 71, 100, 20)]] autorelease];
+    self.horizontalVelocityData = [[[Telemetry alloc] initWithFrame:[self convertRectFromGameToView: CGRectMake(TelemetryXPos, 71, 100, 20)]] autorelease];
     self.horizontalVelocityData.titleLabel.text = @"HOR VEL";
     self.horizontalVelocityData.format = @"%6d %@";
     self.horizontalVelocityData.data = Block_copy(^{ return (short)([self.landerModel.dataSource horizVel]);});
@@ -611,7 +612,7 @@ const float SplashScreenInterval = 10.0f;
     self.horizontalVelocityData.hidden = YES;
     [self.view addSubview:self.horizontalVelocityData];
     
-    self.verticalAccelerationData = [[[Telemetry alloc] initWithFrame:[self convertRectFromGameToView: CGRectMake(900, 49, 100, 20)]] autorelease];
+    self.verticalAccelerationData = [[[Telemetry alloc] initWithFrame:[self convertRectFromGameToView: CGRectMake(TelemetryXPos, 49, 100, 20)]] autorelease];
     self.verticalAccelerationData.titleLabel.text = @"VER ACC";
     self.verticalAccelerationData.format = @"%6d %@";
     self.verticalAccelerationData.data = Block_copy(^{ return (short)([self.landerModel.dataSource vertAccel]);});
@@ -621,7 +622,7 @@ const float SplashScreenInterval = 10.0f;
     self.verticalAccelerationData.hidden = YES;
     [self.view addSubview:self.verticalAccelerationData];
     
-    self.horizontalAccelerationData = [[[Telemetry alloc] initWithFrame:[self convertRectFromGameToView: CGRectMake(900, 27, 100, 20)]] autorelease];
+    self.horizontalAccelerationData = [[[Telemetry alloc] initWithFrame:[self convertRectFromGameToView: CGRectMake(TelemetryXPos, 27, 100, 20)]] autorelease];
     self.horizontalAccelerationData.titleLabel.text = @"HOR ACC";
     self.horizontalAccelerationData.format = @"%6d %@";
     self.horizontalAccelerationData.data = Block_copy(^{ return (short)([self.landerModel.dataSource horizAccel]);});
@@ -631,7 +632,7 @@ const float SplashScreenInterval = 10.0f;
     self.horizontalAccelerationData.hidden = YES;
     [self.view addSubview:self.horizontalAccelerationData];
     
-    self.secondsData = [[[Telemetry alloc] initWithFrame:[self convertRectFromGameToView: CGRectMake(900, 5, 100, 20)]] autorelease];
+    self.secondsData = [[[Telemetry alloc] initWithFrame:[self convertRectFromGameToView: CGRectMake(TelemetryXPos, 5, 100, 20)]] autorelease];
     self.secondsData.titleLabel.text = @"SECONDS";
     self.secondsData.format = @"%6d %@";
     self.secondsData.data = Block_copy(^{ return (short)([self.landerModel.dataSource time]);});
