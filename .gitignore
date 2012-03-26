@@ -16,6 +16,7 @@ build/*
 *.perspectivev3
 *.pbxuser
 *.xcworkspace
+*.xcbkptlist
 <<<<<<< HEAD
 xcuserdata/*
 =======
