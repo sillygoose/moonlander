@@ -76,22 +76,22 @@
 - (void)createThrustVectors
 {
     const int FLEN = 12;
-    const int YThrust[] = { 0, -30, -31, -32, -34, -36, -38, -41, -44, -47, -50, -53, -56 };
+    const int YThrust[] = { 0, 12, 16, 20, 24, 28, 32, 36, 40, 44, 48, 52, 56 };
     const int YUpDown[] = { 0, 1, 3, 6, 4, 3, 1, -2, -6, -7, -5, -2, 2, 3, 5, 6, 2, 1, -1, -4, -6, -5, -3, 0, 4, 5, 7, 4, 0, -1, -3, -1 };
+    const short DimYUpDown = sizeof(YUpDown)/sizeof(YUpDown[0]);
     const int FlameBT[] = { -20, -16, -13, -10, -7, -4, -2, 0, 2, 4, 7, 10, 13, 16, 20 };
     
     NSArray *paths = nil;
     unsigned percentThrust = (unsigned)self.thrustData();
     if (percentThrust) {
+        // FLAME
         int RET1 = YThrust[percentThrust / 8];
-        self.flameRandom++;
-        int RET2 = YUpDown[(self.flameRandom % (sizeof(YUpDown)/sizeof(YUpDown[0])))]; 
+        int RET2 = YUpDown[++self.flameRandom % DimYUpDown]; 
         RET1 += RET2;
-        RET1 = -RET1;
 
+        //
         self.flameShift += RET1;
-        RET2 = self.flameShift;
-        RET2 &= 3;
+        RET2 = self.flameShift & 3;
 
         NSMutableArray *xCoordinates = [[NSMutableArray alloc] init];
         NSMutableArray *yCoordinates = [[NSMutableArray alloc] init];
@@ -102,6 +102,7 @@
             [yCoordinates addObject:[NSNumber numberWithInt:RET1]];
         }
 
+        // Bump the intensity and line type
         self.flameLine += 1;
         self.flameIntensity += 3;
 
