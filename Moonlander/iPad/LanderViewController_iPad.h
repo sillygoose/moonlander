@@ -109,7 +109,7 @@
 @property (nonatomic) short VERDIS;
 @property (nonatomic, readonly) short HORDIS;
 @property (nonatomic, readonly) short PERTRS;
-@property (nonatomic) short ANGLE;
+@property (nonatomic) float ANGLE;
 @property (nonatomic, readonly) short ANGLED;
 @property (nonatomic) short HORVEL;
 @property (nonatomic) short VERVEL;
