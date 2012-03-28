@@ -88,8 +88,42 @@ const int BeepSound = 1052;
 
 const float GameTimerInterval = 1.0 / 12.0f;
 const float DisplayUpdateInterval = 0.05f;
+
+#ifndef SHORT_DELAYS
+// Timings for normal operation
 const float SplashScreenInterval = 10.0f;
 
+const float landingDelay = 4.0f;
+const float moveInterval = 0.16f;
+const float initialFoodDelay = 8.0f;
+const float secondFoodDelay = 2.0f;
+const float launchDelay = 2.0f;
+const float endDelay = 3.0f;
+const float flagFinalDelay = 10.0f;
+#else
+// sped up timings for debug
+const float SplashScreenInterval = 2.0f;
+
+const float landingDelay = 0.5f;
+const float moveInterval = 0.03f;
+const float initialFoodDelay = 1.0f;
+const float secondFoodDelay = 0.5f;
+const float launchDelay = 0.5f;
+const float endDelay = 1.0f;
+const float flagFinalDelay = 2.0f;
+#endif
+
+
+
+static float DegreesToRadians(float degrees)
+{
+    return degrees * M_PI / 180;
+}
+
+static float RadiansToDegrees(float radians)
+{
+    return radians * 180 / M_PI;
+}
 
 - (CGPoint)convertPointFromGameToView:(CGPoint)gamePoint
 {
@@ -160,12 +194,12 @@ const float SplashScreenInterval = 10.0f;
     return (short)([self.landerModel.dataSource thrustPercent]);
 }
 
-- (short)ANGLE
+- (float)ANGLE
 {
-    return (short)([self.landerModel.dataSource angle]);
+    return (float)([self.landerModel.dataSource angle]);
 }
 
-- (void)setANGLE:(short)value
+- (void)setANGLE:(float)value
 {
     [self.landerModel.dataSource setAngle:value];
 }
@@ -521,7 +555,9 @@ const float SplashScreenInterval = 10.0f;
     
     // Create the telemetry items
 	const short TelemetryXPos = 930;
-    self.heightData = [[[Telemetry alloc] initWithFrame:[self convertRectFromGameToView: CGRectMake(TelemetryXPos, 247, 100, 20)]] autorelease];
+    const short TelemetryXSize = 100;
+    const short TelemetryYSize = 20;
+    self.heightData = [[[Telemetry alloc] initWithFrame:[self convertRectFromGameToView: CGRectMake(TelemetryXPos, 247, TelemetryXSize, TelemetryYSize)]] autorelease];
     self.heightData.titleLabel.text = @"HEIGHT";
     self.heightData.format = @"%6d %@";
     self.heightData.data = Block_copy(^{return self.RADARY;});
@@ -531,7 +567,7 @@ const float SplashScreenInterval = 10.0f;
     self.heightData.hidden = YES;
     [self.view addSubview:self.heightData];
     
-    self.altitudeData = [[[Telemetry alloc] initWithFrame:[self convertRectFromGameToView: CGRectMake(TelemetryXPos, 225, 100, 20)]] autorelease];
+    self.altitudeData = [[[Telemetry alloc] initWithFrame:[self convertRectFromGameToView: CGRectMake(TelemetryXPos, 225, TelemetryXSize, TelemetryYSize)]] autorelease];
     self.altitudeData.titleLabel.text = @"ALTITUDE";
     self.altitudeData.format = @"%6d %@";
     self.altitudeData.data = Block_copy(^{ return (short)([self.landerModel.dataSource altitude]);});
@@ -541,7 +577,7 @@ const float SplashScreenInterval = 10.0f;
     self.altitudeData.hidden = YES;
     [self.view addSubview:self.altitudeData];
     
-    self.distanceData = [[[Telemetry alloc] initWithFrame:[self convertRectFromGameToView: CGRectMake(TelemetryXPos, 203, 100, 20)]] autorelease];
+    self.distanceData = [[[Telemetry alloc] initWithFrame:[self convertRectFromGameToView: CGRectMake(TelemetryXPos, 203, TelemetryXSize, TelemetryYSize)]] autorelease];
     self.distanceData.titleLabel.text = @"DISTANCE";
     self.distanceData.format = @"%6d %@";
     self.distanceData.data = Block_copy(^{ return (short)([self.landerModel.dataSource distance]);});
@@ -552,7 +588,7 @@ const float SplashScreenInterval = 10.0f;
     [self.view addSubview:self.distanceData];
     
 
-    self.fuelLeftData = [[[Telemetry alloc] initWithFrame:[self convertRectFromGameToView: CGRectMake(TelemetryXPos, 181, 100, 20)]] autorelease];
+    self.fuelLeftData = [[[Telemetry alloc] initWithFrame:[self convertRectFromGameToView: CGRectMake(TelemetryXPos, 181, TelemetryXSize, TelemetryYSize)]] autorelease];
     self.fuelLeftData.titleLabel.text = @"FUEL LEFT";
     self.fuelLeftData.format = @"%6d %@";
     self.fuelLeftData.data = Block_copy(^{ return (short)([self.landerModel.dataSource fuel]);});
@@ -562,7 +598,7 @@ const float SplashScreenInterval = 10.0f;
     self.fuelLeftData.hidden = YES;
     [self.view addSubview:self.fuelLeftData];
     
-    self.weightData = [[[Telemetry alloc] initWithFrame:[self convertRectFromGameToView: CGRectMake(TelemetryXPos, 159, 100, 20)]] autorelease];
+    self.weightData = [[[Telemetry alloc] initWithFrame:[self convertRectFromGameToView: CGRectMake(TelemetryXPos, 159, TelemetryXSize, TelemetryYSize)]] autorelease];
     self.weightData.titleLabel.text = @"WEIGHT";
     self.weightData.format = @"%6d %@";
     self.weightData.data = Block_copy(^{ return (short)([self.landerModel.dataSource weight]);});
@@ -572,7 +608,7 @@ const float SplashScreenInterval = 10.0f;
     self.weightData.hidden = YES;
     [self.view addSubview:self.weightData];
 
-    self.thrustData = [[[Telemetry alloc] initWithFrame:[self convertRectFromGameToView: CGRectMake(TelemetryXPos, 137, 100, 20)]] autorelease];
+    self.thrustData = [[[Telemetry alloc] initWithFrame:[self convertRectFromGameToView: CGRectMake(TelemetryXPos, 137, TelemetryXSize, TelemetryYSize)]] autorelease];
     self.thrustData.titleLabel.text = @"THRUST";
     self.thrustData.format = @"%6d %@";
     self.thrustData.data = Block_copy(^{ return (short)([self.landerModel.dataSource thrust]);});
@@ -582,7 +618,7 @@ const float SplashScreenInterval = 10.0f;
     self.thrustData.hidden = YES;
     [self.view addSubview:self.thrustData];
     
-    self.thrustAngleData = [[[Telemetry alloc] initWithFrame:[self convertRectFromGameToView: CGRectMake(TelemetryXPos, 115, 100, 20)]] autorelease];
+    self.thrustAngleData = [[[Telemetry alloc] initWithFrame:[self convertRectFromGameToView: CGRectMake(TelemetryXPos, 115, TelemetryXSize, TelemetryYSize)]] autorelease];
     self.thrustAngleData.titleLabel.text = @"ANGLE";
     self.thrustAngleData.format = @"%6d %@";
     self.thrustAngleData.data = Block_copy(^{ return (short)([self.landerModel.dataSource angleDegrees]);});
@@ -592,7 +628,7 @@ const float SplashScreenInterval = 10.0f;
     self.thrustAngleData.hidden = YES;
     [self.view addSubview:self.thrustAngleData];
     
-    self.verticalVelocityData = [[[Telemetry alloc] initWithFrame:[self convertRectFromGameToView: CGRectMake(TelemetryXPos, 93, 100, 20)]] autorelease];
+    self.verticalVelocityData = [[[Telemetry alloc] initWithFrame:[self convertRectFromGameToView: CGRectMake(TelemetryXPos, 93, TelemetryXSize, TelemetryYSize)]] autorelease];
     self.verticalVelocityData.titleLabel.text = @"VER VEL";
     self.verticalVelocityData.format = @"%6d %@";
     self.verticalVelocityData.data = Block_copy(^{ return (short)([self.landerModel.dataSource vertVel]);});
@@ -602,7 +638,7 @@ const float SplashScreenInterval = 10.0f;
     self.verticalVelocityData.hidden = YES;
     [self.view addSubview:self.verticalVelocityData];
     
-    self.horizontalVelocityData = [[[Telemetry alloc] initWithFrame:[self convertRectFromGameToView: CGRectMake(TelemetryXPos, 71, 100, 20)]] autorelease];
+    self.horizontalVelocityData = [[[Telemetry alloc] initWithFrame:[self convertRectFromGameToView: CGRectMake(TelemetryXPos, 71, TelemetryXSize, TelemetryYSize)]] autorelease];
     self.horizontalVelocityData.titleLabel.text = @"HOR VEL";
     self.horizontalVelocityData.format = @"%6d %@";
     self.horizontalVelocityData.data = Block_copy(^{ return (short)([self.landerModel.dataSource horizVel]);});
@@ -612,7 +648,7 @@ const float SplashScreenInterval = 10.0f;
     self.horizontalVelocityData.hidden = YES;
     [self.view addSubview:self.horizontalVelocityData];
     
-    self.verticalAccelerationData = [[[Telemetry alloc] initWithFrame:[self convertRectFromGameToView: CGRectMake(TelemetryXPos, 49, 100, 20)]] autorelease];
+    self.verticalAccelerationData = [[[Telemetry alloc] initWithFrame:[self convertRectFromGameToView: CGRectMake(TelemetryXPos, 49, TelemetryXSize, TelemetryYSize)]] autorelease];
     self.verticalAccelerationData.titleLabel.text = @"VER ACC";
     self.verticalAccelerationData.format = @"%6d %@";
     self.verticalAccelerationData.data = Block_copy(^{ return (short)([self.landerModel.dataSource vertAccel]);});
@@ -622,7 +658,7 @@ const float SplashScreenInterval = 10.0f;
     self.verticalAccelerationData.hidden = YES;
     [self.view addSubview:self.verticalAccelerationData];
     
-    self.horizontalAccelerationData = [[[Telemetry alloc] initWithFrame:[self convertRectFromGameToView: CGRectMake(TelemetryXPos, 27, 100, 20)]] autorelease];
+    self.horizontalAccelerationData = [[[Telemetry alloc] initWithFrame:[self convertRectFromGameToView: CGRectMake(TelemetryXPos, 27, TelemetryXSize, TelemetryYSize)]] autorelease];
     self.horizontalAccelerationData.titleLabel.text = @"HOR ACC";
     self.horizontalAccelerationData.format = @"%6d %@";
     self.horizontalAccelerationData.data = Block_copy(^{ return (short)([self.landerModel.dataSource horizAccel]);});
@@ -632,7 +668,7 @@ const float SplashScreenInterval = 10.0f;
     self.horizontalAccelerationData.hidden = YES;
     [self.view addSubview:self.horizontalAccelerationData];
     
-    self.secondsData = [[[Telemetry alloc] initWithFrame:[self convertRectFromGameToView: CGRectMake(TelemetryXPos, 5, 100, 20)]] autorelease];
+    self.secondsData = [[[Telemetry alloc] initWithFrame:[self convertRectFromGameToView: CGRectMake(TelemetryXPos, 5, TelemetryXSize, TelemetryYSize)]] autorelease];
     self.secondsData.titleLabel.text = @"SECONDS";
     self.secondsData.format = @"%6d %@";
     self.secondsData.data = Block_copy(^{ return (short)([self.landerModel.dataSource time]);});
@@ -931,70 +967,66 @@ const float SplashScreenInterval = 10.0f;
 
 - (void)DUST
 {
-    // Wait till 150 feet above surface before kicking up dust
-    if (self.RADARY < 150 && (self.ANGLED > -45 || self.ANGLED < 45)) {
-        const short MaxDust = 241;
-        
-        // Magnitude of dust determines intensity level
-        short percentThrust = (self.PERTRS > 63) ? 63 : self.PERTRS;
+    // Some dust generation constants
+    const short DustStartHeight = 150;
+    const short MaxDisplayDust = 241;
+    
+    // Assume we will remove the dust view
+    BOOL removeDustView = YES;
+
+    // Wait till 150 feet above surface before kicking up dust and not too much angle
+    if (self.RADARY < DustStartHeight && (self.ANGLED > -45 && self.ANGLED < 45)) {
+        // DUSTB1  Magnitude of dust determines intensity level
+        const short MaxDustThrust = 63;
+        short percentThrust = (self.PERTRS > MaxDustThrust) ? MaxDustThrust : self.PERTRS;
         short displayIntensity = (percentThrust >> 3) & 0x7;
-        short sinAngle = (short)(sin(self.ANGLE));
-        short cosAngle = (short)(cos(self.ANGLE));
-        if (sinAngle < 0) {
-            sinAngle = -sinAngle;
-        }
         
-        // DUSTP1
+        // DUSTP1  Thrust angle determines dust direction
         short deltaY = self.SHOWY - self.AVERT;
-        short tanDeltaY = sinAngle * deltaY;
-        if (cosAngle != 0) {
-            tanDeltaY = tanDeltaY / cosAngle;
-        }
-        
+        float tanDeltaY = fabs(tan(DegreesToRadians(self.ANGLED))) * deltaY;
         short flameDistance = tanDeltaY + deltaY;
-        if (sinAngle >= 0) {
-            tanDeltaY = -tanDeltaY;
-        }
         
         // DUSTP2
         short xCenterPos = self.SHOWX + tanDeltaY;
         short yCenterPos = self.AVERT;
         
-        flameDistance -= 150;
+        //###
+        flameDistance -= DustStartHeight;
         if (flameDistance < 0) {
             flameDistance = -flameDistance;
-            short count = ((flameDistance * self.PERTRS) >> 4);
-            if (count > MaxDust)
-                count = MaxDust;
-            
+            short count = MIN(((flameDistance * self.PERTRS) >> 4), MaxDisplayDust);
             //NSLog(@"DUST Center: (%d, %d) FD: %d  %d items at intensity %d", xCenterPos, yCenterPos, flameDistance, count, displayIntensity);
             if (count) {
+                // Keep the dust view as we have something to draw
+                removeDustView = NO;
+                
                 //short xValues[MaxDust];
                 //short yValues[MaxDust];
-                //short valueIndex = 0;
-                
+                //short valueIndex = 0;radians
+                // Allocate our path array
                 NSMutableArray *path = [[[NSMutableArray alloc] init] autorelease];
                 NSArray *paths = [NSArray arrayWithObject:path];
                 
+                // Prep the intensity and line type info
                 NSNumber *intensity = [NSNumber numberWithInt:displayIntensity];
                 NSNumber *width = [NSNumber numberWithFloat:1.0f];
                 NSNumber *height = [NSNumber numberWithFloat:1.0f];
                 
                 // DUSTWF
                 const short YThrust[] = { 0, -30, -31, -32, -34, -36, -38, -41, -44, -47, -50, -53, -56, 0, 1, 3, 6, 4, 3, 1, -2, -6, -7, -5, -2, 2, 3, 5, 6, 2, 1, -1, -4, -6, -5, -3, 0, 4, 5, 7, 4, 0, -1, -3, -1, -20, -16, -13, -10, -7, -4, -2, 0, 2, 4, 7, 10, 13, 16, 20, 0, -30, -31 };
-                const short dimYThrust = sizeof(YThrust)/sizeof(YThrust[0]);
-                assert(dimYThrust == 63);
+                const short DimYThrust = sizeof(YThrust)/sizeof(YThrust[0]);
+                assert(DimYThrust == 63);
                 
                 short random = self.DUSTX;
                 // DUSTL
                 while (count--) {
                     random += self.TIME + 1;
-                    random &= dimYThrust;
+                    random &= DimYThrust;
                     
                     // X coordinate
                     short xPos = YThrust[random];
                     random += self.VERACC;
-                    random &= dimYThrust;
+                    random &= DimYThrust;
                     
                     // Toggle the direction bit for X
                     flameDistance = ~flameDistance;
@@ -1006,8 +1038,9 @@ const float SplashScreenInterval = 10.0f;
                     
                     // Now the Y value (always positive)
                     short yPos = YThrust[random];
-                    yPos &= 0x3f;
-                    yPos = 63 - yPos;
+                    //###yPos = -yPos;
+                    yPos &= DimYThrust;
+                    yPos = DimYThrust - yPos;
                     
                     //xValues[valueIndex] = xPos;
                     //yValues[valueIndex] = yPos;
@@ -1029,7 +1062,7 @@ const float SplashScreenInterval = 10.0f;
                     [path addObject:pathItem];
                 }
                 
-                // This is a hack - fixme!
+                //### This is a hack - fixme!
                 xCenterPos -= 64;
                 yCenterPos = 768 - yCenterPos - yCenterPos;
                 
@@ -1056,7 +1089,8 @@ const float SplashScreenInterval = 10.0f;
             }
         }
     }
-    else {
+    
+    if (removeDustView == YES) {
         // Remove dust view
         if (self.dustView) {
             self.dustView.drawPaths = nil;
@@ -1083,25 +1117,6 @@ const float SplashScreenInterval = 10.0f;
 #endif
 }
 
-
-#if 1
-const float landingDelay = 4.0f;
-const float moveInterval = 0.16f;
-const float initialFoodDelay = 8.0f;
-const float secondFoodDelay = 2.0f;
-const float launchDelay = 2.0f;
-const float endDelay = 3.0f;
-const float flagFinalDelay = 10.0f;
-#else
-// sped up timings for debug
-const float landingDelay = 0.5f;
-const float moveInterval = 0.03f;
-const float initialFoodDelay = 1.0f;
-const float secondFoodDelay = 0.5f;
-const float launchDelay = 0.5f;
-const float endDelay = 1.0f;
-const float flagFinalDelay = 2.0f;
-#endif
 
 - (void)drawMcMan7
 {
@@ -1489,6 +1504,10 @@ const float flagFinalDelay = 2.0f;
         
         // Tilt the ship if indicated
         if (TiltDirection != 0) {
+            // Hide the lander view if we crashed
+            self.landerView.hidden = YES;
+            
+            // Add the appropriate tipped lander
             if (TiltDirection < 0) {
                 [self.moonView addFeature:TF_OldLanderTippedLeft atIndex:self.INDEXL];
             }
@@ -1502,6 +1521,7 @@ const float flagFinalDelay = 2.0f;
         // Hide the lander view
         self.landerView.hidden = YES;
         
+        // Deform the surface and explode
         [self ALTER:32];
         [self EXPLOD];
     }
