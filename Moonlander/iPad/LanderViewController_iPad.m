@@ -488,7 +488,7 @@ const float offcomDelay = 2.0f;
 
 - (void)viewDidLoad
 {
-    [[UIApplication sharedApplication] setStatusBarHidden:YES withAnimation:NO];
+//###    [[UIApplication sharedApplication] setStatusBarHidden:YES withAnimation:NO];
     [super viewDidLoad];
     
     // We need to change the coordinate space to (0,0) in the lower left
