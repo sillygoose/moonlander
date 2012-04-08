@@ -18,6 +18,7 @@
     //###
     [super application:application didFinishLaunchingWithOptions:launchOptions];
     
+    // Create the application UI
     [self.window addSubview:self.landerViewController.view];
     [self.window makeKeyAndVisible];
     return YES;
