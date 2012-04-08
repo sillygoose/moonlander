@@ -38,7 +38,10 @@
 @synthesize percentThrustRequested=_percentThrustRequested;
 @synthesize actualThrust=_actualThrust;
 @synthesize fuelRemaining=_fuelRemaining;
+
 @synthesize lemMass=_lemMass;
+
+@synthesize lemOnSurface=_lemOnSurface;
 
 
 - (float)turnAngle
@@ -62,30 +65,32 @@ float RadiansToDegrees(float radians)
 #pragma mark Model Constants
 - (void)stepLanderModel:(float)timeElapsed
 {
-    // Calculate fuel and accelerations (ROCKET subroutine)
-    if (self.fuelRemaining <= 0.0f) {
-        self.fuelRemaining = 0.0f;
-        self.lemMass = self.lemEmptyMass;
-        self.actualThrust = 0.0f;
-        self.lemAcceleration = 0.0f;
-        self.horizontalAcceleration = 0.0f;
-        self.verticalAcceleration = -self.lunarGravity;
+    if (!self.onSurface) {
+        // Calculate fuel and accelerations (ROCKET subroutine)
+        if (self.fuelRemaining <= 0.0f) {
+            self.fuelRemaining = 0.0f;
+            self.lemMass = self.lemEmptyMass;
+            self.actualThrust = 0.0f;
+            self.lemAcceleration = 0.0f;
+            self.horizontalAcceleration = 0.0f;
+            self.verticalAcceleration = -self.lunarGravity;
+        }
+        else {
+            self.actualThrust = self.percentThrustRequested * self.maxThrust / 100.0f;
+            float fuelUsed = self.actualThrust * timeElapsed / 260.0f;
+            self.fuelRemaining -= ( fuelUsed >= self.fuelRemaining ) ? self.fuelRemaining : fuelUsed;
+            self.lemMass = self.fuelRemaining + self.lemEmptyMass;
+            self.lemAcceleration = self.actualThrust * self.earthGravity / self.lemMass * 1.50f;
+            self.horizontalAcceleration = self.lemAcceleration * sinf(self.turnAngle);
+            self.verticalAcceleration = self.lemAcceleration * cosf(self.turnAngle) - self.lunarGravity;
+        }
+        
+        // Horizontal/vertical velocity/position updates
+        self.horizontalVelocity += self.horizontalAcceleration * timeElapsed;
+        self.verticalVelocity += self.verticalAcceleration * timeElapsed;
+        self.horizontalDistance += self.horizontalVelocity * timeElapsed;
+        self.verticalDistance += self.verticalVelocity * timeElapsed;
     }
-    else {
-        self.actualThrust = self.percentThrustRequested * self.maxThrust / 100.0f;
-        float fuelUsed = self.actualThrust * timeElapsed / 260.0f;
-        self.fuelRemaining -= ( fuelUsed >= self.fuelRemaining ) ? self.fuelRemaining : fuelUsed;
-        self.lemMass = self.fuelRemaining + self.lemEmptyMass;
-        self.lemAcceleration = self.actualThrust * self.earthGravity / self.lemMass * 1.50f;
-        self.horizontalAcceleration = self.lemAcceleration * sinf(self.turnAngle);
-        self.verticalAcceleration = self.lemAcceleration * cosf(self.turnAngle) - self.lunarGravity;
-    }
-    
-    // Horizontal/vertical velocity/position updates
-    self.horizontalVelocity += self.horizontalAcceleration * timeElapsed;
-    self.verticalVelocity += self.verticalAcceleration * timeElapsed;
-    self.horizontalDistance += self.horizontalVelocity * timeElapsed;
-    self.verticalDistance += self.verticalVelocity * timeElapsed;
 
     // Update the simulation clock
     self.clockTicks += timeElapsed;
@@ -222,14 +227,28 @@ float RadiansToDegrees(float radians)
     return self.clockTicks;
 }
 
+- (void)landerTakeoff
+{
+    self.lemOnSurface = NO;
+
+}
+
+- (BOOL)onSurface
+{
+    return self.lemOnSurface;
+}
+
 - (void)landerDown
 {
+    self.lemOnSurface = YES;
+    
     self.actualThrust = 0.0f;
     self.lemAcceleration = 0.0f;
     self.horizontalAcceleration = 0.0f;
     self.verticalAcceleration = -self.lunarGravity;
     
     // These don't chnage since you like to see the landing stats
+    //### check original game for this
     //self.horizontalVelocity = 0.0f;
     //self.verticalVelocity = 0.0f;
 }

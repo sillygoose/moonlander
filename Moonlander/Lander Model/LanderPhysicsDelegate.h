@@ -12,10 +12,14 @@
 
 
 @protocol LanderPhysicsDelegate <NSObject>
+
 - (void)initializeLanderModel;
 - (float)updateTime:(float)timeInterval;
 - (void)newGame;
+
 - (void)landerDown;
+- (void)landerTakeoff;
+
 @end
 
 

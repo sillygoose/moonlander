@@ -13,24 +13,26 @@
 
 @interface LanderPhysicsModel : NSObject <LanderPhysicsDelegate,  LanderPhysicsDataSource> {
 @private
-    float _clockTicks;
+    float       _clockTicks;
     
-    float _horizontalDistance;
-    float _verticalDistance;
+    float       _horizontalDistance;
+    float       _verticalDistance;
     
-    float _rateOfTurn;
-    float _turnAngle;
-    float _lemAcceleration;
-    float _verticalAcceleration;
-    float _horizonalAcceleration;
-    float _verticalVelocity;
-    float _horizontalVelocity;
+    float       _rateOfTurn;
+    float       _turnAngle;
+    float       _lemAcceleration;
+    float       _verticalAcceleration;
+    float       _horizonalAcceleration;
+    float       _verticalVelocity;
+    float       _horizontalVelocity;
     
-    float _percentThrustRequested;
-    float _actualThrust;
-    float _fuelRemaining;
+    float       _percentThrustRequested;
+    float       _actualThrust;
+    float       _fuelRemaining;
     
-    float _lemMass;
+    float       _lemMass;
+    
+    BOOL        _lemOnSurface;
 
     id <LanderPhysicsDataSource> _dataSource ;
     id <LanderPhysicsDelegate> _delegate;
@@ -51,9 +53,11 @@
 
 @property (nonatomic) float percentThrustRequested; // percent
 @property (nonatomic) float actualThrust;           // lb
-
 @property (nonatomic) float fuelRemaining;          // lbs
+
 @property (nonatomic) float lemMass;                // lbs
+
+@property (nonatomic) BOOL lemOnSurface;            // LEM has landed
 
 @property (assign) id <LanderPhysicsDataSource> dataSource;
 @property (assign) id <LanderPhysicsDelegate> delegate;

@@ -15,6 +15,9 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    // Hide the status bar
+    [[UIApplication sharedApplication] setStatusBarHidden:YES withAnimation:NO];
+
 	// We don't want the screen to sleep during our game 
     application.idleTimerDisabled = YES;
     [self.window makeKeyAndVisible];

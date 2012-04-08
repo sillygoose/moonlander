@@ -45,4 +45,6 @@
 - (float)acceleration;
 - (float)time;
 
+- (BOOL)onSurface;
+
 @end

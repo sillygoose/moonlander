@@ -14,6 +14,7 @@
 #import "VGView.h"
 #import "VGButton.h"
 #import "VGSlider.h"
+#import "VGDialog.h"
 
 #import "Moon.h"
 #import "Lander.h"
@@ -56,8 +57,6 @@
     NSTimer         *_displayTimer;
     NSTimer         *_palsyTimer;
 
-    VGButton        *_nextGameButton;
-    
     Telemetry       *_selectedTelemetry;
     Telemetry       *_heightData;
     Telemetry       *_altitudeData;
@@ -83,6 +82,8 @@
     Instrument      *_instrument8;
     
     LanderMessages  *_landerMessages;
+    
+    VGDialog        *_anotherGameDialog;
     
     BOOL            _didFuelAlert;
 
@@ -131,8 +132,6 @@
 
 @property (nonatomic, retain) VGSlider *thrusterSlider;
 
-@property (nonatomic, retain) VGButton *nextGameButton;
-
 @property (nonatomic, retain) Telemetry *selectedTelemetry;
 @property (nonatomic, retain) Telemetry *heightData;
 @property (nonatomic, retain) Telemetry *altitudeData;
@@ -159,15 +158,14 @@
 
 @property (nonatomic, retain) LanderMessages *landerMessages;
 
+@property (nonatomic, retain) VGDialog *anotherGameDialog;
+
 @property (nonatomic) BOOL didFuelAlert;
 
 
 - (IBAction)thrusterChanged:(VGSlider *)sender;
 - (IBAction)rotateLander:(id)sender;
-- (IBAction)newGame:(id)sender;
 
-- (void)gameReset;
-- (void)gameOver;
 - (void)updateLander;
 - (void)gameLoop;
 - (void)disableFlightControls;

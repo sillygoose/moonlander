@@ -51,7 +51,6 @@ const int BeepSound = 1052;
 
 @synthesize thrusterSlider=_thrusterSlider;
 
-@synthesize nextGameButton=_nextGameButton;
 @synthesize selectedTelemetry=_selectedTelemetry;
 
 @synthesize simulationTimer=_simulationTimer;
@@ -83,6 +82,8 @@ const int BeepSound = 1052;
 
 @synthesize landerMessages=_landerMessages;
 
+@synthesize anotherGameDialog=_anotherGameDialog;
+
 @synthesize didFuelAlert=_didFuelAlert;
 
 
@@ -92,6 +93,30 @@ const float DisplayUpdateInterval = 0.05f;
 #ifndef SHORT_DELAYS
 // Timings for normal operation
 const float SplashScreenInterval = 10.0f;
+const float landingDelay = 4.0f;
+const float moveInterval = 0.16f;
+const float initialFoodDelay = 8.0f;
+const float secondFoodDelay = 2.0f;
+const float launchDelay = 2.0f;
+const float endDelay = 3.0f;
+const float newGameDelay = 3.0f;
+const float flagFinalDelay = 10.0f;
+const float explodeDelay = 5.0f;
+const float offcomDelay = 5.0f;
+#else
+// sped up timings for debug
+const float SplashScreenInterval = 2.0f;
+const float landingDelay = 0.5f;
+const float moveInterval = 0.03f;
+const float initialFoodDelay = 1.0f;
+const float secondFoodDelay = 0.5f;
+const float launchDelay = 0.5f;
+const float endDelay = 1.0f;
+const float newGameDelay = 1.0f;
+const float flagFinalDelay = 2.0f;
+const float explodeDelay = 2.0f;
+const float offcomDelay = 2.0f;
+#endif
 
 const float landingDelay = 4.0f;
 const float moveInterval = 0.16f;
@@ -125,6 +150,8 @@ static float RadiansToDegrees(float radians)
     return radians * 180 / M_PI;
 }
 
+
+//### marked for deletion
 - (CGPoint)convertPointFromGameToView:(CGPoint)gamePoint
 {
     CGPoint viewPoint = CGPointZero;
@@ -173,6 +200,7 @@ static float RadiansToDegrees(float radians)
     viewRect.origin.y = self.view.bounds.size.height - viewRect.origin.y;
 	return gameRect;
 }
+//### marked for deletion
 
 - (short)VERDIS
 {
@@ -279,8 +307,6 @@ static float RadiansToDegrees(float radians)
     [_simulationTimer release];
     [_displayTimer release];
     
-    [_nextGameButton release];
-    
     [_selectedTelemetry release];
     [_heightData release];
     [_altitudeData release];
@@ -307,6 +333,8 @@ static float RadiansToDegrees(float radians)
     
     [_landerMessages release];
     
+    [_anotherGameDialog release];
+    
     [super dealloc];
 }
 
@@ -329,6 +357,7 @@ static float RadiansToDegrees(float radians)
     
     self.thrusterSlider.enabled = NO;
     
+#if 0
     self.heightData.enabled = NO;
     self.altitudeData.enabled = NO;
     self.distanceData.enabled = NO;
@@ -341,6 +370,7 @@ static float RadiansToDegrees(float radians)
     self.verticalAccelerationData.enabled = NO;
     self.horizontalAccelerationData.enabled = NO;
     self.secondsData.enabled = NO;
+#endif
 }
 
 - (void)enableFlightControls
@@ -352,6 +382,7 @@ static float RadiansToDegrees(float radians)
     
     self.thrusterSlider.enabled = YES;
     
+#if 0
     self.heightData.enabled = YES;
     self.altitudeData.enabled = YES;
     self.distanceData.enabled = YES;
@@ -364,6 +395,7 @@ static float RadiansToDegrees(float radians)
     self.verticalAccelerationData.enabled = YES;
     self.horizontalAccelerationData.enabled = YES;
     self.secondsData.enabled = YES;
+#endif
 }
 
 - (void)disableRollThrusters
@@ -407,27 +439,37 @@ static float RadiansToDegrees(float radians)
     
     [self enableFlightControls];
     
-    //###[self.landerModel.delegate newGame];
-    
     // Setup controls with model defaults
     self.thrusterSlider.value = [self.landerModel.dataSource thrustPercent];
     
     // Init displays
+    self.instrument1.instrument = self.heightData;
+    self.instrument2.instrument = self.distanceData;
+    self.instrument3.instrument = self.verticalVelocityData;
+    self.instrument4.instrument = self.horizontalVelocityData;
+    //self.instrument5.instrument = self.altitudeData;
+    //self.instrument6.instrument = self.fuelLeftData;
+    //self.instrument7.instrument = self.thrustAngleData;
+    //self.instrument8.instrument = self.secondsData;
+    
     [self.instrument1 display];
     [self.instrument2 display];
     [self.instrument3 display];
     [self.instrument4 display];
     
+#if 0
     // These are hidden normally
     [self.instrument5 display];
     [self.instrument6 display];
     [self.instrument7 display];
     [self.instrument8 display];
+#endif
     
     // Setup game timers
 	self.simulationTimer = [NSTimer scheduledTimerWithTimeInterval:GameTimerInterval target:self selector:@selector(gameLoop) userInfo:nil repeats:YES];
 	self.displayTimer = [NSTimer scheduledTimerWithTimeInterval:DisplayUpdateInterval target:self selector:@selector(updateLander) userInfo:nil repeats:YES];
     
+    // Start off the display updates
     [self updateLander];
 }
 
@@ -452,7 +494,6 @@ static float RadiansToDegrees(float radians)
     // Unhide the views to get started after splash screen
     self.moonView.hidden = NO;
     self.landerMessages.hidden = NO;
-    self.nextGameButton.hidden = NO;
     self.smallLeftArrow.hidden = NO;
     self.smallRightArrow.hidden = NO;
     self.largeLeftArrow.hidden = NO;
@@ -479,7 +520,7 @@ static float RadiansToDegrees(float radians)
 
 - (void)viewDidLoad
 {
-    [[UIApplication sharedApplication] setStatusBarHidden:YES withAnimation:NO];
+//###    [[UIApplication sharedApplication] setStatusBarHidden:YES withAnimation:NO];
     [super viewDidLoad];
     
     // We need to change the coordinate space to (0,0) in the lower left
@@ -490,6 +531,7 @@ static float RadiansToDegrees(float radians)
     self.landerModel.dataSource = self.landerModel;
     self.landerModel.delegate = self.landerModel;
  
+    
     // Create the moon - ###reduce frame size at some point
     self.moonView = [[[Moon alloc] initWithFrame:[self convertRectFromGameToView:CGRectMake(0, 0, 1024, 768)]] autorelease];
     self.moonView.dataSource = self.moonView;
@@ -502,15 +544,6 @@ static float RadiansToDegrees(float radians)
     self.landerMessages = [[[LanderMessages alloc] init] autorelease];
     self.landerMessages.hidden = NO;
     [self.view addSubview:self.landerMessages];
-    
-    // New/next game button
-    self.nextGameButton = [[[VGButton alloc] initWithFrame:CGRectMake(960, 0, 64, 64)] autorelease];
-    self.nextGameButton.titleLabel.text = @"New Game";
-	[self.nextGameButton addTarget:self 
-                            action:@selector(newGame:) 
-                  forControlEvents:UIControlEventValueChanged];
-    self.nextGameButton.hidden = YES;
-    [self.view addSubview:self.nextGameButton];
     
     // Create the roll control arrows
     NSString *slaPath = [[NSBundle mainBundle] pathForResource:@"SmallLeftArrow" ofType:@"plist"];
@@ -677,7 +710,7 @@ static float RadiansToDegrees(float radians)
               forControlEvents:UIControlEventTouchUpInside];
     self.secondsData.hidden = YES;
     [self.view addSubview:self.secondsData];
-    
+ 
     // Create the instrumentation labels
     self.instrument1 = [[[Instrument alloc] initWithFrame:CGRectMake(0, 0, 200, 24)] autorelease];
     self.instrument1.instrument = self.heightData;
@@ -758,12 +791,18 @@ static float RadiansToDegrees(float radians)
     [super viewDidUnload];
     
     // Kill any active timers
-    [self.simulationTimer invalidate];
-    self.simulationTimer = nil;
-    [self.displayTimer invalidate];
-    self.displayTimer = nil;
-    [self.palsyTimer invalidate];
-    self.palsyTimer = nil;
+    if (self.simulationTimer) {
+        [self.simulationTimer invalidate];
+        self.simulationTimer = nil;
+    }
+    if (self.displayTimer) {
+        [self.displayTimer invalidate];
+        self.displayTimer = nil;
+    }
+    if (self.palsyTimer) {
+        [self.palsyTimer invalidate];
+        self.palsyTimer = nil;
+    }
 
     // Disable telemetry
     self.selectedTelemetry = nil;
@@ -791,8 +830,6 @@ static float RadiansToDegrees(float radians)
     self.instrument7 = nil;
     self.instrument8 = nil;
     
-    self.nextGameButton = nil;
-    
     self.smallLeftArrow = nil;
     self.smallRightArrow = nil;
     self.largeLeftArrow = nil;
@@ -801,10 +838,12 @@ static float RadiansToDegrees(float radians)
     self.thrusterSlider = nil;
     
     self.landerView = nil;
-    self.landerMessages = nil;
     self.dustView = nil;
     self.manView = nil;
     self.flagView = nil;
+    
+    self.landerMessages = nil;
+    self.anotherGameDialog = nil;
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -875,38 +914,31 @@ static float RadiansToDegrees(float radians)
     [self.landerModel.dataSource setAngle:([self.landerModel.dataSource angle] + deltaAngle)];
 }
 
-- (IBAction)newGame:(id)sender
+- (void)newGame
 {
+    // Make sure we didn't leave any messages displayed
     [self.landerMessages removeAllLanderMessages];
-    
-    [self.simulationTimer invalidate];
-    self.simulationTimer = nil;
-    [self.displayTimer invalidate];
-    self.displayTimer = nil;
-    [self.palsyTimer invalidate];
-    self.palsyTimer = nil;
-    
-    [self gameOver];
-    [self initGame2];
-}
 
-- (void)gameReset
-{
+    // Start over
+    [self initGame2];
 }
 
 - (void)updateLander
 {
     [self.landerView updateLander];
     
+    // Update the displayed instruments
     [self.instrument1 display];
     [self.instrument2 display];
     [self.instrument3 display];
     [self.instrument4 display];
     
+#if 0 // debug only
     [self.instrument5 display];
     [self.instrument6 display];
     [self.instrument7 display];
     [self.instrument8 display];
+#endif
 }
 
 - (void)OFFCOM:(float)xPosition withMessage:(NSString *)message
@@ -929,11 +961,12 @@ static float RadiansToDegrees(float radians)
 - (short)DFAKE:(short)yValue
 {
     short y = yValue;
-    y = (y * 3) / 8 + 23;
+    //###y = (y * 3) / 8 + 23;
+    y = (y * 3) / 8 + 17;
     return y;
 }
 
-- (void)gameOver
+- (void)landerDown
 {
     // Tell model we are on surface
     [self.landerModel landerDown];
@@ -944,24 +977,14 @@ static float RadiansToDegrees(float radians)
         [self.dustView removeFromSuperview];
         self.dustView = nil;
     }
-
-    // Update the thruster display
+    
+    // Update the thruster display so it shows our updated value
     [self.thrusterSlider setValue:[self.landerModel.dataSource thrustPercent]];
-    if (self.selectedTelemetry) {
-        self.selectedTelemetry.titleLabel.blink = NO;
-        self.selectedTelemetry = nil;
-    }
     
     // Disable flight controls
     [self disableFlightControls];
     
-    [self.simulationTimer invalidate];
-    self.simulationTimer = nil;
-    [self.displayTimer invalidate];
-    self.displayTimer = nil;
-    [self.palsyTimer invalidate];
-    self.palsyTimer = nil;
-    
+    // Final lander update
     [self updateLander];
 }
 
@@ -1102,11 +1125,16 @@ static float RadiansToDegrees(float radians)
 
 - (void)EXPLOD
 {
+    // We are down hard
+    [self.landerModel landerDown];
+    
     // Shut down things and ring bell
     AudioServicesPlayAlertSound(BeepSound);
-    [self gameOver];
     
-#if 0
+    // Let's delay a bit before presenting the new game dialog
+    self.palsyTimer = [NSTimer scheduledTimerWithTimeInterval:explodeDelay target:self selector:@selector(waitNewGame) userInfo:nil repeats:NO];
+
+#if 0  //### need to sort out this code
     short RADIUS = 0;
     
     // Work on the randomizer
@@ -1120,24 +1148,34 @@ static float RadiansToDegrees(float radians)
 
 - (void)drawMcMan7
 {
-    // All done
-    [self gameOver];
+    // Let's delay a bit before presenting the new game dialog
+    [self.palsyTimer invalidate];
+    self.palsyTimer = [NSTimer scheduledTimerWithTimeInterval:newGameDelay target:self selector:@selector(waitNewGame) userInfo:nil repeats:NO];
 }
 
 - (void)drawMcMan6
 {
+    // Remove any messages that pop up
     [self.landerMessages removeAllLanderMessages];
+    
+    // Force the controls to the eparture levels
     self.HORVEL = 0;
     self.THRUST = 30;
     self.ANGLE = 0;
     [self.thrusterSlider setValue:[self.landerModel.dataSource thrustPercent]];
     
+    // Check if we have gotten out of the detailed view
     if (![self.moonView viewIsDetailed]) {
-        [self.palsyTimer invalidate];
-        self.palsyTimer = nil;
-        
         // Hide the lander 
         self.landerView.hidden = YES;
+
+        // Kill the timers, we are done
+        [self.palsyTimer invalidate];
+        self.palsyTimer = nil;
+        [self.simulationTimer invalidate];
+        self.simulationTimer = nil;
+        [self.displayTimer invalidate];
+        self.displayTimer = nil;
 
         // Wait a bit
         self.palsyTimer = [NSTimer scheduledTimerWithTimeInterval:endDelay target:self selector:@selector(drawMcMan7) userInfo:nil repeats:NO];
@@ -1146,16 +1184,14 @@ static float RadiansToDegrees(float radians)
 
 - (void)drawMcMan5
 {
-    [self.palsyTimer invalidate];
-    self.palsyTimer = nil;
-    
     // Remove the man view
     [self.manView removeFromSuperview];
     self.manView = nil;
     
+    // No more messages at this point
     [self.landerMessages removeAllLanderMessages];
 
-    // Now take off
+    // Now take off with the food
     self.VERDIS += 4;
     self.FUEL += 200;
     self.ANGLE = 0;
@@ -1165,10 +1201,14 @@ static float RadiansToDegrees(float radians)
 
     [self enableFlightControls];
     
-    // Setup game timers
+    // Tell model we are on surface
+    [self.landerModel landerTakeoff];
+    
+    // Setup game and delay timers
+#if 0
 	self.simulationTimer = [NSTimer scheduledTimerWithTimeInterval:GameTimerInterval target:self selector:@selector(gameLoop) userInfo:nil repeats:YES];
 	self.displayTimer = [NSTimer scheduledTimerWithTimeInterval:DisplayUpdateInterval target:self selector:@selector(updateLander) userInfo:nil repeats:YES];
-    
+#endif
     self.palsyTimer = [NSTimer scheduledTimerWithTimeInterval:DisplayUpdateInterval target:self selector:@selector(drawMcMan6) userInfo:nil repeats:YES];
 }
 
@@ -1245,15 +1285,24 @@ static float RadiansToDegrees(float radians)
 
 - (void)waitFlagMan
 {
+    // KIll the timers - we are done
     [self.palsyTimer invalidate];
     self.palsyTimer = nil;
+    [self.displayTimer invalidate];
+    self.displayTimer = nil;
+    [self.simulationTimer invalidate];
+    self.simulationTimer = nil;
     
+    // Don't need the man anymore
     [self.manView removeFromSuperview];
     self.manView = nil;
     
-    // Remove messages and add flag to terrain
+    // Remove messages and add the lander to the terrain data
     [self.landerMessages removeAllLanderMessages];
     [self.moonView addFeature:TF_OldLander atIndex:self.INDEXL];
+
+    // Let's delay a bit before presenting the new game dialog
+    self.palsyTimer = [NSTimer scheduledTimerWithTimeInterval:newGameDelay target:self selector:@selector(waitNewGame) userInfo:nil repeats:NO];
 }
 
 - (void)drawFlagMan1
@@ -1261,13 +1310,12 @@ static float RadiansToDegrees(float radians)
     // Move the man to ground level and then setup the horizontal move
     BOOL done = [self.manView moveMan];
     if (done) {
-        [self.palsyTimer invalidate];
-        self.palsyTimer = nil;
-        
         // Next position
         self.manView.deltaX = 48;
         self.manView.deltaY = 0;
-        
+
+        // Set up the next delay
+        [self.palsyTimer invalidate];
         self.palsyTimer = [NSTimer scheduledTimerWithTimeInterval:moveInterval target:self selector:@selector(drawFlagMan2) userInfo:nil repeats:YES];
     }
 }
@@ -1344,17 +1392,17 @@ static float RadiansToDegrees(float radians)
     
     if (self.RADARY < -10) {
         //INTELM
-        [self gameOver];
+        //###[self gameOver];
         //DEAD
         [self.landerMessages addSystemMessage:@"DeadLanding"];
         QUICK = YES;
     }
-        
-    if (self.RADARY <= 3) {
+    else if (self.RADARY <= 3) {
         //VERYLO turn off fuel, flames, and dust
         [self.landerMessages removeFuelMessage];
 
-        [self gameOver];
+        // We landed or crashed
+        [self landerDown];
         
         //VD
         short vervel = (short)([self.landerModel.dataSource vertVel]);
@@ -1421,6 +1469,7 @@ static float RadiansToDegrees(float radians)
                         [self.moonView addFeature:TF_OldLanderTippedRight atIndex:self.INDEXL];
                     self.SHOWY -= 16;
                     
+                    // Explode
                     self.landerView.hidden = YES;
                     [self EXPLOD];
                 }
@@ -1480,24 +1529,27 @@ static float RadiansToDegrees(float radians)
         short horizvel = (short)([self.landerModel.dataSource horizVel]);
         short angle = (short)([self.landerModel.dataSource angleDegrees]);
         if (horizvel < -10 || horizvel > 10) {
+            // Too much horizontal velocity - tipped
             [self.landerMessages addFlameMessage:@"FastSideways"];
             TiltDirection = horizvel;
         }
         else if (angle < -15 || angle > 15) {
-            // Check the roll angle
+            // Too much roll angle - tipped
             [self.landerMessages addFlameMessage:@"TippedOver"];
             TiltDirection = angle;
         }
         else {
-            // Check terrain slope
+            // Check terrain slope using difference between left and right terrain elevations
             short thl = (short)([self.moonView.dataSource averageTerrainHeight:self.INDEXL]);
             short thr = (short)([self.moonView.dataSource averageTerrainHeight:(self.INDEXL+1)]);
-            if (((thl - thr) < -48) || ((thl - thr) > 48)) {
+            short tdiff = thl - thr;
+            if (tdiff < -48 || tdiff > 48) {
+                // Terrain slope too great - tipped
                 [self.landerMessages addFlameMessage:@"BumpyLanding"];
-                TiltDirection = thl - thr;
+                TiltDirection = tdiff;
             }
             else {
-                // Plant a flag or get a burger
+                // Got it done, plant a flag or get a burger
                 [self PALSY];
             }
         }
@@ -1514,6 +1566,13 @@ static float RadiansToDegrees(float radians)
             else {
                 [self.moonView addFeature:TF_OldLanderTippedRight atIndex:self.INDEXL];
             }
+            
+            // We are down but tipped for some reason remove the lander
+            self.landerView.hidden = YES;
+            [self.landerModel landerDown];
+            
+            // Let's delay a bit before presenting the new game dialog
+            self.palsyTimer = [NSTimer scheduledTimerWithTimeInterval:explodeDelay target:self selector:@selector(waitNewGame) userInfo:nil repeats:NO];
         }
     }
     
@@ -1529,122 +1588,126 @@ static float RadiansToDegrees(float radians)
 
 - (void)gameLoop
 {
+    // Update simulation time
     [self.landerModel.delegate updateTime:GameTimerInterval];
-    
-    // Display a low fuel message
-    if (self.FUEL <= 0) {
-        [self.landerMessages removeFuelMessage];
-        [self disableRollThrusters];
-    }
-    else if (self.FUEL < 200) {
-        if (!self.didFuelAlert) {
-            // Only do this once
-            self.didFuelAlert = YES;
 
-            // Add message and ring bell
-            [self.landerMessages addFuelMessage];
-            AudioServicesPlayAlertSound(BeepSound);
+    if (![self.landerModel onSurface]) {
+        // Display a low fuel message
+        if (self.FUEL <= 0) {
+            [self.landerMessages removeFuelMessage];
+            [self disableRollThrusters];
         }
-    }
-    
-    //(SHOWNT) Test for extreme game events that end the simulation
-    self.BIGXCT = (self.HORDIS + 22400) / 32;
+        else if (self.FUEL < 200) {
+            if (!self.didFuelAlert) {
+                // Only do this once
+                self.didFuelAlert = YES;
 
-    // Get the terrain information
-    short tIndex = self.BIGXCT;
-    short thl = [self.moonView.dataSource averageTerrainHeight:tIndex];
-    short thr = [self.moonView.dataSource averageTerrainHeight:tIndex+1];
-    self.AVERY = (thl + thr) / 2;
-    self.RADARY = self.VERDIS - self.AVERY;
-    
-    //(YSFLAM) Test for the edges
-    if (self.BIGXCT < 10) {
-        // Off the left edge
-        [self OFFCOM:13 withMessage:@"LeftEdge"];
-    }
-    else if (self.BIGXCT > 890) {
-        // Off the right edge
-        [self OFFCOM:887 withMessage:@"RightEdge"];
-    }
-    else if (self.VERDIS > 25000) {
-        // Off the top edge
-        [self OFFCOM:self.SHOWX withMessage:@"TopEdge"];
-    }
-    
-    // Switch views if we hit a critical altitude
-    if (self.VERDIS < 450) {
-        //(CLSEUP) Find our horizontal position in the closeup view
-        if (![self.moonView viewIsDetailed]) {
-            // Select the closeup view
-            self.LEFTEDGE = self.BIGXCT - 9;
-            self.LEFEET = self.LEFTEDGE * 32 - 22400;
-            [self.moonView useCloseUpView:self.LEFTEDGE];
+                // Add message and ring bell
+                [self.landerMessages addFuelMessage];
+                AudioServicesPlayAlertSound(BeepSound);
+            }
         }
-
-        //(CLSEC1) Check if we are at the left/right edger and need to redraw
-        short xPos = self.HORDIS - self.LEFEET;
-        if (xPos <= 30) {
-            // Move the closeup view left
-            self.LEFTEDGE = self.BIGXCT - 17;
-            self.LEFEET = self.LEFTEDGE * 32 - 22400;
-            xPos = self.HORDIS - self.LEFEET;
-            [self.moonView useCloseUpView:self.LEFTEDGE];
-        }
-        else if (xPos > 580) {
-            // Move the closeup view right
-            self.LEFTEDGE = self.BIGXCT - 1;
-            self.LEFEET = self.LEFTEDGE * 32 - 22400;
-            xPos = self.HORDIS - self.LEFEET;
-            [self.moonView useCloseUpView:self.LEFTEDGE];
-        }
-        self.SHOWX = (xPos * 3) / 2;
         
-        // Index to terrain/feature to left of lander
-        self.INDEXL = self.LEFTEDGE + (self.SHOWX / 48);
-        self.INDEXLR = self.SHOWX % 48;
-        
+        //(SHOWNT) Test for extreme game events that end the simulation
+        self.BIGXCT = (self.HORDIS + 22400) / 32;
+
         // Get the terrain information
-        short thl = (short)([self.moonView.dataSource averageTerrainHeight:self.INDEXL]) * (48 - self.INDEXLR);
-        short thr = (short)([self.moonView.dataSource averageTerrainHeight:(self.INDEXL+1)]) * self.INDEXLR;
-        short th = (thl + thr) / 48;
-        self.AVERY = th >> 2;
-        self.AVERT = [self DFAKE:th];
+        short tIndex = self.BIGXCT;
+        short thl = [self.moonView.dataSource averageTerrainHeight:tIndex];
+        short thr = [self.moonView.dataSource averageTerrainHeight:tIndex+1];
+        self.AVERY = (thl + thr) / 2;
+        self.RADARY = self.VERDIS - self.AVERY;
         
-        short RET2 = ((self.VERDIS * 3) / 2) + 23;
-        self.SHOWY = RET2;
-        self.SHOWY += 24;
+        //(YSFLAM) Test for the edges
+        if (self.BIGXCT < 10) {
+            // Off the left edge
+            [self OFFCOM:13 withMessage:@"LeftEdge"];
+        }
+        else if (self.BIGXCT > 890) {
+            // Off the right edge
+            [self OFFCOM:887 withMessage:@"RightEdge"];
+        }
+        else if (self.VERDIS > 25000) {
+            // Off the top edge
+            [self OFFCOM:self.SHOWX withMessage:@"TopEdge"];
+        }
         
-        RET2 -= self.AVERT;
-        self.RADARY = (RET2 * 2) / 3;
-        
-        [self INTEL];
-        [self DUST];
+        // Switch views if we hit a critical altitude
+        if (self.VERDIS < 450) {
+            //(CLSEUP) Find our horizontal position in the closeup view
+            if (![self.moonView viewIsDetailed]) {
+                // Select the closeup view
+                self.LEFTEDGE = self.BIGXCT - 9;
+                self.LEFEET = self.LEFTEDGE * 32 - 22400;
+                [self.moonView useCloseUpView:self.LEFTEDGE];
+            }
 
-        // Redraw surface if changed
-        [self.moonView useCloseUpView:self.LEFTEDGE];
+            //(CLSEC1) Check if we are at the left/right edger and need to redraw
+            short xPos = self.HORDIS - self.LEFEET;
+            if (xPos <= 30) {
+                // Move the closeup view left
+                self.LEFTEDGE = self.BIGXCT - 17;
+                self.LEFEET = self.LEFTEDGE * 32 - 22400;
+                xPos = self.HORDIS - self.LEFEET;
+                [self.moonView useCloseUpView:self.LEFTEDGE];
+            }
+            else if (xPos > 580) {
+                // Move the closeup view right
+                self.LEFTEDGE = self.BIGXCT - 1;
+                self.LEFEET = self.LEFTEDGE * 32 - 22400;
+                xPos = self.HORDIS - self.LEFEET;
+                [self.moonView useCloseUpView:self.LEFTEDGE];
+            }
+            self.SHOWX = (xPos * 3) / 2;
+            
+            // Index to terrain/feature to left of lander
+            self.INDEXL = self.LEFTEDGE + (self.SHOWX / 48);
+            self.INDEXLR = self.SHOWX % 48;
+            
+            // Get the terrain information
+            short thl = (short)([self.moonView.dataSource averageTerrainHeight:self.INDEXL]) * (48 - self.INDEXLR);
+            short thr = (short)([self.moonView.dataSource averageTerrainHeight:(self.INDEXL+1)]) * self.INDEXLR;
+            short th = (thl + thr) / 48;
+            self.AVERY = th >> 2;
+            self.AVERT = [self DFAKE:th];
+            
+            //short RET2 = ((self.VERDIS * 3) / 2) + 23;
+            short RET2 = ((self.VERDIS * 3) / 2) + 17;
+            self.SHOWY = RET2;
+            self.SHOWY += 24;
+            
+            RET2 -= self.AVERT;
+            self.RADARY = (RET2 * 2) / 3;
+            
+            [self INTEL];
+            [self DUST];
 
-        // Move the lander
-        CGPoint newFrame = self.landerView.center;
-        newFrame.x = self.SHOWX;
-        newFrame.y = self.view.frame.size.width - self.SHOWY;
-        self.landerView.center = newFrame;
-    }
-    else {
-        // Make sure the view is displayed (we might have drifted up)
-        [self.moonView useNormalView];
-        
-        // Move the lander
-        self.SHOWX = self.BIGXCT;
-        self.SHOWY = self.VERDIS / 32 + 43;
-        CGPoint newFrame = self.landerView.center;
-        newFrame.x = self.SHOWX;
-        newFrame.y = self.view.frame.size.width - self.SHOWY;
-        self.landerView.center = newFrame;
-        
-        // Test for contact with surface
-        if ((self.RADARY - 16) < 0) {
-            [self ALTER:640];
-            [self EXPLOD];
+            // Redraw surface if changed
+            [self.moonView useCloseUpView:self.LEFTEDGE];
+
+            // Move the lander
+            CGPoint newFrame = self.landerView.center;
+            newFrame.x = self.SHOWX;
+            newFrame.y = self.view.frame.size.width - self.SHOWY;
+            self.landerView.center = newFrame;
+        }
+        else {
+            // Make sure the view is displayed (we might have drifted up)
+            [self.moonView useNormalView];
+            
+            // Move the lander
+            self.SHOWX = self.BIGXCT;
+            self.SHOWY = self.VERDIS / 32 + 43;
+            CGPoint newFrame = self.landerView.center;
+            newFrame.x = self.SHOWX;
+            newFrame.y = self.view.frame.size.width - self.SHOWY;
+            self.landerView.center = newFrame;
+            
+            // Test for contact with surface
+            if ((self.RADARY - 16) < 0) {
+                [self ALTER:640];
+                [self EXPLOD];
+            }
         }
     }
 }

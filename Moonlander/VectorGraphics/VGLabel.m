@@ -92,6 +92,12 @@
     [self updateDrawingDictonary];
 }
 
+- (void)setTextAlignment:(UITextAlignment)newAlignment
+{                    
+    _textAlignment = newAlignment;
+    [self updateDrawingDictonary];
+}
+
 - (void)dealloc
 {
     [_text release];
