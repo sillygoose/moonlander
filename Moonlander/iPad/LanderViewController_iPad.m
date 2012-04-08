@@ -118,26 +118,6 @@ const float explodeDelay = 2.0f;
 const float offcomDelay = 2.0f;
 #endif
 
-const float landingDelay = 4.0f;
-const float moveInterval = 0.16f;
-const float initialFoodDelay = 8.0f;
-const float secondFoodDelay = 2.0f;
-const float launchDelay = 2.0f;
-const float endDelay = 3.0f;
-const float flagFinalDelay = 10.0f;
-#else
-// sped up timings for debug
-const float SplashScreenInterval = 2.0f;
-
-const float landingDelay = 0.5f;
-const float moveInterval = 0.03f;
-const float initialFoodDelay = 1.0f;
-const float secondFoodDelay = 0.5f;
-const float launchDelay = 0.5f;
-const float endDelay = 1.0f;
-const float flagFinalDelay = 2.0f;
-#endif
-
 
 
 static float DegreesToRadians(float degrees)
@@ -150,8 +130,6 @@ static float RadiansToDegrees(float radians)
     return radians * 180 / M_PI;
 }
 
-
-//### marked for deletion
 - (CGPoint)convertPointFromGameToView:(CGPoint)gamePoint
 {
     CGPoint viewPoint = CGPointZero;
@@ -357,7 +335,6 @@ static float RadiansToDegrees(float radians)
     
     self.thrusterSlider.enabled = NO;
     
-#if 0
     self.heightData.enabled = NO;
     self.altitudeData.enabled = NO;
     self.distanceData.enabled = NO;
@@ -370,7 +347,6 @@ static float RadiansToDegrees(float radians)
     self.verticalAccelerationData.enabled = NO;
     self.horizontalAccelerationData.enabled = NO;
     self.secondsData.enabled = NO;
-#endif
 }
 
 - (void)enableFlightControls
@@ -382,7 +358,6 @@ static float RadiansToDegrees(float radians)
     
     self.thrusterSlider.enabled = YES;
     
-#if 0
     self.heightData.enabled = YES;
     self.altitudeData.enabled = YES;
     self.distanceData.enabled = YES;
@@ -395,7 +370,6 @@ static float RadiansToDegrees(float radians)
     self.verticalAccelerationData.enabled = YES;
     self.horizontalAccelerationData.enabled = YES;
     self.secondsData.enabled = YES;
-#endif
 }
 
 - (void)disableRollThrusters
@@ -520,7 +494,7 @@ static float RadiansToDegrees(float radians)
 
 - (void)viewDidLoad
 {
-//###    [[UIApplication sharedApplication] setStatusBarHidden:YES withAnimation:NO];
+    [[UIApplication sharedApplication] setStatusBarHidden:YES withAnimation:NO];
     [super viewDidLoad];
     
     // We need to change the coordinate space to (0,0) in the lower left
@@ -1146,6 +1120,64 @@ static float RadiansToDegrees(float radians)
 }
 
 
+- (void)startGameDelay
+{
+    // Kill the timer and start the new game
+    if (self.palsyTimer) {
+        [self.palsyTimer invalidate];
+        self.palsyTimer = nil;
+    }
+    [self newGame];
+}
+
+- (void)getYesNo
+{
+    // Get the user's input
+    BOOL result = [self.anotherGameDialog dialogResult];
+    
+    // Remove the dialog
+    [self.anotherGameDialog removeFromSuperview];
+    self.anotherGameDialog = nil;
+
+    // Decide what to do
+    if (result == YES) {
+        // Delay a bit before starting the new game
+        self.palsyTimer = [NSTimer scheduledTimerWithTimeInterval:newGameDelay target:self selector:@selector(startGameDelay) userInfo:nil repeats:NO];
+    }
+    else {
+        // Return to the main menu
+        //###
+    }
+}
+
+- (void)waitNewGame
+{
+    // Kill the timers that might be running
+    if (self.palsyTimer) {
+        [self.palsyTimer invalidate];
+        self.palsyTimer = nil;
+    }
+    if (self.simulationTimer) {
+        [self.simulationTimer invalidate];
+        self.simulationTimer = nil;
+    }
+    if (self.displayTimer) {
+        [self.displayTimer invalidate];
+        self.displayTimer = nil;
+    }
+    
+    // Remove any messages
+    [self.landerMessages removeAllLanderMessages];
+    
+    // Hide the lander view
+    self.landerView.hidden = YES;
+    
+    // Setup our dialog for a new game
+    CGRect dialogRect = CGRectMake(450, 300, 200, 100);
+    self.anotherGameDialog = [[[VGDialog alloc] initWithFrame:dialogRect addTarget:self onSelection:@selector(getYesNo)] autorelease];
+    [self.view addSubview:self.anotherGameDialog];
+}
+
 - (void)drawMcMan7
 {
     // Let's delay a bit before presenting the new game dialog
@@ -1580,7 +1612,7 @@ static float RadiansToDegrees(float radians)
         // Hide the lander view
         self.landerView.hidden = YES;
         
-        // Deform the surface and explode
+        // Deform the moon surface and explode
         [self ALTER:32];
         [self EXPLOD];
     }

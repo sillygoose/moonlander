@@ -256,16 +256,19 @@ float RadiansToDegrees(float radians)
 #pragma mark Model initialization
 - (void)initializeLanderModel
 {
+    // Start in flight mode
+    self.lemOnSurface = NO;
+
 #if defined(DEBUG_DUST) || defined(DEBUG_FLAME) || defined(DEBUG_LOCATION)
     // Custom lander start point
     self.rateOfTurn = 0;
     self.turnAngle = DegreesToRadians(46.0f);
     self.horizontalVelocity = 0;
     self.verticalVelocity = 0;
+    self.verticalVelocity = 0;
     self.horizontalDistance = 70;
     self.verticalDistance = 120;
     self.percentThrustRequested = 18;
-    self.actualThrust = self.percentThrustRequested * self.maxThrust / 100.0;
     self.fuelRemaining = self.lemInitalFuel;
     self.clockTicks = 0.0f;
 #else
