@@ -15,7 +15,7 @@
     Telemetry *_instrument;
 }
 
-@property (nonatomic, retain) Telemetry *instrument;
+@property (nonatomic) Telemetry *instrument;
 
 
 - (id)initWithFrame:(CGRect)frameRect;

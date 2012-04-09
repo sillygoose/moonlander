@@ -44,12 +44,9 @@
 
 - (void)dealloc
 {
+    //### fixme
     [_blinkTimer invalidate];
-    [_blinkTimer release];
-    [_drawPaths release];
-    [_vectorName release];
 
-    [super dealloc];
 }
 
 - (void)blinkIntervalPassed:(NSTimer *)timer
@@ -181,7 +178,7 @@
             if ([fontStuff objectForKey:@"name"]) {
                 NSString *fontName = [fontStuff objectForKey:@"name"];
                 CGFontRelease(fontRef);
-                fontRef = CGFontCreateWithFontName((CFStringRef)fontName);
+                fontRef = CGFontCreateWithFontName((__bridge CFStringRef)fontName);
                 CGContextSetFont(context, fontRef);
             }
         }

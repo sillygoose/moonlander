@@ -68,7 +68,7 @@
         CGRect frameRect = [self getRect:fuelMessage];
         
         // Create a label and add it as a subview and to the dictionary
-        VGLabel *fuelLabel = [[[VGLabel alloc] initWithFrame:frameRect] autorelease];
+        VGLabel *fuelLabel = [[VGLabel alloc] initWithFrame:frameRect];
         fuelLabel.drawPaths = [fuelMessage objectForKey:@"text"];
         fuelLabel.vectorName = @"FuelLow";
         [self addSubview:fuelLabel];
@@ -106,7 +106,7 @@
         CGRect frameRect = [self getRect:sysMessage];
         
         // Create a label and add it as a subview and to the dictionary
-        VGLabel *sysLabel = [[[VGLabel alloc] initWithFrame:frameRect] autorelease];
+        VGLabel *sysLabel = [[VGLabel alloc] initWithFrame:frameRect];
         sysLabel.drawPaths = [sysMessage objectForKey:@"text"];
         sysLabel.vectorName = message;
         [self addSubview:sysLabel];
@@ -138,7 +138,7 @@
     CGRect frameRect = [self getRect:flameMessage];
     
     // Create a label and add it as a subview and to the dictionary
-    VGLabel *flameLabel = [[[VGLabel alloc] initWithFrame:frameRect] autorelease];
+    VGLabel *flameLabel = [[VGLabel alloc] initWithFrame:frameRect];
     flameLabel.drawPaths = [flameMessage objectForKey:@"text"];
     flameLabel.vectorName = message;
     [self addSubview:flameLabel];
@@ -160,12 +160,8 @@
 
 - (void)dealloc
 {
+    //### needed?
     [self removeAllLanderMessages];
-    
-    [_landerMessages release];
-    [_displayedMessages release];
-    
-    [super dealloc];
 }
 
 @end

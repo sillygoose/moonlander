@@ -233,7 +233,6 @@
         }
 
         [self addSubview:featureView];
-        [featureView release];
     }
 }
 
@@ -246,7 +245,7 @@
     short x = 0;
     
     // Start building the draw path now
-    NSMutableArray *path = [[[NSMutableArray alloc] init] autorelease];
+    NSMutableArray *path = [[NSMutableArray alloc] init];
     NSArray *paths = [NSArray arrayWithObject:path];
     
     // Intensity and line type variables
@@ -387,7 +386,7 @@
 - (NSArray *)buildLunarSurface
 {
     // Start building the draw path now
-    NSMutableArray *path = [[[NSMutableArray alloc] init] autorelease];
+    NSMutableArray *path = [[NSMutableArray alloc] init];
     NSArray *paths = [NSArray arrayWithObject:path];
     
     // Intensity and line type variables
@@ -493,11 +492,5 @@
     [super drawRect:rect];
 }
 
-- (void)dealloc
-{
-    [_moonArray release];
-    
-    [super dealloc];
-}
 
 @end

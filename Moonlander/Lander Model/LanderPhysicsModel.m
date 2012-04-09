@@ -294,10 +294,6 @@ float RadiansToDegrees(float radians)
     return self ;
 }
 
-- (void)dealloc {
-    [super dealloc] ;
-}
-
 - (void)newGame
 {
     [self initializeLanderModel];

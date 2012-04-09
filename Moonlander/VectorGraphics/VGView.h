@@ -13,17 +13,17 @@
     NSArray     *_drawPaths;
     NSString    *_vectorName;
   
-    CGFloat     _fontSize;      //###Mark for removal
-    NSTimer     *_blinkTimer;   //###Mark for removal
+    CGFloat     _fontSize;              //###Mark for removal
+    NSTimer     *__weak _blinkTimer;    //###Mark for removal
     
     BOOL        _blinkOn;
     CGRect      _actualBounds;
 }
 
-@property (nonatomic, retain) NSArray *drawPaths;
+@property (nonatomic) NSArray *drawPaths;
 @property (nonatomic, copy) NSString *vectorName;
 
-@property (nonatomic, assign) NSTimer *blinkTimer;
+@property (nonatomic, weak) NSTimer *blinkTimer;
 @property (nonatomic) BOOL blinkOn;
 @property (nonatomic) CGFloat fontSize;
 

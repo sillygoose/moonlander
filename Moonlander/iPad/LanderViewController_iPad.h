@@ -53,9 +53,9 @@
     
     VGSlider        *_thrusterSlider;
     
-    NSTimer         *_simulationTimer;
-    NSTimer         *_displayTimer;
-    NSTimer         *_palsyTimer;
+    NSTimer         *__unsafe_unretained _simulationTimer;
+    NSTimer         *__unsafe_unretained _displayTimer;
+    NSTimer         *__unsafe_unretained _palsyTimer;
 
     Telemetry       *_selectedTelemetry;
     Telemetry       *_heightData;
@@ -89,11 +89,11 @@
 
 }
 
-@property (nonatomic, retain) LanderPhysicsModel *landerModel;
+@property (nonatomic, strong) LanderPhysicsModel *landerModel;
 
-@property (nonatomic, assign) NSTimer *simulationTimer;
-@property (nonatomic, assign) NSTimer *displayTimer;
-@property (nonatomic, assign) NSTimer *palsyTimer;
+@property (nonatomic, unsafe_unretained) NSTimer *simulationTimer;
+@property (nonatomic, unsafe_unretained) NSTimer *displayTimer;
+@property (nonatomic, unsafe_unretained) NSTimer *palsyTimer;
 
 @property (nonatomic) short SHOWX;
 @property (nonatomic) short SHOWY;
@@ -119,46 +119,46 @@
 @property (nonatomic, readonly) short TIME;
 @property (nonatomic) short FUEL;
 
-@property (nonatomic, retain) Moon *moonView;
-@property (nonatomic, retain) Lander *landerView;
-@property (nonatomic, retain) Dust *dustView;
-@property (nonatomic, retain) Man *manView;
-@property (nonatomic, retain) Flag *flagView;
+@property (nonatomic, strong) Moon *moonView;
+@property (nonatomic, strong) Lander *landerView;
+@property (nonatomic, strong) Dust *dustView;
+@property (nonatomic, strong) Man *manView;
+@property (nonatomic, strong) Flag *flagView;
 
-@property (nonatomic, retain) VGButton *smallLeftArrow;
-@property (nonatomic, retain) VGButton *smallRightArrow;
-@property (nonatomic, retain) VGButton *largeLeftArrow;
-@property (nonatomic, retain) VGButton *largeRightArrow;
+@property (nonatomic, strong) VGButton *smallLeftArrow;
+@property (nonatomic, strong) VGButton *smallRightArrow;
+@property (nonatomic, strong) VGButton *largeLeftArrow;
+@property (nonatomic, strong) VGButton *largeRightArrow;
 
-@property (nonatomic, retain) VGSlider *thrusterSlider;
+@property (nonatomic, strong) VGSlider *thrusterSlider;
 
-@property (nonatomic, retain) Telemetry *selectedTelemetry;
-@property (nonatomic, retain) Telemetry *heightData;
-@property (nonatomic, retain) Telemetry *altitudeData;
-@property (nonatomic, retain) Telemetry *distanceData;
-@property (nonatomic, retain) Telemetry *fuelLeftData;
-@property (nonatomic, retain) Telemetry *weightData;
-@property (nonatomic, retain) Telemetry *thrustData;
-@property (nonatomic, retain) Telemetry *thrustAngleData;
-@property (nonatomic, retain) Telemetry *verticalVelocityData;
-@property (nonatomic, retain) Telemetry *horizontalVelocityData;
-@property (nonatomic, retain) Telemetry *verticalAccelerationData;
-@property (nonatomic, retain) Telemetry *horizontalAccelerationData;
-@property (nonatomic, retain) Telemetry *secondsData;
+@property (nonatomic, strong) Telemetry *selectedTelemetry;
+@property (nonatomic, strong) Telemetry *heightData;
+@property (nonatomic, strong) Telemetry *altitudeData;
+@property (nonatomic, strong) Telemetry *distanceData;
+@property (nonatomic, strong) Telemetry *fuelLeftData;
+@property (nonatomic, strong) Telemetry *weightData;
+@property (nonatomic, strong) Telemetry *thrustData;
+@property (nonatomic, strong) Telemetry *thrustAngleData;
+@property (nonatomic, strong) Telemetry *verticalVelocityData;
+@property (nonatomic, strong) Telemetry *horizontalVelocityData;
+@property (nonatomic, strong) Telemetry *verticalAccelerationData;
+@property (nonatomic, strong) Telemetry *horizontalAccelerationData;
+@property (nonatomic, strong) Telemetry *secondsData;
 
-@property (nonatomic, retain) Instrument *instrument1;
-@property (nonatomic, retain) Instrument *instrument2;
-@property (nonatomic, retain) Instrument *instrument3;
-@property (nonatomic, retain) Instrument *instrument4;
+@property (nonatomic, strong) Instrument *instrument1;
+@property (nonatomic, strong) Instrument *instrument2;
+@property (nonatomic, strong) Instrument *instrument3;
+@property (nonatomic, strong) Instrument *instrument4;
 
-@property (nonatomic, retain) Instrument *instrument5;
-@property (nonatomic, retain) Instrument *instrument6;
-@property (nonatomic, retain) Instrument *instrument7;
-@property (nonatomic, retain) Instrument *instrument8;
+@property (nonatomic, strong) Instrument *instrument5;
+@property (nonatomic, strong) Instrument *instrument6;
+@property (nonatomic, strong) Instrument *instrument7;
+@property (nonatomic, strong) Instrument *instrument8;
 
-@property (nonatomic, retain) LanderMessages *landerMessages;
+@property (nonatomic, strong) LanderMessages *landerMessages;
 
-@property (nonatomic, retain) VGDialog *anotherGameDialog;
+@property (nonatomic, strong) VGDialog *anotherGameDialog;
 
 @property (nonatomic) BOOL didFuelAlert;
 

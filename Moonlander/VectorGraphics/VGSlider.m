@@ -39,20 +39,20 @@
         
         // Thruster slider subview
         NSString *tsPath = [[NSBundle mainBundle] pathForResource:@"ThrusterControl" ofType:@"plist"];
-        self.thrusterSlider = [[[VGView alloc] initWithFrame:sliderFrame withPaths:tsPath] autorelease];
+        self.thrusterSlider = [[VGView alloc] initWithFrame:sliderFrame withPaths:tsPath];
         self.thrusterSlider.userInteractionEnabled = YES;
         //self.thrusterSlider.backgroundColor = [UIColor grayColor];
         [self addSubview:self.thrusterSlider];
         
         // Thruster needle indicator subview
         NSString *tiPath = [[NSBundle mainBundle] pathForResource:@"ThrusterNeedle" ofType:@"plist"];
-        self.thrusterIndicator = [[[VGView alloc] initWithFrame:needleFrame withPaths:tiPath] autorelease];
+        self.thrusterIndicator = [[VGView alloc] initWithFrame:needleFrame withPaths:tiPath];
         self.thrusterIndicator.userInteractionEnabled = NO;
         //self.thrusterIndicator.backgroundColor = [UIColor grayColor];
         [self addSubview:self.thrusterIndicator];
         
         // Thruster numeric value subview
-        self.thrusterValue = [[[VGLabel alloc] initWithFrame:valueFrame] autorelease];
+        self.thrusterValue = [[VGLabel alloc] initWithFrame:valueFrame];
         self.thrusterValue.userInteractionEnabled = NO;
         //self.thrusterValue.backgroundColor = [UIColor grayColor];
         [self addSubview:self.thrusterValue];
@@ -81,14 +81,6 @@
     [self.thrusterValue setNeedsDisplay];
 }
 
-- (void)dealloc
-{
-    [_thrusterSlider release];
-    [_thrusterIndicator release];
-    [_thrusterValue release];
-    
-    [super dealloc];
-}
 
 
 #pragma mark Touch tracking

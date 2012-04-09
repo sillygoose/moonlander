@@ -265,56 +265,6 @@ static float RadiansToDegrees(float radians)
     [self.landerModel.dataSource setFuel:value];
 }
 
-- (void)dealloc
-{
-    [_landerModel release];
-    
-    [_moonView release];
-    [_landerView release];
-    [_dustView release];
-    [_manView release];
-    [_flagView release];
-    
-    [_smallLeftArrow release];
-    [_smallRightArrow release];
-    [_largeLeftArrow release];
-    [_largeRightArrow release];
-    
-    [_thrusterSlider release];
-    
-    [_simulationTimer release];
-    [_displayTimer release];
-    
-    [_selectedTelemetry release];
-    [_heightData release];
-    [_altitudeData release];
-    [_distanceData release];
-    [_fuelLeftData release];
-    [_weightData release];
-    [_thrustData release];
-    [_thrustAngleData release];
-    [_verticalVelocityData release];
-    [_horizontalVelocityData release];
-    [_verticalAccelerationData release];
-    [_horizontalAccelerationData release];
-    [_secondsData release];
-    
-    [_instrument1 release];
-    [_instrument2 release];
-    [_instrument3 release];
-    [_instrument4 release];
-    
-    [_instrument5 release];
-    [_instrument6 release];
-    [_instrument7 release];
-    [_instrument8 release];
-    
-    [_landerMessages release];
-    
-    [_anotherGameDialog release];
-    
-    [super dealloc];
-}
 
 - (void)didReceiveMemoryWarning
 {
@@ -501,13 +451,13 @@ static float RadiansToDegrees(float radians)
     self.view.transform = CGAffineTransformMake(1, 0, 0, -1, 0, 0);
 
     // Create the lander simulation model
-    self.landerModel = [[[LanderPhysicsModel alloc] init] autorelease];
+    self.landerModel = [[LanderPhysicsModel alloc] init];
     self.landerModel.dataSource = self.landerModel;
     self.landerModel.delegate = self.landerModel;
  
     
     // Create the moon - ###reduce frame size at some point
-    self.moonView = [[[Moon alloc] initWithFrame:[self convertRectFromGameToView:CGRectMake(0, 0, 1024, 768)]] autorelease];
+    self.moonView = [[Moon alloc] initWithFrame:[self convertRectFromGameToView:CGRectMake(0, 0, 1024, 768)]];
     self.moonView.dataSource = self.moonView;
     self.moonView.userInteractionEnabled = NO;
     self.moonView.hidden = YES;
@@ -515,13 +465,13 @@ static float RadiansToDegrees(float radians)
     [self.view addSubview:self.moonView];
 
     // Create the message manager
-    self.landerMessages = [[[LanderMessages alloc] init] autorelease];
+    self.landerMessages = [[LanderMessages alloc] init];
     self.landerMessages.hidden = NO;
     [self.view addSubview:self.landerMessages];
     
     // Create the roll control arrows
     NSString *slaPath = [[NSBundle mainBundle] pathForResource:@"SmallLeftArrow" ofType:@"plist"];
-    self.smallLeftArrow = [[[VGButton alloc] initWithFrame:[self convertRectFromGameToView: CGRectMake(925, 375, 24, 12)]  withPaths:slaPath andRepeat:0.5f] autorelease];
+    self.smallLeftArrow = [[VGButton alloc] initWithFrame:[self convertRectFromGameToView: CGRectMake(925, 375, 24, 12)]  withPaths:slaPath andRepeat:0.5f];
 	[self.smallLeftArrow addTarget:self 
                             action:@selector(rotateLander:) 
                   forControlEvents:UIControlEventValueChanged];
@@ -529,7 +479,7 @@ static float RadiansToDegrees(float radians)
     [self.view addSubview:self.smallLeftArrow];
     
     NSString *sraPath = [[NSBundle mainBundle] pathForResource:@"SmallRightArrow" ofType:@"plist"];
-    self.smallRightArrow = [[[VGButton alloc] initWithFrame:[self convertRectFromGameToView: CGRectMake(955, 375, 24, 12)] withPaths:sraPath andRepeat:0.5f] autorelease];
+    self.smallRightArrow = [[VGButton alloc] initWithFrame:[self convertRectFromGameToView: CGRectMake(955, 375, 24, 12)] withPaths:sraPath andRepeat:0.5f];
 	[self.smallRightArrow addTarget:self 
                              action:@selector(rotateLander:) 
                    forControlEvents:UIControlEventValueChanged];
@@ -537,7 +487,7 @@ static float RadiansToDegrees(float radians)
     [self.view addSubview:self.smallRightArrow];
     
     NSString *llaPath = [[NSBundle mainBundle] pathForResource:@"LargeLeftArrow" ofType:@"plist"];
-    self.largeLeftArrow = [[[VGButton alloc] initWithFrame:[self convertRectFromGameToView: CGRectMake(905, 330, 48, 24)] withPaths:llaPath andRepeat:0.5f] autorelease];
+    self.largeLeftArrow = [[VGButton alloc] initWithFrame:[self convertRectFromGameToView: CGRectMake(905, 330, 48, 24)] withPaths:llaPath andRepeat:0.5f];
 	[self.largeLeftArrow addTarget:self 
                             action:@selector(rotateLander:) 
                   forControlEvents:UIControlEventValueChanged];
@@ -545,7 +495,7 @@ static float RadiansToDegrees(float radians)
     [self.view addSubview:self.largeLeftArrow];
     
     NSString *lraPath = [[NSBundle mainBundle] pathForResource:@"LargeRightArrow" ofType:@"plist"];
-    self.largeRightArrow = [[[VGButton alloc] initWithFrame:[self convertRectFromGameToView: CGRectMake(955, 330, 48, 24)] withPaths:lraPath andRepeat:0.5f] autorelease];
+    self.largeRightArrow = [[VGButton alloc] initWithFrame:[self convertRectFromGameToView: CGRectMake(955, 330, 48, 24)] withPaths:lraPath andRepeat:0.5f];
 	[self.largeRightArrow addTarget:self 
                              action:@selector(rotateLander:) 
                    forControlEvents:UIControlEventValueChanged];
@@ -553,7 +503,7 @@ static float RadiansToDegrees(float radians)
     [self.view addSubview:self.largeRightArrow];
     
     // Create the thruster control
-    self.thrusterSlider = [[[VGSlider alloc] initWithFrame:[self convertRectFromGameToView: CGRectMake(820, 450, 200, 200)]] autorelease];
+    self.thrusterSlider = [[VGSlider alloc] initWithFrame:[self convertRectFromGameToView: CGRectMake(820, 450, 200, 200)]];
 	[self.thrusterSlider addTarget:self 
                             action:@selector(thrusterChanged:) 
                   forControlEvents:UIControlEventValueChanged];
@@ -564,30 +514,30 @@ static float RadiansToDegrees(float radians)
 	const short TelemetryXPos = 930;
     const short TelemetryXSize = 100;
     const short TelemetryYSize = 20;
-    self.heightData = [[[Telemetry alloc] initWithFrame:[self convertRectFromGameToView: CGRectMake(TelemetryXPos, 247, TelemetryXSize, TelemetryYSize)]] autorelease];
+    self.heightData = [[Telemetry alloc] initWithFrame:[self convertRectFromGameToView: CGRectMake(TelemetryXPos, 247, TelemetryXSize, TelemetryYSize)]];
     self.heightData.titleLabel.text = @"HEIGHT";
     self.heightData.format = @"%6d %@";
-    self.heightData.data = Block_copy(^{return self.RADARY;});
+    self.heightData.data = [^{ return self.RADARY;} copy];
 	[self.heightData addTarget:self 
                            action:@selector(telemetrySelected:) 
                  forControlEvents:UIControlEventTouchUpInside];
     self.heightData.hidden = YES;
     [self.view addSubview:self.heightData];
     
-    self.altitudeData = [[[Telemetry alloc] initWithFrame:[self convertRectFromGameToView: CGRectMake(TelemetryXPos, 225, TelemetryXSize, TelemetryYSize)]] autorelease];
+    self.altitudeData = [[Telemetry alloc] initWithFrame:[self convertRectFromGameToView: CGRectMake(TelemetryXPos, 225, TelemetryXSize, TelemetryYSize)]];
     self.altitudeData.titleLabel.text = @"ALTITUDE";
     self.altitudeData.format = @"%6d %@";
-    self.altitudeData.data = Block_copy(^{ return (short)([self.landerModel.dataSource altitude]);});
+    self.altitudeData.data = [^{ return (short)([self.landerModel.dataSource altitude]);} copy];
 	[self.altitudeData addTarget:self 
                            action:@selector(telemetrySelected:) 
                  forControlEvents:UIControlEventTouchUpInside];
     self.altitudeData.hidden = YES;
     [self.view addSubview:self.altitudeData];
     
-    self.distanceData = [[[Telemetry alloc] initWithFrame:[self convertRectFromGameToView: CGRectMake(TelemetryXPos, 203, TelemetryXSize, TelemetryYSize)]] autorelease];
+    self.distanceData = [[Telemetry alloc] initWithFrame:[self convertRectFromGameToView: CGRectMake(TelemetryXPos, 203, TelemetryXSize, TelemetryYSize)]];
     self.distanceData.titleLabel.text = @"DISTANCE";
     self.distanceData.format = @"%6d %@";
-    self.distanceData.data = Block_copy(^{ return (short)([self.landerModel.dataSource distance]);});
+    self.distanceData.data = [^{ return (short)([self.landerModel.dataSource distance]);} copy];
 	[self.distanceData addTarget:self 
                            action:@selector(telemetrySelected:) 
                  forControlEvents:UIControlEventTouchUpInside];
@@ -595,90 +545,90 @@ static float RadiansToDegrees(float radians)
     [self.view addSubview:self.distanceData];
     
 
-    self.fuelLeftData = [[[Telemetry alloc] initWithFrame:[self convertRectFromGameToView: CGRectMake(TelemetryXPos, 181, TelemetryXSize, TelemetryYSize)]] autorelease];
+    self.fuelLeftData = [[Telemetry alloc] initWithFrame:[self convertRectFromGameToView: CGRectMake(TelemetryXPos, 181, TelemetryXSize, TelemetryYSize)]];
     self.fuelLeftData.titleLabel.text = @"FUEL LEFT";
     self.fuelLeftData.format = @"%6d %@";
-    self.fuelLeftData.data = Block_copy(^{ return (short)([self.landerModel.dataSource fuel]);});
+    self.fuelLeftData.data = [^{ return (short)([self.landerModel.dataSource fuel]);} copy];
 	[self.fuelLeftData addTarget:self 
                          action:@selector(telemetrySelected:) 
                forControlEvents:UIControlEventTouchUpInside];
     self.fuelLeftData.hidden = YES;
     [self.view addSubview:self.fuelLeftData];
     
-    self.weightData = [[[Telemetry alloc] initWithFrame:[self convertRectFromGameToView: CGRectMake(TelemetryXPos, 159, TelemetryXSize, TelemetryYSize)]] autorelease];
+    self.weightData = [[Telemetry alloc] initWithFrame:[self convertRectFromGameToView: CGRectMake(TelemetryXPos, 159, TelemetryXSize, TelemetryYSize)]];
     self.weightData.titleLabel.text = @"WEIGHT";
     self.weightData.format = @"%6d %@";
-    self.weightData.data = Block_copy(^{ return (short)([self.landerModel.dataSource weight]);});
+    self.weightData.data = [^{ return (short)([self.landerModel.dataSource weight]);} copy];
 	[self.weightData addTarget:self 
                                    action:@selector(telemetrySelected:) 
                          forControlEvents:UIControlEventTouchUpInside];
     self.weightData.hidden = YES;
     [self.view addSubview:self.weightData];
 
-    self.thrustData = [[[Telemetry alloc] initWithFrame:[self convertRectFromGameToView: CGRectMake(TelemetryXPos, 137, TelemetryXSize, TelemetryYSize)]] autorelease];
+    self.thrustData = [[Telemetry alloc] initWithFrame:[self convertRectFromGameToView: CGRectMake(TelemetryXPos, 137, TelemetryXSize, TelemetryYSize)]];
     self.thrustData.titleLabel.text = @"THRUST";
     self.thrustData.format = @"%6d %@";
-    self.thrustData.data = Block_copy(^{ return (short)([self.landerModel.dataSource thrust]);});
+    self.thrustData.data = [^{ return (short)([self.landerModel.dataSource thrust]);} copy];
 	[self.thrustData addTarget:self 
                         action:@selector(telemetrySelected:) 
               forControlEvents:UIControlEventTouchUpInside];
     self.thrustData.hidden = YES;
     [self.view addSubview:self.thrustData];
     
-    self.thrustAngleData = [[[Telemetry alloc] initWithFrame:[self convertRectFromGameToView: CGRectMake(TelemetryXPos, 115, TelemetryXSize, TelemetryYSize)]] autorelease];
+    self.thrustAngleData = [[Telemetry alloc] initWithFrame:[self convertRectFromGameToView: CGRectMake(TelemetryXPos, 115, TelemetryXSize, TelemetryYSize)]];
     self.thrustAngleData.titleLabel.text = @"ANGLE";
     self.thrustAngleData.format = @"%6d %@";
-    self.thrustAngleData.data = Block_copy(^{ return (short)([self.landerModel.dataSource angleDegrees]);});
+    self.thrustAngleData.data = [^{ return (short)([self.landerModel.dataSource angleDegrees]);} copy];
 	[self.thrustAngleData addTarget:self 
                         action:@selector(telemetrySelected:) 
               forControlEvents:UIControlEventTouchUpInside];
     self.thrustAngleData.hidden = YES;
     [self.view addSubview:self.thrustAngleData];
     
-    self.verticalVelocityData = [[[Telemetry alloc] initWithFrame:[self convertRectFromGameToView: CGRectMake(TelemetryXPos, 93, TelemetryXSize, TelemetryYSize)]] autorelease];
+    self.verticalVelocityData = [[Telemetry alloc] initWithFrame:[self convertRectFromGameToView: CGRectMake(TelemetryXPos, 93, TelemetryXSize, TelemetryYSize)]];
     self.verticalVelocityData.titleLabel.text = @"VER VEL";
     self.verticalVelocityData.format = @"%6d %@";
-    self.verticalVelocityData.data = Block_copy(^{ return (short)([self.landerModel.dataSource vertVel]);});
+    self.verticalVelocityData.data = [^{ return (short)([self.landerModel.dataSource vertVel]);} copy];
 	[self.verticalVelocityData addTarget:self 
                         action:@selector(telemetrySelected:) 
               forControlEvents:UIControlEventTouchUpInside];
     self.verticalVelocityData.hidden = YES;
     [self.view addSubview:self.verticalVelocityData];
     
-    self.horizontalVelocityData = [[[Telemetry alloc] initWithFrame:[self convertRectFromGameToView: CGRectMake(TelemetryXPos, 71, TelemetryXSize, TelemetryYSize)]] autorelease];
+    self.horizontalVelocityData = [[Telemetry alloc] initWithFrame:[self convertRectFromGameToView: CGRectMake(TelemetryXPos, 71, TelemetryXSize, TelemetryYSize)]];
     self.horizontalVelocityData.titleLabel.text = @"HOR VEL";
     self.horizontalVelocityData.format = @"%6d %@";
-    self.horizontalVelocityData.data = Block_copy(^{ return (short)([self.landerModel.dataSource horizVel]);});
+    self.horizontalVelocityData.data = [^{ return (short)([self.landerModel.dataSource horizVel]);} copy];
 	[self.horizontalVelocityData addTarget:self 
                         action:@selector(telemetrySelected:) 
               forControlEvents:UIControlEventTouchUpInside];
     self.horizontalVelocityData.hidden = YES;
     [self.view addSubview:self.horizontalVelocityData];
     
-    self.verticalAccelerationData = [[[Telemetry alloc] initWithFrame:[self convertRectFromGameToView: CGRectMake(TelemetryXPos, 49, TelemetryXSize, TelemetryYSize)]] autorelease];
+    self.verticalAccelerationData = [[Telemetry alloc] initWithFrame:[self convertRectFromGameToView: CGRectMake(TelemetryXPos, 49, TelemetryXSize, TelemetryYSize)]];
     self.verticalAccelerationData.titleLabel.text = @"VER ACC";
     self.verticalAccelerationData.format = @"%6d %@";
-    self.verticalAccelerationData.data = Block_copy(^{ return (short)([self.landerModel.dataSource vertAccel]);});
+    self.verticalAccelerationData.data = [^{ return (short)([self.landerModel.dataSource vertAccel]);} copy];
 	[self.verticalAccelerationData addTarget:self 
                         action:@selector(telemetrySelected:) 
               forControlEvents:UIControlEventTouchUpInside];
     self.verticalAccelerationData.hidden = YES;
     [self.view addSubview:self.verticalAccelerationData];
     
-    self.horizontalAccelerationData = [[[Telemetry alloc] initWithFrame:[self convertRectFromGameToView: CGRectMake(TelemetryXPos, 27, TelemetryXSize, TelemetryYSize)]] autorelease];
+    self.horizontalAccelerationData = [[Telemetry alloc] initWithFrame:[self convertRectFromGameToView: CGRectMake(TelemetryXPos, 27, TelemetryXSize, TelemetryYSize)]];
     self.horizontalAccelerationData.titleLabel.text = @"HOR ACC";
     self.horizontalAccelerationData.format = @"%6d %@";
-    self.horizontalAccelerationData.data = Block_copy(^{ return (short)([self.landerModel.dataSource horizAccel]);});
+    self.horizontalAccelerationData.data = [^{ return (short)([self.landerModel.dataSource horizAccel]);} copy];
 	[self.horizontalAccelerationData addTarget:self 
                         action:@selector(telemetrySelected:) 
               forControlEvents:UIControlEventTouchUpInside];
     self.horizontalAccelerationData.hidden = YES;
     [self.view addSubview:self.horizontalAccelerationData];
     
-    self.secondsData = [[[Telemetry alloc] initWithFrame:[self convertRectFromGameToView: CGRectMake(TelemetryXPos, 5, TelemetryXSize, TelemetryYSize)]] autorelease];
+    self.secondsData = [[Telemetry alloc] initWithFrame:[self convertRectFromGameToView: CGRectMake(TelemetryXPos, 5, TelemetryXSize, TelemetryYSize)]];
     self.secondsData.titleLabel.text = @"SECONDS";
     self.secondsData.format = @"%6d %@";
-    self.secondsData.data = Block_copy(^{ return (short)([self.landerModel.dataSource time]);});
+    self.secondsData.data =[^{ return (short)([self.landerModel.dataSource time]);} copy];
 	[self.secondsData addTarget:self 
                         action:@selector(telemetrySelected:) 
               forControlEvents:UIControlEventTouchUpInside];
@@ -686,35 +636,35 @@ static float RadiansToDegrees(float radians)
     [self.view addSubview:self.secondsData];
  
     // Create the instrumentation labels
-    self.instrument1 = [[[Instrument alloc] initWithFrame:CGRectMake(0, 0, 200, 24)] autorelease];
+    self.instrument1 = [[Instrument alloc] initWithFrame:CGRectMake(0, 0, 200, 24)];
     self.instrument1.instrument = self.heightData;
 	[self.instrument1 addTarget:self 
                          action:@selector(instrumentSelected:) 
                forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:self.instrument1];
     
-    self.instrument2 = [[[Instrument alloc] initWithFrame:CGRectMake(250, 0, 200, 24)] autorelease];
+    self.instrument2 = [[Instrument alloc] initWithFrame:CGRectMake(250, 0, 200, 24)];
     self.instrument2.instrument = self.distanceData;
 	[self.instrument2 addTarget:self 
                          action:@selector(instrumentSelected:) 
                forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:self.instrument2];
     
-    self.instrument3 = [[[Instrument alloc] initWithFrame:CGRectMake(500, 0, 200, 24)] autorelease];
+    self.instrument3 = [[Instrument alloc] initWithFrame:CGRectMake(500, 0, 200, 24)];
     self.instrument3.instrument = self.verticalVelocityData;
 	[self.instrument3 addTarget:self 
                          action:@selector(instrumentSelected:) 
                forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:self.instrument3];
     
-    self.instrument4 = [[[Instrument alloc] initWithFrame:CGRectMake(750, 0, 200, 24)] autorelease];
+    self.instrument4 = [[Instrument alloc] initWithFrame:CGRectMake(750, 0, 200, 24)];
     self.instrument4.instrument = self.horizontalVelocityData;
 	[self.instrument4 addTarget:self 
                          action:@selector(instrumentSelected:) 
                forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:self.instrument4];
 
-    self.instrument5 = [[[Instrument alloc] initWithFrame:CGRectMake(0, 40, 200, 24)] autorelease];
+    self.instrument5 = [[Instrument alloc] initWithFrame:CGRectMake(0, 40, 200, 24)];
     self.instrument5.instrument = self.altitudeData;
 	[self.instrument5 addTarget:self 
                          action:@selector(instrumentSelected:) 
@@ -722,7 +672,7 @@ static float RadiansToDegrees(float radians)
     self.instrument5.hidden = YES;
     [self.view addSubview:self.instrument5];
     
-    self.instrument6 = [[[Instrument alloc] initWithFrame:CGRectMake(250, 40, 200, 24)] autorelease];
+    self.instrument6 = [[Instrument alloc] initWithFrame:CGRectMake(250, 40, 200, 24)];
     self.instrument6.instrument = self.fuelLeftData;
 	[self.instrument6 addTarget:self 
                          action:@selector(instrumentSelected:) 
@@ -730,7 +680,7 @@ static float RadiansToDegrees(float radians)
     self.instrument6.hidden = YES;
     [self.view addSubview:self.instrument6];
     
-    self.instrument7 = [[[Instrument alloc] initWithFrame:CGRectMake(500, 40, 200, 24)] autorelease];
+    self.instrument7 = [[Instrument alloc] initWithFrame:CGRectMake(500, 40, 200, 24)];
     self.instrument7.instrument = self.thrustAngleData;
 	[self.instrument7 addTarget:self 
                          action:@selector(instrumentSelected:) 
@@ -738,7 +688,7 @@ static float RadiansToDegrees(float radians)
     self.instrument7.hidden = YES;
     [self.view addSubview:self.instrument7];
     
-    self.instrument8 = [[[Instrument alloc] initWithFrame:CGRectMake(750, 40, 200, 24)] autorelease];
+    self.instrument8 = [[Instrument alloc] initWithFrame:CGRectMake(750, 40, 200, 24)];
     self.instrument8.instrument = self.secondsData;
 	[self.instrument8 addTarget:self 
                          action:@selector(instrumentSelected:) 
@@ -747,12 +697,12 @@ static float RadiansToDegrees(float radians)
     [self.view addSubview:self.instrument8];
     
     // Create the lander view with data sources
-    self.landerView = [[[Lander alloc] init] autorelease];
+    self.landerView = [[Lander alloc] init];
     self.landerView.userInteractionEnabled = NO;
     self.landerView.contentMode = UIViewContentModeRedraw;
-    self.landerView.thrustData = Block_copy(^{ return [self.landerModel.dataSource thrustPercent];});
-    self.landerView.angleData = Block_copy(^{ return [self.landerModel.dataSource angle];});
-    self.landerView.positionData = Block_copy(^{ return [self.landerModel.dataSource landerPosition];});
+    self.landerView.thrustData = [^{ return [self.landerModel.dataSource thrustPercent];} copy];
+    self.landerView.angleData = [^{ return [self.landerModel.dataSource angle];} copy];
+    self.landerView.positionData = [^{ return [self.landerModel.dataSource landerPosition];} copy];
     self.landerView.hidden = YES;
     [self.view addSubview:self.landerView];
     
@@ -1001,7 +951,7 @@ static float RadiansToDegrees(float radians)
                 //short yValues[MaxDust];
                 //short valueIndex = 0;radians
                 // Allocate our path array
-                NSMutableArray *path = [[[NSMutableArray alloc] init] autorelease];
+                NSMutableArray *path = [[NSMutableArray alloc] init];
                 NSArray *paths = [NSArray arrayWithObject:path];
                 
                 // Prep the intensity and line type info
@@ -1069,14 +1019,14 @@ static float RadiansToDegrees(float radians)
                 // Create the view if needed
                 if (!self.dustView) {
                     CGRect frameRect = CGRectMake(xCenterPos, yCenterPos, 128, 64);
-                    self.dustView = [[[Dust alloc] initWithFrame:frameRect] autorelease];
+                    self.dustView = [[Dust alloc] initWithFrame:frameRect];
                     [self.view addSubview:self.dustView];
                 }
                 else if (self.dustView.frame.origin.x != xCenterPos || self.dustView.frame.origin.y != yCenterPos) {
                     // remove old dust view and create a new one
                     [self.dustView removeFromSuperview];
                     CGRect frameRect = CGRectMake(xCenterPos, yCenterPos, 128, 64);
-                    self.dustView = [[[Dust alloc] initWithFrame:frameRect] autorelease];
+                    self.dustView = [[Dust alloc] initWithFrame:frameRect];
                     [self.view addSubview:self.dustView];
                 }
                 
@@ -1174,7 +1124,7 @@ static float RadiansToDegrees(float radians)
     
     // Setup our dialog for a new game
     CGRect dialogRect = CGRectMake(450, 300, 200, 100);
-    self.anotherGameDialog = [[[VGDialog alloc] initWithFrame:dialogRect addTarget:self onSelection:@selector(getYesNo)] autorelease];
+    self.anotherGameDialog = [[VGDialog alloc] initWithFrame:dialogRect addTarget:self onSelection:@selector(getYesNo)];
     [self.view addSubview:self.anotherGameDialog];
 }
 
@@ -1362,7 +1312,7 @@ static float RadiansToDegrees(float radians)
     // Put the flag in position
     short flagX = self.manView.X + 20 * self.manView.incrementX;
     CGPoint origin = CGPointMake(flagX, self.manView.Y);
-    self.flagView = [[[Flag alloc] initWithOrigin:origin] autorelease];
+    self.flagView = [[Flag alloc] initWithOrigin:origin];
     [self.view addSubview:self.flagView];
     
     // Add the flag and message
@@ -1387,7 +1337,7 @@ static float RadiansToDegrees(float radians)
         short deltaY = self.moonView.MACY - self.SHOWY;//### + 45;
         CGPoint start = CGPointMake(self.SHOWX, self.view.frame.size.width - self.SHOWY);
         CGPoint delta = CGPointMake(deltaX, deltaY);
-        self.manView = [[[Man alloc] initWithOrigin:start andDelta:delta] autorelease];
+        self.manView = [[Man alloc] initWithOrigin:start andDelta:delta];
         [self.view addSubview:self.manView];
         
         // Use a timer to animate our guy
@@ -1397,7 +1347,7 @@ static float RadiansToDegrees(float radians)
         // Put the man in position
         CGPoint start = CGPointMake(self.SHOWX, self.view.frame.size.width - self.SHOWY);
         CGPoint delta = CGPointMake(48, 24);
-        self.manView = [[[Man alloc] initWithOrigin:start andDelta:delta] autorelease];
+        self.manView = [[Man alloc] initWithOrigin:start andDelta:delta];
         [self.view addSubview:self.manView];
        
         // Use a timer to animate our guy

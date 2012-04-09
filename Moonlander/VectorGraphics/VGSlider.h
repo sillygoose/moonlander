@@ -25,9 +25,9 @@
 
 @property (nonatomic) float value;
 
-@property (nonatomic, retain) VGView *thrusterSlider;
-@property (nonatomic, retain) VGView *thrusterIndicator;
-@property (nonatomic, retain) VGLabel *thrusterValue;
+@property (nonatomic, strong) VGView *thrusterSlider;
+@property (nonatomic, strong) VGView *thrusterIndicator;
+@property (nonatomic, strong) VGLabel *thrusterValue;
 
 - (id)initWithFrame:(CGRect)frameRect;
 

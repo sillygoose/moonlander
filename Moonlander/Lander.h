@@ -33,7 +33,7 @@ typedef CGPoint (^position_data_t)();
     NSNumber        *_y;
 }
 
-@property (nonatomic, retain) VGView *thrust;
+@property (nonatomic, strong) VGView *thrust;
 @property (nonatomic, copy) thrust_data_t thrustData;
 @property (nonatomic, copy) angle_data_t angleData;
 @property (nonatomic, copy) position_data_t positionData;
@@ -43,8 +43,9 @@ typedef CGPoint (^position_data_t)();
 @property (nonatomic) int flameShift;
 @property (nonatomic) int flameLine;
 @property (nonatomic) int flameIntensity;
-@property (nonatomic, retain) NSNumber *x;
-@property (nonatomic, retain) NSNumber *y;
+
+@property (nonatomic) NSNumber *x;
+@property (nonatomic) NSNumber *y;
 
 - (id)init;
 
