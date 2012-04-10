@@ -12,6 +12,7 @@
 @implementation Moon
 
 @synthesize moonArray=_moonArray;
+@synthesize featureNames=_featureNames;
 @synthesize dirtySurface=_dirtySurface;
 
 @synthesize MACX=_MACX;
@@ -28,7 +29,9 @@
 {
     self = [super initWithFrame:moonRect];
     if (self) {
+        // Basic initializations
         self.LEFTEDGE = -1;
+        self.featureNames = [NSArray arrayWithObjects:@"", @"lander", @"flag", @"tippedleft", @"tippedright", @"rock", @"mcdedge", @"mcd", nil];
         
         // No events for the moon surface
         self.userInteractionEnabled = NO;
@@ -89,10 +92,41 @@
 {
     TerrainFeature tf = TF_Nothing;
     index += 10;
-    NSNumber *feature = [[self.moonArray objectAtIndex:index] objectForKey:@"feature"
-     ];
-    if (feature) {
-        tf = [feature intValue];
+    
+    NSString *lem = [self.featureNames objectAtIndex:TF_OldLander];
+    NSString *lemLeft = [self.featureNames objectAtIndex:TF_OldLanderTippedLeft];
+    NSString *lemRight = [self.featureNames objectAtIndex:TF_OldLanderTippedRight];
+    NSString *rock = [self.featureNames objectAtIndex:TF_Rock];
+    NSString *flag = [self.featureNames objectAtIndex:TF_OldFlag];
+    NSString *mcd = [self.featureNames objectAtIndex:TF_McDonalds];
+    
+    NSNumber *lemFeature = [[self.moonArray objectAtIndex:index] objectForKey:lem];
+    NSNumber *lemLeftFeature = [[self.moonArray objectAtIndex:index] objectForKey:lemLeft];
+    NSNumber *lemRightFeature = [[self.moonArray objectAtIndex:index] objectForKey:lemRight];
+    NSNumber *rockFeature = [[self.moonArray objectAtIndex:index] objectForKey:rock];
+    NSNumber *flagFeature = [[self.moonArray objectAtIndex:index] objectForKey:flag];
+    NSNumber *mcdFeature = [[self.moonArray objectAtIndex:index] objectForKey:mcd];
+    
+    if ([lemFeature boolValue]) {
+        tf = TF_OldLander;
+    }
+    else if ([lemLeftFeature boolValue]) {
+        tf = TF_OldLanderTippedLeft;
+    }
+    else if ([lemRightFeature boolValue]) {
+        tf = TF_OldLanderTippedRight;
+    }
+    else if ([rockFeature boolValue] && [flagFeature boolValue]) {
+        tf = TF_RockFlag;
+    }
+    else if ([rockFeature boolValue]) {
+        tf = TF_Rock;
+    }
+    else if ([flagFeature boolValue]) {
+        tf = TF_OldFlag;
+    }
+    else if ([mcdFeature boolValue]) {
+        tf = TF_McDonalds;
     }
     return tf;
 }
@@ -102,8 +136,8 @@
     BOOL hasFeature = NO;
     index += 10;
     if (index >= 0 && index < self.moonArray.count) {
-        hasFeature = ([[self.moonArray objectAtIndex:index] objectForKey:@"feature"
-                       ] != nil);
+        NSString *featureName = [self.featureNames objectAtIndex:feature];
+        hasFeature = ([[self.moonArray objectAtIndex:index] objectForKey:featureName] != nil);
     }
     return hasFeature;
 }
@@ -114,13 +148,17 @@
     if (index >= 0 && index < self.moonArray.count) {
         NSMutableDictionary *item = [self.moonArray objectAtIndex:index];
         if (item) {
-            TerrainFeature tf = [[item objectForKey:@"feature"] intValue];
-            if (tf != TF_Rock) {
-                NSNumber *newFeature = [NSNumber numberWithInt:feature];
-                [item setObject:newFeature forKey:@"feature"];
-                //### need this? need to be able to handle rock and flag at same location
-                [self.moonArray replaceObjectAtIndex:index withObject:item];
-                self.dirtySurface = YES;
+            NSString *rockName = [self.featureNames objectAtIndex:TF_Rock];
+            NSString *featureName = [self.featureNames objectAtIndex:feature];
+            BOOL hasFeature = [[item objectForKey:featureName] boolValue];
+            BOOL hasRock = [[item objectForKey:rockName] boolValue];
+            if (!hasFeature) {
+                if (!hasRock || (feature == TF_OldFlag)) {
+                    NSNumber *newFeature = [NSNumber numberWithBool:YES];
+                    [item setObject:newFeature forKey:featureName];
+                    [self.moonArray replaceObjectAtIndex:index withObject:item];
+                    self.dirtySurface = YES;
+                }
             }
         }
     }
@@ -130,10 +168,11 @@
 {
     index += 10;
     if (index >= 0 && index < self.moonArray.count) {
+        NSString *featureName = [self.featureNames objectAtIndex:feature];
         NSMutableDictionary *terrainFeature = [self.moonArray objectAtIndex:index];
-        TerrainFeature tf = [[terrainFeature objectForKey:@"feature"] intValue];
+        TerrainFeature tf = [[terrainFeature objectForKey:featureName] intValue];
         if (tf != TF_Rock) {
-            [terrainFeature removeObjectForKey:@"feature"];
+            [terrainFeature removeObjectForKey:featureName];
             self.dirtySurface = YES;
         }
     }
@@ -368,7 +407,13 @@
             if (k == 11) {
                 TerrainFeature tf = [self featureAtIndex:i];
                 if (tf > TF_Nothing && tf != TF_McDonaldsEdge) {
-                    [self addFeatureToView:tf atTerrainIndex:i atX:x];
+                    if (tf == TF_RockFlag) {
+                        [self addFeatureToView:TF_OldFlag atTerrainIndex:i atX:x];
+                        [self addFeatureToView:TF_Rock atTerrainIndex:i atX:x];
+                    }
+                    else {
+                        [self addFeatureToView:tf atTerrainIndex:i atX:x];
+                    }
                 }
             }
         }

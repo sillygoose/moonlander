@@ -11,7 +11,7 @@
 #import "VGView.h"
 #import "Lander.h"
 
-typedef enum { TF_Nothing = 0, TF_OldLander, TF_OldFlag, TF_OldLanderTippedLeft, TF_OldLanderTippedRight, TF_Rock, TF_McDonaldsEdge, TF_McDonalds } TerrainFeature;
+typedef enum { TF_Nothing = 0, TF_OldLander, TF_OldFlag, TF_OldLanderTippedLeft, TF_OldLanderTippedRight, TF_Rock, TF_McDonaldsEdge, TF_McDonalds, TF_RockFlag } TerrainFeature;
 
 typedef enum { TV_Unknown, TV_Normal, TV_Detailed } TerrainView;
 
@@ -22,6 +22,7 @@ typedef enum { TV_Unknown, TV_Normal, TV_Detailed } TerrainView;
 
 @interface Moon : VGView <MoonDataSource> {
     NSMutableArray      *_moonArray;
+    NSArray             *_featureNames;
     BOOL                _dirtySurface;
     
     short               _MACX;
@@ -35,6 +36,7 @@ typedef enum { TV_Unknown, TV_Normal, TV_Detailed } TerrainView;
 }
 
 @property (nonatomic, retain) NSMutableArray *moonArray;
+@property (nonatomic, retain) NSArray *featureNames;
 @property (nonatomic) BOOL dirtySurface;
 
 @property (nonatomic) short MACX;
