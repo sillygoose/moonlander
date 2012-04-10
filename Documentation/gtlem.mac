@@ -3429,17 +3429,20 @@ MACY:
 	.WORD	104000;             ;short vector mode
 	.WORD	18.*200             ;X right 18, Y up 0 (moveto)
 	.WORD	107000              ;short vector mode, intensity 4
+                                ;building
 	.WORD	30.+INT             ;X right 0, Y up 30, (draw)
 	.WORD	54.*200+INT         ;X right 54, Y up 0, (draw)
 	.WORD	30.+OTHER+INT       ;X right 0, Y down 30, (draw)
 	.WORD	54.+OTHER*200+INT   ;X left 54, Y up 0, (draw)
 	.WORD	105324              ;short vector mode, blink off, solid line
+                                ;door
 	.WORD	12.*200             ;X right 12, Y up 0 (moveto)
 	.WORD	8.+INT              ;X right 0, Y up 8 (draw)
 	.WORD	6.*200+INT          ;X right 6, Y up 0, (draw)
 	.WORD	8.+OTHER+INT        ;X right 0, Y down 8, (draw)
 	.WORD	19.+OTHER*200       ;X left 19, Y up 0, (moveto)
 	.WORD	110000              ;long vector mode
+                                ;first arch
 	.WORD	73.+LEFT            ;X left 73, Y up 0 (moveto)
 	.WORD	0.                  ;Y
 	.WORD	DISTOP              ;display stop, interrupt CPU
