@@ -3404,7 +3404,7 @@ ROCKY:
 	.WORD	2+INTTWO*200+0              ;X right 2, Y up 0, (draw)
 	.WORD	2+INTTWO*200+2+OTHER        ;X right 2, Y down 2, (draw)
 	.WORD	6+INTTWO*200+2+OTHER        ;X right 6, Y down 2, (draw)
-	.WORD	4+INTTWO*200+2+OTHER        ;X right 4, Y dowm 2, (draw)
+	.WORD	4+INTTWO*200+2+OTHER        ;X right 4, Y down 2, (draw)
 	.WORD	2+INTTWO*200+6+OTHER        ;X right 2, Y down 6, (draw)
 	.WORD	6+INTTWO*200+6+OTHER        ;X right 6, Y down 6, (draw)
 	.WORD	INTTWO*200+4+OTHER          ;X right 0, Y down 4, (draw)
