@@ -91,9 +91,9 @@
 
 @property (nonatomic, retain) LanderPhysicsModel *landerModel;
 
-@property (nonatomic, assign) NSTimer *simulationTimer;
-@property (nonatomic, assign) NSTimer *displayTimer;
-@property (nonatomic, assign) NSTimer *palsyTimer;
+@property (nonatomic, retain) NSTimer *simulationTimer;
+@property (nonatomic, retain) NSTimer *displayTimer;
+@property (nonatomic, retain) NSTimer *palsyTimer;
 
 @property (nonatomic) short SHOWX;
 @property (nonatomic) short SHOWY;
