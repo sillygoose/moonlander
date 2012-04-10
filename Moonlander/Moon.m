@@ -118,7 +118,7 @@
             if (tf != TF_Rock) {
                 NSNumber *newFeature = [NSNumber numberWithInt:feature];
                 [item setObject:newFeature forKey:@"feature"];
-                //### need this?
+                //### need this? need to be able to handle rock and flag at same location
                 [self.moonArray replaceObjectAtIndex:index withObject:item];
                 self.dirtySurface = YES;
             }
@@ -180,37 +180,56 @@
 {
 }
 
-- (void)addFeatureToView:(TerrainFeature)tf atOrigin:(CGPoint)point
+- (void)addFeatureToView:(TerrainFeature)tf atTerrainIndex:(short)ti atX:(short)xPos
 {
     const float LanderVertAdj = 48;
     const float CrashedLanderVertAdj = 32;
-    const char *featureFiles[] = { NULL, "Lander2", "Flag", "Lander2", "Lander2", "Rock", NULL, "McDonalds" };
-    const CGSize featureSizes[] = { CGSizeMake(0, 0), CGSizeMake(72, 64), CGSizeMake(22, 22), CGSizeMake(96, 96), CGSizeMake(96, 96), CGSizeMake(48, 48), CGSizeMake(0, 0), CGSizeMake(140, 64) };
+    const char *FeatureFiles[] = { NULL, "Lander2", "Flag", "Lander2", "Lander2", "Rock", NULL, "McDonalds" };
+    const CGSize FeatureSizes[] = { CGSizeMake(0, 0), CGSizeMake(72, 64), CGSizeMake(22, 22), CGSizeMake(96, 96), CGSizeMake(96, 96), CGSizeMake(48, 56), CGSizeMake(0, 0), CGSizeMake(160, 64) };
     CGFloat featureRotation[] = { 0.0f, 0.0f, 0.0f, M_PI_2, -M_PI_2, 0.0f, 0.0f, 0.0f };
-    CGFloat featureTranslation[] = { 0.0f, 0.0f, 0.0f, -1.0f, 1.0f, 0.0f, 0.0f, 0.0f };
-    CGFloat verticalAdjust[] = { 0.0f, LanderVertAdj, 0.0f, CrashedLanderVertAdj, CrashedLanderVertAdj, 32.0f, 0.0f, 55.0f };
-    CGFloat verticalClip[] = { 0.0f, 0.0f, 0.0f, 30.0f, 30.0f, 0.0f, 0.0f, 0.0f };
+    CGFloat featureTranslation[] = { 0, 0, 0, -1, 1, 0, 0, 0 };
+    CGFloat verticalAdjust[] = { 0, LanderVertAdj, FeatureSizes[TF_OldFlag].height/2, CrashedLanderVertAdj, CrashedLanderVertAdj, FeatureSizes[TF_Rock].height/2, 0, 52 };
+    CGFloat horizontalAdjust[] = { 0, 0, 0, 0, 0, -4, 0, -54 };
+    CGFloat verticalClip[] = { 0, 0, 0, 30, 30, 0, 0, 0 };
 
     if (!(tf == TF_Nothing || tf == TF_McDonaldsEdge)) {
+        short leftHeight = [self DFAKE:[self terrainHeight:ti]];
+        short rightHeight = [self DFAKE:[self terrainHeight:ti+1]];
+        short averageHeight = (leftHeight + rightHeight) / 2;
+        
+        CGPoint point = CGPointMake(xPos, averageHeight);
         float angleAdjust = 0;
         if (tf == TF_OldLanderTippedLeft || tf == TF_OldLanderTippedRight) {
-            short leftHeight = [self DFAKE:[self terrainHeight:self.LEFTEDGE]];
-            short rightHeight = [self DFAKE:[self terrainHeight:(self.LEFTEDGE+1)]];
-            short averageHeight = (leftHeight + rightHeight) / 2;
-            point.y = averageHeight;
             if (leftHeight - rightHeight) {
                 angleAdjust = (leftHeight - rightHeight) ? (M_PI_4 / 2) : (-M_PI_4 / 2);
             }
         }
-        
+        else if (tf == TF_McDonalds) {
+            // Draw if space exists
+            if (xPos > 25 && xPos < 880) {
+                // MACB1: USe the smaller of the two
+                self.MACY = (leftHeight < rightHeight) ? leftHeight : rightHeight;
+                self.MACX = xPos;
+                
+                // We are displaying MCD
+                self.hasMcDonalds = YES;
+                
+                // Fudge values to McD door- need fixin ###
+                self.MACX += 75;
+                self.MACY += 48;
+            }
+        }
+
+
         CGRect frameRect;
         frameRect.origin = point;
-        frameRect.size = featureSizes[tf];
+        frameRect.size = FeatureSizes[tf];
+        frameRect.origin.x += horizontalAdjust[tf];
         frameRect.origin.y += verticalAdjust[tf];
         frameRect.origin.y = frameRect.origin.y - frameRect.size.height;
         
         //NSLog(@"Feature %d at %@", tf, NSStringFromCGPoint(point));
-        NSString *featureFile = [[NSBundle mainBundle] pathForResource:[NSString stringWithUTF8String:featureFiles[tf]] ofType:@"plist"];
+        NSString *featureFile = [[NSBundle mainBundle] pathForResource:[NSString stringWithUTF8String:FeatureFiles[tf]] ofType:@"plist"];
         VGView *featureView = [[VGView alloc] initWithFrame:frameRect withPaths:featureFile];
         
         featureView.clipsToBounds = YES;
@@ -349,33 +368,7 @@
             if (k == 11) {
                 TerrainFeature tf = [self featureAtIndex:i];
                 if (tf > TF_Nothing && tf != TF_McDonaldsEdge) {
-                    if (tf == TF_McDonalds) {
-                        // Draw if space exists
-                        if (x > 25 && x < 880) {
-                            short leftHeight = [self terrainHeight:i];
-                            // MACDON: todo
-                            short rightHeight = [self terrainHeight:i+1];
-                            //;MOV	2(RET2),TEMP		;PICK UP RIGHT Y NOW.
-                            //;CMP	(RET2),TEMP         ;AND SEE IF IT'S SMALLER THAN LEFT Y.
-                            //;BGE	MACB1               ;IT IS.
-                            //;MOV	(RET2),TEMP         ;IT ISN'T. PICK SMALLEST Y NOW.
-                            
-                            // MACB1:
-                            self.MACY = [self DFAKE:(leftHeight < rightHeight) ? leftHeight : rightHeight];
-                            self.MACX = x;
-                            
-                            self.hasMcDonalds = YES;
-                            
-                            [self addFeatureToView:tf atOrigin:CGPointMake(self.MACX, self.MACY)];
-                            
-                            // Fudge values to McD door- need fixin ###
-                            self.MACX += 75;
-                            self.MACY += 48;
-                        }
-                    }
-                    else {
-                        [self addFeatureToView:tf atOrigin:CGPointMake(x, TEMP)];
-                    }
+                    [self addFeatureToView:tf atTerrainIndex:i atX:x];
                 }
             }
         }
