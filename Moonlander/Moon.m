@@ -185,7 +185,7 @@
     const float LanderVertAdj = 48;
     const float CrashedLanderVertAdj = 32;
     const char *featureFiles[] = { NULL, "Lander2", "Flag", "Lander2", "Lander2", "Rock", NULL, "McDonalds" };
-    const CGSize featureSizes[] = { CGSizeMake(0, 0), CGSizeMake(72, 64), CGSizeMake(22, 22), CGSizeMake(96, 96), CGSizeMake(96, 96), CGSizeMake(48, 42), CGSizeMake(0, 0), CGSizeMake(140, 64) };
+    const CGSize featureSizes[] = { CGSizeMake(0, 0), CGSizeMake(72, 64), CGSizeMake(22, 22), CGSizeMake(96, 96), CGSizeMake(96, 96), CGSizeMake(48, 48), CGSizeMake(0, 0), CGSizeMake(140, 64) };
     CGFloat featureRotation[] = { 0.0f, 0.0f, 0.0f, M_PI_2, -M_PI_2, 0.0f, 0.0f, 0.0f };
     CGFloat featureTranslation[] = { 0.0f, 0.0f, 0.0f, -1.0f, 1.0f, 0.0f, 0.0f, 0.0f };
     CGFloat verticalAdjust[] = { 0.0f, LanderVertAdj, 0.0f, CrashedLanderVertAdj, CrashedLanderVertAdj, 32.0f, 0.0f, 55.0f };
