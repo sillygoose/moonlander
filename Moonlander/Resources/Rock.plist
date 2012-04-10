@@ -29,15 +29,7 @@
 				<integer>0</integer>
 			</dict>
 		</dict>
-		<dict>
-			<key>moverel</key>
-			<dict>
-				<key>x</key>
-				<integer>0</integer>
-				<key>y</key>
-				<integer>-4</integer>
-			</dict>
-		</dict>
+		<dict/>
 		<dict>
 			<key>moverel</key>
 			<dict>
