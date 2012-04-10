@@ -452,7 +452,6 @@ static float RadiansToDegrees(float radians)
 {
     // Splash screen
     [self.palsyTimer invalidate];
-    self.palsyTimer = nil;
     
     [self.landerMessages addSystemMessage:@"SplashScreen"];
     self.palsyTimer = [NSTimer scheduledTimerWithTimeInterval:SplashScreenInterval target:self selector:@selector(initGame2) userInfo:nil repeats:NO];
@@ -462,7 +461,6 @@ static float RadiansToDegrees(float radians)
 {
     // Remove splash screen (if present)
     [self.palsyTimer invalidate];
-    self.palsyTimer = nil;
     [self.landerMessages removeSystemMessage:@"SplashScreen"];
     
     // Unhide the views to get started after splash screen
@@ -765,18 +763,9 @@ static float RadiansToDegrees(float radians)
     [super viewDidUnload];
     
     // Kill any active timers
-    if (self.simulationTimer) {
-        [self.simulationTimer invalidate];
-        self.simulationTimer = nil;
-    }
-    if (self.displayTimer) {
-        [self.displayTimer invalidate];
-        self.displayTimer = nil;
-    }
-    if (self.palsyTimer) {
-        [self.palsyTimer invalidate];
-        self.palsyTimer = nil;
-    }
+    [self.simulationTimer invalidate];
+    [self.displayTimer invalidate];
+    [self.palsyTimer invalidate];
 
     // Disable telemetry
     self.selectedTelemetry = nil;
@@ -1097,35 +1086,11 @@ static float RadiansToDegrees(float radians)
     }
 }
 
-- (void)EXPLOD
-{
-    // We are down hard
-    [self.landerModel landerDown];
-    
-    // Shut down things and ring bell
-    AudioServicesPlayAlertSound(BeepSound);
-    
-    // Let's delay a bit before presenting the new game dialog
-    self.palsyTimer = [NSTimer scheduledTimerWithTimeInterval:explodeDelay target:self selector:@selector(waitNewGame) userInfo:nil repeats:NO];
-
-#if 0  //### need to sort out this code
-    short RADIUS = 0;
-    
-    // Work on the randomizer
-    static short XTYPE = 0;
-    XTYPE++;
-    swab(&XTYPE, &XTYPE, sizeof(XTYPE));
-    short temp = (XTYPE & 0x8000) != 0;
-#endif
-}
-
-
 - (void)startGameDelay
 {
     // Kill the timer and start the new game
     if (self.palsyTimer) {
         [self.palsyTimer invalidate];
-        self.palsyTimer = nil;
     }
     [self newGame];
 }
@@ -1152,25 +1117,13 @@ static float RadiansToDegrees(float radians)
 
 - (void)waitNewGame
 {
-    // Kill the timers that might be running
-    if (self.palsyTimer) {
-        [self.palsyTimer invalidate];
-        self.palsyTimer = nil;
-    }
-    if (self.simulationTimer) {
-        [self.simulationTimer invalidate];
-        self.simulationTimer = nil;
-    }
-    if (self.displayTimer) {
-        [self.displayTimer invalidate];
-        self.displayTimer = nil;
-    }
-    
-    // Remove any messages
+    // Remove any messages that might be left over
     [self.landerMessages removeAllLanderMessages];
     
-    // Hide the lander view
-    self.landerView.hidden = YES;
+    // Kill the timers that might be running
+    if (self.palsyTimer.isValid) [self.palsyTimer invalidate];
+    if (self.simulationTimer.isValid) [self.simulationTimer invalidate];
+    if (self.displayTimer.isValid) [self.displayTimer invalidate];
     
     // Setup our dialog for a new game
     CGRect dialogRect = CGRectMake(450, 300, 200, 100);
@@ -1203,11 +1156,8 @@ static float RadiansToDegrees(float radians)
 
         // Kill the timers, we are done
         [self.palsyTimer invalidate];
-        self.palsyTimer = nil;
         [self.simulationTimer invalidate];
-        self.simulationTimer = nil;
         [self.displayTimer invalidate];
-        self.displayTimer = nil;
 
         // Wait a bit
         self.palsyTimer = [NSTimer scheduledTimerWithTimeInterval:endDelay target:self selector:@selector(drawMcMan7) userInfo:nil repeats:NO];
@@ -1258,7 +1208,6 @@ static float RadiansToDegrees(float radians)
     BOOL done = [self.manView moveMan];
     if (done) {
         [self.palsyTimer invalidate];
-        self.palsyTimer = nil;
         
         short deltaY = abs(self.manView.initialY - self.manView.Y);
         self.manView.deltaY = deltaY;
@@ -1270,7 +1219,6 @@ static float RadiansToDegrees(float radians)
 - (void)waitForFood2
 {
     [self.palsyTimer invalidate];
-    self.palsyTimer = nil;
     
     // Move back to the lander
     short deltaX = abs(self.manView.initialX - self.manView.X);
@@ -1286,7 +1234,6 @@ static float RadiansToDegrees(float radians)
 - (void)waitForFood1
 {
     [self.palsyTimer invalidate];
-    self.palsyTimer = nil;
 
     [self.landerMessages removeSystemMessage:@"YourOrder"];
     self.palsyTimer = [NSTimer scheduledTimerWithTimeInterval:secondFoodDelay target:self selector:@selector(waitForFood2) userInfo:nil repeats:NO];
@@ -1297,7 +1244,6 @@ static float RadiansToDegrees(float radians)
     BOOL done = [self.manView moveMan];
     if (done) {
         [self.palsyTimer invalidate];
-        self.palsyTimer = nil;
         
         // Order some food and wait
         [self.landerMessages addSystemMessage:@"YourOrder"];
@@ -1310,20 +1256,16 @@ static float RadiansToDegrees(float radians)
     BOOL done = [self.manView moveMan];
     if (done) {
         [self.palsyTimer invalidate];
-        //###self.palsyTimer = nil;
         self.palsyTimer = [NSTimer scheduledTimerWithTimeInterval:moveInterval target:self selector:@selector(moveMcManHoriz) userInfo:nil repeats:YES];
     }
 }
 
 - (void)waitFlagMan
 {
-    // KIll the timers - we are done
+    // Kill the timers - we are done
     [self.palsyTimer invalidate];
-    self.palsyTimer = nil;
     [self.displayTimer invalidate];
-    self.displayTimer = nil;
     [self.simulationTimer invalidate];
-    self.simulationTimer = nil;
     
     // Don't need the man anymore
     [self.manView removeFromSuperview];
@@ -1357,28 +1299,26 @@ static float RadiansToDegrees(float radians)
     BOOL done = [self.manView moveMan];
     if (done) {
         [self.palsyTimer invalidate];
-        self.palsyTimer = nil;
     
-    // Put the flag in position
-    short flagX = self.manView.X + 20 * self.manView.incrementX;
-    CGPoint origin = CGPointMake(flagX, self.manView.Y);
-    self.flagView = [[[Flag alloc] initWithOrigin:origin] autorelease];
-    [self.view addSubview:self.flagView];
-    
-    // Add the flag and message
-    short flagIndex = self.INDEXL + 2 * self.manView.incrementX;
-    [self.moonView addFeature:TF_OldFlag atIndex:flagIndex];
-    [self.landerMessages addSystemMessage:@"OneSmallStep"];
-    
-    // Use a timer to wait (10 secs)
-    self.palsyTimer = [NSTimer scheduledTimerWithTimeInterval:flagFinalDelay target:self selector:@selector(waitFlagMan) userInfo:nil repeats:NO];
+        // Put the flag in position
+        short flagX = self.manView.X + 20 * self.manView.incrementX;
+        CGPoint origin = CGPointMake(flagX, self.manView.Y);
+        self.flagView = [[[Flag alloc] initWithOrigin:origin] autorelease];
+        [self.view addSubview:self.flagView];
+        
+        // Add the flag and message
+        short flagIndex = self.INDEXL + 2 * self.manView.incrementX;
+        [self.moonView addFeature:TF_OldFlag atIndex:flagIndex];
+        [self.landerMessages addSystemMessage:@"OneSmallStep"];
+        
+        // Use a timer to wait
+        self.palsyTimer = [NSTimer scheduledTimerWithTimeInterval:flagFinalDelay target:self selector:@selector(waitFlagMan) userInfo:nil repeats:NO];
     }
 }
 
 - (void)moveMan
 {
     [self.palsyTimer invalidate];
-    self.palsyTimer = nil;
     
     if (self.moonView.hasMcDonalds) {
         // Visit to Macdonald's, need coordinates
@@ -1395,8 +1335,10 @@ static float RadiansToDegrees(float radians)
     }
     else {
         // Put the man in position
+        const short FlagDeltaX = 48;
+        const short FlagDeltaY = 24;
         CGPoint start = CGPointMake(self.SHOWX, self.view.frame.size.width - self.SHOWY);
-        CGPoint delta = CGPointMake(48, 24);
+        CGPoint delta = CGPointMake(FlagDeltaX, FlagDeltaY);
         self.manView = [[[Man alloc] initWithOrigin:start andDelta:delta] autorelease];
         [self.view addSubview:self.manView];
        
@@ -1409,6 +1351,28 @@ static float RadiansToDegrees(float radians)
 {
     // Start with a delay of 4 seconds
 	self.palsyTimer = [NSTimer scheduledTimerWithTimeInterval:landingDelay target:self selector:@selector(moveMan) userInfo:nil repeats:NO];
+}
+
+- (void)EXPLOD
+{
+    // We are down hard
+    [self.landerModel landerDown];
+    
+    // Shut down things and ring bell
+    AudioServicesPlayAlertSound(BeepSound);
+    
+    // Let's delay a bit before presenting the new game dialog
+    self.palsyTimer = [NSTimer scheduledTimerWithTimeInterval:explodeDelay target:self selector:@selector(waitNewGame) userInfo:nil repeats:NO];
+    
+#if 0  //### need to sort out this code
+    short RADIUS = 0;
+    
+    // Work on the randomizer
+    static short XTYPE = 0;
+    XTYPE++;
+    swab(&XTYPE, &XTYPE, sizeof(XTYPE));
+    short temp = (XTYPE & 0x8000) != 0;
+#endif
 }
 
 - (void)ALTER:(short)alterValue
@@ -1588,10 +1552,10 @@ static float RadiansToDegrees(float radians)
         
         // Tilt the ship if indicated
         if (TiltDirection != 0) {
-            // Hide the lander view if we crashed
-            self.landerView.hidden = YES;
+            // Show a tipped lander in the current position - don't remove
+            //###
             
-            // Add the appropriate tipped lander
+            // Add the appropriate tipped lander to the feature database
             if (TiltDirection < 0) {
                 [self.moonView addFeature:TF_OldLanderTippedLeft atIndex:self.INDEXL];
             }
@@ -1674,7 +1638,7 @@ static float RadiansToDegrees(float radians)
                 [self.moonView useCloseUpView:self.LEFTEDGE];
             }
 
-            //(CLSEC1) Check if we are at the left/right edger and need to redraw
+            //(CLSEC1) Check if we are at the left/right edge and need to redraw
             short xPos = self.HORDIS - self.LEFEET;
             if (xPos <= 30) {
                 // Move the closeup view left
