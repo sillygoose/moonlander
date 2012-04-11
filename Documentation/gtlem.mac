@@ -1165,6 +1165,7 @@ MAYBEP:
                             ;PLANT THE FLAG NOW!!!!!!!
                             ; <OR GET A HAMBURGER>.
 	JSR	PC,PALSY            ;WITH THE SPASTIC MAN.
+                            ;No return from this rountine
 
 MAYBEB:
     MOV	HORVEL,IN1          ;PICK UP DIRECTION TO TIP SHIP.
@@ -1417,6 +1418,7 @@ PALOFF:
 	CLR	FSUBC               ;SHIP AND FLAME.
 	JSR	PC,DELAY            ;AND THEN JUST WAIT FOR A FEW SECONDS.
 	.WORD	3.
+                            ;No return, restarts game from DELAY
 
 	.PAGE
 ;
@@ -1452,6 +1454,7 @@ PALN1:
 	MOV	#MANMSG,SYSMES		;DISPLAY THE MESSAGE NOW.
 	JSR	PC,DELAY            ;WAIT TEN MORE SECONDS.
 	.WORD	10.
+                            ;No return, restarts game from DELAY
 
 	.PAGE
 ;
@@ -1948,7 +1951,7 @@ DFAKE:
 ;
 OLDSHP:
     JSR	PC,DEADSP
-	.WORD	0               ;UPRIGHT
+	.WORD	0               ;UPRIGHT (angle)
 	.WORD	23.             ;DISTANCE ABOVE SURFACE.
 	.WORD	-24.			;LOWEST POINT TO DRAW.
 
@@ -1967,13 +1970,14 @@ RIGHTS:
 DEADSP:
     CMP	TEMP2,#MOONEN-102.	;SEE IF ENOUGH ROOM FOR THE SHIP.
 	BHI	DEADBY              ;NOPE. EXIT. - we always have room
-	MOV	IN2,-(SP)           ;Save stuff
-	MOV	RET1,-(SP)
-	MOV	RET2,-(SP)
-	MOV	TEMP,-(SP)
-	MOV	IN1,-(SP)
+	MOV	IN2,-(SP)           ;8(SP) not used
+	MOV	RET1,-(SP)          ;6(SP) not used
+	MOV	RET2,-(SP)          ;4(SP) terrain index
+	MOV	TEMP,-(SP)          ;2(SP) not used
+	MOV	IN1,-(SP)           ;0(SP) not used
+                            ;TEMP2 display buffer
 
-	MOV	10.(SP),IN1         ;PICK UP OLD PC.
+	MOV	10.(SP),IN1         ;PICK UP OLD PC. - this is the arguments starting with angle
 	MOV	#SETPNT,(TEMP2)+	;SET POINT MODE.
 	MOV	(SP),(TEMP2)+		;MOV OVER THE X NOW.
 	MOV	ANGLE,-(SP)         ;PUSH DOWN THE OLD ANGLE.
@@ -1989,14 +1993,14 @@ DEADSP:
 	MOV	(IN1),LOWY          ;AND SET THE LOW Y ALL AT THE SAME TIME.
 	MOV	TEMP,(TEMP2)+		;INSERT THE Y NOW.
 	CMP	(RET2),2(RET2)		;SEE WHICH Y IS BIGGER.
-	BEQ	DEADOK
+	BEQ	DEADOK              ;level ground
 	BHI	DEADPL
 
-	ADD	#-22.,ANGLE
+	ADD	#-22.,ANGLE         ;left higher
 	BR	DEADOK
 
 DEADPL:	
-    ADD	#22.,ANGLE
+    ADD	#22.,ANGLE          ;right higher
 
 DEADOK:
     JSR	PC,TRIG             ;FIGURE OUT SINES AND COSINES.
