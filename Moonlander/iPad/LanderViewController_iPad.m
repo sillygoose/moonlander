@@ -453,8 +453,12 @@ static float RadiansToDegrees(float radians)
     // Splash screen
     [self.palsyTimer invalidate];
     
+#ifdef NO_SPLASH_SCREEN
+    self.palsyTimer = [NSTimer scheduledTimerWithTimeInterval:0.0f target:self selector:@selector(initGame2) userInfo:nil repeats:NO];
+#else
     [self.landerMessages addSystemMessage:@"SplashScreen"];
     self.palsyTimer = [NSTimer scheduledTimerWithTimeInterval:SplashScreenInterval target:self selector:@selector(initGame2) userInfo:nil repeats:NO];
+#endif
 }
 
 - (void)initGame2
@@ -1173,7 +1177,7 @@ static float RadiansToDegrees(float radians)
     // No more messages at this point
     [self.landerMessages removeAllLanderMessages];
 
-    // Now take off with the food
+    // Now take off with the food and some extra fuel
     self.VERDIS += 4;
     self.FUEL += 200;
     self.ANGLE = 0;
@@ -1301,10 +1305,12 @@ static float RadiansToDegrees(float radians)
         [self.palsyTimer invalidate];
     
         // Put the flag in position
+#if 0
         short flagX = self.manView.X + 20 * self.manView.incrementX;
         CGPoint origin = CGPointMake(flagX, self.manView.Y);
         self.flagView = [[[Flag alloc] initWithOrigin:origin] autorelease];
         [self.view addSubview:self.flagView];
+#endif
         
         // Add the flag and message
         short flagIndex = self.INDEXL + 2 * self.manView.incrementX;
@@ -1321,12 +1327,12 @@ static float RadiansToDegrees(float radians)
     [self.palsyTimer invalidate];
     
     if (self.moonView.hasMcDonalds) {
-        // Visit to Macdonald's, need coordinates
-        // Put the man in position
+        // Visit to Macdonald's, put the man in position and start the move
+        const short ManHeightOffFloor = 3;
+        CGPoint start = CGPointMake(self.SHOWX - 8, self.view.frame.size.width - self.SHOWY - 20);
         short deltaX = self.moonView.MACX - self.SHOWX;
-        short deltaY = self.moonView.MACY - self.SHOWY;//### + 45;
-        CGPoint start = CGPointMake(self.SHOWX, self.view.frame.size.width - self.SHOWY);
-        CGPoint delta = CGPointMake(deltaX, deltaY);
+        short deltaY = self.moonView.MACY - self.SHOWY - ManHeightOffFloor;
+        CGPoint delta = CGPointMake(deltaX, -deltaY);
         self.manView = [[[Man alloc] initWithOrigin:start andDelta:delta] autorelease];
         [self.view addSubview:self.manView];
         
@@ -1355,7 +1361,8 @@ static float RadiansToDegrees(float radians)
 
 - (void)EXPLOD
 {
-    // We are down hard
+    // We are down hard, hide and lander and shut down the model
+    self.landerView.hidden = YES;
     [self.landerModel landerDown];
     
     // Shut down things and ring bell
@@ -1466,7 +1473,6 @@ static float RadiansToDegrees(float radians)
                     self.SHOWY -= 16;
                     
                     // Explode
-                    self.landerView.hidden = YES;
                     [self EXPLOD];
                 }
             }
@@ -1480,7 +1486,6 @@ static float RadiansToDegrees(float radians)
                 }
                 else {
                     [self.landerMessages addSystemMessage:@"HitCrashedLander"];
-                    self.landerView.hidden = YES;
                     [self EXPLOD];
                 }
             }
@@ -1495,7 +1500,6 @@ static float RadiansToDegrees(float radians)
                 }
                 else {
                     [self.landerMessages addSystemMessage:@"HitRock"];
-                    self.landerView.hidden = YES;
                     [self EXPLOD];
                 }
             }
@@ -1552,20 +1556,18 @@ static float RadiansToDegrees(float radians)
         
         // Tilt the ship if indicated
         if (TiltDirection != 0) {
-            // Show a tipped lander in the current position - don't remove
-            //###
-            
-            // Add the appropriate tipped lander to the feature database
-            if (TiltDirection < 0) {
-                [self.moonView addFeature:TF_OldLanderTippedLeft atIndex:self.INDEXL];
-            }
-            else {
-                [self.moonView addFeature:TF_OldLanderTippedRight atIndex:self.INDEXL];
-            }
-            
             // We are down but tipped for some reason remove the lander
             self.landerView.hidden = YES;
             [self.landerModel landerDown];
+            
+            // Add the appropriate tipped lander to the feature database
+            short index = self.INDEXL;
+            if (TiltDirection < 0) {
+                [self.moonView addFeature:TF_OldLanderTippedLeft atIndex:index];
+            }
+            else {
+                [self.moonView addFeature:TF_OldLanderTippedRight atIndex:index];
+            }
             
             // Let's delay a bit before presenting the new game dialog
             self.palsyTimer = [NSTimer scheduledTimerWithTimeInterval:explodeDelay target:self selector:@selector(waitNewGame) userInfo:nil repeats:NO];
@@ -1573,9 +1575,6 @@ static float RadiansToDegrees(float radians)
     }
     
     if (QUICK) {
-        // Hide the lander view
-        self.landerView.hidden = YES;
-        
         // Deform the moon surface and explode
         [self ALTER:32];
         [self EXPLOD];

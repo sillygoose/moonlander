@@ -50,6 +50,7 @@ typedef enum { TV_Unknown, TV_Normal, TV_Detailed } TerrainView;
 
 - (id)initWithFrame:(CGRect)frameRect;
 
+- (void)refreshCloseUpView;
 - (void)useCloseUpView:(short)xCoordinate;
 - (void)useNormalView;
 - (BOOL)viewIsDetailed;

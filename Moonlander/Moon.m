@@ -153,11 +153,18 @@
             BOOL hasFeature = [[item objectForKey:featureName] boolValue];
             BOOL hasRock = [[item objectForKey:rockName] boolValue];
             if (!hasFeature) {
+                // We can add a flag to rock but 
                 if (!hasRock || (feature == TF_OldFlag)) {
+                    // Add the feature to the feature database
                     NSNumber *newFeature = [NSNumber numberWithBool:YES];
                     [item setObject:newFeature forKey:featureName];
                     [self.moonArray replaceObjectAtIndex:index withObject:item];
                     self.dirtySurface = YES;
+                    
+                    // Ask for a redraw to add the new feature (except for old landers)
+                    if (feature != TF_OldLander) {
+                        [self refreshCloseUpView];
+                    }
                 }
             }
         }
@@ -222,43 +229,48 @@
 - (void)addFeatureToView:(TerrainFeature)tf atTerrainIndex:(short)ti atX:(short)xPos
 {
     const float LanderVertAdj = 48;
-    const float CrashedLanderVertAdj = 32;
+    const float CrashedLanderVertAdj = 48;
     const char *FeatureFiles[] = { NULL, "Lander2", "Flag", "Lander2", "Lander2", "Rock", NULL, "McDonalds" };
-    const CGSize FeatureSizes[] = { CGSizeMake(0, 0), CGSizeMake(72, 64), CGSizeMake(22, 22), CGSizeMake(96, 96), CGSizeMake(96, 96), CGSizeMake(48, 56), CGSizeMake(0, 0), CGSizeMake(160, 64) };
-    CGFloat featureRotation[] = { 0.0f, 0.0f, 0.0f, M_PI_2, -M_PI_2, 0.0f, 0.0f, 0.0f };
+    const CGSize FeatureSizes[] = { CGSizeMake(0, 0), CGSizeMake(72, 64), CGSizeMake(22, 22), CGSizeMake(72, 72), CGSizeMake(72, 72), CGSizeMake(42, 42), CGSizeMake(0, 0), CGSizeMake(160, 64) };
     CGFloat featureTranslation[] = { 0, 0, 0, -1, 1, 0, 0, 0 };
-    CGFloat verticalAdjust[] = { 0, LanderVertAdj, FeatureSizes[TF_OldFlag].height/2, CrashedLanderVertAdj, CrashedLanderVertAdj, FeatureSizes[TF_Rock].height/2, 0, 52 };
-    CGFloat horizontalAdjust[] = { 0, 0, 0, 0, 0, -4, 0, -54 };
+    CGFloat verticalAdjust[] = { 0, LanderVertAdj, FeatureSizes[TF_OldFlag].height/2, CrashedLanderVertAdj, CrashedLanderVertAdj, 36, 0, FeatureSizes[TF_McDonalds].height };
+    CGFloat horizontalAdjust[] = { 0, 0, 20, 0, 0, -4, -54, -54 };
     CGFloat verticalClip[] = { 0, 0, 0, 30, 30, 0, 0, 0 };
 
     if (!(tf == TF_Nothing || tf == TF_McDonaldsEdge)) {
-        short leftHeight = [self DFAKE:[self terrainHeight:ti]];
-        short rightHeight = [self DFAKE:[self terrainHeight:ti+1]];
+        short leftHeight = [self DFAKE:[self terrainHeight:(ti)]];
+        short rightHeight = [self DFAKE:[self terrainHeight:(ti+1)]];
         short averageHeight = (leftHeight + rightHeight) / 2;
         
+        // Angle of old landers depends on the terrain and the feature type
         CGPoint point = CGPointMake(xPos, averageHeight);
         float angleAdjust = 0;
-        if (tf == TF_OldLanderTippedLeft || tf == TF_OldLanderTippedRight) {
+        if (tf == TF_OldLander || tf == TF_OldLanderTippedLeft || tf == TF_OldLanderTippedRight) {
+            // Adjust for elevation
             if (leftHeight - rightHeight) {
-                angleAdjust = (leftHeight - rightHeight) ? (M_PI_4 / 2) : (-M_PI_4 / 2);
+                angleAdjust += (leftHeight - rightHeight > 0) ? (M_PI_4 / 2) : (-M_PI_4 / 2);
+            }
+            
+            // Adjust for tipped landers
+            if (tf == TF_OldLanderTippedLeft || tf == TF_OldLanderTippedRight) {
+                angleAdjust += (tf == TF_OldLanderTippedLeft) ? M_PI_2 : -M_PI_2;
             }
         }
         else if (tf == TF_McDonalds) {
             // Draw if space exists
             if (xPos > 25 && xPos < 880) {
-                // MACB1: USe the smaller of the two
+                // MACB1: Use the smaller of the two
                 self.MACY = (leftHeight < rightHeight) ? leftHeight : rightHeight;
                 self.MACX = xPos;
                 
                 // We are displaying MCD
                 self.hasMcDonalds = YES;
                 
-                // Fudge values to McD door- need fixin ###
-                self.MACX += 75;
-                self.MACY += 48;
+                // Fudge values to McD door
+                self.MACX -= horizontalAdjust[TF_McDonaldsEdge];
+                //self.MACY += 48;
             }
         }
-
 
         CGRect frameRect;
         frameRect.origin = point;
@@ -276,10 +288,10 @@
         CGRect clipped = CGRectMake(featureView.bounds.origin.x, featureView.bounds.origin.y, featureView.bounds.size.width - verticalClip[tf], featureView.bounds.size.height);
         featureView.bounds = clipped;
 
-        if (featureRotation[tf]) {
-            // Add the rotation to the subview
+        // Add the rotation to the subview if requested
+        if (angleAdjust) {
             CGAffineTransform t = featureView.transform;
-            t = CGAffineTransformRotate(t, featureRotation[tf] + angleAdjust);
+            t = CGAffineTransformRotate(t, angleAdjust);
             featureView.transform = t;
         }
 
@@ -290,6 +302,7 @@
             featureView.transform = t;
         }
 
+        // Add the feature to view
         [self addSubview:featureView];
         [featureView release];
     }
@@ -489,6 +502,15 @@
         previousPoint.y = scaledY;
     }
     return paths;
+}
+
+- (void)refreshCloseUpView
+{
+    if (self.currentView == TV_Detailed) {
+        self.drawPaths = [self buildDetailedLunarSurface];
+        self.dirtySurface = NO;
+        [self setNeedsDisplay];
+    }
 }
 
 - (void)useCloseUpView:(short)xCoordinate
