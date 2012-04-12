@@ -402,6 +402,7 @@ static float RadiansToDegrees(float radians)
 {
     // Splash screen
     [self.palsyTimer invalidate];
+    self.palsyTimer = nil;
     
 #ifdef NO_SPLASH_SCREEN
     self.palsyTimer = [NSTimer scheduledTimerWithTimeInterval:0.0f target:self selector:@selector(initGame2) userInfo:nil repeats:NO];
@@ -415,6 +416,7 @@ static float RadiansToDegrees(float radians)
 {
     // Remove splash screen (if present)
     [self.palsyTimer invalidate];
+    self.palsyTimer = nil;
     [self.landerMessages removeSystemMessage:@"SplashScreen"];
     
     // Unhide the views to get started after splash screen
@@ -718,9 +720,12 @@ static float RadiansToDegrees(float radians)
     
     // Kill any active timers
     [self.simulationTimer invalidate];
+    self.simulationTimer = nil;
     [self.displayTimer invalidate];
+    self.displayTimer = nil;
     [self.palsyTimer invalidate];
-
+    self.palsyTimer = nil;
+    
     // Disable telemetry
     self.selectedTelemetry = nil;
     self.heightData = nil;
@@ -1045,6 +1050,7 @@ static float RadiansToDegrees(float radians)
     // Kill the timer and start the new game
     if (self.palsyTimer) {
         [self.palsyTimer invalidate];
+        self.palsyTimer = nil;
     }
     [self newGame];
 }
@@ -1075,9 +1081,12 @@ static float RadiansToDegrees(float radians)
     [self.landerMessages removeAllLanderMessages];
     
     // Kill the timers that might be running
-    if (self.palsyTimer.isValid) [self.palsyTimer invalidate];
-    if (self.simulationTimer.isValid) [self.simulationTimer invalidate];
-    if (self.displayTimer.isValid) [self.displayTimer invalidate];
+    [self.palsyTimer invalidate];
+    self.palsyTimer = nil;
+    [self.simulationTimer invalidate];
+    self.simulationTimer = nil;
+    [self.displayTimer invalidate];
+    self.displayTimer = nil;
     
     // Setup our dialog for a new game
     CGRect dialogRect = CGRectMake(450, 300, 200, 100);
@@ -1110,8 +1119,11 @@ static float RadiansToDegrees(float radians)
 
         // Kill the timers, we are done
         [self.palsyTimer invalidate];
+        self.palsyTimer = nil;
         [self.simulationTimer invalidate];
+        self.simulationTimer = nil;
         [self.displayTimer invalidate];
+        self.displayTimer = nil;
 
         // Wait a bit
         self.palsyTimer = [NSTimer scheduledTimerWithTimeInterval:endDelay target:self selector:@selector(drawMcMan7) userInfo:nil repeats:NO];
@@ -1161,19 +1173,16 @@ static float RadiansToDegrees(float radians)
 {
     BOOL done = [self.manView moveMan];
     if (done) {
-        [self.palsyTimer invalidate];
-        
         short deltaY = abs(self.manView.initialY - self.manView.Y);
         self.manView.deltaY = deltaY;
 
+        [self.palsyTimer invalidate];
         self.palsyTimer = [NSTimer scheduledTimerWithTimeInterval:moveInterval target:self selector:@selector(drawMcMan4) userInfo:nil repeats:YES];
     }
 }
 
 - (void)waitForFood2
 {
-    [self.palsyTimer invalidate];
-    
     // Move back to the lander
     short deltaX = abs(self.manView.initialX - self.manView.X);
     short deltaY = abs(self.manView.initialY - self.manView.Y);
@@ -1182,14 +1191,14 @@ static float RadiansToDegrees(float radians)
     self.manView.incrementX = -self.manView.incrementX;
     self.manView.incrementY = -self.manView.incrementY;
     
+    [self.palsyTimer invalidate];
     self.palsyTimer = [NSTimer scheduledTimerWithTimeInterval:moveInterval target:self selector:@selector(drawMcMan3) userInfo:nil repeats:YES];
 }
  
 - (void)waitForFood1
 {
-    [self.palsyTimer invalidate];
-
     [self.landerMessages removeSystemMessage:@"YourOrder"];
+    [self.palsyTimer invalidate];
     self.palsyTimer = [NSTimer scheduledTimerWithTimeInterval:secondFoodDelay target:self selector:@selector(waitForFood2) userInfo:nil repeats:NO];
 }
 
@@ -1197,10 +1206,9 @@ static float RadiansToDegrees(float radians)
 {
     BOOL done = [self.manView moveMan];
     if (done) {
-        [self.palsyTimer invalidate];
-        
         // Order some food and wait
         [self.landerMessages addSystemMessage:@"YourOrder"];
+        [self.palsyTimer invalidate];
         self.palsyTimer = [NSTimer scheduledTimerWithTimeInterval:initialFoodDelay target:self selector:@selector(waitForFood1) userInfo:nil repeats:NO];
     }        
 }
@@ -1218,8 +1226,11 @@ static float RadiansToDegrees(float radians)
 {
     // Kill the timers - we are done
     [self.palsyTimer invalidate];
+    self.palsyTimer = nil;
     [self.displayTimer invalidate];
+    self.displayTimer = nil;
     [self.simulationTimer invalidate];
+    self.simulationTimer = nil;
     
     // Don't need the man anymore
     [self.manView removeFromSuperview];
@@ -1252,8 +1263,6 @@ static float RadiansToDegrees(float radians)
 {
     BOOL done = [self.manView moveMan];
     if (done) {
-        [self.palsyTimer invalidate];
-    
         // Put the flag in position
         short flagX = self.manView.X + 20 * self.manView.incrementX;
         CGPoint origin = CGPointMake(flagX, self.manView.Y);
@@ -1266,6 +1275,7 @@ static float RadiansToDegrees(float radians)
         [self.landerMessages addSystemMessage:@"OneSmallStep"];
         
         // Use a timer to wait
+        [self.palsyTimer invalidate];
         self.palsyTimer = [NSTimer scheduledTimerWithTimeInterval:flagFinalDelay target:self selector:@selector(waitFlagMan) userInfo:nil repeats:NO];
     }
 }
