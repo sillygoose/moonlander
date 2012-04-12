@@ -1305,12 +1305,10 @@ static float RadiansToDegrees(float radians)
         [self.palsyTimer invalidate];
     
         // Put the flag in position
-#if 0
         short flagX = self.manView.X + 20 * self.manView.incrementX;
         CGPoint origin = CGPointMake(flagX, self.manView.Y);
         self.flagView = [[[Flag alloc] initWithOrigin:origin] autorelease];
         [self.view addSubview:self.flagView];
-#endif
         
         // Add the flag and message
         short flagIndex = self.INDEXL + 2 * self.manView.incrementX;
@@ -1328,8 +1326,8 @@ static float RadiansToDegrees(float radians)
     
     if (self.moonView.hasMcDonalds) {
         // Visit to Macdonald's, put the man in position and start the move
-        const short ManHeightOffFloor = 3;
-        CGPoint start = CGPointMake(self.SHOWX - 8, self.view.frame.size.width - self.SHOWY - 20);
+        const short ManHeightOffFloor = 0;
+        CGPoint start = CGPointMake(self.SHOWX - 8, self.view.frame.size.width - self.SHOWY - 18);
         short deltaX = self.moonView.MACX - self.SHOWX;
         short deltaY = self.moonView.MACY - self.SHOWY - ManHeightOffFloor;
         CGPoint delta = CGPointMake(deltaX, -deltaY);
@@ -1340,9 +1338,9 @@ static float RadiansToDegrees(float radians)
         self.palsyTimer = [NSTimer scheduledTimerWithTimeInterval:moveInterval target:self selector:@selector(moveMcManVertHoriz) userInfo:nil repeats:YES];
     }
     else {
-        // Put the man in position
-        const short FlagDeltaX = 48;
-        const short FlagDeltaY = 24;
+        // Put the man in position, random decision on direction
+        short FlagDeltaX = (random() & 1) ? 48 : -48;
+        short FlagDeltaY = 24;
         CGPoint start = CGPointMake(self.SHOWX, self.view.frame.size.width - self.SHOWY);
         CGPoint delta = CGPointMake(FlagDeltaX, FlagDeltaY);
         self.manView = [[[Man alloc] initWithOrigin:start andDelta:delta] autorelease];

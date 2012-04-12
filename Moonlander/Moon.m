@@ -3,7 +3,7 @@
 //  Moonlander
 //
 //  Created by Rick on 5/26/11.
-//  Copyright 2011 Silly Goose Software. All rights reserved.
+//  Copyright 2011, 2012 Paradigm Systems. All rights reserved.
 //
 
 #import "Moon.h"
@@ -12,7 +12,6 @@
 @implementation Moon
 
 @synthesize moonArray=_moonArray;
-@synthesize featureNames=_featureNames;
 @synthesize dirtySurface=_dirtySurface;
 
 @synthesize MACX=_MACX;
@@ -31,7 +30,6 @@
     if (self) {
         // Basic initializations
         self.LEFTEDGE = -1;
-        self.featureNames = [NSArray arrayWithObjects:@"", @"lander", @"flag", @"tippedleft", @"tippedright", @"rock", @"mcdedge", @"mcd", nil];
         
         // No events for the moon surface
         self.userInteractionEnabled = NO;
@@ -92,41 +90,9 @@
 {
     TerrainFeature tf = TF_Nothing;
     index += 10;
-    
-    NSString *lem = [self.featureNames objectAtIndex:TF_OldLander];
-    NSString *lemLeft = [self.featureNames objectAtIndex:TF_OldLanderTippedLeft];
-    NSString *lemRight = [self.featureNames objectAtIndex:TF_OldLanderTippedRight];
-    NSString *rock = [self.featureNames objectAtIndex:TF_Rock];
-    NSString *flag = [self.featureNames objectAtIndex:TF_OldFlag];
-    NSString *mcd = [self.featureNames objectAtIndex:TF_McDonalds];
-    
-    NSNumber *lemFeature = [[self.moonArray objectAtIndex:index] objectForKey:lem];
-    NSNumber *lemLeftFeature = [[self.moonArray objectAtIndex:index] objectForKey:lemLeft];
-    NSNumber *lemRightFeature = [[self.moonArray objectAtIndex:index] objectForKey:lemRight];
-    NSNumber *rockFeature = [[self.moonArray objectAtIndex:index] objectForKey:rock];
-    NSNumber *flagFeature = [[self.moonArray objectAtIndex:index] objectForKey:flag];
-    NSNumber *mcdFeature = [[self.moonArray objectAtIndex:index] objectForKey:mcd];
-    
-    if ([lemFeature boolValue]) {
-        tf = TF_OldLander;
-    }
-    else if ([lemLeftFeature boolValue]) {
-        tf = TF_OldLanderTippedLeft;
-    }
-    else if ([lemRightFeature boolValue]) {
-        tf = TF_OldLanderTippedRight;
-    }
-    else if ([rockFeature boolValue] && [flagFeature boolValue]) {
-        tf = TF_RockFlag;
-    }
-    else if ([rockFeature boolValue]) {
-        tf = TF_Rock;
-    }
-    else if ([flagFeature boolValue]) {
-        tf = TF_OldFlag;
-    }
-    else if ([mcdFeature boolValue]) {
-        tf = TF_McDonalds;
+    NSNumber *feature = [[self.moonArray objectAtIndex:index] objectForKey:@"feature"];
+    if (feature) {
+        tf = [feature intValue];
     }
     return tf;
 }
@@ -136,8 +102,8 @@
     BOOL hasFeature = NO;
     index += 10;
     if (index >= 0 && index < self.moonArray.count) {
-        NSString *featureName = [self.featureNames objectAtIndex:feature];
-        hasFeature = ([[self.moonArray objectAtIndex:index] objectForKey:featureName] != nil);
+        hasFeature = ([[self.moonArray objectAtIndex:index] objectForKey:@"feature"
+                       ] != nil);
     }
     return hasFeature;
 }
@@ -148,25 +114,11 @@
     if (index >= 0 && index < self.moonArray.count) {
         NSMutableDictionary *item = [self.moonArray objectAtIndex:index];
         if (item) {
-            NSString *rockName = [self.featureNames objectAtIndex:TF_Rock];
-            NSString *featureName = [self.featureNames objectAtIndex:feature];
-            BOOL hasFeature = [[item objectForKey:featureName] boolValue];
-            BOOL hasRock = [[item objectForKey:rockName] boolValue];
-            if (!hasFeature) {
-                // We can add a flag to rock but 
-                if (!hasRock || (feature == TF_OldFlag)) {
-                    // Add the feature to the feature database
-                    NSNumber *newFeature = [NSNumber numberWithBool:YES];
-                    [item setObject:newFeature forKey:featureName];
-                    [self.moonArray replaceObjectAtIndex:index withObject:item];
-                    self.dirtySurface = YES;
-                    
-                    // Ask for a redraw to add the new feature (except for old landers)
-                    if (feature != TF_OldLander) {
-                        [self refreshCloseUpView];
-                    }
-                }
-            }
+            // Add the feature to the feature database
+            NSNumber *newFeature = [NSNumber numberWithInt:feature];
+            [item setObject:newFeature forKey:@"feature"];
+            [self.moonArray replaceObjectAtIndex:index withObject:item];
+            self.dirtySurface = YES;
         }
     }
 }
@@ -175,11 +127,10 @@
 {
     index += 10;
     if (index >= 0 && index < self.moonArray.count) {
-        NSString *featureName = [self.featureNames objectAtIndex:feature];
         NSMutableDictionary *terrainFeature = [self.moonArray objectAtIndex:index];
-        TerrainFeature tf = [[terrainFeature objectForKey:featureName] intValue];
+        TerrainFeature tf = [[terrainFeature objectForKey:@"feature"] intValue];
         if (tf != TF_Rock) {
-            [terrainFeature removeObjectForKey:featureName];
+            [terrainFeature removeObjectForKey:@"feature"];
             self.dirtySurface = YES;
         }
     }
@@ -235,7 +186,7 @@
     CGFloat featureTranslation[] = { 0, 0, 0, -1, 1, 0, 0, 0 };
     CGFloat verticalAdjust[] = { 0, LanderVertAdj, FeatureSizes[TF_OldFlag].height/2, CrashedLanderVertAdj, CrashedLanderVertAdj, 36, 0, FeatureSizes[TF_McDonalds].height };
     CGFloat horizontalAdjust[] = { 0, 0, 20, 0, 0, -4, -54, -54 };
-    CGFloat verticalClip[] = { 0, 0, 0, 30, 30, 0, 0, 0 };
+    CGFloat verticalClip[] = { 0, 0, 0, 20, 20, 0, 0, 0 };
 
     if (!(tf == TF_Nothing || tf == TF_McDonaldsEdge)) {
         short leftHeight = [self DFAKE:[self terrainHeight:(ti)]];
@@ -420,13 +371,7 @@
             if (k == 11) {
                 TerrainFeature tf = [self featureAtIndex:i];
                 if (tf > TF_Nothing && tf != TF_McDonaldsEdge) {
-                    if (tf == TF_RockFlag) {
-                        [self addFeatureToView:TF_OldFlag atTerrainIndex:i atX:x];
-                        [self addFeatureToView:TF_Rock atTerrainIndex:i atX:x];
-                    }
-                    else {
-                        [self addFeatureToView:tf atTerrainIndex:i atX:x];
-                    }
+                    [self addFeatureToView:tf atTerrainIndex:i atX:x];
                 }
             }
         }
