@@ -1470,7 +1470,7 @@ static float RadiansToDegrees(float radians)
                 }
             }
         }
-        else if (tf == TF_McDonalds) {
+        else if (tf == TF_McDonalds || tf == TF_McDonaldsEdge) {
             if (self.RADARY <= 30) {
                 [self.moonView removeFeature:TF_McDonalds atIndex:self.INDEXL];
                 [self.landerMessages addSystemMessage:@"HitMcdonalds"];
