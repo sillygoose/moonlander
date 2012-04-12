@@ -41,7 +41,7 @@
         UIColor *labelBackground = [UIColor blackColor] ;
 
         // Create the text label 
-        self.dialogText = [[[VGLabel alloc] initWithFrame:textRect] autorelease];
+        self.dialogText = [[VGLabel alloc] initWithFrame:textRect];
         self.dialogText.text = @"New game?";
         self.dialogText.font = fontInfo;
         self.dialogText.textColor = labelText;
@@ -50,7 +50,7 @@
         [self addSubview:self.dialogText];
 
         // Buttons are black text on a green background
-        self.dialogYesButton = [[[VGButton alloc] initWithFrame:yesRect] autorelease];
+        self.dialogYesButton = [[VGButton alloc] initWithFrame:yesRect];
         self.dialogYesButton.titleLabel.text = @"Yes";
         self.dialogYesButton.titleLabel.font = fontInfo;
         self.dialogYesButton.titleLabel.textColor = buttonText;
@@ -58,7 +58,7 @@
         self.dialogYesButton.titleLabel.textAlignment = UITextAlignmentCenter;
         [self addSubview:self.dialogYesButton];
 
-        self.dialogNoButton = [[[VGButton alloc] initWithFrame:noRect] autorelease];
+        self.dialogNoButton = [[VGButton alloc] initWithFrame:noRect];
         self.dialogNoButton.titleLabel.text = @"No";
         self.dialogNoButton.titleLabel.font = fontInfo;
         self.dialogNoButton.titleLabel.textColor = buttonText;
@@ -95,13 +95,19 @@
 - (IBAction)newGameYesButtonPushed:(id)sender
 {
     self.userSelection = YES;
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Warc-performSelector-leaks"
     [self.callerMethod performSelector:self.onSelection];
+#pragma clang diagnostic pop
 }
 
 - (IBAction)newGameNoButtonPushed:(id)sender
 {
     self.userSelection = NO;
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Warc-performSelector-leaks"
     [self.callerMethod performSelector:self.onSelection];
+#pragma clang diagnostic pop
 }
 
 @end

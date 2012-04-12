@@ -18,8 +18,9 @@
     CGRect      _actualBounds;
 }
 
-@property (nonatomic, retain) VGLabel *titleLabel;
-@property (nonatomic, retain) NSTimer *repeatTimer;
+@property (nonatomic, strong) VGLabel *titleLabel;
+
+@property (nonatomic) NSTimer *repeatTimer;
 @property (nonatomic) float autoRepeatInterval;
 @property (nonatomic) CGRect actualBounds;
 

@@ -73,21 +73,18 @@
 
 - (void)setTextColor:(UIColor *)newColor
 {
-    [_textColor release];
-    _textColor = [newColor retain];
+    _textColor = newColor;
     [self updateDrawingDictonary];
 }
 
 - (void)setFont:(UIFont *)newFont
 {                    
-    [_font release];
-    _font = [newFont retain];
+    _font = newFont;
     [self updateDrawingDictonary];
 }
 
 - (void)setText:(NSString *)newText
 {
-    [_text release];
     _text = [newText copy];
     [self updateDrawingDictonary];
 }
@@ -98,12 +95,5 @@
     [self updateDrawingDictonary];
 }
 
-- (void)dealloc
-{
-    [_text release];
-    [_font release];
-    [_textColor release];
-    [super dealloc];
-}
 
 @end

@@ -16,8 +16,8 @@
     BOOL                    _fuelWarningOn;
 }
 
-@property (nonatomic, retain) NSDictionary *landerMessages;
-@property (nonatomic, retain) NSMutableDictionary *displayedMessages;
+@property (nonatomic) NSDictionary *landerMessages;
+@property (nonatomic) NSMutableDictionary *displayedMessages;
 
 @property (nonatomic) BOOL fuelWarningOn;
 

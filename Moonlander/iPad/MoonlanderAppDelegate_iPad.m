@@ -24,10 +24,5 @@
     return YES;
 }
 
-- (void)dealloc
-{
-    [_landerViewController release];
-	[super dealloc];
-}
 
 @end

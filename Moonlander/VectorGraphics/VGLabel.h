@@ -20,8 +20,8 @@
 }
 
 @property (nonatomic, copy) NSString *text;
-@property (nonatomic, retain) UIFont *font;
-@property (nonatomic, retain) UIColor *textColor;
+@property (nonatomic) UIFont *font;
+@property (nonatomic) UIColor *textColor;
 @property (nonatomic) UITextAlignment textAlignment;
 
 @property (nonatomic) BOOL blink;

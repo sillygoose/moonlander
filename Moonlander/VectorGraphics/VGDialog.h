@@ -24,14 +24,14 @@
     SEL         _onSelection;
 }
 
-@property (nonatomic, retain) VGButton *dialogYesButton;
-@property (nonatomic, retain) VGButton *dialogNoButton;
-@property (nonatomic, retain) VGLabel *dialogText;
+@property (nonatomic, strong) VGButton *dialogYesButton;
+@property (nonatomic, strong) VGButton *dialogNoButton;
+@property (nonatomic, strong) VGLabel *dialogText;
 
 @property (nonatomic) BOOL userSelection;
 
 @property (nonatomic) SEL onSelection;
-@property (nonatomic, retain) id callerMethod;
+@property (nonatomic) id callerMethod;
 
 
 - (id)initWithFrame:(CGRect)frameRect;

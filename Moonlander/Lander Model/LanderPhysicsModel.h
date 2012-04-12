@@ -34,8 +34,8 @@
     
     BOOL        _lemOnSurface;
 
-    id <LanderPhysicsDataSource> _dataSource ;
-    id <LanderPhysicsDelegate> _delegate;
+    id <LanderPhysicsDataSource> __unsafe_unretained _dataSource ;
+    id <LanderPhysicsDelegate> __unsafe_unretained _delegate;
 }
 
 @property (nonatomic) float clockTicks;             // seconds
@@ -59,7 +59,7 @@
 
 @property (nonatomic) BOOL lemOnSurface;            // LEM has landed
 
-@property (assign) id <LanderPhysicsDataSource> dataSource;
-@property (assign) id <LanderPhysicsDelegate> delegate;
+@property (unsafe_unretained) id <LanderPhysicsDataSource> dataSource;
+@property (unsafe_unretained) id <LanderPhysicsDelegate> delegate;
 
 @end

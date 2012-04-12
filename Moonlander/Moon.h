@@ -31,10 +31,10 @@ typedef enum { TV_Unknown, TV_Normal, TV_Detailed } TerrainView;
     TerrainView         _currentView;
     short               _LEFTEDGE;
     
-    id <MoonDataSource> _dataSource ;
+    id <MoonDataSource> __unsafe_unretained _dataSource ;
 }
 
-@property (nonatomic, retain) NSMutableArray *moonArray;
+@property (nonatomic) NSMutableArray *moonArray;
 @property (nonatomic) BOOL dirtySurface;
 
 @property (nonatomic) short MACX;
@@ -44,7 +44,7 @@ typedef enum { TV_Unknown, TV_Normal, TV_Detailed } TerrainView;
 @property (nonatomic) TerrainView currentView;
 @property (nonatomic) short LEFTEDGE;
 
-@property (assign) id <MoonDataSource> dataSource;
+@property (unsafe_unretained) id <MoonDataSource> dataSource;
 
 - (id)initWithFrame:(CGRect)frameRect;
 
