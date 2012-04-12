@@ -1257,7 +1257,7 @@ static float RadiansToDegrees(float radians)
         // Put the flag in position
         short flagX = self.manView.X + 20 * self.manView.incrementX;
         CGPoint origin = CGPointMake(flagX, self.manView.Y);
-        self.flagView = [[[Flag alloc] initWithOrigin:origin] autorelease];
+        self.flagView = [[Flag alloc] initWithOrigin:origin];
         [self.view addSubview:self.flagView];
         
         // Add the flag and message
@@ -1281,7 +1281,7 @@ static float RadiansToDegrees(float radians)
         short deltaX = self.moonView.MACX - self.SHOWX;
         short deltaY = self.moonView.MACY - self.SHOWY - ManHeightOffFloor;
         CGPoint delta = CGPointMake(deltaX, -deltaY);
-        self.manView = [[[Man alloc] initWithOrigin:start andDelta:delta] autorelease];
+        self.manView = [[Man alloc] initWithOrigin:start andDelta:delta];
         [self.view addSubview:self.manView];
         
         // Use a timer to animate our guy
@@ -1293,7 +1293,7 @@ static float RadiansToDegrees(float radians)
         short FlagDeltaY = 24;
         CGPoint start = CGPointMake(self.SHOWX, self.view.frame.size.width - self.SHOWY);
         CGPoint delta = CGPointMake(FlagDeltaX, FlagDeltaY);
-        self.manView = [[[Man alloc] initWithOrigin:start andDelta:delta] autorelease];
+        self.manView = [[Man alloc] initWithOrigin:start andDelta:delta];
         [self.view addSubview:self.manView];
        
         // Use a timer to animate our guy
