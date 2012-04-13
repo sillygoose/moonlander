@@ -1535,7 +1535,7 @@ PUTCOM:
 	ADD	#4,SP               ;UPDATE THE STACK AFTER MOVING OVER THE PC.
 	RTS	PC                  ;RETURN NOW.
 
-GETFET:
+GETFET:                     ;Return feature code in the index variable
     MOV	TEMP,-(SP)          ;SAVE A SCRATCH REGISTER NOW.
 	MOV	4(SP),TEMP          ;PICK UP THE INDEX NOW.
 	ASR	TEMP                ;BYTE ADDRESS IT.
@@ -1882,13 +1882,13 @@ DRAW2C:
 	BGT	DRAW22              ;NO.
 	BR	DRW2L               ;YES.
 
-DRAW2X:                     ;surface drawn, add features
+DRAW2X:                     ;surface drawn, add the feature paths
     MOV	LEFTEDGE,RET1		;PICK UP LEFTEDGE AGAIN.
 	MOV	#19.,(SP)           ;PREPARE TO EXAMINE THE TERAIN NOW.
 	MOV	#24.,IN1
 	MOV	RET1,RET2           ;SET UP TWO POINTERS NOW.
 	ASL	RET2
-	ADD	#TERAIN,RET2        ;lookup Y for feature use
+	ADD	#TERAIN,RET2        ;lookup terrain elevation for feature use
 
 DRAW2Y:
     MOV	RET1,-(SP)          ;PUSH FEATURE INDEX ONTO THE STACK.
@@ -1896,7 +1896,7 @@ DRAW2Y:
 	JSR	PC,GETFET           ;GET THE FEATURE NOW.
 	MOV	(SP)+,TEMP          ;feature type in TEMP   AND PUT IT IN A USEFUL REGISTER.
 	ASL	TEMP                ;MAKE IT INTO A GOOD INDEX.
-	JSR	PC,@DRAWTB(TEMP)    ;lookup the feature in the AHTAB
+	JSR	PC,@DRAWTB(TEMP)    ;lookup the feature in AHTAB and draw it
 	TST	(RET2)+             ;BYPASS
 	ADD	#48.,IN1
 	DEC	(SP)
@@ -1922,7 +1922,7 @@ AHTAB:
 	.WORD	AHOLDS
 	.WORD	AHROCK
 	.WORD	AHMAC
-	.WORD	AHMAC
+	.WORD	DRW2L
 
 DRAWTB:
     .WORD	DRAWRR			;0=NOTHING=RETURN.
