@@ -21,7 +21,7 @@
 				<key>x</key>
 				<integer>95</integer>
 				<key>y</key>
-				<integer>0</integer>
+				<integer>10</integer>
 			</dict>
 			<key>name</key>
 			<string>Building</string>
@@ -99,7 +99,7 @@
 			<key>moverel</key>
 			<dict>
 				<key>x</key>
-				<integer>-18</integer>
+				<integer>-19</integer>
 				<key>y</key>
 				<integer>0</integer>
 			</dict>
@@ -128,7 +128,7 @@
 				<key>x</key>
 				<integer>-90</integer>
 				<key>y</key>
-				<integer>3</integer>
+				<integer>-3</integer>
 			</dict>
 		</dict>
 		<dict>

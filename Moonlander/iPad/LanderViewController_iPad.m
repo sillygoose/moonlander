@@ -1264,8 +1264,8 @@ static float RadiansToDegrees(float radians)
     BOOL done = [self.manView moveMan];
     if (done) {
         // Put the flag in position
-        short flagX = self.manView.X + 20 * self.manView.incrementX;
-        CGPoint origin = CGPointMake(flagX, self.manView.Y);
+        short flagX = self.manView.X + 24 * self.manView.incrementX;
+        CGPoint origin = CGPointMake(flagX, self.manView.Y - 12);
         self.flagView = [[Flag alloc] initWithOrigin:origin];
         [self.view addSubview:self.flagView];
         
@@ -1284,10 +1284,12 @@ static float RadiansToDegrees(float radians)
 {
     [self.palsyTimer invalidate];
     
-    if (self.moonView.hasMcDonalds) {
+    const short ManCenterX = 8;
+    const short ManCenterY = 18;
+    const short ManHeightOffFloor = 0;
+    if (self.moonView.displayHasMcDonalds) {
         // Visit to Macdonald's, put the man in position and start the move
-        const short ManHeightOffFloor = 0;
-        CGPoint start = CGPointMake(self.SHOWX - 8, self.view.frame.size.width - self.SHOWY - 18);
+        CGPoint start = CGPointMake(self.SHOWX - ManCenterX, self.view.frame.size.width - self.SHOWY - ManCenterY);
         short deltaX = self.moonView.MACX - self.SHOWX;
         short deltaY = self.moonView.MACY - self.SHOWY - ManHeightOffFloor;
         CGPoint delta = CGPointMake(deltaX, -deltaY);
@@ -1301,8 +1303,8 @@ static float RadiansToDegrees(float radians)
         // Put the man in position, random decision on direction
         short FlagDeltaX = (random() & 1) ? 48 : -48;
         short FlagDeltaY = 24;
-        CGPoint start = CGPointMake(self.SHOWX, self.view.frame.size.width - self.SHOWY);
-        CGPoint delta = CGPointMake(FlagDeltaX, FlagDeltaY);
+        CGPoint start = CGPointMake(self.SHOWX - ManCenterX, self.view.frame.size.width - self.SHOWY - ManCenterY);
+        CGPoint delta = CGPointMake(FlagDeltaX, FlagDeltaY - ManHeightOffFloor);
         self.manView = [[Man alloc] initWithOrigin:start andDelta:delta];
         [self.view addSubview:self.manView];
        
@@ -1428,10 +1430,16 @@ static float RadiansToDegrees(float radians)
                         [self.moonView addFeature:TF_OldLanderTippedLeft atIndex:self.INDEXL];
                     else
                         [self.moonView addFeature:TF_OldLanderTippedRight atIndex:self.INDEXL];
-                    self.SHOWY -= 16;
                     
-                    // Explode
-                    [self EXPLOD];
+                    // Adjust vertical position on rhe old lander
+                    self.SHOWY += 4;
+                    
+                    // Turn off fuel, flames, and dust
+                    [self.landerMessages removeFuelMessage];
+                    [self landerDown];
+
+                    // Let's delay a bit before presenting the new game dialog
+                    self.palsyTimer = [NSTimer scheduledTimerWithTimeInterval:explodeDelay target:self selector:@selector(waitNewGame) userInfo:nil repeats:NO];
                 }
             }
         }
@@ -1443,8 +1451,18 @@ static float RadiansToDegrees(float radians)
                     QUICK = YES;
                 }
                 else {
+                    // Hit a crashed lander
                     [self.landerMessages addSystemMessage:@"HitCrashedLander"];
-                    [self EXPLOD];
+                    
+                    // Adjust vertical position on rhe old lander
+                    self.SHOWY += 4;
+                    
+                    // Turn off fuel, flames, and dust
+                    [self.landerMessages removeFuelMessage];
+                    [self landerDown];
+                    
+                    // Let's delay a bit before presenting the new game dialog
+                    self.palsyTimer = [NSTimer scheduledTimerWithTimeInterval:explodeDelay target:self selector:@selector(waitNewGame) userInfo:nil repeats:NO];
                 }
             }
         }

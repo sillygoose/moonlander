@@ -26,7 +26,8 @@ typedef enum { TV_Unknown, TV_Normal, TV_Detailed } TerrainView;
     
     short               _MACX;
     short               _MACY;
-    BOOL                _hasMcDonalds;
+    BOOL                _displayHasMcDonalds;
+    BOOL                _mcdExists;
     
     TerrainView         _currentView;
     short               _LEFTEDGE;
@@ -39,7 +40,8 @@ typedef enum { TV_Unknown, TV_Normal, TV_Detailed } TerrainView;
 
 @property (nonatomic) short MACX;
 @property (nonatomic) short MACY;
-@property (nonatomic) BOOL hasMcDonalds;
+@property (nonatomic) BOOL displayHasMcDonalds;
+@property (nonatomic) BOOL mcdExists;
 
 @property (nonatomic) TerrainView currentView;
 @property (nonatomic) short LEFTEDGE;

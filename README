@@ -6,12 +6,13 @@ Here is the to do list
 - initial menu screen
 - splash screen
 - dust improvements
-- time runs while on lunar surface - no
 - bold/blink selected controls
 
-- what happens when crashing into an old lander?
-- high speed crash into rock?
-
+Fixed
+- time runs while on lunar surface - yes
+- crashing into an old lander? show lander on top of newly crashed lander
+- crashing into a crashed lander? show lander on top of crashed lander
+- high speed crash into rock? replace rock with crashed lander and deform
 - can flag and old lander be displayed? - yes
 - can rock and crashed lander be displayed? - no
 - flag replaces rock in database? - yes
