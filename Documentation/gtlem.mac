@@ -1165,7 +1165,7 @@ MAYBEP:
                             ;PLANT THE FLAG NOW!!!!!!!
                             ; <OR GET A HAMBURGER>.
 	JSR	PC,PALSY            ;WITH THE SPASTIC MAN.
-                            ;No return from this rountine
+                            ;No return from this routine
 
 MAYBEB:
     MOV	HORVEL,IN1          ;PICK UP DIRECTION TO TIP SHIP.
