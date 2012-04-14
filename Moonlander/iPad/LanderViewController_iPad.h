@@ -19,6 +19,7 @@
 #import "Moon.h"
 #import "Lander.h"
 #import "Dust.h"
+#import "Explosion.h"
 #import "Man.h"
 #import "Flag.h"
 #import "Telemetry.h"
@@ -32,6 +33,7 @@
     Moon            *_moonView;
     Lander          *_landerView;
     Dust            *_dustView;
+    Explosion       *_explosionView;
     Man             *_manView;
     Flag            *_flagView;
     
@@ -106,6 +108,7 @@
 @property (nonatomic) short AVERY;
 @property (nonatomic) short AVERT;
 @property (nonatomic) short DUSTX;
+@property (nonatomic) short XTYPE;
 
 @property (nonatomic) short VERDIS;
 @property (nonatomic, readonly) short HORDIS;
@@ -122,6 +125,7 @@
 @property (nonatomic, strong) Moon *moonView;
 @property (nonatomic, strong) Lander *landerView;
 @property (nonatomic, strong) Dust *dustView;
+@property (nonatomic, strong) Explosion *explosionView;
 @property (nonatomic, strong) Man *manView;
 @property (nonatomic, strong) Flag *flagView;
 

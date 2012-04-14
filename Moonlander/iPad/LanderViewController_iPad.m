@@ -10,8 +10,6 @@
 
 #import "LanderMessage.h"
 
-const int BeepSound = 1052;
-
 
 @interface LanderViewController_iPad ()
 - (CGRect) convertRectFromGameToView:(CGRect)gameRect;
@@ -24,6 +22,7 @@ const int BeepSound = 1052;
 @synthesize moonView=_moonView;
 @synthesize landerView=_landerView;
 @synthesize dustView=_dustView;
+@synthesize explosionView=_explosionView;
 @synthesize manView=_manView;
 @synthesize flagView=_flagView;
 
@@ -38,6 +37,7 @@ const int BeepSound = 1052;
 @synthesize AVERY=_AVERY;
 @synthesize AVERT=_AVERT;
 @synthesize DUSTX=_DUSTX;
+@synthesize XTYPE=_XTYPE;
 
 @synthesize smallLeftArrow=_smallLeftArrow;
 @synthesize smallRightArrow=_smallRightArrow;
@@ -128,10 +128,10 @@ static float RadiansToDegrees(float radians)
 - (CGRect)convertRectFromGameToView:(CGRect)gameRect;
 {
     CGRect viewRect = gameRect;
-    NSLog(@"gameRect:%@    viewFrame:%@", NSStringFromCGRect(gameRect), NSStringFromCGRect(self.view.frame));
-    NSLog(@"gameRect:%@    viewBounds:%@", NSStringFromCGRect(gameRect), NSStringFromCGRect(self.view.bounds));
+    //NSLog(@"gameRect:%@    viewFrame:%@", NSStringFromCGRect(gameRect), NSStringFromCGRect(self.view.frame));
+    //NSLog(@"gameRect:%@    viewBounds:%@", NSStringFromCGRect(gameRect), NSStringFromCGRect(self.view.bounds));
     viewRect.origin.y = self.view.bounds.size.width - gameRect.origin.y - gameRect.size.height;
-    NSLog(@"gameRect:%@    viewRect:%@", NSStringFromCGRect(gameRect), NSStringFromCGRect(viewRect));
+    //NSLog(@"gameRect:%@    viewRect:%@", NSStringFromCGRect(gameRect), NSStringFromCGRect(viewRect));
 	return viewRect;
 }
 
@@ -277,17 +277,13 @@ static float RadiansToDegrees(float radians)
     self.secondsData.enabled = YES;
 }
 
-- (void)disableRollThrusters
+- (void)disableRollAndThrusters
 {
     self.thrusterSlider.enabled = NO;
     self.smallLeftArrow.enabled = NO;
     self.smallRightArrow.enabled = NO;
     self.largeLeftArrow.enabled = NO;
     self.largeRightArrow.enabled = NO;
-}
-
-- (void)askNewGame
-{
 }
 
 - (void)getStarted
@@ -353,7 +349,6 @@ static float RadiansToDegrees(float radians)
     // Start off the display updates
     [self updateLander];
 }
-
 
 - (void)initGame
 {
@@ -728,6 +723,7 @@ static float RadiansToDegrees(float radians)
     
     self.landerView = nil;
     self.dustView = nil;
+    self.explosionView = nil;
     self.manView = nil;
     self.flagView = nil;
     
@@ -1283,27 +1279,122 @@ static float RadiansToDegrees(float radians)
 	self.palsyTimer = [NSTimer scheduledTimerWithTimeInterval:landingDelay target:self selector:@selector(moveMan) userInfo:nil repeats:NO];
 }
 
+- (void)BELL
+{
+    const int BeepSound = 1052;
+    AudioServicesPlayAlertSound(BeepSound);
+}
+
+- (void)EXGEN
+{
+    const int YUpDown[] = { 0, 1, 3, 6, 4, 3, 1, -2, -6, -7, -5, -2, 2, 3, 5, 6, 2, 1, -1, -4, -6, -5, -3, 0, 4, 5, 7, 4, 0, -1, -3, -1 };
+    short angle = -30;
+    short count = 241;
+    
+    // Allocate our path array
+    NSMutableArray *path = [[NSMutableArray alloc] init];
+    NSArray *paths = [NSArray arrayWithObject:path];
+    
+    // Prep the intensity and line type info
+    NSNumber *intensity = [NSNumber numberWithInt:7];//###
+    NSNumber *width = [NSNumber numberWithFloat:1.0f];
+    NSNumber *height = [NSNumber numberWithFloat:1.0f];
+
+    //(EXGENL)
+    while (count > 0) {
+        // We skip fooling around and just randomize this
+        short IN1 = (short)random() & 0x1f;
+        short TEMP = YUpDown[IN1];
+        TEMP += self.DUSTX;
+        
+        if (TEMP >= 0) {
+            short X = TEMP * cos(angle) + self.SHOWX;
+            if (X >= 0) {
+                short Y = TEMP * sin(angle) + self.SHOWY - 32;
+                if (Y > 0) {
+                    Y = 768 - Y;
+                    // Draw rect command
+                    NSNumber *x = [NSNumber numberWithFloat:X];
+                    NSNumber *y = [NSNumber numberWithFloat:Y];
+                    
+                    NSDictionary *originItem = [NSDictionary dictionaryWithObjectsAndKeys:x, @"x", y, @"y", nil];
+                    NSDictionary *sizeItem = [NSDictionary dictionaryWithObjectsAndKeys:width, @"width", height, @"height", nil];
+                    NSDictionary *frameItem = [NSDictionary dictionaryWithObjectsAndKeys:originItem, @"origin", sizeItem, @"size", nil];
+                    NSDictionary *rectItem = [NSDictionary dictionaryWithObjectsAndKeys:frameItem, @"frame", nil];
+                    NSDictionary *pathItem = [NSDictionary dictionaryWithObjectsAndKeys:rectItem, @"rect", intensity, @"intensity", nil];
+                    [path addObject:pathItem];
+                }
+            }
+        }
+        
+        //(EXGEND)
+        angle++;
+        count--;
+    }
+    
+    // Add the draw paths and update the display
+    self.explosionView.drawPaths = paths;
+    [self.explosionView setNeedsDisplay];
+}
+
+- (void)generateExplosion:(short)radius
+{
+    [self EXGEN];
+    [self BELL];
+    
+    self.DUSTX -= 10;
+    [self EXGEN];
+    [self BELL];
+    
+    // Increase the radius until done
+    self.DUSTX += 33;
+}
+
+- (void)animateExplosion
+{
+    if (self.DUSTX > 300) {
+        // Remove the explosion view
+        if (self.explosionView) {
+            self.explosionView.drawPaths = nil;
+            [self.explosionView removeFromSuperview];
+            self.explosionView = nil;
+        }
+
+        // Let's delay a bit before presenting the new game dialog
+        [self.palsyTimer invalidate];
+        self.palsyTimer = [NSTimer scheduledTimerWithTimeInterval:explodeDelay target:self selector:@selector(waitNewGame) userInfo:nil repeats:NO];
+    }
+    else {
+        // Generate the display while making noise
+        [self generateExplosion:self.DUSTX];
+    }
+}
+
 - (void)EXPLOD
 {
     // We are down hard, hide and lander and shut down the model
     self.landerView.hidden = YES;
     [self.landerModel landerDown];
+
+    // Turn off fuel, flames, and dust
+    [self.landerMessages removeFuelMessage];
+    [self landerDown];
+    [self DUST];
     
-    // Shut down things and ring bell
-    AudioServicesPlayAlertSound(BeepSound);
+    //(EXPLOD)  Shut down things and ring bell
+    [self BELL];
+
+    // Create the explosion view
+    float xPos = 0;
+    float yPos = 0;
+    CGRect frameRect = CGRectMake(xPos, yPos, 1024, 768);
+    self.explosionView = [[Explosion alloc] initWithFrame:frameRect];
+    [self.view addSubview:self.explosionView];
     
-    // Let's delay a bit before presenting the new game dialog
-    self.palsyTimer = [NSTimer scheduledTimerWithTimeInterval:explodeDelay target:self selector:@selector(waitNewGame) userInfo:nil repeats:NO];
-    
-#if 0  //### need to sort out this code
-    short RADIUS = 0;
-    
-    // Work on the randomizer
-    static short XTYPE = 0;
-    XTYPE++;
-    swab(&XTYPE, &XTYPE, sizeof(XTYPE));
-    short temp = (XTYPE & 0x8000) != 0;
-#endif
+    //(EXPLD1)  Setup the animation
+    self.DUSTX = 0;
+    [self generateExplosion:self.DUSTX];
+    self.palsyTimer = [NSTimer scheduledTimerWithTimeInterval:0.0625f target:self selector:@selector(animateExplosion) userInfo:nil repeats:YES];
 }
 
 - (void)ALTER:(short)alterValue
@@ -1529,7 +1620,7 @@ static float RadiansToDegrees(float radians)
         // Display a low fuel message
         if (self.FUEL <= 0) {
             [self.landerMessages removeFuelMessage];
-            [self disableRollThrusters];
+            [self disableRollAndThrusters];
         }
         else if (self.FUEL < 200) {
             if (!self.didFuelAlert) {
@@ -1538,7 +1629,7 @@ static float RadiansToDegrees(float radians)
 
                 // Add message and ring bell
                 [self.landerMessages addFuelMessage];
-                AudioServicesPlayAlertSound(BeepSound);
+                [self BELL];
             }
         }
         
@@ -1656,6 +1747,7 @@ static float RadiansToDegrees(float radians)
             
             // Test for contact with surface
             if ((self.RADARY - 16) < 0) {
+                // Deform the moon surface and explode
                 [self ALTER:640];
                 [self EXPLOD];
             }

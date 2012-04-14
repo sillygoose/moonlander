@@ -7,9 +7,9 @@ Here is the to do list
 - splash screen
 - dust improvements
 - bold/blink selected controls
-- explode code implementation
 
-Fixed
+Fixed/Done
+- explode code implementation
 - time runs while on lunar surface - yes
 - crashing into an old lander? show lander on top of newly crashed lander
 - crashing into a crashed lander? show lander on top of crashed lander

@@ -30,15 +30,15 @@
 		560FA1391379BEAB0017EE25 /* LanderViewController_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 560FA1361379BEAA0017EE25 /* LanderViewController_iPad.xib */; };
 		560FA13A1379BEAB0017EE25 /* LanderViewController_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 560FA1361379BEAA0017EE25 /* LanderViewController_iPad.xib */; };
 		5613DDE8143A85F80059077A /* VGDialog.m in Sources */ = {isa = PBXBuildFile; fileRef = 5613DDE7143A85F80059077A /* VGDialog.m */; };
-		562900E11538CA43008912CC /* pdp11 in Resources */ = {isa = PBXBuildFile; fileRef = 562900DE1538CA43008912CC /* pdp11 */; };
+		5621703515392F1F0094122B /* Explosion.m in Sources */ = {isa = PBXBuildFile; fileRef = 5621703415392F1F0094122B /* Explosion.m */; };
+		562900E11538CA43008912CC /* rt11 in Resources */ = {isa = PBXBuildFile; fileRef = 562900DE1538CA43008912CC /* rt11 */; };
 		562900E21538CA43008912CC /* pdp11.ini in Resources */ = {isa = PBXBuildFile; fileRef = 562900DF1538CA43008912CC /* pdp11.ini */; };
 		562900E81538CB08008912CC /* putr.ini in Resources */ = {isa = PBXBuildFile; fileRef = 562900E51538CB08008912CC /* putr.ini */; };
 		562900EB1538CB28008912CC /* README in Resources */ = {isa = PBXBuildFile; fileRef = 562900EA1538CB28008912CC /* README */; };
 		562900ED1538D064008912CC /* rtv53_rl.dsk in Resources */ = {isa = PBXBuildFile; fileRef = 562900EC1538D064008912CC /* rtv53_rl.dsk */; };
 		562900F41538D122008912CC /* mld in Resources */ = {isa = PBXBuildFile; fileRef = 562900F21538D122008912CC /* mld */; };
-		562900F51538D122008912CC /* pdp11 in Resources */ = {isa = PBXBuildFile; fileRef = 562900F31538D122008912CC /* pdp11 */; };
 		562900F91538D17D008912CC /* mlc in Resources */ = {isa = PBXBuildFile; fileRef = 562900F71538D17D008912CC /* mlc */; };
-		562900FA1538D17D008912CC /* pdp11 in Resources */ = {isa = PBXBuildFile; fileRef = 562900F81538D17D008912CC /* pdp11 */; };
+		562900FA1538D17D008912CC /* gt40 in Resources */ = {isa = PBXBuildFile; fileRef = 562900F81538D17D008912CC /* gt40 */; };
 		562900FD1538D1D3008912CC /* get.cmd in Resources */ = {isa = PBXBuildFile; fileRef = 562900FB1538D1D3008912CC /* get.cmd */; };
 		562900FE1538D1D3008912CC /* put.cmd in Resources */ = {isa = PBXBuildFile; fileRef = 562900FC1538D1D3008912CC /* put.cmd */; };
 		562901001538D1F0008912CC /* make.com in Resources */ = {isa = PBXBuildFile; fileRef = 562900FF1538D1F0008912CC /* make.com */; };
@@ -129,15 +129,16 @@
 		560FA13E1379C95B0017EE25 /* LanderPhysicsDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LanderPhysicsDataSource.h; path = "Lander Model/LanderPhysicsDataSource.h"; sourceTree = "<group>"; };
 		5613DDE6143A85F80059077A /* VGDialog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VGDialog.h; path = VectorGraphics/VGDialog.h; sourceTree = "<group>"; };
 		5613DDE7143A85F80059077A /* VGDialog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VGDialog.m; path = VectorGraphics/VGDialog.m; sourceTree = "<group>"; };
-		562900DE1538CA43008912CC /* pdp11 */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = pdp11; sourceTree = "<group>"; };
+		5621703315392F1F0094122B /* Explosion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Explosion.h; sourceTree = "<group>"; };
+		5621703415392F1F0094122B /* Explosion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Explosion.m; sourceTree = "<group>"; };
+		562900DE1538CA43008912CC /* rt11 */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = rt11; sourceTree = "<group>"; };
 		562900DF1538CA43008912CC /* pdp11.ini */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = pdp11.ini; sourceTree = "<group>"; };
 		562900E51538CB08008912CC /* putr.ini */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = putr.ini; sourceTree = "<group>"; };
 		562900EA1538CB28008912CC /* README */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README; sourceTree = "<group>"; };
 		562900EC1538D064008912CC /* rtv53_rl.dsk */ = {isa = PBXFileReference; lastKnownFileType = file; path = rtv53_rl.dsk; sourceTree = "<group>"; };
 		562900F21538D122008912CC /* mld */ = {isa = PBXFileReference; lastKnownFileType = file; path = mld; sourceTree = "<group>"; };
-		562900F31538D122008912CC /* pdp11 */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = pdp11; sourceTree = "<group>"; };
 		562900F71538D17D008912CC /* mlc */ = {isa = PBXFileReference; lastKnownFileType = file; path = mlc; sourceTree = "<group>"; };
-		562900F81538D17D008912CC /* pdp11 */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = pdp11; sourceTree = "<group>"; };
+		562900F81538D17D008912CC /* gt40 */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = gt40; sourceTree = "<group>"; };
 		562900FB1538D1D3008912CC /* get.cmd */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = get.cmd; sourceTree = "<group>"; };
 		562900FC1538D1D3008912CC /* put.cmd */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = put.cmd; sourceTree = "<group>"; };
 		562900FF1538D1F0008912CC /* make.com */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = make.com; sourceTree = "<group>"; };
@@ -275,6 +276,8 @@
 				56755FD9138C0B8200455B52 /* Lander.m */,
 				56C94AA713A7A7AE001B7EF9 /* Dust.h */,
 				56C94AA813A7A7AE001B7EF9 /* Dust.m */,
+				5621703315392F1F0094122B /* Explosion.h */,
+				5621703415392F1F0094122B /* Explosion.m */,
 				56B4D62B1417D9AF00029FC8 /* Flag.h */,
 				56B4D62C1417D9AF00029FC8 /* Flag.m */,
 				562F26A61417A22E0069169B /* Man.h */,
@@ -405,7 +408,6 @@
 			isa = PBXGroup;
 			children = (
 				562900F21538D122008912CC /* mld */,
-				562900F31538D122008912CC /* pdp11 */,
 			);
 			path = Debug;
 			sourceTree = "<group>";
@@ -414,7 +416,7 @@
 			isa = PBXGroup;
 			children = (
 				562900EC1538D064008912CC /* rtv53_rl.dsk */,
-				562900DE1538CA43008912CC /* pdp11 */,
+				562900DE1538CA43008912CC /* rt11 */,
 				562900DF1538CA43008912CC /* pdp11.ini */,
 				562900EA1538CB28008912CC /* README */,
 			);
@@ -426,7 +428,7 @@
 			children = (
 				562901031538D27D008912CC /* lunar */,
 				562900F71538D17D008912CC /* mlc */,
-				562900F81538D17D008912CC /* pdp11 */,
+				562900F81538D17D008912CC /* gt40 */,
 				562901051538D28E008912CC /* README */,
 			);
 			path = Classic;
@@ -599,15 +601,14 @@
 				562B108D13841D5A00CC5C97 /* LanderMessages.plist in Resources */,
 				56BC68641388BDE200403643 /* Labels.plist in Resources */,
 				56678FCC139A7D4D00026588 /* Lander2.plist in Resources */,
-				562900E11538CA43008912CC /* pdp11 in Resources */,
+				562900E11538CA43008912CC /* rt11 in Resources */,
 				562900E21538CA43008912CC /* pdp11.ini in Resources */,
 				562900E81538CB08008912CC /* putr.ini in Resources */,
 				562900EB1538CB28008912CC /* README in Resources */,
 				562900ED1538D064008912CC /* rtv53_rl.dsk in Resources */,
 				562900F41538D122008912CC /* mld in Resources */,
-				562900F51538D122008912CC /* pdp11 in Resources */,
 				562900F91538D17D008912CC /* mlc in Resources */,
-				562900FA1538D17D008912CC /* pdp11 in Resources */,
+				562900FA1538D17D008912CC /* gt40 in Resources */,
 				562900FD1538D1D3008912CC /* get.cmd in Resources */,
 				562900FE1538D1D3008912CC /* put.cmd in Resources */,
 				562901001538D1F0008912CC /* make.com in Resources */,
@@ -680,6 +681,7 @@
 				562F26A81417A22E0069169B /* Man.m in Sources */,
 				56B4D62D1417D9AF00029FC8 /* Flag.m in Sources */,
 				5613DDE8143A85F80059077A /* VGDialog.m in Sources */,
+				5621703515392F1F0094122B /* Explosion.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
