@@ -1339,6 +1339,8 @@ static float RadiansToDegrees(float radians)
 
 - (void)generateExplosion:(short)radius
 {
+    const short RadiusIncrement = 25;
+    
     [self EXGEN];
     [self BELL];
     
@@ -1347,7 +1349,7 @@ static float RadiansToDegrees(float radians)
     [self BELL];
     
     // Increase the radius until done
-    self.DUSTX += 33;
+    self.DUSTX += RadiusIncrement;
 }
 
 - (void)animateExplosion
@@ -1392,9 +1394,10 @@ static float RadiansToDegrees(float radians)
     [self.view addSubview:self.explosionView];
     
     //(EXPLD1)  Setup the animation
+    const float AnimateExplosionTimer = 0.025f;
     self.DUSTX = 0;
     [self generateExplosion:self.DUSTX];
-    self.palsyTimer = [NSTimer scheduledTimerWithTimeInterval:0.0625f target:self selector:@selector(animateExplosion) userInfo:nil repeats:YES];
+    self.palsyTimer = [NSTimer scheduledTimerWithTimeInterval:AnimateExplosionTimer target:self selector:@selector(animateExplosion) userInfo:nil repeats:YES];
 }
 
 - (void)ALTER:(short)alterValue
