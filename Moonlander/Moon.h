@@ -17,6 +17,7 @@ typedef enum { TV_Unknown, TV_Normal, TV_Detailed } TerrainView;
 
 
 @protocol MoonDataSource <NSObject>
+- (short)terrainHeight:(short)index;
 - (short)averageTerrainHeight:(short)index;
 @end
 

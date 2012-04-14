@@ -54,7 +54,12 @@
 
 - (id)init
 {
-    CGRect landerRect = CGRectMake(0, 0, 96, 96);
+    const float LanderWidth = 96;
+    const float LanderHeight = 96;
+    const float ThrustWidth = 100;
+    const float ThrustHeight = 100;
+    
+    CGRect landerRect = CGRectMake(0, 0, LanderWidth, LanderHeight);
     self = [super initWithFrame:landerRect];
     if (self) {
         // No events for the lander
@@ -65,7 +70,7 @@
         self.drawPaths = [landerDict objectForKey:@"paths"];
         self.vectorName = @"[Lander init]";
         
-        CGRect thrustRect = CGRectMake(0, 0, 100, 100);
+        CGRect thrustRect = CGRectMake(0, 0, ThrustWidth, ThrustHeight);
         self.thrust = [[VGView alloc] initWithFrame:thrustRect];
         self.thrust.vectorName = @"thrustRect";
         [self addSubview:self.thrust];
@@ -165,13 +170,11 @@
 
 - (void)updateLander
 {
+    // Create the thrust view
     [self createThrustVectors];
-    
-    //float thrust = self.thrustData();
+
+    // Check if we have rotated and need to update the display
     float angle = self.angleData();
-    //###CGPoint position = self.positionData();
-    //NSLog(@"thrust: %03f%%, angle: %03f, position:%@", thrust, angle, NSStringFromCGPoint(position));
-    
     if (self.previousAngle != angle) {
         CGAffineTransform t = [self transform];
         t = CGAffineTransformRotate(t, (angle - self.previousAngle));

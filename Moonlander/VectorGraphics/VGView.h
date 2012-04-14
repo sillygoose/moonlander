@@ -13,8 +13,8 @@
     NSArray     *_drawPaths;
     NSString    *_vectorName;
   
-    CGFloat     _fontSize;              //###Mark for removal
-    NSTimer     *__weak _blinkTimer;    //###Mark for removal
+    CGFloat     _fontSize;
+    NSTimer     *__weak _blinkTimer;
     
     BOOL        _blinkOn;
     CGRect      _actualBounds;

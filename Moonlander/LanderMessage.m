@@ -158,10 +158,4 @@
     }
 }
 
-- (void)dealloc
-{
-    //### needed?
-    [self removeAllLanderMessages];
-}
-
 @end

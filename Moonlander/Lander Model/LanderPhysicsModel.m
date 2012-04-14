@@ -240,17 +240,14 @@ float RadiansToDegrees(float radians)
 
 - (void)landerDown
 {
+    // Set our weight on legs indicator
     self.lemOnSurface = YES;
     
+    // Set our thrust and accelerations
     self.actualThrust = 0.0f;
     self.lemAcceleration = 0.0f;
     self.horizontalAcceleration = 0.0f;
     self.verticalAcceleration = -self.lunarGravity;
-    
-    // These don't chnage since you like to see the landing stats
-    //### check original game for this
-    //self.horizontalVelocity = 0.0f;
-    //self.verticalVelocity = 0.0f;
 }
 
 #pragma mark Model initialization
@@ -267,7 +264,7 @@ float RadiansToDegrees(float radians)
     self.verticalVelocity = 0;
     self.verticalVelocity = 0;
     self.horizontalDistance = 220;
-    self.verticalDistance = 120;
+    self.verticalDistance = 60;
     self.percentThrustRequested = 18;
     self.actualThrust = self.percentThrustRequested * self.maxThrust / 100.0;
     self.fuelRemaining = self.lemInitalFuel;
@@ -299,7 +296,5 @@ float RadiansToDegrees(float radians)
 {
     [self initializeLanderModel];
 }
-
-   
 
 @end

@@ -289,19 +289,16 @@
     //DRAWM2  Index increment and index in the terrain map
     const int nextIndex = 1;
     const int terrainIndex = self.LEFTEDGE;
-    //NSLog(@"Initial X is %d", terrainIndex);
     
+    //DRW2L5  Squeeze vertical into the screen dimension
     short TEMP = [self terrainHeight:terrainIndex];
     TEMP = [self DFAKE:TEMP];
-    // DRW2L5:
     if (TEMP < 0)
         TEMP = 0;
-    //### Sqeeze Y in the display - fixme
-    else if (TEMP > 768)
-        TEMP = 768;
+    else if (TEMP > self.frame.size.height)
+        TEMP = self.frame.size.height;
     short LASTY = TEMP;
 
-    //NSLog(@"x: %d  TEMP: %d", x, TEMP);
     NSNumber *xCoordinate = [NSNumber numberWithInt:x];
     NSNumber *yCoordinate = [NSNumber numberWithInt:TEMP];
     NSDictionary *startItem = [NSDictionary dictionaryWithObjectsAndKeys:xCoordinate, @"x", yCoordinate, @"y", nil];

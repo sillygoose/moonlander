@@ -42,13 +42,6 @@
     return self;
 }
 
-- (void)dealloc
-{
-    //### fixme
-    [_blinkTimer invalidate];
-
-}
-
 - (void)blinkIntervalPassed:(NSTimer *)timer
 {
     self.blinkOn = !self.blinkOn;
@@ -83,7 +76,8 @@
     NSEnumerator *vectorEnumerator = [arrayOfVectors objectEnumerator];
     NSDictionary *currentVector;
     while ((currentVector = [vectorEnumerator nextObject])) {
-        BOOL doBlink = NO;//### make instance variable?
+        // Assume no blinking is needed in this view
+        BOOL doBlink = NO;
         
         // "break" allows for complex breakpoints in a display list
         if ([currentVector objectForKey:@"break"]) {
@@ -213,11 +207,9 @@
                 CGFloat y = [[moveTo objectForKey:@"y"] floatValue];
                 CGPoint newPoint = CGPointMake(x, y);
                 
-                // ### Scaling here
                 CGContextMoveToPoint(context, newPoint.x, newPoint.y);
                 currentPosition = CGPointMake(x, self.bounds.size.height - y);
                 CGContextSetTextPosition(context, currentPosition.x, currentPosition.y);
-                
                 
                 //NSLog(@"Move To (%3.0f,%3.0f)", newPoint.x, newPoint.y);
                 //prevPoint = newPoint;
@@ -234,7 +226,7 @@
                 CGFloat x = [[moveRelative objectForKey:@"x"] floatValue];
                 CGFloat y = [[moveRelative objectForKey:@"y"] floatValue];
                 CGPoint newPoint = CGPointMake(prevPoint.x + x, prevPoint.y + y);
-                // ### Scaling here
+                
                 CGContextMoveToPoint(context, newPoint.x, newPoint.y);
                 newPoint.x = currentPosition.x + x;
                 newPoint.y = currentPosition.y + y;
@@ -393,11 +385,7 @@
             CGFloat x = [[currentVector objectForKey:@"x"] floatValue];
             CGFloat y = [[currentVector objectForKey:@"y"] floatValue];
             CGPoint newPoint = CGPointMake(prevPoint.x + x, prevPoint.y + y);
-            
-            // ### Scaling here
             CGContextAddLineToPoint(context, newPoint.x, newPoint.y);
-            
-            //prevPoint = newPoint;
             prevPoint = CGContextGetPathCurrentPoint(context);
             self.actualBounds = CGRectMake(MIN(newPoint.x, self.actualBounds.origin.x), MIN(newPoint.y, self.actualBounds.origin.y), MAX(newPoint.x, self.actualBounds.size.width), MAX(newPoint.y, self.actualBounds.size.height));
         }
