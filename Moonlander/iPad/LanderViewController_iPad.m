@@ -1288,7 +1288,11 @@ static float RadiansToDegrees(float radians)
 - (void)EXGEN
 {
     const int YUpDown[] = { 0, 1, 3, 6, 4, 3, 1, -2, -6, -7, -5, -2, 2, 3, 5, 6, 2, 1, -1, -4, -6, -5, -3, 0, 4, 5, 7, 4, 0, -1, -3, -1 };
-    short angle = -30;
+    const size_t DimYUpDown = sizeof(YUpDown)/sizeof(YUpDown[0]);
+    const float StartingAngle = DegreesToRadians(-30);
+    const float AngleIncrement = DegreesToRadians(1);
+    
+    float angle = StartingAngle;
     short count = 241;
     
     // Allocate our path array
@@ -1296,22 +1300,22 @@ static float RadiansToDegrees(float radians)
     NSArray *paths = [NSArray arrayWithObject:path];
     
     // Prep the intensity and line type info
-    NSNumber *intensity = [NSNumber numberWithInt:7];//###
+    int intensityLevel = random() & 7;
+    NSNumber *intensity = [NSNumber numberWithInt:intensityLevel];
     NSNumber *width = [NSNumber numberWithFloat:1.0f];
     NSNumber *height = [NSNumber numberWithFloat:1.0f];
 
     //(EXGENL)
     while (count > 0) {
         // We skip fooling around and just randomize this
-        short IN1 = (short)random() & 0x1f;
-        short TEMP = YUpDown[IN1];
+        short TEMP = YUpDown[random() & DimYUpDown];
         TEMP += self.DUSTX;
-        
         if (TEMP >= 0) {
             short X = TEMP * cos(angle) + self.SHOWX;
             if (X >= 0) {
                 short Y = TEMP * sin(angle) + self.SHOWY - 32;
                 if (Y > 0) {
+                    //###
                     Y = 768 - Y;
                     // Draw rect command
                     NSNumber *x = [NSNumber numberWithFloat:X];
@@ -1328,7 +1332,7 @@ static float RadiansToDegrees(float radians)
         }
         
         //(EXGEND)
-        angle++;
+        angle += AngleIncrement;
         count--;
     }
     
