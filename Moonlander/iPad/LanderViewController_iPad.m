@@ -877,6 +877,9 @@ static float RadiansToDegrees(float radians)
     // Some dust generation constants
     const short DustStartHeight = 150;
     const short MaxDisplayDust = 241;
+    const float DustViewWidth = 128;
+    const float DustViewHeight = 64;
+    const short MaxDustThrust = 63;
     
     // Assume we will remove the dust view
     BOOL removeDustView = YES;
@@ -929,10 +932,9 @@ static float RadiansToDegrees(float radians)
                     random += self.TIME + 1;
                     random &= DimYThrust;
                     
-                    // X coordinate
-                    short xPos = YThrust[random];
-                    random += self.VERACC;
-                    random &= DimYThrust;
+                    // Allocate our path array
+                    NSMutableArray *path = [[NSMutableArray alloc] init];
+                    NSArray *paths = [NSArray arrayWithObject:path];
                     
                     // Toggle the direction bit for X
                     flameDistance = ~flameDistance;
@@ -947,24 +949,31 @@ static float RadiansToDegrees(float radians)
                     yPos &= DimYThrust;
                     yPos = DimYThrust - yPos;
                     
-                    //xValues[valueIndex] = xPos;
-                    //yValues[valueIndex] = yPos;
-                    //valueIndex++;
+                    // Look up table used in dust generation
+                    const short YThrust[] = { 0, -30, -31, -32, -34, -36, -38, -41, -44, -47, -50, -53, -56, 0, 1, 3, 6, 4, 3, 1, -2, -6, -7, -5, -2, 2, 3, 5, 6, 2, 1, -1, -4, -6, -5, -3, 0, 4, 5, 7, 4, 0, -1, -3, -1, -20, -16, -13, -10, -7, -4, -2, 0, 2, 4, 7, 10, 13, 16, 20, 0, -30, -31 };
+                    const short DimYThrust = sizeof(YThrust)/sizeof(YThrust[0]);
+                    assert(DimYThrust == 63);
                     
                     // Flip signs and do a moveto (INT = 0)
                     // This does a move back to center of dust to prepare for the next point
                     
-                    // Draw rect command
-                    //NSLog(@"DUST: X:%d, Y:%d", xPos, yPos);
-                    NSNumber *x = [NSNumber numberWithFloat:xPos];
-                    NSNumber *y = [NSNumber numberWithFloat:yPos];
+                    // Create the view if needed
+                    if (!self.dustView) {
+                        CGRect frameRect = CGRectMake(xCenterPos, yCenterPos, DustViewWidth, DustViewHeight);
+                        self.dustView = [[Dust alloc] initWithFrame:frameRect];
+                        [self.view addSubview:self.dustView];
+                    }
+                    else if (self.dustView.frame.origin.x != xCenterPos || self.dustView.frame.origin.y != yCenterPos) {
+                        // Remove old dust view and create a new one
+                        [self.dustView removeFromSuperview];
+                        CGRect frameRect = CGRectMake(xCenterPos, yCenterPos, DustViewWidth, DustViewHeight);
+                        self.dustView = [[Dust alloc] initWithFrame:frameRect];
+                        [self.view addSubview:self.dustView];
+                    }
                     
-                    NSDictionary *originItem = [NSDictionary dictionaryWithObjectsAndKeys:x, @"x", y, @"y", nil];
-                    NSDictionary *sizeItem = [NSDictionary dictionaryWithObjectsAndKeys:width, @"width", height, @"height", nil];
-                    NSDictionary *frameItem = [NSDictionary dictionaryWithObjectsAndKeys:originItem, @"origin", sizeItem, @"size", nil];
-                    NSDictionary *rectItem = [NSDictionary dictionaryWithObjectsAndKeys:frameItem, @"frame", nil];
-                    NSDictionary *pathItem = [NSDictionary dictionaryWithObjectsAndKeys:rectItem, @"rect", intensity, @"intensity", nil];
-                    [path addObject:pathItem];
+                    // Add the draw paths and update the display
+                    self.dustView.drawPaths = paths;
+                    [self.dustView setNeedsDisplay];
                 }
                 
                 // Prepare to display the dust view
@@ -995,8 +1004,8 @@ static float RadiansToDegrees(float radians)
         }
     }
     
+    // Remove the dust view if nothing was drawn
     if (removeDustView == YES) {
-        // Remove dust view
         if (self.dustView) {
             self.dustView.drawPaths = nil;
             [self.dustView removeFromSuperview];
