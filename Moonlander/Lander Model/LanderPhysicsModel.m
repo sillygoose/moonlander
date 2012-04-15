@@ -266,7 +266,7 @@ float RadiansToDegrees(float radians)
     self.horizontalVelocity = 0;
     self.verticalVelocity = 0;
     self.verticalVelocity = 0;
-    self.horizontalDistance = 220;
+    self.horizontalDistance = -2205;
     self.verticalDistance = 120;
     self.percentThrustRequested = 18;
     self.actualThrust = self.percentThrustRequested * self.maxThrust / 100.0;
