@@ -83,6 +83,7 @@
 		56CE052F138B12A7004FA450 /* LanderMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 56CE052E138B12A7004FA450 /* LanderMessage.m */; };
 		56CE0535138B5277004FA450 /* Telemetry.m in Sources */ = {isa = PBXBuildFile; fileRef = 56CE0534138B5277004FA450 /* Telemetry.m */; };
 		56CE0538138B6C88004FA450 /* Instrument.m in Sources */ = {isa = PBXBuildFile; fileRef = 56CE0537138B6C88004FA450 /* Instrument.m */; };
+		56E347BC1539FEAD0000B3D3 /* Original GTLEM Source in Resources */ = {isa = PBXBuildFile; fileRef = 56E347BB1539FEAD0000B3D3 /* Original GTLEM Source */; };
 		56E80E4C137E4CC3009E7F15 /* Lander.plist in Resources */ = {isa = PBXBuildFile; fileRef = 56E80E4B137E4CC3009E7F15 /* Lander.plist */; };
 		56E80E60137E599E009E7F15 /* VGView.m in Sources */ = {isa = PBXBuildFile; fileRef = 56E80E5F137E599E009E7F15 /* VGView.m */; };
 /* End PBXBuildFile section */
@@ -200,6 +201,7 @@
 		56CE0534138B5277004FA450 /* Telemetry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Telemetry.m; sourceTree = "<group>"; };
 		56CE0536138B6C88004FA450 /* Instrument.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Instrument.h; sourceTree = "<group>"; };
 		56CE0537138B6C88004FA450 /* Instrument.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Instrument.m; sourceTree = "<group>"; };
+		56E347BB1539FEAD0000B3D3 /* Original GTLEM Source */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "Original GTLEM Source"; sourceTree = "<group>"; };
 		56E80E4B137E4CC3009E7F15 /* Lander.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Lander.plist; path = Resources/Lander.plist; sourceTree = "<group>"; };
 		56E80E5E137E599D009E7F15 /* VGView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VGView.h; path = VectorGraphics/VGView.h; sourceTree = "<group>"; };
 		56E80E5F137E599E009E7F15 /* VGView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VGView.m; path = VectorGraphics/VGView.m; sourceTree = "<group>"; };
@@ -453,6 +455,7 @@
 		562901141538D3B3008912CC /* Sources */ = {
 			isa = PBXGroup;
 			children = (
+				56E347BB1539FEAD0000B3D3 /* Original GTLEM Source */,
 				562901211538D465008912CC /* gtlem.mac */,
 				562901221538D465008912CC /* lunar.bas */,
 				562901231538D465008912CC /* rtlem.mac */,
@@ -612,6 +615,7 @@
 				562900FD1538D1D3008912CC /* get.cmd in Resources */,
 				562900FE1538D1D3008912CC /* put.cmd in Resources */,
 				562901001538D1F0008912CC /* make.com in Resources */,
+				56E347BC1539FEAD0000B3D3 /* Original GTLEM Source in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
