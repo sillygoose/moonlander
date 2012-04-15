@@ -884,78 +884,95 @@ static float RadiansToDegrees(float radians)
     // Assume we will remove the dust view
     BOOL removeDustView = YES;
 
-    // Wait till 150 feet above surface before kicking up dust and not too much angle
-    if (self.RADARY < DustStartHeight && (self.ANGLED > -45 && self.ANGLED < 45)) {
-        //DUSTB1  Magnitude of dust determines intensity level
-        const short MaxDustThrust = 63;
-        short percentThrust = (self.PERTRS > MaxDustThrust) ? MaxDustThrust : self.PERTRS;
-        short displayIntensity = (percentThrust >> 3) & 0x7;
-        
-        //DUSTP1  Thrust angle determines dust direction
-        short deltaY = self.SHOWY - self.AVERT;
-        float tanDeltaY = fabs(tan(DegreesToRadians(self.ANGLED))) * deltaY;
-        short flameDistance = tanDeltaY + deltaY;
-        
-        //DUSTP2
-        short xCenterPos = self.SHOWX + tanDeltaY;
-        short yCenterPos = self.AVERT;
-        
-        flameDistance -= DustStartHeight;
-        if (flameDistance < 0) {
-            flameDistance = -flameDistance;
-            short count = MIN(((flameDistance * self.PERTRS) >> 4), MaxDisplayDust);
-            //NSLog(@"DUST Center: (%d, %d) FD: %d  %d items at intensity %d", xCenterPos, yCenterPos, flameDistance, count, displayIntensity);
-            if (count) {
-                // Keep the dust view as we have something to draw
-                removeDustView = NO;
+    // Wait till 150 feet above surface before kicking up dust
+    if (self.RADARY < DustStartHeight) {
+        // Angle must be reasonable as well
+        if (self.ANGLED > -45 && self.ANGLED < 45) {
+            //(DUSTB1)  Magnitude of dust determines intensity level
+            short percentThrust = (self.PERTRS > MaxDustThrust) ? MaxDustThrust : self.PERTRS;
+            short displayIntensity = (percentThrust >> 3) & 0x7;
+            
+            //(DUSTP1)  Thrust angle determines dust direction
+            float sinAngle = sin(self.ANGLE);
+            float cosAngle = cos(self.ANGLE);
+            short deltaY = self.SHOWY - self.AVERT;
+            float sinDeltaY = deltaY * sinAngle;
+            float tanDeltaY = sinDeltaY / cosAngle;
+            tanDeltaY = -tanDeltaY;
+            short flameDistance = tanDeltaY + deltaY;
+            
+            //(DUSTP2)  Center the dust in the view
+            short xCenterPos = self.SHOWX + tanDeltaY;
+            short yCenterPos = self.AVERT;
+            
+            // Calculate the dust view center
+            xCenterPos -= DustViewWidth / 2;
+            //### This is a hack - fixme!
+            yCenterPos = 768 - DustViewHeight - self.AVERT;
+            
+            // Calculate the flame distance and number of points to draw
+            flameDistance -= DustStartHeight;
+            if (flameDistance < 0) {
+                // Convert to a positive distance (NEG)
+                flameDistance = -flameDistance;
                 
-                //short xValues[MaxDust];
-                //short yValues[MaxDust];
-                //short valueIndex = 0;radians
-                // Allocate our path array
-                NSMutableArray *path = [[NSMutableArray alloc] init];
-                NSArray *paths = [NSArray arrayWithObject:path];
-                
-                // Prep the intensity and line type info
-                NSNumber *intensity = [NSNumber numberWithInt:displayIntensity];
-                NSNumber *width = [NSNumber numberWithFloat:1.0f];
-                NSNumber *height = [NSNumber numberWithFloat:1.0f];
-                
-                //DUSTWF
-                const short YThrust[] = { 0, -30, -31, -32, -34, -36, -38, -41, -44, -47, -50, -53, -56, 0, 1, 3, 6, 4, 3, 1, -2, -6, -7, -5, -2, 2, 3, 5, 6, 2, 1, -1, -4, -6, -5, -3, 0, 4, 5, 7, 4, 0, -1, -3, -1, -20, -16, -13, -10, -7, -4, -2, 0, 2, 4, 7, 10, 13, 16, 20, 0, -30, -31 };
-                const short DimYThrust = sizeof(YThrust)/sizeof(YThrust[0]);
-                assert(DimYThrust == 63);
-                
-                short random = self.DUSTX;
-                // DUSTL  Generate the dust particles
-                while (count--) {
-                    random += self.TIME + 1;
-                    random &= DimYThrust;
+                // Calculate the number of dust points to draw
+                short count = MIN(((flameDistance * self.PERTRS) >> 4), MaxDisplayDust);
+                if (count) {
+                    // Keep the dust view as we have something to draw
+                    removeDustView = NO;
                     
                     // Allocate our path array
                     NSMutableArray *path = [[NSMutableArray alloc] init];
                     NSArray *paths = [NSArray arrayWithObject:path];
                     
-                    // Toggle the direction bit for X
-                    flameDistance = ~flameDistance;
-                    if (flameDistance < 0) {
-                        xPos *= -1;
-                    }
-                    //xPos &= 0x3f;
-                    xPos += 64;
-                    
-                    // Now the Y value (always positive)
-                    short yPos = YThrust[random];
-                    yPos &= DimYThrust;
-                    yPos = DimYThrust - yPos;
+                    // Prep the intensity and line type info
+                    NSNumber *intensity = [NSNumber numberWithInt:displayIntensity];
+                    NSNumber *width = [NSNumber numberWithFloat:1.0f];
+                    NSNumber *height = [NSNumber numberWithFloat:1.0f];
                     
                     // Look up table used in dust generation
                     const short YThrust[] = { 0, -30, -31, -32, -34, -36, -38, -41, -44, -47, -50, -53, -56, 0, 1, 3, 6, 4, 3, 1, -2, -6, -7, -5, -2, 2, 3, 5, 6, 2, 1, -1, -4, -6, -5, -3, 0, 4, 5, 7, 4, 0, -1, -3, -1, -20, -16, -13, -10, -7, -4, -2, 0, 2, 4, 7, 10, 13, 16, 20, 0, -30, -31 };
                     const short DimYThrust = sizeof(YThrust)/sizeof(YThrust[0]);
                     assert(DimYThrust == 63);
                     
-                    // Flip signs and do a moveto (INT = 0)
-                    // This does a move back to center of dust to prepare for the next point
+                    //(DUSTWF)
+                    //(DUSTL)
+                    while (count--) {
+                        // Generate a random value to index the thrust vector array
+                        short RET1 = (short)random();
+                        RET1 &= DimYThrust;
+                        
+                        // X coordinate calculation
+                        short xPos = YThrust[RET1];
+                        RET1 += (short)random();
+                        RET1 &= DimYThrust;
+                        xPos &= DimYThrust;
+                        
+                        // Toggle the direction bit for X (COM)
+                        flameDistance = ~flameDistance;
+                        if (flameDistance < 0) {
+                            xPos = -xPos;
+                        }
+                        
+                        // Adjust X to the dust view frame
+                        xPos += DustViewHeight - 1;
+                        
+                        // Now generate the Y value (always positive)
+                        short yPos = YThrust[RET1];
+                        yPos &= DimYThrust;
+                        
+                        // Create the point command and add to the draw list
+                        NSNumber *x = [NSNumber numberWithFloat:xPos];
+                        NSNumber *y = [NSNumber numberWithFloat:yPos];
+                        
+                        NSDictionary *originItem = [NSDictionary dictionaryWithObjectsAndKeys:x, @"x", y, @"y", nil];
+                        NSDictionary *sizeItem = [NSDictionary dictionaryWithObjectsAndKeys:width, @"width", height, @"height", nil];
+                        NSDictionary *frameItem = [NSDictionary dictionaryWithObjectsAndKeys:originItem, @"origin", sizeItem, @"size", nil];
+                        NSDictionary *rectItem = [NSDictionary dictionaryWithObjectsAndKeys:frameItem, @"frame", nil];
+                        NSDictionary *pathItem = [NSDictionary dictionaryWithObjectsAndKeys:rectItem, @"rect", intensity, @"intensity", nil];
+                        [path addObject:pathItem];
+                    }
                     
                     // Create the view if needed
                     if (!self.dustView) {
@@ -975,31 +992,6 @@ static float RadiansToDegrees(float radians)
                     self.dustView.drawPaths = paths;
                     [self.dustView setNeedsDisplay];
                 }
-                
-                // Prepare to display the dust view
-                xCenterPos -= 64;
-                yCenterPos = self.moonView.frame.size.height - yCenterPos - yCenterPos;
-                
-                // Save our random number for next time
-                self.DUSTX = random;
-                
-                // Create the view if needed
-                if (!self.dustView) {
-                    CGRect frameRect = CGRectMake(xCenterPos, yCenterPos, 128, 64);
-                    self.dustView = [[Dust alloc] initWithFrame:frameRect];
-                    [self.view addSubview:self.dustView];
-                }
-                else if (self.dustView.frame.origin.x != xCenterPos || self.dustView.frame.origin.y != yCenterPos) {
-                    // remove old dust view and create a new one
-                    [self.dustView removeFromSuperview];
-                    CGRect frameRect = CGRectMake(xCenterPos, yCenterPos, 128, 64);
-                    self.dustView = [[Dust alloc] initWithFrame:frameRect];
-                    [self.view addSubview:self.dustView];
-                }
-                
-                // Add the draw paths and update the display
-                self.dustView.drawPaths = paths;
-                [self.dustView setNeedsDisplay];
             }
         }
     }
