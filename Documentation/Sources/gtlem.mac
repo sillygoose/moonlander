@@ -3577,13 +3577,13 @@ MANY:
 ;		THIS LIST EXPLAINS HOW TO DRAW A FLAG.
 ;
 FLAGL:
-    .WORD	115324              ;point mode, disable LP int, blink off, solid line
+    .WORD	115324              ;9AD4H  point mode, disable LP int, blink off, solid line
 	.WORD	170240              ;LSA -
 FLAGX:
     .WORD	0                   ;X
 FLAGY:
     .WORD	0                   ;Y
-	.WORD	104000              ;short vector mode
+	.WORD	104000              ;short vector mode, disable LP int, blink off, solid line
 	.WORD	18.+INT             ;X right 0, Y up 18, (draw)
 	.WORD	112727              ;long vector mode, intensity 3, LP disable, blink off, dot-dash line
 	.WORD	16.+INT             ;X right 16, Y up 0, (draw)
