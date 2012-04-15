@@ -1577,8 +1577,8 @@ static float RadiansToDegrees(float radians)
         }
         else {
             // Check terrain slope using difference between left and right terrain elevations
-            short thl = (short)([self.moonView.dataSource averageTerrainHeight:self.INDEXL]);
-            short thr = (short)([self.moonView.dataSource averageTerrainHeight:(self.INDEXL+1)]);
+            short thl = (short)([self.moonView.dataSource terrainHeight:self.INDEXL]);
+            short thr = (short)([self.moonView.dataSource terrainHeight:(self.INDEXL+1)]);
             short tdiff = thl - thr;
             if (tdiff < -48 || tdiff > 48) {
                 // Terrain slope too great - tipped
@@ -1645,8 +1645,8 @@ static float RadiansToDegrees(float radians)
 
         // Get the terrain information
         short tIndex = self.BIGXCT;
-        short thl = [self.moonView.dataSource averageTerrainHeight:tIndex];
-        short thr = [self.moonView.dataSource averageTerrainHeight:tIndex+1];
+        short thl = [self.moonView.dataSource terrainHeight:tIndex];
+        short thr = [self.moonView.dataSource terrainHeight:tIndex+1];
         self.AVERY = (thl + thr) / 2;
         self.RADARY = self.VERDIS - self.AVERY;
         
