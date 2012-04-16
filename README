@@ -5,9 +5,11 @@ Here is the to do list
 - iphone/ipad icons
 - initial menu screen
 - splash screen
-- dust improvements (boxy and position)
-- explode improvements (account for phosphour decay) 
+- dust improvements (position)
+- explode improvements (account for phosphor decay) 
 - bold/blink selected controls
+- hardware brochures
+- source code viewer
 
 Fixed/Done
 - explode code implementation
