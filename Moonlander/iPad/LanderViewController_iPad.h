@@ -19,12 +19,13 @@
 #import "Moon.h"
 #import "Lander.h"
 #import "Dust.h"
-#import "Explosion.h"
 #import "Man.h"
 #import "Flag.h"
 #import "Telemetry.h"
 #import "Instrument.h"
 #import "LanderMessage.h"
+
+#import "ExplosionManager.h"
 
 
 @interface LanderViewController_iPad : UIViewController {
@@ -33,7 +34,7 @@
     Moon            *_moonView;
     Lander          *_landerView;
     Dust            *_dustView;
-    Explosion       *_explosionView;
+    ExplosionManager *_explosionManager;
     Man             *_manView;
     Flag            *_flagView;
     
@@ -125,7 +126,7 @@
 @property (nonatomic, strong) Moon *moonView;
 @property (nonatomic, strong) Lander *landerView;
 @property (nonatomic, strong) Dust *dustView;
-@property (nonatomic, strong) Explosion *explosionView;
+@property (nonatomic, strong) ExplosionManager *explosionManager;
 @property (nonatomic, strong) Man *manView;
 @property (nonatomic, strong) Flag *flagView;
 

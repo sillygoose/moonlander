@@ -22,7 +22,7 @@
 @synthesize moonView=_moonView;
 @synthesize landerView=_landerView;
 @synthesize dustView=_dustView;
-@synthesize explosionView=_explosionView;
+@synthesize explosionManager=_explosionManager;
 @synthesize manView=_manView;
 @synthesize flagView=_flagView;
 
@@ -723,7 +723,7 @@ static float RadiansToDegrees(float radians)
     
     self.landerView = nil;
     self.dustView = nil;
-    self.explosionView = nil;
+//    self.explosionView = nil;
     self.manView = nil;
     self.flagView = nil;
     
@@ -1287,89 +1287,11 @@ static float RadiansToDegrees(float radians)
     AudioServicesPlayAlertSound(BeepSound);
 }
 
-- (void)EXGEN:(short)radius
+- (void)explosionComplete
 {
-    const int YUpDown[] = { 0, 1, 3, 6, 4, 3, 1, -2, -6, -7, -5, -2, 2, 3, 5, 6, 2, 1, -1, -4, -6, -5, -3, 0, 4, 5, 7, 4, 0, -1, -3, -1 };
-    const size_t DimYUpDown = sizeof(YUpDown)/sizeof(YUpDown[0]);
-    const float StartingAngle = DegreesToRadians(120);
-    const float AngleIncrement = DegreesToRadians(1);
-    
-    float angle = StartingAngle;
-    short count = 300;
-    float centerX = self.explosionView.bounds.size.width / 2;
-    float centerY = self.explosionView.bounds.size.height / 2;
-    
-    // Allocate our path array
-    NSMutableArray *path = [[NSMutableArray alloc] init];
-    NSArray *paths = [NSArray arrayWithObject:path];
-    
-    // Prep the intensity and line type info
-    int intensityLevel = random() & 7;
-    NSNumber *intensity = [NSNumber numberWithInt:intensityLevel];
-    NSNumber *width = [NSNumber numberWithFloat:1.0f];
-    NSNumber *height = [NSNumber numberWithFloat:1.0f];
-
-    //(EXGENL)
-    while (count > 0) {
-        // We skip fooling around and just randomize this
-        short TEMP = YUpDown[random() & DimYUpDown];
-        TEMP += radius;
-        if (TEMP >= 0) {
-            short X = TEMP * cos(angle) + centerX;
-            short Y = TEMP * sin(angle) + centerY;
-            if (X >= 0 && Y >= 0) {
-                // Create our display point
-                NSNumber *x = [NSNumber numberWithInt:X];
-                NSNumber *y = [NSNumber numberWithInt:Y];
-                
-                NSDictionary *originItem = [NSDictionary dictionaryWithObjectsAndKeys:x, @"x", y, @"y", nil];
-                NSDictionary *sizeItem = [NSDictionary dictionaryWithObjectsAndKeys:width, @"width", height, @"height", nil];
-                NSDictionary *frameItem = [NSDictionary dictionaryWithObjectsAndKeys:originItem, @"origin", sizeItem, @"size", nil];
-                NSDictionary *rectItem = [NSDictionary dictionaryWithObjectsAndKeys:frameItem, @"frame", nil];
-                NSDictionary *pathItem = [NSDictionary dictionaryWithObjectsAndKeys:rectItem, @"rect", intensity, @"intensity", nil];
-                [path addObject:pathItem];
-            }
-        }
-        
-        //(EXGEND)
-        angle += AngleIncrement;
-        count--;
-    }
-    
-    // Add the draw paths and update the display
-    self.explosionView.drawPaths = paths;
-    [self.explosionView setNeedsDisplay];
-}
-
-- (void)generateExplosion:(short)radius
-{
-    [self EXGEN:radius];
-    [self BELL];
-}
-
-const short RadiusIncrement1 = 33;
-const short RadiusIncrement2 = -10;
-static short radiusIncrement;
-static short currentRadius;
-- (void)animateExplosion
-{
-    if (currentRadius > 300) {
-        // Remove the explosion view
-        if (self.explosionView) {
-            self.explosionView.drawPaths = nil;
-            [self.explosionView removeFromSuperview];
-            self.explosionView = nil;
-        }
-
-        // Let's delay a bit before presenting the new game dialog
+    if (self.explosionManager.explosionComplete) {
         [self.palsyTimer invalidate];
         self.palsyTimer = [NSTimer scheduledTimerWithTimeInterval:explodeDelay target:self selector:@selector(waitNewGame) userInfo:nil repeats:NO];
-    }
-    else {
-        // Generate the display while making noise
-        [self generateExplosion:currentRadius];
-        currentRadius += radiusIncrement;
-        radiusIncrement = (radiusIncrement == RadiusIncrement1) ? RadiusIncrement2 : RadiusIncrement1;
     }
 }
 
@@ -1387,20 +1309,12 @@ static short currentRadius;
     //(EXPLOD)  Shut down things and ring bell
     [self BELL];
 
-    // Create the explosion view ### needs fixing
-    const float ExplosionSize = 325 * 2;
-    float xPos = self.SHOWX - ExplosionSize / 2;
-    float yPos = (768 - self.SHOWY) - ExplosionSize / 2;
-    CGRect frameRect = CGRectMake(xPos, yPos, ExplosionSize, ExplosionSize);
-    self.explosionView = [[Explosion alloc] initWithFrame:frameRect];
-    [self.view addSubview:self.explosionView];
-    
-    //(EXPLD1)  Setup the animation
-    const float AnimateExplosionTimer = 0.05f;
-    currentRadius = 0;
-    radiusIncrement = RadiusIncrement2;
-    [self generateExplosion:currentRadius];
-    self.palsyTimer = [NSTimer scheduledTimerWithTimeInterval:AnimateExplosionTimer target:self selector:@selector(animateExplosion) userInfo:nil repeats:YES];
+    //(EXPLD1)  Setup the explosion animation manager
+    float xPos = self.SHOWX;
+    float yPos = self.SHOWY;
+    self.explosionManager = [[ExplosionManager alloc] initWithView:self.view atPoint:CGPointMake(xPos, yPos)];
+    const float AnimateExplosionTimer = 0.25f;
+    self.palsyTimer = [NSTimer scheduledTimerWithTimeInterval:AnimateExplosionTimer target:self selector:@selector(explosionComplete) userInfo:nil repeats:YES];
 }
 
 - (void)ALTER:(short)alterValue

@@ -65,6 +65,7 @@
 		564EBC4D138349F2007D477C /* Flag.plist in Resources */ = {isa = PBXBuildFile; fileRef = 564EBC4C138349F2007D477C /* Flag.plist */; };
 		564EBC4F13834A07007D477C /* Man.plist in Resources */ = {isa = PBXBuildFile; fileRef = 564EBC4E13834A07007D477C /* Man.plist */; };
 		564EBC5113834A17007D477C /* McDonalds.plist in Resources */ = {isa = PBXBuildFile; fileRef = 564EBC5013834A17007D477C /* McDonalds.plist */; };
+		5650B9EA153CB76900AEF4F2 /* ExplosionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5650B9E9153CB76800AEF4F2 /* ExplosionManager.m */; };
 		565B00E114447E400071231D /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5675E5D41425004400882CD8 /* AudioToolbox.framework */; };
 		56678FCC139A7D4D00026588 /* Lander2.plist in Resources */ = {isa = PBXBuildFile; fileRef = 56678FCB139A7D4D00026588 /* Lander2.plist */; };
 		56755FDA138C0B8200455B52 /* Lander.m in Sources */ = {isa = PBXBuildFile; fileRef = 56755FD9138C0B8200455B52 /* Lander.m */; };
@@ -137,7 +138,7 @@
 		562900E51538CB08008912CC /* putr.ini */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = putr.ini; sourceTree = "<group>"; };
 		562900EA1538CB28008912CC /* README */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README; sourceTree = "<group>"; };
 		562900EC1538D064008912CC /* rtv53_rl.dsk */ = {isa = PBXFileReference; lastKnownFileType = file; path = rtv53_rl.dsk; sourceTree = "<group>"; };
-		562900F21538D122008912CC /* mld */ = {isa = PBXFileReference; lastKnownFileType = file; path = mld; sourceTree = "<group>"; };
+		562900F21538D122008912CC /* mld */ = {isa = PBXFileReference; lastKnownFileType = text; path = mld; sourceTree = "<group>"; };
 		562900F71538D17D008912CC /* mlc */ = {isa = PBXFileReference; lastKnownFileType = file; path = mlc; sourceTree = "<group>"; };
 		562900F81538D17D008912CC /* gt40 */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = gt40; sourceTree = "<group>"; };
 		562900FB1538D1D3008912CC /* get.cmd */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = get.cmd; sourceTree = "<group>"; };
@@ -175,6 +176,8 @@
 		564EBC4C138349F2007D477C /* Flag.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Flag.plist; path = Resources/Flag.plist; sourceTree = "<group>"; };
 		564EBC4E13834A07007D477C /* Man.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Man.plist; path = Resources/Man.plist; sourceTree = "<group>"; };
 		564EBC5013834A17007D477C /* McDonalds.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = McDonalds.plist; path = Resources/McDonalds.plist; sourceTree = "<group>"; };
+		5650B9E8153CB76800AEF4F2 /* ExplosionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExplosionManager.h; sourceTree = "<group>"; };
+		5650B9E9153CB76800AEF4F2 /* ExplosionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExplosionManager.m; sourceTree = "<group>"; };
 		56678FCB139A7D4D00026588 /* Lander2.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Lander2.plist; path = Resources/Lander2.plist; sourceTree = "<group>"; };
 		56755FD8138C0B8200455B52 /* Lander.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Lander.h; sourceTree = "<group>"; };
 		56755FD9138C0B8200455B52 /* Lander.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Lander.m; sourceTree = "<group>"; };
@@ -280,6 +283,8 @@
 				56C94AA813A7A7AE001B7EF9 /* Dust.m */,
 				5621703315392F1F0094122B /* Explosion.h */,
 				5621703415392F1F0094122B /* Explosion.m */,
+				5650B9E8153CB76800AEF4F2 /* ExplosionManager.h */,
+				5650B9E9153CB76800AEF4F2 /* ExplosionManager.m */,
 				56B4D62B1417D9AF00029FC8 /* Flag.h */,
 				56B4D62C1417D9AF00029FC8 /* Flag.m */,
 				562F26A61417A22E0069169B /* Man.h */,
@@ -686,6 +691,7 @@
 				56B4D62D1417D9AF00029FC8 /* Flag.m in Sources */,
 				5613DDE8143A85F80059077A /* VGDialog.m in Sources */,
 				5621703515392F1F0094122B /* Explosion.m in Sources */,
+				5650B9EA153CB76900AEF4F2 /* ExplosionManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
