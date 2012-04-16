@@ -1291,11 +1291,13 @@ static float RadiansToDegrees(float radians)
 {
     const int YUpDown[] = { 0, 1, 3, 6, 4, 3, 1, -2, -6, -7, -5, -2, 2, 3, 5, 6, 2, 1, -1, -4, -6, -5, -3, 0, 4, 5, 7, 4, 0, -1, -3, -1 };
     const size_t DimYUpDown = sizeof(YUpDown)/sizeof(YUpDown[0]);
-    const float StartingAngle = DegreesToRadians(-30);
+    const float StartingAngle = DegreesToRadians(120);
     const float AngleIncrement = DegreesToRadians(1);
     
     float angle = StartingAngle;
-    short count = 241;
+    short count = 300;
+    float centerX = self.explosionView.bounds.size.width / 2;
+    float centerY = self.explosionView.bounds.size.height / 2;
     
     // Allocate our path array
     NSMutableArray *path = [[NSMutableArray alloc] init];
@@ -1313,23 +1315,19 @@ static float RadiansToDegrees(float radians)
         short TEMP = YUpDown[random() & DimYUpDown];
         TEMP += radius;
         if (TEMP >= 0) {
-            short X = TEMP * cos(angle) + self.SHOWX;
-            if (X >= 0) {
-                short Y = TEMP * sin(angle) + self.SHOWY - 32;
-                if (Y > 0) {
-                    //###
-                    Y = 768 - Y;
-                    // Draw rect command
-                    NSNumber *x = [NSNumber numberWithInt:X];
-                    NSNumber *y = [NSNumber numberWithInt:Y];
-                    
-                    NSDictionary *originItem = [NSDictionary dictionaryWithObjectsAndKeys:x, @"x", y, @"y", nil];
-                    NSDictionary *sizeItem = [NSDictionary dictionaryWithObjectsAndKeys:width, @"width", height, @"height", nil];
-                    NSDictionary *frameItem = [NSDictionary dictionaryWithObjectsAndKeys:originItem, @"origin", sizeItem, @"size", nil];
-                    NSDictionary *rectItem = [NSDictionary dictionaryWithObjectsAndKeys:frameItem, @"frame", nil];
-                    NSDictionary *pathItem = [NSDictionary dictionaryWithObjectsAndKeys:rectItem, @"rect", intensity, @"intensity", nil];
-                    [path addObject:pathItem];
-                }
+            short X = TEMP * cos(angle) + centerX;
+            short Y = TEMP * sin(angle) + centerY;
+            if (X >= 0 && Y >= 0) {
+                // Create our display point
+                NSNumber *x = [NSNumber numberWithInt:X];
+                NSNumber *y = [NSNumber numberWithInt:Y];
+                
+                NSDictionary *originItem = [NSDictionary dictionaryWithObjectsAndKeys:x, @"x", y, @"y", nil];
+                NSDictionary *sizeItem = [NSDictionary dictionaryWithObjectsAndKeys:width, @"width", height, @"height", nil];
+                NSDictionary *frameItem = [NSDictionary dictionaryWithObjectsAndKeys:originItem, @"origin", sizeItem, @"size", nil];
+                NSDictionary *rectItem = [NSDictionary dictionaryWithObjectsAndKeys:frameItem, @"frame", nil];
+                NSDictionary *pathItem = [NSDictionary dictionaryWithObjectsAndKeys:rectItem, @"rect", intensity, @"intensity", nil];
+                [path addObject:pathItem];
             }
         }
         
@@ -1349,7 +1347,7 @@ static float RadiansToDegrees(float radians)
     [self BELL];
 }
 
-const short RadiusIncrement1 = 25;
+const short RadiusIncrement1 = 33;
 const short RadiusIncrement2 = -10;
 static short radiusIncrement;
 static short currentRadius;
@@ -1390,16 +1388,17 @@ static short currentRadius;
     [self BELL];
 
     // Create the explosion view ### needs fixing
-    float xPos = 0;
-    float yPos = 0;
-    CGRect frameRect = CGRectMake(xPos, yPos, 1024, 768);
+    const float ExplosionSize = 325 * 2;
+    float xPos = self.SHOWX - ExplosionSize / 2;
+    float yPos = (768 - self.SHOWY) - ExplosionSize / 2;
+    CGRect frameRect = CGRectMake(xPos, yPos, ExplosionSize, ExplosionSize);
     self.explosionView = [[Explosion alloc] initWithFrame:frameRect];
     [self.view addSubview:self.explosionView];
     
     //(EXPLD1)  Setup the animation
-    const float AnimateExplosionTimer = 0.025f;
+    const float AnimateExplosionTimer = 0.05f;
     currentRadius = 0;
-    radiusIncrement = RadiusIncrement1;
+    radiusIncrement = RadiusIncrement2;
     [self generateExplosion:currentRadius];
     self.palsyTimer = [NSTimer scheduledTimerWithTimeInterval:AnimateExplosionTimer target:self selector:@selector(animateExplosion) userInfo:nil repeats:YES];
 }
