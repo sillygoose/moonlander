@@ -35,14 +35,52 @@
 @synthesize verticalVelocity=_verticalVelocity;
 @synthesize horizontalVelocity=_horizontalVelocity;
 
-@synthesize percentThrustRequested=_percentThrustRequested;
 @synthesize actualThrust=_actualThrust;
-@synthesize fuelRemaining=_fuelRemaining;
 
 @synthesize lemMass=_lemMass;
 
 @synthesize lemOnSurface=_lemOnSurface;
 
+
+static float DegreesToRadians(float degrees)
+{
+    return degrees * M_PI / 180;
+}
+
+static float RadiansToDegrees(float radians)
+{
+    return radians * 180 / M_PI;
+}
+
+- (float)fuelRemaining
+{
+    return _fuelRemaining;
+}
+
+- (void)setFuelRemaining:(float)fuel
+{
+    _fuelRemaining = fuel;
+    if (_fuelRemaining <= 0) {
+        self.actualThrust = 0;
+    }
+}
+
+- (float)percentThrustRequested
+{
+    return _percentThrustRequested;
+}
+
+- (void)setPercentThrustRequested:(float)thrustRequested
+{
+    if (self.fuelRemaining > 0) {
+        _percentThrustRequested = thrustRequested;
+        self.actualThrust = _percentThrustRequested * self.maxThrust / 100.0f;
+    }
+    else {
+        _percentThrustRequested = 0;
+        self.actualThrust = 0;
+    }
+}
 
 - (float)turnAngle
 {
@@ -52,33 +90,23 @@
     return _turnAngle;
 }
 
-float DegreesToRadians(float degrees)
-{
-    return degrees * M_PI / 180;
-}
-
-float RadiansToDegrees(float radians)
-{
-    return radians * 180 / M_PI;
-}
-
 #pragma mark Model Constants
 - (void)stepLanderModel:(float)timeElapsed
 {
     if (!self.onSurface) {
         // Calculate fuel and accelerations (ROCKET subroutine)
-        if (self.fuelRemaining <= 0.0f) {
-            self.fuelRemaining = 0.0f;
+        if (self.fuelRemaining <= 0) {
+            self.fuelRemaining = 0;
             self.lemMass = self.lemEmptyMass;
-            self.actualThrust = 0.0f;
-            self.lemAcceleration = 0.0f;
-            self.horizontalAcceleration = 0.0f;
+            self.actualThrust = 0;
+            self.lemAcceleration = 0;
+            self.horizontalAcceleration = 0;
             self.verticalAcceleration = -self.lunarGravity;
         }
         else {
-            self.actualThrust = self.percentThrustRequested * self.maxThrust / 100.0f;
             float fuelUsed = self.actualThrust * timeElapsed / 260.0f;
-            self.fuelRemaining -= ( fuelUsed >= self.fuelRemaining ) ? self.fuelRemaining : fuelUsed;
+            self.fuelRemaining -= fuelUsed;
+            self.actualThrust = self.percentThrustRequested * self.maxThrust / 100.0f;
             self.lemMass = self.fuelRemaining + self.lemEmptyMass;
             self.lemAcceleration = self.actualThrust * self.earthGravity / self.lemMass * 1.50f;
             self.horizontalAcceleration = self.lemAcceleration * sinf(self.turnAngle);
@@ -142,8 +170,14 @@ float RadiansToDegrees(float radians)
     if (thrustPercent < 10.0f) {
         thrustPercent = 10.0f;
     }
+    
     self.percentThrustRequested = thrustPercent;
-    self.actualThrust = self.percentThrustRequested * self.maxThrust / 100.0;
+    if (self.fuelRemaining <= 0) {
+        self.actualThrust = 0;
+    }
+    else {
+        self.actualThrust = self.percentThrustRequested * self.maxThrust / 100.0;
+    }
 }
 
 - (float)weight
@@ -244,6 +278,7 @@ float RadiansToDegrees(float radians)
     self.lemOnSurface = YES;
     
     // Set our thrust and accelerations
+    self.percentThrustRequested = 0;
     self.actualThrust = 0.0f;
     self.lemAcceleration = 0.0f;
     self.horizontalAcceleration = 0.0f;
@@ -263,8 +298,8 @@ float RadiansToDegrees(float radians)
     self.horizontalVelocity = 0;
     self.verticalVelocity = 0;
     self.horizontalDistance = 0;
-    self.verticalDistance = 120;
-    self.percentThrustRequested = 14;
+    self.verticalDistance = 50;
+    self.percentThrustRequested = 10;
     self.actualThrust = self.percentThrustRequested * self.maxThrust / 100.0;
     self.fuelRemaining = self.lemInitalFuel;
     self.clockTicks = 0.0f;
