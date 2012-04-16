@@ -830,6 +830,7 @@ static float RadiansToDegrees(float radians)
 
 - (void)OFFCOM:(float)xPosition withMessage:(NSString *)message
 {
+    // This code is used to handle the display boundary violations
     short newHDistance = xPosition * 32 - 22400;
     short newVertVel = self.VERDIS / 40;
     if (newVertVel >= 0) {
@@ -1348,7 +1349,7 @@ static float RadiansToDegrees(float radians)
     [self BELL];
 }
 
-const short RadiusIncrement1 = 20;
+const short RadiusIncrement1 = 25;
 const short RadiusIncrement2 = -10;
 static short radiusIncrement;
 static short currentRadius;
