@@ -19,6 +19,18 @@
 @synthesize thrusterIndicator=thrusterIndicator;
 @synthesize thrusterValue=_thrusterValue;
 
+// Override the enable property setter so we can enable/disable the underlying view
+- (BOOL)enabled
+{
+    return super.enabled;
+}
+
+- (void)setEnabled:(BOOL)state
+{
+    super.enabled = state;
+    self.userInteractionEnabled = state;
+    self.thrusterSlider.userInteractionEnabled = state;
+}
 
 - (id)initWithFrame:(CGRect)frameRect
 {
@@ -87,9 +99,12 @@
 
 -(void)dispatchTouchEvent:(UIView *)theView toPosition:(CGPoint)position
 {
-    // Update the indicator needle position
-    self.value = 100.0f - position.y / theView.bounds.size.height * 100.0f;
-    [self sendActionsForControlEvents:UIControlEventValueChanged];
+    // Ignore any touches processed after the control is disabled
+    if (theView.userInteractionEnabled) {
+        // Update the indicator needle position
+        self.value = 100.0f - position.y / theView.bounds.size.height * 100.0f;
+        [self sendActionsForControlEvents:UIControlEventValueChanged];
+    }
 }
 
 - (void)touchesBegan:(NSSet*)touches withEvent:(UIEvent*)event
