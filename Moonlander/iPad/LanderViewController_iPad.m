@@ -1286,7 +1286,7 @@ static float RadiansToDegrees(float radians)
     AudioServicesPlayAlertSound(BeepSound);
 }
 
-- (void)EXGEN
+- (void)EXGEN:(short)radius
 {
     const int YUpDown[] = { 0, 1, 3, 6, 4, 3, 1, -2, -6, -7, -5, -2, 2, 3, 5, 6, 2, 1, -1, -4, -6, -5, -3, 0, 4, 5, 7, 4, 0, -1, -3, -1 };
     const size_t DimYUpDown = sizeof(YUpDown)/sizeof(YUpDown[0]);
@@ -1310,7 +1310,7 @@ static float RadiansToDegrees(float radians)
     while (count > 0) {
         // We skip fooling around and just randomize this
         short TEMP = YUpDown[random() & DimYUpDown];
-        TEMP += self.DUSTX;
+        TEMP += radius;
         if (TEMP >= 0) {
             short X = TEMP * cos(angle) + self.SHOWX;
             if (X >= 0) {
@@ -1319,8 +1319,8 @@ static float RadiansToDegrees(float radians)
                     //###
                     Y = 768 - Y;
                     // Draw rect command
-                    NSNumber *x = [NSNumber numberWithFloat:X];
-                    NSNumber *y = [NSNumber numberWithFloat:Y];
+                    NSNumber *x = [NSNumber numberWithInt:X];
+                    NSNumber *y = [NSNumber numberWithInt:Y];
                     
                     NSDictionary *originItem = [NSDictionary dictionaryWithObjectsAndKeys:x, @"x", y, @"y", nil];
                     NSDictionary *sizeItem = [NSDictionary dictionaryWithObjectsAndKeys:width, @"width", height, @"height", nil];
@@ -1344,22 +1344,17 @@ static float RadiansToDegrees(float radians)
 
 - (void)generateExplosion:(short)radius
 {
-    const short RadiusIncrement = 25;
-    
-    [self EXGEN];
+    [self EXGEN:radius];
     [self BELL];
-    
-    self.DUSTX -= 10;
-    [self EXGEN];
-    [self BELL];
-    
-    // Increase the radius until done
-    self.DUSTX += RadiusIncrement;
 }
 
+const short RadiusIncrement1 = 20;
+const short RadiusIncrement2 = -10;
+static short radiusIncrement;
+static short currentRadius;
 - (void)animateExplosion
 {
-    if (self.DUSTX > 300) {
+    if (currentRadius > 300) {
         // Remove the explosion view
         if (self.explosionView) {
             self.explosionView.drawPaths = nil;
@@ -1373,7 +1368,9 @@ static float RadiansToDegrees(float radians)
     }
     else {
         // Generate the display while making noise
-        [self generateExplosion:self.DUSTX];
+        [self generateExplosion:currentRadius];
+        currentRadius += radiusIncrement;
+        radiusIncrement = (radiusIncrement == RadiusIncrement1) ? RadiusIncrement2 : RadiusIncrement1;
     }
 }
 
@@ -1391,7 +1388,7 @@ static float RadiansToDegrees(float radians)
     //(EXPLOD)  Shut down things and ring bell
     [self BELL];
 
-    // Create the explosion view
+    // Create the explosion view ### needs fixing
     float xPos = 0;
     float yPos = 0;
     CGRect frameRect = CGRectMake(xPos, yPos, 1024, 768);
@@ -1400,8 +1397,9 @@ static float RadiansToDegrees(float radians)
     
     //(EXPLD1)  Setup the animation
     const float AnimateExplosionTimer = 0.025f;
-    self.DUSTX = 0;
-    [self generateExplosion:self.DUSTX];
+    currentRadius = 0;
+    radiusIncrement = RadiusIncrement1;
+    [self generateExplosion:currentRadius];
     self.palsyTimer = [NSTimer scheduledTimerWithTimeInterval:AnimateExplosionTimer target:self selector:@selector(animateExplosion) userInfo:nil repeats:YES];
 }
 
