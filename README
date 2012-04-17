@@ -5,9 +5,9 @@ Here is the to do list
 - iphone/ipad icons
 - initial menu screen
 - splash screen
-- dust improvements (position)
-- explode improvements (account for phosphor decay) 
-- bold/blink selected controls
+- iphone version
+- use floats for X/Y positioning so retina displays are supported
+- dust bug (dust appears on rotation)
 - hardware brochures
 - source code viewer
 
@@ -15,7 +15,7 @@ Fixed/Done
 - bold/blink selected controls
 - on surface, allow indicators to update and slider works as well (roll disabled)
 - dust improvements (looks like original)
-- explode improvements (account for phosphour decay) 
+- explode improvements (account for phosphor decay) 
 - implement dust bug when you have no fuel
 - explode code implementation
 - time runs while on lunar surface - yes
