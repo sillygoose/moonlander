@@ -31,65 +31,64 @@
 @interface LanderViewController_iPad : UIViewController {
     LanderPhysicsModel *_landerModel;
     
-    Moon            *_moonView;
-    Lander          *_landerView;
-    Dust            *_dustView;
-    ExplosionManager *_explosionManager;
-    Man             *_manView;
-    Flag            *_flagView;
+    Moon                *_moonView;
+    Lander              *_landerView;
+    Dust                *_dustView;
+    ExplosionManager    *_explosionManager;
+    Man                 *_manView;
+    Flag                *_flagView;
     
-    short           _SHOWX;
-    short           _SHOWY;
-    short           _BIGXCT;
-    short           _LEFTEDGE;
-    short           _LEFEET;
-    short           _INDEXL;
-    short           _INDEXLR;
-    short           _RADARY;
-    short           _AVERY;
-    short           _AVERT;
+    short               _SHOWX;
+    short               _SHOWY;
+    short               _BIGXCT;
+    short               _LEFTEDGE;
+    short               _LEFEET;
+    short               _INDEXL;
+    short               _INDEXLR;
+    short               _RADARY;
+    short               _AVERY;
+    short               _AVERT;
     
-    VGButton        *_smallLeftArrow;
-    VGButton        *_smallRightArrow;
-    VGButton        *_largeLeftArrow;
-    VGButton        *_largeRightArrow;
+    VGButton            *_smallLeftArrow;
+    VGButton            *_smallRightArrow;
+    VGButton            *_largeLeftArrow;
+    VGButton            *_largeRightArrow;
     
-    VGSlider        *_thrusterSlider;
+    VGSlider            *_thrusterSlider;
     
-    NSTimer         *__unsafe_unretained _simulationTimer;
-    NSTimer         *__unsafe_unretained _displayTimer;
-    NSTimer         *__unsafe_unretained _palsyTimer;
+    NSTimer             *__unsafe_unretained _simulationTimer;
+    NSTimer             *__unsafe_unretained _displayTimer;
+    NSTimer             *__unsafe_unretained _palsyTimer;
 
-    Telemetry       *_selectedTelemetry;
-    Telemetry       *_heightData;
-    Telemetry       *_altitudeData;
-    Telemetry       *_distanceData;
-    Telemetry       *_fuelLeftData;
-    Telemetry       *_weightData;
-    Telemetry       *_thrustData;
-    Telemetry       *_thrustAngleData;
-    Telemetry       *_verticalVelocityData;
-    Telemetry       *_horizontalVelocityData;
-    Telemetry       *_verticalAccelerationData;
-    Telemetry       *_horizontalAccelerationData;
-    Telemetry       *_secondsData;
+    Telemetry           *_selectedTelemetry;
+    Telemetry           *_heightData;
+    Telemetry           *_altitudeData;
+    Telemetry           *_distanceData;
+    Telemetry           *_fuelLeftData;
+    Telemetry           *_weightData;
+    Telemetry           *_thrustData;
+    Telemetry           *_thrustAngleData;
+    Telemetry           *_verticalVelocityData;
+    Telemetry           *_horizontalVelocityData;
+    Telemetry           *_verticalAccelerationData;
+    Telemetry           *_horizontalAccelerationData;
+    Telemetry           *_secondsData;
 
-    Instrument      *_instrument1;
-    Instrument      *_instrument2;
-    Instrument      *_instrument3;
-    Instrument      *_instrument4;
+    Instrument          *_instrument1;
+    Instrument          *_instrument2;
+    Instrument          *_instrument3;
+    Instrument          *_instrument4;
     
-    Instrument      *_instrument5;
-    Instrument      *_instrument6;
-    Instrument      *_instrument7;
-    Instrument      *_instrument8;
+    Instrument          *_instrument5;
+    Instrument          *_instrument6;
+    Instrument          *_instrument7;
+    Instrument          *_instrument8;
     
-    LanderMessages  *_landerMessages;
+    LanderMessages      *_landerMessages;
     
-    VGDialog        *_anotherGameDialog;
+    VGDialog            *_anotherGameDialog;
     
-    BOOL            _didFuelAlert;
-
+    BOOL                _didFuelAlert;
 }
 
 @property (nonatomic, strong) LanderPhysicsModel *landerModel;
@@ -173,6 +172,5 @@
 
 - (void)updateLander;
 - (void)gameLoop;
-- (void)disableFlightControls;
 
 @end

@@ -152,7 +152,7 @@ static float RadiansToDegrees(float radians)
 
 - (float)thrust
 {
-    return (self.verticalDistance <= 0.0f) ? 0.0f : self.actualThrust;
+    return (self.lemOnSurface) ? 0 : self.actualThrust;
 }
 
 - (void)setThrust:(float)thrustPercent

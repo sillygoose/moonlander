@@ -5,9 +5,12 @@ Here is the to do list
 - iphone/ipad icons
 - initial menu screen
 - splash screen
+- iphone version
 - bold/blink selected controls
+- use floats for X/Y positioning so retina dsplays are supported
 
 Fixed/Done
+- on surface, allow indicators to update and slider works as well (roll disabled)
 - dust improvements (looks like original)
 - explode improvements (account for phosphour decay) 
 - implement dust bug when you have no fuel
