@@ -2,8 +2,8 @@
 //  LanderPhysicsModel.m
 //  Moonlander
 //
-//  Created by Silly Goose on 5/10/11.
-//  Copyright 2011 Silly Goose Software. All rights reserved.
+//  Created by Rick on 5/10/11.
+//  Copyright 2011, 2012 Paradigm Systems. All rights reserved.
 //
 //  Classic game data
 //  Time     Fuel     HorizVel   VertVel
@@ -61,6 +61,7 @@ static float RadiansToDegrees(float radians)
 {
     _fuelRemaining = fuel;
     if (_fuelRemaining <= 0) {
+        _fuelRemaining = 0;
         self.actualThrust = 0;
     }
 }
@@ -72,14 +73,8 @@ static float RadiansToDegrees(float radians)
 
 - (void)setPercentThrustRequested:(float)thrustRequested
 {
-    if (self.fuelRemaining > 0) {
-        _percentThrustRequested = thrustRequested;
-        self.actualThrust = _percentThrustRequested * self.maxThrust / 100.0f;
-    }
-    else {
-        _percentThrustRequested = 0;
-        self.actualThrust = 0;
-    }
+    _percentThrustRequested = thrustRequested;
+    self.actualThrust = (self.fuelRemaining > 0) ? (_percentThrustRequested * self.maxThrust / 100) : 0;
 }
 
 - (float)turnAngle
@@ -125,11 +120,6 @@ static float RadiansToDegrees(float radians)
 }
 
 #pragma mark Data source
-- (float)thrustPercent
-{
-    return (self.fuelRemaining > 0) ? self.actualThrust / self.maxThrust * 100.0f : 0.0f;
-}
-
 - (CGPoint)landerPosition
 {
     return CGPointMake(self.horizontalDistance, self.verticalDistance);
@@ -167,17 +157,16 @@ static float RadiansToDegrees(float radians)
 
 - (void)setThrust:(float)thrustPercent
 {
+    // Enforce a minimum thrust level of 10%
     if (thrustPercent < 10.0f) {
         thrustPercent = 10.0f;
     }
-    
     self.percentThrustRequested = thrustPercent;
-    if (self.fuelRemaining <= 0) {
-        self.actualThrust = 0;
-    }
-    else {
-        self.actualThrust = self.percentThrustRequested * self.maxThrust / 100.0;
-    }
+}
+
+- (float)thrustPercent
+{
+    return self.percentThrustRequested;
 }
 
 - (float)weight
@@ -279,9 +268,9 @@ static float RadiansToDegrees(float radians)
     
     // Set our thrust and accelerations
     self.percentThrustRequested = 0;
-    self.actualThrust = 0.0f;
-    self.lemAcceleration = 0.0f;
-    self.horizontalAcceleration = 0.0f;
+    self.actualThrust = 0;
+    self.lemAcceleration = 0;
+    self.horizontalAcceleration = 0;
     self.verticalAcceleration = -self.lunarGravity;
 }
 
@@ -293,18 +282,18 @@ static float RadiansToDegrees(float radians)
 
 #if defined(DEBUG_DUST) || defined(DEBUG_FLAME) || defined(DEBUG_LOCATION)
     // Custom lander start point
+    self.fuelRemaining = self.lemInitalFuel;
     self.rateOfTurn = 0;
     self.turnAngle = DegreesToRadians(0);
     self.horizontalVelocity = 0;
     self.verticalVelocity = 0;
     self.horizontalDistance = 0;
-    self.verticalDistance = 50;
-    self.percentThrustRequested = 10;
-    self.actualThrust = self.percentThrustRequested * self.maxThrust / 100.0;
-    self.fuelRemaining = self.lemInitalFuel;
+    self.verticalDistance = 150;
+    self.percentThrustRequested = 18;
     self.clockTicks = 0.0f;
 #else
     // Default game start point
+    self.fuelRemaining = self.lemInitalFuel;
     self.rateOfTurn = 0.0f;
     self.turnAngle = DegreesToRadians(-70.0f);
     self.horizontalVelocity = 1000.0f;
@@ -312,8 +301,6 @@ static float RadiansToDegrees(float radians)
     self.horizontalDistance = -22000.0;
     self.verticalDistance = 23000.0f;
     self.percentThrustRequested = 75.0f;
-    self.actualThrust = self.percentThrustRequested * self.maxThrust / 100.0;
-    self.fuelRemaining = self.lemInitalFuel;
     self.clockTicks = 0.0f;
 #endif
 }

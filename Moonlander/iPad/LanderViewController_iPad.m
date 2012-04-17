@@ -666,8 +666,9 @@ static float RadiansToDegrees(float radians)
     self.landerView = [[Lander alloc] init];
     self.landerView.userInteractionEnabled = NO;
     self.landerView.contentMode = UIViewContentModeRedraw;
-    self.landerView.thrustData = [^{ return [self.landerModel.dataSource thrustPercent];} copy];
-    self.landerView.angleData = [^{ return [self.landerModel.dataSource angle];} copy];
+    self.landerView.thrustPercent = [^{ return (float)self.PERTRS;} copy];
+    self.landerView.thrustData = [^{ return (float)self.THRUST;} copy];
+    self.landerView.angleData = [^{ return self.ANGLE;} copy];
     self.landerView.positionData = [^{ return [self.landerModel.dataSource landerPosition];} copy];
     self.landerView.hidden = YES;
     [self.view addSubview:self.landerView];
@@ -765,6 +766,7 @@ static float RadiansToDegrees(float radians)
 
 - (IBAction)thrusterChanged:(VGSlider *)sender
 {
+    // Update the model with the new thrust setting
     [self.landerModel.dataSource setThrust:sender.value];
     [self.thrusterSlider setValue:[self.landerModel.dataSource thrustPercent]];
 }
@@ -890,7 +892,8 @@ static float RadiansToDegrees(float radians)
         // Angle must be reasonable as well
         if (self.ANGLED > -45 && self.ANGLED < 45) {
             //(DUSTB1)  Magnitude of dust determines intensity level
-            short percentThrust = (self.PERTRS > MaxDustThrust) ? MaxDustThrust : self.PERTRS;
+            short requestedThrust = self.PERTRS;
+            short percentThrust = (requestedThrust > MaxDustThrust) ? MaxDustThrust : requestedThrust;
             short displayIntensity = (percentThrust >> 3) & 0x7;
             
             //(DUSTP1)  Thrust angle determines dust direction
@@ -918,7 +921,7 @@ static float RadiansToDegrees(float radians)
                 flameDistance = -flameDistance;
                 
                 // Calculate the number of dust points to draw
-                short count = MIN(((flameDistance * self.PERTRS) >> 4), MaxDisplayDust);
+                short count = MIN(((flameDistance * requestedThrust) >> 4), MaxDisplayDust);
                 if (count) {
                     // Keep the dust view as we have something to draw
                     removeDustView = NO;
@@ -1065,7 +1068,7 @@ static float RadiansToDegrees(float radians)
     // Remove any messages that pop up
     [self.landerMessages removeAllLanderMessages];
     
-    // Force the controls to the eparture levels
+    // Force the controls to the departure values
     self.HORVEL = 0;
     self.THRUST = 30;
     self.ANGLE = 0;
@@ -1541,7 +1544,6 @@ static float RadiansToDegrees(float radians)
         // Display a low fuel message
         if (self.FUEL <= 0) {
             [self.landerMessages removeFuelMessage];
-            [self disableRollAndThrusters];
         }
         else if (self.FUEL < 200) {
             if (!self.didFuelAlert) {
