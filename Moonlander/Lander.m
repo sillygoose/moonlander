@@ -15,7 +15,6 @@
 @synthesize thrustPercent=_thrustPercent;
 @synthesize thrustData=_thrustData;
 @synthesize angleData=_angleData;
-@synthesize positionData=_positionData;
 @synthesize previousAngle=_previousAngle;
 
 @synthesize flameRandom=_flameRandom;
@@ -53,10 +52,6 @@
     _angleData = codeBlock;
 }
 
-- (void)setPositionData:(position_data_t)codeBlock
-{
-    _positionData = codeBlock;
-}
 
 - (id)init
 {
@@ -88,7 +83,7 @@
 {
     // Prepare to hide the view if we have no thrust vectors
     BOOL hideThrustView = YES;
-    short thrustData = (short)self.thrustData();
+    short thrustData = self.thrustData();
     if (thrustData > 0) {
         // Thrust generation tables
         const int FLEN = 12;
@@ -98,7 +93,7 @@
         const int FlameBT[] = { -20, -16, -13, -10, -7, -4, -2, 0, 2, 4, 7, 10, 13, 16, 20 };
         
         NSArray *paths = nil;
-        short percentThrust = (short)self.thrustPercent();
+        short percentThrust = self.thrustPercent();
         if (percentThrust) {
             // We are displaying something
             hideThrustView = NO;
