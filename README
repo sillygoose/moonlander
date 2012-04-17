@@ -7,11 +7,12 @@ Here is the to do list
 - splash screen
 - iphone version
 - use floats for X/Y positioning so retina displays are supported
-- dust bug (dust appears on rotation)
 - hardware brochures
 - source code viewer
 
 Fixed/Done
+- dust bug (dust appears on rotation)
+- angle roundoff - stick with integer angles
 - bold/blink selected controls
 - on surface, allow indicators to update and slider works as well (roll disabled)
 - dust improvements (looks like original)

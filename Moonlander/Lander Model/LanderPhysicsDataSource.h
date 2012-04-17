@@ -21,10 +21,8 @@
 - (void)setDistance:(float)newDistance;
 
 - (float)angle;
-- (void)setAngle:(float)angleRadians;
-
-- (float)angleDegrees;
-- (void)setAngleDegrees:(float)angleDegrees;
+- (short)angleDegrees;
+- (void)setAngleDegrees:(short)angleDegrees;
 
 - (float)thrust;
 - (void)setThrust:(float)thrusterControl;

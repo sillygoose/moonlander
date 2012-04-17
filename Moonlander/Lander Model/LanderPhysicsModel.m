@@ -27,13 +27,14 @@
 @synthesize horizontalDistance=_horizontalDistance;
 @synthesize verticalDistance=_verticalDistance;
 
-@synthesize rateOfTurn=_rateOfTurn;
 @synthesize turnAngle=_turnAngle;
 @synthesize lemAcceleration=_lemAcceleration;
 @synthesize verticalAcceleration=_verticalAcceleration;
 @synthesize horizontalAcceleration=_horizonalAcceleration;
 @synthesize verticalVelocity=_verticalVelocity;
 @synthesize horizontalVelocity=_horizontalVelocity;
+@synthesize percentThrustRequested=_percentThrustRequested;
+@synthesize fuelRemaining=_fuelRemaining;
 
 @synthesize actualThrust=_actualThrust;
 
@@ -52,11 +53,7 @@ static float RadiansToDegrees(float radians)
     return radians * 180 / M_PI;
 }
 
-- (float)fuelRemaining
-{
-    return _fuelRemaining;
-}
-
+// Setters and getters
 - (void)setFuelRemaining:(float)fuel
 {
     _fuelRemaining = fuel;
@@ -66,23 +63,19 @@ static float RadiansToDegrees(float radians)
     }
 }
 
-- (float)percentThrustRequested
-{
-    return _percentThrustRequested;
-}
-
 - (void)setPercentThrustRequested:(float)thrustRequested
 {
     _percentThrustRequested = thrustRequested;
     self.actualThrust = (self.fuelRemaining > 0) ? (_percentThrustRequested * self.maxThrust / 100) : 0;
 }
 
-- (float)turnAngle
+- (void)setTurnAngle:(short)angle
 {
-    if ( fabs(_turnAngle) >= M_PI ) {
-        _turnAngle = fmodf(_turnAngle, 2.0f * M_PI);
+    angle = angle % 360;
+    if (angle > 180) {
+        angle -= 360;
     }
-    return _turnAngle;
+    _turnAngle = angle;
 }
 
 #pragma mark Model Constants
@@ -107,14 +100,17 @@ static float RadiansToDegrees(float radians)
             self.horizontalAcceleration = self.lemAcceleration * sinf(self.turnAngle);
             self.verticalAcceleration = self.lemAcceleration * cosf(self.turnAngle) - self.lunarGravity;
         }
-        
+    
+#define HOLD_POSITION
+#ifndef HOLD_POSITION
         // Horizontal/vertical velocity/position updates
         self.horizontalVelocity += self.horizontalAcceleration * timeElapsed;
         self.verticalVelocity += self.verticalAcceleration * timeElapsed;
         self.horizontalDistance += self.horizontalVelocity * timeElapsed;
         self.verticalDistance += self.verticalVelocity * timeElapsed;
+#endif
     }
-
+    
     // Update the simulation clock
     self.clockTicks += timeElapsed;
 }
@@ -226,7 +222,7 @@ static float RadiansToDegrees(float radians)
 
 - (float)angle
 {
-    return self.turnAngle;
+    return DegreesToRadians(self.turnAngle);
 }
 
 - (void)setAngle:(float)angleRadians
@@ -234,14 +230,14 @@ static float RadiansToDegrees(float radians)
     self.turnAngle = angleRadians;
 }
 
-- (float)angleDegrees
+- (short)angleDegrees
 {
-    return RadiansToDegrees(self.turnAngle);
+    return self.turnAngle;
 }
 
-- (void)setAngleDegrees:(float)angleDegrees
+- (void)setAngleDegrees:(short)angleDegrees
 {
-    self.turnAngle = DegreesToRadians(angleDegrees);
+    self.turnAngle = angleDegrees;
 }
 
 - (float)updateTime:(float)timeElasped
@@ -283,19 +279,17 @@ static float RadiansToDegrees(float radians)
 #if defined(DEBUG_DUST) || defined(DEBUG_FLAME) || defined(DEBUG_LOCATION)
     // Custom lander start point
     self.fuelRemaining = self.lemInitalFuel;
-    self.rateOfTurn = 0;
-    self.turnAngle = DegreesToRadians(0);
+    self.turnAngle = 0;
     self.horizontalVelocity = 0;
     self.verticalVelocity = 0;
-    self.horizontalDistance = 0;
-    self.verticalDistance = 150;
+    self.horizontalDistance = -200;
+    self.verticalDistance = 68;
     self.percentThrustRequested = 18;
     self.clockTicks = 0.0f;
 #else
     // Default game start point
     self.fuelRemaining = self.lemInitalFuel;
-    self.rateOfTurn = 0.0f;
-    self.turnAngle = DegreesToRadians(-70.0f);
+    self.turnAngle = -70.0f;
     self.horizontalVelocity = 1000.0f;
     self.verticalVelocity = -500.0f;
     self.horizontalDistance = -22000.0;

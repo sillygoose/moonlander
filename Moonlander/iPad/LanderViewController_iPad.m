@@ -37,7 +37,6 @@
 @synthesize AVERY=_AVERY;
 @synthesize AVERT=_AVERT;
 @synthesize DUSTX=_DUSTX;
-@synthesize XTYPE=_XTYPE;
 
 @synthesize smallLeftArrow=_smallLeftArrow;
 @synthesize smallRightArrow=_smallRightArrow;
@@ -160,14 +159,14 @@ static float RadiansToDegrees(float radians)
     return (float)([self.landerModel.dataSource angle]);
 }
 
-- (void)setANGLE:(float)value
-{
-    [self.landerModel.dataSource setAngle:value];
-}
-
 - (short)ANGLED
 {
     return (short)([self.landerModel.dataSource angleDegrees]);
+}
+
+- (void)setANGLED:(short)value
+{
+    [self.landerModel.dataSource setAngleDegrees:value];
 }
 
 - (short)HORVEL
@@ -768,28 +767,30 @@ static float RadiansToDegrees(float radians)
 //
 - (IBAction)rotateLander:(id)sender
 {
+    // Roll ratres in degrees
     const float MajorRollRate = 5;
-    const float MinorRoolRate = 1;
-    float deltaAngle = 0.0f;
+    const float MinorRollRate = 1;
+    
+    short deltaAngle = 0;
     VGButton *buttonInUse = (VGButton *)sender;
     if ( buttonInUse == self.smallLeftArrow) {
-        deltaAngle = -MinorRoolRate * M_PI / 180.0f;
+        deltaAngle = -MinorRollRate;
     }
     else if (buttonInUse == self.smallRightArrow)
     {
-        deltaAngle = MinorRoolRate * M_PI / 180.0f;
+        deltaAngle = MinorRollRate;
     }
     else if (buttonInUse == self.largeLeftArrow) {
-        deltaAngle = -MajorRollRate * M_PI / 180.0f;
+        deltaAngle = -MajorRollRate;
     }
     else if ( buttonInUse == self.largeRightArrow) {
-        deltaAngle = MajorRollRate * M_PI / 180.0f;
+        deltaAngle = MajorRollRate;
     }
     else {
         assert(TRUE);
     }
     
-    [self.landerModel.dataSource setAngle:([self.landerModel.dataSource angle] + deltaAngle)];
+    [self.landerModel.dataSource setAngleDegrees:([self.landerModel.dataSource angleDegrees] + deltaAngle)];
 }
 
 - (void)newGame
@@ -882,11 +883,11 @@ static float RadiansToDegrees(float radians)
     // Wait till 150 feet above surface before kicking up dust
     if (self.RADARY < DustStartHeight) {
         // Angle must be reasonable as well
-        if (self.ANGLED > -45 && self.ANGLED < 45) {
+        if (self.ANGLED >= -45 && self.ANGLED <= 45) {
             //(DUSTB1)  Magnitude of dust determines intensity level
             short requestedThrust = self.PERTRS;
             short percentThrust = (requestedThrust > MaxDustThrust) ? MaxDustThrust : requestedThrust;
-            short displayIntensity = (percentThrust >> 3) & 0x7;
+            short dustIntensity = (percentThrust >> 3) & 0x7;
             
             //(DUSTP1)  Thrust angle determines dust direction
             float sinAngle = sin(self.ANGLE);
@@ -908,12 +909,14 @@ static float RadiansToDegrees(float radians)
             
             // Calculate the flame distance and number of points to draw
             flameDistance -= DustStartHeight;
+            //###NSLog(@"flameDistance: %d", flameDistance);
             if (flameDistance < 0) {
                 // Convert to a positive distance (NEG)
                 flameDistance = -flameDistance;
                 
                 // Calculate the number of dust points to draw
                 short count = MIN(((flameDistance * requestedThrust) >> 4), MaxDisplayDust);
+                //###NSLog(@"count: %d ", count);
                 if (count) {
                     // Keep the dust view as we have something to draw
                     removeDustView = NO;
@@ -923,7 +926,7 @@ static float RadiansToDegrees(float radians)
                     NSArray *paths = [NSArray arrayWithObject:path];
                     
                     // Prep the intensity and line type info
-                    NSNumber *intensity = [NSNumber numberWithInt:displayIntensity];
+                    NSNumber *intensity = [NSNumber numberWithInt:dustIntensity];
                     
                     // Look up table used in dust generation
                     const short YThrust[] = { 0, -30, -31, -32, -34, -36, -38, -41, -44, -47, -50, -53, -56, 0, 1, 3, 6, 4, 3, 1, -2, -6, -7, -5, -2, 2, 3, 5, 6, 2, 1, -1, -4, -6, -5, -3, 0, 4, 5, 7, 4, 0, -1, -3, -1, -20, -16, -13, -10, -7, -4, -2, 0, 2, 4, 7, 10, 13, 16, 20, 0, -30, -31 };
@@ -1063,7 +1066,7 @@ static float RadiansToDegrees(float radians)
     // Force the controls to the departure values
     self.HORVEL = 0;
     self.THRUST = 30;
-    self.ANGLE = 0;
+    self.ANGLED = 0;
     [self.thrusterSlider setValue:[self.landerModel.dataSource thrustPercent]];
     
     // Check if we have gotten out of the detailed view
@@ -1096,7 +1099,7 @@ static float RadiansToDegrees(float radians)
     // Now take off with the food and some extra fuel
     self.VERDIS += 4;
     self.FUEL += 200;
-    self.ANGLE = 0;
+    self.ANGLED = 0;
     self.VERVEL = 0;
     self.HORVEL = 0;
     self.THRUST = 30;

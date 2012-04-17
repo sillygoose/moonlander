@@ -18,8 +18,7 @@
     float       _horizontalDistance;
     float       _verticalDistance;
     
-    float       _rateOfTurn;
-    float       _turnAngle;
+    short       _turnAngle;
     float       _lemAcceleration;
     float       _verticalAcceleration;
     float       _horizonalAcceleration;
@@ -43,8 +42,7 @@
 @property (nonatomic) float horizontalDistance;     // feet
 @property (nonatomic) float verticalDistance;       // feet
 
-@property (nonatomic) float rateOfTurn;             // radians per second
-@property (nonatomic) float turnAngle;              // radians (0 is vertical)
+@property (nonatomic) short turnAngle;              // degrees (0 is vertical)
 @property (nonatomic) float lemAcceleration;        // feet per seconds squared
 @property (nonatomic) float verticalAcceleration;   // feet per seconds squared
 @property (nonatomic) float horizontalAcceleration; // feet per seconds squared

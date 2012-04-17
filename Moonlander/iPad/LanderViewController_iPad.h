@@ -108,13 +108,12 @@
 @property (nonatomic) short AVERY;
 @property (nonatomic) short AVERT;
 @property (nonatomic) short DUSTX;
-@property (nonatomic) short XTYPE;
 
 @property (nonatomic) short VERDIS;
 @property (nonatomic, readonly) short HORDIS;
 @property (nonatomic, readonly) short PERTRS;
-@property (nonatomic) float ANGLE;
-@property (nonatomic, readonly) short ANGLED;
+@property (nonatomic, readonly) float ANGLE;
+@property (nonatomic) short ANGLED;
 @property (nonatomic) short HORVEL;
 @property (nonatomic) short VERVEL;
 @property (nonatomic, readonly) short VERACC;
