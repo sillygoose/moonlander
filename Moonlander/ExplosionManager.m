@@ -24,8 +24,9 @@ const short MaximumRadius = 300;
 const short RadiusIncrement1 = 33;
 const short RadiusIncrement2 = -10;
 
-const float AnimateExplosionTimer = 0.01;
-const float AgeExplosionTimer = 0.05;
+const float AnimateExplosionTimer = 0.075;
+const float AgeExplosionTimer = 0.1;
+const float DeltaAlpha = 0.2;
 
 
 
@@ -105,7 +106,7 @@ static float RadiansToDegrees(float radians)
     //(EXGENL)
     while (count > 0) {
         // We skip fooling around and just randomize this
-        short randomIndex = random() & DimYUpDown;
+        short randomIndex = random() % DimYUpDown;
         short TEMP = YUpDown[randomIndex];
         TEMP += radius;
         if (TEMP >= 0) {
@@ -116,6 +117,7 @@ static float RadiansToDegrees(float radians)
                 NSNumber *x = [NSNumber numberWithInt:X];
                 NSNumber *y = [NSNumber numberWithInt:Y];
                 
+                // This is not very optimal - should be intensity, frame, point, point, etc...
                 NSDictionary *originItem = [NSDictionary dictionaryWithObjectsAndKeys:x, @"x", y, @"y", nil];
                 NSDictionary *sizeItem = [NSDictionary dictionaryWithObjectsAndKeys:width, @"width", height, @"height", nil];
                 NSDictionary *frameItem = [NSDictionary dictionaryWithObjectsAndKeys:originItem, @"origin", sizeItem, @"size", nil];
@@ -151,7 +153,7 @@ static float RadiansToDegrees(float radians)
             CGRect frameRect = CGRectMake(xPos, yPos, explosionSize, explosionSize);
             Explosion *explosionView = [[Explosion alloc] initWithFrame:frameRect];
             explosionView.radius = self.currentRadius;
-            explosionView.intensity = (short)random() & 0x7;
+            explosionView.intensity = (short)random() % 8;
             explosionView.alpha = 1.0;
             [self EXGEN:explosionView];
 
@@ -181,7 +183,7 @@ static float RadiansToDegrees(float radians)
                     [self EXGEN:explosionView];
                     
                     // Age the view
-                    explosionView.alpha -= 0.1;
+                    explosionView.alpha -= DeltaAlpha;
                     explosionView.intensity = explosionView.intensity - 1;
                 }
                 else {

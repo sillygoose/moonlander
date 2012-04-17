@@ -8,6 +8,7 @@ Here is the to do list
 - dust improvements (boxy and position)
 - explode improvements (account for phosphour decay) 
 - bold/blink selected controls
+- dust bug when you have no fuel
 
 Fixed/Done
 - explode code implementation

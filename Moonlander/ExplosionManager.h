@@ -24,7 +24,7 @@
     short               _radiusIncrement;
 }
 
-@property (nonatomic, strong) NSArray *explosionViews;
+@property (atomic, strong) NSArray *explosionViews;
 @property (nonatomic, unsafe_unretained) NSTimer *explosionTimer;
 @property (nonatomic, unsafe_unretained) NSTimer *phosphorTimer;
 @property (nonatomic, strong) UIView *parentView;
