@@ -10,11 +10,17 @@
 
 @implementation Explosion
 
-- (id)initWithFrame:(CGRect)frame
+@synthesize radius=_radius;
+@synthesize intensity=_intensity;
+
+
+- (id)initWithRadius:(short)radius
 {
-    self = [super initWithFrame:frame];
+    CGRect frameRect = CGRectMake(0, 0, radius * 2, radius * 2);
+    self = [super initWithFrame:frameRect];
     if (self) {
-        // Initialization code
+        self.radius = radius;
+        self.intensity = 7;
     }
     return self;
 }

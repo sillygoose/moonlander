@@ -27,7 +27,8 @@
 - (void)setAngleDegrees:(float)angleDegrees;
 
 - (float)thrust;
-- (void)setThrust:(float)thrust;
+- (void)setThrust:(float)thrusterControl;
+- (float)thrustPercent;
 
 - (float)fuel;
 - (void)setFuel:(float)value;
@@ -38,7 +39,6 @@
 - (float)vertVel;
 - (void)setVertVel:(float)newVel;
 
-- (float)thrustPercent;
 - (float)weight;
 - (float)horizAccel;
 - (float)vertAccel;

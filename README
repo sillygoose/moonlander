@@ -12,6 +12,11 @@ Here is the to do list
 - source code viewer
 
 Fixed/Done
+- bold/blink selected controls
+- on surface, allow indicators to update and slider works as well (roll disabled)
+- dust improvements (looks like original)
+- explode improvements (account for phosphour decay) 
+- implement dust bug when you have no fuel
 - explode code implementation
 - time runs while on lunar surface - yes
 - crashing into an old lander? show lander on top of newly crashed lander

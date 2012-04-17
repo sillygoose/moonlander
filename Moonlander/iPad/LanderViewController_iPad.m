@@ -22,7 +22,7 @@
 @synthesize moonView=_moonView;
 @synthesize landerView=_landerView;
 @synthesize dustView=_dustView;
-@synthesize explosionView=_explosionView;
+@synthesize explosionManager=_explosionManager;
 @synthesize manView=_manView;
 @synthesize flagView=_flagView;
 
@@ -231,29 +231,6 @@ static float RadiansToDegrees(float radians)
 
 #pragma mark - View lifecycle
 
-- (void)disableFlightControls
-{
-    self.smallLeftArrow.enabled = NO;
-    self.smallRightArrow.enabled = NO;
-    self.largeLeftArrow.enabled = NO;
-    self.largeRightArrow.enabled = NO;
-    
-    self.thrusterSlider.enabled = NO;
-    
-    self.heightData.enabled = NO;
-    self.altitudeData.enabled = NO;
-    self.distanceData.enabled = NO;
-    self.fuelLeftData.enabled = NO;
-    self.weightData.enabled = NO;
-    self.thrustData.enabled = NO;
-    self.thrustAngleData.enabled = NO;
-    self.verticalVelocityData.enabled = NO;
-    self.horizontalVelocityData.enabled = NO;
-    self.verticalAccelerationData.enabled = NO;
-    self.horizontalAccelerationData.enabled = NO;
-    self.secondsData.enabled = NO;
-}
-
 - (void)enableFlightControls
 {
     self.smallLeftArrow.enabled = YES;
@@ -277,13 +254,20 @@ static float RadiansToDegrees(float radians)
     self.secondsData.enabled = YES;
 }
 
-- (void)disableRollAndThrusters
+- (void)disableRollFlightControls
 {
-    self.thrusterSlider.enabled = NO;
     self.smallLeftArrow.enabled = NO;
     self.smallRightArrow.enabled = NO;
     self.largeLeftArrow.enabled = NO;
     self.largeRightArrow.enabled = NO;
+}
+
+- (void)enableRollFlightControls
+{
+    self.smallLeftArrow.enabled = YES;
+    self.smallRightArrow.enabled = YES;
+    self.largeLeftArrow.enabled = YES;
+    self.largeRightArrow.enabled = YES;
 }
 
 - (void)getStarted
@@ -311,6 +295,7 @@ static float RadiansToDegrees(float radians)
     
     self.landerView.hidden = NO;
     
+    // Enable all our flight controls
     [self enableFlightControls];
     
     // Setup controls with model defaults
@@ -426,40 +411,45 @@ static float RadiansToDegrees(float radians)
     [self.view addSubview:self.landerMessages];
     
     // Create the roll control arrows
+    const float RollButtonRepeatInterval = 0.25;
     const float SmallRollArrowWidth = 24;
     const float SmallRollArrowHeight = 12;
     NSString *slaPath = [[NSBundle mainBundle] pathForResource:@"SmallLeftArrow" ofType:@"plist"];
-    self.smallLeftArrow = [[VGButton alloc] initWithFrame:[self convertRectFromGameToView: CGRectMake(925, 375, SmallRollArrowWidth, SmallRollArrowHeight)]  withPaths:slaPath andRepeat:0.5f];
+    self.smallLeftArrow = [[VGButton alloc] initWithFrame:[self convertRectFromGameToView: CGRectMake(925, 375, SmallRollArrowWidth, SmallRollArrowHeight)]  withPaths:slaPath andRepeat:RollButtonRepeatInterval];
 	[self.smallLeftArrow addTarget:self 
                             action:@selector(rotateLander:) 
                   forControlEvents:UIControlEventValueChanged];
     self.smallLeftArrow.hidden = YES;
+    self.smallLeftArrow.brighten = YES;
     [self.view addSubview:self.smallLeftArrow];
     
     NSString *sraPath = [[NSBundle mainBundle] pathForResource:@"SmallRightArrow" ofType:@"plist"];
-    self.smallRightArrow = [[VGButton alloc] initWithFrame:[self convertRectFromGameToView: CGRectMake(955, 375, SmallRollArrowWidth, SmallRollArrowHeight)] withPaths:sraPath andRepeat:0.5f];
+    self.smallRightArrow = [[VGButton alloc] initWithFrame:[self convertRectFromGameToView: CGRectMake(955, 375, SmallRollArrowWidth, SmallRollArrowHeight)] withPaths:sraPath andRepeat:RollButtonRepeatInterval];
 	[self.smallRightArrow addTarget:self 
                              action:@selector(rotateLander:) 
                    forControlEvents:UIControlEventValueChanged];
     self.smallRightArrow.hidden = YES;
+    self.smallRightArrow.brighten = YES;
     [self.view addSubview:self.smallRightArrow];
     
     const float LargeRollArrowWidth = 48;
     const float LargeRollArrowHeight = 24;
     NSString *llaPath = [[NSBundle mainBundle] pathForResource:@"LargeLeftArrow" ofType:@"plist"];
-    self.largeLeftArrow = [[VGButton alloc] initWithFrame:[self convertRectFromGameToView: CGRectMake(905, 330, LargeRollArrowWidth, LargeRollArrowHeight)] withPaths:llaPath andRepeat:0.5f];
+    self.largeLeftArrow = [[VGButton alloc] initWithFrame:[self convertRectFromGameToView: CGRectMake(905, 330, LargeRollArrowWidth, LargeRollArrowHeight)] withPaths:llaPath andRepeat:RollButtonRepeatInterval];
 	[self.largeLeftArrow addTarget:self 
                             action:@selector(rotateLander:) 
                   forControlEvents:UIControlEventValueChanged];
     self.largeLeftArrow.hidden = YES;
+    self.largeLeftArrow.brighten = YES;
     [self.view addSubview:self.largeLeftArrow];
     
     NSString *lraPath = [[NSBundle mainBundle] pathForResource:@"LargeRightArrow" ofType:@"plist"];
-    self.largeRightArrow = [[VGButton alloc] initWithFrame:[self convertRectFromGameToView: CGRectMake(955, 330, LargeRollArrowWidth, LargeRollArrowHeight)] withPaths:lraPath andRepeat:0.5f];
+    self.largeRightArrow = [[VGButton alloc] initWithFrame:[self convertRectFromGameToView: CGRectMake(955, 330, LargeRollArrowWidth, LargeRollArrowHeight)] withPaths:lraPath andRepeat:RollButtonRepeatInterval];
 	[self.largeRightArrow addTarget:self 
                              action:@selector(rotateLander:) 
                    forControlEvents:UIControlEventValueChanged];
     self.largeRightArrow.hidden = YES;
+    self.largeRightArrow.brighten = YES;
     [self.view addSubview:self.largeRightArrow];
     
     // Create the thruster control
@@ -666,8 +656,9 @@ static float RadiansToDegrees(float radians)
     self.landerView = [[Lander alloc] init];
     self.landerView.userInteractionEnabled = NO;
     self.landerView.contentMode = UIViewContentModeRedraw;
-    self.landerView.thrustData = [^{ return [self.landerModel.dataSource thrustPercent];} copy];
-    self.landerView.angleData = [^{ return [self.landerModel.dataSource angle];} copy];
+    self.landerView.thrustPercent = [^{ return (float)self.PERTRS;} copy];
+    self.landerView.thrustData = [^{ return (float)self.THRUST;} copy];
+    self.landerView.angleData = [^{ return self.ANGLE;} copy];
     self.landerView.positionData = [^{ return [self.landerModel.dataSource landerPosition];} copy];
     self.landerView.hidden = YES;
     [self.view addSubview:self.landerView];
@@ -723,7 +714,6 @@ static float RadiansToDegrees(float radians)
     
     self.landerView = nil;
     self.dustView = nil;
-    self.explosionView = nil;
     self.manView = nil;
     self.flagView = nil;
     
@@ -765,6 +755,7 @@ static float RadiansToDegrees(float radians)
 
 - (IBAction)thrusterChanged:(VGSlider *)sender
 {
+    // Update the model with the new thrust setting
     [self.landerModel.dataSource setThrust:sender.value];
     [self.thrusterSlider setValue:[self.landerModel.dataSource thrustPercent]];
 }
@@ -830,6 +821,7 @@ static float RadiansToDegrees(float radians)
 
 - (void)OFFCOM:(float)xPosition withMessage:(NSString *)message
 {
+    // This code is used to handle the display boundary violations
     short newHDistance = xPosition * 32 - 22400;
     short newVertVel = self.VERDIS / 40;
     if (newVertVel >= 0) {
@@ -853,14 +845,17 @@ static float RadiansToDegrees(float radians)
 - (void)landerDown
 {
     // Disable flight controls
-    [self disableFlightControls];
+    [self disableRollFlightControls];
     
     // Tell model we are on surface
     [self.landerModel landerDown];
     
     // Update the thruster display so it shows our updated value
     [self.thrusterSlider setValue:[self.landerModel.dataSource thrustPercent]];
-    
+
+    // Remove a low fuel message
+    [self.landerMessages removeFuelMessage];
+
     // Remove dust view
     if (self.dustView) {
         self.dustView.drawPaths = nil;
@@ -868,7 +863,7 @@ static float RadiansToDegrees(float radians)
         self.dustView = nil;
     }
     
-    // Final lander update
+    // Final lander view update
     [self updateLander];
 }
 
@@ -889,7 +884,8 @@ static float RadiansToDegrees(float radians)
         // Angle must be reasonable as well
         if (self.ANGLED > -45 && self.ANGLED < 45) {
             //(DUSTB1)  Magnitude of dust determines intensity level
-            short percentThrust = (self.PERTRS > MaxDustThrust) ? MaxDustThrust : self.PERTRS;
+            short requestedThrust = self.PERTRS;
+            short percentThrust = (requestedThrust > MaxDustThrust) ? MaxDustThrust : requestedThrust;
             short displayIntensity = (percentThrust >> 3) & 0x7;
             
             //(DUSTP1)  Thrust angle determines dust direction
@@ -917,7 +913,7 @@ static float RadiansToDegrees(float radians)
                 flameDistance = -flameDistance;
                 
                 // Calculate the number of dust points to draw
-                short count = MIN(((flameDistance * self.PERTRS) >> 4), MaxDisplayDust);
+                short count = MIN(((flameDistance * requestedThrust) >> 4), MaxDisplayDust);
                 if (count) {
                     // Keep the dust view as we have something to draw
                     removeDustView = NO;
@@ -928,8 +924,6 @@ static float RadiansToDegrees(float radians)
                     
                     // Prep the intensity and line type info
                     NSNumber *intensity = [NSNumber numberWithInt:displayIntensity];
-                    NSNumber *width = [NSNumber numberWithFloat:1.0f];
-                    NSNumber *height = [NSNumber numberWithFloat:1.0f];
                     
                     // Look up table used in dust generation
                     const short YThrust[] = { 0, -30, -31, -32, -34, -36, -38, -41, -44, -47, -50, -53, -56, 0, 1, 3, 6, 4, 3, 1, -2, -6, -7, -5, -2, 2, 3, 5, 6, 2, 1, -1, -4, -6, -5, -3, 0, 4, 5, 7, 4, 0, -1, -3, -1, -20, -16, -13, -10, -7, -4, -2, 0, 2, 4, 7, 10, 13, 16, 20, 0, -30, -31 };
@@ -966,10 +960,9 @@ static float RadiansToDegrees(float radians)
                         NSNumber *x = [NSNumber numberWithFloat:xPos];
                         NSNumber *y = [NSNumber numberWithFloat:yPos];
                         
+                        // Default size for a rectangle is 1 x 1
                         NSDictionary *originItem = [NSDictionary dictionaryWithObjectsAndKeys:x, @"x", y, @"y", nil];
-                        NSDictionary *sizeItem = [NSDictionary dictionaryWithObjectsAndKeys:width, @"width", height, @"height", nil];
-                        NSDictionary *frameItem = [NSDictionary dictionaryWithObjectsAndKeys:originItem, @"origin", sizeItem, @"size", nil];
-                        NSDictionary *rectItem = [NSDictionary dictionaryWithObjectsAndKeys:frameItem, @"frame", nil];
+                        NSDictionary *rectItem = [NSDictionary dictionaryWithObjectsAndKeys:originItem, @"origin", nil];
                         NSDictionary *pathItem = [NSDictionary dictionaryWithObjectsAndKeys:rectItem, @"rect", intensity, @"intensity", nil];
                         [path addObject:pathItem];
                     }
@@ -1067,7 +1060,7 @@ static float RadiansToDegrees(float radians)
     // Remove any messages that pop up
     [self.landerMessages removeAllLanderMessages];
     
-    // Force the controls to the eparture levels
+    // Force the controls to the departure values
     self.HORVEL = 0;
     self.THRUST = 30;
     self.ANGLE = 0;
@@ -1108,16 +1101,13 @@ static float RadiansToDegrees(float radians)
     self.HORVEL = 0;
     self.THRUST = 30;
 
-    [self enableFlightControls];
+    // Renable roll flightr controls
+    [self enableRollFlightControls];
     
-    // Tell model we are on surface
+    // Tell model we are taking off from the surface
     [self.landerModel landerTakeoff];
     
     // Setup game and delay timers
-#if 0
-	self.simulationTimer = [NSTimer scheduledTimerWithTimeInterval:GameTimerInterval target:self selector:@selector(gameLoop) userInfo:nil repeats:YES];
-	self.displayTimer = [NSTimer scheduledTimerWithTimeInterval:DisplayUpdateInterval target:self selector:@selector(updateLander) userInfo:nil repeats:YES];
-#endif
     self.palsyTimer = [NSTimer scheduledTimerWithTimeInterval:DisplayUpdateInterval target:self selector:@selector(drawMcMan6) userInfo:nil repeats:YES];
 }
 
@@ -1286,94 +1276,14 @@ static float RadiansToDegrees(float radians)
     AudioServicesPlayAlertSound(BeepSound);
 }
 
-- (void)EXGEN
+- (void)explosionComplete
 {
-    const int YUpDown[] = { 0, 1, 3, 6, 4, 3, 1, -2, -6, -7, -5, -2, 2, 3, 5, 6, 2, 1, -1, -4, -6, -5, -3, 0, 4, 5, 7, 4, 0, -1, -3, -1 };
-    const size_t DimYUpDown = sizeof(YUpDown)/sizeof(YUpDown[0]);
-    const float StartingAngle = DegreesToRadians(-30);
-    const float AngleIncrement = DegreesToRadians(1);
-    
-    float angle = StartingAngle;
-    short count = 241;
-    
-    // Allocate our path array
-    NSMutableArray *path = [[NSMutableArray alloc] init];
-    NSArray *paths = [NSArray arrayWithObject:path];
-    
-    // Prep the intensity and line type info
-    int intensityLevel = random() & 7;
-    NSNumber *intensity = [NSNumber numberWithInt:intensityLevel];
-    NSNumber *width = [NSNumber numberWithFloat:1.0f];
-    NSNumber *height = [NSNumber numberWithFloat:1.0f];
-
-    //(EXGENL)
-    while (count > 0) {
-        // We skip fooling around and just randomize this
-        short TEMP = YUpDown[random() & DimYUpDown];
-        TEMP += self.DUSTX;
-        if (TEMP >= 0) {
-            short X = TEMP * cos(angle) + self.SHOWX;
-            if (X >= 0) {
-                short Y = TEMP * sin(angle) + self.SHOWY - 32;
-                if (Y > 0) {
-                    //###
-                    Y = 768 - Y;
-                    // Draw rect command
-                    NSNumber *x = [NSNumber numberWithFloat:X];
-                    NSNumber *y = [NSNumber numberWithFloat:Y];
-                    
-                    NSDictionary *originItem = [NSDictionary dictionaryWithObjectsAndKeys:x, @"x", y, @"y", nil];
-                    NSDictionary *sizeItem = [NSDictionary dictionaryWithObjectsAndKeys:width, @"width", height, @"height", nil];
-                    NSDictionary *frameItem = [NSDictionary dictionaryWithObjectsAndKeys:originItem, @"origin", sizeItem, @"size", nil];
-                    NSDictionary *rectItem = [NSDictionary dictionaryWithObjectsAndKeys:frameItem, @"frame", nil];
-                    NSDictionary *pathItem = [NSDictionary dictionaryWithObjectsAndKeys:rectItem, @"rect", intensity, @"intensity", nil];
-                    [path addObject:pathItem];
-                }
-            }
-        }
-        
-        //(EXGEND)
-        angle += AngleIncrement;
-        count--;
-    }
-    
-    // Add the draw paths and update the display
-    self.explosionView.drawPaths = paths;
-    [self.explosionView setNeedsDisplay];
-}
-
-- (void)generateExplosion:(short)radius
-{
-    const short RadiusIncrement = 25;
-    
-    [self EXGEN];
-    [self BELL];
-    
-    self.DUSTX -= 10;
-    [self EXGEN];
-    [self BELL];
-    
-    // Increase the radius until done
-    self.DUSTX += RadiusIncrement;
-}
-
-- (void)animateExplosion
-{
-    if (self.DUSTX > 300) {
-        // Remove the explosion view
-        if (self.explosionView) {
-            self.explosionView.drawPaths = nil;
-            [self.explosionView removeFromSuperview];
-            self.explosionView = nil;
-        }
-
-        // Let's delay a bit before presenting the new game dialog
+    if (self.explosionManager.explosionComplete) {
+        // Kill the old timer
         [self.palsyTimer invalidate];
+        
+        // Start the delay timer
         self.palsyTimer = [NSTimer scheduledTimerWithTimeInterval:explodeDelay target:self selector:@selector(waitNewGame) userInfo:nil repeats:NO];
-    }
-    else {
-        // Generate the display while making noise
-        [self generateExplosion:self.DUSTX];
     }
 }
 
@@ -1381,28 +1291,19 @@ static float RadiansToDegrees(float radians)
 {
     // We are down hard, hide and lander and shut down the model
     self.landerView.hidden = YES;
-    [self.landerModel landerDown];
 
     // Turn off fuel, flames, and dust
-    [self.landerMessages removeFuelMessage];
     [self landerDown];
-    [self DUST];
-    
+
     //(EXPLOD)  Shut down things and ring bell
     [self BELL];
 
-    // Create the explosion view
-    float xPos = 0;
-    float yPos = 0;
-    CGRect frameRect = CGRectMake(xPos, yPos, 1024, 768);
-    self.explosionView = [[Explosion alloc] initWithFrame:frameRect];
-    [self.view addSubview:self.explosionView];
-    
-    //(EXPLD1)  Setup the animation
-    const float AnimateExplosionTimer = 0.025f;
-    self.DUSTX = 0;
-    [self generateExplosion:self.DUSTX];
-    self.palsyTimer = [NSTimer scheduledTimerWithTimeInterval:AnimateExplosionTimer target:self selector:@selector(animateExplosion) userInfo:nil repeats:YES];
+    //(EXPLD1)  Setup the explosion animation manager
+    float xPos = self.SHOWX;
+    float yPos = self.SHOWY;
+    self.explosionManager = [[ExplosionManager alloc] initWithView:self.view atPoint:CGPointMake(xPos, yPos)];
+    const float AnimateExplosionTimer = 0.25f;
+    self.palsyTimer = [NSTimer scheduledTimerWithTimeInterval:AnimateExplosionTimer target:self selector:@selector(explosionComplete) userInfo:nil repeats:YES];
 }
 
 - (void)ALTER:(short)alterValue
@@ -1416,20 +1317,17 @@ static float RadiansToDegrees(float radians)
     BOOL QUICK = NO;
     BOOL AHAHC = NO;
     
+    //(INTELM)
     if (self.RADARY < -10) {
-        //INTELM
-        //DEAD
+        //(DEAD)
         [self.landerMessages addSystemMessage:@"DeadLanding"];
         QUICK = YES;
     }
     else if (self.RADARY <= 3) {
-        //VERYLO turn off fuel, flames, and dust
-        [self.landerMessages removeFuelMessage];
-
-        // We landed or crashed
+        //(VERYLO)  We landed or crashed, turn off fuel, flames, and dust
         [self landerDown];
         
-        //VD
+        //(VD)
         short vervel = (short)([self.landerModel.dataSource vertVel]);
         if (vervel < -60) {
             [self.landerMessages addSystemMessage:@"DeadLanding"];
@@ -1455,17 +1353,17 @@ static float RadiansToDegrees(float radians)
     else {
         short vervel = (short)([self.landerModel.dataSource vertVel]);
         if (vervel < -60) {
-            //AHAH
+            //(AHAH)
             [self.landerMessages addSystemMessage:@"VeryFast"];
             AHAHC = YES;
         }
         else if (vervel < -30) {
-            //AHAH2
+            //(AHAH2)
             [self.landerMessages addSystemMessage:@"Fast"];
             AHAHC = YES;
         }
         else if (vervel < -15) {
-            //AHAH3
+            //(AHAH3)
             [self.landerMessages addSystemMessage:@"Not2Fast"];
             AHAHC = YES;
         }
@@ -1493,11 +1391,10 @@ static float RadiansToDegrees(float radians)
                     else
                         [self.moonView addFeature:TF_OldLanderTippedRight atIndex:self.INDEXL];
                     
-                    // Adjust vertical position on rhe old lander
+                    // Adjust vertical position on the old lander
                     self.SHOWY += 4;
                     
                     // Turn off fuel, flames, and dust
-                    [self.landerMessages removeFuelMessage];
                     [self landerDown];
 
                     // Let's delay a bit before presenting the new game dialog
@@ -1520,7 +1417,6 @@ static float RadiansToDegrees(float radians)
                     self.SHOWY += 4;
                     
                     // Turn off fuel, flames, and dust
-                    [self.landerMessages removeFuelMessage];
                     [self landerDown];
                     
                     // Let's delay a bit before presenting the new game dialog
@@ -1628,7 +1524,6 @@ static float RadiansToDegrees(float radians)
         // Display a low fuel message
         if (self.FUEL <= 0) {
             [self.landerMessages removeFuelMessage];
-            [self disableRollAndThrusters];
         }
         else if (self.FUEL < 200) {
             if (!self.didFuelAlert) {

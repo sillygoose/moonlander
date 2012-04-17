@@ -242,18 +242,40 @@
         // "rect" is used to draw a simple rectangle
         if ([currentVector objectForKey:@"rect"]) {
             NSDictionary *rectStuff = [currentVector objectForKey:@"rect"];
+
+            // Defaults for a rectangle
+            CGFloat x = 0;
+            CGFloat y = 0;
+            CGFloat width = 1;
+            CGFloat height = 1;
             
-            NSDictionary *frameStuff = [rectStuff objectForKey:@"frame"];
-            NSDictionary *originStuff = [frameStuff objectForKey:@"origin"];
-            NSDictionary *sizeStuff = [frameStuff objectForKey:@"size"];
-            CGFloat x = [[originStuff objectForKey:@"x"] floatValue];
-            CGFloat y = [[originStuff objectForKey:@"y"] floatValue];
-            CGFloat width = [[sizeStuff objectForKey:@"width"] floatValue];
-            CGFloat height = [[sizeStuff objectForKey:@"height"] floatValue];
+            // Is a size being specified?
+            if ([rectStuff objectForKey:@"size"]) {
+                NSDictionary *sizeStuff = [rectStuff objectForKey:@"size"];
+                if ([rectStuff objectForKey:@"width"]) {
+                    width = [[sizeStuff objectForKey:@"width"] floatValue];
+                }
+                if ([rectStuff objectForKey:@"height"]) {
+                    height = [[sizeStuff objectForKey:@"height"] floatValue];
+                }
+            }
             
+            // Is an origin being specified?
+            if ([rectStuff objectForKey:@"origin"]) {
+                NSDictionary *originStuff = [rectStuff objectForKey:@"origin"];
+                if ([originStuff objectForKey:@"x"]) {
+                    x = [[originStuff objectForKey:@"x"] floatValue];
+                }
+                if ([originStuff objectForKey:@"y"]) {
+                    y = [[originStuff objectForKey:@"y"] floatValue];
+                }
+            }
+            
+            // Draw a rectangle
             CGRect rect = CGRectMake(x, y, width, height);
             CGContextSaveGState(context);
-            //set line stuff
+            
+            // Set line stuff
             CGContextAddRect(context, rect);
             CGContextStrokePath(context);
             CGContextRestoreGState(context);
