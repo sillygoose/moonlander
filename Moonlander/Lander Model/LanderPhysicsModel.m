@@ -107,6 +107,7 @@ static float RadiansToDegrees(float radians)
             self.verticalAcceleration = self.lemAcceleration * cosf(self.turnAngleRadians) - self.lunarGravity;
         }
     
+#define HOLD_POSITION
 #ifndef HOLD_POSITION
         // Horizontal/vertical velocity/position updates
         self.horizontalVelocity += self.horizontalAcceleration * timeElapsed;
@@ -279,11 +280,11 @@ static float RadiansToDegrees(float radians)
 #if defined(DEBUG_DUST) || defined(DEBUG_FLAME) || defined(DEBUG_LOCATION)
     // Custom lander start point
     self.fuelRemaining = self.lemInitalFuel;
-    self.turnAngle = 0;
+    self.turnAngle = -40;
     self.horizontalVelocity = 0;
     self.verticalVelocity = 0;
     self.horizontalDistance = -200;
-    self.verticalDistance = 68;
+    self.verticalDistance = 168;
     self.percentThrustRequested = 18;
     self.clockTicks = 0.0f;
 #else
