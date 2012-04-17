@@ -14,34 +14,34 @@
 - (CGPoint)landerPosition;
 - (BOOL)lowFuelWarning;
 
-- (float)altitude;
-- (void)setAltitude:(float)value;
+- (short)altitude;
+- (void)setAltitude:(short)value;
 
-- (float)distance;
-- (void)setDistance:(float)newDistance;
+- (short)distance;
+- (void)setDistance:(short)newDistance;
 
 - (float)angle;
 - (short)angleDegrees;
 - (void)setAngleDegrees:(short)angleDegrees;
 
-- (float)thrust;
-- (void)setThrust:(float)thrusterControl;
-- (float)thrustPercent;
+- (short)thrust;
+- (void)setThrust:(short)percentThrust;
+- (short)thrustPercent;
 
-- (float)fuel;
-- (void)setFuel:(float)value;
+- (short)fuel;
+- (void)setFuel:(short)value;
 
-- (float)horizVel;
-- (void)setHorizVel:(float)newVel;
+- (short)horizVel;
+- (void)setHorizVel:(short)newVel;
 
-- (float)vertVel;
-- (void)setVertVel:(float)newVel;
+- (short)vertVel;
+- (void)setVertVel:(short)newVel;
 
-- (float)weight;
-- (float)horizAccel;
-- (float)vertAccel;
-- (float)acceleration;
-- (float)time;
+- (short)weight;
+- (short)horizAccel;
+- (short)vertAccel;
+- (short)acceleration;
+- (short)time;
 
 - (BOOL)onSurface;
 

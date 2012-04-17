@@ -63,7 +63,7 @@ static float RadiansToDegrees(float radians)
     }
 }
 
-- (void)setPercentThrustRequested:(float)thrustRequested
+- (void)setPercentThrustRequested:(short)thrustRequested
 {
     _percentThrustRequested = thrustRequested;
     self.actualThrust = (self.fuelRemaining > 0) ? (_percentThrustRequested * self.maxThrust / 100) : 0;
@@ -77,6 +77,12 @@ static float RadiansToDegrees(float radians)
     }
     _turnAngle = angle;
 }
+
+- (float)turnAngleRadians
+{
+    return DegreesToRadians(self.turnAngle);
+}
+
 
 #pragma mark Model Constants
 - (void)stepLanderModel:(float)timeElapsed
@@ -97,8 +103,8 @@ static float RadiansToDegrees(float radians)
             self.actualThrust = self.percentThrustRequested * self.maxThrust / 100.0f;
             self.lemMass = self.fuelRemaining + self.lemEmptyMass;
             self.lemAcceleration = self.actualThrust * self.earthGravity / self.lemMass * 1.50f;
-            self.horizontalAcceleration = self.lemAcceleration * sinf(self.turnAngle);
-            self.verticalAcceleration = self.lemAcceleration * cosf(self.turnAngle) - self.lunarGravity;
+            self.horizontalAcceleration = self.lemAcceleration * sinf(self.turnAngleRadians);
+            self.verticalAcceleration = self.lemAcceleration * cosf(self.turnAngleRadians) - self.lunarGravity;
         }
     
 #ifndef HOLD_POSITION
@@ -120,22 +126,22 @@ static float RadiansToDegrees(float radians)
     return CGPointMake(self.horizontalDistance, self.verticalDistance);
 }
 
-- (float)altitude
+- (short)altitude
 {
-    return (self.verticalDistance <= 0.0f) ? 0.0f : self.verticalDistance;
+    return (short)((self.verticalDistance <= 0) ? 0 : self.verticalDistance);
 }
 
-- (void)setAltitude:(float)value
+- (void)setAltitude:(short)value
 {
     self.verticalDistance = value;
 }
 
-- (float)distance
+- (short)distance
 {
-    return self.horizontalDistance;
+    return (short)self.horizontalDistance;
 }
 
-- (void)setDistance:(float)newDistance
+- (void)setDistance:(short)newDistance
 {
     self.horizontalDistance = newDistance;
 }
@@ -145,88 +151,89 @@ static float RadiansToDegrees(float radians)
     return ((self.fuelRemaining > 0.0f) && (self.fuelRemaining <= self.lowFuelLimit)) ? YES : NO;
 }
 
-- (float)thrust
+- (short)thrust
 {
-    return (self.lemOnSurface) ? 0 : self.actualThrust;
+    return (short)((self.lemOnSurface) ? 0 : self.actualThrust);
 }
 
-- (void)setThrust:(float)thrustPercent
+- (void)setThrust:(short)thrustPercent
 {
     // Enforce a minimum thrust level of 10%
-    if (thrustPercent < 10.0f) {
-        thrustPercent = 10.0f;
+    if (thrustPercent < 10) {
+        thrustPercent = 10;
     }
     self.percentThrustRequested = thrustPercent;
 }
 
-- (float)thrustPercent
+- (short)thrustPercent
 {
     return self.percentThrustRequested;
 }
 
-- (float)weight
+- (short)weight
 {
-    return self.lemMass ;
+    return (short)self.lemMass ;
 }
 
-- (float)fuel
+- (short)fuel
 {
-    return self.fuelRemaining;
+    return (short)self.fuelRemaining;
 }
 
-- (void)setFuel:(float)fuel
+- (void)setFuel:(short)fuel
 {
     self.fuelRemaining = fuel;
 }
 
-- (float)acceleration
+- (short)acceleration
 {
     return self.lemAcceleration;
 }
 
-- (float)horizVel
+- (short)horizVel
 {
-    return self.horizontalVelocity;
+    return (short)self.horizontalVelocity;
 }
 
-- (void)setHorizVel:(float)newVel
+- (void)setHorizVel:(short)newVel
 {
     self.horizontalVelocity = newVel;
 }
 
-- (float)vertVel
+- (short)vertVel
 {
     return self.verticalVelocity;
 }
 
-- (void)setVertVel:(float)newVel
+- (void)setVertVel:(short)newVel
 {
     self.verticalVelocity = newVel;
 }
 
-- (float)horizAccel
+- (short)horizAccel
 {
-    return self.horizontalAcceleration;
+    return (short)self.horizontalAcceleration;
 }
 
-- (float)vertAccel
+- (short)vertAccel
 {
-    return self.verticalAcceleration;
+    return (short)self.verticalAcceleration;
 }
 
-- (float)time
+- (short)time
 {
+    return (short)self.clockTicks;
+}
+
+- (float)updateTime:(float)timeElasped
+{
+    [self stepLanderModel:timeElasped];
     return self.clockTicks;
 }
 
 - (float)angle
 {
     return DegreesToRadians(self.turnAngle);
-}
-
-- (void)setAngle:(float)angleRadians
-{
-    self.turnAngle = angleRadians;
 }
 
 - (short)angleDegrees
@@ -237,12 +244,6 @@ static float RadiansToDegrees(float radians)
 - (void)setAngleDegrees:(short)angleDegrees
 {
     self.turnAngle = angleDegrees;
-}
-
-- (float)updateTime:(float)timeElasped
-{
-    [self stepLanderModel:timeElasped];
-    return self.clockTicks;
 }
 
 - (void)landerTakeoff
