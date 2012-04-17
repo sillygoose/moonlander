@@ -296,7 +296,7 @@ static float RadiansToDegrees(float radians)
     self.rateOfTurn = 0;
     self.turnAngle = DegreesToRadians(0);
     self.horizontalVelocity = 0;
-    self.verticalVelocity = -70;
+    self.verticalVelocity = 0;
     self.horizontalDistance = 0;
     self.verticalDistance = 50;
     self.percentThrustRequested = 10;

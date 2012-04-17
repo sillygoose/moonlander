@@ -929,8 +929,6 @@ static float RadiansToDegrees(float radians)
                     
                     // Prep the intensity and line type info
                     NSNumber *intensity = [NSNumber numberWithInt:displayIntensity];
-                    NSNumber *width = [NSNumber numberWithFloat:1.0f];
-                    NSNumber *height = [NSNumber numberWithFloat:1.0f];
                     
                     // Look up table used in dust generation
                     const short YThrust[] = { 0, -30, -31, -32, -34, -36, -38, -41, -44, -47, -50, -53, -56, 0, 1, 3, 6, 4, 3, 1, -2, -6, -7, -5, -2, 2, 3, 5, 6, 2, 1, -1, -4, -6, -5, -3, 0, 4, 5, 7, 4, 0, -1, -3, -1, -20, -16, -13, -10, -7, -4, -2, 0, 2, 4, 7, 10, 13, 16, 20, 0, -30, -31 };
@@ -967,10 +965,9 @@ static float RadiansToDegrees(float radians)
                         NSNumber *x = [NSNumber numberWithFloat:xPos];
                         NSNumber *y = [NSNumber numberWithFloat:yPos];
                         
+                        // Default size for a rectangle is 1 x 1
                         NSDictionary *originItem = [NSDictionary dictionaryWithObjectsAndKeys:x, @"x", y, @"y", nil];
-                        NSDictionary *sizeItem = [NSDictionary dictionaryWithObjectsAndKeys:width, @"width", height, @"height", nil];
-                        NSDictionary *frameItem = [NSDictionary dictionaryWithObjectsAndKeys:originItem, @"origin", sizeItem, @"size", nil];
-                        NSDictionary *rectItem = [NSDictionary dictionaryWithObjectsAndKeys:frameItem, @"frame", nil];
+                        NSDictionary *rectItem = [NSDictionary dictionaryWithObjectsAndKeys:originItem, @"origin", nil];
                         NSDictionary *pathItem = [NSDictionary dictionaryWithObjectsAndKeys:rectItem, @"rect", intensity, @"intensity", nil];
                         [path addObject:pathItem];
                     }
@@ -1290,7 +1287,11 @@ static float RadiansToDegrees(float radians)
 - (void)explosionComplete
 {
     if (self.explosionManager.explosionComplete) {
+        // Kill the old timer
         [self.palsyTimer invalidate];
+        
+        // Release the explosionmanager
+        // Start the delay timer
         self.palsyTimer = [NSTimer scheduledTimerWithTimeInterval:explodeDelay target:self selector:@selector(waitNewGame) userInfo:nil repeats:NO];
     }
 }

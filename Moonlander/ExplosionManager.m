@@ -98,10 +98,9 @@ static float RadiansToDegrees(float radians)
     // Prep the intensity and line type info
     short intensityLevel = 7;//view.intensity;
     short radius = view.radius;
-    
+
+    // Generate a random intensity
     NSNumber *intensity = [NSNumber numberWithInt:intensityLevel];
-    NSNumber *width = [NSNumber numberWithFloat:1.0f];
-    NSNumber *height = [NSNumber numberWithFloat:1.0f];
     
     //(EXGENL)
     while (count > 0) {
@@ -117,11 +116,9 @@ static float RadiansToDegrees(float radians)
                 NSNumber *x = [NSNumber numberWithInt:X];
                 NSNumber *y = [NSNumber numberWithInt:Y];
                 
-                // This is not very optimal - should be intensity, frame, point, point, etc...
+                // Default size for a rectangle is 1 x 1
                 NSDictionary *originItem = [NSDictionary dictionaryWithObjectsAndKeys:x, @"x", y, @"y", nil];
-                NSDictionary *sizeItem = [NSDictionary dictionaryWithObjectsAndKeys:width, @"width", height, @"height", nil];
-                NSDictionary *frameItem = [NSDictionary dictionaryWithObjectsAndKeys:originItem, @"origin", sizeItem, @"size", nil];
-                NSDictionary *rectItem = [NSDictionary dictionaryWithObjectsAndKeys:frameItem, @"frame", nil];
+                NSDictionary *rectItem = [NSDictionary dictionaryWithObjectsAndKeys:originItem, @"origin", nil];
                 NSDictionary *pathItem = [NSDictionary dictionaryWithObjectsAndKeys:rectItem, @"rect", intensity, @"intensity", nil];
                 [path addObject:pathItem];
             }
