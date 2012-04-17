@@ -96,7 +96,7 @@ static float RadiansToDegrees(float radians)
     NSArray *paths = [NSArray arrayWithObject:path];
     
     // Prep the intensity and line type info
-    short intensityLevel = 7;//view.intensity;
+    short intensityLevel = view.intensity;
     short radius = view.radius;
 
     // Generate a random intensity
