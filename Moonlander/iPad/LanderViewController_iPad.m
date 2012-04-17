@@ -411,40 +411,45 @@ static float RadiansToDegrees(float radians)
     [self.view addSubview:self.landerMessages];
     
     // Create the roll control arrows
+    const float RollButtonRepeatInterval = 0.25;
     const float SmallRollArrowWidth = 24;
     const float SmallRollArrowHeight = 12;
     NSString *slaPath = [[NSBundle mainBundle] pathForResource:@"SmallLeftArrow" ofType:@"plist"];
-    self.smallLeftArrow = [[VGButton alloc] initWithFrame:[self convertRectFromGameToView: CGRectMake(925, 375, SmallRollArrowWidth, SmallRollArrowHeight)]  withPaths:slaPath andRepeat:0.5f];
+    self.smallLeftArrow = [[VGButton alloc] initWithFrame:[self convertRectFromGameToView: CGRectMake(925, 375, SmallRollArrowWidth, SmallRollArrowHeight)]  withPaths:slaPath andRepeat:RollButtonRepeatInterval];
 	[self.smallLeftArrow addTarget:self 
                             action:@selector(rotateLander:) 
                   forControlEvents:UIControlEventValueChanged];
     self.smallLeftArrow.hidden = YES;
+    self.smallLeftArrow.brighten = YES;
     [self.view addSubview:self.smallLeftArrow];
     
     NSString *sraPath = [[NSBundle mainBundle] pathForResource:@"SmallRightArrow" ofType:@"plist"];
-    self.smallRightArrow = [[VGButton alloc] initWithFrame:[self convertRectFromGameToView: CGRectMake(955, 375, SmallRollArrowWidth, SmallRollArrowHeight)] withPaths:sraPath andRepeat:0.5f];
+    self.smallRightArrow = [[VGButton alloc] initWithFrame:[self convertRectFromGameToView: CGRectMake(955, 375, SmallRollArrowWidth, SmallRollArrowHeight)] withPaths:sraPath andRepeat:RollButtonRepeatInterval];
 	[self.smallRightArrow addTarget:self 
                              action:@selector(rotateLander:) 
                    forControlEvents:UIControlEventValueChanged];
     self.smallRightArrow.hidden = YES;
+    self.smallRightArrow.brighten = YES;
     [self.view addSubview:self.smallRightArrow];
     
     const float LargeRollArrowWidth = 48;
     const float LargeRollArrowHeight = 24;
     NSString *llaPath = [[NSBundle mainBundle] pathForResource:@"LargeLeftArrow" ofType:@"plist"];
-    self.largeLeftArrow = [[VGButton alloc] initWithFrame:[self convertRectFromGameToView: CGRectMake(905, 330, LargeRollArrowWidth, LargeRollArrowHeight)] withPaths:llaPath andRepeat:0.5f];
+    self.largeLeftArrow = [[VGButton alloc] initWithFrame:[self convertRectFromGameToView: CGRectMake(905, 330, LargeRollArrowWidth, LargeRollArrowHeight)] withPaths:llaPath andRepeat:RollButtonRepeatInterval];
 	[self.largeLeftArrow addTarget:self 
                             action:@selector(rotateLander:) 
                   forControlEvents:UIControlEventValueChanged];
     self.largeLeftArrow.hidden = YES;
+    self.largeLeftArrow.brighten = YES;
     [self.view addSubview:self.largeLeftArrow];
     
     NSString *lraPath = [[NSBundle mainBundle] pathForResource:@"LargeRightArrow" ofType:@"plist"];
-    self.largeRightArrow = [[VGButton alloc] initWithFrame:[self convertRectFromGameToView: CGRectMake(955, 330, LargeRollArrowWidth, LargeRollArrowHeight)] withPaths:lraPath andRepeat:0.5f];
+    self.largeRightArrow = [[VGButton alloc] initWithFrame:[self convertRectFromGameToView: CGRectMake(955, 330, LargeRollArrowWidth, LargeRollArrowHeight)] withPaths:lraPath andRepeat:RollButtonRepeatInterval];
 	[self.largeRightArrow addTarget:self 
                              action:@selector(rotateLander:) 
                    forControlEvents:UIControlEventValueChanged];
     self.largeRightArrow.hidden = YES;
+    self.largeRightArrow.brighten = YES;
     [self.view addSubview:self.largeRightArrow];
     
     // Create the thruster control
@@ -709,7 +714,6 @@ static float RadiansToDegrees(float radians)
     
     self.landerView = nil;
     self.dustView = nil;
-//    self.explosionView = nil;
     self.manView = nil;
     self.flagView = nil;
     

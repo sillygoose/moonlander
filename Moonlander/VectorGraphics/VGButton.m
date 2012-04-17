@@ -17,12 +17,17 @@
 @synthesize repeatTimer=_repeatTimer;
 @synthesize autoRepeatInterval=_autoRepeatInterval;
 @synthesize actualBounds=_actualBounds;
+@synthesize brighten=_brighten;
+
+const float BrightIntensity = 1.0;
+const float NormalIntensity = 0.80;
 
 
 - (id)initWithFrame:(CGRect)frameRect
 {
     if ((self = [super initWithFrame:frameRect])) {
         self.opaque = NO;
+        self.alpha = NormalIntensity;
 
         self.titleLabel = [[VGLabel alloc] initWithFrame:CGRectMake(0, 0, frameRect.size.width, frameRect.size.height)];
         [self addTarget:self action:@selector(buttonDown:) forControlEvents:UIControlEventTouchDown];
@@ -69,6 +74,11 @@
 
 - (IBAction)buttonDown:(id)sender
 {
+    // Make brigher then pressed
+    if (self.brighten) {
+        self.alpha = BrightIntensity;
+    }
+    
     if (self.autoRepeatInterval) {
         [self sendActionsForControlEvents:UIControlEventValueChanged];
         self.repeatTimer = [NSTimer scheduledTimerWithTimeInterval:0.5f target:self selector:@selector(buttonRepeat:) userInfo:nil repeats:YES];
@@ -77,6 +87,11 @@
 
 - (IBAction)buttonUp:(id)sender
 {
+    // Restore the original intensity
+    if (self.brighten) {
+        self.alpha = NormalIntensity;
+    }
+    
     if (self.repeatTimer != nil) 
         [self.repeatTimer invalidate];
     self.repeatTimer = nil;
