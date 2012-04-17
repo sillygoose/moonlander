@@ -113,17 +113,6 @@ const float offcomDelay = 2.0f;
 #endif
 
 
-// Helper routines for radians and degrees
-static float DegreesToRadians(float degrees)
-{
-    return degrees * M_PI / 180;
-}
-
-static float RadiansToDegrees(float radians)
-{
-    return radians * 180 / M_PI;
-}
-
 - (CGRect)convertRectFromGameToView:(CGRect)gameRect;
 {
     CGRect viewRect = gameRect;
@@ -134,9 +123,14 @@ static float RadiansToDegrees(float radians)
 	return viewRect;
 }
 
+- (CGPoint)LANDER
+{
+    return [self.landerModel.dataSource landerPosition];
+}
+
 - (short)VERDIS
 {
-    return (short)([self.landerModel.dataSource altitude]);
+    return [self.landerModel.dataSource altitude];
 }
 
 - (void)setVERDIS:(short)value
@@ -146,22 +140,32 @@ static float RadiansToDegrees(float radians)
 
 - (short)HORDIS
 {
-    return (short)([self.landerModel.dataSource distance]);
+    return [self.landerModel.dataSource distance];
+}
+
+- (void)setHORDIS:(short)value
+{
+    [self.landerModel.dataSource setDistance:value];
 }
 
 - (short)PERTRS
 {
-    return (short)([self.landerModel.dataSource thrustPercent]);
+    return [self.landerModel.dataSource thrustPercent];
+}
+
+- (void)setPERTRS:(short)value
+{
+    [self.landerModel.dataSource setThrust:value];
 }
 
 - (float)ANGLE
 {
-    return (float)([self.landerModel.dataSource angle]);
+    return [self.landerModel.dataSource angle];
 }
 
 - (short)ANGLED
 {
-    return (short)([self.landerModel.dataSource angleDegrees]);
+    return [self.landerModel.dataSource angleDegrees];
 }
 
 - (void)setANGLED:(short)value
@@ -171,7 +175,7 @@ static float RadiansToDegrees(float radians)
 
 - (short)HORVEL
 {
-    return (short)([self.landerModel.dataSource horizVel]);
+    return [self.landerModel.dataSource horizVel];
 }
 
 - (void)setHORVEL:(short)value
@@ -181,7 +185,7 @@ static float RadiansToDegrees(float radians)
 
 - (short)VERVEL
 {
-    return (short)([self.landerModel.dataSource vertVel]);
+    return [self.landerModel.dataSource vertVel];
 }
 
 - (void)setVERVEL:(short)value
@@ -191,12 +195,17 @@ static float RadiansToDegrees(float radians)
 
 - (short)VERACC
 {
-    return (short)([self.landerModel.dataSource vertAccel]*10);
+    return [self.landerModel.dataSource vertAccel];
+}
+
+- (short)HORACC
+{
+    return [self.landerModel.dataSource horizAccel];
 }
 
 - (short)THRUST
 {
-    return (short)([self.landerModel.dataSource thrust]);
+    return [self.landerModel.dataSource thrust];
 }
 
 - (void)setTHRUST:(short)value
@@ -206,12 +215,17 @@ static float RadiansToDegrees(float radians)
 
 - (short)TIME
 {
-    return (short)([self.landerModel.dataSource time]*60.0f);
+    return [self.landerModel.dataSource time];
+}
+
+- (short)WEIGHT
+{
+    return [self.landerModel.dataSource weight];
 }
 
 - (short)FUEL
 {
-    return (short)([self.landerModel.dataSource fuel]);
+    return [self.landerModel.dataSource fuel];
 }
 
 - (void)setFUEL:(short)value
@@ -298,7 +312,7 @@ static float RadiansToDegrees(float radians)
     [self enableFlightControls];
     
     // Setup controls with model defaults
-    self.thrusterSlider.value = [self.landerModel.dataSource thrustPercent];
+    self.thrusterSlider.value = self.PERTRS;
     
     // Init displays
     self.instrument1.instrument = self.heightData;
@@ -478,7 +492,7 @@ static float RadiansToDegrees(float radians)
     self.altitudeData = [[Telemetry alloc] initWithFrame:[self convertRectFromGameToView:CGRectMake(TelemetryXPos, 225, TelemetryXSize, TelemetryYSize)]];
     self.altitudeData.titleLabel.text = @"ALTITUDE";
     self.altitudeData.format = @"%6d %@";
-    self.altitudeData.data = [^{ return (short)([self.landerModel.dataSource altitude]);} copy];
+    self.altitudeData.data = [^{ return self.VERDIS;} copy];
 	[self.altitudeData addTarget:self 
                            action:@selector(telemetrySelected:) 
                  forControlEvents:UIControlEventTouchUpInside];
@@ -488,7 +502,7 @@ static float RadiansToDegrees(float radians)
     self.distanceData = [[Telemetry alloc] initWithFrame:[self convertRectFromGameToView:CGRectMake(TelemetryXPos, 203, TelemetryXSize, TelemetryYSize)]];
     self.distanceData.titleLabel.text = @"DISTANCE";
     self.distanceData.format = @"%6d %@";
-    self.distanceData.data = [^{ return (short)([self.landerModel.dataSource distance]);} copy];
+    self.distanceData.data = [^{ return self.HORDIS;} copy];
 	[self.distanceData addTarget:self 
                            action:@selector(telemetrySelected:) 
                  forControlEvents:UIControlEventTouchUpInside];
@@ -499,7 +513,7 @@ static float RadiansToDegrees(float radians)
     self.fuelLeftData = [[Telemetry alloc] initWithFrame:[self convertRectFromGameToView:CGRectMake(TelemetryXPos, 181, TelemetryXSize, TelemetryYSize)]];
     self.fuelLeftData.titleLabel.text = @"FUEL LEFT";
     self.fuelLeftData.format = @"%6d %@";
-    self.fuelLeftData.data = [^{ return (short)([self.landerModel.dataSource fuel]);} copy];
+    self.fuelLeftData.data = [^{ return self.FUEL;} copy];
 	[self.fuelLeftData addTarget:self 
                          action:@selector(telemetrySelected:) 
                forControlEvents:UIControlEventTouchUpInside];
@@ -509,7 +523,7 @@ static float RadiansToDegrees(float radians)
     self.weightData = [[Telemetry alloc] initWithFrame:[self convertRectFromGameToView:CGRectMake(TelemetryXPos, 159, TelemetryXSize, TelemetryYSize)]];
     self.weightData.titleLabel.text = @"WEIGHT";
     self.weightData.format = @"%6d %@";
-    self.weightData.data = [^{ return (short)([self.landerModel.dataSource weight]);} copy];
+    self.weightData.data = [^{ return self.WEIGHT;} copy];
 	[self.weightData addTarget:self 
                                    action:@selector(telemetrySelected:) 
                          forControlEvents:UIControlEventTouchUpInside];
@@ -519,7 +533,7 @@ static float RadiansToDegrees(float radians)
     self.thrustData = [[Telemetry alloc] initWithFrame:[self convertRectFromGameToView:CGRectMake(TelemetryXPos, 137, TelemetryXSize, TelemetryYSize)]];
     self.thrustData.titleLabel.text = @"THRUST";
     self.thrustData.format = @"%6d %@";
-    self.thrustData.data = [^{ return (short)([self.landerModel.dataSource thrust]);} copy];
+    self.thrustData.data = [^{ return self.THRUST;} copy];
 	[self.thrustData addTarget:self 
                         action:@selector(telemetrySelected:) 
               forControlEvents:UIControlEventTouchUpInside];
@@ -529,7 +543,7 @@ static float RadiansToDegrees(float radians)
     self.thrustAngleData = [[Telemetry alloc] initWithFrame:[self convertRectFromGameToView:CGRectMake(TelemetryXPos, 115, TelemetryXSize, TelemetryYSize)]];
     self.thrustAngleData.titleLabel.text = @"ANGLE";
     self.thrustAngleData.format = @"%6d %@";
-    self.thrustAngleData.data = [^{ return (short)([self.landerModel.dataSource angleDegrees]);} copy];
+    self.thrustAngleData.data = [^{ return self.ANGLED;} copy];
 	[self.thrustAngleData addTarget:self 
                         action:@selector(telemetrySelected:) 
               forControlEvents:UIControlEventTouchUpInside];
@@ -539,7 +553,7 @@ static float RadiansToDegrees(float radians)
     self.verticalVelocityData = [[Telemetry alloc] initWithFrame:[self convertRectFromGameToView:CGRectMake(TelemetryXPos, 93, TelemetryXSize, TelemetryYSize)]];
     self.verticalVelocityData.titleLabel.text = @"VER VEL";
     self.verticalVelocityData.format = @"%6d %@";
-    self.verticalVelocityData.data = [^{ return (short)([self.landerModel.dataSource vertVel]);} copy];
+    self.verticalVelocityData.data = [^{ return self.VERVEL;} copy];
 	[self.verticalVelocityData addTarget:self 
                         action:@selector(telemetrySelected:) 
               forControlEvents:UIControlEventTouchUpInside];
@@ -549,7 +563,7 @@ static float RadiansToDegrees(float radians)
     self.horizontalVelocityData = [[Telemetry alloc] initWithFrame:[self convertRectFromGameToView:CGRectMake(TelemetryXPos, 71, TelemetryXSize, TelemetryYSize)]];
     self.horizontalVelocityData.titleLabel.text = @"HOR VEL";
     self.horizontalVelocityData.format = @"%6d %@";
-    self.horizontalVelocityData.data = [^{ return (short)([self.landerModel.dataSource horizVel]);} copy];
+    self.horizontalVelocityData.data = [^{ return self.HORVEL;} copy];
 	[self.horizontalVelocityData addTarget:self 
                         action:@selector(telemetrySelected:) 
               forControlEvents:UIControlEventTouchUpInside];
@@ -559,7 +573,7 @@ static float RadiansToDegrees(float radians)
     self.verticalAccelerationData = [[Telemetry alloc] initWithFrame:[self convertRectFromGameToView:CGRectMake(TelemetryXPos, 49, TelemetryXSize, TelemetryYSize)]];
     self.verticalAccelerationData.titleLabel.text = @"VER ACC";
     self.verticalAccelerationData.format = @"%6d %@";
-    self.verticalAccelerationData.data = [^{ return (short)([self.landerModel.dataSource vertAccel]);} copy];
+    self.verticalAccelerationData.data = [^{ return self.VERACC;} copy];
 	[self.verticalAccelerationData addTarget:self 
                         action:@selector(telemetrySelected:) 
               forControlEvents:UIControlEventTouchUpInside];
@@ -569,7 +583,7 @@ static float RadiansToDegrees(float radians)
     self.horizontalAccelerationData = [[Telemetry alloc] initWithFrame:[self convertRectFromGameToView:CGRectMake(TelemetryXPos, 27, TelemetryXSize, TelemetryYSize)]];
     self.horizontalAccelerationData.titleLabel.text = @"HOR ACC";
     self.horizontalAccelerationData.format = @"%6d %@";
-    self.horizontalAccelerationData.data = [^{ return (short)([self.landerModel.dataSource horizAccel]);} copy];
+    self.horizontalAccelerationData.data = [^{ return self.HORACC;} copy];
 	[self.horizontalAccelerationData addTarget:self 
                         action:@selector(telemetrySelected:) 
               forControlEvents:UIControlEventTouchUpInside];
@@ -579,7 +593,7 @@ static float RadiansToDegrees(float radians)
     self.secondsData = [[Telemetry alloc] initWithFrame:[self convertRectFromGameToView:CGRectMake(TelemetryXPos, 5, TelemetryXSize, TelemetryYSize)]];
     self.secondsData.titleLabel.text = @"SECONDS";
     self.secondsData.format = @"%6d %@";
-    self.secondsData.data =[^{ return (short)([self.landerModel.dataSource time]);} copy];
+    self.secondsData.data =[^{ return self.TIME;} copy];
 	[self.secondsData addTarget:self 
                         action:@selector(telemetrySelected:) 
               forControlEvents:UIControlEventTouchUpInside];
@@ -655,10 +669,9 @@ static float RadiansToDegrees(float radians)
     self.landerView = [[Lander alloc] init];
     self.landerView.userInteractionEnabled = NO;
     self.landerView.contentMode = UIViewContentModeRedraw;
-    self.landerView.thrustPercent = [^{ return (float)self.PERTRS;} copy];
-    self.landerView.thrustData = [^{ return (float)self.THRUST;} copy];
+    self.landerView.thrustPercent = [^{ return self.PERTRS;} copy];
+    self.landerView.thrustData = [^{ return self.THRUST;} copy];
     self.landerView.angleData = [^{ return self.ANGLE;} copy];
-    self.landerView.positionData = [^{ return [self.landerModel.dataSource landerPosition];} copy];
     self.landerView.hidden = YES;
     [self.view addSubview:self.landerView];
     
@@ -754,20 +767,24 @@ static float RadiansToDegrees(float radians)
 
 - (IBAction)thrusterChanged:(VGSlider *)sender
 {
-    // Update the model with the new thrust setting
-    [self.landerModel.dataSource setThrust:sender.value];
-    [self.thrusterSlider setValue:[self.landerModel.dataSource thrustPercent]];
+    // Update the model with the new thrust setting and read back what was actually set
+    self.PERTRS = (short)sender.value;
+    [self.thrusterSlider setValue:self.PERTRS];
 }
 
 //
-// ###Need to emulate better, original code uses +-15 and +-100 degrees per second for the roll
-// rates using a calculation
+// Need to emulate better, original code uses +-15 and +-100 degrees per second for the roll
+// rates using the calculation
 //
-// (rate_of_turn * clock_ticks) / clock_frequency
+// new_angle += (rate_of_turn * clock_ticks) / clock_frequency
+//
+// or something like
+//
+//    (100 * ticks) / 50
 //
 - (IBAction)rotateLander:(id)sender
 {
-    // Roll ratres in degrees
+    // Roll rates in degrees
     const float MajorRollRate = 5;
     const float MinorRollRate = 1;
     
@@ -790,7 +807,8 @@ static float RadiansToDegrees(float radians)
         assert(TRUE);
     }
     
-    [self.landerModel.dataSource setAngleDegrees:([self.landerModel.dataSource angleDegrees] + deltaAngle)];
+    // Update the model with the change in roll angle
+    self.ANGLED += deltaAngle;
 }
 
 - (void)newGame
@@ -828,11 +846,12 @@ static float RadiansToDegrees(float radians)
     if (newVertVel >= 0) {
         newVertVel = -newVertVel;
     }
-    
-    [self.landerModel.dataSource setDistance:newHDistance];    
-    [self.landerModel.dataSource setFuel:0.0f];    
-    [self.landerModel.dataSource setHorizVel:0.0f];   
-    [self.landerModel.dataSource setVertVel:newVertVel];   
+
+    // Setup for a crash
+    self.HORDIS = newHDistance;
+    self.FUEL = 0;
+    self.HORVEL = 0;
+    self.VERVEL = newVertVel;
 
     // Add the message to the display
     [self.landerMessages addSystemMessage:message];
@@ -852,7 +871,7 @@ static float RadiansToDegrees(float radians)
     [self.landerModel landerDown];
     
     // Update the thruster display so it shows our updated value
-    [self.thrusterSlider setValue:[self.landerModel.dataSource thrustPercent]];
+    [self.thrusterSlider setValue:self.PERTRS];
 
     // Remove a low fuel message
     [self.landerMessages removeFuelMessage];
@@ -899,24 +918,20 @@ static float RadiansToDegrees(float radians)
             short flameDistance = tanDeltaY + deltaY;
             
             //(DUSTP2)  Center the dust in the view
-            short xCenterPos = self.SHOWX + tanDeltaY;
-            short yCenterPos = self.AVERT;
-            
-            // Calculate the dust view center
-            xCenterPos -= DustViewWidth / 2;
             //### This is a hack - fixme!
-            yCenterPos = 768 - DustViewHeight - self.AVERT;
+            short xCenterPos = self.SHOWX + tanDeltaY;
+            short yCenterPos = 768 - self.AVERT;
+            xCenterPos -= DustViewWidth / 2;
+            yCenterPos -= DustViewHeight;
             
             // Calculate the flame distance and number of points to draw
             flameDistance -= DustStartHeight;
-            //###NSLog(@"flameDistance: %d", flameDistance);
             if (flameDistance < 0) {
                 // Convert to a positive distance (NEG)
                 flameDistance = -flameDistance;
                 
                 // Calculate the number of dust points to draw
                 short count = MIN(((flameDistance * requestedThrust) >> 4), MaxDisplayDust);
-                //###NSLog(@"count: %d ", count);
                 if (count) {
                     // Keep the dust view as we have something to draw
                     removeDustView = NO;
@@ -1067,7 +1082,7 @@ static float RadiansToDegrees(float radians)
     self.HORVEL = 0;
     self.THRUST = 30;
     self.ANGLED = 0;
-    [self.thrusterSlider setValue:[self.landerModel.dataSource thrustPercent]];
+    [self.thrusterSlider setValue:self.PERTRS];
     
     // Check if we have gotten out of the detailed view
     if (![self.moonView viewIsDetailed]) {
@@ -1331,7 +1346,7 @@ static float RadiansToDegrees(float radians)
         [self landerDown];
         
         //(VD)
-        short vervel = (short)([self.landerModel.dataSource vertVel]);
+        short vervel = self.VERVEL;
         if (vervel < -60) {
             [self.landerMessages addSystemMessage:@"DeadLanding"];
             QUICK = YES;
@@ -1354,7 +1369,7 @@ static float RadiansToDegrees(float radians)
         }
     }
     else {
-        short vervel = (short)([self.landerModel.dataSource vertVel]);
+        short vervel = self.VERVEL;
         if (vervel < -60) {
             //(AHAH)
             [self.landerMessages addSystemMessage:@"VeryFast"];
@@ -1463,8 +1478,8 @@ static float RadiansToDegrees(float radians)
         int TiltDirection = 0;
         
         // Check horizonatal velocity, roll angle, and terrain slope
-        short horizvel = (short)([self.landerModel.dataSource horizVel]);
-        short angle = (short)([self.landerModel.dataSource angleDegrees]);
+        short horizvel = self.HORVEL;
+        short angle = self.ANGLED;
         if (horizvel < -10 || horizvel > 10) {
             // Too much horizontal velocity - tipped
             [self.landerMessages addFlameMessage:@"FastSideways"];

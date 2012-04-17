@@ -109,15 +109,18 @@
 @property (nonatomic) short AVERT;
 @property (nonatomic) short DUSTX;
 
+@property (nonatomic, readonly) CGPoint LANDER;
 @property (nonatomic) short VERDIS;
-@property (nonatomic, readonly) short HORDIS;
+@property (nonatomic) short HORDIS;
 @property (nonatomic, readonly) short PERTRS;
 @property (nonatomic, readonly) float ANGLE;
 @property (nonatomic) short ANGLED;
 @property (nonatomic) short HORVEL;
 @property (nonatomic) short VERVEL;
 @property (nonatomic, readonly) short VERACC;
-@property (nonatomic) short THRUST;
+@property (nonatomic, readonly) short HORACC;
+@property (nonatomic, readonly) short WEIGHT;
+@property (nonatomic, readonly) short THRUST;
 @property (nonatomic, readonly) short TIME;
 @property (nonatomic) short FUEL;
 
