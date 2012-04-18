@@ -1271,8 +1271,8 @@ const float offcomDelay = 2.0f;
         void (^moveMan)(void) = ^{ self.manView.center = delta; };
         
         void (^plantFlag)(BOOL) = ^(BOOL f) {
-            // Plant the flag
-            short flagX = self.manView.center.x + 8 * direction;
+            // Plant the flag, ugly but works
+            short flagX = self.manView.center.x + (8 + self.manView.bounds.size.width) * direction;
             CGPoint origin = CGPointMake(flagX, self.manView.center.y - 16);
             self.flagView = [[Flag alloc] initWithOrigin:origin];
             [self.view addSubview:self.flagView];

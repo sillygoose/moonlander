@@ -283,8 +283,8 @@ static float RadiansToDegrees(float radians)
     self.horizontalVelocity = 0;
     self.verticalVelocity = 0;
     self.horizontalDistance = -200;
-    self.verticalDistance = 60;
-    self.percentThrustRequested = 0;
+    self.verticalDistance = 80;
+    self.percentThrustRequested = 18;
     self.clockTicks = 0.0f;
 #else
     // Default game start point
