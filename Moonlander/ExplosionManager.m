@@ -68,7 +68,7 @@ static float RadiansToDegrees(float radians)
         // Create a timer to start the explosion view sequence
         self.explosionTimer = [NSTimer scheduledTimerWithTimeInterval:AnimateExplosionTimer target:self selector:@selector(createExplosionViews) userInfo:nil repeats:YES];
         
-        // And a timer to simulatethe phosphor decay
+        // And a timer to simulate the phosphor decay
         self.phosphorTimer = [NSTimer scheduledTimerWithTimeInterval:AgeExplosionTimer target:self selector:@selector(ageExplosionViews) userInfo:nil repeats:YES];
     }
     return self;
