@@ -12,9 +12,9 @@ Here is the to do list
 = run model in separate thread
 - run explosion in separate thread
 - use animation for moving our guy around
-- fix bug with dust generation
 
 Fixed/Done
+- fix bug with dust generation
 - dust bug (dust appears on rotation)
 - angle roundoff - stick with integer angles
 - bold/blink selected controls

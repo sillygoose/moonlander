@@ -909,13 +909,15 @@ const float offcomDelay = 2.0f;
             short dustIntensity = (percentThrust >> 3) & 0x7;
             
             //(DUSTP1)  Thrust angle determines dust direction
-            float sinAngle = sin(self.ANGLE);
-            float cosAngle = cos(self.ANGLE);
+            float angle = self.ANGLE;
+            float cosAngle = cos(angle);
+            float sinAngle = sin(angle);
+
             short deltaY = self.SHOWY - self.AVERT;
             float sinDeltaY = deltaY * sinAngle;
             float tanDeltaY = sinDeltaY / cosAngle;
-            tanDeltaY = -tanDeltaY;
             short flameDistance = tanDeltaY + deltaY;
+            tanDeltaY = -tanDeltaY;
             
             //(DUSTP2)  Center the dust in the view
             //### This is a hack - fixme!
