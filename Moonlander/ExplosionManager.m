@@ -63,6 +63,13 @@ static float RadiansToDegrees(float radians)
     return self;
 }
 
+// need to do the following
+// create blocks that create the windows we need with the hidden property set.  these are queued for execution
+// immediatey
+//
+// then create the diapatch_after blcoks that enable the views and start them aging.  This should use block animation
+// to simply the code with the completion event deleting the view
+
 - (void)start
 {
     // Create the explosion views
@@ -170,9 +177,6 @@ static float RadiansToDegrees(float radians)
                 // Modify the age of each entry
                 float alpha = explosionView.alpha;
                 if (alpha > 0) {
-                    // Update the drawing vectors for this view
-                    //###[self EXGEN:explosionView];
-                    
                     // Age the view
                     alpha -= DeltaAlpha;
                     explosionView.alpha = alpha;

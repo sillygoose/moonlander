@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1DB429BA153F513B00106B22 /* bell.aif in Resources */ = {isa = PBXBuildFile; fileRef = 1DB429B9153F513B00106B22 /* bell.aif */; };
+		1D81BDB2153F54C600AE437D /* bell.aif in Resources */ = {isa = PBXBuildFile; fileRef = 1D81BDB1153F54C600AE437D /* bell.aif */; };
 		560FA0D0137991AD0017EE25 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 560FA0CF137991AD0017EE25 /* UIKit.framework */; };
 		560FA0D2137991AD0017EE25 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 560FA0D1137991AD0017EE25 /* Foundation.framework */; };
 		560FA0D4137991AD0017EE25 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 560FA0D3137991AD0017EE25 /* CoreGraphics.framework */; };
@@ -76,7 +76,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		1DB429B9153F513B00106B22 /* bell.aif */ = {isa = PBXFileReference; lastKnownFileType = file; name = bell.aif; path = sounds/bell.aif; sourceTree = "<group>"; };
+		1D81BDB1153F54C600AE437D /* bell.aif */ = {isa = PBXFileReference; lastKnownFileType = file; path = bell.aif; sourceTree = "<group>"; };
 		560D212814115314000F3A22 /* README */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README; sourceTree = "<group>"; };
 		560FA0CB137991AD0017EE25 /* Moonlander.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Moonlander.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		560FA0CF137991AD0017EE25 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
@@ -186,9 +186,10 @@
 		1DB429B7153F4FAD00106B22 /* sounds */ = {
 			isa = PBXGroup;
 			children = (
-				1DB429B9153F513B00106B22 /* bell.aif */,
+				1D81BDB1153F54C600AE437D /* bell.aif */,
 			);
-			path = sounds;
+			name = sounds;
+			path = Resources/sounds;
 			sourceTree = "<group>";
 		};
 		560FA0C0137991AD0017EE25 = {
@@ -454,7 +455,7 @@
 				562B108D13841D5A00CC5C97 /* LanderMessages.plist in Resources */,
 				56BC68641388BDE200403643 /* Labels.plist in Resources */,
 				56678FCC139A7D4D00026588 /* Lander2.plist in Resources */,
-				1DB429BA153F513B00106B22 /* bell.aif in Resources */,
+				1D81BDB2153F54C600AE437D /* bell.aif in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

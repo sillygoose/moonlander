@@ -9,10 +9,10 @@ Here is the to do list
 - use floats for X/Y positioning so retina displays are supported
 - hardware brochures
 - source code viewer
-- run model in separate thread
 - run explosion in separate thread
 
 Fixed/Done
+- run model in separate thread (no need for this)
 - use animation for moving our guy around - for mcd version calc the animation durations so man moves at constant speed
 - fix bug with dust generation
 - dust bug (dust appears on rotation)
