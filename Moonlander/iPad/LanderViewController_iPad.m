@@ -1070,9 +1070,7 @@ const float offcomDelay = 2.0f;
 
 - (void)prepareForNewGame
 {
-    // Let's delay a bit before presenting the new game dialog
-    [self.palsyTimer invalidate];
-    self.palsyTimer = [NSTimer scheduledTimerWithTimeInterval:newGameDelay target:self selector:@selector(waitNewGame) userInfo:nil repeats:NO];
+    [self performSelector:@selector(waitNewGame) withObject:nil afterDelay:newGameDelay];
 }
 
 - (void)landerLiftoff
@@ -1099,8 +1097,8 @@ const float offcomDelay = 2.0f;
         [self.displayTimer invalidate];
         self.displayTimer = nil;
 
-        // Wait a bit
-        self.palsyTimer = [NSTimer scheduledTimerWithTimeInterval:endDelay target:self selector:@selector(prepareForNewGame) userInfo:nil repeats:NO];
+        // Wait a bit before continuing
+        [self performSelector:@selector(prepareForNewGame) withObject:nil afterDelay:endDelay];
     }
 }
 
@@ -1127,15 +1125,13 @@ const float offcomDelay = 2.0f;
     // Tell model we are taking off from the surface
     [self.landerModel landerTakeoff];
     
-    // Setup game and delay timers
-    self.palsyTimer = [NSTimer scheduledTimerWithTimeInterval:DisplayUpdateInterval target:self selector:@selector(landerLiftoff) userInfo:nil repeats:YES];
+    // Wait a bit before continuing
+    [self performSelector:@selector(landerLiftoff) withObject:nil afterDelay:DisplayUpdateInterval];
 }
 
 - (void)waitFlagMan
 {
     // Kill the timers - we are done
-    [self.palsyTimer invalidate];
-    self.palsyTimer = nil;
     [self.displayTimer invalidate];
     self.displayTimer = nil;
     [self.simulationTimer invalidate];
@@ -1150,32 +1146,22 @@ const float offcomDelay = 2.0f;
     [self.moonView addFeature:TF_OldLander atIndex:self.INDEXL];
 
     // Let's delay a bit before presenting the new game dialog
-    self.palsyTimer = [NSTimer scheduledTimerWithTimeInterval:newGameDelay target:self selector:@selector(waitNewGame) userInfo:nil repeats:NO];
+    [self performSelector:@selector(waitNewGame) withObject:nil afterDelay:newGameDelay];
 }
-
-
-/*
- dispatch_time_t delay = dispatch_time(DISPATCH_TIME_NOW, NSEC_PER_SEC * 0.8); 
- dispatch_after(delay, dispatch_get_main_queue(), ^(void){
- [self anotherMethod];
- });
- */
 
 - (void)moveMan
 {
-    [self.palsyTimer invalidate];
-    self.palsyTimer = nil;
-    
     const short ManCenterX = 8;
     const short ManCenterY = 18;
     const short ManHeightOffFloor = 4;
+    const UIViewAnimationOptions animateOptions = UIViewAnimationOptionBeginFromCurrentState | UIViewAnimationOptionCurveLinear;
+    
     if (self.moonView.displayHasMcDonalds) {
         // Put the man in position to head for lunch
         CGPoint start = CGPointMake(self.SHOWX - ManCenterX, self.view.frame.size.width - self.SHOWY - ManCenterY);//###
         self.manView = [[Man alloc] initWithOrigin:start];
         CGPoint manViewCenter = self.manView.center;
         [self.view addSubview:self.manView];
-        // commoncode!
         
         // Select a direction at random
         const float McDonaldsStartDownDuration = 1.5;
@@ -1192,53 +1178,46 @@ const float offcomDelay = 2.0f;
 
         // Blocks used in the flag plant animation
         void (^moveMan)(void) = ^{
-            NSLog(@"moveMan");
             self.manView.center = delta;
         };
         void (^moveComplete)(BOOL) = ^(BOOL f) {
-            NSLog(@"moveComplete: %@   start: %@", NSStringFromCGPoint(self.manView.center), NSStringFromCGPoint(start));
-            self.palsyTimer = [NSTimer scheduledTimerWithTimeInterval:launchDelay target:self selector:@selector(prepareForLiftoff) userInfo:nil repeats:NO];
+            [self performSelector:@selector(prepareForLiftoff) withObject:nil afterDelay:launchDelay];
         };
         void (^moveManUp)(BOOL) = ^(BOOL f) {
-            NSLog(@"moveManUp");
             // Complete the move up into the lander
             delta.x = manViewCenter.x;
             delta.y = manViewCenter.y;
-            [Man animateWithDuration:McDonaldsUpDuration delay:0 options:UIViewAnimationOptionBeginFromCurrentState animations:moveMan completion:moveComplete];
+            [Man animateWithDuration:McDonaldsUpDuration delay:0 options:animateOptions animations:moveMan completion:moveComplete];
         };
         void (^moveManBack)(BOOL) = ^(BOOL f) {
-            NSLog(@"moveManBack");
-            // Remove out message
+            // Remove our message and head back to the lander
             [self.landerMessages removeSystemMessage:@"YourOrder"];
             
             // Complete the move back to the lander
             delta.x = manViewCenter.x + 48 * direction;
             delta.y = destination.y;
-            [Man animateWithDuration:McDonaldsBackDuration delay:0 options:UIViewAnimationOptionBeginFromCurrentState animations:moveMan completion:moveManUp];
+            [Man animateWithDuration:McDonaldsBackDuration delay:0 options:animateOptions animations:moveMan completion:moveManUp];
         };
         void (^getLunch)(BOOL) = ^(BOOL f) {
-            NSLog(@"getLunch: %@   delta: %@", NSStringFromCGPoint(self.manView.center), NSStringFromCGPoint(delta));
             // Order some food and wait
             [self.landerMessages addSystemMessage:@"YourOrder"];
             
             // We are moving back after a delay
             delta.x = destination.x + 1 * direction;
             delta.y = destination.y;
-            [Man animateWithDuration:McDonaldsOverDuration delay:initialFoodDelay options:UIViewAnimationOptionBeginFromCurrentState animations:moveMan completion:moveManBack];
+            [Man animateWithDuration:McDonaldsOverDuration delay:initialFoodDelay options:animateOptions animations:moveMan completion:moveManBack];
         };
         void (^moveManOver)(BOOL) = ^(BOOL f) {
             // Get our current position
             delta = destination;
-            NSLog(@"moveManOver: %@   delta: %@", NSStringFromCGPoint(self.manView.center), NSStringFromCGPoint(delta));
-            [Man animateWithDuration:McDonaldsOverDuration delay:0.0 options:UIViewAnimationOptionBeginFromCurrentState animations:moveMan completion:getLunch];
+            [Man animateWithDuration:McDonaldsOverDuration delay:0.0 options:animateOptions animations:moveMan completion:getLunch];
         };
         
         // First move down to the base of the lander and out to plant a flag
         deltaX = start.x + 48 * direction;
         deltaY = destination.y;
         delta = CGPointMake(deltaX, deltaY);
-        NSLog(@"start: %@   dest: %@   delta: %@", NSStringFromCGPoint(start), NSStringFromCGPoint(destination), NSStringFromCGPoint(delta));
-        [Man animateWithDuration:McDonaldsStartDownDuration delay:0.0 options:UIViewAnimationOptionBeginFromCurrentState animations:moveMan completion:moveManOver];
+        [Man animateWithDuration:McDonaldsStartDownDuration delay:0.0 options:animateOptions animations:moveMan completion:moveManOver];
     }
     else {
         // Put the man in position, random decision on direction
@@ -1269,9 +1248,8 @@ const float offcomDelay = 2.0f;
             [self.moonView addFeature:TF_OldFlag atIndex:flagIndex];
             [self.landerMessages addSystemMessage:@"OneSmallStep"];
             
-            // Use a timer to wait
-            [self.palsyTimer invalidate];
-            self.palsyTimer = [NSTimer scheduledTimerWithTimeInterval:flagFinalDelay target:self selector:@selector(waitFlagMan) userInfo:nil repeats:NO];    
+            // Delay a bit before finishing the game
+            [self performSelector:@selector(waitFlagMan) withObject:nil afterDelay:flagFinalDelay];
         };
         void (^moveComplete)(BOOL) = ^(BOOL f) {
             delta = self.manView.center;
@@ -1279,21 +1257,21 @@ const float offcomDelay = 2.0f;
             deltaY = 0;
             delta.x += deltaX;
             delta.y += deltaY;
-            [Man animateWithDuration:FlagAnimationDuration delay:0.0 options:UIViewAnimationOptionBeginFromCurrentState animations:moveMan completion:plantFlag];
+            [Man animateWithDuration:FlagAnimationDuration delay:0.0 options:animateOptions animations:moveMan completion:plantFlag];
         };
         
         // First move down to the base of the lander and out to plant a flag
         deltaX = direction * 48;
         deltaY = 48;
         delta = CGPointMake(start.x + deltaX, start.y + deltaY - ManHeightOffFloor);
-        [Man animateWithDuration:FlagAnimationDuration delay:0.0 options:UIViewAnimationOptionBeginFromCurrentState animations:moveMan completion:moveComplete];
+        [Man animateWithDuration:FlagAnimationDuration delay:0.0 options:animateOptions animations:moveMan completion:moveComplete];
     }
 }
 
 - (void)PALSY
 {
     // Start with a delay of 4 seconds
-	self.palsyTimer = [NSTimer scheduledTimerWithTimeInterval:landingDelay target:self selector:@selector(moveMan) userInfo:nil repeats:NO];
+    [self performSelector:@selector(moveMan) withObject:nil afterDelay:landingDelay];
 }
 
 - (void)BELL
@@ -1305,11 +1283,12 @@ const float offcomDelay = 2.0f;
 - (void)explosionComplete
 {
     if (self.explosionManager.explosionComplete) {
-        // Kill the old timer
+        // Kill the timer er have been using
         [self.palsyTimer invalidate];
+        self.palsyTimer = nil;
         
         // Start the delay timer
-        self.palsyTimer = [NSTimer scheduledTimerWithTimeInterval:explodeDelay target:self selector:@selector(waitNewGame) userInfo:nil repeats:NO];
+        [self performSelector:@selector(waitNewGame) withObject:nil afterDelay:explodeDelay];
     }
 }
 
@@ -1328,6 +1307,8 @@ const float offcomDelay = 2.0f;
     float xPos = self.SHOWX;
     float yPos = self.SHOWY;
     self.explosionManager = [[ExplosionManager alloc] initWithView:self.view atPoint:CGPointMake(xPos, yPos)];
+    
+    // Use a timer to test for completion
     const float AnimateExplosionTimer = 0.25f;
     self.palsyTimer = [NSTimer scheduledTimerWithTimeInterval:AnimateExplosionTimer target:self selector:@selector(explosionComplete) userInfo:nil repeats:YES];
 }

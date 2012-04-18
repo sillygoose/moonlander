@@ -11,7 +11,7 @@ Here is the to do list
 - source code viewer
 = run model in separate thread
 - run explosion in separate thread
-- use animation for moving our guy around
+- use animation for moving our guy around - for mcd version calc the animation durations so man moves at constant speed
 
 Fixed/Done
 - fix bug with dust generation
