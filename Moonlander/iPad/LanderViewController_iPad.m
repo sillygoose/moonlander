@@ -1126,7 +1126,8 @@ const float offcomDelay = 2.0f;
     [self.landerModel landerTakeoff];
     
     // Wait a bit before continuing
-    [self performSelector:@selector(landerLiftoff) withObject:nil afterDelay:DisplayUpdateInterval];
+    const float PollLiftoffInterval = 0.25;
+    self.palsyTimer = [NSTimer scheduledTimerWithTimeInterval:PollLiftoffInterval target:self selector:@selector(landerLiftoff) userInfo:nil repeats:YES];
 }
 
 - (void)waitFlagMan
@@ -1149,55 +1150,92 @@ const float offcomDelay = 2.0f;
     [self performSelector:@selector(waitNewGame) withObject:nil afterDelay:newGameDelay];
 }
 
+- (float)durationFrom:(CGPoint)start toEnd:(CGPoint)end
+{
+#ifdef DEBUG
+    const float MosyRate = 0.01;
+#else
+    const float MosyRate = 0.05;
+#endif
+    float xDiff = start.x - end.x;
+    float yDiff = start.y - end.y;
+    float distance = sqrt(xDiff * xDiff + yDiff * yDiff);
+    float animationDuration = MosyRate * distance;
+    return animationDuration;
+}
+
 - (void)moveMan
 {
-    const short ManCenterX = 8;
-    const short ManCenterY = 18;
-    const short ManHeightOffFloor = 4;
+    // Animation constants
+    const short ManCenterX = 10;
+    const short ManCenterY = 14;
+    const short ManHeightOffFloor = 6;
+  
+    const float MosyDelayZero = 0;
+#ifdef DEBUG
+    const float MosyStartDelay = 1;
+#else
+    const float MosyStartDelay = 4;
+#endif
     const UIViewAnimationOptions animateOptions = UIViewAnimationOptionBeginFromCurrentState | UIViewAnimationOptionCurveLinear;
     
+    // Animation constants for tweaking getting in and out of the lander
+    const float LanderMoveX = 32;
+    const float LanderMoveY = 26;
+    
+    // Our animation block variables
+    __block CGPoint delta;
+    __block short direction;
+    __block CGPoint destination;
+    __block float animationDuration;
+    
+    //### Put the man in position to head for lunch
+    CGPoint start = CGPointMake(self.SHOWX - ManCenterX, self.view.frame.size.width - self.SHOWY - ManCenterY);
+    self.manView = [[Man alloc] initWithOrigin:start];
+    [self.view addSubview:self.manView];
+    
+    // Remember the starting center so we can retrace our path
+    CGPoint startCenter = self.manView.center;
+    
+    // What is it - plant a flag or visit Mcdonalds?
     if (self.moonView.displayHasMcDonalds) {
-        // Put the man in position to head for lunch
-        CGPoint start = CGPointMake(self.SHOWX - ManCenterX, self.view.frame.size.width - self.SHOWY - ManCenterY);//###
-        self.manView = [[Man alloc] initWithOrigin:start];
-        CGPoint manViewCenter = self.manView.center;
-        [self.view addSubview:self.manView];
-        
-        // Select a direction at random
-        const float McDonaldsStartDownDuration = 1.5;
-        const float McDonaldsOverDuration = 3;
-        const float McDonaldsBackDuration = 3;
-        const float McDonaldsUpDuration = 1.5;
+#ifdef DEBUG
+        const float FoodWaitDuration = 1;
+#else
+        const float FoodWaitDuration = 3;
+#endif
 
         // Move the man out of the lander to the ground
         __block CGPoint destination = CGPointMake(self.moonView.MACX, self.view.frame.size.width - self.moonView.MACY - ManHeightOffFloor);
-        __block short direction = (destination.x < start.x) ? -1 : 1;
-        __block short deltaX;
-        __block short deltaY;
-        __block CGPoint delta;
+        direction = (destination.x < start.x) ? -1 : 1;
 
-        // Blocks used in the flag plant animation
+        // Blocks used in the McDonalds animation
         void (^moveMan)(void) = ^{
             self.manView.center = delta;
         };
+        
         void (^moveComplete)(BOOL) = ^(BOOL f) {
             [self performSelector:@selector(prepareForLiftoff) withObject:nil afterDelay:launchDelay];
         };
+        
         void (^moveManUp)(BOOL) = ^(BOOL f) {
             // Complete the move up into the lander
-            delta.x = manViewCenter.x;
-            delta.y = manViewCenter.y;
-            [Man animateWithDuration:McDonaldsUpDuration delay:0 options:animateOptions animations:moveMan completion:moveComplete];
+            delta = startCenter;
+            animationDuration = [self durationFrom:self.manView.center toEnd:delta];
+            [Man animateWithDuration:animationDuration delay:MosyDelayZero options:animateOptions animations:moveMan completion:moveComplete];
         };
+        
         void (^moveManBack)(BOOL) = ^(BOOL f) {
             // Remove our message and head back to the lander
             [self.landerMessages removeSystemMessage:@"YourOrder"];
             
             // Complete the move back to the lander
-            delta.x = manViewCenter.x + 48 * direction;
+            delta.x = startCenter.x + LanderMoveX * direction;
             delta.y = destination.y;
-            [Man animateWithDuration:McDonaldsBackDuration delay:0 options:animateOptions animations:moveMan completion:moveManUp];
+            animationDuration = [self durationFrom:self.manView.center toEnd:delta];
+            [Man animateWithDuration:animationDuration delay:MosyDelayZero options:animateOptions animations:moveMan completion:moveManUp];
         };
+        
         void (^getLunch)(BOOL) = ^(BOOL f) {
             // Order some food and wait
             [self.landerMessages addSystemMessage:@"YourOrder"];
@@ -1205,45 +1243,41 @@ const float offcomDelay = 2.0f;
             // We are moving back after a delay
             delta.x = destination.x + 1 * direction;
             delta.y = destination.y;
-            [Man animateWithDuration:McDonaldsOverDuration delay:initialFoodDelay options:animateOptions animations:moveMan completion:moveManBack];
+            [Man animateWithDuration:FoodWaitDuration delay:initialFoodDelay options:animateOptions animations:moveMan completion:moveManBack];
         };
+        
         void (^moveManOver)(BOOL) = ^(BOOL f) {
             // Get our current position
             delta = destination;
-            [Man animateWithDuration:McDonaldsOverDuration delay:0.0 options:animateOptions animations:moveMan completion:getLunch];
+            animationDuration = [self durationFrom:self.manView.center toEnd:delta];
+            [Man animateWithDuration:animationDuration delay:MosyDelayZero options:animateOptions animations:moveMan completion:getLunch];
         };
         
         // First move down to the base of the lander and out to plant a flag
-        deltaX = start.x + 48 * direction;
-        deltaY = destination.y;
-        delta = CGPointMake(deltaX, deltaY);
-        [Man animateWithDuration:McDonaldsStartDownDuration delay:0.0 options:animateOptions animations:moveMan completion:moveManOver];
+        delta = CGPointMake(startCenter.x + LanderMoveX * direction, destination.y);
+        animationDuration = [self durationFrom:startCenter toEnd:delta];
+        [Man animateWithDuration:animationDuration delay:MosyStartDelay options:animateOptions animations:moveMan completion:moveManOver];
     }
     else {
-        // Put the man in position, random decision on direction
-        CGPoint start = CGPointMake(self.SHOWX - ManCenterX, self.view.frame.size.width - self.SHOWY - ManCenterY);//###
-        self.manView = [[Man alloc] initWithOrigin:start];
-        [self.view addSubview:self.manView];
-        
         // Select a direction at random
-        short direction = (random() % 2) ? 1 : -1;
-        const float FlagAnimationDuration = 2.5;
+        direction = (random() % 2) ? 1 : -1;
         
-        // Move the man out of the lander to the ground
-        __block float deltaX;
-        __block float deltaY;
-        __block CGPoint delta;
+        // Destination is the flag plant spot
+        destination = startCenter;
+        destination.x += LanderMoveX * direction * 2;
+        destination.y += LanderMoveY;
         
         // Blocks used in the flag plant animation
         void (^moveMan)(void) = ^{ self.manView.center = delta; };
+        
         void (^plantFlag)(BOOL) = ^(BOOL f) {
             // Plant the flag
-            short flagX = self.manView.center.x + 24 * direction;
-            CGPoint origin = CGPointMake(flagX, self.manView.center.y);
+            short flagX = self.manView.center.x + 8 * direction;
+            CGPoint origin = CGPointMake(flagX, self.manView.center.y - 16);
             self.flagView = [[Flag alloc] initWithOrigin:origin];
             [self.view addSubview:self.flagView];
             
-            // Add the flag  to the terrain and display our message
+            // Add the flag to the terrain and display our message
             short flagIndex = self.INDEXL + 2 * direction;
             [self.moonView addFeature:TF_OldFlag atIndex:flagIndex];
             [self.landerMessages addSystemMessage:@"OneSmallStep"];
@@ -1251,20 +1285,20 @@ const float offcomDelay = 2.0f;
             // Delay a bit before finishing the game
             [self performSelector:@selector(waitFlagMan) withObject:nil afterDelay:flagFinalDelay];
         };
+        
+        // Move the man over to the flag
         void (^moveComplete)(BOOL) = ^(BOOL f) {
-            delta = self.manView.center;
-            deltaX = direction * 48;
-            deltaY = 0;
-            delta.x += deltaX;
-            delta.y += deltaY;
-            [Man animateWithDuration:FlagAnimationDuration delay:0.0 options:animateOptions animations:moveMan completion:plantFlag];
+            delta = destination;
+            animationDuration = [self durationFrom:self.manView.center toEnd:delta];
+            [Man animateWithDuration:animationDuration delay:MosyDelayZero options:animateOptions animations:moveMan completion:plantFlag];
         };
         
-        // First move down to the base of the lander and out to plant a flag
-        deltaX = direction * 48;
-        deltaY = 48;
-        delta = CGPointMake(start.x + deltaX, start.y + deltaY - ManHeightOffFloor);
-        [Man animateWithDuration:FlagAnimationDuration delay:0.0 options:animateOptions animations:moveMan completion:moveComplete];
+        // First move down to the base of the lander
+        delta = startCenter;
+        delta.x += direction * LanderMoveX / 2;
+        delta.y += LanderMoveY;
+        animationDuration = [self durationFrom:startCenter toEnd:delta];
+        [Man animateWithDuration:animationDuration delay:MosyStartDelay options:animateOptions animations:moveMan completion:moveComplete];
     }
 }
 
