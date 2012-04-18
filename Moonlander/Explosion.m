@@ -11,7 +11,6 @@
 @implementation Explosion
 
 @synthesize radius=_radius;
-@synthesize intensity=_intensity;
 
 
 - (id)initWithRadius:(short)radius
@@ -20,7 +19,6 @@
     self = [super initWithFrame:frameRect];
     if (self) {
         self.radius = radius;
-        self.intensity = 7;
     }
     return self;
 }

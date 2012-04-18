@@ -15,27 +15,34 @@
 @interface ExplosionManager : NSObject
 {
     NSArray             *_explosionViews;
-    NSTimer             *__unsafe_unretained _explosionTimer;
     NSTimer             *__unsafe_unretained _phosphorTimer;
     UIView              *_parentView;
+    
+    dispatch_queue_t    _dispatchQueue;
+    short               _tasks;
+    void                (^_completionBlock)(void);
     
     CGPoint             _groundZero;
     short               _currentRadius;
     short               _radiusIncrement;
+    time_t              _queueDelay;
 }
 
 @property (atomic, strong) NSArray *explosionViews;
-@property (nonatomic, unsafe_unretained) NSTimer *explosionTimer;
 @property (nonatomic, unsafe_unretained) NSTimer *phosphorTimer;
 @property (nonatomic, strong) UIView *parentView;
+
+@property (nonatomic) dispatch_queue_t dispatchQueue;
+@property (nonatomic) short tasks;
+@property (nonatomic, copy) void (^completionBlock)(void);
 
 @property (nonatomic) CGPoint groundZero;
 @property (nonatomic) short currentRadius;
 @property (nonatomic) short radiusIncrement;
+@property (nonatomic) time_t queueDelay;
 
 
-- (id)initWithView:(UIView *)view atPoint:(CGPoint)gz;
-
-- (BOOL)explosionComplete;
+- (id)init;
+- (void)start;
 
 @end

@@ -89,6 +89,9 @@
     VGDialog            *_anotherGameDialog;
     
     BOOL                _didFuelAlert;
+    
+    CFURLRef            _bellFileURL;
+	SystemSoundID       _bellFileObject;
 }
 
 @property (nonatomic, strong) LanderPhysicsModel *landerModel;
@@ -167,6 +170,9 @@
 @property (nonatomic, strong) VGDialog *anotherGameDialog;
 
 @property (nonatomic) BOOL didFuelAlert;
+
+@property (nonatomic, readwrite) CFURLRef bellFileURL;
+@property (nonatomic, readonly) SystemSoundID bellFileObject;
 
 
 - (IBAction)thrusterChanged:(VGSlider *)sender;

@@ -80,6 +80,9 @@
 
 @synthesize didFuelAlert=_didFuelAlert;
 
+@synthesize bellFileURL=_bellFileURL;
+@synthesize bellFileObject=_bellFileObject;
+
 
 const float GameTimerInterval = 1.0 / 12.0f;
 const float DisplayUpdateInterval = 0.05f;
@@ -675,6 +678,12 @@ const float offcomDelay = 2.0f;
     self.landerView.hidden = YES;
     [self.view addSubview:self.landerView];
     
+    // Audio resource initialization
+    NSURL *bellSound = [[NSBundle mainBundle] URLForResource: @"bell" withExtension: @"aif"];
+    self.bellFileURL = (__bridge_retained CFURLRef) bellSound;
+    SystemSoundID temp;
+    AudioServicesCreateSystemSoundID(self.bellFileURL, &_bellFileObject);
+
     // Start the game
     [self initGame];
 }
@@ -1310,20 +1319,9 @@ const float offcomDelay = 2.0f;
 
 - (void)BELL
 {
-    const int BeepSound = 1052;
-    AudioServicesPlayAlertSound(BeepSound);
-}
-
-- (void)explosionComplete
-{
-    if (self.explosionManager.explosionComplete) {
-        // Kill the timer er have been using
-        [self.palsyTimer invalidate];
-        self.palsyTimer = nil;
-        
-        // Start the delay timer
-        [self performSelector:@selector(waitNewGame) withObject:nil afterDelay:explodeDelay];
-    }
+    //const int BeepSound = 1052;
+    //AudioServicesPlayAlertSound(BeepSound);
+    AudioServicesPlayAlertSound(self.bellFileObject);
 }
 
 - (void)EXPLOD
@@ -1336,15 +1334,24 @@ const float offcomDelay = 2.0f;
 
     //(EXPLOD)  Shut down things and ring bell
     [self BELL];
-
+    
+    // Create a queue and group for the tasks
+    dispatch_queue_t explosionQueue = dispatch_queue_create("com.devtools.moonlander.explode", NULL);
+    
+    void (^completionBlock)(void) = ^{
+        dispatch_release(explosionQueue);
+        [self performSelector:@selector(waitNewGame) withObject:nil afterDelay:explodeDelay];
+    };
+    
     //(EXPLD1)  Setup the explosion animation manager
     float xPos = self.SHOWX;
     float yPos = self.SHOWY;
-    self.explosionManager = [[ExplosionManager alloc] initWithView:self.view atPoint:CGPointMake(xPos, yPos)];
-    
-    // Use a timer to test for completion
-    const float AnimateExplosionTimer = 0.25f;
-    self.palsyTimer = [NSTimer scheduledTimerWithTimeInterval:AnimateExplosionTimer target:self selector:@selector(explosionComplete) userInfo:nil repeats:YES];
+    self.explosionManager = [[ExplosionManager alloc] init];
+    self.explosionManager.groundZero = CGPointMake(xPos, yPos);
+    self.explosionManager.parentView = self.view;
+    self.explosionManager.dispatchQueue = explosionQueue;
+    self.explosionManager.completionBlock = completionBlock;
+    [self.explosionManager start];
 }
 
 - (void)ALTER:(short)alterValue

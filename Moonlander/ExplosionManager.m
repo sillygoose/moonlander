@@ -11,13 +11,17 @@
 @implementation ExplosionManager
 
 @synthesize explosionViews=_explosionViews;
-@synthesize explosionTimer=_explosionTimer;
 @synthesize phosphorTimer=_phosphorTimer;
 @synthesize parentView=_parentView;
 
 @synthesize groundZero=_groundZero;
 @synthesize currentRadius=_currentRadius;
 @synthesize radiusIncrement=_radiusIncrement;
+
+@synthesize dispatchQueue=_dispatchQueue;
+@synthesize tasks=_tasks;
+@synthesize completionBlock=_completionBlock;
+@synthesize queueDelay=_queueDelay;
 
 
 const short MaximumRadius = 300;
@@ -26,7 +30,7 @@ const short RadiusIncrement2 = -10;
 
 const float AnimateExplosionTimer = 0.075;
 const float AgeExplosionTimer = 0.1;
-const float DeltaAlpha = 0.2;
+const float DeltaAlpha = 0.05;
 
 
 
@@ -46,37 +50,61 @@ static float RadiansToDegrees(float radians)
 {
     self = [super init];
     if (self) {
-    }
-    return self;
-}
-
-- (id)initWithView:(UIView *)view atPoint:(CGPoint)gz
-{
-    self = [self init];
-    if (self) {
-        // Create our array
+        // Create our array of views we will be managing
         self.explosionViews = [NSArray array];
-        
+
         // Our initial values for expansion code
         self.currentRadius = 0;
         self.radiusIncrement = RadiusIncrement2;
-        
-        // Cache our view info
-        self.parentView = view;
-        self.groundZero = gz; 
-        
-        // Create a timer to start the explosion view sequence
-        self.explosionTimer = [NSTimer scheduledTimerWithTimeInterval:AnimateExplosionTimer target:self selector:@selector(createExplosionViews) userInfo:nil repeats:YES];
-        
+
         // And a timer to simulate the phosphor decay
         self.phosphorTimer = [NSTimer scheduledTimerWithTimeInterval:AgeExplosionTimer target:self selector:@selector(ageExplosionViews) userInfo:nil repeats:YES];
-    }
+ }
     return self;
 }
 
-- (BOOL)explosionComplete
+- (void)start
 {
-    return (self.phosphorTimer == nil);
+    // Create the explosion views
+    short radius = 0;
+    short radiusIncrement = RadiusIncrement2;
+    while (radius < MaximumRadius) {
+        __block Explosion *explosionView;
+        void (^createExplosionView)(void) = ^{
+            //NSLog(@"createExplosionView: %d", self.currentRadius);
+            // Create an explosion view
+            float explosionSize = self.currentRadius * 2;
+            float xPos = self.groundZero.x - explosionSize / 2;
+            float yPos = (768 - self.groundZero.y) - explosionSize / 2;
+            CGRect frameRect = CGRectMake(xPos, yPos, explosionSize, explosionSize);
+            dispatch_sync(dispatch_get_main_queue(), ^{explosionView = [[Explosion alloc] initWithFrame:frameRect];});
+           
+            explosionView.radius = self.currentRadius;
+            explosionView.alpha = (float)((random() % 40)/100.0)+ 0.6;
+            [self EXGEN:explosionView];
+            
+            // Update the radius for the next task
+            self.currentRadius += self.radiusIncrement;
+            self.radiusIncrement = (self.radiusIncrement == RadiusIncrement1) ? RadiusIncrement2 : RadiusIncrement1;
+            
+            // Add to our array of explosion views
+            self.explosionViews = [self.explosionViews arrayByAddingObject:explosionView];
+
+            // Add the view to the parent
+            dispatch_async(dispatch_get_main_queue(), ^{[self.parentView addSubview:explosionView];});
+        };
+        
+        // Add the view to a queue
+        dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, self.queueDelay);
+        dispatch_after(popTime, self.dispatchQueue, createExplosionView);
+        self.tasks += 1;
+        
+        // Add to our array of explosion views
+        radius += radiusIncrement;
+        radiusIncrement = (radiusIncrement == RadiusIncrement1) ? RadiusIncrement2 : RadiusIncrement1;
+        float delayInSeconds = 0.1;
+        self.queueDelay += delayInSeconds * NSEC_PER_SEC;
+    }
 }
 
 - (void)EXGEN:(Explosion *)view
@@ -96,12 +124,8 @@ static float RadiansToDegrees(float radians)
     NSArray *paths = [NSArray arrayWithObject:path];
     
     // Prep the intensity and line type info
-    short intensityLevel = view.intensity;
     short radius = view.radius;
 
-    // Generate a random intensity
-    NSNumber *intensity = [NSNumber numberWithInt:intensityLevel];
-    
     //(EXGENL)
     while (count > 0) {
         // We skip fooling around and just randomize this
@@ -119,7 +143,7 @@ static float RadiansToDegrees(float radians)
                 // Default size for a rectangle is 1 x 1
                 NSDictionary *originItem = [NSDictionary dictionaryWithObjectsAndKeys:x, @"x", y, @"y", nil];
                 NSDictionary *rectItem = [NSDictionary dictionaryWithObjectsAndKeys:originItem, @"origin", nil];
-                NSDictionary *pathItem = [NSDictionary dictionaryWithObjectsAndKeys:rectItem, @"rect", intensity, @"intensity", nil];
+                NSDictionary *pathItem = [NSDictionary dictionaryWithObjectsAndKeys:rectItem, @"rect", nil];
                 [path addObject:pathItem];
             }
         }
@@ -131,38 +155,7 @@ static float RadiansToDegrees(float radians)
     
     // Add the draw paths and update the display
     view.drawPaths = paths;
-    [view setNeedsDisplay];
-}
-
-- (void)createExplosionViews
-{
-    if (self.explosionTimer) {
-        if (self.currentRadius > MaximumRadius) {
-            // Kill our view generation timer as all our views are created
-            [self.explosionTimer invalidate];
-            self.explosionTimer = nil;
-        }
-        else {
-            // Create an explosion view
-            float explosionSize = self.currentRadius * 2;
-            float xPos = self.groundZero.x - explosionSize / 2;
-            float yPos = (768 - self.groundZero.y) - explosionSize / 2;
-            CGRect frameRect = CGRectMake(xPos, yPos, explosionSize, explosionSize);
-            Explosion *explosionView = [[Explosion alloc] initWithFrame:frameRect];
-            explosionView.radius = self.currentRadius;
-            explosionView.intensity = (short)random() % 8;
-            explosionView.alpha = 1.0;
-            [self EXGEN:explosionView];
-
-            // Add to our array of explosion views
-            self.explosionViews = [self.explosionViews arrayByAddingObject:explosionView];
-            self.currentRadius += self.radiusIncrement;
-            self.radiusIncrement = (self.radiusIncrement == RadiusIncrement1) ? RadiusIncrement2 : RadiusIncrement1;
-            
-            // Add the view to the parent
-            [self.parentView addSubview:explosionView];
-        }
-    }
+    dispatch_async(dispatch_get_main_queue(), ^{[view setNeedsDisplay];});
 }
 
 - (void)ageExplosionViews
@@ -175,26 +168,31 @@ static float RadiansToDegrees(float radians)
             Explosion *explosionView;
             while (explosionView = [explosionEnumerator nextObject]) {
                 // Modify the age of each entry
-                if (explosionView.alpha > 0) {
+                float alpha = explosionView.alpha;
+                if (alpha > 0) {
                     // Update the drawing vectors for this view
-                    [self EXGEN:explosionView];
+                    //###[self EXGEN:explosionView];
                     
                     // Age the view
-                    explosionView.alpha -= DeltaAlpha;
-                    explosionView.intensity = explosionView.intensity - 1;
+                    alpha -= DeltaAlpha;
+                    explosionView.alpha = alpha;
                 }
                 else {
                     // Remove this view from screen
                     [updatedViews removeObject:explosionView];
                     [explosionView removeFromSuperview];
+                    self.tasks -= 1;
                 }
             }
 
             // We are done when no views remain
-            if ([updatedViews count] == 0) {
+            if ([updatedViews count] == 0 && self.tasks == 0) {
                 // Kill the phosphor decay timer
                 [self.phosphorTimer invalidate];
                 self.phosphorTimer = nil;
+                
+                // Call the completion block
+                self.completionBlock();
             }
             
             // Update the list of active views

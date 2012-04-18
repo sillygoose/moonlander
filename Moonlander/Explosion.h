@@ -11,11 +11,9 @@
 @interface Explosion : VGView
 {
     short               _radius;
-    short               _intensity;
 }
 
 @property (nonatomic) short radius;
-@property (nonatomic) short intensity;
 
 - (id)initWithRadius:(short)radius ;
 
