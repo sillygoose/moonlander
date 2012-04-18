@@ -281,7 +281,7 @@ static float RadiansToDegrees(float radians)
     self.fuelRemaining = self.lemInitalFuel;
     self.turnAngle = 0;
     self.horizontalVelocity = 0;
-    self.verticalVelocity = 0;
+    self.verticalVelocity = -70;
     self.horizontalDistance = -200;
     self.verticalDistance = 80;
     self.percentThrustRequested = 18;
