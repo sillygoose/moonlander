@@ -681,7 +681,6 @@ const float offcomDelay = 2.0f;
     // Audio resource initialization
     NSURL *bellSound = [[NSBundle mainBundle] URLForResource: @"bell" withExtension: @"aif"];
     self.bellFileURL = (__bridge_retained CFURLRef) bellSound;
-    SystemSoundID temp;
     AudioServicesCreateSystemSoundID(self.bellFileURL, &_bellFileObject);
 
     // Start the game
@@ -1319,8 +1318,6 @@ const float offcomDelay = 2.0f;
 
 - (void)BELL
 {
-    //const int BeepSound = 1052;
-    //AudioServicesPlayAlertSound(BeepSound);
     AudioServicesPlayAlertSound(self.bellFileObject);
 }
 
