@@ -1068,14 +1068,14 @@ const float offcomDelay = 2.0f;
     [self.view addSubview:self.anotherGameDialog];
 }
 
-- (void)drawMcMan7
+- (void)prepareForNewGame
 {
     // Let's delay a bit before presenting the new game dialog
     [self.palsyTimer invalidate];
     self.palsyTimer = [NSTimer scheduledTimerWithTimeInterval:newGameDelay target:self selector:@selector(waitNewGame) userInfo:nil repeats:NO];
 }
 
-- (void)drawMcMan6
+- (void)landerLiftoff
 {
     // Remove any messages that pop up
     [self.landerMessages removeAllLanderMessages];
@@ -1100,7 +1100,7 @@ const float offcomDelay = 2.0f;
         self.displayTimer = nil;
 
         // Wait a bit
-        self.palsyTimer = [NSTimer scheduledTimerWithTimeInterval:endDelay target:self selector:@selector(drawMcMan7) userInfo:nil repeats:NO];
+        self.palsyTimer = [NSTimer scheduledTimerWithTimeInterval:endDelay target:self selector:@selector(prepareForNewGame) userInfo:nil repeats:NO];
     }
 }
 
@@ -1128,7 +1128,7 @@ const float offcomDelay = 2.0f;
     [self.landerModel landerTakeoff];
     
     // Setup game and delay timers
-    self.palsyTimer = [NSTimer scheduledTimerWithTimeInterval:DisplayUpdateInterval target:self selector:@selector(drawMcMan6) userInfo:nil repeats:YES];
+    self.palsyTimer = [NSTimer scheduledTimerWithTimeInterval:DisplayUpdateInterval target:self selector:@selector(landerLiftoff) userInfo:nil repeats:YES];
 }
 
 - (void)waitFlagMan
@@ -1173,6 +1173,7 @@ const float offcomDelay = 2.0f;
         // Put the man in position to head for lunch
         CGPoint start = CGPointMake(self.SHOWX - ManCenterX, self.view.frame.size.width - self.SHOWY - ManCenterY);//###
         self.manView = [[Man alloc] initWithOrigin:start];
+        CGPoint manViewCenter = self.manView.center;
         [self.view addSubview:self.manView];
         // commoncode!
         
@@ -1201,8 +1202,8 @@ const float offcomDelay = 2.0f;
         void (^moveManUp)(BOOL) = ^(BOOL f) {
             NSLog(@"moveManUp");
             // Complete the move up into the lander
-            delta.x = start.x;
-            delta.y = start.y;
+            delta.x = manViewCenter.x;
+            delta.y = manViewCenter.y;
             [Man animateWithDuration:McDonaldsUpDuration delay:0 options:UIViewAnimationOptionBeginFromCurrentState animations:moveMan completion:moveComplete];
         };
         void (^moveManBack)(BOOL) = ^(BOOL f) {
@@ -1211,7 +1212,7 @@ const float offcomDelay = 2.0f;
             [self.landerMessages removeSystemMessage:@"YourOrder"];
             
             // Complete the move back to the lander
-            delta.x = start.x + 48 * direction;
+            delta.x = manViewCenter.x + 48 * direction;
             delta.y = destination.y;
             [Man animateWithDuration:McDonaldsBackDuration delay:0 options:UIViewAnimationOptionBeginFromCurrentState animations:moveMan completion:moveManUp];
         };
