@@ -10,6 +10,7 @@ Here is the to do list
 - hardware brochures
 - source code viewer
 - run explosion in separate thread
+- get bell code running
 
 Fixed/Done
 - run model in separate thread (no need for this)
