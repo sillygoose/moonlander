@@ -1,0 +1,1791 @@
+
+
+
+
+                             THE PDP-11 HOW-TO BOOK
+     
+     
+     
+     
+     
+                                    editors
+     
+                                BRIAN CHRISTIAN
+                                  TOM MARKSON
+                                  RICH SKRENTA
+     
+     
+     
+     
+     
+     
+          with special thanks to...
+     
+                                 STEPHEN POPKIN
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     Cover design by BOB TRUEL.
+
+                                                                REVISION 1
+     
+     
+     DISCLAIMER OF LIABILITIES
+          The editors make no guarantee, either expressed or implied, with
+     respect to this manual, its quality, performance, or merchantability
+     for any particular purpose.  The entire risk as to its quality and
+     performance is with the buyer.  Should the information prove
+     erroneous, the buyer assumes the entire cost (and liabilities) of all
+     necessary servicing, repair, or correction, and any incidental or
+     consequencial damages.  In no event will the editors be liable for
+     direct, indirect, incidental, or consequential damages resulting from
+     the use of this book, or any errors in it, even if the editors have
+     been forewarned of the possibility of such errors.
+     
+     
+     
+     
+     
+     
+     
+     (C) Copyright 1982 by Smiling Elk Publications
+     
+     
+     
+     
+     
+     
+     
+     The following are trademarks of Digital Equipment Corporation:
+     
+          Digital      DEC        PDP           DIBOL
+          DECtape      FOCAL      DECUS         RT-11
+     
+     
+     
+     
+     
+     
+     The Smiling Elk, Elksystems, Elkware, Elklabs, Smiling Elk Software,
+     and Smiling Elk Publications are all trademarks of the Smiling Elk
+     company.
+
+     WARNING!
+     The information in this book is of a highly technical nature.  If you
+     are not completely sure of all the results of an operation, please
+     refer to the system manuals.  This book is only a reference, and may
+     not supply all the information on a given topic.  The editors can
+     assume no responsibility for any damages that may occur from the use
+     of this manual.  The sole responsibility lies with the user.
+
+                             THE PDP-11 HOW-TO BOOK                        
+
+
+
+
+
+                               TABLE OF CONTENTS
+     
+     
+     1.0  External Hardware
+     
+          1.1  Main Unit
+               1.1.1   Power Switch
+               1.1.2   DC On/Off
+               1.1.3   Enable Halt
+               1.1.4   LTC On/Off
+          1.2  Disk Drives
+               1.2.1   Drive Doors
+               1.2.2   Diskettes
+          1.3  Terminals
+               1.3.1   VT-52
+                       1.3.1.1    Manipulative Codes
+                       1.3.1.2    Baud Rate
+                       1.3.1.3    Printer
+               1.3.2   LA-36
+     
+     2.0  The RT-11 Monitor
+     
+          2.1  Booting the Monitor
+          2.2  A Description of the Booting Process
+               2.2.1   STARTS.COM
+          2.3  Monitor Commands
+               2.3.1   Assign
+               2.3.2   B (Base)
+               2.3.3   Boot
+               2.3.4   Close
+               2.3.5   Compile
+               2.3.6   Copy
+                       2.3.6.1    /Boot
+                       2.3.6.2    /Device
+                       2.3.6.3    /Ascii, /Binary, /Image
+                       2.3.6.4    /Concatenate
+                       2.3.6.5    /Exclude
+                       2.3.6.6    /Ignore
+                       2.3.6.7    /{No} Log
+                       2.3.6.8    /{No} Replace
+                       2.3.6.9    /System
+               2.3.7   D (Deposit)
+               2.3.8   Date
+               2.3.9   Deassign
+               2.3.10  Delete
+                       2.3.10.1   /Exclude
+                       2.3.10.2   /{No} Query
+                       2.3.10.3   /System
+               2.3.11  Directory
+                       2.3.11.1   /Alphabetize
+                       2.3.11.2   /Badblocks
+                       2.3.11.3   /Begin
+                       2.3.11.4   /Blocks
+                       2.3.11.5   /Brief or /Fast
+
+                             THE PDP-11 HOW-TO BOOK                        
+
+
+
+
+
+                       2.3.11.6   /Columns:n
+                       2.3.11.7   /Deleted
+                       2.3.11.8   /Files
+                       2.3.11.9   /Free
+                       2.3.11.10  /Octal
+                       2.3.11.11  /Output
+                       2.3.11.12  /Summary
+                       2.3.11.13  /Volumeid
+               2.3.12  Examine
+               2.3.13  Edit
+                       2.3.13.1   /Create
+                       2.3.13.2   /Inspect
+                       2.3.13.3   /Output
+               2.3.14  Execute
+               2.3.15  Fortran
+                       2.3.15.1   /List
+                       2.3.15.2   /{No} Object
+                       2.3.15.3   /Code
+                                  2.3.15.3.1    EAE
+                                  2.3.15.3.2    EIS
+                                  2.3.15.3.3    FIS
+                                  2.3.15.3.4    THR
+                       2.3.15.4   /Diagnose
+                       2.3.15.5   /Extend
+                       2.3.15.6   /Header
+                       2.3.15.7   /{No} Linenumbers
+                       2.3.15.8   /Record
+                       2.3.15.9   /Show:n
+                                  2.3.15.9.1    n=0
+                                  2.3.15.9.2    n=1
+                                  2.3.15.9.3    n=2
+                                  2.3.15.9.4    n=3
+                                  2.3.15.9.5    n=4
+                                  2.3.15.9.6    n=7
+                       2.3.15.10  /Statistics
+                       2.3.15.11  /Swap
+                       2.3.15.12  /Noswap
+                       2.3.15.13  /Units
+                       2.3.15.14  /Warnings
+               2.3.16  Get
+               2.3.17  Help
+               2.3.18  Initialize
+                       2.3.18.1   /Badblocks
+                       2.3.18.2   /Interchange
+                       2.3.18.3   /{No} Query
+                       2.3.18.4   /Segments
+                       2.3.18.5   /Volumeid
+               2.3.19  Install
+               2.3.20  Link
+                       2.3.20.1   /Bottom
+                       2.3.20.2   /Execute
+                       2.3.20.3   /Noexecute
+                       2.3.20.4   /Extend:n
+                       2.3.20.5   /LDA
+
+
+                             THE PDP-11 HOW-TO BOOK                        
+
+
+
+
+
+                       2.3.20.6   /Map
+                       2.3.20.7   /Transfer:n
+               2.3.21  Load
+               2.3.22  Print
+               2.3.23  R
+               2.3.24  Reenter
+               2.3.25  Remove
+               2.3.26  Rename
+                       2.3.26.1   /{No} Log
+                       2.3.26.2   /Newfiles
+                       2.3.26.3   /{No} Replace
+                       2.3.26.4   /Setdate
+                       2.3.26.5   /System
+               2.3.27  Reset
+               2.3.28  Run
+               2.3.29  Save
+               2.3.30  Set
+                       2.3.30.1   TT:condition
+                                  2.3.30.1.1    Hold
+                                  2.3.30.1.2    Nohold
+                                  2.3.30.1.3    Quiet
+                                  2.3.30.1.4    Noquiet
+                                  2.3.30.1.5    Scope
+                                  2.3.30.1.6    Noscope
+                       2.3.30.2   Edit
+                                  2.3.30.2.1    Edit
+                                  2.3.30.2.2    TECO
+                       2.3.30.3   Error
+                                  2.3.30.3.1    Error
+                                  2.3.30.3.2    None
+                                  2.3.30.3.3    Severe
+                                  2.3.30.3.4    Warnings
+                       2.3.30.4   USR
+                                  2.3.30.4.1    Swap
+                                  2.3.30.4.2    Noswap
+                       2.3.30.5   Wildcards
+                                  2.3.30.5.1    Explicit
+                                  2.3.30.5.2    Implicit
+               2.3.31  Show
+                       2.3.31.1   Meaning of Messages
+               2.3.32  Squeeze
+                       2.3.32.1   /Output
+                       2.3.32.2   /Query
+                       2.3.32.3   /Noquery
+               2.3.33  Start
+               2.3.34  Time
+               2.3.35  Type
+                       2.3.35.1   /Copies
+                       2.3.35.2   /Delete
+                       2.3.35.3   /Log
+                       2.3.35.4   /Newfiles
+                       2.3.35.5   /Query
+               2.3.36  Unload
+
+                             THE PDP-11 HOW-TO BOOK                        
+
+
+
+
+
+     
+     
+          2.4  Utility Programs
+               2.4.1   Edit
+                       2.4.1.1    Commands
+               2.4.2   PIP
+                       2.4.2.1    Commands
+               2.4.3   DUP
+                       2.4.3.1    Commands
+               2.4.4   DIR
+                       2.4.4.1    Commands
+     
+     3.0  MUBASIC
+     
+          3.1  Bringing up MUBASIC
+          3.2  A Description of MUBASIC Initialization
+               3.2.1   Normal System
+               3.2.2   Password System
+                       3.2.2.1    PASWRD.B00
+                       3.2.2.2    Privileged/Unprivileged Status
+                       3.2.2.3    Userid
+          3.3  File Types
+               3.3.1   Public
+               3.3.2   Group
+               3.3.3   Private
+          3.4  System Calls
+     
+     4.0  RMON
+     
+          4.1  Entering RMON
+          4.2  RMON Commands
+               4.2.1   P
+               4.2.2   G
+               4.2.3   L
+     
+     5.0  Appendices
+     
+          5.1  Appendix A: MUBASIC Error Messages
+          5.2  Appendix B: Monitor Memory Locations
+          5.3  Appendix C: File Extention Meanings
+          5.4  Appendix D: Legal Filenames and Devices
+          5.5  Appendix E: Configuring a MUBASIC Configuration File
+     
+     6.0  Glossary of Terms
+
+
+                             THE PDP-11 HOW-TO BOOK                        
+
+
+
+
+
+     1.0  EXTERNAL HARDWARE
+     The PDP-11 System consists of a central processing unit (CPU), one or
+     more terminals, and various other devices, such as disk units used for
+     storage of information.
+     
+          1.1  MAIN UNIT
+          The main unit is the enclosure housing the CPU and the disk
+          drives.  It is also possible to place other units in the main
+          unit, but most are stored in external housings of their own.
+     
+               1.1.1   POWER SWITCH
+               The power switch is located on the rear panel of the main
+               unit. It controls all power into the computer.
+     
+               1.1.2   DC ON/OFF
+               This switch is one of the three on the front panel and is
+               labeled DC ON/OFF.  It does approximately the same thing as
+               the main power switch, but does not prevent current from
+               coming into the power supply.
+     
+               1.1.3   ENABLE/HALT
+               The ENABLE/HALT switch is located on the front panel, and is
+               appropriately labeled.  When toggled, this switch will
+               initiate a break.  (See section 4.1)
+     
+               1.1.4   LTC ON/OFF
+               This switch is one of the three on the front panel.  It
+               controls the internal clock of the computer.  When off, the
+               computer will no longer keep time.  In addition, when this
+               switch is off, terminals in MUBASIC will shut down, one by
+               one, after a short period of time, usually five minutes.
+     
+          1.2  DISK DRIVES
+          The disk drives are two single density 8 inch drives of the type
+          RX01.  They are located in the main unit.
+     
+               1.2.1   DRIVE DOORS
+               The doors of the disk units may be opened by pulling gently
+               upward while squeezing the switch on the drive door.
+     
+               1.2.2   DISKETTES
+               Diskettes are circular disks of magnetic material enclosed
+               in a plastic jacket.  Since the method used to record is
+               magnetic, bringing diskettes in close proximity to power
+               supplies or magnets may garble the information.
+     
+          1.3  TERMINALS
+          The terminal is what you communicate to the computer with.
+          Characters typed are sent to the computer.  It may send
+          characters back to be printed.
+     
+               1.3.1   VT-52
+               The VT-52 is a general purpose video terminal.
+
+                             THE PDP-11 HOW-TO BOOK                        
+
+
+
+
+
+                       1.3.1.1  MANIPULATION CODES
+                       Special codes can be used to alter the output of the
+                       video terminal.  These codes are:
+     
+                       <ESC>+     FUNCTION
+                       ---------------------------------------------------
+     
+                       =          Alternate keypad mode
+                       >          Exit alternate keypad mode
+                       A          Move cursor up one line
+                       B          Move cursor down one line
+                       C          Move cursor left one space
+                       D          Move cursor right one space
+                       F          Enter graphics mode
+                       G          Exit graphics mode
+                       H          Home cursor
+                       I          Reverse scroll
+                       J          Erase screen from cursor to bottom
+                       K          Erase screen from cursor to end of line
+                       Z          Ident terminal type
+                       [          Enter hold screen mode
+                       ]          "Copy" screen to printer
+                       \          Exit hold screen mode
+                       ----------------------------------------------------
+     
+                       SCROLL     Scrolls one line in hold screen mode
+                       sft-SCROLL Allows scrolling of one screen
+     
+                       1.3.1.2    BAUD RATE
+                       The baud rate of the VT-52 may be adjusted anywhere
+                       from 110 to 4800 baud.  The baud rate may be set by
+                       2 potentiometers on the underside of the terminal
+                       housing.  The correact settings can be found written
+                       next to the potentiometers.
+     
+                       1.3.1.3    PRINTER
+                       The VT-52 also has a printer for hard-copy output.
+                       The printer uses thermal type paper.  The contents
+                       of the screen may be printed by pressing the COPY
+                       button.
+     
+               1.3.2   LA-36
+               The LA-36 is a hard copy terminal whose line length may be
+               set from 1-255 characters per line.  The LA-36 normally
+               operates in full duplex at 300 bps.  The terminal may be
+               toggled into half duplex by pressing the FDX.HDX key.
+               Pressing the line loc (line local) button lets the terminal
+               operate like a typewriter.  The baud rate may be changed by
+               pressing the appropriate keys.  Located on the black panel
+               on the front of the terminal are 2 circuit breakers.  On the
+               inside of the terminal are a series of clip connectors.  One
+               of these clips is normally disconnected.  If this clip is
+               connected, the terminal will halt when there is no paper.
+
+                             THE PDP-11 HOW-TO BOOK                        
+
+
+
+
+
+     2.0  RT-11 MONITOR (KMON)
+     The RT-11 Monitor is a single job general purpose monitor which
+     fascilitates manipulation of system I/O devices.  In addition, it
+     allows the user to alter memory locations directly.
+     
+          2.1  BOOTING THE RT-11 MONITOR
+          After the power is turned on (See section 1.1.1) you will see a
+          "$" prompt.  The computer is promting you for a device name to
+          read the startup files from.  You can enter either DX, DX0, OR
+          DX1. If the device you have selected does not contain the proper
+          files, you will get the " BOOT-W-NO BOOT ON VOLUME" error
+          message.  Otherwise the computer will boot up the monitor.  (See
+          section 2.2)
+     
+          2.2  A DESCRIPTION OF THE BOOTING PROCESS
+          When booted, the system will run the following files:
+     
+               DXMNSJ.SYS         -Contains the bootstrap
+                 SWAP.SYS         -Contains the RT-11 Monitor
+               STARTS.COM         -Commands used on startup.
+     
+               2.2.1   STARTS.COM
+               At the present time, this file contains these commands which
+               are used on start up:
+     
+                       D 56=5015       -Sets fill characters
+                       SET TT:NOSCOPE  -Uses backslash when deslecting
+                       D 56=0          -Sets no fill characters
+                       R TIMDAT        -Runs time/date program
+     
+          2.3  MONITOR COMMANDS
+          The KMON (RT-11) Monitor will always prompt you with a period "."
+          when it is waiting for you to enter a command.
+          When specifying files in the monitor, the wildcard character (*)
+          may be used to represent any number of characters.  For example,
+          *.SYS
+          would match all of the files that ended in .SYS
+          D*J.*
+          would match all of the files that started with "D" and had a "J"
+          in them.  In addition, some commands may be abbreviated.
+          However, it is usually safer to type the full command out, as an
+          abbriviated form may be a different command in itself.
+          In the following sections, only the necessary portions of the
+          commands will be capitalized.
+     
+               2.3.1   ASSign <DEVICE> <NAME>
+               Allows user to create synonym names for actual devices.
+               Example:
+               .ASSIGN DX1: ABC:
+               This will make ABC: the same as DX1:
+     
+               2.3.2   B (BASE) <OCTAL OFFSET>
+               Adds octal offset to any addresses calculated.  (See
+               sections 2.3.7 and 2.3.12)
+
+                             THE PDP-11 HOW-TO BOOK                        
+
+
+
+
+
+     
+     
+               2.3.3   BOot <FILESPEC>
+               Boots from specified device or file.
+               Example:
+               .BOOT DX1:
+               .BOOT DX1:DXMNSJ.SYS
+     
+               2.3.4   CLose
+               Closes all files.
+     
+               2.3.5   COMpile <FILESPEC>/<SWITCHES>
+               Compiles specified files.  See manuals for details.
+     
+               2.3.6   COPy </SWITCHES> <FILESPEC> <OUTFILESPEC>
+               This command allows copying from one media to another in
+               various formats.
+     
+                       2.3.6.1    /BOot
+                       Allows copying of system bootstrap from monitor file
+                       (DXMNSJ.SYS) to blocks 0-5 of same disk.  (So that
+                       the disk may be booted)
+     
+                       2.3.6.2    /DEvice
+                       Copies block for block an entire disk.
+                       Example:
+                       .COPY/DEVICE DX0: DX1:
+     
+                       2.3.6.3    /AScii, /BINary, /IMage
+                       These options allow copying files in different
+                       modes.
+                       Example:
+                       .COPY/BINARY DX1:*.OBJ DX0:
+     
+                       2.3.6.4    /CONCatenate
+                       Allows merging of several files into one.
+                       Example:
+                       .COPY/CONCAT DX1:*.FOR DX0:MERGE.FOR
+                       (Merges all .FOR files on DX1: into MERGE.FOR on
+                       DX0:)
+     
+                       2.3.6.5    /EXclude
+                       Allows copying of all files except those specifed.
+                       Example:
+                       .COPY/EXCLUDE DX0:*.B00 DX1:*.*
+                       (Copies everything but .B00 files from DX0: to DX1:)
+     
+                       2.3.6.6    /IGnore
+                       Ignores errors during during copying.
+     
+                       2.3.6.7    /{NO} Log.
+                       Prints log of all operations performed or not.
+
+                             THE PDP-11 HOW-TO BOOK                        
+
+
+
+
+
+                       2.3.6.8    /{NO} REplace
+                       Will {not} copy files that exist on the output
+                       device only.
+     
+                       2.3.6.9    /SYStem
+                       Enables copying of .SYS files.
+                       Example:
+                       .COPY/SYS DX0:*.SYS DX1:*.SYS
+     
+               2.3.7   D (DEPOSIT) <OCTAL ADDRESS>=<VALUE>
+               Equivilent to poke in BASIC. Sets octal memory address to
+               octal offset.
+               Example:
+               .D 56=5015
+     
+               2.3.8   DAte <DATE DD-MMM-YY>
+               Sets date.  If no argument, will print date.
+     
+               2.3.9   DEAssign
+               Frees a logical device and removes it from the device table.
+     
+               2.3.10  DELete <FILESPEC>/<SWITCHES>
+               Terminates the existence of files from the specified device.
+     
+                       2.3.10.1   /EXclude
+                       Excludes specified files from deletion.
+     
+                       2.3.10.2   /{NO} QUery
+                       {Doesn't} prompt the user for verification before
+                       deletion.
+     
+                       2.3.10.3   /SYStem
+                       Allows deletion of .SYS files from specified device.
+     
+               2.3.11  DIrectory /<SWITCHES> <FILESPEC>
+               Displays filenames on specified device.
+     
+                       2.3.11.1   /ALPhabetize
+                       Alphabetizes filenames on specified device.
+     
+                       2.3.11.2   /BADblocks
+                       Searches for defective blocks on the specified
+                       device.
+     
+                       2.3.11.3   /BEGin
+                       Starts printing directory at specified filename.
+                       Example:
+                       .DIR PRGRM.BAS/BEGIN
+     
+                       2.3.11.4   /BLocks
+                       Displays starting block number of files on specified
+                       device.
+
+                             THE PDP-11 HOW-TO BOOK                        
+
+
+
+
+
+                       2.3.11.5   /BRief or /FAst
+                       Prints only the filenames on the specified device.
+     
+                       2.3.11.6  /COLumns:n
+                       Prints directory in n columns.
+     
+                       2.3.11.7   /DELeted
+                       Prints only deleted files.
+     
+                       2.3.11.8   /FIles
+                       Prints names of files placed upon bad blocks.  (Use
+                       with /BADBLOCKS, section 2.3.11.2)
+     
+                       2.3.11.9   /FRee
+                       Displays empty blocks on specified device.
+     
+                       2.3.11.10  /FUll
+                       Displays files and empty blocks on specified device.
+     
+                       2.3.11.11  /OCtal
+                       Displays block length and starting position of
+                       files in octal.
+     
+                       2.3.11.12  /OUTput:<FILESPEC>
+                       Sends directory to specified file.
+                       Example:
+                       .DIR/OUTPUT:TT:
+                       .DIR/OUTPUT:DIR.TXT/FAST/ALPHA
+     
+                       2.3.11.13  /SUMmary
+                       Displays how many files are in each segment of the
+                       disk.
+     
+                       2.3.11.14  /VOLumeid
+                       Displays Volume-Id and owner of disk.  (See section
+                       2.3.18)
+     
+               2.3.12  E (EXAMINE) <OCTAL ADDRESS>
+               Equivilent to PEEK in BASIC.  (Address in octal)
+     
+               2.3.13  EDit <FILESPEC>/<SWITCHES>
+               The edit command is used to create or edit a file on the
+               specified device.  Usually, when edit is typed, the system
+               editor will be run (EDIT.SAV).  However, if the editor has
+               been changed with the set command (see section 2.3.30.2),the
+               editor set will be the one run.
+     
+                       2.3.13.1   /CREate
+                       Will create a new file on the specified device and
+                       clear the text buffer.
+     
+                       2.3.13.2   /INSpect
+                       Opens an existing file as read-only.  Will not
+                       create an output file.
+
+                             THE PDP-11 HOW-TO BOOK                        
+
+
+
+
+
+     
+                       2.3.13.3   /OUTput:<FILESPEC>
+                       Will use an alternate file for output.
+     
+               2.3.14  EXEcute <FILESPEC>
+               Compiles, links and runs the specified file.  (See sections
+               2.3.5, 2.3.20 and 2.3.28)
+     
+               2.3.15  FORtran /<SWITCHES> <FILESPEC>
+               Used for FORTRAN programming.
+     
+                       2.3.15.1   /LINk:<FILESPEC>
+                       Lists file and diagnostics to <FILESPEC>.
+     
+                       2.3.15.2   /{NO} OBJect
+                       Will {not} create an object file.
+     
+                       2.3.15.3   /COde:type
+     
+                                  2.3.15.3.1    EAE
+                                  Creates EAE object code.
+     
+                                  2.3.15.3.2    EIS
+                                  Creates EIS object code.
+     
+                                  2.3.15.3.3    FIS
+                                  Creates FIS object code.
+     
+                                  2.3.15.3.4    THR
+                                  Creates THR object code.
+     
+                       2.3.15.4   /DIAGnose
+                       Enables error diagnostics.
+     
+                       2.3.15.5   /EXTend
+                       Enables extended column source code.
+     
+                       2.3.15.6   /HEADer
+                       Displays options in effect.
+     
+                       2.3.15.7   /{NO} LINEnumbers
+                       {May} surpress output of compiler line numbers.
+     
+                       2.3.15.8   /RECord:length
+                       Overrides record length of 132 for ASCII sequential
+                       I/O.
+     
+                       2.3.15.9   /SHow:n
+                                  2.3.15.9.1    n=0
+                                  Lists only diagnostics.
+     
+                                  2.3.15.9.2    n=1
+                                  Lists source map and diagnostics.
+     
+
+                             THE PDP-11 HOW-TO BOOK                        
+
+
+
+
+
+                                  2.3.15.9.3    n=2
+                                  Lists storage map and dignostics.
+     
+                                  2.3.15.9.4    n=3
+                                  Lists diagnostics, source program, and
+                                  storage map.
+     
+     
+                                  2.3.15.9.5    n=4
+                                  Lists generated code and diagnostics.
+     
+                                  2.3.15.9.6    n=7
+                                  Lists diagnostics, source program,
+                                  storage map and codes.
+     
+                       2.3.15.10  /STATistics
+                       Prints out memory, time elapsed and length of the
+                       symbol table.
+     
+                       2.3.15.11  /SWAP
+                       Allows swapping of the USR.
+     
+                       2.3.15.12  /NOSWAP
+                       Disables swapping of the USR.
+     
+                       2.3.15.13  /UNITS:n
+                       Sets the number of logical units that may be opened.
+     
+                       2.3.15.14  /WARNINGS
+                       Prints out warning messages.
+     
+               2.3.16  GEt <FILESPEC>
+               Loads the specified file from the disk into memory.
+     
+               2.3.17  Help <TOPIC>
+               Displays helpful information on the topic specified.
+               Note:  The file HELP.SAV must be on the disk for this
+               command to function.
+     
+               2.3.18  INItialize <DEVICE>/<SWITCHES>
+               Erases the specified device and formats it for use.
+     
+                       2.3.18.1   /BAdblocks
+                       Scans the specified device for bad blocks and
+                       patches them with the file "FILE.BAD".
+     
+                       2.3.18.2   /INterchange
+                       Erases the disk in standard ANSI interchange mode.
+     
+                       2.3.18.3   /{NO} Query
+                       Does {not} prompt a user for verification.
+
+                             THE PDP-11 HOW-TO BOOK                        
+
+
+
+
+
+                       2.3.18.4   /Segments:n
+                       Allows the user to specify the number of segments on
+                       the disk.
+     
+                       2.3.18.5   /Volumeid
+                       Will prompt the user for a volumeid and owner name.
+                       Example:
+                       .INITIALIZE/VOLUMEID DX1:
+     
+     
+               2.3.19  INStall <DEVICE>
+               Allows user to install a new device in the computer.  The
+               handler for that device must be on the disk.  (DEVICE.SAV)
+     
+               2.3.20  LINk.<SWITCHES> <FILESPEC>
+               Link allows a user to create relocateable code with an
+               absolute starting address.
+     
+                       2.3.20.1   /BOTtom
+                       Sets absolute bottom address used by load module.
+     
+                       2.3.20.2   /EXEcute <FILESPEC>
+                       Specifies output file for the machine code.
+     
+                       2.3.20.3   /NOEXEcute
+                       Surpresses creation of output file.
+     
+                       2.3.20.4   /EXTend:n
+                       Allows user to extend his program by octal number n.
+     
+                       2.3.20.5   /LDa
+                       Puts files into .LDA format for loading into a
+                       binary loader.
+     
+                       2.3.20.6   /MAP <FILESPEC>
+                       Produces a link loading map to <FILESPEC>.
+     
+                       2.3.20.7   /Transfer:n
+                       Specifies transfer address of the program.
+     
+               2.3.21  LOad <DEVICE>
+               Loads the specified device handler from the disk.
+     
+               2.3.22  Print/<SWITHCES><FILESPEC>
+               Prints the specified file to the line printer.
+     
+               2.3.23  R <FILESPEC>
+               Runs the specified program from device SY:
+     
+               2.3.24  REEnter
+               Allows the user to re-enter the previously run program
+               without reloading or erasing memory.
+
+                             THE PDP-11 HOW-TO BOOK                        
+
+
+
+
+
+               2.3.25  REMove <DEVICE>
+               Removes the specified device from the device handler table.
+     
+               2.3.26  REName/<SWITCHES><FILESPEC1><FILESPEC2>
+               Renames <FILESPEC1> to <FILESPEC2> on one disk.  You may not
+               rename from one disk to another.
+     
+                       2.3.26.1   {NO} Log
+                       Do, don't print file renaming progress.
+     
+                       2.3.26.2   /NEwfiles
+                       Renames only files with a current date.
+     
+                       2.3.26.3   /{NO} REPlace
+                       Will, will not rename files whose filenames already
+                       exist.
+     
+                       2.3.26.4   /SEtdate
+                       This option puts the current date on all files that
+                       have been renamed.
+     
+                       2.3.26.5   /SYstem
+                       This option allows renaming of .SYS files.
+     
+               2.3.27  RESet
+               The reset command erases the current program in memory and
+               closes all files.
+     
+               2.3.28  RUn <FILESPEC>
+               The run command runs a specified file from the default
+               device.
+     
+               2.3.29  SAve <FILESPEC> <ADDRESS1-ADDRESS2>
+               The save command allows portions of memory to be saved to
+               disk.
+     
+               2.3.30  SEt <DEVICE> <CONDITION>
+               The set command allows the user to modify device
+               characteristics.
+     
+                       2.3.30.1   TT:condition
+     
+                                  2.3.30.1.1    HOLD
+                                  Puts VT-52 into special hold screen mode.
+     
+                                  2.3.30.1.2    NOHOLD
+                                  Takes VT-52 out of hold screen mode.
+     
+                                  2.3.30.1.3    QUIET
+                                  Prevents system from echoing characters
+                                  from indirect files.
+     
+                                  2.3.30.1.4    NOQUIET
+                                  Echoes characters from indirect files.
+
+                             THE PDP-11 HOW-TO BOOK                        
+
+
+
+
+
+     
+                                  2.3.30.1.5    SCOPE
+                                  Uses [backspace-space-backspace] as the
+                                  the delete character.
+     
+                                  2.3.30.1.6    NOSCOPE
+                                  Echoes backslash and the character
+                                  deleted when delete is pressed.
+
+                             THE PDP-11 HOW-TO BOOK                        
+
+
+
+
+
+                       2.3.30.2   EDIT:condition
+     
+                                  2.3.30.2.1    EDIT
+                                  Uses EDIT.SAV as the system editor.
+     
+                                  2.3.30.2.2    TECO
+                                  Uses TECO editor as the system editor.
+     
+                       2.3.30.3   ERROR:condition
+     
+                                  2.3.30.3.1    ERROR
+                                  Causes indirect files to abort if error
+                                  occurs.
+     
+                                  2.3.30.3.2    NONE
+                                  Ignores all errors which occur during
+                                  execution of indirect files.
+     
+                                  2.3.30.3.3    SEVERE
+                                  Ignores all but the most severe errors
+                                  which occur during the execution of
+                                  indirect files.
+     
+                                  2.3.30.3.4    WARNINGS
+                                  Will abort indirect files if warnings of
+                                  errors occur during the execution of
+                                  indirect files.
+     
+                       2.3.30.4   WILDCARD:condition
+                       Allows RT-11 to interpret missing file specs as
+                       wildcards.
+     
+                                  2.3.30.4.1    EXPLICIT
+                                  Sets RT-11 to accept file types "as is"
+                                  without insertion of wildcards.
+     
+                                  2.3.30.4.2    IMPLICIT
+                                  Will set RT-11 to add wildcards to
+                                  incomplete file names.
+     
+               2.3.31  SHow <DEVICES>
+               Will show logical devices connected to each physical device.
+     
+                       2.3.31.1   MEANING OF MESSAGES
+                       (Loaded)   :Device has been loaded into memory with
+                                   the LOAD command.  (See section 2.3.21)
+                       (Resident) :Indicates that the device is resident in
+                                   the computer and cannot be removed.
+     
+               2.3.32  SQUeeze <DEVICE>/<SWITCHES>
+               Compresses files on the disk and removes spaces.
+     
+                       2.3.32.1   /OUTput:<FILESPEC>
+                       Squeezes information from one device to another.
+
+                             THE PDP-11 HOW-TO BOOK                        
+
+
+
+
+
+     
+                       2.3.32.2   /QUEry
+                       Will prompt user before squeezing files.
+     
+                       2.3.32.3   /NOQUery
+                       Will not prompt user before files are squeezed.
+     
+               2.3.33  STart {OPTIONAL OCTAL ADDRESS}
+               If an address is given, the processor will jump to that
+               address.  If none is given, the starting address of the most
+               recently loaded file will be used.
+     
+               2.3.34  TIMe <HH:MM:SEC>
+               Sets time (if argument present).  Will print time if there
+               is no argument.
+     
+               2.3.35  TYpe <FILE>
+               Displays the specified file on the console.
+     
+                       2.3.35.1   /COPies:n
+                       Prints n copies of the specified file.
+     
+                       2.3.35.2   /DELete
+                       Prints file, thens deletes it.
+     
+                       2.3.35.3   /Log
+                       Displays filenames being typed to the console.
+     
+                       2.3.35.4   /NEWfiles
+                       Only types files created on the current date.
+     
+                       2.3.35.5   /QUEry
+                       Prompts user for verification before typing.
+     
+               2.3.36  UNload <FILESPEC>
+               Removes a device handler from the device table.
+     
+          2.4  UTILITY PROGRAM
+          Device utilities are programs that help with the manipulation of
+          system I/O devices.  To start a utility, type R space <FILENAME>.
+          The command string interpreter prompt (*) will appear.  The
+          utility is waiting for you to type in a command.  The commands
+          are different for each utility.  However, the basic format is:
+          <FILE1>=<FILE2>/<SWITCHES>
+     
+               2.4.1   EDIT
+               Edit is a general purpose line editor which can be used to
+               correct or create files.
+
+                             THE PDP-11 HOW-TO BOOK                        
+
+
+
+
+
+                       2.4.1.1    COMMANDS
+     
+                       CMD+<ESC>  MEANING
+                       ----------------------------------------------------
+     
+                       nA         Advances n number of lines
+                        B         Sets pointer to top of file
+                       nJ         Jumps n letters to the right
+                       nF<str>    Finds the nth occurance of <str>
+                       nG<str>    Search the text buffer for <str>
+                        P         Same function as F
+                       nL         Lists n number of lines
+                       /L         Lists all of the text buffer
+                        V         Types the current line (Verify)
+                       nC<str>    Changes n characters to <str>
+                       nD         Delete n characters
+                       nX         Exchanges n lines
+                        I         Insert characters (lines)
+                       nK         Kills n lines
+                       EC         Set edit to console
+                       ED         Sets edit to display
+                       EL         Sets lowercase
+                       EU         Sets uppercase
+                       EV         Prints version of edit
+                       EX         Save program and goes to monitor
+                       EW         Writes program to disk
+                       ER <FILE>  Reads filespec in from disk
+                        R         Reads in next text page
+                       EB         Loads file and creates backup file
+     
+               2.4.2   PIP (Periphial Interchange Program)
+               PIP is a general purpose copy utility which fascilitates
+               copying in several different formats.
+     
+                       2.4.2.1    COMMANDS
+     
+                       OPTION     EXPLANATION
+                       ----------------------------------------------------
+     
+                       /A         Copies in ASCII mode.  Treats ctrl-Z as
+                                  end of file.
+                       /B         Copies file in binary mode.
+                       /C         Preforms operation only on files with the
+                                  current date.
+                       /D         Delete files from device.
+                       /G         Ignore any errors during copying.
+                       /K:n       Makes n copies of files.
+                       /N         Do not copy or rename if file is on the
+                                  output device.
+                       /O         Deletes current file on output device if
+                                  output file has same name.
+                       /P         Excludes files from operations.
+                       /Q         Queries for verification.
+                       /R         Renames files.
+
+                             THE PDP-11 HOW-TO BOOK                        
+
+
+
+
+
+                       /S         Copies files one block at a time.
+                       /T         Puts current dates on all specified file.
+                       /U         Copies and merges all files specified.
+                       /W         Prints log of all operations preformed.
+                       /Y         Includes .SYS files.
+     
+               2.4.3   DUP (Device Utility Program)
+               DUP is a general purpose disk maintenance program.
+     
+                       2.4.3.1    COMMANDS
+     
+                       OPTION     EXPLANATION
+                       ----------------------------------------------------
+     
+                       /B         Writes .BAD file over any bad blocks.
+                       /C:m(:n)   Creates file on specified device as:
+                                  m=   starting block (octal)
+                                  n=   start of file
+                       /F         Prints file containing bad blocks.  Use
+                                  with /K.
+                       /H         Reads to bad block, writes to bad block,
+                                  then reads bad block again.  Use with /K.
+                       /I:r:s:w   Copies image of disk. r,s,w represent
+                                  block numbers.
+                       /K:b:e     Scans device for bad blocks for bad block
+                                  and prints octal block number of bad
+                                  blocks.  b,e represent start & end.
+                       /N:a       Use with /Z to set number of directory
+                                  segments.
+                       /O         Boots specified device.
+                       /S         Squeezes disk
+                       /T:n       Extends file by n blocks
+                       /U         Copies boot to disk
+                       /V:vol     Print userid and owner name.  Use with /Z
+                       /X         Inhibits booting of system device when
+                                  squeezed.  Use with /S
+                       /Y         Inhibits verification query
+                       /Z         Initializes directory of device
+                                  specified.
+     
+               2.4.4   DIR (Directory)
+               The DIR program allows printing of the system directories in
+               any number of formats.
+     
+                       2.4.4.1    COMMANDS
+     
+                       OPTION     EXPLANATION
+                       ----------------------------------------------------
+     
+                       /A         Alphabetizes directory
+                       /B         Lists filenames, creation date, starting
+                                  block, and length in decimal.
+                       /C:n       Prints directory in n columns.
+                       /D:date    Prints files with specified date.
+
+                             THE PDP-11 HOW-TO BOOK                        
+
+
+
+
+
+                       /E         Lists entire directory including empty
+                                  spaces on the disk.
+                       /F         Prints directory in 5 columns.  Prints
+                                  only filenames.
+                       /G         Starts printing directory after specified
+                                  file.
+                       /J:date    Prints files created on or after a
+                                  specified date.
+                       /K:date    Prints files created before a date.
+                       /L         Prints full directory.
+                       /M         Lists unused areas of the disk.
+                       /N         Lists a summary of the disk
+                       /O         Lists block numbers and sizes in octal
+                       /P         Exclude specified files
+                       /Q         Prints deleted files
+                       /S:xxx     Sorts directory in specified format.
+                                  (xxx can be NAM,POS,SIZ or TYP)
+     
+     3.0  MUBASIC (V1.0)
+     MUBASIC (multiple user basic) is the basic currently used on the
+     PDP-11.
+     
+          3.1  BRINGING UP MUBASIC
+          To start MUBASIC, you must be in the KMON (RT-11) monitor and
+          have the period "." prompt.  Type:  R MUBAS <RET>  (See section
+          2.3.23)  The message "CONFIGURATION FILE: OLD, NEW OR NONE" will
+          be displayed.  Type "O" for an old configuration file.  (NOTE:
+          See Appendix E for creating an old configuration file) The
+          computer will print "CONFIGURATION FILENAME>" or something
+          similar.  It is waiting for you to type in the name of a
+          configuration file.  The configuration files currently available
+          are:
+     
+               1USER   -One terminal will operate
+               2USER   -Two terminals will operate
+               2USERS  -Two terminals with USR on disk.
+               3USER   -Three terminals will operate.
+               3USERS  -Three terminals with operate with USR on disk.
+               4USER   -Four terminals will operate.
+               4USERS  -Four terminals with USR on disk.
+     
+          (Version 1 will support only 4 terminals)
+          The usual configuration file is 4USER.  Type the name of the
+          configuration file you wish to use.  The system will then start
+          up.  (See section 3.2)
+     
+          3.2  A DESCRIPTION OF MUBASIC INITIALIZATION
+          After MUBASIC is initialized, it will run INIT.B00, which may do
+          one of two things, depending on whether a password system is used
+          or not.  When the user types BYE, MUBASIC will run BYE.B00.  The
+          contents of these files determine whether the system uses
+          passwords or not.
+          Note:  All sections under 3.2.2 are subject to change.
+
+                             THE PDP-11 HOW-TO BOOK                        
+
+
+
+
+
+               3.2.1   NORMAL SYSTEM
+               In a system that does not use passwords, INIT.B00 and
+               BYE.B00 contain the following:
+               10  A = SYS(7)+SYS(5)
+               The effect of this is the "NEW" command.  Since the system
+               automatically switches to privileged status when the system
+               is booted or "BYE" is typed, this leaves everyone as a
+               privileged user in MUBASIC.  Typing "BYE" would erase the
+               program in memory.
+     
+               3.2.2   PASSWORD SYSTEM
+               In a system that uses passwords, INIT.B00 contains:
+               10  PRINT "MU-BASIC RT-11 IS ON THE AIR!"
+               20  CHAIN "HELLO.B00"
+               What this does is to run HELLO.B00.  HELLO asks you to say
+               hello, enter your userid, and then your password.  It takes
+               this information and starts scanning through PASWRD.B00.  If
+               it doesn't find a match, you will be told and the program
+               will restart.  If it does, it checks to see if the password
+               is unprivileged.  If it is, it issues an:
+               A=SYS(-2)
+               which makes the terminal unprivileged.  (See 3.2.2.2)  It
+               then prints NOTICE.B00 on the terminal and erases itself,
+               leaving you in BASIC.
+     
+                       3.2.2.1    PASWRD.B00
+                       At the present time, PASWRD.B00 contains the userid/
+                       password pairs in use.  It also has a flag telling
+                       whether each pair is privileged or unprivileged.
+                       The format of the file is designed so that it can be
+                       loaded like a BASIC program, edited, and saved.
+                       This is the format of the file:
+                       <LINE NUMBER> <" or '> <USERID>,<PASSWORD>,
+                       A double quote signifies a privileged password, a
+                       single quote representing an unprivileged one.  Here
+                       is an example of a short password file:
+                       10 'AS,USER,
+                       20 "00,PRIV,
+                       30 'Y1,ABCD,
+                       In this example, "USER" and "ABCD" are unprivileged,
+                       while "PRIV" is privileged.
+     
+                       3.2.2.2    PRIVILEGED/UNPRIVILEGED STATUS
+                       In MUBASIC, if a terminal has privileged status, it
+                       can examine any filename with any extension.  If an
+                       "A=SYS(-2)" is issued, however, the terminal becomes
+                       unprivileged.  If a terminal is unprivileged, it can
+                       only addess files whose last two characters in the
+                       extension match the userid.  (See section 3.2.2.3)
+                       If an attempt is made to access a file whose
+                       rightmost 2 digits do not match the userid, an
+                       "FPV" error will be printed.  (See section 5.1)
+                       In addition, certain system calls will not work if
+                       the terminal is unprivileged.  (See section 3.4)
+
+                             THE PDP-11 HOW-TO BOOK                        
+
+
+
+
+
+                       3.2.2.3    THE USERID
+                       The userid in a password system is a 2 character
+                       value used to match the last 2 letters in an
+                       extension.  The current userid may be examined or
+                       altered with the SYS(-1,X) command. For example,
+                       A=SYS(-1,-1)
+                       PRINT CHR$(A);CHR$(A/256)
+                       will print the userid. (See section 3.4)
+                       (This command may not be invoked if the terminal is
+                       unprivileged). If the userid is "W8", the command
+                       OLD TEST
+                       will try to load DX0:TEST.BW8
+     
+          3.3  FILE TYPES
+          Several file types are available for different uses in MUBASIC.
+          These can be used for a number of different purposes.  Note that
+          some may function as described only if a password system is in
+          effect.
+     
+               3.3.1   PUBLIC
+               MUBASIC files that are public are saved as NAME.B   and have
+               no userid in the extension.  These files may be accessed by
+               anyone, regardless of the terminal privilege status.  This
+               file type is obtained by preceeding the filename with a
+               dollar sign ($).  Only a privileged user may create a public
+               file.
+     
+               3.3.2   GROUP
+               Group files are files which are saved as NAME.Bx, where x is
+               the first letter of the userid.  These files may be accessed
+               by preceding the name with a number sign (#) and can only be
+               used by those users which have the same first letter in
+               their userid.  Only a privileged user may create a group
+               file.
+     
+               3.3.3   PRIVATE
+               Private files contain .B plus the full userid in the
+               extension.  They may not be examined by other non-privileged
+               users.
+     
+          3.4  SYSTEM CALLS
+          System calls are BASIC commands that take the form of:
+          <VARIABLE>=SYS(ARG1<,ARG2>)
+          Some system functions will not work if the terminal is
+          unprivileged.  Here is a list of all the system commands:
+     
+               PRIV    SYS CALL   FUNCTION
+               ------------------------------------------------------------
+     
+                       SYS(0)     Resets ctrl-O
+                       SYS(2)     Reenables keyboard echo
+                       SYS(3)     Disables keyboard echo
+                       SYS(4)     Reads one character from the keyboard
+                       SYS(4,1)   Reads one character from file #1
+
+                             THE PDP-11 HOW-TO BOOK                        
+
+
+
+
+
+                       SYS(5)     Erases program in memory
+                       SYS(6,len) Sets terminal length to len
+                       SYS(7)     Re-enable ctrl-C
+               *       SYS(8)     Disable ctrl-C
+                       ======
+                       SYS(-4)    Returns privilege status
+               *       SYS(-3)    Returns to RT-11 monitor
+                       SYS(-2)    Make a privileged user non-privileged
+                       SYS(-1,-1) Returns userid
+               *       SYS(-1,A)  Makes userid = A
+                                  Example:
+                                  A=SYS(-1,ASC("9")*256+ASC("W")
+                                  Would make the userid "W9".
+     4.0  RMON
+     RMON is the resident monitor of the PDP-11 computer.  Little about it
+     is known, as we could find no documentation covering it.  However, a
+     few things have been discovered, which may or may not be of use to
+     you.
+     
+          4.1  ENTERING RMON
+          When the BREAK key is depressed, the computer will go into RMON.
+          It is characterized by the "@" prompt.  Only the console will
+          operate while in RMON.
+     
+          4.2  RMON COMMANDS
+          RMON has a set of commands that can be used to alter information
+          in the computer.  Remember that all commands must be shifted to
+          operate.
+     
+               4.2.1   P
+               The P (precede) command will attempt to continue at the
+               break address.  If possible, the computer will continue as
+               if BREAK had never been pressed.
+     
+               4.2.2   {ADDRESS} G
+               The G (go) command starts the processor at the address
+               specified by the user.  Example:
+               173000G
+               would start the processor at address 173000.
+               A useful application of this is when BREAK is accidently
+               pressed, and shift-P will not work.  Often a number is
+               printed on the console.  This is the error address.
+               Sometimes typing this number, followed by the G command will
+               restart the program you were running.  This can avert many
+               problems with having to reboot the system.
+     
+               4.2.3   L
+               The L (lock) command will completely prevent anyone from
+               doing anything else on the computer.
+     
+     5.0  APPENDICES
+     Please consult the system manuals for more detailed information.
+
+                             THE PDP-11 HOW-TO BOOK                        
+
+
+
+
+
+          5.1  APPENDIX A:  MUBASIC ERROR MESSAGES
+     
+          SHORT        LONG
+          -----------------------------------------------------------------
+     
+          ARG          Argument error
+          ATL          Array too large
+          BDR          Bad data read
+          BLG          Bad log
+          BRT          Bad data- retype from error
+          BSO          Buffer storage overflow
+          CAO          Channel already open
+          CCP          Checksum error in compile program
+          CDF          Cannot delete file
+          CIE          Channel I/O error
+          CNO          Channel not open
+          COO          Common out of order
+          DHE          Device hardware error
+          DNE          Device not entered (disk not in drive, drive open)
+          DRO          Directory overflow (Squeeze disk)
+          CVO          Control variable out of range
+          DVO          Division by zero
+          ECC          Error closing channel
+          EER          Exponentation error
+          EII          Excess input ignored
+          ENL          End not last
+          ETC          Expression too complex
+          FAD          Function already defined
+          FAE          File already exists
+          FNF          File not found
+          FOV          Floating overflow
+          FPV          File privilege violation
+          FSV          Nested FOR statements with same control variable
+          FUN          Floating underflow
+          FWN          For without next
+          ICN          Illegal channel number
+          IDF          Illegal DEF
+          IDM          Illegal DIM
+          IDT          Illegal data type
+          IEF          Illegal end of file in compile program
+          IFL          Illegal file length
+          IFS          Illegal file specification
+          IID          Illegal I/O direction
+          IIM          Illegal in immediate mode
+          INS          Inconsistent number of subscripts
+          IOV          Integer overflow
+          IRS          Illegal record size
+          ISE          Input string error
+          ISL          Illegal string length
+          LTL          Line too long
+          MSP          Missing subprogram
+          NER          Not enough room (Squeeze disk)
+          NGS          Negative square root
+          NSM          Numbers and strings mixed
+
+                             THE PDP-11 HOW-TO BOOK                        
+
+
+
+
+
+          NVD          Not a valid device
+          NWF          Next without for
+          OOD          Out of data
+          PRU          Print using error
+          PTB          Program too big
+          RES          Resequence argument error
+          RPL          Use replace
+          RWG          Return without gosub
+          SOB          Subscript out of bounds
+          SSO          String storage overflow
+          STL          String too long
+          SUB          Substitute error
+          SYN          Syntax error
+          TIC          Too many items in common
+          TLT          Line too long to translate
+          TMG          Too many gosub's
+          UAC          Undimensioned array in call
+          UFN          Undefined function
+          ULN          Undefined line number
+          VCU          Virtual array channel already in use
+     
+          5.2  APPENDIX B:  MONITOR MEMORY LOCATIONS
+     
+               0,2     Monitor restart
+               4,6     Time out or bus error trap; RT-11 sets this to point
+                       to its internal trap handler
+               10,12   Reserved instruction trap
+               30,32   EMT trap vector
+               34,36   Trap instruction vector
+               40,51   RT-11 system communication area (loaded by R, RUN,
+                       GET)
+               52,57   System communication area
+               60,62   Console terminal input interrupt vector
+               64,66   Console terminal output interrupt vector
+               220,222 RK11/RK01/RK05 disk vector
+               330,332 VT-11 shift out interrupt vector
+     
+          System Communication Area 40-51
+               40,41   Start address of program
+               42,43   Stack pointer
+               44,45   Job status word
+                       BIT#       MEANING
+                       ----------------------------------------------------
+     
+                       15         USR swap bit
+                       14         Lowercase bit
+                       13         Reenter bit
+                       12         Special mode TT bit
+                       11         Pass line to KMON bit store.
+                       10         Null
+                        9         Overlay bit (set by link)
+     
+                        8         Chain bit.  If set, words 500-776 are
+                                  loaded from disk.
+
+                             THE PDP-11 HOW-TO BOOK                        
+
+
+
+
+
+                        7         Error halt bit (halts on I/O error if set
+                        6         Null
+                        5         Filter escape sequences.  Ignored if bit
+                                  4 is set.
+                        4         Process escape sequence
+                        3         Reserved for system use
+                        2-0       Reserved for internal use
+     
+               46,47   USR load address
+               50,51   High memory address
+               52      EMT error code.  Error code stored here.
+               53      User program error code
+     
+                       BITS       MEANING
+                       ----------------------------------------------------
+     
+                       7-4        Reserved
+                         3        Severe error
+                         2        Error
+                         1        Warning
+                         0        Success
+     
+               54,55   Address of resident monitor
+               56      Fill character (7 bits)
+               57      Fill count # of fill characters
+     
+          5.3 APPENDIX C:  FILE EXTENSION MEANINGS
+     
+               EXTENSION          MEANING
+               ------------------------------------------------------------
+     
+               .BAK               Backup file
+               .BAS               Basic source file
+               .COM               Command file
+               .DAT               Data file
+               .DIR               Directory file
+               .FOR               Fortran
+               .HLP               Help file
+               .LOG               Link-bat log file
+               .LST               Listing created by FORTRAN
+               .MAC               Macro file
+               .OBJ               Relocatable object file
+               .SAV               Machine language file
+               .TXT               Text file
+               .MAP               Link map file
+               .CRF               Cross reference file
+               .LDA               Binary
+               .D00               System configuration (MUBAS)
+               .B00               System program (MUBAS)
+               .DBL               DIBOL
+               .FOC               FOCAL
+               .APL               APL file
+
+                             THE PDP-11 HOW-TO BOOK                        
+
+
+
+
+
+          5.4  APPENDIX D:  LEGAL FILENAMES AND DEVICES
+     
+               DEVICE NAMES
+               ------------------------------------------------------------
+     
+               CR:     Card reader
+               DTx:    Dectape
+               DX:     RX01 Disk
+               DP:     Disk pack
+               LP:     Line printer
+               MT:     Magnetic tape
+               DK:     Default user drive
+               SY:     Default system drive
+               TT:     Teletype
+     
+          5.5  APPENDIX E:  CONFIGURING A MUBASIC CONFIGURATION FILE
+          To configure a new MUBASIC configuration file, you must answer
+          answer a series of questions.
+               1:KEEP USR RESIDENT
+               If you wish the oprating system to be left on the disk,
+               enter "N".  Otherwise enter "Y".
+     
+               2:ENTER AVAILABLE DEVICES:
+               Enter DX0 and a "P", if you wish the device to be public, a
+               comma, DX1 and then a "P" if you wish that device to be
+               public.  Press return twice.
+     
+               3:SYSTEM BUFFERS SPECIFICATION (NUMBER, SIZE(WORDS))
+               This question relates to file buffer size of the system.
+               The usual answer is "1,256".  Hit return twice.
+     
+               4:SYSTEM I/O AREA SIZE (WORDS)
+               Sets the amount of memory used for system I/O.  The normal
+               response is 2.
+     
+               5:NUMBER OF USER CHANNELS
+               Sets number of BASIC channels which can be used by the user.
+               Usually 20.
+     
+               6:NUMBER OF SYSTEM CHANNELS
+               The computer is asking how many terminals or printers are
+               hooked up.  Since we have 4 terminals and no printer, answer
+               "4".
+     
+               7:MAXIMUM NUMBER OF CHANNELS FOR NONPRIVILEGED USER
+               The computer wants to know how many files the non privileged
+               user may have open at once.  Answer "4".
+     
+     
+     
+               8:MAXIMIMUM NUMBER OF BLOCKS IN OPEN FOR UNPRIVILEGED USER
+               This asks how large the largest file for the unprivileged
+               user may be.  Answer 25.
+
+                             THE PDP-11 HOW-TO BOOK                        
+
+
+
+
+
+               9:DEFAULT NUMBER OF BLOCKS FOR OPEN
+               When a null file is created, specifies the number of blocks
+               that will be allocated.  Answer "0".
+     
+              10:OPT FNS (NONE, ALL OR INDIVIDUAL)
+               This question is asking you, of the BASIC functions, which
+               ones you wish to use.  If you type "A", all functions
+               will exist, if you type "N" there will be no functions, and
+               if you type "I", the computer will print each function name.
+               To keep it, type "Y".  To remove it, type "N".
+     
+              11:HOW MANY USERS
+               The system will support 4 users, but you may select from one
+               to four. (1-4)
+     
+              12:CORE #1
+               Just type return.
+     
+              13:TERM#x
+               The computer will prompt you for the terminal number of
+               each terminal you can use.  The terminal numbers are:
+     
+               LA-36 CONSOLE      ,177560,60
+               LA-36 MIDDLE       ,175610,300
+               LA-36 END          ,175620,310
+               VT-52              ,175630,320
+
+                             THE PDP-11 HOW-TO BOOK                        
+
+
+
+
+
+     
+     6.0  GLOSSARY OF TERMS
+     
+     ACK               Acknowlegement character.  Char 6 (octal)
+     ADDRESS           A number indicating the position of a byte in memory
+                       32 bit address range.
+     ALPHANUMERIC      The set of all the letters and numbers
+     ANSI              Americal National Standards Institute
+     ASCII             American Standard for Information Interchange
+     BASIC             Beginners All Purpose Symbolic Instructional Code.
+                       (A somewhat high level language)
+     BAUD RATE         The number of bits transmitted per second.
+     BINARY            A number in base 2 represented by 1's and 0's.
+     BLOCK             A physical unit of information on a logical record.
+                       Block size is usually expressed in bytes.
+     BIT               Single digit of a binary number.  Either 1 or 0.
+     BOOT              To use a bootstrap.  Generally used to describe
+                       starting up a computer.
+     BOOTSTRAP         A program used when starting the computer, which
+                       usually clears memory, sets up I/O devices, and
+                       loads the operating system.
+     BYTE              8 binary bits.
+     CLOSE             An operation performed on a file, which
+                       disassociates it from a particular program.
+     COMPILER          A program which takes high-level code and converts
+                       it to machine language.
+     CONSOLE           The terminal that has the most control over the
+                       system.
+     DIRECTORY         The table of contents of a device.
+     ECHO              A character typed is sent to the terminal to be
+                       printed.
+     EDITOR            A program used to create or modify text.
+     ESC               Escape
+     FILE              A logical body of information and considered as a
+                       unit by the system.
+     FORTRAN           FORmula TRANslator.  A high-level compiled language.
+     FULL DUPLEX       A mode of communication in which data is transmitted
+                       bi-directionally.
+     HALF DUPLEX       A mode of communication in which data is transmitted
+                       in one direction only.
+     HANDLER           A section of program used to control or communicate
+                       with an external device.
+     HIGH-LEVEL        A computer language that resembles "natural
+     LANGUAGE          language".
+     INITIALIZE        Erases and formats a disk for use.
+     INITIALIZATION    Starting the processor in a known state.
+     INPUT/OUTPUT      Describes lines or devices used to convey
+                       information.
+                       between the computer and the outside world.
+     LF                Line feed.
+     LINKER            A program which gathers and unites seperately
+                       written programs or routines for subsequent loading
+                       into memory and execution.
+     LOAD              The action of transferring a program from where it
+
+                             THE PDP-11 HOW-TO BOOK                        
+
+
+
+
+
+                       is stored into memory.
+     OCTAL             A number system where the numbers 0 to 7 are used to
+                       decode a 3 bit number.
+     PASSWORD          A unique sequence of alphnumberic characters
+                       assigned to the user of a computer system.
+     TT or TTY         Terminal or teletype
+     USR               User service routine.  (Disk operating routines)
+
+                             THE PDP-11 HOW-TO BOOK                        
+
+
+
+
+
+     
+                                     NOTES
+
+                             THE PDP-11 HOW-TO BOOK                        
+
+
+
+
+
+     
+                                     NOTES
+
+                             THE PDP-11 HOW-TO BOOK                        
+
+
+
+
+
+     
+                                     NOTES

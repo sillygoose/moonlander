@@ -155,6 +155,58 @@
 		56E80E4B137E4CC3009E7F15 /* Lander.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Lander.plist; path = Resources/Lander.plist; sourceTree = "<group>"; };
 		56E80E5E137E599D009E7F15 /* VGView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VGView.h; path = VectorGraphics/VGView.h; sourceTree = "<group>"; };
 		56E80E5F137E599E009E7F15 /* VGView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VGView.m; path = VectorGraphics/VGView.m; sourceTree = "<group>"; };
+		56ECD89C1540678B00565615 /* gtlem.lda */ = {isa = PBXFileReference; lastKnownFileType = file; path = gtlem.lda; sourceTree = "<group>"; };
+		56ECD89F1540678B00565615 /* gt40 */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = gt40; sourceTree = "<group>"; };
+		56ECD8A01540678B00565615 /* lunar */ = {isa = PBXFileReference; lastKnownFileType = file; path = lunar; sourceTree = "<group>"; };
+		56ECD8A11540678B00565615 /* mlc */ = {isa = PBXFileReference; lastKnownFileType = file; path = mlc; sourceTree = "<group>"; };
+		56ECD8A21540678B00565615 /* README */ = {isa = PBXFileReference; lastKnownFileType = text; path = README; sourceTree = "<group>"; };
+		56ECD8A41540678B00565615 /* mld */ = {isa = PBXFileReference; lastKnownFileType = file; path = mld; sourceTree = "<group>"; };
+		56ECD8A51540678B00565615 /* pdp11 */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = pdp11; sourceTree = "<group>"; };
+		56ECD8A61540678B00565615 /* pdp11.ini */ = {isa = PBXFileReference; lastKnownFileType = text; path = pdp11.ini; sourceTree = "<group>"; };
+		56ECD8A81540678B00565615 /* pdp11.ini */ = {isa = PBXFileReference; lastKnownFileType = text; path = pdp11.ini; sourceTree = "<group>"; };
+		56ECD8A91540678B00565615 /* README */ = {isa = PBXFileReference; lastKnownFileType = text; path = README; sourceTree = "<group>"; };
+		56ECD8AA1540678B00565615 /* rt11 */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = rt11; sourceTree = "<group>"; };
+		56ECD8AB1540678B00565615 /* rtv53_rl.dsk */ = {isa = PBXFileReference; lastKnownFileType = file; path = rtv53_rl.dsk; sourceTree = "<group>"; };
+		56ECD8AE1540678B00565615 /* GT40-1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "GT40-1.jpg"; sourceTree = "<group>"; };
+		56ECD8AF1540678B00565615 /* GT40-10.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "GT40-10.jpg"; sourceTree = "<group>"; };
+		56ECD8B01540678B00565615 /* GT40-2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "GT40-2.jpg"; sourceTree = "<group>"; };
+		56ECD8B11540678B00565615 /* GT40-3.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "GT40-3.jpg"; sourceTree = "<group>"; };
+		56ECD8B21540678B00565615 /* GT40-4.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "GT40-4.jpg"; sourceTree = "<group>"; };
+		56ECD8B31540678B00565615 /* GT40-5.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "GT40-5.jpg"; sourceTree = "<group>"; };
+		56ECD8B41540678B00565615 /* GT40-6.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "GT40-6.jpg"; sourceTree = "<group>"; };
+		56ECD8B51540678B00565615 /* GT40-7.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "GT40-7.jpg"; sourceTree = "<group>"; };
+		56ECD8B61540678B00565615 /* GT40-8.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "GT40-8.jpg"; sourceTree = "<group>"; };
+		56ECD8B71540678B00565615 /* GT40-9.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "GT40-9.jpg"; sourceTree = "<group>"; };
+		56ECD8B81540678B00565615 /* GT42-1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "GT42-1.jpg"; sourceTree = "<group>"; };
+		56ECD8B91540678B00565615 /* GT42-2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "GT42-2.jpg"; sourceTree = "<group>"; };
+		56ECD8BA1540678B00565615 /* GT42-3.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "GT42-3.jpg"; sourceTree = "<group>"; };
+		56ECD8BB1540678B00565615 /* GT42-4.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "GT42-4.jpg"; sourceTree = "<group>"; };
+		56ECD8BC1540678B00565615 /* GT42-5.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "GT42-5.jpg"; sourceTree = "<group>"; };
+		56ECD8BD1540678B00565615 /* GT42-6.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "GT42-6.jpg"; sourceTree = "<group>"; };
+		56ECD8BE1540678B00565615 /* GT42-7.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "GT42-7.jpg"; sourceTree = "<group>"; };
+		56ECD8BF1540678B00565615 /* GT42-8.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "GT42-8.jpg"; sourceTree = "<group>"; };
+		56ECD8C11540678B00565615 /* DEC GT44 Users Guide.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = "DEC GT44 Users Guide.pdf"; sourceTree = "<group>"; };
+		56ECD8C21540678B00565615 /* pdp11 instruction reference.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = "pdp11 instruction reference.pdf"; sourceTree = "<group>"; };
+		56ECD8C31540678B00565615 /* pdp11_doc.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = pdp11_doc.pdf; sourceTree = "<group>"; };
+		56ECD8C41540678B00565615 /* pdpbook.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = pdpbook.txt; sourceTree = "<group>"; };
+		56ECD8C51540678B00565615 /* RT-11 Commands Manual.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = "RT-11 Commands Manual.pdf"; sourceTree = "<group>"; };
+		56ECD8C61540678B00565615 /* VT-11 Instruction Set.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = "VT-11 Instruction Set.txt"; sourceTree = "<group>"; };
+		56ECD8C71540678B00565615 /* VT11 Graphic Display Processor.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = "VT11 Graphic Display Processor.pdf"; sourceTree = "<group>"; };
+		56ECD8C91540678B00565615 /* simh_doc.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = simh_doc.pdf; sourceTree = "<group>"; };
+		56ECD8CA1540678B00565615 /* simh_faq.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = simh_faq.pdf; sourceTree = "<group>"; };
+		56ECD8CB1540678B00565615 /* simh_swre.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = simh_swre.pdf; sourceTree = "<group>"; };
+		56ECD8CD1540678B00565615 /* gtlem.mac */ = {isa = PBXFileReference; lastKnownFileType = text; path = gtlem.mac; sourceTree = "<group>"; };
+		56ECD8CE1540678B00565615 /* lunar.bas */ = {isa = PBXFileReference; lastKnownFileType = text; path = lunar.bas; sourceTree = "<group>"; };
+		56ECD8CF1540678B00565615 /* mlc.mac */ = {isa = PBXFileReference; lastKnownFileType = text; path = mlc.mac; sourceTree = "<group>"; };
+		56ECD8D01540678B00565615 /* mld.mac */ = {isa = PBXFileReference; lastKnownFileType = text; path = mld.mac; sourceTree = "<group>"; };
+		56ECD8D11540678B00565615 /* Original GTLEM Source */ = {isa = PBXFileReference; lastKnownFileType = text; path = "Original GTLEM Source"; sourceTree = "<group>"; };
+		56ECD8D21540678B00565615 /* rtlem.mac */ = {isa = PBXFileReference; lastKnownFileType = text; path = rtlem.mac; sourceTree = "<group>"; };
+		56ECD8D41540678B00565615 /* get.cmd */ = {isa = PBXFileReference; lastKnownFileType = text; path = get.cmd; sourceTree = "<group>"; };
+		56ECD8D51540678B00565615 /* make.com */ = {isa = PBXFileReference; lastKnownFileType = text; path = make.com; sourceTree = "<group>"; };
+		56ECD8D61540678B00565615 /* put.cmd */ = {isa = PBXFileReference; lastKnownFileType = text; path = put.cmd; sourceTree = "<group>"; };
+		56ECD8D71540678B00565615 /* putr.com */ = {isa = PBXFileReference; lastKnownFileType = file; path = putr.com; sourceTree = "<group>"; };
+		56ECD8D81540678B00565615 /* putr.ini */ = {isa = PBXFileReference; lastKnownFileType = text; path = putr.ini; sourceTree = "<group>"; };
+		56ECD8D91540678B00565615 /* putr.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = putr.txt; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -197,6 +249,7 @@
 			children = (
 				560D212814115314000F3A22 /* README */,
 				560FA0D5137991AE0017EE25 /* Moonlander */,
+				56ECD89A1540678B00565615 /* Moonlander Classic */,
 				560FA0FA137991AE0017EE25 /* MoonlanderTests */,
 				560FA0CE137991AD0017EE25 /* Frameworks */,
 				560FA0CC137991AD0017EE25 /* Products */,
@@ -363,6 +416,153 @@
 				5613DDE7143A85F80059077A /* VGDialog.m */,
 			);
 			name = "Vector Graphics";
+			sourceTree = "<group>";
+		};
+		56ECD89A1540678B00565615 /* Moonlander Classic */ = {
+			isa = PBXGroup;
+			children = (
+				56ECD89B1540678B00565615 /* Binaries */,
+				56ECD8AC1540678B00565615 /* Documentation */,
+				56ECD8D31540678B00565615 /* Utilities */,
+			);
+			path = "Moonlander Classic";
+			sourceTree = "<group>";
+		};
+		56ECD89B1540678B00565615 /* Binaries */ = {
+			isa = PBXGroup;
+			children = (
+				56ECD89C1540678B00565615 /* gtlem.lda */,
+				56ECD89D1540678B00565615 /* Moonlander */,
+				56ECD8A51540678B00565615 /* pdp11 */,
+				56ECD8A61540678B00565615 /* pdp11.ini */,
+				56ECD8A71540678B00565615 /* RT11 */,
+			);
+			path = Binaries;
+			sourceTree = "<group>";
+		};
+		56ECD89D1540678B00565615 /* Moonlander */ = {
+			isa = PBXGroup;
+			children = (
+				56ECD89E1540678B00565615 /* Classic */,
+				56ECD8A31540678B00565615 /* Debug */,
+			);
+			path = Moonlander;
+			sourceTree = "<group>";
+		};
+		56ECD89E1540678B00565615 /* Classic */ = {
+			isa = PBXGroup;
+			children = (
+				56ECD89F1540678B00565615 /* gt40 */,
+				56ECD8A01540678B00565615 /* lunar */,
+				56ECD8A11540678B00565615 /* mlc */,
+				56ECD8A21540678B00565615 /* README */,
+			);
+			path = Classic;
+			sourceTree = "<group>";
+		};
+		56ECD8A31540678B00565615 /* Debug */ = {
+			isa = PBXGroup;
+			children = (
+				56ECD8A41540678B00565615 /* mld */,
+			);
+			path = Debug;
+			sourceTree = "<group>";
+		};
+		56ECD8A71540678B00565615 /* RT11 */ = {
+			isa = PBXGroup;
+			children = (
+				56ECD8A81540678B00565615 /* pdp11.ini */,
+				56ECD8A91540678B00565615 /* README */,
+				56ECD8AA1540678B00565615 /* rt11 */,
+				56ECD8AB1540678B00565615 /* rtv53_rl.dsk */,
+			);
+			path = RT11;
+			sourceTree = "<group>";
+		};
+		56ECD8AC1540678B00565615 /* Documentation */ = {
+			isa = PBXGroup;
+			children = (
+				56ECD8AD1540678B00565615 /* Brochures */,
+				56ECD8C01540678B00565615 /* PDP11 */,
+				56ECD8C81540678B00565615 /* simh */,
+				56ECD8CC1540678B00565615 /* Sources */,
+			);
+			path = Documentation;
+			sourceTree = "<group>";
+		};
+		56ECD8AD1540678B00565615 /* Brochures */ = {
+			isa = PBXGroup;
+			children = (
+				56ECD8AE1540678B00565615 /* GT40-1.jpg */,
+				56ECD8AF1540678B00565615 /* GT40-10.jpg */,
+				56ECD8B01540678B00565615 /* GT40-2.jpg */,
+				56ECD8B11540678B00565615 /* GT40-3.jpg */,
+				56ECD8B21540678B00565615 /* GT40-4.jpg */,
+				56ECD8B31540678B00565615 /* GT40-5.jpg */,
+				56ECD8B41540678B00565615 /* GT40-6.jpg */,
+				56ECD8B51540678B00565615 /* GT40-7.jpg */,
+				56ECD8B61540678B00565615 /* GT40-8.jpg */,
+				56ECD8B71540678B00565615 /* GT40-9.jpg */,
+				56ECD8B81540678B00565615 /* GT42-1.jpg */,
+				56ECD8B91540678B00565615 /* GT42-2.jpg */,
+				56ECD8BA1540678B00565615 /* GT42-3.jpg */,
+				56ECD8BB1540678B00565615 /* GT42-4.jpg */,
+				56ECD8BC1540678B00565615 /* GT42-5.jpg */,
+				56ECD8BD1540678B00565615 /* GT42-6.jpg */,
+				56ECD8BE1540678B00565615 /* GT42-7.jpg */,
+				56ECD8BF1540678B00565615 /* GT42-8.jpg */,
+			);
+			path = Brochures;
+			sourceTree = "<group>";
+		};
+		56ECD8C01540678B00565615 /* PDP11 */ = {
+			isa = PBXGroup;
+			children = (
+				56ECD8C11540678B00565615 /* DEC GT44 Users Guide.pdf */,
+				56ECD8C21540678B00565615 /* pdp11 instruction reference.pdf */,
+				56ECD8C31540678B00565615 /* pdp11_doc.pdf */,
+				56ECD8C41540678B00565615 /* pdpbook.txt */,
+				56ECD8C51540678B00565615 /* RT-11 Commands Manual.pdf */,
+				56ECD8C61540678B00565615 /* VT-11 Instruction Set.txt */,
+				56ECD8C71540678B00565615 /* VT11 Graphic Display Processor.pdf */,
+			);
+			path = PDP11;
+			sourceTree = "<group>";
+		};
+		56ECD8C81540678B00565615 /* simh */ = {
+			isa = PBXGroup;
+			children = (
+				56ECD8C91540678B00565615 /* simh_doc.pdf */,
+				56ECD8CA1540678B00565615 /* simh_faq.pdf */,
+				56ECD8CB1540678B00565615 /* simh_swre.pdf */,
+			);
+			path = simh;
+			sourceTree = "<group>";
+		};
+		56ECD8CC1540678B00565615 /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				56ECD8CD1540678B00565615 /* gtlem.mac */,
+				56ECD8CE1540678B00565615 /* lunar.bas */,
+				56ECD8CF1540678B00565615 /* mlc.mac */,
+				56ECD8D01540678B00565615 /* mld.mac */,
+				56ECD8D11540678B00565615 /* Original GTLEM Source */,
+				56ECD8D21540678B00565615 /* rtlem.mac */,
+			);
+			path = Sources;
+			sourceTree = "<group>";
+		};
+		56ECD8D31540678B00565615 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				56ECD8D41540678B00565615 /* get.cmd */,
+				56ECD8D51540678B00565615 /* make.com */,
+				56ECD8D61540678B00565615 /* put.cmd */,
+				56ECD8D71540678B00565615 /* putr.com */,
+				56ECD8D81540678B00565615 /* putr.ini */,
+				56ECD8D91540678B00565615 /* putr.txt */,
+			);
+			path = Utilities;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
