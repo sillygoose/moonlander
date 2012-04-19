@@ -15,10 +15,10 @@ Here is the to do list
 - add data source protocol to VC so we can access data easily
 - bug in instruments - blink doesn't reset with new game
 - views dont' implement the correct intensities (lander, flag, etc)
-- dialog button buggy (multiple presses possible)
-- end game code work (common exit so controls get cleaned up)
+- dialog button buggy (multiple presses possible, show olny work when the buttonis released)
 
 Fixed/Done
+- end game code work (common exit so controls get cleaned up)
 - got rid of the palsyTimer and use queues or delay with selector
 - run explosion in separate thread
 - run model in separate thread (no need for this)

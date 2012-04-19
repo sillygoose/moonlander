@@ -282,8 +282,8 @@ static float RadiansToDegrees(float radians)
     self.turnAngle = 0;
     self.horizontalVelocity = 0;
     self.verticalVelocity = -10;
-    self.horizontalDistance = -100;
-    self.verticalDistance = 150;
+    self.horizontalDistance = -200;
+    self.verticalDistance = 50;
     self.percentThrustRequested = 18;
     self.clockTicks = 0.0f;
 #else

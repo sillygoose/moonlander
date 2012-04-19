@@ -89,29 +89,29 @@ const float DisplayUpdateInterval = 0.05f;
 #ifndef SHORT_DELAYS
 // Timings for normal operation
 const float SplashScreenInterval = 10.0f;
-const float landingDelay = 4.0f;
-const float moveInterval = 0.16f;
-const float initialFoodDelay = 8.0f;
-const float secondFoodDelay = 2.0f;
-const float launchDelay = 2.0f;
-const float endDelay = 3.0f;
-const float newGameDelay = 3.0f;
-const float flagFinalDelay = 10.0f;
-const float explodeDelay = 5.0f;
-const float offcomDelay = 5.0f;
+const float LandingDelay = 4.0f;
+const float MoveInterval = 0.16f;
+const float InitialFoodDelay = 8.0f;
+const float SecondFoodDelay = 2.0f;
+const float LaunchDelay = 2.0f;
+const float EndDelay = 3.0f;
+const float NewGameDelay = 3.0f;
+const float FlagFinalDelay = 10.0f;
+const float ExplodeDelay = 5.0f;
+const float OffcomDelay = 5.0f;
 #else
-// sped up timings for debug
+// Sped up timings for debug
 const float SplashScreenInterval = 2.0f;
-const float landingDelay = 0.5f;
-const float moveInterval = 0.03f;
-const float initialFoodDelay = 1.0f;
-const float secondFoodDelay = 0.5f;
-const float launchDelay = 0.5f;
-const float endDelay = 1.0f;
-const float newGameDelay = 1.0f;
-const float flagFinalDelay = 2.0f;
-const float explodeDelay = 2.0f;
-const float offcomDelay = 2.0f;
+const float LandingDelay = 0.5f;
+const float MoveInterval = 0.03f;
+const float InitialFoodDelay = 1.0f;
+const float SecondFoodDelay = 0.5f;
+const float LaunchDelay = 0.5f;
+const float EndDelay = 1.0f;
+const float NewGameDelay = 1.0f;
+const float FlagFinalDelay = 2.0f;
+const float ExplodeDelay = 2.0f;
+const float OffcomDelay = 2.0f;
 #endif
 
 
@@ -681,7 +681,6 @@ const float offcomDelay = 2.0f;
     [self initGame];
 }
 
-
 -(void)dealloc
 {
     AudioServicesDisposeSystemSoundID(self.bellFileObject);
@@ -737,6 +736,22 @@ const float offcomDelay = 2.0f;
     
     self.landerMessages = nil;
     self.anotherGameDialog = nil;
+}
+
+- (void)cleanupControls
+{
+    self.heightData.titleLabel.blink = NO;
+    self.altitudeData.titleLabel.blink = NO;
+    self.distanceData.titleLabel.blink = NO;
+    self.fuelLeftData.titleLabel.blink = NO;
+    self.weightData.titleLabel.blink = NO;
+    self.thrustData.titleLabel.blink = NO;
+    self.thrustAngleData.titleLabel.blink = NO;
+    self.verticalVelocityData.titleLabel.blink = NO;
+    self.horizontalVelocityData.titleLabel.blink = NO;
+    self.verticalAccelerationData.titleLabel.blink = NO;
+    self.horizontalAccelerationData.titleLabel.blink = NO;
+    self.secondsData.titleLabel.blink = NO;
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -821,7 +836,7 @@ const float offcomDelay = 2.0f;
 {
     // Make sure we didn't leave any messages displayed
     [self.landerMessages removeAllLanderMessages];
-
+    
     // Start over
     [self initGame2];
 }
@@ -1042,7 +1057,7 @@ const float offcomDelay = 2.0f;
     // Decide what to do
     if (result == YES) {
         // Delay a bit before starting the new game
-        [self performSelector:@selector(startGameDelay) withObject:nil afterDelay:newGameDelay];
+        [self performSelector:@selector(startGameDelay) withObject:nil afterDelay:NewGameDelay];
     }
     else {
         // Return to the main menu
@@ -1052,16 +1067,7 @@ const float offcomDelay = 2.0f;
 
 - (void)waitNewGame
 {
-    // Kill the timers that might be running
-    [self.simulationTimer invalidate];
-    self.simulationTimer = nil;
-    [self.displayTimer invalidate];
-    self.displayTimer = nil;
-    
-    // Remove any messages that might be left over
-    [self.landerMessages removeAllLanderMessages];
-    
-    // Setup our dialog for a new game
+    // Setup our yes/no dialog for a new game
     CGRect dialogRect = CGRectMake(450, 300, 200, 100);
     self.anotherGameDialog = [[VGDialog alloc] initWithFrame:dialogRect addTarget:self onSelection:@selector(getYesNo)];
     [self.view addSubview:self.anotherGameDialog];
@@ -1069,10 +1075,22 @@ const float offcomDelay = 2.0f;
 
 - (void)prepareForNewGame
 {
-    [self performSelector:@selector(waitNewGame) withObject:nil afterDelay:newGameDelay];
+    // Kill the timers that might be running
+    [self.simulationTimer invalidate];
+    self.simulationTimer = nil;
+    [self.displayTimer invalidate];
+    self.displayTimer = nil;
+    
+    // Clean up any controls
+    [self cleanupControls];
+    
+    // Remove any messages that might be left over
+    [self.landerMessages removeAllLanderMessages];
+    
+    // Short they and then restart
+    [self performSelector:@selector(waitNewGame) withObject:nil afterDelay:NewGameDelay];
 }
 
-const float PollLiftoffInterval = 0.25;
 - (void)landerLiftoff
 {
     // Remove any messages that pop up
@@ -1089,16 +1107,12 @@ const float PollLiftoffInterval = 0.25;
         // Hide the lander 
         self.landerView.hidden = YES;
 
-        // Kill the timers, we are done
-        [self.simulationTimer invalidate];
-        self.simulationTimer = nil;
-        [self.displayTimer invalidate];
-        self.displayTimer = nil;
-
         // Wait a bit before continuing
-        [self performSelector:@selector(prepareForNewGame) withObject:nil afterDelay:endDelay];
+        [self performSelector:@selector(prepareForNewGame) withObject:nil afterDelay:LaunchDelay];
     }
     else {
+        // Keep waiting for screen change
+        const float PollLiftoffInterval = 0.1;
         [self performSelector:@selector(landerLiftoff) withObject:nil afterDelay:PollLiftoffInterval];
     }
 }
@@ -1190,12 +1204,12 @@ const float PollLiftoffInterval = 0.25;
             [self.landerModel landerTakeoff];
             
             // Wait a bit before continuing
-            [self performSelector:@selector(landerLiftoff) withObject:nil afterDelay:PollLiftoffInterval];
+            [self landerLiftoff];
         };
         
         void (^moveComplete)(BOOL) = ^(BOOL f) {
             // Slight delay before taking off again
-            dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, launchDelay * NSEC_PER_SEC);
+            dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, LaunchDelay * NSEC_PER_SEC);
             dispatch_after(popTime, dispatch_get_main_queue(), prepareForLiftoff);
         };
         
@@ -1224,7 +1238,7 @@ const float PollLiftoffInterval = 0.25;
             // We are moving back after a delay
             delta.x = destination.x + 1 * direction;
             delta.y = destination.y;
-            [Man animateWithDuration:FoodWaitDuration delay:initialFoodDelay options:animateOptions animations:moveMan completion:moveManBack];
+            [Man animateWithDuration:FoodWaitDuration delay:InitialFoodDelay options:animateOptions animations:moveMan completion:moveManBack];
         };
         
         void (^moveManOver)(BOOL) = ^(BOOL f) {
@@ -1260,7 +1274,7 @@ const float PollLiftoffInterval = 0.25;
             [self.moonView addFeature:TF_OldLander atIndex:self.INDEXL];
             
             // Let's delay a bit before presenting the new game dialog
-            [self performSelector:@selector(waitNewGame) withObject:nil afterDelay:newGameDelay];
+            [self performSelector:@selector(prepareForNewGame) withObject:nil afterDelay:NewGameDelay];
         };
         
         void (^plantFlag)(BOOL) = ^(BOOL f) {
@@ -1270,7 +1284,7 @@ const float PollLiftoffInterval = 0.25;
             [self.landerMessages addSystemMessage:@"OneSmallStep"];
             
             // Delay a bit before finishing the game
-            dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, flagFinalDelay * NSEC_PER_SEC);
+            dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, FlagFinalDelay * NSEC_PER_SEC);
             dispatch_after(popTime, dispatch_get_main_queue(), waitFlagMan);
         };
         
@@ -1293,7 +1307,7 @@ const float PollLiftoffInterval = 0.25;
 - (void)PALSY
 {
     // Start with a delay of 4 seconds
-    [self performSelector:@selector(moveMan) withObject:nil afterDelay:landingDelay];
+    [self performSelector:@selector(moveMan) withObject:nil afterDelay:LandingDelay];
 }
 
 - (void)BELL
@@ -1321,7 +1335,7 @@ const float PollLiftoffInterval = 0.25;
     // Completion code for explosion manager
     void (^completionBlock)(void) = ^{
         dispatch_release(explosionQueue);
-        [self performSelector:@selector(waitNewGame) withObject:nil afterDelay:explodeDelay];
+        [self performSelector:@selector(prepareForNewGame) withObject:nil afterDelay:ExplodeDelay];
     };
     
     //(EXPLD1)  Setup the explosion animation manager
@@ -1427,7 +1441,7 @@ const float PollLiftoffInterval = 0.25;
                     [self landerDown];
 
                     // Let's delay a bit before presenting the new game dialog
-                    [self performSelector:@selector(waitNewGame) withObject:nil afterDelay:explodeDelay];
+                    [self performSelector:@selector(prepareForNewGame) withObject:nil afterDelay:ExplodeDelay];
                 }
             }
         }
@@ -1449,7 +1463,7 @@ const float PollLiftoffInterval = 0.25;
                     [self landerDown];
                     
                     // Let's delay a bit before presenting the new game dialog
-                    [self performSelector:@selector(waitNewGame) withObject:nil afterDelay:explodeDelay];
+                    [self performSelector:@selector(prepareForNewGame) withObject:nil afterDelay:ExplodeDelay];
                 }
             }
         }
@@ -1533,7 +1547,7 @@ const float PollLiftoffInterval = 0.25;
             }
             
             // Let's delay a bit before presenting the new game dialog
-            [self performSelector:@selector(waitNewGame) withObject:nil afterDelay:explodeDelay];
+            [self performSelector:@selector(prepareForNewGame) withObject:nil afterDelay:ExplodeDelay];
         }
     }
     
