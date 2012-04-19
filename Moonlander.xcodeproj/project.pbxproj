@@ -57,6 +57,35 @@
 		56A480C3137C6C5500742877 /* LanderPhysicsConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 56A480C2137C6C5500742877 /* LanderPhysicsConstants.m */; };
 		56B4D62D1417D9AF00029FC8 /* Flag.m in Sources */ = {isa = PBXBuildFile; fileRef = 56B4D62C1417D9AF00029FC8 /* Flag.m */; };
 		56BC68641388BDE200403643 /* Labels.plist in Resources */ = {isa = PBXBuildFile; fileRef = 56BC68631388BDE200403643 /* Labels.plist */; };
+		56C08D8E15405EDD005AE02C /* gt40 in Resources */ = {isa = PBXBuildFile; fileRef = 56C08D8015405EDC005AE02C /* gt40 */; };
+		56C08D8F15405EDD005AE02C /* lunar in Resources */ = {isa = PBXBuildFile; fileRef = 56C08D8115405EDC005AE02C /* lunar */; };
+		56C08D9015405EDD005AE02C /* mlc in Resources */ = {isa = PBXBuildFile; fileRef = 56C08D8215405EDC005AE02C /* mlc */; };
+		56C08D9115405EDD005AE02C /* README in Resources */ = {isa = PBXBuildFile; fileRef = 56C08D8315405EDC005AE02C /* README */; };
+		56C08D9215405EDD005AE02C /* mld in Resources */ = {isa = PBXBuildFile; fileRef = 56C08D8515405EDC005AE02C /* mld */; };
+		56C08D9515405EDD005AE02C /* pdp11.ini in Resources */ = {isa = PBXBuildFile; fileRef = 56C08D8915405EDC005AE02C /* pdp11.ini */; };
+		56C08D9615405EDD005AE02C /* README in Resources */ = {isa = PBXBuildFile; fileRef = 56C08D8A15405EDC005AE02C /* README */; };
+		56C08D9715405EDD005AE02C /* rt11 in Resources */ = {isa = PBXBuildFile; fileRef = 56C08D8B15405EDC005AE02C /* rt11 */; };
+		56C08D9815405EDD005AE02C /* rtv53_rl.dsk in Resources */ = {isa = PBXBuildFile; fileRef = 56C08D8C15405EDD005AE02C /* rtv53_rl.dsk */; };
+		56C08DB015405F45005AE02C /* DEC GT44 Users Guide.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 56C08D9A15405F45005AE02C /* DEC GT44 Users Guide.pdf */; };
+		56C08DB115405F45005AE02C /* gtlem.mac in Resources */ = {isa = PBXBuildFile; fileRef = 56C08D9B15405F45005AE02C /* gtlem.mac */; };
+		56C08DB215405F45005AE02C /* lunar.bas in Resources */ = {isa = PBXBuildFile; fileRef = 56C08D9C15405F45005AE02C /* lunar.bas */; };
+		56C08DB315405F45005AE02C /* Original GTLEM Source in Resources */ = {isa = PBXBuildFile; fileRef = 56C08D9D15405F45005AE02C /* Original GTLEM Source */; };
+		56C08DB415405F45005AE02C /* pdp11 instruction reference.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 56C08D9F15405F45005AE02C /* pdp11 instruction reference.pdf */; };
+		56C08DB515405F45005AE02C /* pdp11_doc.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 56C08DA015405F45005AE02C /* pdp11_doc.pdf */; };
+		56C08DB615405F45005AE02C /* pdpbook.txt in Resources */ = {isa = PBXBuildFile; fileRef = 56C08DA115405F45005AE02C /* pdpbook.txt */; };
+		56C08DB715405F45005AE02C /* RT-11 Commands Manual.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 56C08DA215405F45005AE02C /* RT-11 Commands Manual.pdf */; };
+		56C08DB815405F45005AE02C /* simh_doc.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 56C08DA315405F45005AE02C /* simh_doc.pdf */; };
+		56C08DB915405F45005AE02C /* simh_faq.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 56C08DA415405F45005AE02C /* simh_faq.pdf */; };
+		56C08DBA15405F45005AE02C /* simh_swre.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 56C08DA515405F45005AE02C /* simh_swre.pdf */; };
+		56C08DBB15405F45005AE02C /* rtlem.mac in Resources */ = {isa = PBXBuildFile; fileRef = 56C08DA615405F45005AE02C /* rtlem.mac */; };
+		56C08DBC15405F45005AE02C /* gtlem.mac in Resources */ = {isa = PBXBuildFile; fileRef = 56C08DA815405F45005AE02C /* gtlem.mac */; };
+		56C08DBD15405F45005AE02C /* lunar.bas in Resources */ = {isa = PBXBuildFile; fileRef = 56C08DA915405F45005AE02C /* lunar.bas */; };
+		56C08DBE15405F45005AE02C /* mlc.mac in Resources */ = {isa = PBXBuildFile; fileRef = 56C08DAA15405F45005AE02C /* mlc.mac */; };
+		56C08DBF15405F45005AE02C /* mld.mac in Resources */ = {isa = PBXBuildFile; fileRef = 56C08DAB15405F45005AE02C /* mld.mac */; };
+		56C08DC015405F45005AE02C /* Original GTLEM Source in Resources */ = {isa = PBXBuildFile; fileRef = 56C08DAC15405F45005AE02C /* Original GTLEM Source */; };
+		56C08DC115405F45005AE02C /* rtlem.mac in Resources */ = {isa = PBXBuildFile; fileRef = 56C08DAD15405F45005AE02C /* rtlem.mac */; };
+		56C08DC215405F45005AE02C /* VT-11 Instruction Set.txt in Resources */ = {isa = PBXBuildFile; fileRef = 56C08DAE15405F45005AE02C /* VT-11 Instruction Set.txt */; };
+		56C08DC315405F45005AE02C /* VT11 Graphic Display Processor.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 56C08DAF15405F45005AE02C /* VT11 Graphic Display Processor.pdf */; };
 		56C94AA913A7A7AE001B7EF9 /* Dust.m in Sources */ = {isa = PBXBuildFile; fileRef = 56C94AA813A7A7AE001B7EF9 /* Dust.m */; };
 		56CE052F138B12A7004FA450 /* LanderMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 56CE052E138B12A7004FA450 /* LanderMessage.m */; };
 		56CE0535138B5277004FA450 /* Telemetry.m in Sources */ = {isa = PBXBuildFile; fileRef = 56CE0534138B5277004FA450 /* Telemetry.m */; };
@@ -144,6 +173,35 @@
 		56B4D62B1417D9AF00029FC8 /* Flag.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Flag.h; sourceTree = "<group>"; };
 		56B4D62C1417D9AF00029FC8 /* Flag.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Flag.m; sourceTree = "<group>"; };
 		56BC68631388BDE200403643 /* Labels.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Labels.plist; path = Resources/Labels.plist; sourceTree = "<group>"; };
+		56C08D8015405EDC005AE02C /* gt40 */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = gt40; sourceTree = "<group>"; };
+		56C08D8115405EDC005AE02C /* lunar */ = {isa = PBXFileReference; lastKnownFileType = file; path = lunar; sourceTree = "<group>"; };
+		56C08D8215405EDC005AE02C /* mlc */ = {isa = PBXFileReference; lastKnownFileType = file; path = mlc; sourceTree = "<group>"; };
+		56C08D8315405EDC005AE02C /* README */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README; sourceTree = "<group>"; };
+		56C08D8515405EDC005AE02C /* mld */ = {isa = PBXFileReference; lastKnownFileType = file; path = mld; sourceTree = "<group>"; };
+		56C08D8915405EDC005AE02C /* pdp11.ini */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = pdp11.ini; sourceTree = "<group>"; };
+		56C08D8A15405EDC005AE02C /* README */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README; sourceTree = "<group>"; };
+		56C08D8B15405EDC005AE02C /* rt11 */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = rt11; sourceTree = "<group>"; };
+		56C08D8C15405EDD005AE02C /* rtv53_rl.dsk */ = {isa = PBXFileReference; lastKnownFileType = file; path = rtv53_rl.dsk; sourceTree = "<group>"; };
+		56C08D9A15405F45005AE02C /* DEC GT44 Users Guide.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = "DEC GT44 Users Guide.pdf"; sourceTree = "<group>"; };
+		56C08D9B15405F45005AE02C /* gtlem.mac */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = gtlem.mac; sourceTree = "<group>"; };
+		56C08D9C15405F45005AE02C /* lunar.bas */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = lunar.bas; sourceTree = "<group>"; };
+		56C08D9D15405F45005AE02C /* Original GTLEM Source */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "Original GTLEM Source"; sourceTree = "<group>"; };
+		56C08D9F15405F45005AE02C /* pdp11 instruction reference.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = "pdp11 instruction reference.pdf"; sourceTree = "<group>"; };
+		56C08DA015405F45005AE02C /* pdp11_doc.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = pdp11_doc.pdf; sourceTree = "<group>"; };
+		56C08DA115405F45005AE02C /* pdpbook.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = pdpbook.txt; sourceTree = "<group>"; };
+		56C08DA215405F45005AE02C /* RT-11 Commands Manual.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = "RT-11 Commands Manual.pdf"; sourceTree = "<group>"; };
+		56C08DA315405F45005AE02C /* simh_doc.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = simh_doc.pdf; sourceTree = "<group>"; };
+		56C08DA415405F45005AE02C /* simh_faq.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = simh_faq.pdf; sourceTree = "<group>"; };
+		56C08DA515405F45005AE02C /* simh_swre.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = simh_swre.pdf; sourceTree = "<group>"; };
+		56C08DA615405F45005AE02C /* rtlem.mac */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = rtlem.mac; sourceTree = "<group>"; };
+		56C08DA815405F45005AE02C /* gtlem.mac */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = gtlem.mac; sourceTree = "<group>"; };
+		56C08DA915405F45005AE02C /* lunar.bas */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = lunar.bas; sourceTree = "<group>"; };
+		56C08DAA15405F45005AE02C /* mlc.mac */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = mlc.mac; sourceTree = "<group>"; };
+		56C08DAB15405F45005AE02C /* mld.mac */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = mld.mac; sourceTree = "<group>"; };
+		56C08DAC15405F45005AE02C /* Original GTLEM Source */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "Original GTLEM Source"; sourceTree = "<group>"; };
+		56C08DAD15405F45005AE02C /* rtlem.mac */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = rtlem.mac; sourceTree = "<group>"; };
+		56C08DAE15405F45005AE02C /* VT-11 Instruction Set.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "VT-11 Instruction Set.txt"; sourceTree = "<group>"; };
+		56C08DAF15405F45005AE02C /* VT11 Graphic Display Processor.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = "VT11 Graphic Display Processor.pdf"; sourceTree = "<group>"; };
 		56C94AA713A7A7AE001B7EF9 /* Dust.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Dust.h; sourceTree = "<group>"; };
 		56C94AA813A7A7AE001B7EF9 /* Dust.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Dust.m; sourceTree = "<group>"; };
 		56CE052D138B12A7004FA450 /* LanderMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LanderMessage.h; sourceTree = "<group>"; };
@@ -197,6 +255,7 @@
 			children = (
 				560D212814115314000F3A22 /* README */,
 				560FA0D5137991AE0017EE25 /* Moonlander */,
+				56C08D7B15405E89005AE02C /* Moonlander Classic */,
 				560FA0FA137991AE0017EE25 /* MoonlanderTests */,
 				560FA0CE137991AD0017EE25 /* Frameworks */,
 				560FA0CC137991AD0017EE25 /* Products */,
@@ -365,6 +424,106 @@
 			name = "Vector Graphics";
 			sourceTree = "<group>";
 		};
+		56C08D7B15405E89005AE02C /* Moonlander Classic */ = {
+			isa = PBXGroup;
+			children = (
+				56C08D9915405F45005AE02C /* Documentation */,
+				56C08D7C15405EDC005AE02C /* Binaries */,
+			);
+			name = "Moonlander Classic";
+			sourceTree = "<group>";
+		};
+		56C08D7C15405EDC005AE02C /* Binaries */ = {
+			isa = PBXGroup;
+			children = (
+				56C08D8815405EDC005AE02C /* RT11 */,
+				56C08D7E15405EDC005AE02C /* Moonlander */,
+			);
+			path = Binaries;
+			sourceTree = "<group>";
+		};
+		56C08D7E15405EDC005AE02C /* Moonlander */ = {
+			isa = PBXGroup;
+			children = (
+				56C08D7F15405EDC005AE02C /* Classic */,
+				56C08D8415405EDC005AE02C /* Debug */,
+			);
+			path = Moonlander;
+			sourceTree = "<group>";
+		};
+		56C08D7F15405EDC005AE02C /* Classic */ = {
+			isa = PBXGroup;
+			children = (
+				56C08D8015405EDC005AE02C /* gt40 */,
+				56C08D8115405EDC005AE02C /* lunar */,
+				56C08D8215405EDC005AE02C /* mlc */,
+				56C08D8315405EDC005AE02C /* README */,
+			);
+			path = Classic;
+			sourceTree = "<group>";
+		};
+		56C08D8415405EDC005AE02C /* Debug */ = {
+			isa = PBXGroup;
+			children = (
+				56C08D8515405EDC005AE02C /* mld */,
+			);
+			path = Debug;
+			sourceTree = "<group>";
+		};
+		56C08D8815405EDC005AE02C /* RT11 */ = {
+			isa = PBXGroup;
+			children = (
+				56C08D8915405EDC005AE02C /* pdp11.ini */,
+				56C08D8A15405EDC005AE02C /* README */,
+				56C08D8B15405EDC005AE02C /* rt11 */,
+				56C08D8C15405EDD005AE02C /* rtv53_rl.dsk */,
+			);
+			path = RT11;
+			sourceTree = "<group>";
+		};
+		56C08D9915405F45005AE02C /* Documentation */ = {
+			isa = PBXGroup;
+			children = (
+				56C08D9A15405F45005AE02C /* DEC GT44 Users Guide.pdf */,
+				56C08D9B15405F45005AE02C /* gtlem.mac */,
+				56C08D9C15405F45005AE02C /* lunar.bas */,
+				56C08D9D15405F45005AE02C /* Original GTLEM Source */,
+				56C08D9E15405F45005AE02C /* PDP11 */,
+				56C08DA615405F45005AE02C /* rtlem.mac */,
+				56C08DA715405F45005AE02C /* Sources */,
+				56C08DAE15405F45005AE02C /* VT-11 Instruction Set.txt */,
+				56C08DAF15405F45005AE02C /* VT11 Graphic Display Processor.pdf */,
+			);
+			path = Documentation;
+			sourceTree = "<group>";
+		};
+		56C08D9E15405F45005AE02C /* PDP11 */ = {
+			isa = PBXGroup;
+			children = (
+				56C08D9F15405F45005AE02C /* pdp11 instruction reference.pdf */,
+				56C08DA015405F45005AE02C /* pdp11_doc.pdf */,
+				56C08DA115405F45005AE02C /* pdpbook.txt */,
+				56C08DA215405F45005AE02C /* RT-11 Commands Manual.pdf */,
+				56C08DA315405F45005AE02C /* simh_doc.pdf */,
+				56C08DA415405F45005AE02C /* simh_faq.pdf */,
+				56C08DA515405F45005AE02C /* simh_swre.pdf */,
+			);
+			path = PDP11;
+			sourceTree = "<group>";
+		};
+		56C08DA715405F45005AE02C /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				56C08DA815405F45005AE02C /* gtlem.mac */,
+				56C08DA915405F45005AE02C /* lunar.bas */,
+				56C08DAA15405F45005AE02C /* mlc.mac */,
+				56C08DAB15405F45005AE02C /* mld.mac */,
+				56C08DAC15405F45005AE02C /* Original GTLEM Source */,
+				56C08DAD15405F45005AE02C /* rtlem.mac */,
+			);
+			path = Sources;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -456,6 +615,35 @@
 				56BC68641388BDE200403643 /* Labels.plist in Resources */,
 				56678FCC139A7D4D00026588 /* Lander2.plist in Resources */,
 				1D81BDBA153F567200AE437D /* bell.aif in Resources */,
+				56C08D8E15405EDD005AE02C /* gt40 in Resources */,
+				56C08D8F15405EDD005AE02C /* lunar in Resources */,
+				56C08D9015405EDD005AE02C /* mlc in Resources */,
+				56C08D9115405EDD005AE02C /* README in Resources */,
+				56C08D9215405EDD005AE02C /* mld in Resources */,
+				56C08D9515405EDD005AE02C /* pdp11.ini in Resources */,
+				56C08D9615405EDD005AE02C /* README in Resources */,
+				56C08D9715405EDD005AE02C /* rt11 in Resources */,
+				56C08D9815405EDD005AE02C /* rtv53_rl.dsk in Resources */,
+				56C08DB015405F45005AE02C /* DEC GT44 Users Guide.pdf in Resources */,
+				56C08DB115405F45005AE02C /* gtlem.mac in Resources */,
+				56C08DB215405F45005AE02C /* lunar.bas in Resources */,
+				56C08DB315405F45005AE02C /* Original GTLEM Source in Resources */,
+				56C08DB415405F45005AE02C /* pdp11 instruction reference.pdf in Resources */,
+				56C08DB515405F45005AE02C /* pdp11_doc.pdf in Resources */,
+				56C08DB615405F45005AE02C /* pdpbook.txt in Resources */,
+				56C08DB715405F45005AE02C /* RT-11 Commands Manual.pdf in Resources */,
+				56C08DB815405F45005AE02C /* simh_doc.pdf in Resources */,
+				56C08DB915405F45005AE02C /* simh_faq.pdf in Resources */,
+				56C08DBA15405F45005AE02C /* simh_swre.pdf in Resources */,
+				56C08DBB15405F45005AE02C /* rtlem.mac in Resources */,
+				56C08DBC15405F45005AE02C /* gtlem.mac in Resources */,
+				56C08DBD15405F45005AE02C /* lunar.bas in Resources */,
+				56C08DBE15405F45005AE02C /* mlc.mac in Resources */,
+				56C08DBF15405F45005AE02C /* mld.mac in Resources */,
+				56C08DC015405F45005AE02C /* Original GTLEM Source in Resources */,
+				56C08DC115405F45005AE02C /* rtlem.mac in Resources */,
+				56C08DC215405F45005AE02C /* VT-11 Instruction Set.txt in Resources */,
+				56C08DC315405F45005AE02C /* VT11 Graphic Display Processor.pdf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
