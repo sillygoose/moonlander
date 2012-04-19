@@ -11,6 +11,8 @@ Here is the to do list
 - source code viewer
 - get bell code running
 - controls have differing brightness
+- move dust display code out of main queue
+- add datassource protocol to VC so we can access data easily
 
 Fixed/Done
 - got rid of the palsyTimer and use queues or delay with selector
