@@ -19,9 +19,6 @@
 @synthesize actualBounds=_actualBounds;
 @synthesize brighten=_brighten;
 
-const float BrightIntensity = 1.0;
-const float NormalIntensity = 0.80;
-
 
 - (id)initWithFrame:(CGRect)frameRect
 {
@@ -81,7 +78,7 @@ const float NormalIntensity = 0.80;
     
     if (self.autoRepeatInterval) {
         [self sendActionsForControlEvents:UIControlEventValueChanged];
-        self.repeatTimer = [NSTimer scheduledTimerWithTimeInterval:0.5f target:self selector:@selector(buttonRepeat:) userInfo:nil repeats:YES];
+        self.repeatTimer = [NSTimer scheduledTimerWithTimeInterval:ButtonRepeatRate target:self selector:@selector(buttonRepeat:) userInfo:nil repeats:YES];
     }
 }
 

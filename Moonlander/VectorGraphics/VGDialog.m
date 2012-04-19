@@ -56,6 +56,7 @@
         self.dialogYesButton.titleLabel.textColor = buttonText;
         self.dialogYesButton.titleLabel.backgroundColor = buttonBackground;
         self.dialogYesButton.titleLabel.textAlignment = UITextAlignmentCenter;
+        self.dialogYesButton.brighten = YES;
         [self addSubview:self.dialogYesButton];
 
         self.dialogNoButton = [[VGButton alloc] initWithFrame:noRect];
@@ -64,15 +65,21 @@
         self.dialogNoButton.titleLabel.textColor = buttonText;
         self.dialogNoButton.titleLabel.backgroundColor = buttonBackground;
         self.dialogNoButton.titleLabel.textAlignment = UITextAlignmentCenter;
+        self.dialogNoButton.brighten = YES;
         [self addSubview:self.dialogNoButton];
         
         // For debugging purposes
         self.vectorName = @"[VGDialog initWithFrame]";
         //self.backgroundColor = [UIColor grayColor];
         
-        // Register the buttons
-        [self.dialogYesButton addTarget:self action:@selector(newGameYesButtonPushed:) forControlEvents:UIControlEventValueChanged];
-        [self.dialogNoButton addTarget:self action:@selector(newGameNoButtonPushed:) forControlEvents:UIControlEventValueChanged];
+        // Register the button events
+        [self.dialogYesButton addTarget:self action:@selector(buttonDown:) forControlEvents:UIControlEventTouchDown];
+        [self.dialogYesButton addTarget:self action:@selector(buttonUp:) forControlEvents:(UIControlEventTouchUpInside|UIControlEventTouchUpOutside|UIControlEventTouchCancel)];
+        [self.dialogNoButton addTarget:self action:@selector(buttonDown:) forControlEvents:UIControlEventTouchDown];
+        [self.dialogNoButton addTarget:self action:@selector(buttonUp:) forControlEvents:(UIControlEventTouchUpInside|UIControlEventTouchUpOutside|UIControlEventTouchCancel)];
+
+        //[self.dialogYesButton addTarget:self action:@selector(newGameYesButtonPushed:) forControlEvents:UIControlEventValueChanged];
+        //[self.dialogNoButton addTarget:self action:@selector(newGameNoButtonPushed:) forControlEvents:UIControlEventValueChanged];
     }
     return self;
 }
@@ -92,19 +99,25 @@
     return self.userSelection;
 }
 
-- (IBAction)newGameYesButtonPushed:(id)sender
+- (IBAction)buttonDown:(id)sender
 {
-    self.userSelection = YES;
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Warc-performSelector-leaks"
-    [self.callerMethod performSelector:self.onSelection];
-#pragma clang diagnostic pop
+    // Make brigher then pressed
+    VGButton *touched = sender;
+    if (touched.brighten) {
+       touched.alpha = BrightIntensity;
+    }
 }
 
-- (IBAction)newGameNoButtonPushed:(id)sender
+- (IBAction)buttonUp:(id)sender
 {
-    self.userSelection = NO;
-#pragma clang diagnostic push
+    // Restore the original intensity
+    VGButton *touched = sender;
+    if (touched.brighten) {
+        touched.alpha = NormalIntensity;
+    }
+    
+    // Prepare the return result
+    self.userSelection = (touched == self.dialogYesButton);
 #pragma clang diagnostic ignored "-Warc-performSelector-leaks"
     [self.callerMethod performSelector:self.onSelection];
 #pragma clang diagnostic pop

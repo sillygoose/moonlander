@@ -15,7 +15,7 @@ Here is the to do list
 - add data source protocol to VC so we can access data easily
 - bug in instruments - blink doesn't reset with new game
 - views dont' implement the correct intensities (lander, flag, etc)
-- dialog button buggy (multiple presses possible, show olny work when the buttonis released)
+- dialog button improvement (triggers on butonUp with buton in focus)
 
 Fixed/Done
 - end game code work (common exit so controls get cleaned up)
