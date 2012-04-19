@@ -10,8 +10,10 @@ Here is the to do list
 - hardware brochures
 - source code viewer
 - get bell code running
+- controls have differing brightness
 
 Fixed/Done
+- got rid of the palsyTimer and use queues or delay with selector
 - run explosion in separate thread
 - run model in separate thread (no need for this)
 - use animation for moving our guy around - for mcd version calc the animation durations so man moves at constant speed

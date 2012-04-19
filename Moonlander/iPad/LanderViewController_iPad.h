@@ -58,7 +58,6 @@
     
     NSTimer             *__unsafe_unretained _simulationTimer;
     NSTimer             *__unsafe_unretained _displayTimer;
-    NSTimer             *__unsafe_unretained _palsyTimer;
 
     Telemetry           *_selectedTelemetry;
     Telemetry           *_heightData;
@@ -98,7 +97,6 @@
 
 @property (nonatomic, unsafe_unretained) NSTimer *simulationTimer;
 @property (nonatomic, unsafe_unretained) NSTimer *displayTimer;
-@property (nonatomic, unsafe_unretained) NSTimer *palsyTimer;
 
 @property (nonatomic) short SHOWX;
 @property (nonatomic) short SHOWY;

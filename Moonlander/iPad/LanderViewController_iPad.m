@@ -49,7 +49,6 @@
 
 @synthesize simulationTimer=_simulationTimer;
 @synthesize displayTimer=_displayTimer;
-@synthesize palsyTimer=_palsyTimer;
 
 @synthesize heightData=_heightData;
 @synthesize altitudeData=_altitudeData;
@@ -354,22 +353,17 @@ const float offcomDelay = 2.0f;
 - (void)initGame
 {
     // Splash screen
-    [self.palsyTimer invalidate];
-    self.palsyTimer = nil;
-    
 #ifdef NO_SPLASH_SCREEN
-    self.palsyTimer = [NSTimer scheduledTimerWithTimeInterval:0.0f target:self selector:@selector(initGame2) userInfo:nil repeats:NO];
+    [self performSelector:@selector(initGame2) withObject:nil afterDelay:0];
 #else
     [self.landerMessages addSystemMessage:@"SplashScreen"];
-    self.palsyTimer = [NSTimer scheduledTimerWithTimeInterval:SplashScreenInterval target:self selector:@selector(initGame2) userInfo:nil repeats:NO];
+    [self performSelector:@selector(initGame2) withObject:nil afterDelay:SplashScreenInterval];
 #endif
 }
 
 - (void)initGame2
 {
     // Remove splash screen (if present)
-    [self.palsyTimer invalidate];
-    self.palsyTimer = nil;
     [self.landerMessages removeSystemMessage:@"SplashScreen"];
     
     // Unhide the views to get started after splash screen
@@ -702,8 +696,6 @@ const float offcomDelay = 2.0f;
     self.simulationTimer = nil;
     [self.displayTimer invalidate];
     self.displayTimer = nil;
-    [self.palsyTimer invalidate];
-    self.palsyTimer = nil;
     
     // Disable telemetry
     self.selectedTelemetry = nil;
@@ -1035,11 +1027,6 @@ const float offcomDelay = 2.0f;
 
 - (void)startGameDelay
 {
-    // Kill the timer and start the new game
-    if (self.palsyTimer) {
-        [self.palsyTimer invalidate];
-        self.palsyTimer = nil;
-    }
     [self newGame];
 }
 
@@ -1055,7 +1042,7 @@ const float offcomDelay = 2.0f;
     // Decide what to do
     if (result == YES) {
         // Delay a bit before starting the new game
-        self.palsyTimer = [NSTimer scheduledTimerWithTimeInterval:newGameDelay target:self selector:@selector(startGameDelay) userInfo:nil repeats:NO];
+        [self performSelector:@selector(startGameDelay) withObject:nil afterDelay:newGameDelay];
     }
     else {
         // Return to the main menu
@@ -1066,8 +1053,6 @@ const float offcomDelay = 2.0f;
 - (void)waitNewGame
 {
     // Kill the timers that might be running
-    [self.palsyTimer invalidate];
-    self.palsyTimer = nil;
     [self.simulationTimer invalidate];
     self.simulationTimer = nil;
     [self.displayTimer invalidate];
@@ -1087,6 +1072,7 @@ const float offcomDelay = 2.0f;
     [self performSelector:@selector(waitNewGame) withObject:nil afterDelay:newGameDelay];
 }
 
+const float PollLiftoffInterval = 0.25;
 - (void)landerLiftoff
 {
     // Remove any messages that pop up
@@ -1104,8 +1090,6 @@ const float offcomDelay = 2.0f;
         self.landerView.hidden = YES;
 
         // Kill the timers, we are done
-        [self.palsyTimer invalidate];
-        self.palsyTimer = nil;
         [self.simulationTimer invalidate];
         self.simulationTimer = nil;
         [self.displayTimer invalidate];
@@ -1113,6 +1097,9 @@ const float offcomDelay = 2.0f;
 
         // Wait a bit before continuing
         [self performSelector:@selector(prepareForNewGame) withObject:nil afterDelay:endDelay];
+    }
+    else {
+        [self performSelector:@selector(landerLiftoff) withObject:nil afterDelay:PollLiftoffInterval];
     }
 }
 
@@ -1203,11 +1190,11 @@ const float offcomDelay = 2.0f;
             [self.landerModel landerTakeoff];
             
             // Wait a bit before continuing
-            const float PollLiftoffInterval = 0.25;
-            self.palsyTimer = [NSTimer scheduledTimerWithTimeInterval:PollLiftoffInterval target:self selector:@selector(landerLiftoff) userInfo:nil repeats:YES];
+            [self performSelector:@selector(landerLiftoff) withObject:nil afterDelay:PollLiftoffInterval];
         };
         
         void (^moveComplete)(BOOL) = ^(BOOL f) {
+            // Slight delay before taking off again
             dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, launchDelay * NSEC_PER_SEC);
             dispatch_after(popTime, dispatch_get_main_queue(), prepareForLiftoff);
         };
@@ -1440,7 +1427,7 @@ const float offcomDelay = 2.0f;
                     [self landerDown];
 
                     // Let's delay a bit before presenting the new game dialog
-                    self.palsyTimer = [NSTimer scheduledTimerWithTimeInterval:explodeDelay target:self selector:@selector(waitNewGame) userInfo:nil repeats:NO];
+                    [self performSelector:@selector(waitNewGame) withObject:nil afterDelay:explodeDelay];
                 }
             }
         }
@@ -1462,7 +1449,7 @@ const float offcomDelay = 2.0f;
                     [self landerDown];
                     
                     // Let's delay a bit before presenting the new game dialog
-                    self.palsyTimer = [NSTimer scheduledTimerWithTimeInterval:explodeDelay target:self selector:@selector(waitNewGame) userInfo:nil repeats:NO];
+                    [self performSelector:@selector(waitNewGame) withObject:nil afterDelay:explodeDelay];
                 }
             }
         }
@@ -1546,7 +1533,7 @@ const float offcomDelay = 2.0f;
             }
             
             // Let's delay a bit before presenting the new game dialog
-            self.palsyTimer = [NSTimer scheduledTimerWithTimeInterval:explodeDelay target:self selector:@selector(waitNewGame) userInfo:nil repeats:NO];
+            [self performSelector:@selector(waitNewGame) withObject:nil afterDelay:explodeDelay];
         }
     }
     
