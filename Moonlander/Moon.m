@@ -125,6 +125,14 @@
     }
 }
 
+- (void)addFeature:(TerrainFeature)feature atIndex:(short)index refresh:(BOOL)action
+{
+    [self addFeature:feature atIndex:index];
+    if (action) {
+        [self refreshCloseUpView];
+    }
+}
+
 - (void)removeFeature:(TerrainFeature)feature atIndex:(short)index
 {
     index += 10;
@@ -512,6 +520,5 @@
 {
     [super drawRect:rect];
 }
-
 
 @end

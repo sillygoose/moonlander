@@ -1065,9 +1065,6 @@ const float offcomDelay = 2.0f;
 
 - (void)waitNewGame
 {
-    // Remove any messages that might be left over
-    [self.landerMessages removeAllLanderMessages];
-    
     // Kill the timers that might be running
     [self.palsyTimer invalidate];
     self.palsyTimer = nil;
@@ -1075,6 +1072,9 @@ const float offcomDelay = 2.0f;
     self.simulationTimer = nil;
     [self.displayTimer invalidate];
     self.displayTimer = nil;
+    
+    // Remove any messages that might be left over
+    [self.landerMessages removeAllLanderMessages];
     
     // Setup our dialog for a new game
     CGRect dialogRect = CGRectMake(450, 300, 200, 100);
@@ -1114,54 +1114,6 @@ const float offcomDelay = 2.0f;
         // Wait a bit before continuing
         [self performSelector:@selector(prepareForNewGame) withObject:nil afterDelay:endDelay];
     }
-}
-
-- (void)prepareForLiftoff
-{
-    // Remove the man view
-    [self.manView removeFromSuperview];
-    self.manView = nil;
-    
-    // No more messages at this point
-    [self.landerMessages removeAllLanderMessages];
-
-    // Now take off with the food and some extra fuel
-    self.VERDIS += 4;
-    self.FUEL += 200;
-    self.ANGLED = 0;
-    self.VERVEL = 0;
-    self.HORVEL = 0;
-    self.THRUST = 30;
-
-    // Renable roll flightr controls
-    [self enableRollFlightControls];
-    
-    // Tell model we are taking off from the surface
-    [self.landerModel landerTakeoff];
-    
-    // Wait a bit before continuing
-    const float PollLiftoffInterval = 0.25;
-    self.palsyTimer = [NSTimer scheduledTimerWithTimeInterval:PollLiftoffInterval target:self selector:@selector(landerLiftoff) userInfo:nil repeats:YES];
-}
-
-- (void)waitFlagMan
-{
-    // Kill the timers - we are done
-    [self.displayTimer invalidate];
-    self.displayTimer = nil;
-    [self.simulationTimer invalidate];
-    self.simulationTimer = nil;
-    
-    // Don't need the man anymore
-    [self.manView removeFromSuperview];
-    self.manView = nil;
-    
-    // Remove messages and add the lander to the terrain data
-    [self.landerMessages removeAllLanderMessages];
-    [self.moonView addFeature:TF_OldLander atIndex:self.INDEXL];
-
-    // Let's delay a bit before presenting the new game dialog
-    [self performSelector:@selector(waitNewGame) withObject:nil afterDelay:newGameDelay];
 }
 
 - (float)durationFrom:(CGPoint)start toEnd:(CGPoint)end
@@ -1227,9 +1179,37 @@ const float offcomDelay = 2.0f;
         void (^moveMan)(void) = ^{
             self.manView.center = delta;
         };
+
+        void (^prepareForLiftoff)(void) = ^{
+            // Remove the man view
+            [self.manView removeFromSuperview];
+            self.manView = nil;
+            
+            // No more messages at this point
+            [self.landerMessages removeAllLanderMessages];
+            
+            // Now take off with the food and some extra fuel
+            self.VERDIS += 4;
+            self.FUEL += 200;
+            self.ANGLED = 0;
+            self.VERVEL = 0;
+            self.HORVEL = 0;
+            self.THRUST = 30;
+            
+            // Renable roll flightr controls
+            [self enableRollFlightControls];
+            
+            // Tell model we are taking off from the surface
+            [self.landerModel landerTakeoff];
+            
+            // Wait a bit before continuing
+            const float PollLiftoffInterval = 0.25;
+            self.palsyTimer = [NSTimer scheduledTimerWithTimeInterval:PollLiftoffInterval target:self selector:@selector(landerLiftoff) userInfo:nil repeats:YES];
+        };
         
         void (^moveComplete)(BOOL) = ^(BOOL f) {
-            [self performSelector:@selector(prepareForLiftoff) withObject:nil afterDelay:launchDelay];
+            dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, launchDelay * NSEC_PER_SEC);
+            dispatch_after(popTime, dispatch_get_main_queue(), prepareForLiftoff);
         };
         
         void (^moveManUp)(BOOL) = ^(BOOL f) {
@@ -1283,21 +1263,28 @@ const float offcomDelay = 2.0f;
         
         // Blocks used in the flag plant animation
         void (^moveMan)(void) = ^{ self.manView.center = delta; };
+        void (^waitFlagMan)(void) = ^{
+            // Don't need the man anymore
+            [self.manView removeFromSuperview];
+            self.manView = nil;
+            
+            // Remove messages and add the lander to the terrain data
+            [self.landerMessages removeAllLanderMessages];
+            [self.moonView addFeature:TF_OldLander atIndex:self.INDEXL];
+            
+            // Let's delay a bit before presenting the new game dialog
+            [self performSelector:@selector(waitNewGame) withObject:nil afterDelay:newGameDelay];
+        };
         
         void (^plantFlag)(BOOL) = ^(BOOL f) {
-            // Plant the flag, ugly but works
-            short flagX = self.manView.center.x + (8 + self.manView.bounds.size.width) * direction;
-            CGPoint origin = CGPointMake(flagX, self.manView.center.y - 16);
-            self.flagView = [[Flag alloc] initWithOrigin:origin];
-            [self.view addSubview:self.flagView];
-            
             // Add the flag to the terrain and display our message
             short flagIndex = self.INDEXL + 2 * direction;
-            [self.moonView addFeature:TF_OldFlag atIndex:flagIndex];
+            [self.moonView addFeature:TF_OldFlag atIndex:flagIndex refresh:YES];
             [self.landerMessages addSystemMessage:@"OneSmallStep"];
             
             // Delay a bit before finishing the game
-            [self performSelector:@selector(waitFlagMan) withObject:nil afterDelay:flagFinalDelay];
+            dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, flagFinalDelay * NSEC_PER_SEC);
+            dispatch_after(popTime, dispatch_get_main_queue(), waitFlagMan);
         };
         
         // Move the man over to the flag
