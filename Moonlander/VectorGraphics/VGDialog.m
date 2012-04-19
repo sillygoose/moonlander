@@ -73,13 +73,17 @@
         //self.backgroundColor = [UIColor grayColor];
         
         // Register the button events
-        [self.dialogYesButton addTarget:self action:@selector(buttonDown:) forControlEvents:UIControlEventTouchDown];
-        [self.dialogYesButton addTarget:self action:@selector(buttonUp:) forControlEvents:(UIControlEventTouchUpInside|UIControlEventTouchUpOutside|UIControlEventTouchCancel)];
-        [self.dialogNoButton addTarget:self action:@selector(buttonDown:) forControlEvents:UIControlEventTouchDown];
-        [self.dialogNoButton addTarget:self action:@selector(buttonUp:) forControlEvents:(UIControlEventTouchUpInside|UIControlEventTouchUpOutside|UIControlEventTouchCancel)];
-
-        //[self.dialogYesButton addTarget:self action:@selector(newGameYesButtonPushed:) forControlEvents:UIControlEventValueChanged];
-        //[self.dialogNoButton addTarget:self action:@selector(newGameNoButtonPushed:) forControlEvents:UIControlEventValueChanged];
+        UIControlEvents TouchInsideEvents = UIControlEventTouchDown | UIControlEventTouchDragInside | UIControlEventTouchDragEnter;
+        [self.dialogYesButton addTarget:self action:@selector(insideEvent:) forControlEvents:TouchInsideEvents];
+        [self.dialogNoButton addTarget:self action:@selector(insideEvent:) forControlEvents:TouchInsideEvents];
+        
+        UIControlEvents TouchOutsideEvents = UIControlEventTouchUpOutside | UIControlEventTouchDragOutside | UIControlEventTouchDragExit;
+        [self.dialogYesButton addTarget:self action:@selector(outsideEvent:) forControlEvents:TouchOutsideEvents];
+        [self.dialogNoButton addTarget:self action:@selector(outsideEvent:) forControlEvents:TouchOutsideEvents];
+        
+        UIControlEvents SelectedEvents = UIControlEventTouchUpInside;
+        [self.dialogYesButton addTarget:self action:@selector(selectedEvent:) forControlEvents:SelectedEvents];
+        [self.dialogNoButton addTarget:self action:@selector(selectedEvent:) forControlEvents:SelectedEvents];
     }
     return self;
 }
@@ -94,33 +98,35 @@
     return self;
 }
 
-- (BOOL)dialogResult
+- (IBAction)insideEvent:(id)sender
 {
-    return self.userSelection;
-}
-
-- (IBAction)buttonDown:(id)sender
-{
-    // Make brigher then pressed
     VGButton *touched = sender;
     if (touched.brighten) {
-       touched.alpha = BrightIntensity;
+        touched.alpha = BrightIntensity;
     }
 }
 
-- (IBAction)buttonUp:(id)sender
+- (IBAction)outsideEvent:(id)sender
 {
-    // Restore the original intensity
     VGButton *touched = sender;
     if (touched.brighten) {
         touched.alpha = NormalIntensity;
     }
-    
-    // Prepare the return result
+}
+
+- (IBAction)selectedEvent:(id)sender
+{
+    VGButton *touched = sender;
     self.userSelection = (touched == self.dialogYesButton);
 #pragma clang diagnostic ignored "-Warc-performSelector-leaks"
     [self.callerMethod performSelector:self.onSelection];
 #pragma clang diagnostic pop
 }
+
+- (BOOL)dialogResult
+{
+    return self.userSelection;
+}
+
 
 @end

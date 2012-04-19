@@ -39,7 +39,4 @@
 
 - (BOOL)dialogResult;
 
-- (IBAction)newGameYesButtonPushed:(id)sender;
-- (IBAction)newGameNoButtonPushed:(id)sender;
-
 @end

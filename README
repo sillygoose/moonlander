@@ -14,10 +14,11 @@ Here is the to do list
 - move dust display code out of main queue
 - add data source protocol to VC so we can access data easily
 - bug in instruments - blink doesn't reset with new game
-- views dont' implement the correct intensities (lander, flag, etc)
-- dialog button improvement (triggers on butonUp with buton in focus)
+- views don't implement the correct intensities (lander, flag, etc)
+- disable all controls after end of game (in nw game dialog)
 
 Fixed/Done
+- dialog button improvement (triggers on buttonUp with buton in focus)
 - end game code work (common exit so controls get cleaned up)
 - got rid of the palsyTimer and use queues or delay with selector
 - run explosion in separate thread
