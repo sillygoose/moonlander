@@ -678,13 +678,19 @@ const float offcomDelay = 2.0f;
     self.landerView.hidden = YES;
     [self.view addSubview:self.landerView];
     
-    // Audio resource initialization
+    // Audio resource initialization - leaks!###
     NSURL *bellSound = [[NSBundle mainBundle] URLForResource: @"bell" withExtension: @"aif"];
     self.bellFileURL = (__bridge_retained CFURLRef) bellSound;
     AudioServicesCreateSystemSoundID(self.bellFileURL, &_bellFileObject);
 
     // Start the game
     [self initGame];
+}
+
+
+-(void)dealloc
+{
+    AudioServicesDisposeSystemSoundID(self.bellFileObject);
 }
 
 - (void)viewDidUnload
@@ -1318,7 +1324,10 @@ const float offcomDelay = 2.0f;
 
 - (void)BELL
 {
+    // Ding the bell
+#if !defined(DEBUG) || defined(DEBUG_AUDIO)
     AudioServicesPlayAlertSound(self.bellFileObject);
+#endif
 }
 
 - (void)EXPLOD
@@ -1335,6 +1344,7 @@ const float offcomDelay = 2.0f;
     // Create a queue and group for the tasks
     dispatch_queue_t explosionQueue = dispatch_queue_create("com.devtools.moonlander.explode", NULL);
     
+    // Completion code for explosion manager
     void (^completionBlock)(void) = ^{
         dispatch_release(explosionQueue);
         [self performSelector:@selector(waitNewGame) withObject:nil afterDelay:explodeDelay];

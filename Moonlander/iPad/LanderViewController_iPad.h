@@ -171,8 +171,8 @@
 
 @property (nonatomic) BOOL didFuelAlert;
 
-@property (nonatomic, readwrite) CFURLRef bellFileURL;
-@property (nonatomic, readonly) SystemSoundID bellFileObject;
+@property (nonatomic) CFURLRef bellFileURL;
+@property (nonatomic) SystemSoundID bellFileObject;
 
 
 - (IBAction)thrusterChanged:(VGSlider *)sender;
