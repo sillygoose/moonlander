@@ -206,7 +206,7 @@
     const float LanderVertAdj = 48;
     const float LanderHorizAdj = -32;
     
-    const char *FeatureFiles[] = { NULL, "Lander2", "Flag", "Lander2", "Lander2", "Rock", NULL, "McDonalds" };
+    const char *FeatureFiles[] = { NULL, "OldLander", "Flag", "OldLander", "OldLander", "Rock", NULL, "McDonalds" };
     const CGSize FeatureSizes[] = { CGSizeMake(0, 0), CGSizeMake(72, 64), CGSizeMake(22, 22), CGSizeMake(CrashedLanderSizeWidth, CrashedLanderSizeHeight), CGSizeMake(CrashedLanderSizeWidth, CrashedLanderSizeHeight), CGSizeMake(42, 42), CGSizeMake(0, 0), CGSizeMake(160, 72) };
     CGFloat verticalAdjust[] = { 0, LanderVertAdj, FeatureSizes[TF_OldFlag].height, CrashedLanderVertAdj, CrashedLanderVertAdj, 33, 0, FeatureSizes[TF_McDonalds].height - 10 };
     CGFloat horizontalAdjust[] = { 0, LanderHorizAdj, FlagHorizAdj, LeftCrashedLanderHorizAdj, RightCrashedLanderHorizAdj, -20, -24, -76 };

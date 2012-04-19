@@ -151,7 +151,7 @@
         if ([currentVector objectForKey:@"intensity"]) {
             int intensityLevel = [[currentVector objectForKey:@"intensity"] intValue];
             CGContextStrokePath(context);
-            const CGFloat Intensities[] = { 0.3f, 0.4f, 0.5f, 0.6f, 0.7f, 0.8f, 0.9f, 1.0f };
+            const CGFloat Intensities[] = { 0.65f, 0.70f, 0.75f, 0.80f, 0.85f, 0.90f, 0.95f, 1.0f };
             CGContextSetAlpha(context, Intensities[intensityLevel % (sizeof(Intensities)/sizeof(Intensities[0]))]);
             CGContextMoveToPoint(context, prevPoint.x, prevPoint.y);
         }
@@ -295,20 +295,23 @@
                 CGFloat phase = 0.0f;
                 size_t count = 0;
                 const CGFloat *lengths = NULL;
-                const CGFloat LongDash[] = {12.0f, 4.0f};
-                const CGFloat ShortDash[] = {6.0f, 2.0f};
-                const CGFloat DotDash[] = {6.0f, 2.0f, 12.0f, 2.0f};
+                const CGFloat LongDash[] = {8, 2};
+                const CGFloat ShortDash[] = {4, 2};
+                const CGFloat DotDash[] = {8, 2, 2, 1};
                 CGContextStrokePath(context);
                 switch (type) {
-                    case 1:
+                    default:
+                    case VGLineSolid:
+                        break;
+                    case VGLineLongDash:
                         lengths = LongDash;
                         count = sizeof(LongDash)/sizeof(LongDash[0]);
                         break;
-                    case 2:
+                    case VGLineShortDash:
                         lengths = ShortDash;
                         count = sizeof(ShortDash)/sizeof(ShortDash[0]);
                         break;
-                    case 3:
+                    case VGLineDotDash:
                         lengths = DotDash;
                         count = sizeof(DotDash)/sizeof(DotDash[0]);
                         break;

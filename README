@@ -9,15 +9,17 @@ Here is the to do list
 - use floats for X/Y positioning so retina displays are supported
 - hardware brochures
 - source code viewer
+- basic lunar lander game
 - get bell code running
 - controls have differing brightness
 - move dust display code out of main queue
 - add data source protocol to VC so we can access data easily
-- bug in instruments - blink doesn't reset with new game
-- views don't implement the correct intensities (lander, flag, etc)
-- disable all controls after end of game (in nw game dialog)
+- generate 6x8 dot matrix fonts (if time allows)
 
 Fixed/Done
+- views don't implement the correct intensities (lander, flag, etc)
+- bug in instruments - blink doesn't reset with new game
+- disable all controls after end of game (in nw game dialog)
 - dialog button improvement (triggers on buttonUp with buton in focus)
 - end game code work (common exit so controls get cleaned up)
 - got rid of the palsyTimer and use queues or delay with selector

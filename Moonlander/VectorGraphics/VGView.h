@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
+typedef enum { VGLineSolid = 0, VGLineLongDash, VGLineShortDash, VGLineDotDash } VGLineType;
+
 
 @interface VGView : UIView {
     NSArray     *_drawPaths;

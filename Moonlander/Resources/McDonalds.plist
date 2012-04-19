@@ -7,8 +7,6 @@
 	<key>paths</key>
 	<array>
 		<dict>
-			<key>intensity</key>
-			<integer>7</integer>
 			<key>line</key>
 			<dict>
 				<key>type</key>
@@ -41,6 +39,8 @@
 				<key>y</key>
 				<integer>0</integer>
 			</dict>
+			<key>intensity</key>
+			<integer>4</integer>
 		</dict>
 		<dict>
 			<key>x</key>
@@ -116,6 +116,8 @@
 			<string>Left Arch</string>
 		</dict>
 		<dict>
+			<key>intensity</key>
+			<integer>7</integer>
 			<key>line</key>
 			<dict>
 				<key>type</key>

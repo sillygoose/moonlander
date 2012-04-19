@@ -8,19 +8,21 @@
 	<array>
 		<array>
 			<dict>
-				<key>color</key>
+				<key>push</key>
 				<dict>
-					<key>alpha</key>
-					<integer>1</integer>
-					<key>b</key>
-					<real>0.00121</real>
-					<key>g</key>
-					<integer>1</integer>
-					<key>r</key>
-					<real>0.026</real>
+					<key>gstate</key>
+					<integer>0</integer>
+					<key>position</key>
+					<integer>0</integer>
 				</dict>
+			</dict>
+			<dict>
+				<key>intensity</key>
+				<integer>7</integer>
 				<key>line</key>
 				<dict>
+					<key>type</key>
+					<integer>0</integer>
 					<key>width</key>
 					<integer>1</integer>
 				</dict>
@@ -158,6 +160,15 @@
 				<integer>-6</integer>
 				<key>y</key>
 				<integer>-3</integer>
+			</dict>
+			<dict>
+				<key>pop</key>
+				<dict>
+					<key>gstate</key>
+					<integer>0</integer>
+					<key>position</key>
+					<integer>0</integer>
+				</dict>
 			</dict>
 		</array>
 	</array>

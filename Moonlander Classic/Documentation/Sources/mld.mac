@@ -3427,14 +3427,14 @@ MACX:
     .WORD	0                   ;X
 MACY:
     .WORD	0                   ;Y
-	.WORD	104000;             ;short vector mode
+	.WORD	104000;             ;8800H  short vector mode
 	.WORD	18.*200             ;X right 18, Y up 0 (moveto)
-	.WORD	107000              ;short vector mode, intensity 4
+	.WORD	107000              ;8E00H  short vector mode, intensity 4
 	.WORD	30.+INT             ;X right 0, Y up 30, (draw)
 	.WORD	54.*200+INT         ;X right 54, Y up 0, (draw)
 	.WORD	30.+OTHER+INT       ;X right 0, Y down 30, (draw)
 	.WORD	54.+OTHER*200+INT   ;X left 54, Y up 0, (draw)
-	.WORD	105324              ;short vector mode, blink off, solid line
+	.WORD	105324              ;8AD4H  short vector mode, blink off, solid line
 	.WORD	12.*200             ;X right 12, Y up 0 (moveto)
 	.WORD	8.+INT              ;X right 0, Y up 8 (draw)
 	.WORD	6.*200+INT          ;X right 6, Y up 0, (draw)
@@ -3488,7 +3488,7 @@ ARCH:
 ;		THIS LIST EXPLAINS HOW TO DRAW A MAN.
 ;
 MAN:
-    .WORD	116720              ;DON'T MAKE HIM TOO BRIGHT.
+    .WORD	116720              ;9DD0H  Point mode, intensity 3   DON'T MAKE HIM TOO BRIGHT.
 MANX:
     .WORD	0
 MANY:
@@ -3520,22 +3520,22 @@ MANY:
 ;		THIS LIST EXPLAINS HOW TO DRAW A FLAG.
 ;
 FLAGL:
-    .WORD	115324              ;point mode, disable LP int, blink off, solid line
-	.WORD	170240              ;LSA -
+    .WORD	115324              ;9AD4H  point mode, disable LP int, blink off, solid line
+	.WORD	170240              ;F0A0H  LSA -
 FLAGX:
     .WORD	0                   ;X
 FLAGY:
     .WORD	0                   ;Y
 	.WORD	104000              ;short vector mode
 	.WORD	18.+INT             ;X right 0, Y up 18, (draw)
-	.WORD	112727              ;long vector mode, intensity 3, LP disable, blink off, dot-dash line
+	.WORD	112727              ;95D7H  long vector mode, intensity 3, LP disable, blink off, dot-dash line
 	.WORD	16.+INT             ;X right 16, Y up 0, (draw)
 	.WORD	0                   ;
 	.WORD	INT                 ;X right 0, Y down 8, (draw)
 	.WORD	8.+DOWN             ;
 	.WORD	16.+INT+LEFT        ;X left 16, Y up 0, (draw)
 	.WORD	0                   ;
-	.WORD	112326              ;long vector mode, intensity 1, LP off, blink off, short dash
+	.WORD	112326              ;94D6H  long vector mode, intensity 1, LP off, blink off, short dash
 	.WORD	0                   ;X right 0, Y up 3, (moveto)
 	.WORD	3                   ;
 	.WORD	16.+INT             ;X right 16, Y up 0, (draw)

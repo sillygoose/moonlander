@@ -7,22 +7,6 @@
 	<key>paths</key>
 	<array>
 		<dict>
-			<key>color</key>
-			<dict>
-				<key>alpha</key>
-				<integer>1</integer>
-				<key>b</key>
-				<real>0.00121</real>
-				<key>g</key>
-				<integer>1</integer>
-				<key>r</key>
-				<real>0.026</real>
-			</dict>
-			<key>line</key>
-			<dict>
-				<key>width</key>
-				<real>1.5</real>
-			</dict>
 			<key>push</key>
 			<dict>
 				<key>gstate</key>
@@ -32,21 +16,37 @@
 			</dict>
 		</dict>
 		<dict>
+			<key>intensity</key>
+			<integer>7</integer>
+			<key>line</key>
+			<dict>
+				<key>type</key>
+				<integer>0</integer>
+				<key>width</key>
+				<integer>1</integer>
+			</dict>
 			<key>moverel</key>
 			<dict>
 				<key>x</key>
-				<integer>2</integer>
+				<integer>0</integer>
 				<key>y</key>
-				<integer>2</integer>
+				<integer>0</integer>
 			</dict>
 		</dict>
 		<dict>
 			<key>x</key>
 			<integer>0</integer>
 			<key>y</key>
-			<integer>16</integer>
+			<integer>18</integer>
 		</dict>
 		<dict>
+			<key>line</key>
+			<dict>
+				<key>type</key>
+				<integer>0</integer>
+			</dict>
+			<key>intensity</key>
+			<integer>7</integer>
 			<key>x</key>
 			<integer>16</integer>
 			<key>y</key>
@@ -65,17 +65,24 @@
 			<integer>0</integer>
 		</dict>
 		<dict>
+			<key>intensity</key>
+			<integer>5</integer>
+			<key>line</key>
+			<dict>
+				<key>type</key>
+				<integer>2</integer>
+			</dict>
 			<key>moverel</key>
 			<dict>
 				<key>x</key>
-				<integer>3</integer>
+				<integer>0</integer>
 				<key>y</key>
 				<integer>3</integer>
 			</dict>
 		</dict>
 		<dict>
 			<key>x</key>
-			<integer>11</integer>
+			<integer>16</integer>
 			<key>y</key>
 			<integer>0</integer>
 		</dict>
@@ -83,14 +90,14 @@
 			<key>moverel</key>
 			<dict>
 				<key>x</key>
-				<integer>-1</integer>
+				<integer>0</integer>
 				<key>y</key>
 				<integer>2</integer>
 			</dict>
 		</dict>
 		<dict>
 			<key>x</key>
-			<integer>-12</integer>
+			<integer>-16</integer>
 			<key>y</key>
 			<integer>0</integer>
 		</dict>

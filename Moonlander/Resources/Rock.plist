@@ -7,15 +7,6 @@
 	<key>paths</key>
 	<array>
 		<dict>
-			<key>intensity</key>
-			<integer>7</integer>
-			<key>line</key>
-			<dict>
-				<key>type</key>
-				<integer>0</integer>
-				<key>width</key>
-				<integer>1</integer>
-			</dict>
 			<key>moveto</key>
 			<dict>
 				<key>center</key>
@@ -30,6 +21,15 @@
 			</dict>
 		</dict>
 		<dict>
+			<key>intensity</key>
+			<integer>7</integer>
+			<key>line</key>
+			<dict>
+				<key>type</key>
+				<integer>3</integer>
+				<key>width</key>
+				<integer>1</integer>
+			</dict>
 			<key>moverel</key>
 			<dict>
 				<key>x</key>

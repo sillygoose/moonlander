@@ -269,6 +269,29 @@ const float OffcomDelay = 2.0f;
     self.secondsData.enabled = YES;
 }
 
+- (void)disableFlightControls
+{
+    self.smallLeftArrow.enabled = NO;
+    self.smallRightArrow.enabled = NO;
+    self.largeLeftArrow.enabled = NO;
+    self.largeRightArrow.enabled = NO;
+    
+    self.thrusterSlider.enabled = NO;
+    
+    self.heightData.enabled = NO;
+    self.altitudeData.enabled = NO;
+    self.distanceData.enabled = NO;
+    self.fuelLeftData.enabled = NO;
+    self.weightData.enabled = NO;
+    self.thrustData.enabled = NO;
+    self.thrustAngleData.enabled = NO;
+    self.verticalVelocityData.enabled = NO;
+    self.horizontalVelocityData.enabled = NO;
+    self.verticalAccelerationData.enabled = NO;
+    self.horizontalAccelerationData.enabled = NO;
+    self.secondsData.enabled = NO;
+}
+
 - (void)disableRollFlightControls
 {
     self.smallLeftArrow.enabled = NO;
@@ -310,13 +333,13 @@ const float OffcomDelay = 2.0f;
     
     self.landerView.hidden = NO;
     
-    // Enable all our flight controls
+    // Enable all flight controls
     [self enableFlightControls];
     
     // Setup controls with model defaults
     self.thrusterSlider.value = self.PERTRS;
     
-    // Init displays
+    // Initial the instrument displays
     self.instrument1.instrument = self.heightData;
     self.instrument2.instrument = self.distanceData;
     self.instrument3.instrument = self.verticalVelocityData;
@@ -342,7 +365,7 @@ const float OffcomDelay = 2.0f;
     [self.instrument8 display];
 #endif
     
-    // Setup game timers
+    // Setup the game timers
 	self.simulationTimer = [NSTimer scheduledTimerWithTimeInterval:GameTimerInterval target:self selector:@selector(gameLoop) userInfo:nil repeats:YES];
 	self.displayTimer = [NSTimer scheduledTimerWithTimeInterval:DisplayUpdateInterval target:self selector:@selector(updateLander) userInfo:nil repeats:YES];
     
@@ -740,6 +763,10 @@ const float OffcomDelay = 2.0f;
 
 - (void)cleanupControls
 {
+    // Disable the flight controls
+    [self disableFlightControls];
+
+    // Make sure no controls are left blinking
     self.heightData.titleLabel.blink = NO;
     self.altitudeData.titleLabel.blink = NO;
     self.distanceData.titleLabel.blink = NO;
