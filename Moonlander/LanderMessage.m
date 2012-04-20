@@ -20,10 +20,14 @@
 {
     self = [super init];
     if (self) {
+        // Populate the message database
         NSString *msgsFile = [[NSBundle mainBundle] pathForResource:@"LanderMessages" ofType:@"plist"];
         NSDictionary *messages = [NSDictionary dictionaryWithContentsOfFile:msgsFile];
         self.landerMessages = [messages objectForKey:@"messages"];
         self.displayedMessages = [NSMutableDictionary dictionaryWithCapacity:4];
+        
+        // Leave hidden until something to display
+        self.hidden = YES;
     }
     return self;
 }

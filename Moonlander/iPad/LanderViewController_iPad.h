@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import <AudioToolbox/AudioServices.h>
 
+#import "LanderDelegate.h"
 #import "LanderPhysicsModel.h"
 
 #import "VGView.h"
@@ -28,7 +29,7 @@
 #import "ExplosionManager.h"
 
 
-@interface LanderViewController_iPad : UIViewController {
+@interface LanderViewController_iPad : UIViewController <LanderDelegate> {
     LanderPhysicsModel *_landerModel;
     
     Moon                *_moonView;

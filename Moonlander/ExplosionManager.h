@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
+#import "LanderDelegate.h"
+
 #import "Explosion.h"
 #import "VGView.h"
 
@@ -20,10 +22,12 @@
     dispatch_queue_t    _dispatchQueue;
     void                (^_completionBlock)(void);
     
-    CGPoint             _groundZero;
     short               _currentRadius;
     short               _radiusIncrement;
     dispatch_time_t     _queueDelay;
+    short               _beepCount;
+    
+    id <LanderDelegate> __unsafe_unretained   _delegate;
 }
 
 @property (atomic, strong) NSMutableArray *explosionViews;
@@ -32,10 +36,12 @@
 @property (nonatomic) dispatch_queue_t dispatchQueue;
 @property (nonatomic, copy) void (^completionBlock)(void);
 
-@property (nonatomic) CGPoint groundZero;
 @property (nonatomic) short currentRadius;
 @property (nonatomic) short radiusIncrement;
 @property (nonatomic) dispatch_time_t queueDelay;
+@property (nonatomic) short beepCount;
+
+@property (unsafe_unretained) id <LanderDelegate> delegate;
 
 
 - (id)init;

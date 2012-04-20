@@ -13,13 +13,15 @@
 @synthesize explosionViews=_explosionViews;
 @synthesize parentView=_parentView;
 
-@synthesize groundZero=_groundZero;
 @synthesize currentRadius=_currentRadius;
 @synthesize radiusIncrement=_radiusIncrement;
 
 @synthesize dispatchQueue=_dispatchQueue;
 @synthesize completionBlock=_completionBlock;
 @synthesize queueDelay=_queueDelay;
+@synthesize beepCount=_beepCount;
+
+@synthesize delegate=_delegate;
 
 
 const short MaximumRadius = 200;
@@ -67,13 +69,19 @@ static float RadiansToDegrees(float radians)
     short radius = 0;
     short radiusIncrement = RadiusIncrement2;
     while (radius < MaximumRadius) {
-        // Blcok variables for the view manager
+        // Block variables for the view manager
         __block Explosion *explosionView;
         
         void (^animateExplosionView)(void) = ^{
             // Use a block animation to fade the alpha to zero
             int count = [self.explosionViews count];
             if (count) {
+                // Need a beep every othger pass
+                if (self.beepCount++ % 2) {
+                    [self.delegate beep];
+                }
+
+                // Create the new view
                 __block Explosion *theView = [self.explosionViews objectAtIndex:0];
                 [self.explosionViews removeObjectAtIndex:0];
                 dispatch_async(dispatch_get_main_queue(), ^{
@@ -97,8 +105,8 @@ static float RadiansToDegrees(float radians)
         void (^createExplosionView)(void) = ^{
             // Create an explosion view
             float explosionSize = self.currentRadius * 2;
-            float xPos = self.groundZero.x - explosionSize / 2;
-            float yPos = (768 - self.groundZero.y) - explosionSize / 2;
+            float xPos = self.delegate.SHOWX - explosionSize / 2;
+            float yPos = (768 - self.delegate.SHOWY) - explosionSize / 4;
             CGRect frameRect = CGRectMake(xPos, yPos, explosionSize, explosionSize);
             dispatch_sync(dispatch_get_main_queue(), ^{explosionView = [[Explosion alloc] initWithFrame:frameRect];});
            

@@ -107,6 +107,7 @@ static float RadiansToDegrees(float radians)
             self.verticalAcceleration = self.lemAcceleration * cosf(self.turnAngleRadians) - self.lunarGravity;
         }
     
+//#define HOLD_POSITION
 #ifndef HOLD_POSITION
         // Horizontal/vertical velocity/position updates
         self.horizontalVelocity += self.horizontalAcceleration * timeElapsed;
@@ -281,10 +282,10 @@ static float RadiansToDegrees(float radians)
     self.fuelRemaining = self.lemInitalFuel;
     self.turnAngle = 0;
     self.horizontalVelocity = 0;
-    self.verticalVelocity = -10;
-    self.horizontalDistance = -200;
-    self.verticalDistance = 150;
-    self.percentThrustRequested = 18;
+    self.verticalVelocity = -200;
+    self.horizontalDistance = 2760;
+    self.verticalDistance = 500;
+    self.percentThrustRequested = 10;
     self.clockTicks = 0.0f;
 #else
     // Default game start point
@@ -302,6 +303,8 @@ static float RadiansToDegrees(float radians)
 - (id)init
 {
     if ((self = [super init])) {
+        self.dataSource = self;
+        self.delegate = self;
         [self initializeLanderModel];
     }
     return self ;

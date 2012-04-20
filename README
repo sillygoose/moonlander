@@ -1,7 +1,6 @@
 Moonlander, the classic video game
 
-Here is the features to do list
-
+Features to do list
 - iphone/ipad icons
 - initial menu screen
 - splash screen
@@ -14,15 +13,13 @@ Here is the features to do list
 
 
 Bugs todo list
-
-- move dust display code out of main queue
-- add data source protocol to VC so we can access data easily
-- get bell code running in explosion
 - controls have differing brightness
 - use floats for X/Y positioning so retina displays are supported
 
 
 Fixed/Done
+- get bell code running in explosion
+- move dust display code out of main queue
 - views don't implement the correct intensities (lander, flag, etc)
 - bug in instruments - blink doesn't reset with new game
 - disable all controls after end of game (in nw game dialog)

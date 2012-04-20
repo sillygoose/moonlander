@@ -125,6 +125,15 @@ const float OffcomDelay = 2.0f;
 	return viewRect;
 }
 
+#pragma -
+#pragma mark Delegate
+- (void)beep
+{
+    [self BELL];
+}
+
+#pragma -
+#pragma mark Data source
 - (CGPoint)LANDER
 {
     return [self.landerModel.dataSource landerPosition];
@@ -418,7 +427,7 @@ const float OffcomDelay = 2.0f;
 
 - (void)viewDidLoad
 {
-    [[UIApplication sharedApplication] setStatusBarHidden:YES withAnimation:NO];
+    //###[[UIApplication sharedApplication] setStatusBarHidden:YES withAnimation:NO];
     [super viewDidLoad];
     
     // We need to change the coordinate space to (0,0) in the lower left
@@ -426,21 +435,19 @@ const float OffcomDelay = 2.0f;
 
     // Create the lander simulation model
     self.landerModel = [[LanderPhysicsModel alloc] init];
-    self.landerModel.dataSource = self.landerModel;
-    self.landerModel.delegate = self.landerModel;
     
     // Create the moon view
     //### use the frame bounds for this
     self.moonView = [[Moon alloc] initWithFrame:[self convertRectFromGameToView:CGRectMake(0, 0, 1024, 768)]];
-    self.moonView.dataSource = self.moonView;
-    self.moonView.userInteractionEnabled = NO;
-    self.moonView.hidden = YES;
-    [self.moonView useNormalView];
     [self.view addSubview:self.moonView];
-
+    
+    // Create the dust view
+    self.dustView = [[Dust alloc] init];
+    self.dustView.delegate = self;
+    [self.view addSubview:self.dustView];
+    
     // Create the message manager
     self.landerMessages = [[LanderMessages alloc] init];
-    self.landerMessages.hidden = NO;
     [self.view addSubview:self.landerMessages];
     
     // Create the roll control arrows
@@ -751,6 +758,7 @@ const float OffcomDelay = 2.0f;
     self.dustView = nil;
     self.manView = nil;
     self.flagView = nil;
+    self.dustView = nil;
     
     self.landerMessages = nil;
     self.anotherGameDialog = nil;
@@ -923,146 +931,10 @@ const float OffcomDelay = 2.0f;
     [self.landerMessages removeFuelMessage];
 
     // Remove dust view
-    if (self.dustView) {
-        self.dustView.drawPaths = nil;
-        [self.dustView removeFromSuperview];
-        self.dustView = nil;
-    }
+    self.dustView.hidden = YES;
     
     // Final lander view update
     [self updateLander];
-}
-
-- (void)DUST
-{
-    // Some dust generation constants
-    const short DustStartHeight = 150;
-    const short MaxDisplayDust = 241;
-    const float DustViewWidth = 128;
-    const float DustViewHeight = 64;
-    const short MaxDustThrust = 63;
-    
-    // Assume we will remove the dust view
-    BOOL removeDustView = YES;
-
-    // Wait till 150 feet above surface before kicking up dust
-    if (self.RADARY < DustStartHeight) {
-        // Angle must be reasonable as well
-        if (self.ANGLED >= -45 && self.ANGLED <= 45) {
-            //(DUSTB1)  Magnitude of dust determines intensity level
-            short requestedThrust = self.PERTRS;
-            short percentThrust = (requestedThrust > MaxDustThrust) ? MaxDustThrust : requestedThrust;
-            short dustIntensity = (percentThrust >> 3) & 0x7;
-            
-            //(DUSTP1)  Thrust angle determines dust direction
-            float angle = self.ANGLE;
-            float cosAngle = cos(angle);
-            float sinAngle = sin(angle);
-
-            short deltaY = self.SHOWY - self.AVERT;
-            float sinDeltaY = deltaY * sinAngle;
-            float tanDeltaY = sinDeltaY / cosAngle;
-            short flameDistance = tanDeltaY + deltaY;
-            tanDeltaY = -tanDeltaY;
-            
-            //(DUSTP2)  Center the dust in the view
-            //### This is a hack - fixme!
-            short xCenterPos = self.SHOWX + tanDeltaY;
-            short yCenterPos = 768 - self.AVERT;
-            xCenterPos -= DustViewWidth / 2;
-            yCenterPos -= DustViewHeight;
-            
-            // Calculate the flame distance and number of points to draw
-            flameDistance -= DustStartHeight;
-            if (flameDistance < 0) {
-                // Convert to a positive distance (NEG)
-                flameDistance = -flameDistance;
-                
-                // Calculate the number of dust points to draw
-                short count = MIN(((flameDistance * requestedThrust) >> 4), MaxDisplayDust);
-                if (count) {
-                    // Keep the dust view as we have something to draw
-                    removeDustView = NO;
-                    
-                    // Allocate our path array
-                    NSMutableArray *path = [[NSMutableArray alloc] init];
-                    NSArray *paths = [NSArray arrayWithObject:path];
-                    
-                    // Prep the intensity and line type info
-                    NSNumber *intensity = [NSNumber numberWithInt:dustIntensity];
-                    
-                    // Look up table used in dust generation
-                    const short YThrust[] = { 0, -30, -31, -32, -34, -36, -38, -41, -44, -47, -50, -53, -56, 0, 1, 3, 6, 4, 3, 1, -2, -6, -7, -5, -2, 2, 3, 5, 6, 2, 1, -1, -4, -6, -5, -3, 0, 4, 5, 7, 4, 0, -1, -3, -1, -20, -16, -13, -10, -7, -4, -2, 0, 2, 4, 7, 10, 13, 16, 20, 0, -30, -31 };
-                    const short DimYThrust = sizeof(YThrust)/sizeof(YThrust[0]);
-                    assert(DimYThrust == 63);
-                    
-                    //(DUSTWF)
-                    //(DUSTL)
-                    while (count--) {
-                        // Generate a random value to index the thrust vector array
-                        short RET1 = (short)random();
-                        RET1 &= DimYThrust;
-                        
-                        // X coordinate calculation
-                        short xPos = YThrust[RET1];
-                        RET1 += (short)random();
-                        RET1 &= DimYThrust;
-                        xPos &= DimYThrust;
-                        
-                        // Toggle the direction bit for X (COM)
-                        flameDistance = ~flameDistance;
-                        if (flameDistance < 0) {
-                            xPos = -xPos;
-                        }
-                        
-                        // Adjust X to the dust view frame
-                        xPos += DustViewHeight - 1;
-                        
-                        // Now generate the Y value (always positive)
-                        short yPos = YThrust[RET1];
-                        yPos &= DimYThrust;
-                        
-                        // Create the point command and add to the draw list
-                        NSNumber *x = [NSNumber numberWithFloat:xPos];
-                        NSNumber *y = [NSNumber numberWithFloat:yPos];
-                        
-                        // Default size for a rectangle is 1 x 1
-                        NSDictionary *originItem = [NSDictionary dictionaryWithObjectsAndKeys:x, @"x", y, @"y", nil];
-                        NSDictionary *rectItem = [NSDictionary dictionaryWithObjectsAndKeys:originItem, @"origin", nil];
-                        NSDictionary *pathItem = [NSDictionary dictionaryWithObjectsAndKeys:rectItem, @"rect", intensity, @"intensity", nil];
-                        [path addObject:pathItem];
-                    }
-                    
-                    // Create the view if needed
-                    if (!self.dustView) {
-                        CGRect frameRect = CGRectMake(xCenterPos, yCenterPos, DustViewWidth, DustViewHeight);
-                        self.dustView = [[Dust alloc] initWithFrame:frameRect];
-                        [self.view addSubview:self.dustView];
-                    }
-                    else if (self.dustView.frame.origin.x != xCenterPos || self.dustView.frame.origin.y != yCenterPos) {
-                        // Remove old dust view and create a new one
-                        [self.dustView removeFromSuperview];
-                        CGRect frameRect = CGRectMake(xCenterPos, yCenterPos, DustViewWidth, DustViewHeight);
-                        self.dustView = [[Dust alloc] initWithFrame:frameRect];
-                        [self.view addSubview:self.dustView];
-                    }
-                    
-                    // Add the draw paths and update the display
-                    self.dustView.drawPaths = paths;
-                    [self.dustView setNeedsDisplay];
-                }
-            }
-        }
-    }
-    
-    // Remove the dust view if nothing was drawn
-    if (removeDustView == YES) {
-        if (self.dustView) {
-            self.dustView.drawPaths = nil;
-            [self.dustView removeFromSuperview];
-            self.dustView = nil;
-        }
-    }
 }
 
 - (void)startGameDelay
@@ -1338,7 +1210,6 @@ const float OffcomDelay = 2.0f;
 - (void)BELL
 {
     // Ding the bell
-#define DEBUG_AUDIO
 #if !defined(DEBUG) || defined(DEBUG_AUDIO)
     AudioServicesPlayAlertSound(self.bellFileObject);
 #endif
@@ -1352,9 +1223,6 @@ const float OffcomDelay = 2.0f;
     // Turn off fuel, flames, and dust
     [self landerDown];
 
-    //(EXPLOD)  Shut down things and ring bell
-    [self BELL];
-    
     // Create a queue and group for the tasks
     dispatch_queue_t explosionQueue = dispatch_queue_create("com.devtools.moonlander.explode", NULL);
     
@@ -1365,13 +1233,11 @@ const float OffcomDelay = 2.0f;
     };
     
     //(EXPLD1)  Setup the explosion animation manager
-    float xPos = self.SHOWX;
-    float yPos = self.SHOWY;
     self.explosionManager = [[ExplosionManager alloc] init];
-    self.explosionManager.groundZero = CGPointMake(xPos, yPos);
     self.explosionManager.parentView = self.view;
     self.explosionManager.dispatchQueue = explosionQueue;
     self.explosionManager.completionBlock = completionBlock;
+    self.explosionManager.delegate = self;
     [self.explosionManager start];
 }
 
@@ -1543,8 +1409,8 @@ const float OffcomDelay = 2.0f;
         }
         else {
             // Check terrain slope using difference between left and right terrain elevations
-            short thl = (short)([self.moonView.dataSource terrainHeight:self.INDEXL]);
-            short thr = (short)([self.moonView.dataSource terrainHeight:(self.INDEXL+1)]);
+            short thl = (short)([self.moonView terrainHeight:self.INDEXL]);
+            short thr = (short)([self.moonView terrainHeight:(self.INDEXL+1)]);
             short tdiff = thl - thr;
             if (tdiff < -48 || tdiff > 48) {
                 // Terrain slope too great - tipped
@@ -1610,8 +1476,8 @@ const float OffcomDelay = 2.0f;
 
         // Get the terrain information
         short tIndex = self.BIGXCT;
-        short thl = [self.moonView.dataSource terrainHeight:tIndex];
-        short thr = [self.moonView.dataSource terrainHeight:tIndex+1];
+        short thl = [self.moonView terrainHeight:tIndex];
+        short thr = [self.moonView terrainHeight:tIndex+1];
         self.AVERY = (thl + thr) / 2;
         self.RADARY = self.VERDIS - self.AVERY;
         
@@ -1665,9 +1531,9 @@ const float OffcomDelay = 2.0f;
             short IN1 = 48 - self.INDEXLR;
             
             // Get the terrain information
-            short thl = (short)([self.moonView.dataSource terrainHeight:self.INDEXL]);
+            short thl = (short)([self.moonView terrainHeight:self.INDEXL]);
             thl *= IN1;
-            short thr = (short)([self.moonView.dataSource terrainHeight:(self.INDEXL+1)]);
+            short thr = (short)([self.moonView terrainHeight:(self.INDEXL+1)]);
             thr *= self.INDEXLR;
             short th = thl + thr;
             if (th < 0) {
@@ -1693,7 +1559,12 @@ const float OffcomDelay = 2.0f;
             //(CLSEF4)
             self.RADARY = (RET2 * 2) / 3;
             [self INTEL];
-            [self DUST];
+            
+            // Wait till 150 feet above surface before kicking up dust
+            const short DustStartHeight = 150;
+            if (self.RADARY < DustStartHeight) {
+                [self.dustView generateDust];
+            }
 
             // Redraw surface if changed
             [self.moonView useCloseUpView:self.LEFTEDGE];

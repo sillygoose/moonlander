@@ -132,6 +132,7 @@
 		565D23641540E9760074D3AD /* Original GTLEM Source */ = {isa = PBXFileReference; lastKnownFileType = text; path = "Original GTLEM Source"; sourceTree = "<group>"; };
 		565D23651540E9760074D3AD /* rtlem.mac */ = {isa = PBXFileReference; lastKnownFileType = text; path = rtlem.mac; sourceTree = "<group>"; };
 		565D23671540F0230074D3AD /* rocket.bas */ = {isa = PBXFileReference; lastKnownFileType = text; path = rocket.bas; sourceTree = "<group>"; };
+		565D237615411DB30074D3AD /* LanderDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LanderDelegate.h; sourceTree = "<group>"; };
 		56678FCB139A7D4D00026588 /* OldLander.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = OldLander.plist; path = Resources/OldLander.plist; sourceTree = "<group>"; };
 		56755FD8138C0B8200455B52 /* Lander.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Lander.h; sourceTree = "<group>"; };
 		56755FD9138C0B8200455B52 /* Lander.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Lander.m; sourceTree = "<group>"; };
@@ -305,8 +306,8 @@
 				56CE0537138B6C88004FA450 /* Instrument.m */,
 				560FA0E1137991AE0017EE25 /* iPhone */,
 				560FA0E8137991AE0017EE25 /* iPad */,
-				5695F1A9137F52B50075CD26 /* Vector Graphics */,
 				560FA10D1379923D0017EE25 /* Lander Model */,
+				5695F1A9137F52B50075CD26 /* Vector Graphics */,
 				560FA13B1379C3900017EE25 /* Resources */,
 				560FA0D6137991AE0017EE25 /* Supporting Files */,
 			);
@@ -340,6 +341,7 @@
 				560FA0E9137991AE0017EE25 /* MoonlanderAppDelegate_iPad.h */,
 				560FA0EA137991AE0017EE25 /* MoonlanderAppDelegate_iPad.m */,
 				560FA0EC137991AE0017EE25 /* Moonlander_iPad.xib */,
+				565D237615411DB30074D3AD /* LanderDelegate.h */,
 				560FA1341379BEAA0017EE25 /* LanderViewController_iPad.h */,
 				560FA1351379BEAA0017EE25 /* LanderViewController_iPad.m */,
 				560FA1361379BEAA0017EE25 /* LanderViewController_iPad.xib */,

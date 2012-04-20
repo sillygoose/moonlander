@@ -22,8 +22,6 @@
 @synthesize currentView=_currentView;
 @synthesize LEFTEDGE=_LEFTEDGE;
 
-@synthesize dataSource=_dataSource;
-
 
 - (id)initWithFrame:(CGRect)moonRect
 {
@@ -33,6 +31,9 @@
         self.LEFTEDGE = -1;
         self.mcdExists = YES;
         
+        // Hide the view for now
+        self.hidden = YES;
+
         // No events for the moon surface
         self.userInteractionEnabled = NO;
         

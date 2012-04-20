@@ -6,8 +6,6 @@
 //  Copyright 2011, 2012 Paradigm Systems. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
-
 #import "VGView.h"
 #import "Lander.h"
 
@@ -16,12 +14,7 @@ typedef enum { TF_Nothing = 0, TF_OldLander, TF_OldFlag, TF_OldLanderTippedLeft,
 typedef enum { TV_Unknown, TV_Normal, TV_Detailed } TerrainView;
 
 
-@protocol MoonDataSource <NSObject>
-- (short)terrainHeight:(short)index;
-- (short)averageTerrainHeight:(short)index;
-@end
-
-@interface Moon : VGView <MoonDataSource> {
+@interface Moon : VGView {
     NSMutableArray      *_moonArray;
     BOOL                _dirtySurface;
     
@@ -32,8 +25,6 @@ typedef enum { TV_Unknown, TV_Normal, TV_Detailed } TerrainView;
     
     TerrainView         _currentView;
     short               _LEFTEDGE;
-    
-    id <MoonDataSource> __unsafe_unretained _dataSource ;
 }
 
 @property (nonatomic) NSMutableArray *moonArray;
@@ -47,7 +38,6 @@ typedef enum { TV_Unknown, TV_Normal, TV_Detailed } TerrainView;
 @property (nonatomic) TerrainView currentView;
 @property (nonatomic) short LEFTEDGE;
 
-@property (unsafe_unretained) id <MoonDataSource> dataSource;
 
 - (id)initWithFrame:(CGRect)frameRect;
 

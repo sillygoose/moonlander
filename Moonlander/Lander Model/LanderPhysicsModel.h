@@ -11,7 +11,7 @@
 #import "LanderPhysicsDataSource.h"
 #import "LanderPhysicsDelegate.h"
 
-@interface LanderPhysicsModel : NSObject <LanderPhysicsDelegate,  LanderPhysicsDataSource> {
+@interface LanderPhysicsModel : NSObject <LanderPhysicsDelegate, LanderPhysicsDataSource> {
 @private
     float       _clockTicks;
     
