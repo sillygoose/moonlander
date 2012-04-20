@@ -189,8 +189,10 @@
         t = CGAffineTransformRotate(t, (angle - self.previousAngle));
         self.transform = t;
         self.previousAngle = angle;
+        
+        // Update the view
+        [self setNeedsDisplay];
     }
-    [self setNeedsDisplay];
 }
 
 @end
