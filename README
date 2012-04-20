@@ -1,20 +1,25 @@
 Moonlander, the classic video game
 
-Here is the to do list
+Here is the features to do list
 
 - iphone/ipad icons
 - initial menu screen
 - splash screen
 - iphone version
-- use floats for X/Y positioning so retina displays are supported
 - hardware brochures
 - source code viewer
-- basic lunar lander game
-- get bell code running
-- controls have differing brightness
+- 1969 basic lunar lander game
+- generate 6x8 dot matrix fonts (if time allows)
+
+
+Bugs todo list
+
 - move dust display code out of main queue
 - add data source protocol to VC so we can access data easily
-- generate 6x8 dot matrix fonts (if time allows)
+- get bell code running in explosion
+- controls have differing brightness
+- use floats for X/Y positioning so retina displays are supported
+
 
 Fixed/Done
 - views don't implement the correct intensities (lander, flag, etc)

@@ -695,18 +695,12 @@ const float OffcomDelay = 2.0f;
     self.landerView.hidden = YES;
     [self.view addSubview:self.landerView];
     
-    // Audio resource initialization - leaks!###
-    NSURL *bellSound = [[NSBundle mainBundle] URLForResource: @"bell" withExtension: @"aif"];
-    self.bellFileURL = (__bridge_retained CFURLRef) bellSound;
+    // Audio resource initialization
+    self.bellFileURL = (__bridge CFURLRef) [[NSBundle mainBundle] URLForResource: @"beep" withExtension: @"caf"];
     AudioServicesCreateSystemSoundID(self.bellFileURL, &_bellFileObject);
 
     // Start the game
     [self initGame];
-}
-
--(void)dealloc
-{
-    AudioServicesDisposeSystemSoundID(self.bellFileObject);
 }
 
 - (void)viewDidUnload
@@ -745,13 +739,14 @@ const float OffcomDelay = 2.0f;
     self.instrument7 = nil;
     self.instrument8 = nil;
     
+    // Flight controls
     self.smallLeftArrow = nil;
     self.smallRightArrow = nil;
     self.largeLeftArrow = nil;
     self.largeRightArrow = nil;
-    
     self.thrusterSlider = nil;
-    
+
+    // Views
     self.landerView = nil;
     self.dustView = nil;
     self.manView = nil;
@@ -759,6 +754,9 @@ const float OffcomDelay = 2.0f;
     
     self.landerMessages = nil;
     self.anotherGameDialog = nil;
+    
+    // Audio resources
+    AudioServicesDisposeSystemSoundID(self.bellFileObject);
 }
 
 - (void)cleanupControls
@@ -1340,6 +1338,7 @@ const float OffcomDelay = 2.0f;
 - (void)BELL
 {
     // Ding the bell
+#define DEBUG_AUDIO
 #if !defined(DEBUG) || defined(DEBUG_AUDIO)
     AudioServicesPlayAlertSound(self.bellFileObject);
 #endif
@@ -1600,7 +1599,7 @@ const float OffcomDelay = 2.0f;
                 // Only do this once
                 self.didFuelAlert = YES;
 
-                // Add message and ring bell
+                // Add low fuel message and ring bell
                 [self.landerMessages addFuelMessage];
                 [self BELL];
             }
