@@ -76,9 +76,9 @@
         self.alpha = BrightIntensity;
     }
     
-    if (self.autoRepeatInterval) {
+    if (self.autoRepeatInterval > 0) {
         [self sendActionsForControlEvents:UIControlEventValueChanged];
-        self.repeatTimer = [NSTimer scheduledTimerWithTimeInterval:ButtonRepeatRate target:self selector:@selector(buttonRepeat:) userInfo:nil repeats:YES];
+        self.repeatTimer = [NSTimer scheduledTimerWithTimeInterval:self.autoRepeatInterval target:self selector:@selector(buttonRepeat:) userInfo:nil repeats:YES];
     }
 }
 
@@ -89,11 +89,12 @@
         self.alpha = NormalIntensity;
     }
     
+    // Kill the blink timer
     if (self.repeatTimer != nil) 
         [self.repeatTimer invalidate];
     self.repeatTimer = nil;
     
-    if (!self.autoRepeatInterval) {
+    if (self.autoRepeatInterval <= 0) {
         [self sendActionsForControlEvents:UIControlEventValueChanged];
     }
 }

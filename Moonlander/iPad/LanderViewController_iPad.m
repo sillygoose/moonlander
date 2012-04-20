@@ -451,9 +451,9 @@ const float OffcomDelay = 2.0f;
     [self.view addSubview:self.landerMessages];
     
     // Create the roll control arrows
-    const float RollButtonRepeatInterval = 0.25;
-    const float SmallRollArrowWidth = 24;
-    const float SmallRollArrowHeight = 12;
+    const float RollButtonRepeatInterval = 0.1;
+    const float SmallRollArrowWidth = 30;
+    const float SmallRollArrowHeight = 30;
     NSString *slaPath = [[NSBundle mainBundle] pathForResource:@"SmallLeftArrow" ofType:@"plist"];
     self.smallLeftArrow = [[VGButton alloc] initWithFrame:[self convertRectFromGameToView: CGRectMake(925, 375, SmallRollArrowWidth, SmallRollArrowHeight)]  withPaths:slaPath andRepeat:RollButtonRepeatInterval];
 	[self.smallLeftArrow addTarget:self 
@@ -473,7 +473,7 @@ const float OffcomDelay = 2.0f;
     [self.view addSubview:self.smallRightArrow];
     
     const float LargeRollArrowWidth = 48;
-    const float LargeRollArrowHeight = 24;
+    const float LargeRollArrowHeight = 30;
     NSString *llaPath = [[NSBundle mainBundle] pathForResource:@"LargeLeftArrow" ofType:@"plist"];
     self.largeLeftArrow = [[VGButton alloc] initWithFrame:[self convertRectFromGameToView: CGRectMake(905, 330, LargeRollArrowWidth, LargeRollArrowHeight)] withPaths:llaPath andRepeat:RollButtonRepeatInterval];
 	[self.largeLeftArrow addTarget:self 
