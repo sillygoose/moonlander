@@ -260,10 +260,10 @@ static float RadiansToDegrees(float radians)
     // Custom lander start point
     self.fuelRemaining = self.lemInitalFuel;
     self.turnAngle = 0;
-    self.horizontalVelocity = 30;
-    self.verticalVelocity = 0;
+    self.horizontalVelocity = 0;
+    self.verticalVelocity = -170;
     self.horizontalDistance = -400;
-    self.verticalDistance = 60;
+    self.verticalDistance = 360;
     self.percentThrustRequested = 18;
     self.clockTicks = 0.0f;
 #else

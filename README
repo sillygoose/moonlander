@@ -14,10 +14,13 @@ Features to do list
 
 Bugs todo list
 - use floats for X/Y positioning so retina displays are supported
-- delay for explosion after on ipad (queue problem, need to use different queue)
-
+- explosion looks lousy on new iPad, maybe need to move to foreground (maybe dust too)
+- button repeat too high (for simulator)
+- control sound volume from app (max level)
 
 Fixed/Done
+- dust view not cleared (background issue)
+- delay for explosion after on ipad (queue problem, need to use different queue)
 - new dust bug at pos angle (lags movement? - looks ok after testing)
 - sync blink timing by using a single timer (can live current design)
 - MCD explosion is not right for some reason (because of the height of MCD - historically accurate)
