@@ -107,7 +107,7 @@ static float RadiansToDegrees(float radians)
             self.verticalAcceleration = self.lemAcceleration * cosf(self.turnAngleRadians) - self.lunarGravity;
         }
     
-//#define HOLD_POSITION
+#define HOLD_POSITION
 #ifndef HOLD_POSITION
         // Horizontal/vertical velocity/position updates
         self.horizontalVelocity += self.horizontalAcceleration * timeElapsed;
@@ -284,7 +284,7 @@ static float RadiansToDegrees(float radians)
     self.horizontalVelocity = 0;
     self.verticalVelocity = -10;
     self.horizontalDistance = 0;
-    self.verticalDistance = 100;
+    self.verticalDistance = 50;
     self.percentThrustRequested = 18;
     self.clockTicks = 0.0f;
 #else
