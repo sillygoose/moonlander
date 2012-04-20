@@ -151,7 +151,7 @@
         if ([currentVector objectForKey:@"intensity"]) {
             int intensityLevel = [[currentVector objectForKey:@"intensity"] intValue];
             CGContextStrokePath(context);
-            const CGFloat Intensities[] = { 0.65f, 0.70f, 0.75f, 0.80f, 0.85f, 0.90f, 0.95f, 1.0f };
+            const CGFloat Intensities[] = { 0.44f, 0.52f, 0.60f, 0.68f, 0.76f, 0.84f, 0.92f, 1.0f };
             CGContextSetAlpha(context, Intensities[intensityLevel % (sizeof(Intensities)/sizeof(Intensities[0]))]);
             CGContextMoveToPoint(context, prevPoint.x, prevPoint.y);
         }
