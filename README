@@ -14,6 +14,7 @@ Features to do list
 
 Bugs todo list
 - use floats for X/Y positioning so retina displays are supported
+- delay for explosion after on ipad (queue problem, need to use different queue)
 
 
 Fixed/Done
