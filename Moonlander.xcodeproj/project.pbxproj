@@ -125,6 +125,13 @@
 		564EBC5013834A17007D477C /* McDonalds.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = McDonalds.plist; path = Resources/McDonalds.plist; sourceTree = "<group>"; };
 		5650B9E8153CB76800AEF4F2 /* ExplosionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExplosionManager.h; sourceTree = "<group>"; };
 		5650B9E9153CB76800AEF4F2 /* ExplosionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExplosionManager.m; sourceTree = "<group>"; };
+		565D23601540E9760074D3AD /* gtlem.mac */ = {isa = PBXFileReference; lastKnownFileType = text; path = gtlem.mac; sourceTree = "<group>"; };
+		565D23611540E9760074D3AD /* lunar.bas */ = {isa = PBXFileReference; lastKnownFileType = text; path = lunar.bas; sourceTree = "<group>"; };
+		565D23621540E9760074D3AD /* mlc.mac */ = {isa = PBXFileReference; lastKnownFileType = text; path = mlc.mac; sourceTree = "<group>"; };
+		565D23631540E9760074D3AD /* mld.mac */ = {isa = PBXFileReference; lastKnownFileType = text; path = mld.mac; sourceTree = "<group>"; };
+		565D23641540E9760074D3AD /* Original GTLEM Source */ = {isa = PBXFileReference; lastKnownFileType = text; path = "Original GTLEM Source"; sourceTree = "<group>"; };
+		565D23651540E9760074D3AD /* rtlem.mac */ = {isa = PBXFileReference; lastKnownFileType = text; path = rtlem.mac; sourceTree = "<group>"; };
+		565D23671540F0230074D3AD /* rocket.bas */ = {isa = PBXFileReference; lastKnownFileType = text; path = rocket.bas; sourceTree = "<group>"; };
 		56678FCB139A7D4D00026588 /* OldLander.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = OldLander.plist; path = Resources/OldLander.plist; sourceTree = "<group>"; };
 		56755FD8138C0B8200455B52 /* Lander.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Lander.h; sourceTree = "<group>"; };
 		56755FD9138C0B8200455B52 /* Lander.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Lander.m; sourceTree = "<group>"; };
@@ -396,6 +403,21 @@
 			name = Resources;
 			sourceTree = "<group>";
 		};
+		565D235F1540E9760074D3AD /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				565D23671540F0230074D3AD /* rocket.bas */,
+				565D23601540E9760074D3AD /* gtlem.mac */,
+				565D23611540E9760074D3AD /* lunar.bas */,
+				565D23621540E9760074D3AD /* mlc.mac */,
+				565D23631540E9760074D3AD /* mld.mac */,
+				565D23641540E9760074D3AD /* Original GTLEM Source */,
+				565D23651540E9760074D3AD /* rtlem.mac */,
+			);
+			name = Sources;
+			path = Documentation/Sources;
+			sourceTree = "<group>";
+		};
 		5695F1A9137F52B50075CD26 /* Vector Graphics */ = {
 			isa = PBXGroup;
 			children = (
@@ -416,6 +438,7 @@
 		56ECD8ED1540703500565615 /* Moonlander Classic */ = {
 			isa = PBXGroup;
 			children = (
+				565D235F1540E9760074D3AD /* Sources */,
 				56ECD8EE1540703500565615 /* Binaries */,
 				56ECD9001540703500565615 /* Documentation */,
 				56ECD9271540703500565615 /* Utilities */,
