@@ -22,7 +22,6 @@
         NSDictionary *manDict = [NSDictionary dictionaryWithContentsOfFile:manPath];
         self.drawPaths = [manDict objectForKey:@"paths"];
         self.vectorName = @"[Man init]";
-        
     }
     return self;
 }

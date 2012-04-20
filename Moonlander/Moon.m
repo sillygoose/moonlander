@@ -314,6 +314,10 @@
     NSDictionary *moveToStartItem = [NSDictionary dictionaryWithObjectsAndKeys:startItem, @"moveto", nil];
     [path addObject:moveToStartItem];
     
+    NSString *viewName = @"detailedMoon";
+    NSDictionary *name = [NSDictionary dictionaryWithObjectsAndKeys:viewName, @"name", nil];
+    [path addObject:name];
+    
     int DFUDGE = 0;
     int DFUDGE_INC = 1;
     unsigned lineSegments = 0;

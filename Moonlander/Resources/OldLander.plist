@@ -8,6 +8,8 @@
 	<array>
 		<array>
 			<dict>
+				<key>name</key>
+				<string>OldLander</string>
 				<key>color</key>
 				<dict>
 					<key>alpha</key>

@@ -93,6 +93,15 @@
             if (stopCommand) break;
         }
         
+#if defined(VG_LOGNAMES)
+        // "name" allows for object identification
+        NSString *viewName = @"(unknown)" ;
+        if ([currentVector objectForKey:@"name"]) {
+            viewName = [currentVector objectForKey:@"name"];
+            NSLog(@"Processing %@", viewName);
+        }
+#endif
+        
         // "log" allows for view information
         if ([currentVector objectForKey:@"log"]) {
             logCommand = [[currentVector objectForKey:@"log"] boolValue];

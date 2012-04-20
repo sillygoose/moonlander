@@ -33,7 +33,7 @@
     return self;
 }
 
--(void)updateDrawingDictonary
+-(void)updateDrawingDictionary
 {
     // Get the font info
     NSDictionary *fontDict = nil;
@@ -56,8 +56,16 @@
         }
     }
     
-    // Build the draw dictionary
-    NSDictionary *drawDict = [NSDictionary dictionaryWithObjectsAndKeys:self.text, @"text", [NSNumber numberWithBool:self.blink], @"blink", [NSNumber numberWithInt:self.textAlignment], @"alignment", fontDict, @"font", colorDict, @"color", nil];
+    // Name info
+    NSString *viewName = self.vectorName;
+    NSDictionary *name = [NSDictionary dictionaryWithObjectsAndKeys:viewName, @"name", nil];
+    
+    // Blink state and text alignment
+    NSNumber *textAlign = [NSNumber numberWithInt:self.textAlignment];
+    NSNumber *blinkState = (self.blink) ? [NSNumber numberWithBool:self.blink] : nil;
+    
+    // Build the draw dictionary (blinkState is nil will terminate the list early)
+    NSDictionary *drawDict = [NSDictionary dictionaryWithObjectsAndKeys:self.text, @"text", textAlign, @"alignment", fontDict, @"font", colorDict, @"color", name, @"name", blinkState, @"blink", nil];
     NSArray *path = [NSArray arrayWithObjects:drawDict, nil];
     NSArray *paths = [NSArray arrayWithObject:path];
     self.drawPaths = paths;
@@ -68,31 +76,31 @@
 - (void)setBlink:(BOOL)blinkType
 {
     _blink = blinkType;
-    [self updateDrawingDictonary];
+    [self updateDrawingDictionary];
 }
 
 - (void)setTextColor:(UIColor *)newColor
 {
     _textColor = newColor;
-    [self updateDrawingDictonary];
+    [self updateDrawingDictionary];
 }
 
 - (void)setFont:(UIFont *)newFont
 {                    
     _font = newFont;
-    [self updateDrawingDictonary];
+    [self updateDrawingDictionary];
 }
 
 - (void)setText:(NSString *)newText
 {
     _text = [newText copy];
-    [self updateDrawingDictonary];
+    [self updateDrawingDictionary];
 }
 
 - (void)setTextAlignment:(UITextAlignment)newAlignment
 {                    
     _textAlignment = newAlignment;
-    [self updateDrawingDictonary];
+    [self updateDrawingDictionary];
 }
 
 

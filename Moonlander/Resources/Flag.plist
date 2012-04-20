@@ -7,6 +7,8 @@
 	<key>paths</key>
 	<array>
 		<dict>
+			<key>name</key>
+			<string>Flag</string>
 			<key>push</key>
 			<dict>
 				<key>gstate</key>

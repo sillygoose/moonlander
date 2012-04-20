@@ -2,6 +2,8 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>name</key>
+	<string>Game Messages</string>
 	<key>labels</key>
 	<dict>
 		<key>Height</key>
@@ -303,6 +305,8 @@
 		</dict>
 		<key>Seconds</key>
 		<dict>
+			<key>name</key>
+			<string>seconds</string>
 			<key>frame</key>
 			<dict>
 				<key>origin</key>
@@ -329,7 +333,5 @@
 			</array>
 		</dict>
 	</dict>
-	<key>name</key>
-	<string>Game Messages</string>
 </dict>
 </plist>

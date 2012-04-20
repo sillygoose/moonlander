@@ -2,12 +2,12 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>name</key>
-	<string>Small Left Arrow</string>
 	<key>paths</key>
 	<array>
 		<array>
 			<dict>
+				<key>name</key>
+				<string>Small Left Arrow</string>
 				<key>color</key>
 				<dict>
 					<key>alpha</key>
@@ -64,5 +64,7 @@
 			</dict>
 		</array>
 	</array>
+	<key>name</key>
+	<string>Small Left Arrow</string>
 </dict>
 </plist>

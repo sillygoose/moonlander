@@ -18,6 +18,7 @@
 {
     self = [super initWithFrame:frameRect];
     if (self) {
+        self.titleLabel.vectorName = @"instrument";
     }
     return self;
 }

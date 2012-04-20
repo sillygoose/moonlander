@@ -15,9 +15,11 @@ Features to do list
 Bugs todo list
 - use floats for X/Y positioning so retina displays are supported
 - sync blink timing by using a single timer
+- MCD explosion is not right for some reason (because of the height of MCD)
 
 
 Fixed/Done
+- dust view not always cleared
 - controls have differing brightness
 - roll arrow repeat not working
 - get bell code running in explosion

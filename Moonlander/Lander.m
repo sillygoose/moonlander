@@ -132,18 +132,26 @@
             [path addObject:breakItem];
         #endif
             
-            //
+            // First center ourselves in the view
             NSNumber *centerValue = [NSNumber numberWithInt:0];
             NSDictionary *centerItem = [NSDictionary dictionaryWithObjectsAndKeys:centerValue, @"center", nil];
             NSDictionary *moveToCenterItem = [NSDictionary dictionaryWithObjectsAndKeys:centerItem, @"moveto", nil];
             [path addObject:moveToCenterItem];
 
-            //
+            // Add a move relative command to return the thrust vector starting point
             self.x = [NSNumber numberWithInt:-7];
             self.y = [NSNumber numberWithInt:21];
             NSDictionary *moveRelItem = [NSDictionary dictionaryWithObjectsAndKeys:self.x, @"x", self.y, @"y", nil];
             NSDictionary *moveRelXYItem = [NSDictionary dictionaryWithObjectsAndKeys:moveRelItem, @"moverel", nil];
             [path addObject:moveRelXYItem];
+      
+#define DEBUG_NAMES
+#ifdef DEBUG_NAMES
+            // Add a name field for debugging
+            NSString *viewName = @"thrust";
+            NSDictionary *name = [NSDictionary dictionaryWithObjectsAndKeys:viewName, @"name", nil];
+            [path addObject:name];
+#endif
             
             for (int i = 0; i < xCoordinates.count; i++) {
                 // Add line type and intensity

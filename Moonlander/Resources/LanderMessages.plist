@@ -2,6 +2,8 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>name</key>
+	<string>Game Messages</string>
 	<key>messages</key>
 	<dict>
 		<key>SplashScreen</key>
@@ -948,7 +950,5 @@
 			</array>
 		</dict>
 	</dict>
-	<key>name</key>
-	<string>Game Messages</string>
 </dict>
 </plist>

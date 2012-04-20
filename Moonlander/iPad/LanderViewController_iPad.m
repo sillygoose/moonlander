@@ -461,6 +461,7 @@ const float OffcomDelay = 2.0f;
                   forControlEvents:UIControlEventValueChanged];
     self.smallLeftArrow.hidden = YES;
     self.smallLeftArrow.brighten = YES;
+    self.smallLeftArrow.titleLabel.vectorName = @"sra";
     [self.view addSubview:self.smallLeftArrow];
     
     NSString *sraPath = [[NSBundle mainBundle] pathForResource:@"SmallRightArrow" ofType:@"plist"];
@@ -470,6 +471,7 @@ const float OffcomDelay = 2.0f;
                    forControlEvents:UIControlEventValueChanged];
     self.smallRightArrow.hidden = YES;
     self.smallRightArrow.brighten = YES;
+    self.smallRightArrow.titleLabel.vectorName = @"sra";
     [self.view addSubview:self.smallRightArrow];
     
     const float LargeRollArrowWidth = 50;
@@ -481,6 +483,7 @@ const float OffcomDelay = 2.0f;
                   forControlEvents:UIControlEventValueChanged];
     self.largeLeftArrow.hidden = YES;
     self.largeLeftArrow.brighten = YES;
+    self.largeLeftArrow.titleLabel.vectorName = @"lla";
     [self.view addSubview:self.largeLeftArrow];
     
     NSString *lraPath = [[NSBundle mainBundle] pathForResource:@"LargeRightArrow" ofType:@"plist"];
@@ -490,6 +493,7 @@ const float OffcomDelay = 2.0f;
                    forControlEvents:UIControlEventValueChanged];
     self.largeRightArrow.hidden = YES;
     self.largeRightArrow.brighten = YES;
+    self.largeRightArrow.titleLabel.vectorName = @"lra";
     [self.view addSubview:self.largeRightArrow];
     
     // Create the thruster control
@@ -514,6 +518,7 @@ const float OffcomDelay = 2.0f;
                            action:@selector(telemetrySelected:) 
                  forControlEvents:UIControlEventTouchUpInside];
     self.heightData.hidden = YES;
+    self.heightData.titleLabel.vectorName = @"heightData";
     [self.view addSubview:self.heightData];
     
     self.altitudeData = [[Telemetry alloc] initWithFrame:[self convertRectFromGameToView:CGRectMake(TelemetryXPos, 225, TelemetryXSize, TelemetryYSize)]];
@@ -524,6 +529,7 @@ const float OffcomDelay = 2.0f;
                            action:@selector(telemetrySelected:) 
                  forControlEvents:UIControlEventTouchUpInside];
     self.altitudeData.hidden = YES;
+    self.altitudeData.titleLabel.vectorName = @"altitudeData";
     [self.view addSubview:self.altitudeData];
     
     self.distanceData = [[Telemetry alloc] initWithFrame:[self convertRectFromGameToView:CGRectMake(TelemetryXPos, 203, TelemetryXSize, TelemetryYSize)]];
@@ -534,6 +540,7 @@ const float OffcomDelay = 2.0f;
                            action:@selector(telemetrySelected:) 
                  forControlEvents:UIControlEventTouchUpInside];
     self.distanceData.hidden = YES;
+    self.distanceData.titleLabel.vectorName = @"distanceData";
     [self.view addSubview:self.distanceData];
     
 
@@ -545,6 +552,7 @@ const float OffcomDelay = 2.0f;
                          action:@selector(telemetrySelected:) 
                forControlEvents:UIControlEventTouchUpInside];
     self.fuelLeftData.hidden = YES;
+    self.fuelLeftData.titleLabel.vectorName = @"fuelLeftData";
     [self.view addSubview:self.fuelLeftData];
     
     self.weightData = [[Telemetry alloc] initWithFrame:[self convertRectFromGameToView:CGRectMake(TelemetryXPos, 159, TelemetryXSize, TelemetryYSize)]];
@@ -555,6 +563,7 @@ const float OffcomDelay = 2.0f;
                                    action:@selector(telemetrySelected:) 
                          forControlEvents:UIControlEventTouchUpInside];
     self.weightData.hidden = YES;
+    self.weightData.titleLabel.vectorName = @"weightData";
     [self.view addSubview:self.weightData];
 
     self.thrustData = [[Telemetry alloc] initWithFrame:[self convertRectFromGameToView:CGRectMake(TelemetryXPos, 137, TelemetryXSize, TelemetryYSize)]];
@@ -565,6 +574,7 @@ const float OffcomDelay = 2.0f;
                         action:@selector(telemetrySelected:) 
               forControlEvents:UIControlEventTouchUpInside];
     self.thrustData.hidden = YES;
+    self.thrustData.titleLabel.vectorName = @"thrustData";
     [self.view addSubview:self.thrustData];
     
     self.thrustAngleData = [[Telemetry alloc] initWithFrame:[self convertRectFromGameToView:CGRectMake(TelemetryXPos, 115, TelemetryXSize, TelemetryYSize)]];
@@ -575,6 +585,7 @@ const float OffcomDelay = 2.0f;
                         action:@selector(telemetrySelected:) 
               forControlEvents:UIControlEventTouchUpInside];
     self.thrustAngleData.hidden = YES;
+    self.thrustAngleData.titleLabel.vectorName = @"thrustAngleData";
     [self.view addSubview:self.thrustAngleData];
     
     self.verticalVelocityData = [[Telemetry alloc] initWithFrame:[self convertRectFromGameToView:CGRectMake(TelemetryXPos, 93, TelemetryXSize, TelemetryYSize)]];
@@ -585,6 +596,7 @@ const float OffcomDelay = 2.0f;
                         action:@selector(telemetrySelected:) 
               forControlEvents:UIControlEventTouchUpInside];
     self.verticalVelocityData.hidden = YES;
+    self.verticalVelocityData.titleLabel.vectorName = @"verticalVelocityData";
     [self.view addSubview:self.verticalVelocityData];
     
     self.horizontalVelocityData = [[Telemetry alloc] initWithFrame:[self convertRectFromGameToView:CGRectMake(TelemetryXPos, 71, TelemetryXSize, TelemetryYSize)]];
@@ -595,6 +607,7 @@ const float OffcomDelay = 2.0f;
                         action:@selector(telemetrySelected:) 
               forControlEvents:UIControlEventTouchUpInside];
     self.horizontalVelocityData.hidden = YES;
+    self.horizontalVelocityData.titleLabel.vectorName = @"horizontalVelocityData";
     [self.view addSubview:self.horizontalVelocityData];
     
     self.verticalAccelerationData = [[Telemetry alloc] initWithFrame:[self convertRectFromGameToView:CGRectMake(TelemetryXPos, 49, TelemetryXSize, TelemetryYSize)]];
@@ -605,6 +618,7 @@ const float OffcomDelay = 2.0f;
                         action:@selector(telemetrySelected:) 
               forControlEvents:UIControlEventTouchUpInside];
     self.verticalAccelerationData.hidden = YES;
+    self.verticalAccelerationData.titleLabel.vectorName = @"verticalAccelerationData";
     [self.view addSubview:self.verticalAccelerationData];
     
     self.horizontalAccelerationData = [[Telemetry alloc] initWithFrame:[self convertRectFromGameToView:CGRectMake(TelemetryXPos, 27, TelemetryXSize, TelemetryYSize)]];
@@ -615,6 +629,7 @@ const float OffcomDelay = 2.0f;
                         action:@selector(telemetrySelected:) 
               forControlEvents:UIControlEventTouchUpInside];
     self.horizontalAccelerationData.hidden = YES;
+    self.horizontalAccelerationData.titleLabel.vectorName = @"horizontalAccelerationData";
     [self.view addSubview:self.horizontalAccelerationData];
     
     self.secondsData = [[Telemetry alloc] initWithFrame:[self convertRectFromGameToView:CGRectMake(TelemetryXPos, 5, TelemetryXSize, TelemetryYSize)]];
@@ -625,6 +640,7 @@ const float OffcomDelay = 2.0f;
                         action:@selector(telemetrySelected:) 
               forControlEvents:UIControlEventTouchUpInside];
     self.secondsData.hidden = YES;
+    self.secondsData.titleLabel.vectorName = @"secondsData";
     [self.view addSubview:self.secondsData];
  
     // Create the instrumentation labels
@@ -637,6 +653,7 @@ const float OffcomDelay = 2.0f;
 	[self.instrument1 addTarget:self 
                          action:@selector(instrumentSelected:) 
                forControlEvents:UIControlEventTouchUpInside];
+    self.instrument1.titleLabel.vectorName = @"instrument1";
     [self.view addSubview:self.instrument1];
     
     self.instrument2 = [[Instrument alloc] initWithFrame:CGRectMake(250, InstrumentYCoordinate, InstrumentSizeWidth, InstrumentSizeHeight)];
@@ -644,6 +661,7 @@ const float OffcomDelay = 2.0f;
 	[self.instrument2 addTarget:self 
                          action:@selector(instrumentSelected:) 
                forControlEvents:UIControlEventTouchUpInside];
+    self.instrument2.titleLabel.vectorName = @"instrument2";
     [self.view addSubview:self.instrument2];
     
     self.instrument3 = [[Instrument alloc] initWithFrame:CGRectMake(500, InstrumentYCoordinate, InstrumentSizeWidth, InstrumentSizeHeight)];
@@ -651,6 +669,7 @@ const float OffcomDelay = 2.0f;
 	[self.instrument3 addTarget:self 
                          action:@selector(instrumentSelected:) 
                forControlEvents:UIControlEventTouchUpInside];
+    self.instrument3.titleLabel.vectorName = @"instrument3";
     [self.view addSubview:self.instrument3];
     
     self.instrument4 = [[Instrument alloc] initWithFrame:CGRectMake(750, InstrumentYCoordinate, InstrumentSizeWidth, InstrumentSizeHeight)];
@@ -658,6 +677,7 @@ const float OffcomDelay = 2.0f;
 	[self.instrument4 addTarget:self 
                          action:@selector(instrumentSelected:) 
                forControlEvents:UIControlEventTouchUpInside];
+    self.instrument4.titleLabel.vectorName = @"instrument4";
     [self.view addSubview:self.instrument4];
 
     self.instrument5 = [[Instrument alloc] initWithFrame:CGRectMake(0, InstrumentYCoordinate2, InstrumentSizeWidth, InstrumentSizeHeight)];
@@ -666,6 +686,7 @@ const float OffcomDelay = 2.0f;
                          action:@selector(instrumentSelected:) 
                forControlEvents:UIControlEventTouchUpInside];
     self.instrument5.hidden = YES;
+    self.instrument5.titleLabel.vectorName = @"instrument5";
     [self.view addSubview:self.instrument5];
     
     self.instrument6 = [[Instrument alloc] initWithFrame:CGRectMake(250, InstrumentYCoordinate2, InstrumentSizeWidth, InstrumentSizeHeight)];
@@ -674,6 +695,7 @@ const float OffcomDelay = 2.0f;
                          action:@selector(instrumentSelected:) 
                forControlEvents:UIControlEventTouchUpInside];
     self.instrument6.hidden = YES;
+    self.instrument6.titleLabel.vectorName = @"instrument6";
     [self.view addSubview:self.instrument6];
     
     self.instrument7 = [[Instrument alloc] initWithFrame:CGRectMake(500, InstrumentYCoordinate2, InstrumentSizeWidth, InstrumentSizeHeight)];
@@ -682,6 +704,7 @@ const float OffcomDelay = 2.0f;
                          action:@selector(instrumentSelected:) 
                forControlEvents:UIControlEventTouchUpInside];
     self.instrument7.hidden = YES;
+    self.instrument7.titleLabel.vectorName = @"instrument7";
     [self.view addSubview:self.instrument7];
     
     self.instrument8 = [[Instrument alloc] initWithFrame:CGRectMake(750, InstrumentYCoordinate2, InstrumentSizeWidth, InstrumentSizeHeight)];
@@ -690,6 +713,7 @@ const float OffcomDelay = 2.0f;
                          action:@selector(instrumentSelected:) 
                forControlEvents:UIControlEventTouchUpInside];
     self.instrument8.hidden = YES;
+    self.instrument8.titleLabel.vectorName = @"instrument8";
     [self.view addSubview:self.instrument8];
     
     // Create the lander view with data sources
@@ -930,7 +954,7 @@ const float OffcomDelay = 2.0f;
     // Remove a low fuel message
     [self.landerMessages removeFuelMessage];
 
-    // Remove dust view
+    // Remove dust view ###
     self.dustView.hidden = YES;
     
     // Final lander view update
@@ -1561,10 +1585,7 @@ const float OffcomDelay = 2.0f;
             [self INTEL];
             
             // Wait till 150 feet above surface before kicking up dust
-            const short DustStartHeight = 150;
-            if (self.RADARY < DustStartHeight) {
-                [self.dustView generateDust];
-            }
+           [self.dustView generateDust];
 
             // Redraw surface if changed
             [self.moonView useCloseUpView:self.LEFTEDGE];

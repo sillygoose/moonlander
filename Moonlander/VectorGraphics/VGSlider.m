@@ -68,6 +68,11 @@
         self.thrusterValue.userInteractionEnabled = NO;
         //self.thrusterValue.backgroundColor = [UIColor grayColor];
         [self addSubview:self.thrusterValue];
+        
+        // Add names for debugging
+        self.thrusterIndicator.vectorName = @"thrust";
+        self.thrusterValue.vectorName = @"%thrust";
+        self.thrusterSlider.vectorName = @"slider";
     }
     return self;
 }

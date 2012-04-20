@@ -47,8 +47,14 @@
     self = [self initWithFrame:frameRect];
     
     NSDictionary *viewObject = [NSDictionary dictionaryWithContentsOfFile:fileName];
-    if (!(self.titleLabel.vectorName = [viewObject objectForKey:@"name"]))
+    if ([viewObject objectForKey:@"name"]) {
+        NSString *name = [viewObject objectForKey:@"name"];
+        self.titleLabel.vectorName = name;
+    }
+    else {
         self.titleLabel.vectorName = @"[VGButton initWithFrame:withPaths:]";
+    }
+
     self.titleLabel.drawPaths = [viewObject objectForKey:@"paths"];
     return self;
 }

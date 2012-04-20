@@ -6,6 +6,8 @@
 	<array>
 		<array>
 			<dict>
+				<key>name</key>
+				<string>Large Right Arrow</string>
 				<key>color</key>
 				<dict>
 					<key>alpha</key>
@@ -62,7 +64,7 @@
 			</dict>
 		</array>
 	</array>
-	<key>name</key>
+	<key>New item</key>
 	<string>Large Right Arrow</string>
 </dict>
 </plist>

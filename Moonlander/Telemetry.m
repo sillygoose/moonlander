@@ -23,6 +23,7 @@
 {
     self = [super initWithFrame:frameRect];
     if (self) {
+        self.titleLabel.vectorName = @"telemetry";
     }
     return self;
 }

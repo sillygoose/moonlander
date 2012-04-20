@@ -6,6 +6,8 @@
 	<array>
 		<array>
 			<dict>
+				<key>name</key>
+				<string>Large Left Arrow</string>
 				<key>color</key>
 				<dict>
 					<key>alpha</key>
