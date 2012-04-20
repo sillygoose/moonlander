@@ -146,6 +146,17 @@ const float DustViewHeight = 64;
                     dispatch_queue_t dustQueue = dispatch_queue_create("com.devtools.moonlander.dust", NULL);
                     dispatch_async(dustQueue, createDustView);
                     dispatch_release(dustQueue);
+
+                    // Block to automatically clean up dust views when they are not being created any more
+                    void (^clearDustView)(void) = ^{
+                        // Disable the view automatically
+                        self.drawPaths = nil;
+                        [self setNeedsDisplay];
+                    };
+                    
+                    double delayInSeconds = 0.1;
+                    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * NSEC_PER_SEC);
+                    dispatch_after(popTime, dispatch_get_main_queue(), clearDustView);
                 }
             }
         }
