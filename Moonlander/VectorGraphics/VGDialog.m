@@ -102,7 +102,7 @@
 {
     VGButton *touched = sender;
     if (touched.brighten) {
-        touched.alpha = BrightIntensity;
+        touched.titleLabel.blink = YES;//BrightIntensity;
     }
 }
 
@@ -110,7 +110,7 @@
 {
     VGButton *touched = sender;
     if (touched.brighten) {
-        touched.alpha = NormalIntensity;
+        touched.titleLabel.blink = NO;//NormalIntensity;
     }
 }
 

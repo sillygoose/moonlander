@@ -19,12 +19,17 @@
 @synthesize actualBounds=_actualBounds;
 @synthesize brighten=_brighten;
 
+- (void)setBrighten:(BOOL)brighten
+{
+    _brighten = brighten;
+    self.alpha = (_brighten) ? NormalIntensity : BrightIntensity;
+}
 
 - (id)initWithFrame:(CGRect)frameRect
 {
     if ((self = [super initWithFrame:frameRect])) {
         self.opaque = NO;
-        self.alpha = NormalIntensity;
+        self.alpha = BrightIntensity;
 
         self.titleLabel = [[VGLabel alloc] initWithFrame:CGRectMake(0, 0, frameRect.size.width, frameRect.size.height)];
         [self addTarget:self action:@selector(buttonDown:) forControlEvents:UIControlEventTouchDown];

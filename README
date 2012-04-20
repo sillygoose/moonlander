@@ -13,11 +13,13 @@ Features to do list
 
 
 Bugs todo list
-- controls have differing brightness
 - use floats for X/Y positioning so retina displays are supported
+- sync blink timing by using a single timer
 
 
 Fixed/Done
+- controls have differing brightness
+- roll arrow repeat not working
 - get bell code running in explosion
 - move dust display code out of main queue
 - views don't implement the correct intensities (lander, flag, etc)

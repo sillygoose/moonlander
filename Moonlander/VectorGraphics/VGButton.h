@@ -13,8 +13,6 @@
 #define BrightIntensity     1.00
 #define NormalIntensity     0.80
 
-#define ButtonRepeatRate    0.5
-
 
 @interface VGButton : UIControl {
     VGLabel     *_titleLabel;

@@ -452,10 +452,10 @@ const float OffcomDelay = 2.0f;
     
     // Create the roll control arrows
     const float RollButtonRepeatInterval = 0.1;
-    const float SmallRollArrowWidth = 30;
-    const float SmallRollArrowHeight = 30;
+    const float SmallRollArrowWidth = 35;
+    const float SmallRollArrowHeight = 40;
     NSString *slaPath = [[NSBundle mainBundle] pathForResource:@"SmallLeftArrow" ofType:@"plist"];
-    self.smallLeftArrow = [[VGButton alloc] initWithFrame:[self convertRectFromGameToView: CGRectMake(925, 375, SmallRollArrowWidth, SmallRollArrowHeight)]  withPaths:slaPath andRepeat:RollButtonRepeatInterval];
+    self.smallLeftArrow = [[VGButton alloc] initWithFrame:[self convertRectFromGameToView: CGRectMake(920, 375, SmallRollArrowWidth, SmallRollArrowHeight)]  withPaths:slaPath andRepeat:RollButtonRepeatInterval];
 	[self.smallLeftArrow addTarget:self 
                             action:@selector(rotateLander:) 
                   forControlEvents:UIControlEventValueChanged];
@@ -464,7 +464,7 @@ const float OffcomDelay = 2.0f;
     [self.view addSubview:self.smallLeftArrow];
     
     NSString *sraPath = [[NSBundle mainBundle] pathForResource:@"SmallRightArrow" ofType:@"plist"];
-    self.smallRightArrow = [[VGButton alloc] initWithFrame:[self convertRectFromGameToView: CGRectMake(955, 375, SmallRollArrowWidth, SmallRollArrowHeight)] withPaths:sraPath andRepeat:RollButtonRepeatInterval];
+    self.smallRightArrow = [[VGButton alloc] initWithFrame:[self convertRectFromGameToView: CGRectMake(960, 375, SmallRollArrowWidth, SmallRollArrowHeight)] withPaths:sraPath andRepeat:RollButtonRepeatInterval];
 	[self.smallRightArrow addTarget:self 
                              action:@selector(rotateLander:) 
                    forControlEvents:UIControlEventValueChanged];
@@ -472,10 +472,10 @@ const float OffcomDelay = 2.0f;
     self.smallRightArrow.brighten = YES;
     [self.view addSubview:self.smallRightArrow];
     
-    const float LargeRollArrowWidth = 48;
-    const float LargeRollArrowHeight = 30;
+    const float LargeRollArrowWidth = 50;
+    const float LargeRollArrowHeight = 40;
     NSString *llaPath = [[NSBundle mainBundle] pathForResource:@"LargeLeftArrow" ofType:@"plist"];
-    self.largeLeftArrow = [[VGButton alloc] initWithFrame:[self convertRectFromGameToView: CGRectMake(905, 330, LargeRollArrowWidth, LargeRollArrowHeight)] withPaths:llaPath andRepeat:RollButtonRepeatInterval];
+    self.largeLeftArrow = [[VGButton alloc] initWithFrame:[self convertRectFromGameToView: CGRectMake(905, 320, LargeRollArrowWidth, LargeRollArrowHeight)] withPaths:llaPath andRepeat:RollButtonRepeatInterval];
 	[self.largeLeftArrow addTarget:self 
                             action:@selector(rotateLander:) 
                   forControlEvents:UIControlEventValueChanged];
@@ -484,7 +484,7 @@ const float OffcomDelay = 2.0f;
     [self.view addSubview:self.largeLeftArrow];
     
     NSString *lraPath = [[NSBundle mainBundle] pathForResource:@"LargeRightArrow" ofType:@"plist"];
-    self.largeRightArrow = [[VGButton alloc] initWithFrame:[self convertRectFromGameToView: CGRectMake(955, 330, LargeRollArrowWidth, LargeRollArrowHeight)] withPaths:lraPath andRepeat:RollButtonRepeatInterval];
+    self.largeRightArrow = [[VGButton alloc] initWithFrame:[self convertRectFromGameToView: CGRectMake(960, 320, LargeRollArrowWidth, LargeRollArrowHeight)] withPaths:lraPath andRepeat:RollButtonRepeatInterval];
 	[self.largeRightArrow addTarget:self 
                              action:@selector(rotateLander:) 
                    forControlEvents:UIControlEventValueChanged];
