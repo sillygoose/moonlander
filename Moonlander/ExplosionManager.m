@@ -13,11 +13,12 @@
 @synthesize explosionViews=_explosionViews;
 @synthesize parentView=_parentView;
 
+@synthesize createQueue= _createQueue;
+@synthesize animateQueue=_animateQueue;
+@synthesize completionBlock=_completionBlock;
+
 @synthesize currentRadius=_currentRadius;
 @synthesize radiusIncrement=_radiusIncrement;
-
-@synthesize dispatchQueue=_dispatchQueue;
-@synthesize completionBlock=_completionBlock;
 @synthesize queueDelay=_queueDelay;
 @synthesize beepCount=_beepCount;
 
@@ -27,10 +28,6 @@
 const short MaximumRadius = 200;
 const short RadiusIncrement1 = 33;
 const short RadiusIncrement2 = -10;
-
-const float AnimateExplosionTimer = 0.075;
-const float AgeExplosionTimer = 0.2;
-const float DeltaAlpha = 0.05;
 
 
 
@@ -53,6 +50,10 @@ static float RadiansToDegrees(float radians)
         // Create our array of views we will be managing
         self.explosionViews = [NSMutableArray array];
 
+        // Create a queue for the animation views
+        self.createQueue = dispatch_queue_create("com.devtools.moonlander.explode.create", NULL);
+        self.animateQueue = dispatch_queue_create("com.devtools.moonlander.explode.animate", NULL);
+
         // Our initial values for expansion code
         self.currentRadius = 0;
         self.radiusIncrement = RadiusIncrement2;
@@ -62,21 +63,25 @@ static float RadiansToDegrees(float radians)
 
 - (void)start
 {
-    const float DelayInSeconds = 0.1;
-    const float PhosphorDecay = 1;
+    const float DelayInSeconds = 0.05;
+    const float PhosphorDecay = .7;
     
+    __block BOOL allViewsCreated = NO;
+    void (^viewsCreated)(void) = ^{
+        allViewsCreated = YES;
+    };
+
     // Create the explosion views
     short radius = 0;
     short radiusIncrement = RadiusIncrement2;
     while (radius < MaximumRadius) {
         // Block variables for the view manager
         __block Explosion *explosionView;
-        
         void (^animateExplosionView)(void) = ^{
             // Use a block animation to fade the alpha to zero
             int count = [self.explosionViews count];
             if (count) {
-                // Need a beep every othger pass
+                // Need a beep on every other explosion pass
                 if (self.beepCount++ % 2) {
                     [self.delegate beep];
                 }
@@ -90,14 +95,18 @@ static float RadiansToDegrees(float radians)
                                         animations:^{theView.alpha = 0.0;}
                                         completion:^(BOOL finished){ [theView removeFromSuperview]; }];
                 });
-                
-                // Call the completion block
-                count = [self.explosionViews count];
             }
-            if (count == 0) {
+            
+            // Should be zero when all queues are posted
+            if (allViewsCreated && [self.explosionViews count] == 0) {
+                // This matters but I need to figure it out
                 dispatch_async(dispatch_get_main_queue(), ^{
                     self.completionBlock();
                 });
+                
+                // Release the queues
+                dispatch_release(self.createQueue);
+                dispatch_release(self.animateQueue);
             }
         };
         
@@ -128,7 +137,7 @@ static float RadiansToDegrees(float radians)
             
             // Now create a dispatch to make the view visible
             dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, self.queueDelay);
-            dispatch_after(popTime, self.dispatchQueue, animateExplosionView);
+            dispatch_after(popTime, self.animateQueue, animateExplosionView);
             //NSLog(@"createExplosionView: %d for execution in %llu msecs", self.currentRadius, (self.queueDelay / USEC_PER_SEC));
 
             // Adjust the delay for the next view
@@ -136,12 +145,15 @@ static float RadiansToDegrees(float radians)
         };
         
         // Add the view to a queue to be populated
-        dispatch_async(self.dispatchQueue, createExplosionView);
+        dispatch_async(self.createQueue, createExplosionView);
         
         // Add to our array of explosion views
         radius += radiusIncrement;
         radiusIncrement = (radiusIncrement == RadiusIncrement1) ? RadiusIncrement2 : RadiusIncrement1;
     }
+    
+    // Execuate a block to let us know all views are created
+    dispatch_async(self.createQueue, viewsCreated);
 }
 
 - (void)EXGEN:(Explosion *)view
@@ -192,7 +204,7 @@ static float RadiansToDegrees(float radians)
     
     // Add the draw paths and update the display
     view.drawPaths = paths;
-    dispatch_async(dispatch_get_main_queue(), ^{[view setNeedsDisplay];});
+    //###dispatch_async(dispatch_get_main_queue(), ^{[view setNeedsDisplay];});
 }
 
 @end
