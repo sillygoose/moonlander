@@ -195,19 +195,13 @@
 		56ECD91D1540703500565615 /* simh_doc.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = simh_doc.pdf; sourceTree = "<group>"; };
 		56ECD91E1540703500565615 /* simh_faq.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = simh_faq.pdf; sourceTree = "<group>"; };
 		56ECD91F1540703500565615 /* simh_swre.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = simh_swre.pdf; sourceTree = "<group>"; };
-		56ECD9211540703500565615 /* gtlem.mac */ = {isa = PBXFileReference; lastKnownFileType = text; path = gtlem.mac; sourceTree = "<group>"; };
-		56ECD9221540703500565615 /* lunar.bas */ = {isa = PBXFileReference; lastKnownFileType = text; path = lunar.bas; sourceTree = "<group>"; };
-		56ECD9231540703500565615 /* mlc.mac */ = {isa = PBXFileReference; lastKnownFileType = text; path = mlc.mac; sourceTree = "<group>"; };
-		56ECD9241540703500565615 /* mld.mac */ = {isa = PBXFileReference; lastKnownFileType = text; path = mld.mac; sourceTree = "<group>"; };
-		56ECD9251540703500565615 /* Original GTLEM Source */ = {isa = PBXFileReference; lastKnownFileType = text; path = "Original GTLEM Source"; sourceTree = "<group>"; };
-		56ECD9261540703500565615 /* rtlem.mac */ = {isa = PBXFileReference; lastKnownFileType = text; path = rtlem.mac; sourceTree = "<group>"; };
 		56ECD9281540703500565615 /* get.cmd */ = {isa = PBXFileReference; lastKnownFileType = text; path = get.cmd; sourceTree = "<group>"; };
 		56ECD9291540703500565615 /* make.com */ = {isa = PBXFileReference; lastKnownFileType = text; path = make.com; sourceTree = "<group>"; };
 		56ECD92A1540703500565615 /* put.cmd */ = {isa = PBXFileReference; lastKnownFileType = text; path = put.cmd; sourceTree = "<group>"; };
 		56ECD92B1540703500565615 /* putr.com */ = {isa = PBXFileReference; lastKnownFileType = file; path = putr.com; sourceTree = "<group>"; };
 		56ECD92C1540703500565615 /* putr.ini */ = {isa = PBXFileReference; lastKnownFileType = text; path = putr.ini; sourceTree = "<group>"; };
 		56ECD92D1540703500565615 /* putr.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = putr.txt; sourceTree = "<group>"; };
-		56ECD94B1540E55E00565615 /* beep.caf */ = {isa = PBXFileReference; path = beep.caf; sourceTree = "<group>"; };
+		56ECD94B1540E55E00565615 /* beep.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = beep.caf; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -487,7 +481,6 @@
 				56ECD9011540703500565615 /* Brochures */,
 				56ECD9141540703500565615 /* PDP11 */,
 				56ECD91C1540703500565615 /* simh */,
-				56ECD9201540703500565615 /* Sources */,
 			);
 			path = Documentation;
 			sourceTree = "<group>";
@@ -539,19 +532,6 @@
 				56ECD91F1540703500565615 /* simh_swre.pdf */,
 			);
 			path = simh;
-			sourceTree = "<group>";
-		};
-		56ECD9201540703500565615 /* Sources */ = {
-			isa = PBXGroup;
-			children = (
-				56ECD9211540703500565615 /* gtlem.mac */,
-				56ECD9221540703500565615 /* lunar.bas */,
-				56ECD9231540703500565615 /* mlc.mac */,
-				56ECD9241540703500565615 /* mld.mac */,
-				56ECD9251540703500565615 /* Original GTLEM Source */,
-				56ECD9261540703500565615 /* rtlem.mac */,
-			);
-			path = Sources;
 			sourceTree = "<group>";
 		};
 		56ECD9271540703500565615 /* Utilities */ = {
