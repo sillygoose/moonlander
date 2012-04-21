@@ -435,7 +435,7 @@
 
 - (void)drawRect:(CGRect)rect
 {
-    // This code supports old and new draw lists
+    // This code supports old and new draw lists and point arrays
     if ([[self.drawPaths objectAtIndex:0] isKindOfClass:[NSArray class]]) {
         NSEnumerator *pathEnumerator = [self.drawPaths objectEnumerator];
         NSArray *currentPath;

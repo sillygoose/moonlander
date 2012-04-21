@@ -13,8 +13,16 @@
 
 @synthesize delegate=_delegate;
 
+@synthesize dustPoints=_dustPoints;   
+
 const float DustViewWidth = 128;
 const float DustViewHeight = 64;
+
+typedef struct {
+    float x;
+    float y;
+    float alpha;
+} DustPoint;
 
 
 - (id)init
@@ -24,6 +32,10 @@ const float DustViewHeight = 64;
     if (self) {
         // Keep the view hidden for now
         self.hidden = YES;
+        self.opaque = NO;
+
+        // Array of dust to draw
+        self.dustPoints = [NSMutableArray array];
     }
     return self;
 }
@@ -74,18 +86,6 @@ const float DustViewHeight = 64;
                     // Actually have something to display, do it in the background
                     void (^createDustView)(void) = ^{
                         if (count) {
-                            // Allocate our path array
-                            NSMutableArray *path = [[NSMutableArray alloc] init];
-                            NSArray *paths = [NSArray arrayWithObject:path];
-                            
-                            // Prep the intensity and line type info
-                            NSNumber *intensity = [NSNumber numberWithInt:dustIntensity];
-
-                            // Add a name record for debug purposes
-                            NSString *viewName = @"dust";
-                            NSDictionary *name = [NSDictionary dictionaryWithObjectsAndKeys:viewName, @"name", nil];
-                            [path addObject:name];
-                            
                             // Look up table used in dust generation
                             const short YThrust[] = { 0, -30, -31, -32, -34, -36, -38, -41, -44, -47, -50, -53, -56, 0, 1, 3, 6, 4, 3, 1, -2, -6, -7, -5, -2, 2, 3, 5, 6, 2, 1, -1, -4, -6, -5, -3, 0, 4, 5, 7, 4, 0, -1, -3, -1, -20, -16, -13, -10, -7, -4, -2, 0, 2, 4, 7, 10, 13, 16, 20, 0, -30, -31 };
                             const short DimYThrust = sizeof(YThrust)/sizeof(YThrust[0]);
@@ -117,21 +117,17 @@ const float DustViewHeight = 64;
                                 short yPos = YThrust[RET1];
                                 yPos &= DimYThrust;
                                 
-                                // Create the point command and add to the draw list
-                                NSNumber *x = [NSNumber numberWithFloat:xPos];
-                                NSNumber *y = [NSNumber numberWithFloat:yPos];
-                                
-                                // Default size for a rectangle is 1 x 1
-                                NSDictionary *originItem = [NSDictionary dictionaryWithObjectsAndKeys:x, @"x", y, @"y", nil];
-                                NSDictionary *rectItem = [NSDictionary dictionaryWithObjectsAndKeys:originItem, @"origin", nil];
-                                NSDictionary *pathItem = [NSDictionary dictionaryWithObjectsAndKeys:rectItem, @"rect", intensity, @"intensity", nil];
-                                [path addObject:pathItem];
+                                // Encode our dust structure and save away
+                                DustPoint dust;
+                                dust.x = xPos;
+                                dust.y = yPos;
+                                dust.alpha = dustIntensity;
+                                NSValue *dustValue = [NSValue valueWithBytes:&dust objCType:@encode(CGPoint)];
+                                [self.dustPoints addObject:dustValue];
+
                             }
                             
-                            // Add the draw paths and update the display
-                            self.drawPaths = paths;
-                            
-                           // UIKit needs to be in the main thread
+                            // UIKit code needs to be in the main thread
                             dispatch_async(dispatch_get_main_queue(), ^{
                                 // Set the frame coordinates and redraw
                                 CGPoint newCenter = CGPointMake(xCenterPos, yCenterPos);
@@ -151,8 +147,43 @@ const float DustViewHeight = 64;
         }
     }
     
-    // Nothing to do, hide the view
-    self.hidden = YES;
+    // Hide the view in case we didn't draw anything
+    self.hidden = YES; 
+}
+
+- (void)drawPoint:(DustPoint)point
+{
+    // Set up context for drawing
+	CGContextRef context = UIGraphicsGetCurrentContext();
+    CGContextSetShouldAntialias(context, YES);
+    CGContextSetAllowsAntialiasing(context, YES);
+    
+    // Set the color ###(need this defined in one place!)
+    CGContextSetRGBFillColor(context, 0.026f, 1.0f, 0.00121f, 1.0f);
+    CGContextSetRGBStrokeColor(context, 0.026f, 1.0f, 0.00121f, 1.0f);
+    CGContextSetAlpha(context, point.alpha);
+    
+    // Defaults for a rectangle
+    CGFloat width = 1;
+    CGFloat height = 1;
+    
+    // Draw a simple rectangle
+    CGRect rect = CGRectMake(point.x, point.y, width, height);
+    CGContextAddRect(context, rect);
+    CGContextStrokePath(context);
+}
+
+- (void)drawRect:(CGRect)rect
+{
+    // Draw using the super quick point mode
+    NSEnumerator *pathEnumerator = [self.dustPoints objectEnumerator];
+    NSValue *currentPoint;
+    while ((currentPoint = [pathEnumerator nextObject])) {
+        DustPoint point;
+        [currentPoint getValue:&point];
+        [self drawPoint:point];
+    }
+    [self.dustPoints removeAllObjects];
 }
 
 @end

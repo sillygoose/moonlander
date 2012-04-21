@@ -34,18 +34,6 @@ const float DeltaAlpha = 0.05;
 
 
 
-// Helper routines for radians and degrees
-static float DegreesToRadians(float degrees)
-{
-    return degrees * M_PI / 180;
-}
-
-static float RadiansToDegrees(float radians)
-{
-    return radians * 180 / M_PI;
-}
-
-
 - (id)init
 {
     self = [super init];
@@ -62,8 +50,8 @@ static float RadiansToDegrees(float radians)
 
 - (void)start
 {
-    const float DelayInSeconds = 0.1;
-    const float PhosphorDecay = 1;
+    const float DelayInSeconds = 0.04;
+    const float PhosphorDecay = 0.4;
     
     // Create the explosion views
     short radius = 0;
@@ -114,7 +102,7 @@ static float RadiansToDegrees(float radians)
             explosionView.radius = self.currentRadius;
             explosionView.alpha = (float)((random() % 40)/100.0)+ 0.6;
             explosionView.hidden = YES;
-            [self EXGEN:explosionView];
+            [explosionView EXGEN];
             
             // Update the radius for the next view
             self.currentRadius += self.radiusIncrement;
@@ -142,57 +130,6 @@ static float RadiansToDegrees(float radians)
         radius += radiusIncrement;
         radiusIncrement = (radiusIncrement == RadiusIncrement1) ? RadiusIncrement2 : RadiusIncrement1;
     }
-}
-
-- (void)EXGEN:(Explosion *)view
-{
-    const int YUpDown[] = { 0, 1, 3, 6, 4, 3, 1, -2, -6, -7, -5, -2, 2, 3, 5, 6, 2, 1, -1, -4, -6, -5, -3, 0, 4, 5, 7, 4, 0, -1, -3, -1 };
-    const size_t DimYUpDown = sizeof(YUpDown)/sizeof(YUpDown[0]);
-    const float StartingAngle = DegreesToRadians(150);
-    const float AngleIncrement = DegreesToRadians(1);
-    
-    float angle = StartingAngle;
-    short count = 241;
-    float centerX = view.bounds.size.width / 2;
-    float centerY = view.bounds.size.height / 2;
-    
-    // Allocate our path array
-    NSMutableArray *path = [[NSMutableArray alloc] init];
-    NSArray *paths = [NSArray arrayWithObject:path];
-    
-    // Prep the intensity and line type info
-    short radius = view.radius;
-
-    //(EXGENL)
-    while (count > 0) {
-        // We skip fooling around and just randomize this
-        short randomIndex = random() % DimYUpDown;
-        short TEMP = YUpDown[randomIndex];
-        TEMP += radius;
-        if (TEMP >= 0) {
-            short X = TEMP * cos(angle) + centerX;
-            short Y = TEMP * sin(angle) + centerY;
-            if (X >= 0 && Y >= 0) {
-                // Create our display point
-                NSNumber *x = [NSNumber numberWithInt:X];
-                NSNumber *y = [NSNumber numberWithInt:Y];
-                
-                // Default size for a rectangle is 1 x 1
-                NSDictionary *originItem = [NSDictionary dictionaryWithObjectsAndKeys:x, @"x", y, @"y", nil];
-                NSDictionary *rectItem = [NSDictionary dictionaryWithObjectsAndKeys:originItem, @"origin", nil];
-                NSDictionary *pathItem = [NSDictionary dictionaryWithObjectsAndKeys:rectItem, @"rect", nil];
-                [path addObject:pathItem];
-            }
-        }
-        
-        //(EXGEND)
-        angle += AngleIncrement;
-        count--;
-    }
-    
-    // Add the draw paths and update the display
-    view.drawPaths = paths;
-    dispatch_async(dispatch_get_main_queue(), ^{[view setNeedsDisplay];});
 }
 
 @end
