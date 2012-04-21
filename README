@@ -15,10 +15,10 @@ Features to do list
 Bugs todo list
 - use floats for X/Y positioning so retina displays are supported
 - new diust bug at pos angle (lags movement? - needs review)
-- update dust/explode to draw directly into their views
 
 
 Fixed/Done
+- update dust/explode to draw directly into their views
 - sync blink timing by using a single timer (can live current design)
 - MCD explosion is not right for some reason (because of the height of MCD - historically accurate)
 - dust view not always cleared
