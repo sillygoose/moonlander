@@ -451,7 +451,7 @@ const float OffcomDelay = 2.0f;
     [self.view addSubview:self.landerMessages];
     
     // Create the roll control arrows
-    const float RollButtonRepeatInterval = 0.1;
+    const float RollButtonRepeatInterval = 0.25;
     const float SmallRollArrowWidth = 35;
     const float SmallRollArrowHeight = 40;
     NSString *slaPath = [[NSBundle mainBundle] pathForResource:@"SmallLeftArrow" ofType:@"plist"];

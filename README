@@ -18,6 +18,7 @@ Bugs todo list
 
 
 Fixed/Done
+- adjusted roll arrow refresh rate
 - update dust/explode to draw directly into their views
 - sync blink timing by using a single timer (can live current design)
 - MCD explosion is not right for some reason (because of the height of MCD - historically accurate)
