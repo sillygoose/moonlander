@@ -15,14 +15,15 @@ Features to do list
 
 Bugs todo list
 - use floats for X/Y positioning so retina displays are supported
-- explosion looks lousy on new iPad, maybe need to move to foreground (maybe dust too)
-- button repeat too high (for simulator)
-- control sound volume from app (max level)
+- increase font size and space out controls for easier access
+- explode code causes conflict with yes/no dialog: dispatch queue issue?
+- fiox explosion sound by queuing the beep plays
 
 Fixed/Done
-- dust view not cleared (background issue)
-- delay for explosion after on ipad (queue problem, need to use different queue)
-- new dust bug at pos angle (lags movement? - looks ok after testing)
+- splash screen dark
+- new dust bug at pos angle (lags movement)
+- adjusted roll arrow refresh rate
+- update dust/explode to draw directly into their views
 - sync blink timing by using a single timer (can live current design)
 - MCD explosion is not right for some reason (because of the height of MCD - historically accurate)
 - dust view not always cleared

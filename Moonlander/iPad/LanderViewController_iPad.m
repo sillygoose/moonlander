@@ -388,6 +388,7 @@ const float OffcomDelay = 2.0f;
 #ifdef NO_SPLASH_SCREEN
     [self performSelector:@selector(initGame2) withObject:nil afterDelay:0];
 #else
+    self.landerMessages.hidden = NO;
     [self.landerMessages addSystemMessage:@"SplashScreen"];
     [self performSelector:@selector(initGame2) withObject:nil afterDelay:SplashScreenInterval];
 #endif
@@ -451,7 +452,7 @@ const float OffcomDelay = 2.0f;
     [self.view addSubview:self.landerMessages];
     
     // Create the roll control arrows
-    const float RollButtonRepeatInterval = 0.10;
+    const float RollButtonRepeatInterval = 0.20;
     const float SmallRollArrowWidth = 35;
     const float SmallRollArrowHeight = 40;
     NSString *slaPath = [[NSBundle mainBundle] pathForResource:@"SmallLeftArrow" ofType:@"plist"];
@@ -1249,11 +1250,11 @@ const float OffcomDelay = 2.0f;
     };
     
     //(EXPLD1)  Setup the explosion animation manager
-    self.explosionManager = [[ExplosionManager alloc] init];
-    self.explosionManager.parentView = self.view;
-    self.explosionManager.completionBlock = completionBlock;
-    self.explosionManager.delegate = self;
-    [self.explosionManager start];
+    ExplosionManager *explosionManager = [[ExplosionManager alloc] init];
+    explosionManager.parentView = self.view;
+    explosionManager.completionBlock = completionBlock;
+    explosionManager.delegate = self;
+    [explosionManager start];
 }
 
 - (void)ALTER:(short)alterValue

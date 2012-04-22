@@ -255,14 +255,15 @@ static float RadiansToDegrees(float radians)
     // Start in flight mode
     self.lemOnSurface = NO;
     
+#define DEBUG_DUST
 #if defined(DEBUG_DUST) || defined(DEBUG_FLAME) || defined(DEBUG_LOCATION)
     // Custom lander start point
     self.fuelRemaining = self.lemInitalFuel;
     self.turnAngle = 0;
     self.horizontalVelocity = 0;
-    self.verticalVelocity = -170;
-    self.horizontalDistance = -400;
-    self.verticalDistance = 360;
+    self.verticalVelocity = -80;
+    self.horizontalDistance = -200;
+    self.verticalDistance = 70;
     self.percentThrustRequested = 18;
     self.clockTicks = 0.0f;
 #else
