@@ -23,14 +23,9 @@
 @synthesize delegate=_delegate;
 
 
-const short MaximumRadius = 200;
+const short MaximumRadius = 192;            // 300 octal in program
 const short RadiusIncrement1 = 33;
 const short RadiusIncrement2 = -10;
-
-const float AnimateExplosionTimer = 0.075;
-const float AgeExplosionTimer = 0.2;
-const float DeltaAlpha = 0.05;
-
 
 
 - (id)init
@@ -49,8 +44,8 @@ const float DeltaAlpha = 0.05;
 
 - (void)start
 {
-    const float DelayInSeconds = 0.02;
-    const float PhosphorDecay = 0.8;
+    const float DelayInSeconds = 0.05;
+    const float PhosphorDecay = 0.7;
     
     // Create the explosion views
     short radius = 0;
@@ -69,7 +64,8 @@ const float DeltaAlpha = 0.05;
     
     // Queue up a task to mark the end of the view queuing process
     void (^explosionComplete)(void) = ^{
-        dispatch_async(animateQueue, animateComplete);
+        dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, self.queueDelay);
+        dispatch_after(popTime, animateQueue, animateComplete);
     };
     
     // Run thru and create the views
@@ -89,7 +85,8 @@ const float DeltaAlpha = 0.05;
                 // Get the view and make visible
                 __block Explosion *theView = [self.explosionViews objectAtIndex:0];
                 
-                dispatch_async(animateQueue, ^{
+                // UI code so runs on the main queue
+                dispatch_async(dispatch_get_main_queue(), ^{
                     // Start working with the view
                     [self.parentView addSubview:explosionView];
                     theView.hidden = NO;
@@ -100,18 +97,18 @@ const float DeltaAlpha = 0.05;
                                             completion:^(BOOL finished){ [theView removeFromSuperview];}];
                 });
                 
-                // Pop this view from the array and update the views left to process
+                // Remove this view from the array
                 [self.explosionViews removeObjectAtIndex:0];
-                count = [self.explosionViews count];
             }
         };
         
         // Block to create and populate views
         void (^createExplosionView)(void) = ^{
-            // Create an explosion view
+            //### Create an explosion view
             float explosionSize = self.currentRadius * 2;
             float xPos = self.delegate.SHOWX - explosionSize / 2;
             float yPos = (768 - self.delegate.SHOWY) - explosionSize / 4;
+            //###
             CGRect frameRect = CGRectMake(xPos, yPos, explosionSize, explosionSize);
             dispatch_sync(dispatch_get_main_queue(), ^{explosionView = [[Explosion alloc] initWithFrame:frameRect];});
            
