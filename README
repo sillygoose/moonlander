@@ -16,10 +16,10 @@ Features to do list
 Bugs todo list
 - use floats for X/Y positioning so retina displays are supported
 - increase font size and space out controls for easier access
-- explode code causes conflict with yes/no dialog: dispatch queue issue?
-- fiox explosion sound by queuing the beep plays
+- fix explosion sound by queuing the beep plays
 
 Fixed/Done
+- explode code causes conflict with yes/no dialog: dispatch queue issue?
 - splash screen dark
 - new dust bug at pos angle (lags movement)
 - adjusted roll arrow refresh rate

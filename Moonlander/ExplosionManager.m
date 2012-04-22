@@ -23,7 +23,7 @@
 @synthesize delegate=_delegate;
 
 
-const short MaximumRadius = 300;
+const short MaximumRadius = 192;            // 300 octal in program
 const short RadiusIncrement1 = 33;
 const short RadiusIncrement2 = -10;
 
@@ -44,8 +44,8 @@ const short RadiusIncrement2 = -10;
 
 - (void)start
 {
-    const float DelayInSeconds = 0.1;
-    const float PhosphorDecay = 0.8;
+    const float DelayInSeconds = 0.05;
+    const float PhosphorDecay = 0.7;
     
     // Create the explosion views
     short radius = 0;
