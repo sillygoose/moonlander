@@ -433,18 +433,53 @@
     }
 }
 
+- (void)drawPoint:(point_t)point
+{
+    // Set up context for drawing
+	CGContextRef context = UIGraphicsGetCurrentContext();
+    CGContextSetShouldAntialias(context, YES);
+    CGContextSetAllowsAntialiasing(context, YES);
+    
+    // Set the color ###(need this defined in one place!)
+    CGContextSetRGBFillColor(context, 0.026f, 1.0f, 0.00121f, 1.0f);
+    CGContextSetRGBStrokeColor(context, 0.026f, 1.0f, 0.00121f, 1.0f);
+    CGContextSetAlpha(context, point.alpha);
+    
+    // Defaults for a rectangle
+    CGFloat width = 1;
+    CGFloat height = 1;
+    
+    // Draw a simple rectangle
+    CGRect rect = CGRectMake(point.x, point.y, width, height);
+    CGContextAddRect(context, rect);
+    CGContextStrokePath(context);
+}
+
 - (void)drawRect:(CGRect)rect
 {
-    // This code supports old and new draw lists and point arrays
-    if ([[self.drawPaths objectAtIndex:0] isKindOfClass:[NSArray class]]) {
-        NSEnumerator *pathEnumerator = [self.drawPaths objectEnumerator];
-        NSArray *currentPath;
-        while ((currentPath = [pathEnumerator nextObject])) {
-            [self drawSomethingUsing:currentPath];
+    if (self.drawPaths) {
+        // This code supports old and new draw lists and point arrays
+        if ([[self.drawPaths objectAtIndex:0] isKindOfClass:[NSArray class]]) {
+            NSEnumerator *pathEnumerator = [self.drawPaths objectEnumerator];
+            NSArray *currentPath;
+            while ((currentPath = [pathEnumerator nextObject])) {
+                [self drawSomethingUsing:currentPath];
+            }
         }
-    }
-    else {
-        [self drawSomethingUsing:self.drawPaths];
+        else if ([[self.drawPaths objectAtIndex:0] isKindOfClass:[NSValue class]]) {
+            // Draw using the super quick point mode (array of NSValues)
+            NSEnumerator *pathEnumerator = [self.drawPaths objectEnumerator];
+            NSValue *currentPoint;
+            while ((currentPoint = [pathEnumerator nextObject])) {
+                point_t point;
+                [currentPoint getValue:&point];
+                [self drawPoint:point];
+            }
+        }
+        else if ([[self.drawPaths objectAtIndex:0] isKindOfClass:[NSDictionary class]]) {
+            // Array of NSDictionary
+            [self drawSomethingUsing:self.drawPaths];
+        }
     }
 }
 

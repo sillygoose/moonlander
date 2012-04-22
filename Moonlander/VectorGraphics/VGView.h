@@ -10,6 +10,12 @@
 
 typedef enum { VGLineSolid = 0, VGLineLongDash, VGLineShortDash, VGLineDotDash } VGLineType;
 
+typedef struct {
+    float x;
+    float y;
+    float alpha;
+} point_t;
+
 
 @interface VGView : UIView {
     NSArray     *_drawPaths;

@@ -10,15 +10,13 @@
 
 #import "VGView.h"
 
-@interface Dust : UIView {
-    id <LanderDelegate> __unsafe_unretained   _delegate;
-    
-    NSMutableArray             *_dustPoints;
+
+@interface Dust : VGView {
+    id <LanderDelegate> __unsafe_unretained     _delegate;
 }
 
 @property (unsafe_unretained) id <LanderDelegate> delegate;
 
-@property (nonatomic) NSMutableArray *dustPoints;
 
 - (id)init;
 - (void)generateDust;

@@ -8,14 +8,12 @@
 
 #import "VGView.h"
 
-@interface Explosion : UIView
+@interface Explosion : VGView
 {
     short                   _radius;
-    NSMutableArray          *_dustPoints;
 }
 
 @property (nonatomic) short radius;
-@property (atomic) NSMutableArray *dustPoints;
 
 - (id)initWithFrame:(CGRect)rect;
 

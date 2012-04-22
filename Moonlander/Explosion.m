@@ -11,7 +11,6 @@
 @implementation Explosion
 
 @synthesize radius=_radius;
-@synthesize dustPoints=_dustPoints;
 
 
 // Helper routines for radians and degrees
@@ -30,9 +29,6 @@ static float RadiansToDegrees(float radians)
     self = [super initWithFrame:frameRect];
     if (self) {
         self.opaque = NO;
-        
-        // Array of dust to draw
-        self.dustPoints = [NSMutableArray array];
     }
     return self;
 }
@@ -53,6 +49,7 @@ static float RadiansToDegrees(float radians)
     short radius = self.radius;
     
     //(EXGENL)
+    NSMutableArray *points = [NSMutableArray array];
     while (count > 0) {
         // We skip fooling around and just randomize this
         short randomIndex = random() % DimYUpDown;
@@ -62,11 +59,12 @@ static float RadiansToDegrees(float radians)
             CGFloat X = TEMP * cos(angle) + centerX;
             CGFloat Y = TEMP * sin(angle) + centerY;
             if (X >= 0 && Y >= 0) {
-                CGPoint dust;
+                point_t dust;
                 dust.x = X;
                 dust.y = Y;
-                NSValue *dustValue = [NSValue valueWithBytes:&dust objCType:@encode(CGPoint)];
-                [self.dustPoints addObject:dustValue];
+                dust.alpha = 1.0;
+                NSValue *dustValue = [NSValue valueWithBytes:&dust objCType:@encode(point_t)];
+                [points addObject:dustValue];
             }
         }
         
@@ -76,41 +74,8 @@ static float RadiansToDegrees(float radians)
     }
     
     // Add the draw paths and update the display
+    self.drawPaths = [points count] ? points : nil;
     dispatch_async(dispatch_get_main_queue(), ^{[self setNeedsDisplay];});
-}
-
-- (void)drawPoint:(CGPoint)point
-{
-    // Set up context
-	CGContextRef context = UIGraphicsGetCurrentContext();
-    CGContextSetShouldAntialias(context, YES);
-    CGContextSetAllowsAntialiasing(context, YES);
-    
-    // Set color ###(need this defined in one place!)
-    CGContextSetRGBFillColor(context, 0.026f, 1.0f, 0.00121f, 1.0f);
-    CGContextSetRGBStrokeColor(context, 0.026f, 1.0f, 0.00121f, 1.0f);
-    CGContextSetAlpha(context, 1.0);
-    
-    // Defaults for a rectangle
-    CGFloat width = 1.0;
-    CGFloat height = 1.0;
-    
-    // Draw a rectangle
-    CGRect rect = CGRectMake(point.x, point.y, width, height);
-    CGContextAddRect(context, rect);
-    CGContextStrokePath(context);
-}
-
-- (void)drawRect:(CGRect)rect
-{
-    // Draw using super quick point mode
-    NSEnumerator *pathEnumerator = [self.dustPoints objectEnumerator];
-    NSValue *currentPoint;
-    while ((currentPoint = [pathEnumerator nextObject])) {
-        CGPoint point;
-        [currentPoint getValue:&point];
-        [self drawPoint:point];
-    }
 }
 
 @end

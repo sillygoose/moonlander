@@ -13,16 +13,8 @@
 
 @synthesize delegate=_delegate;
 
-@synthesize dustPoints=_dustPoints;   
-
 const float DustViewWidth = 128;
 const float DustViewHeight = 64;
-
-typedef struct {
-    float x;
-    float y;
-    float alpha;
-} DustPoint;
 
 
 - (id)init
@@ -33,9 +25,6 @@ typedef struct {
         // Keep the view hidden for now
         self.hidden = YES;
         self.opaque = NO;
-
-        // Array of dust to draw
-        self.dustPoints = [NSMutableArray array];
     }
     return self;
 }
@@ -46,6 +35,9 @@ typedef struct {
     const short MaxDisplayDust = 241;
     const short MaxDustThrust = 63;
     const short DustStartHeight = 150;
+
+    // Empty the dust points
+    self.drawPaths = nil;
     
     if (self.delegate.RADARY < DustStartHeight) {
         // Angle must be reasonable as well
@@ -81,7 +73,9 @@ typedef struct {
                 flameDistance = -flameDistance;
                 
                 // Calculate the number of dust points to draw
-                short __block count = MIN(((flameDistance * requestedThrust) >> 4), MaxDisplayDust);
+                __block short count = MIN(((flameDistance * requestedThrust) >> 4), MaxDisplayDust);
+                __block NSMutableArray *points = [NSMutableArray array];
+
                 if (count) {
                     // Actually have something to display, do it in the background
                     void (^createDustView)(void) = ^{
@@ -118,16 +112,17 @@ typedef struct {
                                 yPos &= DimYThrust;
                                 
                                 // Encode our dust structure and save away
-                                DustPoint dust;
+                                point_t dust;
                                 dust.x = xPos;
                                 dust.y = yPos;
                                 dust.alpha = dustIntensity;
-                                NSValue *dustValue = [NSValue valueWithBytes:&dust objCType:@encode(CGPoint)];
-                                [self.dustPoints addObject:dustValue];
+                                NSValue *dustValue = [NSValue valueWithBytes:&dust objCType:@encode(point_t)];
+                                [points addObject:dustValue];
 
                             }
                             
                             // UIKit code needs to be in the main thread
+                            self.drawPaths = points;
                             dispatch_async(dispatch_get_main_queue(), ^{
                                 // Set the frame coordinates and redraw
                                 CGPoint newCenter = CGPointMake(xCenterPos, yCenterPos);
@@ -149,41 +144,6 @@ typedef struct {
     
     // Hide the view in case we didn't draw anything
     self.hidden = YES; 
-}
-
-- (void)drawPoint:(DustPoint)point
-{
-    // Set up context for drawing
-	CGContextRef context = UIGraphicsGetCurrentContext();
-    CGContextSetShouldAntialias(context, YES);
-    CGContextSetAllowsAntialiasing(context, YES);
-    
-    // Set the color ###(need this defined in one place!)
-    CGContextSetRGBFillColor(context, 0.026f, 1.0f, 0.00121f, 1.0f);
-    CGContextSetRGBStrokeColor(context, 0.026f, 1.0f, 0.00121f, 1.0f);
-    CGContextSetAlpha(context, point.alpha);
-    
-    // Defaults for a rectangle
-    CGFloat width = 1;
-    CGFloat height = 1;
-    
-    // Draw a simple rectangle
-    CGRect rect = CGRectMake(point.x, point.y, width, height);
-    CGContextAddRect(context, rect);
-    CGContextStrokePath(context);
-}
-
-- (void)drawRect:(CGRect)rect
-{
-    // Draw using the super quick point mode
-    NSEnumerator *pathEnumerator = [self.dustPoints objectEnumerator];
-    NSValue *currentPoint;
-    while ((currentPoint = [pathEnumerator nextObject])) {
-        DustPoint point;
-        [currentPoint getValue:&point];
-        [self drawPoint:point];
-    }
-    [self.dustPoints removeAllObjects];
 }
 
 @end
