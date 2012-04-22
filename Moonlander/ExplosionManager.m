@@ -31,18 +31,6 @@ const short RadiusIncrement2 = -10;
 
 
 
-// Helper routines for radians and degrees
-static float DegreesToRadians(float degrees)
-{
-    return degrees * M_PI / 180;
-}
-
-static float RadiansToDegrees(float radians)
-{
-    return radians * 180 / M_PI;
-}
-
-
 - (id)init
 {
     self = [super init];
@@ -74,6 +62,10 @@ static float RadiansToDegrees(float radians)
     // Create the explosion views
     short radius = 0;
     short radiusIncrement = RadiusIncrement2;
+    
+    // Create a queue and group for the tasks
+    dispatch_queue_t explosionQueue = dispatch_queue_create("com.devtools.moonlander.explode", NULL);
+    
     while (radius < MaximumRadius) {
         // Block variables for the view manager
         __block Explosion *explosionView;
@@ -86,12 +78,16 @@ static float RadiansToDegrees(float radians)
                     [self.delegate beep];
                 }
 
-                // Create the new view
+                // Get the view and make visible
                 __block Explosion *theView = [self.explosionViews objectAtIndex:0];
+                [self.parentView addSubview:explosionView];
+                theView.hidden = NO;
+
+                // Pop this view from the array
                 [self.explosionViews removeObjectAtIndex:0];
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    theView.hidden = NO;
-                    [Explosion animateWithDuration:PhosphorDecay
+
+                // USe a block animation to fade the view
+                [Explosion animateWithDuration:PhosphorDecay
                                         animations:^{theView.alpha = 0.0;}
                                         completion:^(BOOL finished){ [theView removeFromSuperview]; }];
                 });
@@ -119,11 +115,8 @@ static float RadiansToDegrees(float radians)
             CGRect frameRect = CGRectMake(xPos, yPos, explosionSize, explosionSize);
             dispatch_sync(dispatch_get_main_queue(), ^{explosionView = [[Explosion alloc] initWithFrame:frameRect];});
            
-            // View display settings
-            explosionView.radius = self.currentRadius;
-            explosionView.alpha = (float)((random() % 40)/100.0)+ 0.6;
-            explosionView.hidden = YES;
-            [self EXGEN:explosionView];
+            // Populate the view with dust
+            [explosionView EXGEN:self.currentRadius];
             
             // Update the radius for the next view
             self.currentRadius += self.radiusIncrement;
@@ -132,10 +125,7 @@ static float RadiansToDegrees(float radians)
             // Add to our array of explosion views
             [self.explosionViews addObject:explosionView];
 
-            // Add the view to the parent
-            dispatch_async(dispatch_get_main_queue(), ^{[self.parentView addSubview:explosionView];});
-            
-            // Now create a dispatch to make the view visible
+            // Now create a dispatch event to make the view visible
             dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, self.queueDelay);
             dispatch_after(popTime, self.animateQueue, animateExplosionView);
             //NSLog(@"createExplosionView: %d for execution in %llu msecs", self.currentRadius, (self.queueDelay / USEC_PER_SEC));

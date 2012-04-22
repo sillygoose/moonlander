@@ -10,8 +10,9 @@
 
 #import "VGView.h"
 
+
 @interface Dust : VGView {
-    id <LanderDelegate> __unsafe_unretained   _delegate;
+    id <LanderDelegate> __unsafe_unretained     _delegate;
 }
 
 @property (unsafe_unretained) id <LanderDelegate> delegate;

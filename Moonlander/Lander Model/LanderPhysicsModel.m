@@ -1,15 +1,15 @@
 //
-//  LanderPhysicsModel.m
-//  Moonlander
+// LanderPhysicsModel.m
+// Moonlander
 //
-//  Created by Rick on 5/10/11.
-//  Copyright 2011, 2012 Paradigm Systems. All rights reserved.
+// Created by Rick on 5/10/11.
+// Copyright 2011, 2012 Paradigm Systems. All rights reserved.
 //
-//  Classic game data
-//  Time     Fuel     HorizVel   VertVel
-//   52      1420
-//   52      1424
-//   52      1425
+// Classic game data
+// Time Fuel HorizVel VertVel
+// 52 1420
+// 52 1424
+// 52 1425
 //
 
 #import "LanderPhysicsModel.h"
@@ -229,7 +229,6 @@ static float RadiansToDegrees(float radians)
 - (void)landerTakeoff
 {
     self.lemOnSurface = NO;
-
 }
 
 - (BOOL)onSurface
@@ -255,7 +254,7 @@ static float RadiansToDegrees(float radians)
 {
     // Start in flight mode
     self.lemOnSurface = NO;
-
+    
 #if defined(DEBUG_DUST) || defined(DEBUG_FLAME) || defined(DEBUG_LOCATION)
     // Custom lander start point
     self.fuelRemaining = self.lemInitalFuel;
