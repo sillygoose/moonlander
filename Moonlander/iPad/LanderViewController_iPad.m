@@ -451,7 +451,7 @@ const float OffcomDelay = 2.0f;
     [self.view addSubview:self.landerMessages];
     
     // Create the roll control arrows
-    const float RollButtonRepeatInterval = 0.25;
+    const float RollButtonRepeatInterval = 0.10;
     const float SmallRollArrowWidth = 35;
     const float SmallRollArrowHeight = 40;
     NSString *slaPath = [[NSBundle mainBundle] pathForResource:@"SmallLeftArrow" ofType:@"plist"];
@@ -1247,19 +1247,14 @@ const float OffcomDelay = 2.0f;
     // Turn off fuel, flames, and dust
     [self landerDown];
 
-    // Create a queue and group for the tasks
-    dispatch_queue_t explosionQueue = dispatch_queue_create("com.devtools.moonlander.explode", NULL);
-    
     // Completion code for explosion manager
     void (^completionBlock)(void) = ^{
-        dispatch_release(explosionQueue);
         [self performSelector:@selector(prepareForNewGame) withObject:nil afterDelay:ExplodeDelay];
     };
     
     //(EXPLD1)  Setup the explosion animation manager
     self.explosionManager = [[ExplosionManager alloc] init];
     self.explosionManager.parentView = self.view;
-    self.explosionManager.dispatchQueue = explosionQueue;
     self.explosionManager.completionBlock = completionBlock;
     self.explosionManager.delegate = self;
     [self.explosionManager start];

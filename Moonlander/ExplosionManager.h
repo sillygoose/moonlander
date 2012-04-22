@@ -19,7 +19,6 @@
     NSMutableArray      *_explosionViews;
     UIView              *_parentView;
     
-    dispatch_queue_t    _dispatchQueue;
     void                (^_completionBlock)(void);
     
     short               _currentRadius;
@@ -33,7 +32,6 @@
 @property (atomic, strong) NSMutableArray *explosionViews;
 @property (nonatomic, strong) UIView *parentView;
 
-@property (nonatomic) dispatch_queue_t dispatchQueue;
 @property (nonatomic, copy) void (^completionBlock)(void);
 
 @property (nonatomic) short currentRadius;

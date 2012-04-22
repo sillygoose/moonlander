@@ -16,7 +16,6 @@
 @synthesize currentRadius=_currentRadius;
 @synthesize radiusIncrement=_radiusIncrement;
 
-@synthesize dispatchQueue=_dispatchQueue;
 @synthesize completionBlock=_completionBlock;
 @synthesize queueDelay=_queueDelay;
 @synthesize beepCount=_beepCount;
@@ -50,12 +49,16 @@ const float DeltaAlpha = 0.05;
 
 - (void)start
 {
-    const float DelayInSeconds = 0.04;
-    const float PhosphorDecay = 0.4;
+    const float DelayInSeconds = 0.02;
+    const float PhosphorDecay = 0.8;
     
     // Create the explosion views
     short radius = 0;
     short radiusIncrement = RadiusIncrement2;
+    
+    // Create a queue and group for the tasks
+    dispatch_queue_t explosionQueue = dispatch_queue_create("com.devtools.moonlander.explode", NULL);
+    
     while (radius < MaximumRadius) {
         // Block variables for the view manager
         __block Explosion *explosionView;
@@ -69,23 +72,24 @@ const float DeltaAlpha = 0.05;
                     [self.delegate beep];
                 }
 
-                // Create the new view
+                // Get the view and make visible
                 __block Explosion *theView = [self.explosionViews objectAtIndex:0];
+                [self.parentView addSubview:explosionView];
+                theView.hidden = NO;
+
+                // Pop this view from the array
                 [self.explosionViews removeObjectAtIndex:0];
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    theView.hidden = NO;
-                    [Explosion animateWithDuration:PhosphorDecay
+
+                // USe a block animation to fade the view
+                [Explosion animateWithDuration:PhosphorDecay
                                         animations:^{theView.alpha = 0.0;}
-                                        completion:^(BOOL finished){ [theView removeFromSuperview]; }];
-                });
+                                        completion:^(BOOL finished){ [theView removeFromSuperview];}];
                 
                 // Call the completion block
                 count = [self.explosionViews count];
             }
             if (count == 0) {
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    self.completionBlock();
-                });
+                self.completionBlock();
             }
         };
         
@@ -98,11 +102,8 @@ const float DeltaAlpha = 0.05;
             CGRect frameRect = CGRectMake(xPos, yPos, explosionSize, explosionSize);
             dispatch_sync(dispatch_get_main_queue(), ^{explosionView = [[Explosion alloc] initWithFrame:frameRect];});
            
-            // View display settings
-            explosionView.radius = self.currentRadius;
-            explosionView.alpha = (float)((random() % 40)/100.0)+ 0.6;
-            explosionView.hidden = YES;
-            [explosionView EXGEN];
+            // Populate the view with dust
+            [explosionView EXGEN:self.currentRadius];
             
             // Update the radius for the next view
             self.currentRadius += self.radiusIncrement;
@@ -111,12 +112,9 @@ const float DeltaAlpha = 0.05;
             // Add to our array of explosion views
             [self.explosionViews addObject:explosionView];
 
-            // Add the view to the parent
-            dispatch_async(dispatch_get_main_queue(), ^{[self.parentView addSubview:explosionView];});
-            
-            // Now create a dispatch to make the view visible
+            // Now create a dispatch event to make the view visible
             dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, self.queueDelay);
-            dispatch_after(popTime, self.dispatchQueue, animateExplosionView);
+            dispatch_after(popTime, dispatch_get_main_queue(), animateExplosionView);
             //NSLog(@"createExplosionView: %d for execution in %llu msecs", self.currentRadius, (self.queueDelay / USEC_PER_SEC));
 
             // Adjust the delay for the next view
@@ -124,12 +122,15 @@ const float DeltaAlpha = 0.05;
         };
         
         // Add the view to a queue to be populated
-        dispatch_async(self.dispatchQueue, createExplosionView);
+        dispatch_async(explosionQueue, createExplosionView);
         
         // Add to our array of explosion views
         radius += radiusIncrement;
         radiusIncrement = (radiusIncrement == RadiusIncrement1) ? RadiusIncrement2 : RadiusIncrement1;
     }
+
+    // Free up the queue we created
+    dispatch_release(explosionQueue);
 }
 
 @end

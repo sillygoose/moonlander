@@ -10,13 +10,10 @@
 
 @interface Explosion : VGView
 {
-    short                   _radius;
 }
-
-@property (nonatomic) short radius;
 
 - (id)initWithFrame:(CGRect)rect;
 
-- (void)EXGEN;
+- (void)EXGEN:(short)radius;
 
 @end

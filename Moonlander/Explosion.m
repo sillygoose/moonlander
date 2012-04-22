@@ -10,8 +10,6 @@
 
 @implementation Explosion
 
-@synthesize radius=_radius;
-
 
 // Helper routines for radians and degrees
 static float DegreesToRadians(float degrees)
@@ -28,12 +26,15 @@ static float RadiansToDegrees(float radians)
 {
     self = [super initWithFrame:frameRect];
     if (self) {
+        // Prep the view and intensity info
+        self.alpha = (float)((random() % 40)/100.0)+ 0.6;
         self.opaque = NO;
+        self.hidden = YES;
     }
     return self;
 }
 
-- (void)EXGEN
+- (void)EXGEN:(short)radius
 {
     const int YUpDown[] = { 0, 1, 3, 6, 4, 3, 1, -2, -6, -7, -5, -2, 2, 3, 5, 6, 2, 1, -1, -4, -6, -5, -3, 0, 4, 5, 7, 4, 0, -1, -3, -1 };
     const size_t DimYUpDown = sizeof(YUpDown)/sizeof(YUpDown[0]);
@@ -44,9 +45,6 @@ static float RadiansToDegrees(float radians)
     short count = 241;
     float centerX = self.bounds.size.width / 2;
     float centerY = self.bounds.size.height / 2;
-    
-    // Prep the intensity and line type info
-    short radius = self.radius;
     
     //(EXGENL)
     NSMutableArray *points = [NSMutableArray array];
@@ -59,6 +57,7 @@ static float RadiansToDegrees(float radians)
             CGFloat X = TEMP * cos(angle) + centerX;
             CGFloat Y = TEMP * sin(angle) + centerY;
             if (X >= 0 && Y >= 0) {
+                // Add the points that fall within the view
                 point_t dust;
                 dust.x = X;
                 dust.y = Y;
