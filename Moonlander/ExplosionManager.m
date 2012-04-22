@@ -23,7 +23,8 @@
 @synthesize delegate=_delegate;
 
 
-const short MaximumRadius = 192;            // 300 octal in program
+// Radius constants from the original source code 
+const short MaximumRadius = 192;
 const short RadiusIncrement1 = 33;
 const short RadiusIncrement2 = -10;
 
@@ -122,7 +123,7 @@ const short RadiusIncrement2 = -10;
             dispatch_after(popTime, animateQueue, animateExplosionView);
 
             // Need a beep on every other explosion pass
-            if (self.beepCount++ % 2) {
+            if (self.beepCount++ % 3 == 0) {
                 dispatch_after(popTime, dispatch_get_main_queue(), ^{[self.delegate beep];});
             }
 

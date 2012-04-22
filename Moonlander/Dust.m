@@ -71,6 +71,7 @@ const float DustViewHeight = 64;
             short xCenterPos = self.delegate.SHOWX + tanDeltaY;
             short yCenterPos = 768 - self.delegate.AVERT;
             yCenterPos -= DustViewHeight / 2;
+            //###
             
             // Calculate the flame distance and number of points to draw
             flameDistance -= DustStartHeight;

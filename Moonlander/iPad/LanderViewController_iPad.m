@@ -115,6 +115,7 @@ const float OffcomDelay = 2.0f;
 #endif
 
 
+//###
 - (CGRect)convertRectFromGameToView:(CGRect)gameRect;
 {
     CGRect viewRect = gameRect;
@@ -124,12 +125,13 @@ const float OffcomDelay = 2.0f;
     //NSLog(@"gameRect:%@    viewRect:%@", NSStringFromCGRect(gameRect), NSStringFromCGRect(viewRect));
 	return viewRect;
 }
+//###
 
 #pragma -
 #pragma mark Delegate
 - (void)beep
 {
-    [self BELL];
+    [self BEEP];
 }
 
 #pragma -
@@ -440,6 +442,7 @@ const float OffcomDelay = 2.0f;
     // Create the moon view
     //### use the frame bounds for this
     self.moonView = [[Moon alloc] initWithFrame:[self convertRectFromGameToView:CGRectMake(0, 0, 1024, 768)]];
+    //###
     [self.view addSubview:self.moonView];
     
     // Create the dust view
@@ -728,7 +731,7 @@ const float OffcomDelay = 2.0f;
     [self.view addSubview:self.landerView];
     
     // Audio resource initialization
-    self.bellFileURL = (__bridge CFURLRef) [[NSBundle mainBundle] URLForResource: @"beep" withExtension: @"caf"];
+    self.bellFileURL = (__bridge CFURLRef) [[NSBundle mainBundle] URLForResource: @"beep-med" withExtension: @"caf"];
     AudioServicesCreateSystemSoundID(self.bellFileURL, &_bellFileObject);
 
     // Start the game
@@ -1076,6 +1079,7 @@ const float OffcomDelay = 2.0f;
     
     //### Put the man in position to head for lunch
     CGPoint start = CGPointMake(self.SHOWX - ManCenterX, self.view.frame.size.width - self.SHOWY - ManCenterY);
+    //###
     self.manView = [[Man alloc] initWithOrigin:start];
     [self.view addSubview:self.manView];
     
@@ -1090,8 +1094,9 @@ const float OffcomDelay = 2.0f;
         const float FoodWaitDuration = 3;
 #endif
 
-        // Move the man out of the lander to the ground
+        //### Move the man out of the lander to the ground
         __block CGPoint destination = CGPointMake(self.moonView.MACX, self.view.frame.size.width - self.moonView.MACY - ManHeightOffFloor);
+        //###
         direction = (destination.x < start.x) ? -1 : 1;
 
         // Blocks used in the McDonalds animation
@@ -1228,9 +1233,10 @@ const float OffcomDelay = 2.0f;
     [self performSelector:@selector(moveMan) withObject:nil afterDelay:LandingDelay];
 }
 
-- (void)BELL
+- (void)BEEP
 {
     // Ding the bell
+#define DEBUG_AUDIO
 #if !defined(DEBUG) || defined(DEBUG_AUDIO)
     AudioServicesPlayAlertSound(self.bellFileObject);
 #endif
@@ -1483,7 +1489,7 @@ const float OffcomDelay = 2.0f;
 
                 // Add low fuel message and ring bell
                 [self.landerMessages addFuelMessage];
-                [self BELL];
+                [self BEEP];
             }
         }
         
@@ -1587,6 +1593,7 @@ const float OffcomDelay = 2.0f;
             newFrame.x = self.SHOWX;
             //### use of width for height is troublesome
             newFrame.y = self.view.frame.size.width - self.SHOWY + 4;
+            //###
             self.landerView.center = newFrame;
         }
         else {
@@ -1598,7 +1605,9 @@ const float OffcomDelay = 2.0f;
             self.SHOWY = self.VERDIS / 32 + 43;
             CGPoint newFrame = self.landerView.center;
             newFrame.x = self.SHOWX;
-            newFrame.y = self.view.frame.size.width - self.SHOWY;//###
+            //###
+            newFrame.y = self.view.frame.size.width - self.SHOWY;
+            //###
             self.landerView.center = newFrame;
             
             // Test for contact with surface

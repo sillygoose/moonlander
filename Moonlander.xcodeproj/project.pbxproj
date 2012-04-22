@@ -62,6 +62,9 @@
 		56CE0538138B6C88004FA450 /* Instrument.m in Sources */ = {isa = PBXBuildFile; fileRef = 56CE0537138B6C88004FA450 /* Instrument.m */; };
 		56E80E4C137E4CC3009E7F15 /* Lander.plist in Resources */ = {isa = PBXBuildFile; fileRef = 56E80E4B137E4CC3009E7F15 /* Lander.plist */; };
 		56E80E60137E599E009E7F15 /* VGView.m in Sources */ = {isa = PBXBuildFile; fileRef = 56E80E5F137E599E009E7F15 /* VGView.m */; };
+		56E87D31154477EC00C5C764 /* beep-high.caf in Resources */ = {isa = PBXBuildFile; fileRef = 56E87D2E154477EC00C5C764 /* beep-high.caf */; };
+		56E87D32154477EC00C5C764 /* beep-low.caf in Resources */ = {isa = PBXBuildFile; fileRef = 56E87D2F154477EC00C5C764 /* beep-low.caf */; };
+		56E87D33154477EC00C5C764 /* beep-med.caf in Resources */ = {isa = PBXBuildFile; fileRef = 56E87D30154477EC00C5C764 /* beep-med.caf */; };
 		56ECD94C1540E55E00565615 /* beep.caf in Resources */ = {isa = PBXBuildFile; fileRef = 56ECD94B1540E55E00565615 /* beep.caf */; };
 /* End PBXBuildFile section */
 
@@ -162,6 +165,9 @@
 		56E80E4B137E4CC3009E7F15 /* Lander.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Lander.plist; path = Resources/Lander.plist; sourceTree = "<group>"; };
 		56E80E5E137E599D009E7F15 /* VGView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VGView.h; path = VectorGraphics/VGView.h; sourceTree = "<group>"; };
 		56E80E5F137E599E009E7F15 /* VGView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VGView.m; path = VectorGraphics/VGView.m; sourceTree = "<group>"; };
+		56E87D2E154477EC00C5C764 /* beep-high.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "beep-high.caf"; sourceTree = "<group>"; };
+		56E87D2F154477EC00C5C764 /* beep-low.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "beep-low.caf"; sourceTree = "<group>"; };
+		56E87D30154477EC00C5C764 /* beep-med.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "beep-med.caf"; sourceTree = "<group>"; };
 		56ECD8F11540703500565615 /* gtlem.lda */ = {isa = PBXFileReference; lastKnownFileType = file; path = gtlem.lda; sourceTree = "<group>"; };
 		56ECD8F21540703500565615 /* lunar */ = {isa = PBXFileReference; lastKnownFileType = file; path = lunar; sourceTree = "<group>"; };
 		56ECD8F31540703500565615 /* mlc */ = {isa = PBXFileReference; lastKnownFileType = file; path = mlc; sourceTree = "<group>"; };
@@ -241,6 +247,9 @@
 		1D81BDB8153F567200AE437D /* sounds */ = {
 			isa = PBXGroup;
 			children = (
+				56E87D2E154477EC00C5C764 /* beep-high.caf */,
+				56E87D2F154477EC00C5C764 /* beep-low.caf */,
+				56E87D30154477EC00C5C764 /* beep-med.caf */,
 				56ECD94B1540E55E00565615 /* beep.caf */,
 			);
 			name = sounds;
@@ -663,6 +672,9 @@
 				56BC68641388BDE200403643 /* Labels.plist in Resources */,
 				56678FCC139A7D4D00026588 /* OldLander.plist in Resources */,
 				56ECD94C1540E55E00565615 /* beep.caf in Resources */,
+				56E87D31154477EC00C5C764 /* beep-high.caf in Resources */,
+				56E87D32154477EC00C5C764 /* beep-low.caf in Resources */,
+				56E87D33154477EC00C5C764 /* beep-med.caf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
