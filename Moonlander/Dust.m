@@ -48,17 +48,23 @@ const float DustViewHeight = 64;
             short requestedThrust = self.delegate.PERTRS;
             short percentThrust = (requestedThrust > MaxDustThrust) ? MaxDustThrust : requestedThrust;
             short dustIntensity = (percentThrust >> 3) & 0x7;
+            float angle = self.delegate.ANGLE;
+            BOOL sinNegative = NO;
+            float sinAngle = sin(angle);
+            if (sinAngle < 0) {
+                sinAngle = -sinAngle;
+                sinNegative = YES;
+            }
             
             //(DUSTP1)  Thrust angle determines dust direction
-            float angle = self.delegate.ANGLE;
-            float cosAngle = cos(angle);
-            float sinAngle = sin(angle);
-            
             short deltaY = self.delegate.SHOWY - self.delegate.AVERT;
             float sinDeltaY = deltaY * sinAngle;
+            float cosAngle = cos(angle);
             float tanDeltaY = sinDeltaY / cosAngle;
-            short __block flameDistance = tanDeltaY + deltaY;
-            tanDeltaY = -tanDeltaY;
+            short flameDistance = tanDeltaY + deltaY;
+            if (sinNegative == NO) {
+                tanDeltaY = -tanDeltaY;
+            }
             
             //(DUSTP2)  Center the dust in the view
             //### This is a hack - fixme!
@@ -79,6 +85,8 @@ const float DustViewHeight = 64;
                 if (count) {
                     // Actually have something to display, do it in the background
                     void (^createDustView)(void) = ^{
+                        // Copy to local so we don't modify it the block
+                        short TEMP = flameDistance;
                         if (count) {
                             // Look up table used in dust generation
                             const short YThrust[] = { 0, -30, -31, -32, -34, -36, -38, -41, -44, -47, -50, -53, -56, 0, 1, 3, 6, 4, 3, 1, -2, -6, -7, -5, -2, 2, 3, 5, 6, 2, 1, -1, -4, -6, -5, -3, 0, 4, 5, 7, 4, 0, -1, -3, -1, -20, -16, -13, -10, -7, -4, -2, 0, 2, 4, 7, 10, 13, 16, 20, 0, -30, -31 };
@@ -99,8 +107,8 @@ const float DustViewHeight = 64;
                                 xPos &= DimYThrust;
                                 
                                 // Toggle the direction bit for X (COM)
-                                flameDistance = ~flameDistance;
-                                if (flameDistance < 0) {
+                                TEMP = ~TEMP;
+                                if (TEMP < 0) {
                                     xPos = -xPos;
                                 }
                                 

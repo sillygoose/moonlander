@@ -408,13 +408,13 @@
 		565D235F1540E9760074D3AD /* Sources */ = {
 			isa = PBXGroup;
 			children = (
-				565D23671540F0230074D3AD /* rocket.bas */,
-				565D23601540E9760074D3AD /* gtlem.mac */,
-				565D23611540E9760074D3AD /* lunar.bas */,
-				565D23621540E9760074D3AD /* mlc.mac */,
 				565D23631540E9760074D3AD /* mld.mac */,
+				565D23621540E9760074D3AD /* mlc.mac */,
 				565D23641540E9760074D3AD /* Original GTLEM Source */,
+				565D23601540E9760074D3AD /* gtlem.mac */,
 				565D23651540E9760074D3AD /* rtlem.mac */,
+				565D23671540F0230074D3AD /* rocket.bas */,
+				565D23611540E9760074D3AD /* lunar.bas */,
 			);
 			name = Sources;
 			path = Documentation/Sources;

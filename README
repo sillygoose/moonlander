@@ -15,10 +15,11 @@ Features to do list
 
 Bugs todo list
 - use floats for X/Y positioning so retina displays are supported
-- new dust bug at pos angle (lags movement? - needs review)
+- increase font size and space out controls for easier access
 
 
 Fixed/Done
+- new dust bug at pos angle (lags movement? - needs review)
 - adjusted roll arrow refresh rate
 - update dust/explode to draw directly into their views
 - sync blink timing by using a single timer (can live current design)
