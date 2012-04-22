@@ -1231,6 +1231,8 @@ const float OffcomDelay = 2.0f;
 - (void)BELL
 {
     // Ding the bell
+#define DEBUG_AUDIO
+
 #if !defined(DEBUG) || defined(DEBUG_AUDIO)
     AudioServicesPlayAlertSound(self.bellFileObject);
 #endif

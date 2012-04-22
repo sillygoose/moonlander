@@ -77,11 +77,6 @@ const short RadiusIncrement2 = -10;
             // Use a block animation to fade the alpha to zero
             int count = [self.explosionViews count];
             if (count) {
-                // Need a beep on every other explosion pass
-                if (self.beepCount++ % 2) {
-                    [self.delegate beep];
-                }
-
                 // Get the view and make visible
                 __block Explosion *theView = [self.explosionViews objectAtIndex:0];
                 
@@ -125,7 +120,11 @@ const short RadiusIncrement2 = -10;
             // Now create a dispatch event to make the view visible
             dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, self.queueDelay);
             dispatch_after(popTime, animateQueue, animateExplosionView);
-            //NSLog(@"createExplosionView: %d for execution in %llu msecs", self.currentRadius, (self.queueDelay / USEC_PER_SEC));
+
+            // Need a beep on every other explosion pass
+            if (self.beepCount++ % 2) {
+                dispatch_after(popTime, dispatch_get_main_queue(), ^{[self.delegate beep];});
+            }
 
             // Adjust the delay for the next view
             self.queueDelay += DelayInSeconds * NSEC_PER_SEC;

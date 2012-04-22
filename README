@@ -16,9 +16,10 @@ Features to do list
 Bugs todo list
 - use floats for X/Y positioning so retina displays are supported
 - increase font size and space out controls for easier access
-- fix explosion sound by queuing the beep plays
+- increase size of yes/no dialog
 
 Fixed/Done
+- fix explosion sound by queuing the beep plays
 - explode code causes conflict with yes/no dialog: dispatch queue issue?
 - splash screen dark
 - new dust bug at pos angle (lags movement)
