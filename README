@@ -17,6 +17,7 @@ Bugs todo list
 - use floats for X/Y positioning so retina displays are supported
 - increase font size and space out controls for easier access
 - increase size of yes/no dialog
+- control beep volume
 
 Fixed/Done
 - fix explosion sound by queuing the beep plays
