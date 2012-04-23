@@ -132,9 +132,6 @@
 		565674791544B8DA00E8628E /* gt40.ini */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = gt40.ini; sourceTree = "<group>"; };
 		5656747D1544B8EB00E8628E /* gt40 */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = gt40; sourceTree = "<group>"; };
 		5656747E1544B8EB00E8628E /* gt40.ini */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = gt40.ini; sourceTree = "<group>"; };
-		565674821544B96B00E8628E /* gt40 */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = gt40; sourceTree = "<group>"; };
-		565674831544B96B00E8628E /* gt40.ini */ = {isa = PBXFileReference; lastKnownFileType = text; path = gt40.ini; sourceTree = "<group>"; };
-		565674841544B96B00E8628E /* lunar.lda */ = {isa = PBXFileReference; lastKnownFileType = file; path = lunar.lda; sourceTree = "<group>"; };
 		565674861544BB5400E8628E /* web links */ = {isa = PBXFileReference; lastKnownFileType = text; path = "web links"; sourceTree = "<group>"; };
 		565674881544BC3F00E8628E /* cffwar.ftn */ = {isa = PBXFileReference; lastKnownFileType = text; path = cffwar.ftn; sourceTree = "<group>"; };
 		5656748A1544BD8400E8628E /* dgtcc0.gt */ = {isa = PBXFileReference; lastKnownFileType = text; path = dgtcc0.gt; sourceTree = "<group>"; };
@@ -422,16 +419,6 @@
 			name = Resources;
 			sourceTree = "<group>";
 		};
-		565674811544B95200E8628E /* Lunar */ = {
-			isa = PBXGroup;
-			children = (
-				565674821544B96B00E8628E /* gt40 */,
-				565674831544B96B00E8628E /* gt40.ini */,
-				565674841544B96B00E8628E /* lunar.lda */,
-			);
-			path = Lunar;
-			sourceTree = "<group>";
-		};
 		565674851544BAE700E8628E /* Links */ = {
 			isa = PBXGroup;
 			children = (
@@ -519,7 +506,6 @@
 		56ECD8EF1540703500565615 /* Moonlander */ = {
 			isa = PBXGroup;
 			children = (
-				565674811544B95200E8628E /* Lunar */,
 				56ECD8F01540703500565615 /* Classic */,
 				56ECD8F71540703500565615 /* Debug */,
 			);
