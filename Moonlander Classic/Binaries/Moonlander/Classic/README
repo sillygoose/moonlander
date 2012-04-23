@@ -1,8 +1,55 @@
-Two versions of Moonlander are provided
+Three versions of Moonlander are provided to run on simh:
 
-LUNAR
-This is a version found on the web and distributed with the GT40 simulator.  It is of later vintage and no source code seems to be available.
+Lunar
+=====
+This is a version found on the web and distributed with the GT40 simulator.  It is of later vintage and no source code is available for it.
+
+  ./gt40
+  
+and the .ini file will load and run this version.
 
 
-MLC
+Classic
+=======
 This a working build of the original Moonlander with the dust code removed since it does not appear to be stable.
+
+  ./gt40
+  
+and the .ini file will load and run this version.
+
+To enable dust you need to restart with the following changes:
+
+  load mlc
+  d 1156 0
+  run
+
+
+Debug
+=================
+This a debug build of the original Moonlander sources, this is the version that I do most testing/comparisions from.
+
+  ./gt40
+  
+and the .ini file will load but not run this version.  You need to use the run command to start it.
+
+Here are some locations you can patch to set initial conditions:
+
+  .WORD	TURN,-1.			;1630-1632 (degress)
+  .WORD	ANGLE,0.			;1634-1636 (degrees)
+  .WORD	ANGLER,0			;1640-1642
+  .WORD	HORREM,0			;1644-1646
+  .WORD	VERREM,0			;1650-1652
+  .WORD	HORVEL,0.			;1654-1656 (tenths of FPS, so 10FPS is 100 decimal)
+  .WORD	VERVEL,0.			;1660-1662 (tenths of FPS)
+  .WORD	HORDIS,-200.		;1664-1666 (feet)
+  .WORD	VERDIS,300.			;1670-1672 (feet)
+  .WORD	FUEL,FUELS			;1710-1712 (tenths of lbs)
+
+So to set the horizonatal distance to Mcdonalds you would use
+
+  d 1666 0
+  
+  
+Notes
+=====
+In case you are wondering, Ctrl-E breaks emulation and 'q' will exit simh.  If you stop the emulator, 'cont' will pick up where you left off.
