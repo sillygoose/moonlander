@@ -1,0 +1,13 @@
+Diagnostics
+Diagnostics in GT40 bootstrap loader format, supplied by John Holden:
+
+Listed in Maintenance Manual 	Available Here
+Title 	Part Number
+GT40 Quick Verify 	MAINDEC-11-DDGTE-A 	dgtec0.gt ( 10K)
+GT40 Instruction Test 1 	MAINDEC-11-DDGTA-A 	dgtad1.gt (9.5K)
+GT40 Instruction Test 2 	MAINDEC-11-DDGTB-A 	dgtbd0.gt (8.0K)
+GT40 Visual Display Test 	MAINDEC-11-DDGTC-A 	dgtcc0.gt (7.3K)
+DL11-E, C/D Off-Line Test 	MAINDEC-11-DZDLA
+ROM Bootstrap Loader Test 	MAINDEC-11-DDGTD-A-D 	dgtdc0.gt ( 10K)
+GT40/GTP Overlay Program 	MAINDEC-11-DDGTF
+not listed 	dgtgb0.gt (7.3K) 

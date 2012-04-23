@@ -128,6 +128,20 @@
 		564EBC5013834A17007D477C /* McDonalds.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = McDonalds.plist; path = Resources/McDonalds.plist; sourceTree = "<group>"; };
 		5650B9E8153CB76800AEF4F2 /* ExplosionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExplosionManager.h; sourceTree = "<group>"; };
 		5650B9E9153CB76800AEF4F2 /* ExplosionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExplosionManager.m; sourceTree = "<group>"; };
+		565674781544B8DA00E8628E /* gt40 */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = gt40; sourceTree = "<group>"; };
+		565674791544B8DA00E8628E /* gt40.ini */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = gt40.ini; sourceTree = "<group>"; };
+		5656747D1544B8EB00E8628E /* gt40 */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = gt40; sourceTree = "<group>"; };
+		5656747E1544B8EB00E8628E /* gt40.ini */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = gt40.ini; sourceTree = "<group>"; };
+		565674821544B96B00E8628E /* gt40 */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = gt40; sourceTree = "<group>"; };
+		565674831544B96B00E8628E /* gt40.ini */ = {isa = PBXFileReference; lastKnownFileType = text; path = gt40.ini; sourceTree = "<group>"; };
+		565674841544B96B00E8628E /* lunar.lda */ = {isa = PBXFileReference; lastKnownFileType = file; path = lunar.lda; sourceTree = "<group>"; };
+		565674861544BB5400E8628E /* web links */ = {isa = PBXFileReference; lastKnownFileType = text; path = "web links"; sourceTree = "<group>"; };
+		565674881544BC3F00E8628E /* cffwar.ftn */ = {isa = PBXFileReference; lastKnownFileType = text; path = cffwar.ftn; sourceTree = "<group>"; };
+		5656748A1544BD8400E8628E /* dgtcc0.gt */ = {isa = PBXFileReference; lastKnownFileType = text; path = dgtcc0.gt; sourceTree = "<group>"; };
+		5656748B1544BD8400E8628E /* dgtbd0.gt */ = {isa = PBXFileReference; lastKnownFileType = text; path = dgtbd0.gt; sourceTree = "<group>"; };
+		5656748C1544BD8400E8628E /* dgtad1.gt */ = {isa = PBXFileReference; lastKnownFileType = text; path = dgtad1.gt; sourceTree = "<group>"; };
+		5656748D1544BD8400E8628E /* dgtec0.gt */ = {isa = PBXFileReference; lastKnownFileType = text; path = dgtec0.gt; sourceTree = "<group>"; };
+		5656748E1544BD9B00E8628E /* README */ = {isa = PBXFileReference; lastKnownFileType = text; path = README; sourceTree = "<group>"; wrapsLines = 0; };
 		565D23601540E9760074D3AD /* gtlem.mac */ = {isa = PBXFileReference; lastKnownFileType = text; path = gtlem.mac; sourceTree = "<group>"; };
 		565D23611540E9760074D3AD /* lunar.bas */ = {isa = PBXFileReference; lastKnownFileType = text; path = lunar.bas; sourceTree = "<group>"; };
 		565D23621540E9760074D3AD /* mlc.mac */ = {isa = PBXFileReference; lastKnownFileType = text; path = mlc.mac; sourceTree = "<group>"; };
@@ -168,15 +182,9 @@
 		56E87D2E154477EC00C5C764 /* beep-high.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "beep-high.caf"; sourceTree = "<group>"; };
 		56E87D2F154477EC00C5C764 /* beep-low.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "beep-low.caf"; sourceTree = "<group>"; };
 		56E87D30154477EC00C5C764 /* beep-med.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "beep-med.caf"; sourceTree = "<group>"; };
-		56ECD8F11540703500565615 /* gtlem.lda */ = {isa = PBXFileReference; lastKnownFileType = file; path = gtlem.lda; sourceTree = "<group>"; };
-		56ECD8F21540703500565615 /* lunar */ = {isa = PBXFileReference; lastKnownFileType = file; path = lunar; sourceTree = "<group>"; };
 		56ECD8F31540703500565615 /* mlc */ = {isa = PBXFileReference; lastKnownFileType = file; path = mlc; sourceTree = "<group>"; };
-		56ECD8F41540703500565615 /* pdp11 */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = pdp11; sourceTree = "<group>"; };
-		56ECD8F51540703500565615 /* pdp11.ini */ = {isa = PBXFileReference; lastKnownFileType = text; path = pdp11.ini; sourceTree = "<group>"; };
 		56ECD8F61540703500565615 /* README */ = {isa = PBXFileReference; lastKnownFileType = text; path = README; sourceTree = "<group>"; };
 		56ECD8F81540703500565615 /* mld */ = {isa = PBXFileReference; lastKnownFileType = file; path = mld; sourceTree = "<group>"; };
-		56ECD8F91540703500565615 /* pdp11 */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = pdp11; sourceTree = "<group>"; };
-		56ECD8FA1540703500565615 /* pdp11.ini */ = {isa = PBXFileReference; lastKnownFileType = text; path = pdp11.ini; sourceTree = "<group>"; };
 		56ECD8FC1540703500565615 /* pdp11 */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = pdp11; sourceTree = "<group>"; };
 		56ECD8FD1540703500565615 /* pdp11.ini */ = {isa = PBXFileReference; lastKnownFileType = text; path = pdp11.ini; sourceTree = "<group>"; };
 		56ECD8FE1540703500565615 /* README */ = {isa = PBXFileReference; lastKnownFileType = text; path = README; sourceTree = "<group>"; };
@@ -414,9 +422,49 @@
 			name = Resources;
 			sourceTree = "<group>";
 		};
+		565674811544B95200E8628E /* Lunar */ = {
+			isa = PBXGroup;
+			children = (
+				565674821544B96B00E8628E /* gt40 */,
+				565674831544B96B00E8628E /* gt40.ini */,
+				565674841544B96B00E8628E /* lunar.lda */,
+			);
+			path = Lunar;
+			sourceTree = "<group>";
+		};
+		565674851544BAE700E8628E /* Links */ = {
+			isa = PBXGroup;
+			children = (
+				565674861544BB5400E8628E /* web links */,
+			);
+			path = Links;
+			sourceTree = "<group>";
+		};
+		565674871544BBDF00E8628E /* GT40 */ = {
+			isa = PBXGroup;
+			children = (
+				565674881544BC3F00E8628E /* cffwar.ftn */,
+			);
+			name = GT40;
+			path = gt40;
+			sourceTree = "<group>";
+		};
+		565674891544BD5C00E8628E /* GT40 */ = {
+			isa = PBXGroup;
+			children = (
+				5656748A1544BD8400E8628E /* dgtcc0.gt */,
+				5656748B1544BD8400E8628E /* dgtbd0.gt */,
+				5656748C1544BD8400E8628E /* dgtad1.gt */,
+				5656748D1544BD8400E8628E /* dgtec0.gt */,
+				5656748E1544BD9B00E8628E /* README */,
+			);
+			path = GT40;
+			sourceTree = "<group>";
+		};
 		565D235F1540E9760074D3AD /* Sources */ = {
 			isa = PBXGroup;
 			children = (
+				565674871544BBDF00E8628E /* GT40 */,
 				565D23631540E9760074D3AD /* mld.mac */,
 				565D23621540E9760074D3AD /* mlc.mac */,
 				565D23641540E9760074D3AD /* Original GTLEM Source */,
@@ -449,6 +497,7 @@
 		56ECD8ED1540703500565615 /* Moonlander Classic */ = {
 			isa = PBXGroup;
 			children = (
+				565674851544BAE700E8628E /* Links */,
 				565D235F1540E9760074D3AD /* Sources */,
 				56ECD8EE1540703500565615 /* Binaries */,
 				56ECD9001540703500565615 /* Documentation */,
@@ -460,6 +509,7 @@
 		56ECD8EE1540703500565615 /* Binaries */ = {
 			isa = PBXGroup;
 			children = (
+				565674891544BD5C00E8628E /* GT40 */,
 				56ECD8EF1540703500565615 /* Moonlander */,
 				56ECD8FB1540703500565615 /* RT11 */,
 			);
@@ -469,6 +519,7 @@
 		56ECD8EF1540703500565615 /* Moonlander */ = {
 			isa = PBXGroup;
 			children = (
+				565674811544B95200E8628E /* Lunar */,
 				56ECD8F01540703500565615 /* Classic */,
 				56ECD8F71540703500565615 /* Debug */,
 			);
@@ -478,11 +529,9 @@
 		56ECD8F01540703500565615 /* Classic */ = {
 			isa = PBXGroup;
 			children = (
-				56ECD8F11540703500565615 /* gtlem.lda */,
-				56ECD8F21540703500565615 /* lunar */,
+				565674781544B8DA00E8628E /* gt40 */,
+				565674791544B8DA00E8628E /* gt40.ini */,
 				56ECD8F31540703500565615 /* mlc */,
-				56ECD8F41540703500565615 /* pdp11 */,
-				56ECD8F51540703500565615 /* pdp11.ini */,
 				56ECD8F61540703500565615 /* README */,
 			);
 			path = Classic;
@@ -491,9 +540,9 @@
 		56ECD8F71540703500565615 /* Debug */ = {
 			isa = PBXGroup;
 			children = (
+				5656747D1544B8EB00E8628E /* gt40 */,
+				5656747E1544B8EB00E8628E /* gt40.ini */,
 				56ECD8F81540703500565615 /* mld */,
-				56ECD8F91540703500565615 /* pdp11 */,
-				56ECD8FA1540703500565615 /* pdp11.ini */,
 			);
 			path = Debug;
 			sourceTree = "<group>";
