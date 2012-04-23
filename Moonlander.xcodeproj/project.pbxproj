@@ -183,7 +183,7 @@
 		56E87D2F154477EC00C5C764 /* beep-low.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "beep-low.caf"; sourceTree = "<group>"; };
 		56E87D30154477EC00C5C764 /* beep-med.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "beep-med.caf"; sourceTree = "<group>"; };
 		56ECD8F31540703500565615 /* mlc */ = {isa = PBXFileReference; lastKnownFileType = file; path = mlc; sourceTree = "<group>"; };
-		56ECD8F61540703500565615 /* README */ = {isa = PBXFileReference; name = README; path = Classic/README; sourceTree = "<group>"; };
+		56ECD8F61540703500565615 /* README */ = {isa = PBXFileReference; lastKnownFileType = text; name = README; path = Classic/README; sourceTree = "<group>"; };
 		56ECD8F81540703500565615 /* mld */ = {isa = PBXFileReference; lastKnownFileType = file; path = mld; sourceTree = "<group>"; };
 		56ECD8FC1540703500565615 /* pdp11 */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = pdp11; sourceTree = "<group>"; };
 		56ECD8FD1540703500565615 /* pdp11.ini */ = {isa = PBXFileReference; lastKnownFileType = text; path = pdp11.ini; sourceTree = "<group>"; };
@@ -849,10 +849,9 @@
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = (
-					SHORT_DELAYS,
 					DEBUG,
-					DEBUG_LOCATION,
 					NO_SPLASH_SCREEN,
+					SHORT_DELAYS,
 				);
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				GCC_THUMB_SUPPORT = NO;
