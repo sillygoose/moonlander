@@ -28,6 +28,11 @@
 
 #import "ExplosionManager.h"
 
+#if defined(TARGET_IPHONE_SIMULATOR)
+#define SHORT_DELAYS
+#define NO_SPLASH_SCREEN
+#endif
+
 
 @interface LanderViewController_iPad : UIViewController <LanderDelegate> {
     LanderPhysicsModel *_landerModel;

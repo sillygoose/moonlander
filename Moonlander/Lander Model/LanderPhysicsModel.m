@@ -5,16 +5,20 @@
 // Created by Rick on 5/10/11.
 // Copyright 2011, 2012 Paradigm Systems. All rights reserved.
 //
-// Classic game data
-// Time Fuel HorizVel VertVel
-// 52 1420
-// 52 1424
-// 52 1425
-//
 
 #import "LanderPhysicsModel.h"
 #import "LanderPhysicsDelegate.h"
 #import "LanderPhysicsConstants.h"
+
+
+// Add any custom debugging options
+#if defined(TARGET_IPHONE_SIMULATOR) && defined(DEBUG)
+//#define DEBUG_DUST
+//#define DEBUG_LOCATION
+//#define DEBUG_FLAME
+//#define HOLD_VELOCITY
+//#define HOLD_POSITION
+#endif
 
 
 @implementation LanderPhysicsModel
@@ -254,8 +258,7 @@ static float RadiansToDegrees(float radians)
 {
     // Start in flight mode
     self.lemOnSurface = NO;
-    
-#if defined(DEBUG_DUST) || defined(DEBUG_FLAME) || defined(DEBUG_LOCATION)
+#if defined(DEBUG) && (defined(DEBUG_DUST) || defined(DEBUG_FLAME) || defined(DEBUG_LOCATION))
     // Custom lander start point
     self.fuelRemaining = self.lemInitalFuel;
     self.turnAngle = 0;
@@ -301,8 +304,6 @@ static float RadiansToDegrees(float radians)
             self.verticalAcceleration = self.lemAcceleration * cosf(self.turnAngleRadians) - self.lunarGravity;
         }
 
-//#define HOLD_POSITION
-//#define HOLD_VELOCITY
 #ifndef HOLD_VELOCITY
         // Update our velocities
         self.horizontalVelocity += self.horizontalAcceleration * timeElapsed;
