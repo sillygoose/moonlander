@@ -512,9 +512,9 @@
 		56ECD8EE1540703500565615 /* Binaries */ = {
 			isa = PBXGroup;
 			children = (
-				565674891544BD5C00E8628E /* GT40 */,
 				56ECD8EF1540703500565615 /* Moonlander */,
 				56ECD8FB1540703500565615 /* RT11 */,
+				565674891544BD5C00E8628E /* GT40 */,
 			);
 			path = Binaries;
 			sourceTree = "<group>";

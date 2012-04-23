@@ -17,9 +17,9 @@ Bugs todo list
 - use floats for X/Y positioning so retina displays are supported
 - increase font size and space out controls for easier access
 - increase size of yes/no dialog
-- add scripts and .ini files for debug/release of classic game
 
 Fixed/Done
+- add scripts and .ini files for debug/release of classic game
 - control beep volume (three volume levels added to sounds)
 - fix explosion sound by queuing the beep plays
 - explode code causes conflict with yes/no dialog: dispatch queue issue?
