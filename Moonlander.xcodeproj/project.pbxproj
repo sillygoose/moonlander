@@ -30,6 +30,9 @@
 		560FA1391379BEAB0017EE25 /* LanderViewController_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 560FA1361379BEAA0017EE25 /* LanderViewController_iPad.xib */; };
 		560FA13A1379BEAB0017EE25 /* LanderViewController_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 560FA1361379BEAA0017EE25 /* LanderViewController_iPad.xib */; };
 		5613DDE8143A85F80059077A /* VGDialog.m in Sources */ = {isa = PBXBuildFile; fileRef = 5613DDE7143A85F80059077A /* VGDialog.m */; };
+		56205CBA1545953800C33417 /* gt40 in Resources */ = {isa = PBXBuildFile; fileRef = 56205CB71545953800C33417 /* gt40 */; };
+		56205CBB1545953800C33417 /* gt40.ini in Resources */ = {isa = PBXBuildFile; fileRef = 56205CB81545953800C33417 /* gt40.ini */; };
+		56205CBC1545953800C33417 /* lunar.lda in Resources */ = {isa = PBXBuildFile; fileRef = 56205CB91545953800C33417 /* lunar.lda */; };
 		5621703515392F1F0094122B /* Explosion.m in Sources */ = {isa = PBXBuildFile; fileRef = 5621703415392F1F0094122B /* Explosion.m */; };
 		562B108A13841BAA00CC5C97 /* VGLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 562B108913841BAA00CC5C97 /* VGLabel.m */; };
 		562B108D13841D5A00CC5C97 /* LanderMessages.plist in Resources */ = {isa = PBXBuildFile; fileRef = 562B108C13841D5A00CC5C97 /* LanderMessages.plist */; };
@@ -110,6 +113,9 @@
 		560FA13E1379C95B0017EE25 /* LanderPhysicsDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LanderPhysicsDataSource.h; path = "Lander Model/LanderPhysicsDataSource.h"; sourceTree = "<group>"; };
 		5613DDE6143A85F80059077A /* VGDialog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VGDialog.h; path = VectorGraphics/VGDialog.h; sourceTree = "<group>"; };
 		5613DDE7143A85F80059077A /* VGDialog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VGDialog.m; path = VectorGraphics/VGDialog.m; sourceTree = "<group>"; };
+		56205CB71545953800C33417 /* gt40 */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = gt40; sourceTree = "<group>"; };
+		56205CB81545953800C33417 /* gt40.ini */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = gt40.ini; sourceTree = "<group>"; };
+		56205CB91545953800C33417 /* lunar.lda */ = {isa = PBXFileReference; lastKnownFileType = file; path = lunar.lda; sourceTree = "<group>"; };
 		5621703315392F1F0094122B /* Explosion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Explosion.h; sourceTree = "<group>"; };
 		5621703415392F1F0094122B /* Explosion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Explosion.m; sourceTree = "<group>"; };
 		562B108813841BAA00CC5C97 /* VGLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VGLabel.h; path = VectorGraphics/VGLabel.h; sourceTree = "<group>"; };
@@ -419,6 +425,16 @@
 			name = Resources;
 			sourceTree = "<group>";
 		};
+		56205CB61545953800C33417 /* Lunar */ = {
+			isa = PBXGroup;
+			children = (
+				56205CB71545953800C33417 /* gt40 */,
+				56205CB81545953800C33417 /* gt40.ini */,
+				56205CB91545953800C33417 /* lunar.lda */,
+			);
+			path = Lunar;
+			sourceTree = "<group>";
+		};
 		565674851544BAE700E8628E /* Links */ = {
 			isa = PBXGroup;
 			children = (
@@ -506,6 +522,7 @@
 		56ECD8EF1540703500565615 /* Moonlander */ = {
 			isa = PBXGroup;
 			children = (
+				56205CB61545953800C33417 /* Lunar */,
 				56ECD8F01540703500565615 /* Classic */,
 				56ECD8F71540703500565615 /* Debug */,
 			);
@@ -710,6 +727,9 @@
 				56E87D31154477EC00C5C764 /* beep-high.caf in Resources */,
 				56E87D32154477EC00C5C764 /* beep-low.caf in Resources */,
 				56E87D33154477EC00C5C764 /* beep-med.caf in Resources */,
+				56205CBA1545953800C33417 /* gt40 in Resources */,
+				56205CBB1545953800C33417 /* gt40.ini in Resources */,
+				56205CBC1545953800C33417 /* lunar.lda in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
