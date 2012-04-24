@@ -2,8 +2,6 @@ Moonlander, the classic video game
 
 Features to do list
 - initial menu screen
-- splash screen
-- iphone version
 - hardware brochures
 - source code viewer
 - 1969 focal/basic lunar lander game
@@ -13,11 +11,12 @@ Features to do list
 
 
 Bugs todo list
+- splash screen (Apple required and animated mine)
+- test ability to swap in and out
 - use floats for X/Y positioning so retina displays are supported
 - increase font size and space out controls for easier access
 - increase size of yes/no dialog
-- iTunes artwork should be 512x512 and 1024x1024
-- add support for going in and out of focus
+- missing iTunesArtwork@2x (1024x1024)
 
 
 Fixed/Done
