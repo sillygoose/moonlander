@@ -115,6 +115,7 @@
 		561739D8154624BC00380AB4 /* Credits */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Credits; sourceTree = "<group>"; };
 		561739DA15462F7700380AB4 /* Default-Landscape@2x~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Landscape@2x~ipad.png"; sourceTree = "<group>"; };
 		561739DC15462F7C00380AB4 /* Default-Landscape~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Landscape~ipad.png"; sourceTree = "<group>"; };
+		561739DF154631C200380AB4 /* Launch.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Launch.png; sourceTree = "<group>"; };
 		56205CB71545953800C33417 /* gt40 */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = gt40; sourceTree = "<group>"; };
 		56205CB81545953800C33417 /* gt40.ini */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = gt40.ini; sourceTree = "<group>"; };
 		56205CB91545953800C33417 /* lunar.lda */ = {isa = PBXFileReference; lastKnownFileType = file; path = lunar.lda; sourceTree = "<group>"; };
@@ -410,6 +411,7 @@
 		560FA13B1379C3900017EE25 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				561739DE1546317400380AB4 /* images */,
 				1D81BDB8153F567200AE437D /* sounds */,
 				569CC2A913809BED00E6D82A /* Moon.plist */,
 				56678FCB139A7D4D00026588 /* OldLander.plist */,
@@ -428,6 +430,15 @@
 				562B108C13841D5A00CC5C97 /* LanderMessages.plist */,
 			);
 			name = Resources;
+			sourceTree = "<group>";
+		};
+		561739DE1546317400380AB4 /* images */ = {
+			isa = PBXGroup;
+			children = (
+				561739DF154631C200380AB4 /* Launch.png */,
+			);
+			name = images;
+			path = Resources/images;
 			sourceTree = "<group>";
 		};
 		56205CB61545953800C33417 /* Lunar */ = {
