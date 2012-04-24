@@ -16,7 +16,8 @@ Bugs todo list
 - use floats for X/Y positioning so retina displays are supported
 - increase font size and space out controls for easier access
 - increase size of yes/no dialog
-- missing Icon-Small-50@2x.png
+- iTunes artwork should be 512x512 and 1024x1024
+- add support for going in and out of focus
 
 
 Fixed/Done
