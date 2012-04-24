@@ -15,6 +15,6 @@
     LanderViewController_iPad *_landerViewController;
 }
 
-@property (nonatomic) IBOutlet LanderViewController_iPad *landerViewController;
+@property (nonatomic, strong) IBOutlet LanderViewController_iPad *landerViewController;
 
 @end

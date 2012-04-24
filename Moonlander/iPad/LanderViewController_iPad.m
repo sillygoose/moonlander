@@ -396,7 +396,7 @@ const float OffcomDelay = 2.0f;
 - (void)initGame
 {
     // Splash screen
-#ifndef DEBUG_NO_SPLASH
+#ifdef DEBUG_NO_SPLASH
     [self performSelector:@selector(initGame2) withObject:nil afterDelay:0];
 #else
     self.landerMessages.hidden = NO;
