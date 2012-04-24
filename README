@@ -1,7 +1,6 @@
 Moonlander, the classic video game
 
 Features to do list
-- iphone/ipad icons
 - initial menu screen
 - splash screen
 - iphone version
@@ -21,6 +20,7 @@ Bugs todo list
 
 
 Fixed/Done
+- iphone/ipad icons
 - add scripts and .ini files for debug/release of classic game
 - control beep volume (three volume levels added to sounds)
 - fix explosion sound by queuing the beep plays
