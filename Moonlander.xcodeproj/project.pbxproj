@@ -110,6 +110,7 @@
 		560FA13E1379C95B0017EE25 /* LanderPhysicsDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LanderPhysicsDataSource.h; path = "Lander Model/LanderPhysicsDataSource.h"; sourceTree = "<group>"; };
 		5613DDE6143A85F80059077A /* VGDialog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VGDialog.h; path = VectorGraphics/VGDialog.h; sourceTree = "<group>"; };
 		5613DDE7143A85F80059077A /* VGDialog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VGDialog.m; path = VectorGraphics/VGDialog.m; sourceTree = "<group>"; };
+		561739D8154624BC00380AB4 /* Credits */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Credits; sourceTree = "<group>"; };
 		56205CB71545953800C33417 /* gt40 */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = gt40; sourceTree = "<group>"; };
 		56205CB81545953800C33417 /* gt40.ini */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = gt40.ini; sourceTree = "<group>"; };
 		56205CB91545953800C33417 /* lunar.lda */ = {isa = PBXFileReference; lastKnownFileType = file; path = lunar.lda; sourceTree = "<group>"; };
@@ -268,6 +269,7 @@
 			isa = PBXGroup;
 			children = (
 				560D212814115314000F3A22 /* README */,
+				561739D8154624BC00380AB4 /* Credits */,
 				560FA0D5137991AE0017EE25 /* Moonlander */,
 				56ECD8ED1540703500565615 /* Moonlander Classic */,
 				560FA0FA137991AE0017EE25 /* MoonlanderTests */,
@@ -848,11 +850,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					DEBUG,
-					NO_SPLASH_SCREEN,
-					SHORT_DELAYS,
-				);
+				GCC_PREPROCESSOR_DEFINITIONS = DEBUG;
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				GCC_THUMB_SUPPORT = NO;
 				GCC_VERSION = com.apple.compilers.llvmgcc42;
@@ -902,6 +900,7 @@
 				INFOPLIST_FILE = "Moonlander/Moonlander-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 2;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -923,6 +922,7 @@
 				INFOPLIST_FILE = "Moonlander/Moonlander-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 2;
 				VALIDATE_PRODUCT = YES;
 				WRAPPER_EXTENSION = app;
 			};
