@@ -15,6 +15,7 @@
 //#define DEBUG_EXTRA_INSTRUMENTS
 //#define DEBUG_SHORT_DELAYS
 //#define DEBUG_NO_SPLASH
+//#define DEBUG_GRAB_EMPTY_SCREEN
 #endif
 
 
@@ -349,8 +350,6 @@ const float OffcomDelay = 2.0f;
     self.SHOWY = 0;
     self.didFuelAlert = NO;
     
-    self.landerView.hidden = NO;
-    
     // Enable all flight controls
     [self enableFlightControls];
     
@@ -386,6 +385,9 @@ const float OffcomDelay = 2.0f;
     // Setup the game timers
 	self.simulationTimer = [NSTimer scheduledTimerWithTimeInterval:GameTimerInterval target:self selector:@selector(gameLoop) userInfo:nil repeats:YES];
 	self.displayTimer = [NSTimer scheduledTimerWithTimeInterval:DisplayUpdateInterval target:self selector:@selector(updateLander) userInfo:nil repeats:YES];
+
+    // Add the lander to the view
+    self.landerView.hidden = NO;
     
     // Start off the display updates
     [self updateLander];
@@ -430,8 +432,6 @@ const float OffcomDelay = 2.0f;
     self.horizontalAccelerationData.hidden = NO;
     self.secondsData.hidden = NO;
     
-    self.landerView.hidden = NO;
-
     [self getStarted];
 }
 
@@ -910,9 +910,8 @@ const float OffcomDelay = 2.0f;
 
 - (void)updateLander
 {
+    // Update the lander and the displayed instruments
     [self.landerView updateLander];
-    
-    // Update the displayed instruments
     [self.instrument1 display];
     [self.instrument2 display];
     [self.instrument3 display];
@@ -1481,7 +1480,11 @@ const float OffcomDelay = 2.0f;
 - (void)gameLoop
 {
     // Update simulation time
+#ifdef DEBUG_GRAB_EMPTY_SCREEN
+    self.landerView.hidden = YES;
+#else
     [self.landerModel.delegate updateTime:GameTimerInterval];
+#endif
 
     if (![self.landerModel onSurface]) {
         // Display a low fuel message
