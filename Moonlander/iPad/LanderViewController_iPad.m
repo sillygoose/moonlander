@@ -10,6 +10,14 @@
 
 #import "LanderMessage.h"
 
+// Add any custom debugging options
+#if defined(TARGET_IPHONE_SIMULATOR) && defined(DEBUG)
+//#define DEBUG_EXTRA_INSTRUMENTS
+//#define DEBUG_SHORT_DELAYS
+//#define DEBUG_NO_SPLASH
+//#define DEBUG_GRAB_EMPTY_SCREEN
+#endif
+
 
 @interface LanderViewController_iPad ()
 - (CGRect) convertRectFromGameToView:(CGRect)gameRect;
@@ -86,7 +94,7 @@
 const float GameTimerInterval = 1.0 / 12.0f;
 const float DisplayUpdateInterval = 0.05f;
 
-#ifndef SHORT_DELAYS
+#ifndef DEBUG_SHORT_DELAYS
 // Timings for normal operation
 const float SplashScreenInterval = 10.0f;
 const float LandingDelay = 4.0f;
@@ -342,8 +350,6 @@ const float OffcomDelay = 2.0f;
     self.SHOWY = 0;
     self.didFuelAlert = NO;
     
-    self.landerView.hidden = NO;
-    
     // Enable all flight controls
     [self enableFlightControls];
     
@@ -360,7 +366,7 @@ const float OffcomDelay = 2.0f;
     [self.instrument3 display];
     [self.instrument4 display];
     
-#ifdef DEBUG
+#ifdef DEBUG_EXTRA_INSTRUMENTS
     // These are hidden normally
     self.instrument5.instrument = self.altitudeData;
     self.instrument5.hidden = NO;
@@ -379,6 +385,9 @@ const float OffcomDelay = 2.0f;
     // Setup the game timers
 	self.simulationTimer = [NSTimer scheduledTimerWithTimeInterval:GameTimerInterval target:self selector:@selector(gameLoop) userInfo:nil repeats:YES];
 	self.displayTimer = [NSTimer scheduledTimerWithTimeInterval:DisplayUpdateInterval target:self selector:@selector(updateLander) userInfo:nil repeats:YES];
+
+    // Add the lander to the view
+    self.landerView.hidden = NO;
     
     // Start off the display updates
     [self updateLander];
@@ -387,7 +396,7 @@ const float OffcomDelay = 2.0f;
 - (void)initGame
 {
     // Splash screen
-#ifdef NO_SPLASH_SCREEN
+#ifndef DEBUG_NO_SPLASH
     [self performSelector:@selector(initGame2) withObject:nil afterDelay:0];
 #else
     self.landerMessages.hidden = NO;
@@ -423,8 +432,6 @@ const float OffcomDelay = 2.0f;
     self.horizontalAccelerationData.hidden = NO;
     self.secondsData.hidden = NO;
     
-    self.landerView.hidden = NO;
-
     [self getStarted];
 }
 
@@ -903,15 +910,14 @@ const float OffcomDelay = 2.0f;
 
 - (void)updateLander
 {
+    // Update the lander and the displayed instruments
     [self.landerView updateLander];
-    
-    // Update the displayed instruments
     [self.instrument1 display];
     [self.instrument2 display];
     [self.instrument3 display];
     [self.instrument4 display];
     
-#ifdef DEBUG
+#ifdef DEBUG_EXTRA_INSTRUMENTS
     [self.instrument5 display];
     [self.instrument6 display];
     [self.instrument7 display];
@@ -1040,7 +1046,7 @@ const float OffcomDelay = 2.0f;
 
 - (float)durationFrom:(CGPoint)start toEnd:(CGPoint)end
 {
-#ifdef DEBUG
+#ifdef DEBUG_SHORT_DELAYS
     const float MosyRate = 0.01;
 #else
     const float MosyRate = 0.05;
@@ -1060,7 +1066,7 @@ const float OffcomDelay = 2.0f;
     const short ManHeightOffFloor = 6;
   
     const float MosyDelayZero = 0;
-#ifdef DEBUG
+#ifdef DEBUG_SHORT_DELAYS
     const float MosyStartDelay = 1;
 #else
     const float MosyStartDelay = 4;
@@ -1088,7 +1094,7 @@ const float OffcomDelay = 2.0f;
     
     // What is it - plant a flag or visit Mcdonalds?
     if (self.moonView.displayHasMcDonalds) {
-#ifdef DEBUG
+#ifdef DEBUG_SHORT_DELAYS
         const float FoodWaitDuration = 1;
 #else
         const float FoodWaitDuration = 3;
@@ -1236,7 +1242,6 @@ const float OffcomDelay = 2.0f;
 - (void)BEEP
 {
     // Ding the bell
-#define DEBUG_AUDIO
 #if !defined(DEBUG) || defined(DEBUG_AUDIO)
     AudioServicesPlayAlertSound(self.bellFileObject);
 #endif
@@ -1475,7 +1480,11 @@ const float OffcomDelay = 2.0f;
 - (void)gameLoop
 {
     // Update simulation time
+#ifdef DEBUG_GRAB_EMPTY_SCREEN
+    self.landerView.hidden = YES;
+#else
     [self.landerModel.delegate updateTime:GameTimerInterval];
+#endif
 
     if (![self.landerModel onSurface]) {
         // Display a low fuel message

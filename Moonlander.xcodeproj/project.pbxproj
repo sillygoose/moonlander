@@ -30,6 +30,15 @@
 		560FA1391379BEAB0017EE25 /* LanderViewController_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 560FA1361379BEAA0017EE25 /* LanderViewController_iPad.xib */; };
 		560FA13A1379BEAB0017EE25 /* LanderViewController_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 560FA1361379BEAA0017EE25 /* LanderViewController_iPad.xib */; };
 		5613DDE8143A85F80059077A /* VGDialog.m in Sources */ = {isa = PBXBuildFile; fileRef = 5613DDE7143A85F80059077A /* VGDialog.m */; };
+		561739DB15462F7800380AB4 /* Default-Landscape@2x~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 561739DA15462F7700380AB4 /* Default-Landscape@2x~ipad.png */; };
+		561739DD15462F7C00380AB4 /* Default-Landscape~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 561739DC15462F7C00380AB4 /* Default-Landscape~ipad.png */; };
+		561739E1154647C200380AB4 /* Icon-72@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 561739E0154647C200380AB4 /* Icon-72@2x.png */; };
+		561739E3154647C600380AB4 /* Icon-72.png in Resources */ = {isa = PBXBuildFile; fileRef = 561739E2154647C600380AB4 /* Icon-72.png */; };
+		561739E51546488D00380AB4 /* iTunesArtwork  in Resources */ = {isa = PBXBuildFile; fileRef = 561739E41546488D00380AB4 /* iTunesArtwork  */; };
+		561739E8154649DD00380AB4 /* Icon-Small-50.png in Resources */ = {isa = PBXBuildFile; fileRef = 561739E6154649DD00380AB4 /* Icon-Small-50.png */; };
+		561739E9154649DD00380AB4 /* Icon-Small.png in Resources */ = {isa = PBXBuildFile; fileRef = 561739E7154649DD00380AB4 /* Icon-Small.png */; };
+		561739EB15464A5B00380AB4 /* Icon-Small@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 561739EA15464A5B00380AB4 /* Icon-Small@2x.png */; };
+		561739ED15464CB200380AB4 /* iTunesArtwork@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 561739EC15464CB200380AB4 /* iTunesArtwork@2x.png */; };
 		5621703515392F1F0094122B /* Explosion.m in Sources */ = {isa = PBXBuildFile; fileRef = 5621703415392F1F0094122B /* Explosion.m */; };
 		562B108A13841BAA00CC5C97 /* VGLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 562B108913841BAA00CC5C97 /* VGLabel.m */; };
 		562B108D13841D5A00CC5C97 /* LanderMessages.plist in Resources */ = {isa = PBXBuildFile; fileRef = 562B108C13841D5A00CC5C97 /* LanderMessages.plist */; };
@@ -110,6 +119,17 @@
 		560FA13E1379C95B0017EE25 /* LanderPhysicsDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LanderPhysicsDataSource.h; path = "Lander Model/LanderPhysicsDataSource.h"; sourceTree = "<group>"; };
 		5613DDE6143A85F80059077A /* VGDialog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VGDialog.h; path = VectorGraphics/VGDialog.h; sourceTree = "<group>"; };
 		5613DDE7143A85F80059077A /* VGDialog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VGDialog.m; path = VectorGraphics/VGDialog.m; sourceTree = "<group>"; };
+		561739D8154624BC00380AB4 /* Credits */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Credits; sourceTree = "<group>"; };
+		561739DA15462F7700380AB4 /* Default-Landscape@2x~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-Landscape@2x~ipad.png"; path = "../../../Default-Landscape@2x~ipad.png"; sourceTree = "<group>"; };
+		561739DC15462F7C00380AB4 /* Default-Landscape~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-Landscape~ipad.png"; path = "../../../Default-Landscape~ipad.png"; sourceTree = "<group>"; };
+		561739DF154631C200380AB4 /* EmptySplashTemplate.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = EmptySplashTemplate.png; sourceTree = "<group>"; };
+		561739E0154647C200380AB4 /* Icon-72@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon-72@2x.png"; path = "../../../Icon-72@2x.png"; sourceTree = "<group>"; };
+		561739E2154647C600380AB4 /* Icon-72.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon-72.png"; path = "../../../Icon-72.png"; sourceTree = "<group>"; };
+		561739E41546488D00380AB4 /* iTunesArtwork  */ = {isa = PBXFileReference; lastKnownFileType = file; path = "iTunesArtwork "; sourceTree = "<group>"; };
+		561739E6154649DD00380AB4 /* Icon-Small-50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-Small-50.png"; sourceTree = "<group>"; };
+		561739E7154649DD00380AB4 /* Icon-Small.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-Small.png"; sourceTree = "<group>"; };
+		561739EA15464A5B00380AB4 /* Icon-Small@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-Small@2x.png"; sourceTree = "<group>"; };
+		561739EC15464CB200380AB4 /* iTunesArtwork@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iTunesArtwork@2x.png"; sourceTree = "<group>"; };
 		56205CB71545953800C33417 /* gt40 */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = gt40; sourceTree = "<group>"; };
 		56205CB81545953800C33417 /* gt40.ini */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = gt40.ini; sourceTree = "<group>"; };
 		56205CB91545953800C33417 /* lunar.lda */ = {isa = PBXFileReference; lastKnownFileType = file; path = lunar.lda; sourceTree = "<group>"; };
@@ -268,6 +288,7 @@
 			isa = PBXGroup;
 			children = (
 				560D212814115314000F3A22 /* README */,
+				561739D8154624BC00380AB4 /* Credits */,
 				560FA0D5137991AE0017EE25 /* Moonlander */,
 				56ECD8ED1540703500565615 /* Moonlander Classic */,
 				560FA0FA137991AE0017EE25 /* MoonlanderTests */,
@@ -402,6 +423,7 @@
 		560FA13B1379C3900017EE25 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				561739DE1546317400380AB4 /* images */,
 				1D81BDB8153F567200AE437D /* sounds */,
 				569CC2A913809BED00E6D82A /* Moon.plist */,
 				56678FCB139A7D4D00026588 /* OldLander.plist */,
@@ -420,6 +442,24 @@
 				562B108C13841D5A00CC5C97 /* LanderMessages.plist */,
 			);
 			name = Resources;
+			sourceTree = "<group>";
+		};
+		561739DE1546317400380AB4 /* images */ = {
+			isa = PBXGroup;
+			children = (
+				561739E41546488D00380AB4 /* iTunesArtwork  */,
+				561739EC15464CB200380AB4 /* iTunesArtwork@2x.png */,
+				561739E2154647C600380AB4 /* Icon-72.png */,
+				561739E0154647C200380AB4 /* Icon-72@2x.png */,
+				561739E7154649DD00380AB4 /* Icon-Small.png */,
+				561739EA15464A5B00380AB4 /* Icon-Small@2x.png */,
+				561739E6154649DD00380AB4 /* Icon-Small-50.png */,
+				561739DC15462F7C00380AB4 /* Default-Landscape~ipad.png */,
+				561739DA15462F7700380AB4 /* Default-Landscape@2x~ipad.png */,
+				561739DF154631C200380AB4 /* EmptySplashTemplate.png */,
+			);
+			name = images;
+			path = Resources/images;
 			sourceTree = "<group>";
 		};
 		56205CB61545953800C33417 /* Lunar */ = {
@@ -723,6 +763,15 @@
 				56E87D31154477EC00C5C764 /* beep-high.caf in Resources */,
 				56E87D32154477EC00C5C764 /* beep-low.caf in Resources */,
 				56E87D33154477EC00C5C764 /* beep-med.caf in Resources */,
+				561739DB15462F7800380AB4 /* Default-Landscape@2x~ipad.png in Resources */,
+				561739DD15462F7C00380AB4 /* Default-Landscape~ipad.png in Resources */,
+				561739E1154647C200380AB4 /* Icon-72@2x.png in Resources */,
+				561739E3154647C600380AB4 /* Icon-72.png in Resources */,
+				561739E51546488D00380AB4 /* iTunesArtwork  in Resources */,
+				561739E8154649DD00380AB4 /* Icon-Small-50.png in Resources */,
+				561739E9154649DD00380AB4 /* Icon-Small.png in Resources */,
+				561739EB15464A5B00380AB4 /* Icon-Small@2x.png in Resources */,
+				561739ED15464CB200380AB4 /* iTunesArtwork@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -848,11 +897,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					DEBUG,
-					NO_SPLASH_SCREEN,
-					SHORT_DELAYS,
-				);
+				GCC_PREPROCESSOR_DEFINITIONS = DEBUG;
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				GCC_THUMB_SUPPORT = NO;
 				GCC_VERSION = com.apple.compilers.llvmgcc42;
@@ -902,6 +947,7 @@
 				INFOPLIST_FILE = "Moonlander/Moonlander-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 2;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -923,6 +969,7 @@
 				INFOPLIST_FILE = "Moonlander/Moonlander-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 2;
 				VALIDATE_PRODUCT = YES;
 				WRAPPER_EXTENSION = app;
 			};
