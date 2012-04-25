@@ -321,6 +321,7 @@
 			children = (
 				560FA0DE137991AE0017EE25 /* MoonlanderAppDelegate.h */,
 				560FA0DF137991AE0017EE25 /* MoonlanderAppDelegate.m */,
+				565D237615411DB30074D3AD /* LanderDelegate.h */,
 				560FA0E8137991AE0017EE25 /* iPad */,
 				567CD473154853D800797BD1 /* Classes */,
 				560FA10D1379923D0017EE25 /* Lander Model */,
@@ -348,7 +349,6 @@
 				560FA0E9137991AE0017EE25 /* MoonlanderAppDelegate_iPad.h */,
 				560FA0EA137991AE0017EE25 /* MoonlanderAppDelegate_iPad.m */,
 				560FA0EC137991AE0017EE25 /* Moonlander_iPad.xib */,
-				565D237615411DB30074D3AD /* LanderDelegate.h */,
 				560FA1341379BEAA0017EE25 /* LanderViewController_iPad.h */,
 				560FA1351379BEAA0017EE25 /* LanderViewController_iPad.m */,
 				560FA1361379BEAA0017EE25 /* LanderViewController_iPad.xib */,
