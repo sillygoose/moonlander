@@ -46,7 +46,11 @@
         [self addTarget:self action:@selector(buttonUp:) forControlEvents:(UIControlEventTouchUpInside|UIControlEventTouchUpOutside|UIControlEventTouchCancel|UIControlEventTouchDragExit|UIControlEventTouchDragOutside)];
 
         // Thruster slider subview
-        CGRect sliderFrame = CGRectMake(100, 0, frameRect.size.width / 3, frameRect.size.height);
+        CGFloat SliderXPos = 100;
+        CGFloat SliderYPos = 1;
+        CGFloat SliderWidth = frameRect.size.width / 3;
+        CGFloat SliderHeight = 200;
+        CGRect sliderFrame = CGRectMake(SliderXPos, SliderYPos, SliderWidth, SliderHeight);
         NSString *tsPath = [[NSBundle mainBundle] pathForResource:@"ThrusterControl" ofType:@"plist"];
         self.thrusterSlider = [[VGView alloc] initWithFrame:sliderFrame withPaths:tsPath];
         self.thrusterSlider.userInteractionEnabled = YES;

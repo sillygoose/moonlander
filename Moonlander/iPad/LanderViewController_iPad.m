@@ -495,7 +495,7 @@ const float OffcomDelay = 2.0f;
     
     // Create the thruster control
     const float ThrusterSliderWidth = 200;
-    const float ThrusterSliderHeight = 200;
+    const float ThrusterSliderHeight = 202;
     self.thrusterSlider = [[VGSlider alloc] initWithFrame:CGRectMake(820, 450, ThrusterSliderWidth, ThrusterSliderHeight)];
 	[self.thrusterSlider addTarget:self 
                             action:@selector(thrusterChanged:) 

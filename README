@@ -15,11 +15,11 @@ Bugs todo list
 - use floats for X/Y positioning so retina displays are supported
 - increase font size and space out controls for easier access
 - missing iTunesArtwork@2x (1024x1024)
-- lander view X coord starts off negative
-- fix thrust slider so it hits 100%
+- lander view X coord starts off negative (is it even an issue?)
 
 
 Fixed/Done
+- fix thrust slider so it hits 100%
 - redo yes/no dialog to use standard controls so it can be laid out correctly
 - create single sound file for explosions and play it once
 - delete pdp11 and pdp11.ini files from Moonlander Classic binaries
