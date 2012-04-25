@@ -91,7 +91,8 @@
     if (thrustData > 0) {
         // Thrust generation tables
         const int FLEN = 12;
-        const int YThrust[] = { 0, -12, -16, -20, -24, -28, -32, -36, -40, -44, -48, -52, -56 };
+        // Not exact but looks more like simulator version
+        const int YThrust[] = { 0, -19, -21, -23, -25, -27, -29, -31, -34, -37, -40, -43, -46 };
         const int YUpDown[] = { 0, 1, 3, 6, 4, 3, 1, -2, -6, -7, -5, -2, 2, 3, 5, 6, 2, 1, -1, -4, -6, -5, -3, 0, 4, 5, 7, 4, 0, -1, -3, -1 };
         const short DimYUpDown = sizeof(YUpDown)/sizeof(YUpDown[0]);
         const int FlameBT[] = { -20, -16, -13, -10, -7, -4, -2, 0, 2, 4, 7, 10, 13, 16, 20 };

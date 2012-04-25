@@ -24,7 +24,7 @@
         self.vectorName = @"[Man init]";
         
         // Adjust the center for the width of the man
-        self.center = CGPointMake(self.center.x - (self.frame.size.width / 2), self.center.y);
+        self.center = CGPointMake(self.center.x - (self.frame.size.width / 2), self.center.y);//###bounds?
     }
     return self;
 }

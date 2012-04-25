@@ -81,15 +81,15 @@
     // Save our updated thruster value
     _value = newValue;
     
-    const CGFloat NeedleValueX = self.thrusterIndicator.frame.origin.x;
-    const CGFloat NeedleValueY = (( (2 * self.value)) - self.thrusterIndicator.frame.size.height / 2);
-    CGRect newNeedleFrame = CGRectMake(NeedleValueX, NeedleValueY, self.thrusterIndicator.frame.size.width, self.thrusterIndicator.frame.size.height);
+    const CGFloat NeedleValueX = self.thrusterIndicator.frame.origin.x;//###bounds?
+    const CGFloat NeedleValueY = (( (2 * self.value)) - self.thrusterIndicator.frame.size.height / 2);//###bounds?
+    CGRect newNeedleFrame = CGRectMake(NeedleValueX, NeedleValueY, self.thrusterIndicator.frame.size.width, self.thrusterIndicator.frame.size.height);//###bounds?
     [self.thrusterIndicator setFrame:newNeedleFrame];
     [self.thrusterIndicator setNeedsDisplay];
     
-    const CGFloat ThrusterValueX = self.thrusterValue.frame.origin.x;
+    const CGFloat ThrusterValueX = self.thrusterValue.frame.origin.x;//###bounds?
     const CGFloat ThrusterValueY = (( (2 * self.value)) - self.thrusterValue.frame.size.height / 2);
-    CGRect newValueFrame = CGRectMake(ThrusterValueX, ThrusterValueY, self.thrusterValue.frame.size.width, self.thrusterValue.frame.size.height);
+    CGRect newValueFrame = CGRectMake(ThrusterValueX, ThrusterValueY, self.thrusterValue.frame.size.width, self.thrusterValue.frame.size.height);//###bounds?
     [self.thrusterValue setFrame:newValueFrame];
     
     // Update the % thrust subview by dynamically creating a draw path

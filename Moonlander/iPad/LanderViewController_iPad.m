@@ -403,6 +403,11 @@ const float OffcomDelay = 2.0f;
     self.largeRightArrow.hidden = NO;
     self.thrusterSlider.hidden = NO;
 
+    self.instrument1.hidden = NO;
+    self.instrument2.hidden = NO;
+    self.instrument3.hidden = NO;
+    self.instrument4.hidden = NO;
+
     self.heightData.hidden = NO;
     self.altitudeData.hidden = NO;
     self.distanceData.hidden = NO;
@@ -642,6 +647,7 @@ const float OffcomDelay = 2.0f;
 	[self.instrument1 addTarget:self 
                          action:@selector(instrumentSelected:) 
                forControlEvents:UIControlEventTouchUpInside];
+    self.instrument1.hidden = YES;
     self.instrument1.titleLabel.vectorName = @"instrument1";
     [self.view addSubview:self.instrument1];
     
@@ -651,6 +657,7 @@ const float OffcomDelay = 2.0f;
                          action:@selector(instrumentSelected:) 
                forControlEvents:UIControlEventTouchUpInside];
     self.instrument2.titleLabel.vectorName = @"instrument2";
+    self.instrument2.hidden = YES;
     [self.view addSubview:self.instrument2];
     
     self.instrument3 = [[Instrument alloc] initWithFrame:CGRectMake(500, InstrumentYCoordinate, InstrumentSizeWidth, InstrumentSizeHeight)];
@@ -659,6 +666,7 @@ const float OffcomDelay = 2.0f;
                          action:@selector(instrumentSelected:) 
                forControlEvents:UIControlEventTouchUpInside];
     self.instrument3.titleLabel.vectorName = @"instrument3";
+    self.instrument3.hidden = YES;
     [self.view addSubview:self.instrument3];
     
     self.instrument4 = [[Instrument alloc] initWithFrame:CGRectMake(750, InstrumentYCoordinate, InstrumentSizeWidth, InstrumentSizeHeight)];
@@ -667,6 +675,7 @@ const float OffcomDelay = 2.0f;
                          action:@selector(instrumentSelected:) 
                forControlEvents:UIControlEventTouchUpInside];
     self.instrument4.titleLabel.vectorName = @"instrument4";
+    self.instrument4.hidden = YES;
     [self.view addSubview:self.instrument4];
 
     self.instrument5 = [[Instrument alloc] initWithFrame:CGRectMake(0, InstrumentYCoordinate2, InstrumentSizeWidth, InstrumentSizeHeight)];
@@ -999,7 +1008,8 @@ const float OffcomDelay = 2.0f;
     }
     else {
         // Return to the main menu
-        // Filled by UI code
+        // Filled by UI code - for now restart
+        [self performSelector:@selector(startGameDelay) withObject:nil afterDelay:NewGameDelay];
     }
 }
 
