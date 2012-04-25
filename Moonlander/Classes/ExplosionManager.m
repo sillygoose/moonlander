@@ -18,7 +18,6 @@
 
 @synthesize completionBlock=_completionBlock;
 @synthesize queueDelay=_queueDelay;
-@synthesize beepCount=_beepCount;
 
 @synthesize delegate=_delegate;
 
@@ -51,6 +50,12 @@ const short RadiusIncrement2 = -10;
     // Create the explosion views
     short radius = 0;
     short radiusIncrement = RadiusIncrement2;
+    
+    // Queue up the sound
+#define DEBUG_AUDIO
+#if !defined(DEBUG) || defined(DEBUG_AUDIO)
+    [self.delegate explosion];
+#endif
     
     // Create a queue and group for the tasks
     dispatch_queue_t explosionQueue = dispatch_queue_create("com.devtools.moonlander.explode", NULL);
@@ -122,11 +127,6 @@ const short RadiusIncrement2 = -10;
             // Now create a dispatch event to make the view visible
             dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, self.queueDelay);
             dispatch_after(popTime, animateQueue, animateExplosionView);
-
-            // Need a beep on every other explosion pass
-            if (self.beepCount++ % 3 == 0) {
-                dispatch_after(popTime, dispatch_get_main_queue(), ^{[self.delegate beep];});
-            }
 
             // Adjust the delay for the next view
             self.queueDelay += DelayInSeconds * NSEC_PER_SEC;

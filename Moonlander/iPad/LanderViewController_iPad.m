@@ -12,8 +12,8 @@
 
 // Add any custom debugging options
 #if defined(TARGET_IPHONE_SIMULATOR) && defined(DEBUG)
+#define DEBUG_SHORT_DELAYS
 //#define DEBUG_EXTRA_INSTRUMENTS
-//#define DEBUG_SHORT_DELAYS
 //#define DEBUG_NO_SPLASH
 //#define DEBUG_GRAB_EMPTY_SCREEN
 #endif
@@ -83,8 +83,9 @@
 
 @synthesize didFuelAlert=_didFuelAlert;
 
-@synthesize bellFileURL=_bellFileURL;
-@synthesize bellFileObject=_bellFileObject;
+@synthesize beepSound=_beepSound;
+@synthesize explosionSound=_explosionSound;
+
 
 
 const float GameTimerInterval = 1.0 / 12.0f;
@@ -123,7 +124,12 @@ const float OffcomDelay = 2.0f;
 #pragma mark Delegate
 - (void)beep
 {
-    [self BEEP];
+    AudioServicesPlayAlertSound(self.beepSound);
+}
+
+- (void)explosion
+{
+    AudioServicesPlayAlertSound(self.explosionSound);
 }
 
 #pragma -
@@ -725,8 +731,10 @@ const float OffcomDelay = 2.0f;
     [self.view addSubview:self.landerView];
     
     // Audio resource initialization
-    self.bellFileURL = (__bridge CFURLRef) [[NSBundle mainBundle] URLForResource: @"beep-med" withExtension: @"caf"];
-    AudioServicesCreateSystemSoundID(self.bellFileURL, &_bellFileObject);
+    CFURLRef beepFileURL = (__bridge CFURLRef) [[NSBundle mainBundle] URLForResource: @"beep-med" withExtension: @"caf"];
+    AudioServicesCreateSystemSoundID(beepFileURL, &_beepSound);
+    CFURLRef explodeFileURL = (__bridge CFURLRef) [[NSBundle mainBundle] URLForResource: @"explosion-med" withExtension: @"caf"];
+    AudioServicesCreateSystemSoundID(explodeFileURL, &_explosionSound);
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -824,7 +832,8 @@ const float OffcomDelay = 2.0f;
     self.anotherGameDialog = nil;
     
     // Audio resources
-    AudioServicesDisposeSystemSoundID(self.bellFileObject);
+    AudioServicesDisposeSystemSoundID(self.beepSound);
+    AudioServicesDisposeSystemSoundID(self.explosionSound);
 }
 
 - (void)cleanupControls
@@ -1261,14 +1270,6 @@ const float OffcomDelay = 2.0f;
     [self performSelector:@selector(moveMan) withObject:nil afterDelay:LandingDelay];
 }
 
-- (void)BEEP
-{
-    // Ding the bell
-#if !defined(DEBUG) || defined(DEBUG_AUDIO)
-    AudioServicesPlayAlertSound(self.bellFileObject);
-#endif
-}
-
 - (void)EXPLOD
 {
     // We are down hard, hide and lander and shut down the model
@@ -1520,7 +1521,7 @@ const float OffcomDelay = 2.0f;
 
                 // Add low fuel message and ring bell
                 [self.landerMessages addFuelMessage];
-                [self BEEP];
+                [self beep];
             }
         }
         

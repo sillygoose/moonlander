@@ -90,8 +90,9 @@
     
     BOOL                _didFuelAlert;
     
-    CFURLRef            _bellFileURL;
-	SystemSoundID       _bellFileObject;
+	SystemSoundID       _beepSound;
+    SystemSoundID       _explosionSound;
+    
 }
 
 @property (nonatomic, strong) LanderPhysicsModel *landerModel;
@@ -170,8 +171,9 @@
 
 @property (nonatomic) BOOL didFuelAlert;
 
-@property (nonatomic) CFURLRef bellFileURL;
-@property (nonatomic) SystemSoundID bellFileObject;
+@property (nonatomic) SystemSoundID beepSound;
+@property (nonatomic) SystemSoundID explosionSound;
+
 
 
 - (IBAction)thrusterChanged:(VGSlider *)sender;

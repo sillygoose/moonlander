@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <AudioToolbox/AudioServices.h>
 
 #import "LanderDelegate.h"
 
@@ -24,7 +25,6 @@
     short               _currentRadius;
     short               _radiusIncrement;
     dispatch_time_t     _queueDelay;
-    short               _beepCount;
     
     id <LanderDelegate> __unsafe_unretained _delegate;
 }
@@ -37,7 +37,6 @@
 @property (nonatomic) short currentRadius;
 @property (nonatomic) short radiusIncrement;
 @property (nonatomic) dispatch_time_t queueDelay;
-@property (nonatomic) short beepCount;
 
 @property (unsafe_unretained) id <LanderDelegate> delegate;
 

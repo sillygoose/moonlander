@@ -22,5 +22,6 @@
 - (short)ANGLED;
 
 - (void)beep;
+- (void)explosion;
 
 @end
