@@ -137,14 +137,14 @@
 		56205CB71545953800C33417 /* gt40 */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = gt40; sourceTree = "<group>"; };
 		56205CB81545953800C33417 /* gt40.ini */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = gt40.ini; sourceTree = "<group>"; };
 		56205CB91545953800C33417 /* lunar.lda */ = {isa = PBXFileReference; lastKnownFileType = file; path = lunar.lda; sourceTree = "<group>"; };
-		5621703315392F1F0094122B /* Explosion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Explosion.h; sourceTree = "<group>"; };
-		5621703415392F1F0094122B /* Explosion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Explosion.m; sourceTree = "<group>"; };
+		5621703315392F1F0094122B /* Explosion.h */ = {isa = PBXFileReference; fileEncoding = 4; name = Explosion.h; path = Classes/Explosion.h; sourceTree = "<group>"; };
+		5621703415392F1F0094122B /* Explosion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Explosion.m; path = Classes/Explosion.m; sourceTree = "<group>"; };
 		562B108813841BAA00CC5C97 /* VGLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VGLabel.h; path = VectorGraphics/VGLabel.h; sourceTree = "<group>"; };
 		562B108913841BAA00CC5C97 /* VGLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VGLabel.m; path = VectorGraphics/VGLabel.m; sourceTree = "<group>"; };
 		562B108C13841D5A00CC5C97 /* LanderMessages.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = LanderMessages.plist; path = Resources/LanderMessages.plist; sourceTree = "<group>"; };
 		562CB7BA137F3AE6003CB9B5 /* LargeLeftArrow.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = LargeLeftArrow.plist; path = Resources/LargeLeftArrow.plist; sourceTree = "<group>"; };
-		562F26A61417A22E0069169B /* Man.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Man.h; sourceTree = "<group>"; };
-		562F26A71417A22E0069169B /* Man.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Man.m; sourceTree = "<group>"; };
+		562F26A61417A22E0069169B /* Man.h */ = {isa = PBXFileReference; fileEncoding = 4; name = Man.h; path = Classes/Man.h; sourceTree = "<group>"; };
+		562F26A71417A22E0069169B /* Man.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Man.m; path = Classes/Man.m; sourceTree = "<group>"; };
 		564BE59C13800F3400D790D9 /* VGButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VGButton.h; path = VectorGraphics/VGButton.h; sourceTree = "<group>"; };
 		564BE59D13800F3400D790D9 /* VGButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VGButton.m; path = VectorGraphics/VGButton.m; sourceTree = "<group>"; };
 		564BE5C213801C0F00D790D9 /* VGSlider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VGSlider.h; path = VectorGraphics/VGSlider.h; sourceTree = "<group>"; };
@@ -153,8 +153,8 @@
 		564EBC4C138349F2007D477C /* Flag.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Flag.plist; path = Resources/Flag.plist; sourceTree = "<group>"; };
 		564EBC4E13834A07007D477C /* Man.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Man.plist; path = Resources/Man.plist; sourceTree = "<group>"; };
 		564EBC5013834A17007D477C /* McDonalds.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = McDonalds.plist; path = Resources/McDonalds.plist; sourceTree = "<group>"; };
-		5650B9E8153CB76800AEF4F2 /* ExplosionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExplosionManager.h; sourceTree = "<group>"; };
-		5650B9E9153CB76800AEF4F2 /* ExplosionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExplosionManager.m; sourceTree = "<group>"; };
+		5650B9E8153CB76800AEF4F2 /* ExplosionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; name = ExplosionManager.h; path = Classes/ExplosionManager.h; sourceTree = "<group>"; };
+		5650B9E9153CB76800AEF4F2 /* ExplosionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ExplosionManager.m; path = Classes/ExplosionManager.m; sourceTree = "<group>"; };
 		565674781544B8DA00E8628E /* gt40 */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = gt40; sourceTree = "<group>"; };
 		565674791544B8DA00E8628E /* gt40.ini */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = gt40.ini; sourceTree = "<group>"; };
 		5656747D1544B8EB00E8628E /* gt40 */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = gt40; sourceTree = "<group>"; };
@@ -175,11 +175,11 @@
 		565D23671540F0230074D3AD /* rocket.bas */ = {isa = PBXFileReference; lastKnownFileType = text; path = rocket.bas; sourceTree = "<group>"; };
 		565D237615411DB30074D3AD /* LanderDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LanderDelegate.h; sourceTree = "<group>"; };
 		56678FCB139A7D4D00026588 /* OldLander.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = OldLander.plist; path = Resources/OldLander.plist; sourceTree = "<group>"; };
-		56755FD8138C0B8200455B52 /* Lander.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Lander.h; sourceTree = "<group>"; };
-		56755FD9138C0B8200455B52 /* Lander.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Lander.m; sourceTree = "<group>"; };
+		56755FD8138C0B8200455B52 /* Lander.h */ = {isa = PBXFileReference; fileEncoding = 4; name = Lander.h; path = Classes/Lander.h; sourceTree = "<group>"; };
+		56755FD9138C0B8200455B52 /* Lander.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Lander.m; path = Classes/Lander.m; sourceTree = "<group>"; };
 		5675E5D41425004400882CD8 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
-		5694D1D613920A8C00A61F22 /* Moon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Moon.h; sourceTree = "<group>"; };
-		5694D1D713920A8C00A61F22 /* Moon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Moon.m; sourceTree = "<group>"; };
+		5694D1D613920A8C00A61F22 /* Moon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Moon.h; path = Classes/Moon.h; sourceTree = "<group>"; };
+		5694D1D713920A8C00A61F22 /* Moon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Moon.m; path = Classes/Moon.m; sourceTree = "<group>"; };
 		5695F1D7137F753B0075CD26 /* LargeRightArrow.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = LargeRightArrow.plist; path = Resources/LargeRightArrow.plist; sourceTree = "<group>"; };
 		5695F1D8137F753B0075CD26 /* SmallLeftArrow.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = SmallLeftArrow.plist; path = Resources/SmallLeftArrow.plist; sourceTree = "<group>"; };
 		5695F1D9137F753B0075CD26 /* SmallRightArrow.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = SmallRightArrow.plist; path = Resources/SmallRightArrow.plist; sourceTree = "<group>"; };
@@ -189,17 +189,17 @@
 		56A480B3137C5E3D00742877 /* LanderPhysicsDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LanderPhysicsDelegate.h; path = "Lander Model/LanderPhysicsDelegate.h"; sourceTree = "<group>"; };
 		56A480C1137C6C5500742877 /* LanderPhysicsConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LanderPhysicsConstants.h; path = "Lander Model/LanderPhysicsConstants.h"; sourceTree = "<group>"; };
 		56A480C2137C6C5500742877 /* LanderPhysicsConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LanderPhysicsConstants.m; path = "Lander Model/LanderPhysicsConstants.m"; sourceTree = "<group>"; };
-		56B4D62B1417D9AF00029FC8 /* Flag.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Flag.h; sourceTree = "<group>"; };
-		56B4D62C1417D9AF00029FC8 /* Flag.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Flag.m; sourceTree = "<group>"; };
+		56B4D62B1417D9AF00029FC8 /* Flag.h */ = {isa = PBXFileReference; fileEncoding = 4; name = Flag.h; path = Classes/Flag.h; sourceTree = "<group>"; };
+		56B4D62C1417D9AF00029FC8 /* Flag.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Flag.m; path = Classes/Flag.m; sourceTree = "<group>"; };
 		56BC68631388BDE200403643 /* Labels.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Labels.plist; path = Resources/Labels.plist; sourceTree = "<group>"; };
-		56C94AA713A7A7AE001B7EF9 /* Dust.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Dust.h; sourceTree = "<group>"; };
-		56C94AA813A7A7AE001B7EF9 /* Dust.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Dust.m; sourceTree = "<group>"; };
-		56CE052D138B12A7004FA450 /* LanderMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LanderMessage.h; sourceTree = "<group>"; };
-		56CE052E138B12A7004FA450 /* LanderMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LanderMessage.m; sourceTree = "<group>"; };
-		56CE0533138B5277004FA450 /* Telemetry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Telemetry.h; sourceTree = "<group>"; };
-		56CE0534138B5277004FA450 /* Telemetry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Telemetry.m; sourceTree = "<group>"; };
-		56CE0536138B6C88004FA450 /* Instrument.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Instrument.h; sourceTree = "<group>"; };
-		56CE0537138B6C88004FA450 /* Instrument.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Instrument.m; sourceTree = "<group>"; };
+		56C94AA713A7A7AE001B7EF9 /* Dust.h */ = {isa = PBXFileReference; fileEncoding = 4; name = Dust.h; path = Classes/Dust.h; sourceTree = "<group>"; };
+		56C94AA813A7A7AE001B7EF9 /* Dust.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Dust.m; path = Classes/Dust.m; sourceTree = "<group>"; };
+		56CE052D138B12A7004FA450 /* LanderMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; name = LanderMessage.h; path = Classes/LanderMessage.h; sourceTree = "<group>"; };
+		56CE052E138B12A7004FA450 /* LanderMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LanderMessage.m; path = Classes/LanderMessage.m; sourceTree = "<group>"; };
+		56CE0533138B5277004FA450 /* Telemetry.h */ = {isa = PBXFileReference; fileEncoding = 4; name = Telemetry.h; path = Classes/Telemetry.h; sourceTree = "<group>"; };
+		56CE0534138B5277004FA450 /* Telemetry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Telemetry.m; path = Classes/Telemetry.m; sourceTree = "<group>"; };
+		56CE0536138B6C88004FA450 /* Instrument.h */ = {isa = PBXFileReference; fileEncoding = 4; name = Instrument.h; path = Classes/Instrument.h; sourceTree = "<group>"; };
+		56CE0537138B6C88004FA450 /* Instrument.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Instrument.m; path = Classes/Instrument.m; sourceTree = "<group>"; };
 		56E80E4B137E4CC3009E7F15 /* Lander.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Lander.plist; path = Resources/Lander.plist; sourceTree = "<group>"; };
 		56E80E5E137E599D009E7F15 /* VGView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VGView.h; path = VectorGraphics/VGView.h; sourceTree = "<group>"; };
 		56E80E5F137E599E009E7F15 /* VGView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VGView.m; path = VectorGraphics/VGView.m; sourceTree = "<group>"; };
@@ -326,28 +326,9 @@
 			children = (
 				560FA0DE137991AE0017EE25 /* MoonlanderAppDelegate.h */,
 				560FA0DF137991AE0017EE25 /* MoonlanderAppDelegate.m */,
-				5694D1D613920A8C00A61F22 /* Moon.h */,
-				5694D1D713920A8C00A61F22 /* Moon.m */,
-				56755FD8138C0B8200455B52 /* Lander.h */,
-				56755FD9138C0B8200455B52 /* Lander.m */,
-				56C94AA713A7A7AE001B7EF9 /* Dust.h */,
-				56C94AA813A7A7AE001B7EF9 /* Dust.m */,
-				5621703315392F1F0094122B /* Explosion.h */,
-				5621703415392F1F0094122B /* Explosion.m */,
-				5650B9E8153CB76800AEF4F2 /* ExplosionManager.h */,
-				5650B9E9153CB76800AEF4F2 /* ExplosionManager.m */,
-				56B4D62B1417D9AF00029FC8 /* Flag.h */,
-				56B4D62C1417D9AF00029FC8 /* Flag.m */,
-				562F26A61417A22E0069169B /* Man.h */,
-				562F26A71417A22E0069169B /* Man.m */,
-				56CE052D138B12A7004FA450 /* LanderMessage.h */,
-				56CE052E138B12A7004FA450 /* LanderMessage.m */,
-				56CE0533138B5277004FA450 /* Telemetry.h */,
-				56CE0534138B5277004FA450 /* Telemetry.m */,
-				56CE0536138B6C88004FA450 /* Instrument.h */,
-				56CE0537138B6C88004FA450 /* Instrument.m */,
 				560FA0E1137991AE0017EE25 /* iPhone */,
 				560FA0E8137991AE0017EE25 /* iPad */,
+				567CD473154853D800797BD1 /* Classes */,
 				560FA10D1379923D0017EE25 /* Lander Model */,
 				5695F1A9137F52B50075CD26 /* Vector Graphics */,
 				560FA13B1379C3900017EE25 /* Resources */,
@@ -520,6 +501,33 @@
 			);
 			name = Sources;
 			path = Documentation/Sources;
+			sourceTree = "<group>";
+		};
+		567CD473154853D800797BD1 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				5694D1D613920A8C00A61F22 /* Moon.h */,
+				5694D1D713920A8C00A61F22 /* Moon.m */,
+				56755FD8138C0B8200455B52 /* Lander.h */,
+				56755FD9138C0B8200455B52 /* Lander.m */,
+				56C94AA713A7A7AE001B7EF9 /* Dust.h */,
+				56C94AA813A7A7AE001B7EF9 /* Dust.m */,
+				5621703315392F1F0094122B /* Explosion.h */,
+				5621703415392F1F0094122B /* Explosion.m */,
+				5650B9E8153CB76800AEF4F2 /* ExplosionManager.h */,
+				5650B9E9153CB76800AEF4F2 /* ExplosionManager.m */,
+				56B4D62B1417D9AF00029FC8 /* Flag.h */,
+				56B4D62C1417D9AF00029FC8 /* Flag.m */,
+				562F26A61417A22E0069169B /* Man.h */,
+				562F26A71417A22E0069169B /* Man.m */,
+				56CE052D138B12A7004FA450 /* LanderMessage.h */,
+				56CE052E138B12A7004FA450 /* LanderMessage.m */,
+				56CE0533138B5277004FA450 /* Telemetry.h */,
+				56CE0534138B5277004FA450 /* Telemetry.m */,
+				56CE0536138B6C88004FA450 /* Instrument.h */,
+				56CE0537138B6C88004FA450 /* Instrument.m */,
+			);
+			name = Classes;
 			sourceTree = "<group>";
 		};
 		5695F1A9137F52B50075CD26 /* Vector Graphics */ = {
