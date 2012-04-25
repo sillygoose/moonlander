@@ -16,13 +16,13 @@ Bugs todo list
 - increase font size and space out controls for easier access
 - missing iTunesArtwork@2x (1024x1024)
 - lander view X coord starts off negative
-- delete pdp11 and pdp11.ini files from Moonlander Classic binaries
 - redo yes/no dialog to use standard controls so it can be laid out correctly
-- delete iphone stuff
 - create single sound file for explosions and play it once
 
 
 Fixed/Done
+- delete pdp11 and pdp11.ini files from Moonlander Classic binaries
+- delete iphone stuff
 - view controller alloc/init?
 - iphone/ipad icons
 - add scripts and .ini files for debug/release of classic game
