@@ -19,6 +19,7 @@ Bugs todo list
 - delete pdp11 and pdp11.ini files from Moonlander Classic binaries
 - redo yes/no dialog to use standard controls so it can be laid out correctly
 - delete iphone stuff
+- create single sound file for explosions and play it once
 
 
 Fixed/Done
