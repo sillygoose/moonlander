@@ -10,9 +10,13 @@
 
 @implementation VGDialog
 
+@synthesize yesButtonView=_yesButtonView;
 @synthesize dialogYesButton=_dialogYesButton;
 @synthesize dialogNoButton=_dialogNoButton;
 @synthesize dialogText=_dialogText;
+
+@synthesize buttonBackgroundNormal=_buttonBackgroundNormal;
+@synthesize buttonBackgroundHighlighted=_buttonBackgroundHighlighted;
 
 @synthesize userSelection=_userSelection;
 
@@ -24,24 +28,32 @@
 {
     self = [super initWithFrame:frameRect];
     if (self) {
+        // Need to flip the view for proper viewing with UIKit
+        self.transform = CGAffineTransformConcat(self.transform, CGAffineTransformMake(1, 0, 0, -1, 0, 0));
+        
         // Rectangles for dialog components
+        CGFloat ButtonWidth = frameRect.size.width/4;
+        CGFloat ButtonHeight = frameRect.size.height/4;
+        CGFloat oneEigth = 0.125;
+        CGFloat fiveEights = 0.625;
         CGRect textRect = CGRectMake(0, 0, frameRect.size.width, frameRect.size.height/2);
-        CGRect yesRect = CGRectMake(frameRect.size.width/8,                         frameRect.size.height/8, frameRect.size.width/4, frameRect.size.height/4);
-        CGRect noRect = CGRectMake(frameRect.size.width/2 + frameRect.size.width/8, frameRect.size.height/8, frameRect.size.width/4, frameRect.size.height/4);
+        CGRect yesRect = CGRectMake(oneEigth * frameRect.size.width, fiveEights * frameRect.size.height, ButtonWidth, ButtonHeight);
+        CGRect noRect = CGRectMake(fiveEights * frameRect.size.width, fiveEights * frameRect.size.height, ButtonWidth, ButtonHeight);
         
         // Font info
-        UIFont *fontInfo = [UIFont fontWithName:@"Courier" size:12.0f];
+        UIFont *fontInfo = [UIFont fontWithName:@"Courier-Bold" size:16.0f];
         
         // Button font/background colors
-        UIColor *buttonText = [UIColor colorWithRed:0.0f green:0.0f blue:0.0f alpha:1.0f];
-        UIColor *buttonBackground = [UIColor colorWithRed:0.026f green:1.0f blue:0.00121f alpha:1.0f];
+        UIColor *buttonText = [UIColor colorWithRed:0.0f green:0.0f blue:0.0f alpha:0.8f];
+        self.buttonBackgroundNormal = [UIColor colorWithRed:0.026f green:1.0f blue:0.00121f alpha:1.0f];
+        self.buttonBackgroundHighlighted = [UIColor colorWithRed:0.026f green:1.0f blue:0.00121f alpha:1.0f];
 
         // Text label font/background colors
         UIColor *labelText = [UIColor colorWithRed:0.026f green:1.0f blue:0.00121f alpha:1.0f];
         UIColor *labelBackground = [UIColor blackColor] ;
 
         // Create the text label 
-        self.dialogText = [[VGLabel alloc] initWithFrame:textRect];
+        self.dialogText = [[UILabel alloc] initWithFrame:textRect];
         self.dialogText.text = @"New game?";
         self.dialogText.font = fontInfo;
         self.dialogText.textColor = labelText;
@@ -50,28 +62,31 @@
         [self addSubview:self.dialogText];
 
         // Buttons are black text on a green background
-        self.dialogYesButton = [[VGButton alloc] initWithFrame:yesRect];
-        self.dialogYesButton.titleLabel.text = @"Yes";
+        self.dialogYesButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        self.dialogYesButton.frame = yesRect;
+        [self.dialogYesButton setTitle:@"Yes" forState:UIControlStateNormal];
+        [self.dialogYesButton setTitleColor:buttonText forState:UIControlStateNormal];
         self.dialogYesButton.titleLabel.font = fontInfo;
         self.dialogYesButton.titleLabel.textColor = buttonText;
-        self.dialogYesButton.titleLabel.backgroundColor = buttonBackground;
+        self.dialogYesButton.backgroundColor = self.buttonBackgroundNormal;
+        self.dialogYesButton.titleLabel.backgroundColor = self.buttonBackgroundNormal;
         self.dialogYesButton.titleLabel.textAlignment = UITextAlignmentCenter;
-        self.dialogYesButton.brighten = YES;
+        self.dialogYesButton.titleLabel.baselineAdjustment = UIBaselineAdjustmentAlignCenters;
+//        self.dialogYesButton.adjustsImageWhenHighlighted = NO;
         [self addSubview:self.dialogYesButton];
 
-        self.dialogNoButton = [[VGButton alloc] initWithFrame:noRect];
-        self.dialogNoButton.titleLabel.text = @"No";
+        self.dialogNoButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        self.dialogNoButton.frame = noRect;
+        [self.dialogNoButton setTitle:@"No" forState:UIControlStateNormal];
+        [self.dialogNoButton setTitleColor:buttonText forState:UIControlStateNormal];
         self.dialogNoButton.titleLabel.font = fontInfo;
         self.dialogNoButton.titleLabel.textColor = buttonText;
-        self.dialogNoButton.titleLabel.backgroundColor = buttonBackground;
+        self.dialogNoButton.backgroundColor = self.buttonBackgroundNormal;
+        self.dialogNoButton.titleLabel.backgroundColor = self.buttonBackgroundNormal;
         self.dialogNoButton.titleLabel.textAlignment = UITextAlignmentCenter;
-        self.dialogNoButton.brighten = YES;
+        self.dialogNoButton.titleLabel.baselineAdjustment = UIBaselineAdjustmentAlignCenters;
         [self addSubview:self.dialogNoButton];
-        
-        // For debugging purposes
-        self.vectorName = @"[VGDialog initWithFrame]";
-        //self.backgroundColor = [UIColor grayColor];
-        
+
         // Register the button events
         UIControlEvents TouchInsideEvents = UIControlEventTouchDown | UIControlEventTouchDragInside | UIControlEventTouchDragEnter;
         [self.dialogYesButton addTarget:self action:@selector(insideEvent:) forControlEvents:TouchInsideEvents];
@@ -100,23 +115,21 @@
 
 - (IBAction)insideEvent:(id)sender
 {
-    VGButton *touched = sender;
-    if (touched.brighten) {
-        touched.titleLabel.blink = YES;//BrightIntensity;
-    }
+    UIButton *touched = sender;
+    touched.backgroundColor = self.buttonBackgroundHighlighted;
+    touched.titleLabel.backgroundColor = self.buttonBackgroundHighlighted;
 }
 
 - (IBAction)outsideEvent:(id)sender
 {
-    VGButton *touched = sender;
-    if (touched.brighten) {
-        touched.titleLabel.blink = NO;//NormalIntensity;
-    }
+    UIButton *touched = sender;
+    touched.backgroundColor = self.buttonBackgroundNormal;
+    touched.titleLabel.backgroundColor = self.buttonBackgroundNormal;
 }
 
 - (IBAction)selectedEvent:(id)sender
 {
-    VGButton *touched = sender;
+    UIButton *touched = sender;
     self.userSelection = (touched == self.dialogYesButton);
 #pragma clang diagnostic ignored "-Warc-performSelector-leaks"
     [self.callerMethod performSelector:self.onSelection];

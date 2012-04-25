@@ -378,9 +378,6 @@ const float OffcomDelay = 2.0f;
 
     // Add the lander to the view
     self.landerView.hidden = NO;
-    
-    // Start off the display updates
-    [self updateLander];
 }
 
 - (void)initGame
@@ -1025,8 +1022,8 @@ const float OffcomDelay = 2.0f;
 - (void)waitNewGame
 {
     // Setup our yes/no dialog for a new game
-    const CGFloat DialogWidth = 250;
-    const CGFloat DialogHeight = 250;
+    const CGFloat DialogWidth = 125;
+    const CGFloat DialogHeight = 125;
     const CGFloat DialogX = self.view.bounds.size.width / 2 - DialogWidth / 2;
     const CGFloat DialogY = self.view.bounds.size.height / 2 - DialogHeight / 2;
     CGRect dialogRect = CGRectMake(DialogX, DialogY, DialogWidth, DialogHeight);

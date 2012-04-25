@@ -13,10 +13,14 @@
 #import "VGLabel.h"
 
 
-@interface VGDialog : VGView {
-    VGButton    *_dialogYesButton;
-    VGButton    *_dialogNoButton;
-    VGLabel     *_dialogText;
+@interface VGDialog : UIView {
+    UIView      *_yesButtonView;
+    UIButton    *_dialogYesButton;
+    UIButton    *_dialogNoButton;
+    UILabel     *_dialogText;
+    
+    UIColor     *_buttonBackgroundNormal;
+    UIColor     *_buttonBackgroundHighlighted;
     
     BOOL        _userSelection;
     
@@ -24,9 +28,14 @@
     SEL         _onSelection;
 }
 
-@property (nonatomic, strong) VGButton *dialogYesButton;
-@property (nonatomic, strong) VGButton *dialogNoButton;
-@property (nonatomic, strong) VGLabel *dialogText;
+@property (nonatomic, strong) UIView *yesButtonView;
+
+@property (nonatomic, strong) UIButton *dialogYesButton;
+@property (nonatomic, strong) UIButton *dialogNoButton;
+@property (nonatomic, strong) UILabel *dialogText;
+
+@property (nonatomic, strong) UIColor *buttonBackgroundNormal;
+@property (nonatomic, strong) UIColor *buttonBackgroundHighlighted;
 
 @property (nonatomic) BOOL userSelection;
 
