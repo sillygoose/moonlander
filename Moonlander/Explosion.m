@@ -3,7 +3,7 @@
 //  Moonlander
 //
 //  Created by Rick Naro on 4/14/12.
-//  Copyright (c) 2012 Silly Goose Software. All rights reserved.
+//  Copyright (c) 2012 Paradigm Systems. All rights reserved.
 //
 
 #import "Explosion.h"
@@ -38,11 +38,12 @@ static float RadiansToDegrees(float radians)
 {
     const int YUpDown[] = { 0, 1, 3, 6, 4, 3, 1, -2, -6, -7, -5, -2, 2, 3, 5, 6, 2, 1, -1, -4, -6, -5, -3, 0, 4, 5, 7, 4, 0, -1, -3, -1 };
     const size_t DimYUpDown = sizeof(YUpDown)/sizeof(YUpDown[0]);
-    const float StartingAngle = DegreesToRadians(150);
+    const float StartingAngle = DegreesToRadians(-30);
     const float AngleIncrement = DegreesToRadians(1);
     
     float angle = StartingAngle;
     short count = 241;
+
     float centerX = self.bounds.size.width / 2;
     float centerY = self.bounds.size.height / 2;
     

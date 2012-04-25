@@ -3,7 +3,7 @@
 //  Moonlander
 //
 //  Created by Rick on 5/24/11.
-//  Copyright 2011 Silly Goose Software. All rights reserved.
+//  Copyright 2011, 2012 Paradigm Systems. All rights reserved.
 //
 
 #import "Lander.h"
@@ -17,8 +17,8 @@
 @synthesize angleData=_angleData;
 @synthesize previousAngle=_previousAngle;
 
-@synthesize flameRandom=_flameRandom;
-@synthesize flameShift=_FlameShift;
+@synthesize FRAND=_FRAND;
+@synthesize FSHIFT=_FSHIFT;
 @synthesize flameLine=_FlameLine;
 @synthesize flameIntensity=_FlameIntensity;
 @synthesize x=_x;
@@ -66,12 +66,16 @@
         // No events for the lander
         self.userInteractionEnabled = NO;
         
+        // Load from a resource file
         NSString *landerPath = [[NSBundle mainBundle] pathForResource:@"Lander" ofType:@"plist"];
         NSDictionary *landerDict = [NSDictionary dictionaryWithContentsOfFile:landerPath];
         self.drawPaths = [landerDict objectForKey:@"paths"];
         self.vectorName = @"[Lander init]";
         
-        CGRect thrustRect = CGRectMake(0, 0, ThrustWidth, ThrustHeight);
+        // Create a view to display the thrust vectors
+        const float ThrustXAdjust = -1;
+        const float ThrustYAdjust = -LanderHeight / 2 + 3;
+        CGRect thrustRect = CGRectMake(ThrustXAdjust, ThrustYAdjust, ThrustWidth, ThrustHeight);
         self.thrust = [[VGView alloc] initWithFrame:thrustRect];
         self.thrust.vectorName = @"thrustRect";
         [self addSubview:self.thrust];
@@ -87,7 +91,7 @@
     if (thrustData > 0) {
         // Thrust generation tables
         const int FLEN = 12;
-        const int YThrust[] = { 0, 12, 16, 20, 24, 28, 32, 36, 40, 44, 48, 52, 56 };
+        const int YThrust[] = { 0, -12, -16, -20, -24, -28, -32, -36, -40, -44, -48, -52, -56 };
         const int YUpDown[] = { 0, 1, 3, 6, 4, 3, 1, -2, -6, -7, -5, -2, 2, 3, 5, 6, 2, 1, -1, -4, -6, -5, -3, 0, 4, 5, 7, 4, 0, -1, -3, -1 };
         const short DimYUpDown = sizeof(YUpDown)/sizeof(YUpDown[0]);
         const int FlameBT[] = { -20, -16, -13, -10, -7, -4, -2, 0, 2, 4, 7, 10, 13, 16, 20 };
@@ -98,17 +102,19 @@
             // We are displaying something
             hideThrustView = NO;
             
-            //(FLAME)
+            //(FLAME) RET2 is the X coordinate, RET1 is the Y coordinate
             int RET1 = YThrust[percentThrust / 8];
-            int RET2 = YUpDown[++self.flameRandom % DimYUpDown]; 
+            self.FRAND++;
+            int RET2 = YUpDown[self.FRAND % DimYUpDown]; 
             RET1 += RET2;
 
             //
-            self.flameShift += RET1;
-            RET2 = self.flameShift & 3;
+            self.FSHIFT += RET1;
+            RET2 = self.FSHIFT & 0x03;
 
             NSMutableArray *xCoordinates = [[NSMutableArray alloc] init];
             NSMutableArray *yCoordinates = [[NSMutableArray alloc] init];
+            //(FLAMLP)
             for (int i = 0; i < FLEN; i++) {
                 //int deltaX = FlameBT[RET2] - prevX;
                 //int deltaY = RET1 - prevY;
@@ -124,23 +130,16 @@
             NSMutableArray *path = [[NSMutableArray alloc] init];
             paths = [NSArray arrayWithObject:path];
             
-        #if 0
-            NSLog(@"X(%3.0f): %@", self.thrustData(), xCoordinates);
-            NSLog(@"Y(%3.0f): %@", self.thrustData(), yCoordinates);
-            NSNumber *breakValue = [NSNumber numberWithBool:YES];
-            NSDictionary *breakItem = [NSDictionary dictionaryWithObjectsAndKeys:breakValue, @"break", nil];
-            [path addObject:breakItem];
-        #endif
-            
             // First center ourselves in the view
             NSNumber *centerValue = [NSNumber numberWithInt:0];
             NSDictionary *centerItem = [NSDictionary dictionaryWithObjectsAndKeys:centerValue, @"center", nil];
             NSDictionary *moveToCenterItem = [NSDictionary dictionaryWithObjectsAndKeys:centerItem, @"moveto", nil];
             [path addObject:moveToCenterItem];
 
-            // Add a move relative command to return the thrust vector starting point
-            self.x = [NSNumber numberWithInt:-7];
-            self.y = [NSNumber numberWithInt:21];
+            // Add a moveto command to return the thrust vector starting point
+            const CGPoint ReturnPosition = CGPointMake(-7, 21);
+            self.x = [NSNumber numberWithInt:ReturnPosition.x];
+            self.y = [NSNumber numberWithInt:ReturnPosition.y];
             NSDictionary *moveRelItem = [NSDictionary dictionaryWithObjectsAndKeys:self.x, @"x", self.y, @"y", nil];
             NSDictionary *moveRelXYItem = [NSDictionary dictionaryWithObjectsAndKeys:moveRelItem, @"moverel", nil];
             [path addObject:moveRelXYItem];
@@ -193,8 +192,8 @@
     // Check if we have rotated and need to update the display
     float angle = self.angleData();
     if (self.previousAngle != angle) {
-        CGAffineTransform t = [self transform];
-        t = CGAffineTransformRotate(t, (angle - self.previousAngle));
+        CGAffineTransform t = self.transform;
+        t = CGAffineTransformRotate(t, -(angle - self.previousAngle));
         self.transform = t;
         self.previousAngle = angle;
         

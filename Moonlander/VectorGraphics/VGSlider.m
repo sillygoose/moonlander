@@ -2,8 +2,8 @@
 //  VGSlider.m
 //  Moonlander
 //
-//  Created by Silly Goose on 5/15/11.
-//  Copyright 2011 Silly Goose Software. All rights reserved.
+//  Created by Rick on 5/15/11.
+//  Copyright 2011, 2012 Paradigm Systems. All rights reserved.
 //
 
 #import "VGSlider.h"
@@ -45,11 +45,8 @@
         [self addTarget:self action:@selector(buttonRepeat:) forControlEvents:(UIControlEventTouchDownRepeat|UIControlEventTouchDragInside)];
         [self addTarget:self action:@selector(buttonUp:) forControlEvents:(UIControlEventTouchUpInside|UIControlEventTouchUpOutside|UIControlEventTouchCancel|UIControlEventTouchDragExit|UIControlEventTouchDragOutside)];
 
-        CGRect sliderFrame = CGRectMake(100, 0, frameRect.size.width / 3, frameRect.size.height);
-        CGRect needleFrame = CGRectMake(60, frameRect.size.height, frameRect.size.width / 3, 10);
-        CGRect valueFrame = CGRectMake(25, frameRect.size.height, 40, 16);
-        
         // Thruster slider subview
+        CGRect sliderFrame = CGRectMake(100, 0, frameRect.size.width / 3, frameRect.size.height);
         NSString *tsPath = [[NSBundle mainBundle] pathForResource:@"ThrusterControl" ofType:@"plist"];
         self.thrusterSlider = [[VGView alloc] initWithFrame:sliderFrame withPaths:tsPath];
         self.thrusterSlider.userInteractionEnabled = YES;
@@ -57,6 +54,7 @@
         [self addSubview:self.thrusterSlider];
         
         // Thruster needle indicator subview
+        CGRect needleFrame = CGRectMake(60, frameRect.size.height, frameRect.size.width / 3, 10);
         NSString *tiPath = [[NSBundle mainBundle] pathForResource:@"ThrusterNeedle" ofType:@"plist"];
         self.thrusterIndicator = [[VGView alloc] initWithFrame:needleFrame withPaths:tiPath];
         self.thrusterIndicator.userInteractionEnabled = NO;
@@ -64,6 +62,7 @@
         [self addSubview:self.thrusterIndicator];
         
         // Thruster numeric value subview
+        CGRect valueFrame = CGRectMake(25, frameRect.size.height, 40, 16);
         self.thrusterValue = [[VGLabel alloc] initWithFrame:valueFrame];
         self.thrusterValue.userInteractionEnabled = NO;
         //self.thrusterValue.backgroundColor = [UIColor grayColor];
@@ -82,11 +81,15 @@
     // Save our updated thruster value
     _value = newValue;
     
-    CGRect newNeedleFrame = CGRectMake(self.thrusterIndicator.frame.origin.x, (self.frame.size.height - (2 * self.value)) - self.thrusterIndicator.frame.size.height/2, self.thrusterIndicator.frame.size.width, self.thrusterIndicator.frame.size.height);
+    const CGFloat NeedleValueX = self.thrusterIndicator.frame.origin.x;
+    const CGFloat NeedleValueY = (( (2 * self.value)) - self.thrusterIndicator.frame.size.height / 2);
+    CGRect newNeedleFrame = CGRectMake(NeedleValueX, NeedleValueY, self.thrusterIndicator.frame.size.width, self.thrusterIndicator.frame.size.height);
     [self.thrusterIndicator setFrame:newNeedleFrame];
     [self.thrusterIndicator setNeedsDisplay];
     
-    CGRect newValueFrame = CGRectMake(self.thrusterValue.frame.origin.x, (self.frame.size.height - (2 * self.value)) - self.thrusterValue.frame.size.height/2, self.thrusterValue.frame.size.width, self.thrusterValue.frame.size.height);
+    const CGFloat ThrusterValueX = self.thrusterValue.frame.origin.x;
+    const CGFloat ThrusterValueY = (( (2 * self.value)) - self.thrusterValue.frame.size.height / 2);
+    CGRect newValueFrame = CGRectMake(ThrusterValueX, ThrusterValueY, self.thrusterValue.frame.size.width, self.thrusterValue.frame.size.height);
     [self.thrusterValue setFrame:newValueFrame];
     
     // Update the % thrust subview by dynamically creating a draw path
@@ -107,7 +110,7 @@
     // Ignore any touches processed after the control is disabled
     if (theView.userInteractionEnabled) {
         // Update the indicator needle position
-        self.value = 100.0f - position.y / theView.bounds.size.height * 100.0f;
+        self.value = (position.y / theView.bounds.size.height) * 100.0f;
         [self sendActionsForControlEvents:UIControlEventValueChanged];
     }
 }

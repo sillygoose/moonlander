@@ -2,8 +2,8 @@
 //  MoonlanderAppDelegate_iPad.m
 //  Moonlander
 //
-//  Created by Silly Goose on 5/10/11.
-//  Copyright 2011 Silly Goose Software. All rights reserved.
+//  Created by Rick on 5/10/11.
+//  Copyright 2011, 2012 Paradigm Systems. All rights reserved.
 //
 
 #import "MoonlanderAppDelegate_iPad.h"
@@ -17,9 +17,9 @@
 {
     [super application:application didFinishLaunchingWithOptions:launchOptions];
     
-    // Create the application UI
-    [self.window addSubview:self.landerViewController.view];
-    [self.window makeKeyAndVisible];
+    // Load out view controller from a nib file (for now)
+    self.landerViewController = [[LanderViewController_iPad alloc] initWithNibName:@"LanderViewController_iPad" bundle:nil];
+    self.window.rootViewController = self.landerViewController;
     return YES;
 }
 

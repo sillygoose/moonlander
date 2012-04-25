@@ -90,7 +90,7 @@ const short RadiusIncrement2 = -10;
                     // Use a block animation to fade the view
                     [Explosion animateWithDuration:PhosphorDecay
                                             animations:^{theView.alpha = 0.0;}
-                                            completion:^(BOOL finished){ [theView removeFromSuperview];}];
+                                            completion:^(BOOL finished){[theView removeFromSuperview];}];
                 });
                 
                 // Remove this view from the array
@@ -100,13 +100,14 @@ const short RadiusIncrement2 = -10;
         
         // Block to create and populate views
         void (^createExplosionView)(void) = ^{
-            //### Create an explosion view
+            // Create an explosion view
             float explosionSize = self.currentRadius * 2;
-            float xPos = self.delegate.SHOWX - explosionSize / 2;
-            float yPos = (768 - self.delegate.SHOWY) - explosionSize / 4;
-            //###
-            CGRect frameRect = CGRectMake(xPos, yPos, explosionSize, explosionSize);
-            dispatch_sync(dispatch_get_main_queue(), ^{explosionView = [[Explosion alloc] initWithFrame:frameRect];});
+            CGPoint center = CGPointMake(self.delegate.SHOWX, self.delegate.SHOWY);
+            CGRect frameRect = CGRectMake(0, 0, explosionSize, explosionSize);
+            dispatch_sync(dispatch_get_main_queue(), ^{
+                explosionView = [[Explosion alloc] initWithFrame:frameRect];
+                explosionView.center = center;
+            });
            
             // Populate the view with dust
             [explosionView EXGEN:self.currentRadius];

@@ -2,6 +2,8 @@ Moonlander, the classic video game
 
 Features to do list
 - initial menu screen
+- splash screen
+- iphone version
 - hardware brochures
 - source code viewer
 - 1969 focal/basic lunar lander game
@@ -11,16 +13,16 @@ Features to do list
 
 
 Bugs todo list
-- splash screen (Apple required and animated mine)
-- test ability to swap in and out
 - use floats for X/Y positioning so retina displays are supported
 - increase font size and space out controls for easier access
-- increase size of yes/no dialog
 - missing iTunesArtwork@2x (1024x1024)
-- view controller alloc/init?
+- lander view X coord starts off negative
+- delete pdp11 and pdp11.ini files from Moonlander Classic binaries
+- redo yes/no dialog to use standard controls so it can be laid out correctly
 
 
 Fixed/Done
+- view controller alloc/init?
 - iphone/ipad icons
 - add scripts and .ini files for debug/release of classic game
 - control beep volume (three volume levels added to sounds)

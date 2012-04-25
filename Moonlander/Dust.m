@@ -2,8 +2,8 @@
 //  Dust.m
 //  Moonlander
 //
-//  Created by Silly Goose on 6/14/11.
-//  Copyright 2011 Silly Goose Software. All rights reserved.
+//  Created by Rick on 6/14/11.
+//  Copyright 2011, 2012 Paradigm Systems. All rights reserved.
 //
 
 #import "Dust.h"
@@ -67,11 +67,9 @@ const float DustViewHeight = 64;
             }
             
             //(DUSTP2)  Center the dust in the view
-            //### This is a hack - fixme!
             short xCenterPos = self.delegate.SHOWX + tanDeltaY;
-            short yCenterPos = 768 - self.delegate.AVERT;
-            yCenterPos -= DustViewHeight / 2;
-            //###
+            short yCenterPos = self.delegate.AVERT;
+            yCenterPos += DustViewHeight / 2;
             
             // Calculate the flame distance and number of points to draw
             flameDistance -= DustStartHeight;

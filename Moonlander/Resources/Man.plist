@@ -26,11 +26,6 @@
 					<key>width</key>
 					<integer>1</integer>
 				</dict>
-				<key>moveto</key>
-				<dict>
-					<key>center</key>
-					<integer>0</integer>
-				</dict>
 			</dict>
 			<dict>
 				<key>moverel</key>
@@ -45,65 +40,41 @@
 				<key>moverel</key>
 				<dict>
 					<key>x</key>
-					<integer>2</integer>
+					<integer>5</integer>
 					<key>y</key>
-					<integer>0</integer>
+					<integer>-5</integer>
 				</dict>
 			</dict>
 			<dict>
 				<key>x</key>
-				<integer>-2</integer>
-				<key>y</key>
-				<integer>-4</integer>
-			</dict>
-			<dict>
-				<key>x</key>
-				<integer>-4</integer>
+				<integer>2</integer>
 				<key>y</key>
 				<integer>4</integer>
 			</dict>
 			<dict>
+				<key>x</key>
+				<integer>4</integer>
+				<key>y</key>
+				<integer>-4</integer>
+			</dict>
+			<dict>
 				<key>moverel</key>
 				<dict>
 					<key>x</key>
-					<integer>4</integer>
-					<key>y</key>
 					<integer>-4</integer>
+					<key>y</key>
+					<integer>4</integer>
 				</dict>
 			</dict>
 			<dict>
 				<key>x</key>
 				<integer>0</integer>
 				<key>y</key>
-				<integer>-5</integer>
-			</dict>
-			<dict>
-				<key>x</key>
-				<integer>1</integer>
-				<key>y</key>
-				<integer>0</integer>
-			</dict>
-			<dict>
-				<key>x</key>
-				<integer>1</integer>
-				<key>y</key>
-				<integer>-1</integer>
-			</dict>
-			<dict>
-				<key>x</key>
-				<integer>0</integer>
-				<key>y</key>
-				<integer>-1</integer>
+				<integer>5</integer>
 			</dict>
 			<dict>
 				<key>x</key>
 				<integer>-1</integer>
-				<key>y</key>
-				<integer>-1</integer>
-			</dict>
-			<dict>
-				<key>x</key>
-				<integer>-2</integer>
 				<key>y</key>
 				<integer>0</integer>
 			</dict>
@@ -127,7 +98,31 @@
 			</dict>
 			<dict>
 				<key>x</key>
+				<integer>2</integer>
+				<key>y</key>
+				<integer>0</integer>
+			</dict>
+			<dict>
+				<key>x</key>
 				<integer>1</integer>
+				<key>y</key>
+				<integer>-1</integer>
+			</dict>
+			<dict>
+				<key>x</key>
+				<integer>0</integer>
+				<key>y</key>
+				<integer>-1</integer>
+			</dict>
+			<dict>
+				<key>x</key>
+				<integer>-1</integer>
+				<key>y</key>
+				<integer>-1</integer>
+			</dict>
+			<dict>
+				<key>x</key>
+				<integer>-1</integer>
 				<key>y</key>
 				<integer>0</integer>
 			</dict>
@@ -137,29 +132,29 @@
 					<key>x</key>
 					<integer>0</integer>
 					<key>y</key>
-					<integer>1</integer>
+					<integer>-1</integer>
 				</dict>
 			</dict>
 			<dict>
 				<key>x</key>
-				<integer>5</integer>
+				<integer>-5</integer>
 				<key>y</key>
-				<integer>-3</integer>
+				<integer>3</integer>
 			</dict>
 			<dict>
 				<key>moverel</key>
 				<dict>
 					<key>x</key>
-					<integer>-5</integer>
-					<key>y</key>
 					<integer>5</integer>
+					<key>y</key>
+					<integer>-5</integer>
 				</dict>
 			</dict>
 			<dict>
 				<key>x</key>
-				<integer>-6</integer>
+				<integer>6</integer>
 				<key>y</key>
-				<integer>-3</integer>
+				<integer>3</integer>
 			</dict>
 			<dict>
 				<key>pop</key>

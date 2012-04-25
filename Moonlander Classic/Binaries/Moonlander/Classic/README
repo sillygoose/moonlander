@@ -20,13 +20,13 @@ and the .ini file will load and run this version.
 To enable dust you need to restart with the following changes:
 
   load mlc
-  d 1156 0
+  d 1156 1
   run
 
 
 Debug
 =================
-This a debug build of the original Moonlander sources, this is the version that I do most testing/comparisions from.
+This a debug build of the original Moonlander sources, this is the version that I do most testing/comparisons from.
 
   ./gt40
   
@@ -45,9 +45,10 @@ Here are some locations you can patch to set initial conditions:
   .WORD	VERDIS,300.			;1670-1672 (feet)
   .WORD	FUEL,FUELS			;1710-1712 (tenths of lbs)
 
-So to set the horizonatal distance to Mcdonalds you would use
+So to set the horizonatal distance to Mcdonalds and disable dust you would use
 
   d 1666 0
+  d 1156 0
   
   
 Notes

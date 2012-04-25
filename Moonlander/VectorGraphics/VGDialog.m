@@ -3,7 +3,7 @@
 //  Moonlander
 //
 //  Created by Rick Naro on 10/3/11.
-//  Copyright (c) 2011 Silly Goose Software. All rights reserved.
+//  Copyright (c) 2011 Paradigm Systems. All rights reserved.
 //
 
 #import "VGDialog.h"
@@ -26,14 +26,14 @@
     if (self) {
         // Rectangles for dialog components
         CGRect textRect = CGRectMake(0, 0, frameRect.size.width, frameRect.size.height/2);
-        CGRect yesRect = CGRectMake(frameRect.size.width/8, frameRect.size.height/2, frameRect.size.width/4, frameRect.size.height/4);
-        CGRect noRect = CGRectMake(frameRect.size.width/2 + frameRect.size.width/8, frameRect.size.height/2, frameRect.size.width/4, frameRect.size.height/4);
+        CGRect yesRect = CGRectMake(frameRect.size.width/8,                         frameRect.size.height/8, frameRect.size.width/4, frameRect.size.height/4);
+        CGRect noRect = CGRectMake(frameRect.size.width/2 + frameRect.size.width/8, frameRect.size.height/8, frameRect.size.width/4, frameRect.size.height/4);
         
         // Font info
         UIFont *fontInfo = [UIFont fontWithName:@"Courier" size:12.0f];
         
         // Button font/background colors
-        UIColor *buttonText = [UIColor colorWithRed:0.0f green:0.0f blue:0.0f alpha:1.0f];//[UIColor blackColor];
+        UIColor *buttonText = [UIColor colorWithRed:0.0f green:0.0f blue:0.0f alpha:1.0f];
         UIColor *buttonBackground = [UIColor colorWithRed:0.026f green:1.0f blue:0.00121f alpha:1.0f];
 
         // Text label font/background colors

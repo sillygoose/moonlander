@@ -3,7 +3,7 @@
 //  Moonlander
 //
 //  Created by Rick on 5/24/11.
-//  Copyright 2011 Silly Goose Software. All rights reserved.
+//  Copyright 2011, 2012 Paradigm Systems. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
@@ -24,8 +24,8 @@ typedef float (^angle_data_t)();
     float               _previousAngle;
     
 @private
-    int                 _flameRandom;
-    int                 _FlameShift;
+    int                 _FRAND;
+    int                 _FSHIFT;
     int                 _FlameLine;
     int                 _FlameIntensity;
     
@@ -41,8 +41,8 @@ typedef float (^angle_data_t)();
 
 @property (nonatomic) float previousAngle;
 
-@property (nonatomic) int flameRandom;
-@property (nonatomic) int flameShift;
+@property (nonatomic) int FRAND;
+@property (nonatomic) int FSHIFT;
 @property (nonatomic) int flameLine;
 @property (nonatomic) int flameIntensity;
 

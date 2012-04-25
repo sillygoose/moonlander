@@ -2,8 +2,8 @@
 //  VGView.m
 //  Moonlander
 //
-//  Created by Silly Goose on 5/14/11.
-//  Copyright 2011 Silly Goose Software. All rights reserved.
+//  Created by Rick on 5/14/11.
+//  Copyright 2011, 2012 Paradigm Systems. All rights reserved.
 //
 
 #import "VGView.h"
@@ -332,9 +332,6 @@
         
         // Process a text command
         if ([currentVector objectForKey:@"text"]) {
-            CGContextTranslateCTM(context, 0, self.bounds.size.height);
-            CGContextScaleCTM(context, 1.0, -1.0 );
-            
             NSString *msg = [currentVector objectForKey:@"text"];
             
             // Prepare characters for printing
@@ -408,10 +405,6 @@
             // Set our new position for the next text block
             currentPosition = CGContextGetTextPosition(context);
             self.actualBounds = CGRectMake(MIN(currentPosition.x, self.actualBounds.origin.x), MIN(currentPosition.y, self.actualBounds.origin.y), MAX(currentPosition.x, self.actualBounds.size.width), MAX(currentPosition.y, self.actualBounds.size.height));
-            
-            // Restore our normal drawing translation
-            CGContextTranslateCTM(context, 0, self.bounds.size.height);
-            CGContextScaleCTM(context, 1.0, -1.0 );
         }
         
         // "x" and "y" specify a new point on the path

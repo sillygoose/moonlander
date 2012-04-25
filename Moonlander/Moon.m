@@ -36,14 +36,12 @@
 
         // No events for the moon surface
         self.userInteractionEnabled = NO;
-        
+
+        // Read the moon drawing dictionary
         NSString *moonPath = [[NSBundle mainBundle] pathForResource:@"Moon" ofType:@"plist"];
         NSMutableDictionary *moonDict = [NSMutableDictionary dictionaryWithContentsOfFile:moonPath];
         self.vectorName = @"[Moon init]";
 
-        // We need to change the coordinate space to (0,0) in the lower left
-        self.transform = CGAffineTransformMake(1, 0, 0, -1, 0, 0);
-        
         // Cache the lunar terrain data
         self.moonArray = [[[NSMutableArray arrayWithObject:[moonDict objectForKey:@"paths"]] objectAtIndex:0] objectAtIndex:0];
     }
@@ -187,10 +185,6 @@
     short y = yValue;
     y = (y * 3) / 8 + 23;
     return y;
-}
-
-- (void)DRAWIC
-{
 }
 
 - (void)addFeatureToView:(TerrainFeature)tf atTerrainIndex:(short)ti atX:(short)xPos
