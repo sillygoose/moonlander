@@ -28,9 +28,6 @@ typedef float (^angle_data_t)();
     int                 _FSHIFT;
     int                 _FlameLine;
     int                 _FlameIntensity;
-    
-    NSNumber            *_x;
-    NSNumber            *_y;
 }
 
 @property (nonatomic, strong) VGView *thrust;
@@ -45,9 +42,6 @@ typedef float (^angle_data_t)();
 @property (nonatomic) int FSHIFT;
 @property (nonatomic) int flameLine;
 @property (nonatomic) int flameIntensity;
-
-@property (nonatomic) NSNumber *x;
-@property (nonatomic) NSNumber *y;
 
 - (id)init;
 

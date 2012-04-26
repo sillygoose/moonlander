@@ -21,8 +21,6 @@
 @synthesize FSHIFT=_FSHIFT;
 @synthesize flameLine=_FlameLine;
 @synthesize flameIntensity=_FlameIntensity;
-@synthesize x=_x;
-@synthesize y=_y;
 
 
 - (void)setFlameLine:(int)flameLine
@@ -55,10 +53,10 @@
 
 - (id)init
 {
-    const float LanderWidth = 96;
-    const float LanderHeight = 96;
-    const float ThrustWidth = 100;
-    const float ThrustHeight = 100;
+    const CGFloat LanderWidth = 96;
+    const CGFloat LanderHeight = 96;
+    const CGFloat ThrustWidth = 100;
+    const CGFloat ThrustHeight = 100;
     
     CGRect landerRect = CGRectMake(0, 0, LanderWidth, LanderHeight);
     self = [super initWithFrame:landerRect];
@@ -85,17 +83,27 @@
 
 - (void)createThrustVectors
 {
+    typedef struct {
+        short x;
+        short y;
+    } tvpoint_t;
+    
     // Prepare to hide the view if we have no thrust vectors
     BOOL hideThrustView = YES;
+    
+    // Start by checking for thrust
     short thrustData = self.thrustData();
     if (thrustData > 0) {
         // Thrust generation tables
-        const int FLEN = 12;
-        // Not exact but looks more like simulator version
-        const int YThrust[] = { 0, -19, -21, -23, -25, -27, -29, -31, -34, -37, -40, -43, -46 };
-        const int YUpDown[] = { 0, 1, 3, 6, 4, 3, 1, -2, -6, -7, -5, -2, 2, 3, 5, 6, 2, 1, -1, -4, -6, -5, -3, 0, 4, 5, 7, 4, 0, -1, -3, -1 };
-        const short DimYUpDown = sizeof(YUpDown)/sizeof(YUpDown[0]);
-        const int FlameBT[] = { -20, -16, -13, -10, -7, -4, -2, 0, 2, 4, 7, 10, 13, 16, 20 };
+        const short FLEN = 12;
+#define USE_ORIGINAL
+#ifdef USE_ORIGINAL
+        const short YTHRST[] = { 0, -30, -31, -32, -34, -36, -38, -41, -44, -47, -50, -53, -56 };
+#else
+        const short YTHRST[] = { 0, -19, -21, -23, -25, -27, -29, -31, -34, -37, -40, -43, -46 };
+#endif
+        const short YUPDWN[] = { 0, 1, 3, 6, 4, 3, 1, -2, -6, -7, -5, -2, 2, 3, 5, 6, 2, 1, -1, -4, -6, -5, -3, 0, 4, 5, 7, 4, 0, -1, -3, -1 };
+        const short FLAMBT[] = { -20, -16, -13, -10, -7, -4, -2, 0, 2, 4, 7, 10, 13, 16, 20 };
         
         NSArray *paths = nil;
         short percentThrust = self.thrustPercent();
@@ -103,29 +111,15 @@
             // We are displaying something
             hideThrustView = NO;
             
-            //(FLAME) RET2 is the X coordinate, RET1 is the Y coordinate
-            int RET1 = YThrust[percentThrust / 8];
-            self.FRAND++;
-            int RET2 = YUpDown[self.FRAND % DimYUpDown]; 
+            //(FLAME) RET2 is the X coordinate, RET1 is the Y coordinate (length of flame)
+            short RET1 = YTHRST[percentThrust / 8];
+            self.FRAND += 1;
+            short RET2 = self.FRAND & 0x1f;
+            RET2 = YUPDWN[RET2]; 
             RET1 += RET2;
-
-            //
             self.FSHIFT += RET1;
             RET2 = self.FSHIFT & 0x03;
-
-            NSMutableArray *xCoordinates = [[NSMutableArray alloc] init];
-            NSMutableArray *yCoordinates = [[NSMutableArray alloc] init];
-            //(FLAMLP)
-            for (int i = 0; i < FLEN; i++) {
-                //int deltaX = FlameBT[RET2] - prevX;
-                //int deltaY = RET1 - prevY;
-                [xCoordinates addObject:[NSNumber numberWithInt:FlameBT[RET2++]]];
-                [yCoordinates addObject:[NSNumber numberWithInt:RET1]];
-            }
-
-            // Bump the intensity and line type
-            self.flameLine += 1;
-            self.flameIntensity += 3;
+            //;LET RET2 POINT TO THE BYTE X TABLE
 
             // Start drawing now
             NSMutableArray *path = [[NSMutableArray alloc] init];
@@ -137,14 +131,19 @@
             NSDictionary *moveToCenterItem = [NSDictionary dictionaryWithObjectsAndKeys:centerItem, @"moveto", nil];
             [path addObject:moveToCenterItem];
 
-            // Add a moveto command to return the thrust vector starting point
-            const CGPoint ReturnPosition = CGPointMake(-7, 21);
-            self.x = [NSNumber numberWithInt:ReturnPosition.x];
-            self.y = [NSNumber numberWithInt:ReturnPosition.y];
-            NSDictionary *moveRelItem = [NSDictionary dictionaryWithObjectsAndKeys:self.x, @"x", self.y, @"y", nil];
+            // Add a moveto command to position at the thrust vector drawing start point
+            const tvpoint_t ReturnPosition = { -7, 21 };
+            NSDictionary *moveRelItem = [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInt:ReturnPosition.x], @"x", [NSNumber numberWithInt:ReturnPosition.y], @"y", nil];
             NSDictionary *moveRelXYItem = [NSDictionary dictionaryWithObjectsAndKeys:moveRelItem, @"moverel", nil];
             [path addObject:moveRelXYItem];
       
+            // Add line type and intensity for the currenrt draw cycle
+            NSDictionary *lineType = [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInt:self.flameLine], @"type", nil];
+            NSDictionary *line = [NSDictionary dictionaryWithObjectsAndKeys:lineType, @"line", nil];
+            NSDictionary *intensity = [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInt:self.flameIntensity], @"intensity", nil];
+            [path addObject:line];
+            [path addObject:intensity];
+            
 #define DEBUG_NAMES
 #ifdef DEBUG_NAMES
             // Add a name field for debugging
@@ -153,28 +152,28 @@
             [path addObject:name];
 #endif
             
-            for (int i = 0; i < xCoordinates.count; i++) {
-                // Add line type and intensity
-                NSDictionary *lineType = [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInt:self.flameLine], @"type", nil];
-                NSDictionary *line = [NSDictionary dictionaryWithObjectsAndKeys:lineType, @"line", nil];
-                NSDictionary *intensity = [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInt:self.flameIntensity], @"intensity", nil];
-                [path addObject:line];
-                [path addObject:intensity];
-
-                NSDictionary *xyItem = [NSDictionary dictionaryWithObjectsAndKeys:[xCoordinates objectAtIndex:i], @"x", [yCoordinates objectAtIndex:i], @"y", nil];
+            //(FLAMLP) Generate the drawing commands for the thrust vectors
+            for (int i = 0; i < FLEN; i++) {
+                // Add the thrust vector
+                tvpoint_t thrustVector;
+                thrustVector.x = FLAMBT[RET2++];
+                thrustVector.y = RET1;
+                
+                // Draw the current vector
+                NSDictionary *xyItem = [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInt:thrustVector.x], @"x", [NSNumber numberWithInt:thrustVector.y], @"y", nil];
                 [path addObject:xyItem];
 
-                int moveToX = [[xCoordinates objectAtIndex:i] intValue];
-                int moveToY = [[yCoordinates objectAtIndex:i] intValue];
-                moveToX = -moveToX + 1;
-                moveToY = -moveToY;
-
-                self.x = [NSNumber numberWithInt:moveToX];
-                self.y = [NSNumber numberWithInt:moveToY];
-                NSDictionary *moveRelItem = [NSDictionary dictionaryWithObjectsAndKeys:self.x, @"x", self.y, @"y", nil];
-                NSDictionary *moveRelXYItem = [NSDictionary dictionaryWithObjectsAndKeys:moveRelItem, @"moverel", nil];
-                [path addObject:moveRelXYItem];
+                // Add the move back
+                thrustVector.x = -thrustVector.x + 1;
+                thrustVector.y = -thrustVector.y;
+                NSDictionary *movetoItem = [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInt:thrustVector.x], @"x", [NSNumber numberWithInt:thrustVector.y], @"y", nil];
+                NSDictionary *movetoXYItem = [NSDictionary dictionaryWithObjectsAndKeys:movetoItem, @"moverel", nil];
+                [path addObject:movetoXYItem];
             }
+            
+            // Bump the intensity and line type
+            self.flameLine += 1;
+            self.flameIntensity += 3;
         }
         
         self.thrust.drawPaths = paths;
