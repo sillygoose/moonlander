@@ -57,7 +57,7 @@ const float DustViewHeight = 64;
             }
             
             //(DUSTP1)  Thrust angle determines dust direction
-            short deltaY = self.delegate.SHOWY - self.delegate.AVERT;
+            short deltaY = (short)self.delegate.SHOWY - self.delegate.AVERT;
             float sinDeltaY = deltaY * sinAngle;
             float cosAngle = cos(angle);
             float tanDeltaY = sinDeltaY / cosAngle;

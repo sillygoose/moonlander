@@ -88,7 +88,7 @@
 
 
 
-const float GameTimerInterval = 1.0 / 12.0f;
+const float GameTimerInterval = 1.0 / 25.0f;
 const float DisplayUpdateInterval = 0.05f;
 
 #ifndef DEBUG_SHORT_DELAYS
@@ -1290,7 +1290,7 @@ const float OffcomDelay = 2.0f;
 
 - (void)ALTER:(short)alterValue
 {
-    [self.moonView alterMoon:alterValue atIndex:self.BIGXCT];
+    [self.moonView alterMoon:alterValue atIndex:(short)self.BIGXCT];
 }
 
 - (void)INTEL
@@ -1523,10 +1523,10 @@ const float OffcomDelay = 2.0f;
         }
         
         //(SHOWNT) Test for extreme game events that end the simulation
-        self.BIGXCT = (self.HORDIS + 22400) / 32;
+        self.BIGXCT = ((float)self.HORDIS + 22400.0) / 32.0;
 
         // Get the terrain information
-        short tIndex = self.BIGXCT;
+        short tIndex = (short)self.BIGXCT;
         short thl = [self.moonView terrainHeight:tIndex];
         short thr = [self.moonView terrainHeight:tIndex+1];
         self.AVERY = (thl + thr) / 2;
@@ -1551,7 +1551,7 @@ const float OffcomDelay = 2.0f;
             //(CLSEUP) Find our horizontal position in the closeup view
             if (![self.moonView viewIsDetailed]) {
                 // Select the closeup view
-                self.LEFTEDGE = self.BIGXCT - 9;
+                self.LEFTEDGE = (short)self.BIGXCT - 9;
                 self.LEFEET = self.LEFTEDGE * 32 - 22400;
                 [self.moonView useCloseUpView:self.LEFTEDGE];
             }
@@ -1560,25 +1560,25 @@ const float OffcomDelay = 2.0f;
             short xPos = self.HORDIS - self.LEFEET;
             if (xPos <= 30) {
                 //(CLOL) Move the closeup view left
-                self.LEFTEDGE = self.BIGXCT - 17;
+                self.LEFTEDGE = (short)self.BIGXCT - 17;
                 self.LEFEET = self.LEFTEDGE * 32 - 22400;
                 xPos = self.HORDIS - self.LEFEET;
                 [self.moonView useCloseUpView:self.LEFTEDGE];
             }
             else if (xPos > 580) {
                 // Move the closeup view right
-                self.LEFTEDGE = self.BIGXCT - 1;
+                self.LEFTEDGE = (short)self.BIGXCT - 1;
                 self.LEFEET = self.LEFTEDGE * 32 - 22400;
                 xPos = self.HORDIS - self.LEFEET;
                 [self.moonView useCloseUpView:self.LEFTEDGE];
             }
             
             //(CLSEOK)
-            self.SHOWX = (xPos * 3) / 2;
+            self.SHOWX = (xPos * 3.0) / 2.0;
             
             // Index to terrain/feature to left of lander
-            self.INDEXL = self.LEFTEDGE + (self.SHOWX / 48);
-            self.INDEXLR = self.SHOWX % 48;
+            self.INDEXL = self.LEFTEDGE + ((short)self.SHOWX / 48);
+            self.INDEXLR = (short)self.SHOWX % 48;
             short IN1 = 48 - self.INDEXLR;
             
             // Get the terrain information
@@ -1600,9 +1600,9 @@ const float OffcomDelay = 2.0f;
             self.AVERY = th >> 2;
             self.AVERT = [self DFAKE:th];
             
-            short RET2 = ((self.VERDIS * 3) / 2) + 23;
-            self.SHOWY = RET2;
-            self.SHOWY += 24;
+            self.SHOWY = (((short)self.VERDIS * 3.0) / 2.0) + 23.0;
+            short RET2 = self.SHOWY;
+            self.SHOWY += 24.0;
             
             //(CLSEF3)
             RET2 -= self.AVERT;
@@ -1626,9 +1626,11 @@ const float OffcomDelay = 2.0f;
             // Make sure the view is displayed (we might have drifted up)
             [self.moonView useNormalView];
             
-            // Move the lander
+            // Calculate the position with detail
             self.SHOWX = self.BIGXCT;
-            self.SHOWY = self.VERDIS / 32 + 43;
+            self.SHOWY = (float)self.VERDIS / 32.0 + 43.0;
+            
+            // Move the lander
             CGPoint newFrame = CGPointMake(self.SHOWX, self.SHOWY);
             self.landerView.center = newFrame;
             

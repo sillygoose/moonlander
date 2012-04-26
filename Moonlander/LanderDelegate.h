@@ -10,8 +10,8 @@
 
 @protocol LanderDelegate <NSObject>
 
-- (short)SHOWX;
-- (short)SHOWY;
+- (float)SHOWX;
+- (float)SHOWY;
 - (short)AVERT;
 
 - (short)RADARY;

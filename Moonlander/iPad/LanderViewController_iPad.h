@@ -39,9 +39,9 @@
     Man                 *_manView;
     Flag                *_flagView;
     
-    short               _SHOWX;
-    short               _SHOWY;
-    short               _BIGXCT;
+    float               _SHOWX;
+    float               _SHOWY;
+    float               _BIGXCT;
     short               _LEFTEDGE;
     short               _LEFEET;
     short               _INDEXL;
@@ -100,9 +100,9 @@
 @property (nonatomic, unsafe_unretained) NSTimer *simulationTimer;
 @property (nonatomic, unsafe_unretained) NSTimer *displayTimer;
 
-@property (nonatomic) short SHOWX;
-@property (nonatomic) short SHOWY;
-@property (nonatomic) short BIGXCT;
+@property (nonatomic) float SHOWX;
+@property (nonatomic) float SHOWY;
+@property (nonatomic) float BIGXCT;
 @property (nonatomic) short LEFTEDGE;
 @property (nonatomic) short LEFEET;
 @property (nonatomic) short INDEXL;
