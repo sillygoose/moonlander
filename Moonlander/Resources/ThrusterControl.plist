@@ -10,17 +10,6 @@
 			<dict>
 				<key>name</key>
 				<string>Thruster Control</string>
-				<key>color</key>
-				<dict>
-					<key>alpha</key>
-					<integer>1</integer>
-					<key>b</key>
-					<real>0.00121</real>
-					<key>g</key>
-					<integer>1</integer>
-					<key>r</key>
-					<real>0.026</real>
-				</dict>
 				<key>line</key>
 				<dict>
 					<key>width</key>
@@ -48,17 +37,6 @@
 		</array>
 		<array>
 			<dict>
-				<key>color</key>
-				<dict>
-					<key>alpha</key>
-					<integer>1</integer>
-					<key>b</key>
-					<real>0.00121</real>
-					<key>g</key>
-					<integer>1</integer>
-					<key>r</key>
-					<real>0.026</real>
-				</dict>
 				<key>line</key>
 				<dict>
 					<key>width</key>
@@ -86,17 +64,6 @@
 		</array>
 		<array>
 			<dict>
-				<key>color</key>
-				<dict>
-					<key>alpha</key>
-					<integer>1</integer>
-					<key>b</key>
-					<real>0.00121</real>
-					<key>g</key>
-					<integer>1</integer>
-					<key>r</key>
-					<real>0.026</real>
-				</dict>
 				<key>line</key>
 				<dict>
 					<key>width</key>
