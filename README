@@ -1,8 +1,7 @@
 Moonlander, the classic video game
 
-Features to do list
-- initial menu screen
-- splash screen
+Features wish list
+===================
 - hardware brochures
 - source code viewer
 - 1969 focal/basic lunar lander game
@@ -11,61 +10,14 @@ Features to do list
 - Airplay support
 
 
-Bugs todo list
+Issues to do list
+=================
+- initial menu screen
+- splash screen
 - use floats for X/Y positioning so retina displays are supported
 - increase font size and space out controls for easier access
 - missing iTunesArtwork@2x (1024x1024)
-- lander view X coord starts off negative (is it even an issue?)
 
 
-Fixed/Done
-- fix thrust slider so it hits 100%
-- redo yes/no dialog to use standard controls so it can be laid out correctly
-- create single sound file for explosions and play it once
-- delete pdp11 and pdp11.ini files from Moonlander Classic binaries
-- delete iphone stuff
-- view controller alloc/init?
-- iphone/ipad icons
-- add scripts and .ini files for debug/release of classic game
-- control beep volume (three volume levels added to sounds)
-- fix explosion sound by queuing the beep plays
-- explode code causes conflict with yes/no dialog: dispatch queue issue?
-- splash screen dark
-- new dust bug at pos angle (lags movement)
-- adjusted roll arrow refresh rate
-- update dust/explode to draw directly into their views
-- sync blink timing by using a single timer (can live current design)
-- MCD explosion is not right for some reason (because of the height of MCD - historically accurate)
-- dust view not always cleared
-- controls have differing brightness
-- roll arrow repeat not working
-- get bell code running in explosion
-- move dust display code out of main queue
-- views don't implement the correct intensities (lander, flag, etc)
-- bug in instruments - blink doesn't reset with new game
-- disable all controls after end of game (in nw game dialog)
-- dialog button improvement (triggers on buttonUp with buton in focus)
-- end game code work (common exit so controls get cleaned up)
-- got rid of the palsyTimer and use queues or delay with selector
-- run explosion in separate thread
-- run model in separate thread (no need for this)
-- use animation for moving our guy around - for mcd version calc the animation durations so man moves at constant speed
-- fix bug with dust generation
-- dust bug (dust appears on rotation)
-- angle roundoff - stick with integer angles
-- bold/blink selected controls
-- on surface, allow indicators to update and slider works as well (roll disabled)
-- dust improvements (looks like original)
-- explode improvements (account for phosphor decay) 
-- implement dust bug when you have no fuel
-- explode code implementation
-- time runs while on lunar surface - yes
-- crashing into an old lander? show lander on top of newly crashed lander
-- crashing into a crashed lander? show lander on top of crashed lander
-- high speed crash into rock? replace rock with crashed lander and deform
-- can flag and old lander be displayed? - yes
-- can rock and crashed lander be displayed? - no
-- flag replaces rock in database? - yes
-- where does man start in lander? - centered in the command module
-- old landers are slightly tipped? - yes
-- does clock restart after MCD visit? - no
+Completed
+=========
