@@ -57,8 +57,10 @@
     
     VGSlider            *_thrusterSlider;
     
-    NSTimer             *__unsafe_unretained _simulationTimer;
-    NSTimer             *__unsafe_unretained _displayTimer;
+    NSTimer             *__unsafe_unretained _gameLogicTimer;
+    NSTimer             *__unsafe_unretained _landerUpdateTimer;
+    NSTimer             *__unsafe_unretained _positionUpdateTimer;
+    NSTimer             *__unsafe_unretained _instrumentUpdateTimer;
 
     Telemetry           *_selectedTelemetry;
     Telemetry           *_heightData;
@@ -97,8 +99,10 @@
 
 @property (nonatomic, strong) LanderPhysicsModel *landerModel;
 
-@property (nonatomic, unsafe_unretained) NSTimer *simulationTimer;
-@property (nonatomic, unsafe_unretained) NSTimer *displayTimer;
+@property (nonatomic, unsafe_unretained) NSTimer *gameLogicTimer;
+@property (nonatomic, unsafe_unretained) NSTimer *landerUpdateTimer;
+@property (nonatomic, unsafe_unretained) NSTimer *positionUpdateTimer;
+@property (nonatomic, unsafe_unretained) NSTimer *instrumentUpdateTimer;
 
 @property (nonatomic) float SHOWX;
 @property (nonatomic) float SHOWY;
@@ -175,11 +179,7 @@
 @property (nonatomic) SystemSoundID explosionSound;
 
 
-
 - (IBAction)thrusterChanged:(VGSlider *)sender;
 - (IBAction)rotateLander:(id)sender;
-
-- (void)updateLander;
-- (void)gameLoop;
 
 @end

@@ -51,8 +51,10 @@
 
 @synthesize selectedTelemetry=_selectedTelemetry;
 
-@synthesize simulationTimer=_simulationTimer;
-@synthesize displayTimer=_displayTimer;
+@synthesize gameLogicTimer=_gameLogicTimer;
+@synthesize landerUpdateTimer=_landerUpdateTimer;
+@synthesize positionUpdateTimer=_positionUpdateTimer;
+@synthesize instrumentUpdateTimer=_instrumentUpdateTimer;
 
 @synthesize heightData=_heightData;
 @synthesize altitudeData=_altitudeData;
@@ -87,9 +89,11 @@
 @synthesize explosionSound=_explosionSound;
 
 
-
-const float GameTimerInterval = 1.0 / 25.0f;
-const float DisplayUpdateInterval = 0.05f;
+// Simulation constants
+const float GameLogicTimerInterval = 0.025;         // How often the game logic checks run
+const float LanderUpdateInterval = 0.10f;           // How often the lander is updated (affects rotation and thrust vector drawing)
+const float PositionUpdateInterval = 0.01;          // How often the lander position is updated
+const float InstrumentUpdateInterval = 0.1;         // How often the instrument displays are updated
 
 #ifndef DEBUG_SHORT_DELAYS
 // Timings for normal operation
@@ -373,8 +377,10 @@ const float OffcomDelay = 2.0f;
 #endif
     
     // Setup the game timers
-	self.simulationTimer = [NSTimer scheduledTimerWithTimeInterval:GameTimerInterval target:self selector:@selector(gameLoop) userInfo:nil repeats:YES];
-	self.displayTimer = [NSTimer scheduledTimerWithTimeInterval:DisplayUpdateInterval target:self selector:@selector(updateLander) userInfo:nil repeats:YES];
+	self.gameLogicTimer = [NSTimer scheduledTimerWithTimeInterval:GameLogicTimerInterval target:self selector:@selector(gameLogicTimerEvent) userInfo:nil repeats:YES];
+	self.landerUpdateTimer = [NSTimer scheduledTimerWithTimeInterval:LanderUpdateInterval target:self selector:@selector(updateLander) userInfo:nil repeats:YES];
+	self.positionUpdateTimer = [NSTimer scheduledTimerWithTimeInterval:PositionUpdateInterval target:self selector:@selector(updateLanderPosition) userInfo:nil repeats:YES];
+	self.instrumentUpdateTimer = [NSTimer scheduledTimerWithTimeInterval:InstrumentUpdateInterval target:self selector:@selector(updateInstruments) userInfo:nil repeats:YES];
 
     // Add the lander to the view
     self.landerView.hidden = NO;
@@ -781,10 +787,14 @@ const float OffcomDelay = 2.0f;
     [super viewDidUnload];
     
     // Kill any active timers
-    [self.simulationTimer invalidate];
-    self.simulationTimer = nil;
-    [self.displayTimer invalidate];
-    self.displayTimer = nil;
+    [self.gameLogicTimer invalidate];
+    self.gameLogicTimer = nil;
+    [self.landerUpdateTimer invalidate];
+    self.landerUpdateTimer = nil;
+    [self.positionUpdateTimer invalidate];
+    self.positionUpdateTimer = nil;
+    [self.instrumentUpdateTimer invalidate];
+    self.instrumentUpdateTimer = nil;
     
     // Disable telemetry
     self.selectedTelemetry = nil;
@@ -936,19 +946,8 @@ const float OffcomDelay = 2.0f;
 
 - (void)updateLander
 {
-    // Update the lander and the displayed instruments
+    // Update the lander
     [self.landerView updateLander];
-    [self.instrument1 display];
-    [self.instrument2 display];
-    [self.instrument3 display];
-    [self.instrument4 display];
-    
-#ifdef DEBUG_EXTRA_INSTRUMENTS
-    [self.instrument5 display];
-    [self.instrument6 display];
-    [self.instrument7 display];
-    [self.instrument8 display];
-#endif
 }
 
 - (void)OFFCOM:(float)xPosition withMessage:(NSString *)message
@@ -1034,10 +1033,14 @@ const float OffcomDelay = 2.0f;
 - (void)prepareForNewGame
 {
     // Kill the timers that might be running
-    [self.simulationTimer invalidate];
-    self.simulationTimer = nil;
-    [self.displayTimer invalidate];
-    self.displayTimer = nil;
+    [self.gameLogicTimer invalidate];
+    self.gameLogicTimer = nil;
+    [self.landerUpdateTimer invalidate];
+    self.landerUpdateTimer = nil;
+    [self.positionUpdateTimer invalidate];
+    self.positionUpdateTimer = nil;
+    [self.instrumentUpdateTimer invalidate];
+    self.instrumentUpdateTimer = nil;
     
     // Clean up any controls
     [self cleanupControls];
@@ -1497,13 +1500,14 @@ const float OffcomDelay = 2.0f;
     }
 }
 
-- (void)gameLoop
+- (void)gameLogicTimerEvent
 {
     // Update simulation time
 #ifdef DEBUG_GRAB_EMPTY_SCREEN
+    // Hide the lander and don't update the model
     self.landerView.hidden = YES;
 #else
-    [self.landerModel.delegate updateTime:GameTimerInterval];
+    [self.landerModel.delegate updateTime:GameLogicTimerInterval];
 #endif
 
     if (![self.landerModel onSurface]) {
@@ -1616,11 +1620,6 @@ const float OffcomDelay = 2.0f;
 
             // Redraw surface if changed
             [self.moonView useCloseUpView:self.LEFTEDGE];
-
-            // Move the lander
-            const float LanderVerticalAdjust = -4;
-            CGPoint newFrame = CGPointMake(self.SHOWX, self.SHOWY + LanderVerticalAdjust);
-            self.landerView.center = newFrame;
         }
         else {
             // Make sure the view is displayed (we might have drifted up)
@@ -1630,10 +1629,6 @@ const float OffcomDelay = 2.0f;
             self.SHOWX = self.BIGXCT;
             self.SHOWY = (float)self.VERDIS / 32.0 + 43.0;
             
-            // Move the lander
-            CGPoint newFrame = CGPointMake(self.SHOWX, self.SHOWY);
-            self.landerView.center = newFrame;
-            
             // Test for contact with surface
             if ((self.RADARY - 16) < 0) {
                 // Deform the moon surface and explode
@@ -1642,6 +1637,28 @@ const float OffcomDelay = 2.0f;
             }
         }
     }
+}
+
+- (void)updateInstruments
+{
+    [self.instrument1 display];
+    [self.instrument2 display];
+    [self.instrument3 display];
+    [self.instrument4 display];
+#ifdef DEBUG_EXTRA_INSTRUMENTS
+    [self.instrument5 display];
+    [self.instrument6 display];
+    [self.instrument7 display];
+    [self.instrument8 display];
+#endif
+}
+
+- (void)updateLanderPosition
+{
+    // Move the lander
+    const float LanderVerticalAdjust = -4;
+    CGPoint landerPosition = CGPointMake(self.SHOWX, self.SHOWY + LanderVerticalAdjust);
+    self.landerView.center = landerPosition;
 }
 
 @end
