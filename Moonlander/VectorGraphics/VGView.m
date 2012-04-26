@@ -17,13 +17,22 @@
 @synthesize blinkTimer=_blinkTimer;
 @synthesize blinkOn=_blinkOn;
 @synthesize fontSize=_fontSize;
+@synthesize viewColor=_viewColor;
 
 
 - (id)initWithFrame:(CGRect)frameRect
 {
     if ((self = [super initWithFrame:frameRect])) {
-        self.fontSize = 12;
+        // Need to be able to see thru views
         self.opaque = NO;
+
+        // View defaults
+        const CGFloat DefaultRed = 0.026;
+        const CGFloat DefaultGreen = 1.0;
+        const CGFloat DefaultBlue = 0.00121;
+        const CGFloat DefaultAlpha = 1.0;
+        self.viewColor = [[UIColor alloc] initWithRed:DefaultRed green:DefaultGreen blue:DefaultBlue alpha:DefaultAlpha];
+        self.fontSize = 12;
         
         self.actualBounds = CGRectMake(FLT_MAX, FLT_MAX, -FLT_MAX, -FLT_MAX);
         self.vectorName = @"[VGView initWithFrame]";
@@ -36,8 +45,9 @@
     self = [self initWithFrame:frameRect];
 
     NSDictionary *viewObject = [NSDictionary dictionaryWithContentsOfFile:fileName];
-    if (!(self.vectorName = [viewObject objectForKey:@"name"]))
+    if (!(self.vectorName = [viewObject objectForKey:@"name"])) {
         self.vectorName = @"[VGView initWithFrame:withPaths:]";
+    }
     self.drawPaths = [viewObject objectForKey:@"paths"];
     return self;
 }
@@ -68,8 +78,10 @@
     CGContextSetFont(context, fontRef);
     CGContextSetFontSize(context, self.fontSize);
     
-    CGContextSetRGBFillColor(context, 0.026f, 1.0f, 0.00121f, 1.0f);
-    CGContextSetRGBStrokeColor(context, 0.026f, 1.0f, 0.00121f, 1.0f);
+    CGFloat defaultRed, defaultGreen, defaultBlue, defaultAlpha;
+    [self.viewColor getRed:&defaultRed green:&defaultGreen blue:&defaultBlue alpha:&defaultAlpha];
+    CGContextSetRGBFillColor(context, defaultRed, defaultGreen, defaultBlue, defaultAlpha);
+    CGContextSetRGBStrokeColor(context, defaultRed, defaultGreen, defaultBlue, defaultAlpha);
     CGContextSetTextDrawingMode(context, kCGTextFillStroke);
     CGContextSetShouldSmoothFonts(context, YES);
     
@@ -433,9 +445,11 @@
     CGContextSetShouldAntialias(context, YES);
     CGContextSetAllowsAntialiasing(context, YES);
     
-    // Set the color ###(need this defined in one place!)
-    CGContextSetRGBFillColor(context, 0.026f, 1.0f, 0.00121f, 1.0f);
-    CGContextSetRGBStrokeColor(context, 0.026f, 1.0f, 0.00121f, 1.0f);
+    // Set the color
+    CGFloat defaultRed, defaultGreen, defaultBlue, defaultAlpha;
+    [self.viewColor getRed:&defaultRed green:&defaultGreen blue:&defaultBlue alpha:&defaultAlpha];
+    CGContextSetRGBFillColor(context, defaultRed, defaultGreen, defaultBlue, defaultAlpha);
+    CGContextSetRGBStrokeColor(context, defaultRed, defaultGreen, defaultBlue, defaultAlpha);
     CGContextSetAlpha(context, point.alpha);
     
     // Defaults for a rectangle

@@ -44,12 +44,12 @@
         UIFont *fontInfo = [UIFont fontWithName:@"Courier-Bold" size:16.0f];
         
         // Button font/background colors
-        UIColor *buttonText = [UIColor colorWithRed:0.0f green:0.0f blue:0.0f alpha:0.8f];
-        self.buttonBackgroundNormal = [UIColor colorWithRed:0.026f green:1.0f blue:0.00121f alpha:1.0f];
-        self.buttonBackgroundHighlighted = [UIColor colorWithRed:0.026f green:1.0f blue:0.00121f alpha:1.0f];
+        UIColor *buttonText = [UIColor blackColor];
+        self.buttonBackgroundNormal = self.viewColor;
+        self.buttonBackgroundHighlighted = self.viewColor;
 
         // Text label font/background colors
-        UIColor *labelText = [UIColor colorWithRed:0.026f green:1.0f blue:0.00121f alpha:1.0f];
+        UIColor *labelText = self.viewColor;
         UIColor *labelBackground = [UIColor blackColor] ;
 
         // Create the text label 
@@ -63,7 +63,7 @@
 
         // Buttons are black text on a green background
         self.dialogYesButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        self.dialogYesButton.frame = yesRect;
+        [self.dialogYesButton setFrame:yesRect];
         [self.dialogYesButton setTitle:@"Yes" forState:UIControlStateNormal];
         [self.dialogYesButton setTitleColor:buttonText forState:UIControlStateNormal];
         self.dialogYesButton.titleLabel.font = fontInfo;
@@ -72,11 +72,10 @@
         self.dialogYesButton.titleLabel.backgroundColor = self.buttonBackgroundNormal;
         self.dialogYesButton.titleLabel.textAlignment = UITextAlignmentCenter;
         self.dialogYesButton.titleLabel.baselineAdjustment = UIBaselineAdjustmentAlignCenters;
-//        self.dialogYesButton.adjustsImageWhenHighlighted = NO;
         [self addSubview:self.dialogYesButton];
 
         self.dialogNoButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        self.dialogNoButton.frame = noRect;
+        [self.dialogNoButton setFrame:noRect];
         [self.dialogNoButton setTitle:@"No" forState:UIControlStateNormal];
         [self.dialogNoButton setTitleColor:buttonText forState:UIControlStateNormal];
         self.dialogNoButton.titleLabel.font = fontInfo;

@@ -3,17 +3,15 @@
 //  Moonlander
 //
 //  Created by Rick Naro on 10/3/11.
-//  Copyright (c) 2011 Silly Goose Software. All rights reserved.
+//  Copyright (c) 2011, 2012 Paradigm Systems. All rights reserved.
 //
 //  Used to create a simple modal yes/no dialog
 //
 
 #import "VGView.h"
-#import "VGButton.h"
-#import "VGLabel.h"
 
 
-@interface VGDialog : UIView {
+@interface VGDialog : VGView {
     UIView      *_yesButtonView;
     UIButton    *_dialogYesButton;
     UIButton    *_dialogNoButton;

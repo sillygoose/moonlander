@@ -2,8 +2,8 @@
 //  VGView.h
 //  Moonlander
 //
-//  Created by Silly Goose on 5/14/11.
-//  Copyright 2011 Silly Goose Software. All rights reserved.
+//  Created by Rick on 5/14/11.
+//  Copyright 2011, 2012 Paradigm Systems. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
@@ -22,6 +22,7 @@ typedef struct {
     NSString    *_vectorName;
   
     CGFloat     _fontSize;
+    UIColor     *_viewColor;
     NSTimer     *__weak _blinkTimer;
     
     BOOL        _blinkOn;
@@ -31,10 +32,11 @@ typedef struct {
 @property (nonatomic) NSArray *drawPaths;
 @property (nonatomic, copy) NSString *vectorName;
 
-@property (nonatomic, weak) NSTimer *blinkTimer;
-@property (nonatomic) BOOL blinkOn;
 @property (nonatomic) CGFloat fontSize;
+@property (nonatomic, strong) UIColor *viewColor;
+@property (nonatomic, weak) NSTimer *blinkTimer;
 
+@property (nonatomic) BOOL blinkOn;
 @property (nonatomic) CGRect actualBounds;
 
 
