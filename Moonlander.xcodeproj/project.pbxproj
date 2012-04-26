@@ -69,6 +69,8 @@
 		56B4D62D1417D9AF00029FC8 /* Flag.m in Sources */ = {isa = PBXBuildFile; fileRef = 56B4D62C1417D9AF00029FC8 /* Flag.m */; };
 		56BC68641388BDE200403643 /* Labels.plist in Resources */ = {isa = PBXBuildFile; fileRef = 56BC68631388BDE200403643 /* Labels.plist */; };
 		56C94AA913A7A7AE001B7EF9 /* Dust.m in Sources */ = {isa = PBXBuildFile; fileRef = 56C94AA813A7A7AE001B7EF9 /* Dust.m */; };
+		56CB094F1548E6A700973CBE /* DotMatrix.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 56CB094C1548E6A700973CBE /* DotMatrix.ttf */; };
+		56CB09501548E6A700973CBE /* DotMatrixBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 56CB094D1548E6A700973CBE /* DotMatrixBold.ttf */; };
 		56CE052F138B12A7004FA450 /* LanderMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 56CE052E138B12A7004FA450 /* LanderMessage.m */; };
 		56CE0535138B5277004FA450 /* Telemetry.m in Sources */ = {isa = PBXBuildFile; fileRef = 56CE0534138B5277004FA450 /* Telemetry.m */; };
 		56CE0538138B6C88004FA450 /* Instrument.m in Sources */ = {isa = PBXBuildFile; fileRef = 56CE0537138B6C88004FA450 /* Instrument.m */; };
@@ -195,6 +197,9 @@
 		56BC68631388BDE200403643 /* Labels.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Labels.plist; path = Resources/Labels.plist; sourceTree = "<group>"; };
 		56C94AA713A7A7AE001B7EF9 /* Dust.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Dust.h; path = Classes/Dust.h; sourceTree = "<group>"; };
 		56C94AA813A7A7AE001B7EF9 /* Dust.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Dust.m; path = Classes/Dust.m; sourceTree = "<group>"; };
+		56CB094C1548E6A700973CBE /* DotMatrix.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = DotMatrix.ttf; sourceTree = "<group>"; };
+		56CB094D1548E6A700973CBE /* DotMatrixBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = DotMatrixBold.ttf; sourceTree = "<group>"; };
+		56CB094E1548E6A700973CBE /* readme.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = readme.txt; sourceTree = "<group>"; };
 		56CE052D138B12A7004FA450 /* LanderMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LanderMessage.h; path = Classes/LanderMessage.h; sourceTree = "<group>"; };
 		56CE052E138B12A7004FA450 /* LanderMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LanderMessage.m; path = Classes/LanderMessage.m; sourceTree = "<group>"; };
 		56CE0533138B5277004FA450 /* Telemetry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Telemetry.h; path = Classes/Telemetry.h; sourceTree = "<group>"; };
@@ -401,6 +406,7 @@
 		560FA13B1379C3900017EE25 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				56CB094A1548E63000973CBE /* fonts */,
 				561739DE1546317400380AB4 /* images */,
 				1D81BDB8153F567200AE437D /* sounds */,
 				569CC2A913809BED00E6D82A /* Moon.plist */,
@@ -538,6 +544,17 @@
 				5613DDE7143A85F80059077A /* VGDialog.m */,
 			);
 			name = "Vector Graphics";
+			sourceTree = "<group>";
+		};
+		56CB094A1548E63000973CBE /* fonts */ = {
+			isa = PBXGroup;
+			children = (
+				56CB094C1548E6A700973CBE /* DotMatrix.ttf */,
+				56CB094D1548E6A700973CBE /* DotMatrixBold.ttf */,
+				56CB094E1548E6A700973CBE /* readme.txt */,
+			);
+			name = fonts;
+			path = Resources/fonts;
 			sourceTree = "<group>";
 		};
 		56ECD8ED1540703500565615 /* Moonlander Classic */ = {
@@ -783,6 +800,8 @@
 				567CD48115485B6D00797BD1 /* explosion-high.caf in Resources */,
 				567CD48215485B6D00797BD1 /* explosion-low.caf in Resources */,
 				567CD48315485B6D00797BD1 /* explosion-med.caf in Resources */,
+				56CB094F1548E6A700973CBE /* DotMatrix.ttf in Resources */,
+				56CB09501548E6A700973CBE /* DotMatrixBold.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

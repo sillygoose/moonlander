@@ -14,7 +14,7 @@
 // Add any custom debugging options
 #if defined(TARGET_IPHONE_SIMULATOR) && defined(DEBUG)
 //#define DEBUG_DUST
-#define DEBUG_LOCATION
+//#define DEBUG_LOCATION
 //#define DEBUG_FLAME
 //#define HOLD_VELOCITY
 //#define HOLD_POSITION
