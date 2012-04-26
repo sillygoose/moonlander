@@ -298,8 +298,8 @@
     TEMP = [self DFAKE:TEMP];
     if (TEMP < 0)
         TEMP = 0;
-    else if (TEMP > self.frame.size.height)//###bounds?
-        TEMP = self.frame.size.height;//###bounds?
+    else if (TEMP > self.bounds.size.height)
+        TEMP = self.bounds.size.height;
     short LASTY = TEMP;
 
     NSNumber *xCoordinate = [NSNumber numberWithInt:x];

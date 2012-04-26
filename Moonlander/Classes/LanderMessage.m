@@ -3,7 +3,7 @@
 //  Moonlander
 //
 //  Created by Rick on 5/23/11.
-//  Copyright 2011 Silly Goose Software. All rights reserved.
+//  Copyright 2011, 2012 Paradigm Systems. All rights reserved.
 //
 
 #import "LanderMessage.h"
@@ -35,13 +35,13 @@
 - (CGRect)getRect:(NSDictionary *)message
 {
     CGRect rect ;
-    NSDictionary *frame = [message objectForKey:@"frame"];
-    NSDictionary *origin = [frame objectForKey:@"origin"];
-    NSDictionary *size = [frame objectForKey:@"size"];
-    rect.origin.x = [[origin objectForKey:@"x"] floatValue];
-    rect.origin.y = [[origin objectForKey:@"y"] floatValue];
-    rect.size.width = [[size objectForKey:@"width"] floatValue];
-    rect.size.height = [[size objectForKey:@"height"] floatValue];
+    NSDictionary *frameItem = [message objectForKey:@"frame"];
+    NSDictionary *originItem = [frameItem objectForKey:@"origin"];
+    NSDictionary *sizeItem = [frameItem objectForKey:@"size"];
+    rect.origin.x = [[originItem objectForKey:@"x"] floatValue];
+    rect.origin.y = [[originItem objectForKey:@"y"] floatValue];
+    rect.size.width = [[sizeItem objectForKey:@"width"] floatValue];
+    rect.size.height = [[sizeItem objectForKey:@"height"] floatValue];
     return rect;
 }
 

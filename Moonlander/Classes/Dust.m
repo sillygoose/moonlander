@@ -111,7 +111,7 @@ const float DustViewHeight = 64;
                                     xPos = -xPos;
                                 }
                                 
-                                // Adjust X to the dust view frame
+                                // Adjust X to the height of the dust view
                                 xPos += DustViewHeight - 1;
                                 
                                 // Now generate the Y value (always positive)
@@ -131,7 +131,7 @@ const float DustViewHeight = 64;
                             // UIKit code needs to be in the main thread
                             self.drawPaths = points;
                             dispatch_async(dispatch_get_main_queue(), ^{
-                                // Set the frame coordinates and redraw
+                                // Set the new center point and redraw
                                 CGPoint newCenter = CGPointMake(xCenterPos, yCenterPos);
                                 self.center = newCenter;
                                 self.hidden = NO;
