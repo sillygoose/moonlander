@@ -1,23 +1,17 @@
 Moonlander, the classic video game
 
+This branch is for the work on the standalone game as the master
+will be getting UI elements making it a pain to test game elements.
+
 Features wish list
 ===================
-- hardware brochures
-- source code viewer
-- 1969 focal/basic lunar lander game
-- generate 6x8 dot matrix fonts (if time allows)
-- LEM AGC source code on google
-- Airplay support
+- generate 6x8 dot matrix fonts
 
 
 Issues to do list
 =================
-- initial menu screen
-- splash screen
 - increase font size and space out controls for easier access
-- missing iTunesArtwork@2x (1024x1024)
 
 
 Completed
 =========
-- added retina display support and improved general display
