@@ -93,7 +93,7 @@
 const float GameLogicTimerInterval = 0.025;         // How often the game logic checks run
 const float LanderUpdateInterval = 0.10f;           // How often the lander is updated (affects rotation and thrust vector drawing)
 const float PositionUpdateInterval = 0.01;          // How often the lander position is updated
-const float InstrumentUpdateInterval = 0.1;         // How often the instrument displays are updated
+const float InstrumentUpdateInterval = 0.2;         // How often the instrument displays are updated
 
 #ifndef DEBUG_SHORT_DELAYS
 // Timings for normal operation
@@ -339,9 +339,7 @@ const float OffcomDelay = 2.0f;
         self.manView = nil;
     }
     
-    // Starting posiition
-    self.SHOWX = 0;
-    self.SHOWY = 0;
+    // No fuel alert issued
     self.didFuelAlert = NO;
     
     // Enable all flight controls
@@ -381,6 +379,11 @@ const float OffcomDelay = 2.0f;
 	self.landerUpdateTimer = [NSTimer scheduledTimerWithTimeInterval:LanderUpdateInterval target:self selector:@selector(updateLander) userInfo:nil repeats:YES];
 	self.positionUpdateTimer = [NSTimer scheduledTimerWithTimeInterval:PositionUpdateInterval target:self selector:@selector(updateLanderPosition) userInfo:nil repeats:YES];
 	self.instrumentUpdateTimer = [NSTimer scheduledTimerWithTimeInterval:InstrumentUpdateInterval target:self selector:@selector(updateInstruments) userInfo:nil repeats:YES];
+
+    // Starting position
+    self.SHOWX = -4096;
+    self.SHOWY = -4096;
+    self.landerView.center = CGPointMake(self.SHOWX, self.SHOWY);
 
     // Add the lander to the view
     self.landerView.hidden = NO;
