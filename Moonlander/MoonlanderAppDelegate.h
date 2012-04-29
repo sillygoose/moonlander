@@ -8,10 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-@interface MoonlanderAppDelegate : NSObject <UIApplicationDelegate> {
-    UIWindow *_window;
-}
+@interface MoonlanderAppDelegate : UIResponder <UIApplicationDelegate>
 
-@property (nonatomic) IBOutlet UIWindow *window;
+@property (strong, nonatomic) UIWindow *window;
 
 @end

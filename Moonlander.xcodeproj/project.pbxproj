@@ -17,7 +17,6 @@
 		560FA0DD137991AE0017EE25 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 560FA0DC137991AE0017EE25 /* main.m */; };
 		560FA0E0137991AE0017EE25 /* MoonlanderAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 560FA0DF137991AE0017EE25 /* MoonlanderAppDelegate.m */; };
 		560FA0EB137991AE0017EE25 /* MoonlanderAppDelegate_iPad.m in Sources */ = {isa = PBXBuildFile; fileRef = 560FA0EA137991AE0017EE25 /* MoonlanderAppDelegate_iPad.m */; };
-		560FA0EE137991AE0017EE25 /* Moonlander_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 560FA0EC137991AE0017EE25 /* Moonlander_iPad.xib */; };
 		560FA0F5137991AE0017EE25 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 560FA0CF137991AD0017EE25 /* UIKit.framework */; };
 		560FA0F6137991AE0017EE25 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 560FA0D1137991AD0017EE25 /* Foundation.framework */; };
 		560FA0F7137991AE0017EE25 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 560FA0D3137991AD0017EE25 /* CoreGraphics.framework */; };
@@ -28,8 +27,6 @@
 		560FA111137992E40017EE25 /* LanderPhysicsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 560FA10F137992E40017EE25 /* LanderPhysicsModel.m */; };
 		560FA1371379BEAB0017EE25 /* LanderViewController_iPad.m in Sources */ = {isa = PBXBuildFile; fileRef = 560FA1351379BEAA0017EE25 /* LanderViewController_iPad.m */; };
 		560FA1381379BEAB0017EE25 /* LanderViewController_iPad.m in Sources */ = {isa = PBXBuildFile; fileRef = 560FA1351379BEAA0017EE25 /* LanderViewController_iPad.m */; };
-		560FA1391379BEAB0017EE25 /* LanderViewController_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 560FA1361379BEAA0017EE25 /* LanderViewController_iPad.xib */; };
-		560FA13A1379BEAB0017EE25 /* LanderViewController_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 560FA1361379BEAA0017EE25 /* LanderViewController_iPad.xib */; };
 		5613DDE8143A85F80059077A /* VGDialog.m in Sources */ = {isa = PBXBuildFile; fileRef = 5613DDE7143A85F80059077A /* VGDialog.m */; };
 		561739E8154649DD00380AB4 /* Icon-Small-50.png in Resources */ = {isa = PBXBuildFile; fileRef = 561739E6154649DD00380AB4 /* Icon-Small-50.png */; };
 		561739E9154649DD00380AB4 /* Icon-Small.png in Resources */ = {isa = PBXBuildFile; fileRef = 561739E7154649DD00380AB4 /* Icon-Small.png */; };
@@ -43,6 +40,11 @@
 		562B108A13841BAA00CC5C97 /* VGLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 562B108913841BAA00CC5C97 /* VGLabel.m */; };
 		562B108D13841D5A00CC5C97 /* LanderMessages.plist in Resources */ = {isa = PBXBuildFile; fileRef = 562B108C13841D5A00CC5C97 /* LanderMessages.plist */; };
 		562CB7BB137F3AE6003CB9B5 /* LargeLeftArrow.plist in Resources */ = {isa = PBXBuildFile; fileRef = 562CB7BA137F3AE6003CB9B5 /* LargeLeftArrow.plist */; };
+		562D623E154D9EEF00BD4EDD /* Moonlander_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 562D623D154D9EEF00BD4EDD /* Moonlander_iPad.storyboard */; };
+		562D6247154DAD1900BD4EDD /* MenuViewController_iPad.m in Sources */ = {isa = PBXBuildFile; fileRef = 562D6246154DAD1900BD4EDD /* MenuViewController_iPad.m */; };
+		562D624A154DB22B00BD4EDD /* AboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 562D6249154DB22B00BD4EDD /* AboutViewController.m */; };
+		562D624D154DB24900BD4EDD /* ControlsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 562D624C154DB24900BD4EDD /* ControlsViewController.m */; };
+		562D6250154DC3CE00BD4EDD /* NavigationController_iPad.m in Sources */ = {isa = PBXBuildFile; fileRef = 562D624F154DC3CE00BD4EDD /* NavigationController_iPad.m */; };
 		562F26A81417A22E0069169B /* Man.m in Sources */ = {isa = PBXBuildFile; fileRef = 562F26A71417A22E0069169B /* Man.m */; };
 		564BE59E13800F3400D790D9 /* VGButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 564BE59D13800F3400D790D9 /* VGButton.m */; };
 		564BE5C413801C0F00D790D9 /* VGSlider.m in Sources */ = {isa = PBXBuildFile; fileRef = 564BE5C313801C0F00D790D9 /* VGSlider.m */; };
@@ -109,7 +111,6 @@
 		560FA0DF137991AE0017EE25 /* MoonlanderAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MoonlanderAppDelegate.m; sourceTree = "<group>"; };
 		560FA0E9137991AE0017EE25 /* MoonlanderAppDelegate_iPad.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = MoonlanderAppDelegate_iPad.h; path = iPad/MoonlanderAppDelegate_iPad.h; sourceTree = "<group>"; };
 		560FA0EA137991AE0017EE25 /* MoonlanderAppDelegate_iPad.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = MoonlanderAppDelegate_iPad.m; path = iPad/MoonlanderAppDelegate_iPad.m; sourceTree = "<group>"; };
-		560FA0ED137991AE0017EE25 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = iPad/en.lproj/Moonlander_iPad.xib; sourceTree = "<group>"; };
 		560FA0F4137991AE0017EE25 /* MoonlanderTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MoonlanderTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		560FA0FC137991AE0017EE25 /* MoonlanderTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "MoonlanderTests-Info.plist"; sourceTree = "<group>"; };
 		560FA0FE137991AE0017EE25 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -120,7 +121,6 @@
 		560FA10F137992E40017EE25 /* LanderPhysicsModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LanderPhysicsModel.m; path = "Lander Model/LanderPhysicsModel.m"; sourceTree = "<group>"; };
 		560FA1341379BEAA0017EE25 /* LanderViewController_iPad.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LanderViewController_iPad.h; path = iPad/LanderViewController_iPad.h; sourceTree = "<group>"; };
 		560FA1351379BEAA0017EE25 /* LanderViewController_iPad.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LanderViewController_iPad.m; path = iPad/LanderViewController_iPad.m; sourceTree = "<group>"; };
-		560FA1361379BEAA0017EE25 /* LanderViewController_iPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = LanderViewController_iPad.xib; path = iPad/en.lproj/LanderViewController_iPad.xib; sourceTree = "<group>"; };
 		560FA13E1379C95B0017EE25 /* LanderPhysicsDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LanderPhysicsDataSource.h; path = "Lander Model/LanderPhysicsDataSource.h"; sourceTree = "<group>"; };
 		5613DDE6143A85F80059077A /* VGDialog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VGDialog.h; path = VectorGraphics/VGDialog.h; sourceTree = "<group>"; };
 		5613DDE7143A85F80059077A /* VGDialog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VGDialog.m; path = VectorGraphics/VGDialog.m; sourceTree = "<group>"; };
@@ -143,6 +143,15 @@
 		562B108913841BAA00CC5C97 /* VGLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VGLabel.m; path = VectorGraphics/VGLabel.m; sourceTree = "<group>"; };
 		562B108C13841D5A00CC5C97 /* LanderMessages.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = LanderMessages.plist; path = Resources/LanderMessages.plist; sourceTree = "<group>"; };
 		562CB7BA137F3AE6003CB9B5 /* LargeLeftArrow.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = LargeLeftArrow.plist; path = Resources/LargeLeftArrow.plist; sourceTree = "<group>"; };
+		562D623D154D9EEF00BD4EDD /* Moonlander_iPad.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Moonlander_iPad.storyboard; path = iPad/Moonlander_iPad.storyboard; sourceTree = "<group>"; };
+		562D6245154DAD1900BD4EDD /* MenuViewController_iPad.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MenuViewController_iPad.h; path = iPad/MenuViewController_iPad.h; sourceTree = "<group>"; };
+		562D6246154DAD1900BD4EDD /* MenuViewController_iPad.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MenuViewController_iPad.m; path = iPad/MenuViewController_iPad.m; sourceTree = "<group>"; };
+		562D6248154DB22B00BD4EDD /* AboutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AboutViewController.h; path = iPad/AboutViewController.h; sourceTree = "<group>"; };
+		562D6249154DB22B00BD4EDD /* AboutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AboutViewController.m; path = iPad/AboutViewController.m; sourceTree = "<group>"; };
+		562D624B154DB24900BD4EDD /* ControlsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ControlsViewController.h; path = iPad/ControlsViewController.h; sourceTree = "<group>"; };
+		562D624C154DB24900BD4EDD /* ControlsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ControlsViewController.m; path = iPad/ControlsViewController.m; sourceTree = "<group>"; };
+		562D624E154DC3CD00BD4EDD /* NavigationController_iPad.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NavigationController_iPad.h; path = iPad/NavigationController_iPad.h; sourceTree = "<group>"; };
+		562D624F154DC3CE00BD4EDD /* NavigationController_iPad.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NavigationController_iPad.m; path = iPad/NavigationController_iPad.m; sourceTree = "<group>"; };
 		562F26A61417A22E0069169B /* Man.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Man.h; path = Classes/Man.h; sourceTree = "<group>"; };
 		562F26A71417A22E0069169B /* Man.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Man.m; path = Classes/Man.m; sourceTree = "<group>"; };
 		564BE59C13800F3400D790D9 /* VGButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VGButton.h; path = VectorGraphics/VGButton.h; sourceTree = "<group>"; };
@@ -366,10 +375,17 @@
 			children = (
 				560FA0E9137991AE0017EE25 /* MoonlanderAppDelegate_iPad.h */,
 				560FA0EA137991AE0017EE25 /* MoonlanderAppDelegate_iPad.m */,
-				560FA0EC137991AE0017EE25 /* Moonlander_iPad.xib */,
+				562D623D154D9EEF00BD4EDD /* Moonlander_iPad.storyboard */,
+				562D624E154DC3CD00BD4EDD /* NavigationController_iPad.h */,
+				562D624F154DC3CE00BD4EDD /* NavigationController_iPad.m */,
+				562D6245154DAD1900BD4EDD /* MenuViewController_iPad.h */,
+				562D6246154DAD1900BD4EDD /* MenuViewController_iPad.m */,
+				562D6248154DB22B00BD4EDD /* AboutViewController.h */,
+				562D6249154DB22B00BD4EDD /* AboutViewController.m */,
+				562D624B154DB24900BD4EDD /* ControlsViewController.h */,
+				562D624C154DB24900BD4EDD /* ControlsViewController.m */,
 				560FA1341379BEAA0017EE25 /* LanderViewController_iPad.h */,
 				560FA1351379BEAA0017EE25 /* LanderViewController_iPad.m */,
-				560FA1361379BEAA0017EE25 /* LanderViewController_iPad.xib */,
 			);
 			name = iPad;
 			sourceTree = "<group>";
@@ -788,8 +804,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				560FA0DA137991AE0017EE25 /* InfoPlist.strings in Resources */,
-				560FA0EE137991AE0017EE25 /* Moonlander_iPad.xib in Resources */,
-				560FA1391379BEAB0017EE25 /* LanderViewController_iPad.xib in Resources */,
 				56E80E4C137E4CC3009E7F15 /* Lander.plist in Resources */,
 				562CB7BB137F3AE6003CB9B5 /* LargeLeftArrow.plist in Resources */,
 				5695F1DA137F753B0075CD26 /* LargeRightArrow.plist in Resources */,
@@ -825,6 +839,7 @@
 				567CD48315485B6D00797BD1 /* explosion-med.caf in Resources */,
 				56CB094F1548E6A700973CBE /* DotMatrix.ttf in Resources */,
 				56CB09501548E6A700973CBE /* DotMatrixBold.ttf in Resources */,
+				562D623E154D9EEF00BD4EDD /* Moonlander_iPad.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -834,7 +849,6 @@
 			files = (
 				560FA0FF137991AE0017EE25 /* InfoPlist.strings in Resources */,
 				560FA102137991AE0017EE25 /* MoonlanderTests.h in Resources */,
-				560FA13A1379BEAB0017EE25 /* LanderViewController_iPad.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -882,6 +896,10 @@
 				5613DDE8143A85F80059077A /* VGDialog.m in Sources */,
 				5621703515392F1F0094122B /* Explosion.m in Sources */,
 				5650B9EA153CB76900AEF4F2 /* ExplosionManager.m in Sources */,
+				562D6247154DAD1900BD4EDD /* MenuViewController_iPad.m in Sources */,
+				562D624A154DB22B00BD4EDD /* AboutViewController.m in Sources */,
+				562D624D154DB24900BD4EDD /* ControlsViewController.m in Sources */,
+				562D6250154DC3CE00BD4EDD /* NavigationController_iPad.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -912,14 +930,6 @@
 				560FA0D9137991AE0017EE25 /* en */,
 			);
 			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
-		560FA0EC137991AE0017EE25 /* Moonlander_iPad.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				560FA0ED137991AE0017EE25 /* en */,
-			);
-			name = Moonlander_iPad.xib;
 			sourceTree = "<group>";
 		};
 		560FA0FD137991AE0017EE25 /* InfoPlist.strings */ = {

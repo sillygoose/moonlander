@@ -10,17 +10,15 @@
 
 @implementation MoonlanderAppDelegate_iPad
 
+@synthesize iPadNavagationController=_iPadNavagationController;
+@synthesize menuViewController=_menuViewController;
 @synthesize landerViewController=_landerViewController;
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    [super application:application didFinishLaunchingWithOptions:launchOptions];
-    
-    // Load out view controller from a nib file (for now)
-    self.landerViewController = [[LanderViewController_iPad alloc] initWithNibName:@"LanderViewController_iPad" bundle:nil];
-    self.window.rootViewController = self.landerViewController;
-    return YES;
+    BOOL result = [super application:application didFinishLaunchingWithOptions:launchOptions];
+    return result;
 }
 
 @end

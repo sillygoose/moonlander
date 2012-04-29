@@ -440,12 +440,14 @@ const float OffcomDelay = 2.0f;
 {
     [super viewDidLoad];
     
+    // Hide the navigation bar so we have the entire screen
+    [[self navigationController] setNavigationBarHidden:YES animated:NO];
+    
+    // Setup the transform we need to match the original
+    self.view.transform = CGAffineTransformConcat(self.view.transform, CGAffineTransformMake(1, 0, 0, -1, 0, 0));
+
     // Create the lander simulation model
     self.landerModel = [[LanderPhysicsModel alloc] init];
-    
-    // Create the moon view
-    self.moonView = [[Moon alloc] initWithFrame:self.view.bounds];
-    [self.view addSubview:self.moonView];
     
     // Create the dust view
     self.dustView = [[Dust alloc] init];
@@ -745,16 +747,12 @@ const float OffcomDelay = 2.0f;
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
-    // Return YES for supported orientations
 	return (interfaceOrientation == UIInterfaceOrientationLandscapeLeft || interfaceOrientation == UIInterfaceOrientationLandscapeRight);
 }
 
 - (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation
 {
     [super didRotateFromInterfaceOrientation:fromInterfaceOrientation];
-
-    // Change the vire coordinates to match the original game
-    self.view.transform = CGAffineTransformConcat(self.view.transform, CGAffineTransformMake(-1, 0, 0, 1, 0, 0));
 }
 
 - (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration
@@ -766,6 +764,11 @@ const float OffcomDelay = 2.0f;
 {
     [super viewWillAppear:animated];
     
+    // Create moon view since bounds are updated here (but not in viewDidLoad)
+    // Create the moon view
+    self.moonView = [[Moon alloc] initWithFrame:self.view.bounds];
+    [self.view addSubview:self.moonView];
+
     // Start the timers and other sim stuff
     [self initGame];
 }
@@ -1016,8 +1019,7 @@ const float OffcomDelay = 2.0f;
     }
     else {
         // Return to the main menu
-        // Filled by UI code - for now restart
-        [self performSelector:@selector(startGameDelay) withObject:nil afterDelay:NewGameDelay];
+        [self.navigationController popToRootViewControllerAnimated:YES];
     }
 }
 

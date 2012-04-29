@@ -515,9 +515,4 @@
     return (self.currentView == TV_Detailed);
 }
 
-- (void)drawRect:(CGRect)rect
-{
-    [super drawRect:rect];
-}
-
 @end

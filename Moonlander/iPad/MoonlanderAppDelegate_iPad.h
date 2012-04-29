@@ -9,12 +9,18 @@
 #import <UIKit/UIKit.h>
 #import "MoonlanderAppDelegate.h"
 
+#import "NavigationController_iPad.h"
+#import "MenuViewController_iPad.h"
 #import "LanderViewController_iPad.h"
 
 @interface MoonlanderAppDelegate_iPad : MoonlanderAppDelegate {
-    LanderViewController_iPad *_landerViewController;
+    NavigationController_iPad       *_iPadNavagationController;
+    MenuViewController_iPad         *_menuViewController;
+    LanderViewController_iPad       *_landerViewController;
 }
 
+@property (nonatomic, strong) IBOutlet NavigationController_iPad *iPadNavagationController;
+@property (nonatomic, strong) IBOutlet MenuViewController_iPad *menuViewController;
 @property (nonatomic, strong) IBOutlet LanderViewController_iPad *landerViewController;
 
 @end
