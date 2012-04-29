@@ -6,11 +6,14 @@ will be getting UI elements making it a pain to test game elements.
 Features wish list
 ===================
 - generate 6x8 dot matrix fonts
+- throttle dust/thrust updates or at least phosphor age them
 
 
 Issues to do list
 =================
+- create app UI
 - increase font size and space out controls for easier access
+- missing iTunesArtwork@2x (1024x1024)
 
 
 Completed
