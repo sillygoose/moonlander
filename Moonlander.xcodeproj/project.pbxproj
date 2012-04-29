@@ -155,6 +155,10 @@
 		564EBC5013834A17007D477C /* McDonalds.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = McDonalds.plist; path = Resources/McDonalds.plist; sourceTree = "<group>"; };
 		5650B9E8153CB76800AEF4F2 /* ExplosionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ExplosionManager.h; path = Classes/ExplosionManager.h; sourceTree = "<group>"; };
 		5650B9E9153CB76800AEF4F2 /* ExplosionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ExplosionManager.m; path = Classes/ExplosionManager.m; sourceTree = "<group>"; };
+		5652574D154CBABB0022EF77 /* disasm.doc */ = {isa = PBXFileReference; lastKnownFileType = text; path = disasm.doc; sourceTree = "<group>"; };
+		5652574E154CBABB0022EF77 /* disasm.mac */ = {isa = PBXFileReference; lastKnownFileType = text; path = disasm.mac; sourceTree = "<group>"; };
+		5652575A154CC4A40022EF77 /* gtlem.dis */ = {isa = PBXFileReference; lastKnownFileType = text; path = gtlem.dis; sourceTree = "<group>"; };
+		5652575B154CC4A40022EF77 /* lunar.dis */ = {isa = PBXFileReference; lastKnownFileType = text; path = lunar.dis; sourceTree = "<group>"; };
 		565674781544B8DA00E8628E /* gt40 */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = gt40; sourceTree = "<group>"; };
 		565674791544B8DA00E8628E /* gt40.ini */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = gt40.ini; sourceTree = "<group>"; };
 		5656747D1544B8EB00E8628E /* gt40 */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = gt40; sourceTree = "<group>"; };
@@ -458,6 +462,24 @@
 			path = Lunar;
 			sourceTree = "<group>";
 		};
+		5652574C154CBA8C0022EF77 /* Disassembler */ = {
+			isa = PBXGroup;
+			children = (
+				5652574D154CBABB0022EF77 /* disasm.doc */,
+				5652574E154CBABB0022EF77 /* disasm.mac */,
+			);
+			path = Disassembler;
+			sourceTree = "<group>";
+		};
+		56525764154CC5230022EF77 /* Disassembled */ = {
+			isa = PBXGroup;
+			children = (
+				5652575A154CC4A40022EF77 /* gtlem.dis */,
+				5652575B154CC4A40022EF77 /* lunar.dis */,
+			);
+			path = Disassembled;
+			sourceTree = "<group>";
+		};
 		565674851544BAE700E8628E /* Links */ = {
 			isa = PBXGroup;
 			children = (
@@ -489,6 +511,7 @@
 		565D235F1540E9760074D3AD /* Sources */ = {
 			isa = PBXGroup;
 			children = (
+				56525764154CC5230022EF77 /* Disassembled */,
 				565674871544BBDF00E8628E /* GT40 */,
 				565D23631540E9760074D3AD /* mld.mac */,
 				565D23621540E9760074D3AD /* mlc.mac */,
@@ -498,8 +521,7 @@
 				565D23671540F0230074D3AD /* rocket.bas */,
 				565D23611540E9760074D3AD /* lunar.bas */,
 			);
-			name = Sources;
-			path = Documentation/Sources;
+			path = Sources;
 			sourceTree = "<group>";
 		};
 		567CD473154853D800797BD1 /* Classes */ = {
@@ -683,6 +705,7 @@
 		56ECD9271540703500565615 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
+				5652574C154CBA8C0022EF77 /* Disassembler */,
 				56ECD9281540703500565615 /* get.cmd */,
 				56ECD9291540703500565615 /* make.com */,
 				56ECD92A1540703500565615 /* put.cmd */,
