@@ -795,7 +795,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastUpgradeCheck = 0430;
-				ORGANIZATIONNAME = "Silly Goose Software";
+				ORGANIZATIONNAME = "Paradigm Systems";
 			};
 			buildConfigurationList = 560FA0C5137991AD0017EE25 /* Build configuration list for PBXProject "Moonlander" */;
 			compatibilityVersion = "Xcode 3.2";
