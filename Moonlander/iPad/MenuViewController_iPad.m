@@ -7,6 +7,7 @@
 //
 
 #import "MenuViewController_iPad.h"
+#import "DocumentViewController.h"
 
 @interface MenuViewController_iPad ()
 
@@ -14,13 +15,14 @@
 
 @implementation MenuViewController_iPad
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
+    // If the destination view is the name pass the segue name as the content to display
+    if ([segue.destinationViewController isKindOfClass:[DocumentViewController class]]) {
+        DocumentViewController *dvc = segue.destinationViewController;
+        dvc.documentName = segue.identifier;
     }
-    return self;
 }
 
 - (void)viewDidLoad

@@ -32,8 +32,6 @@
 		561739E9154649DD00380AB4 /* Icon-Small.png in Resources */ = {isa = PBXBuildFile; fileRef = 561739E7154649DD00380AB4 /* Icon-Small.png */; };
 		561739EB15464A5B00380AB4 /* Icon-Small@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 561739EA15464A5B00380AB4 /* Icon-Small@2x.png */; };
 		561739ED15464CB200380AB4 /* iTunesArtwork in Resources */ = {isa = PBXBuildFile; fileRef = 561739EC15464CB200380AB4 /* iTunesArtwork */; };
-		56173A0F154661BB00380AB4 /* Default-Landscape@2x~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 56173A0B154661BB00380AB4 /* Default-Landscape@2x~ipad.png */; };
-		56173A10154661BB00380AB4 /* Default-Landscape~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 56173A0C154661BB00380AB4 /* Default-Landscape~ipad.png */; };
 		56173A11154661BB00380AB4 /* Icon-72.png in Resources */ = {isa = PBXBuildFile; fileRef = 56173A0D154661BB00380AB4 /* Icon-72.png */; };
 		56173A12154661BB00380AB4 /* Icon-72@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 56173A0E154661BB00380AB4 /* Icon-72@2x.png */; };
 		5621703515392F1F0094122B /* Explosion.m in Sources */ = {isa = PBXBuildFile; fileRef = 5621703415392F1F0094122B /* Explosion.m */; };
@@ -41,10 +39,8 @@
 		562B108D13841D5A00CC5C97 /* LanderMessages.plist in Resources */ = {isa = PBXBuildFile; fileRef = 562B108C13841D5A00CC5C97 /* LanderMessages.plist */; };
 		562CB7BB137F3AE6003CB9B5 /* LargeLeftArrow.plist in Resources */ = {isa = PBXBuildFile; fileRef = 562CB7BA137F3AE6003CB9B5 /* LargeLeftArrow.plist */; };
 		562D6247154DAD1900BD4EDD /* MenuViewController_iPad.m in Sources */ = {isa = PBXBuildFile; fileRef = 562D6246154DAD1900BD4EDD /* MenuViewController_iPad.m */; };
-		562D624A154DB22B00BD4EDD /* AboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 562D6249154DB22B00BD4EDD /* AboutViewController.m */; };
 		562D624D154DB24900BD4EDD /* ControlsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 562D624C154DB24900BD4EDD /* ControlsViewController.m */; };
 		562D6250154DC3CE00BD4EDD /* NavigationController_iPad.m in Sources */ = {isa = PBXBuildFile; fileRef = 562D624F154DC3CE00BD4EDD /* NavigationController_iPad.m */; };
-		562D6291154DEDA200BD4EDD /* AboutContent.html in Resources */ = {isa = PBXBuildFile; fileRef = 562D6290154DEDA200BD4EDD /* AboutContent.html */; };
 		562F26A81417A22E0069169B /* Man.m in Sources */ = {isa = PBXBuildFile; fileRef = 562F26A71417A22E0069169B /* Man.m */; };
 		564BE59E13800F3400D790D9 /* VGButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 564BE59D13800F3400D790D9 /* VGButton.m */; };
 		564BE5C413801C0F00D790D9 /* VGSlider.m in Sources */ = {isa = PBXBuildFile; fileRef = 564BE5C313801C0F00D790D9 /* VGSlider.m */; };
@@ -82,7 +78,14 @@
 		56E87D32154477EC00C5C764 /* beep-low.caf in Resources */ = {isa = PBXBuildFile; fileRef = 56E87D2F154477EC00C5C764 /* beep-low.caf */; };
 		56E87D33154477EC00C5C764 /* beep-med.caf in Resources */ = {isa = PBXBuildFile; fileRef = 56E87D30154477EC00C5C764 /* beep-med.caf */; };
 		56EA5BCC154E14DF00AB6DF2 /* Moonlander_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 56EA5BCA154E14DF00AB6DF2 /* Moonlander_iPad.storyboard */; };
+		56EA5BF6154E35D700AB6DF2 /* DocumentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 56EA5BF5154E35D700AB6DF2 /* DocumentViewController.m */; };
 		56ECD94C1540E55E00565615 /* beep.caf in Resources */ = {isa = PBXBuildFile; fileRef = 56ECD94B1540E55E00565615 /* beep.caf */; };
+		56EF5119154E45AE001E7B77 /* History.html in Resources */ = {isa = PBXBuildFile; fileRef = 56EF5118154E45AE001E7B77 /* History.html */; };
+		56EF511C154E4AC0001E7B77 /* FAQ.html in Resources */ = {isa = PBXBuildFile; fileRef = 56EF511B154E4AC0001E7B77 /* FAQ.html */; };
+		56EF5121154E4DBB001E7B77 /* Credits.html in Resources */ = {isa = PBXBuildFile; fileRef = 56EF511D154E4DBB001E7B77 /* Credits.html */; };
+		56EF5122154E4DBB001E7B77 /* FlightControls.html in Resources */ = {isa = PBXBuildFile; fileRef = 56EF511E154E4DBB001E7B77 /* FlightControls.html */; };
+		56EF5123154E4DBB001E7B77 /* Hardware.html in Resources */ = {isa = PBXBuildFile; fileRef = 56EF511F154E4DBB001E7B77 /* Hardware.html */; };
+		56EF5124154E4DBB001E7B77 /* Software.html in Resources */ = {isa = PBXBuildFile; fileRef = 56EF5120154E4DBB001E7B77 /* Software.html */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -146,13 +149,10 @@
 		562CB7BA137F3AE6003CB9B5 /* LargeLeftArrow.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = LargeLeftArrow.plist; sourceTree = "<group>"; };
 		562D6245154DAD1900BD4EDD /* MenuViewController_iPad.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuViewController_iPad.h; sourceTree = "<group>"; };
 		562D6246154DAD1900BD4EDD /* MenuViewController_iPad.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuViewController_iPad.m; sourceTree = "<group>"; };
-		562D6248154DB22B00BD4EDD /* AboutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AboutViewController.h; sourceTree = "<group>"; };
-		562D6249154DB22B00BD4EDD /* AboutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutViewController.m; sourceTree = "<group>"; };
 		562D624B154DB24900BD4EDD /* ControlsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ControlsViewController.h; sourceTree = "<group>"; };
 		562D624C154DB24900BD4EDD /* ControlsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ControlsViewController.m; sourceTree = "<group>"; };
 		562D624E154DC3CD00BD4EDD /* NavigationController_iPad.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NavigationController_iPad.h; sourceTree = "<group>"; };
 		562D624F154DC3CE00BD4EDD /* NavigationController_iPad.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NavigationController_iPad.m; sourceTree = "<group>"; };
-		562D6290154DEDA200BD4EDD /* AboutContent.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = AboutContent.html; sourceTree = "<group>"; };
 		562F26A61417A22E0069169B /* Man.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Man.h; sourceTree = "<group>"; };
 		562F26A71417A22E0069169B /* Man.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Man.m; sourceTree = "<group>"; };
 		564BE59C13800F3400D790D9 /* VGButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VGButton.h; sourceTree = "<group>"; };
@@ -227,6 +227,8 @@
 		56E87D2F154477EC00C5C764 /* beep-low.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "beep-low.caf"; sourceTree = "<group>"; };
 		56E87D30154477EC00C5C764 /* beep-med.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "beep-med.caf"; sourceTree = "<group>"; };
 		56EA5BCB154E14DF00AB6DF2 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/Moonlander_iPad.storyboard; sourceTree = "<group>"; };
+		56EA5BF4154E35D700AB6DF2 /* DocumentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DocumentViewController.h; sourceTree = "<group>"; };
+		56EA5BF5154E35D700AB6DF2 /* DocumentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DocumentViewController.m; sourceTree = "<group>"; };
 		56ECD8F31540703500565615 /* mlc */ = {isa = PBXFileReference; lastKnownFileType = file; path = mlc; sourceTree = "<group>"; };
 		56ECD8F61540703500565615 /* README */ = {isa = PBXFileReference; lastKnownFileType = text; name = README; path = Classic/README; sourceTree = "<group>"; };
 		56ECD8F81540703500565615 /* mld */ = {isa = PBXFileReference; lastKnownFileType = file; path = mld; sourceTree = "<group>"; };
@@ -269,6 +271,12 @@
 		56ECD92C1540703500565615 /* putr.ini */ = {isa = PBXFileReference; lastKnownFileType = text; path = putr.ini; sourceTree = "<group>"; };
 		56ECD92D1540703500565615 /* putr.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = putr.txt; sourceTree = "<group>"; };
 		56ECD94B1540E55E00565615 /* beep.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = beep.caf; sourceTree = "<group>"; };
+		56EF5118154E45AE001E7B77 /* History.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = History.html; sourceTree = "<group>"; };
+		56EF511B154E4AC0001E7B77 /* FAQ.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = FAQ.html; sourceTree = "<group>"; };
+		56EF511D154E4DBB001E7B77 /* Credits.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = Credits.html; sourceTree = "<group>"; };
+		56EF511E154E4DBB001E7B77 /* FlightControls.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = FlightControls.html; sourceTree = "<group>"; };
+		56EF511F154E4DBB001E7B77 /* Hardware.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = Hardware.html; sourceTree = "<group>"; };
+		56EF5120154E4DBB001E7B77 /* Software.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = Software.html; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -381,12 +389,12 @@
 				562D624F154DC3CE00BD4EDD /* NavigationController_iPad.m */,
 				562D6245154DAD1900BD4EDD /* MenuViewController_iPad.h */,
 				562D6246154DAD1900BD4EDD /* MenuViewController_iPad.m */,
-				562D6248154DB22B00BD4EDD /* AboutViewController.h */,
-				562D6249154DB22B00BD4EDD /* AboutViewController.m */,
-				562D624B154DB24900BD4EDD /* ControlsViewController.h */,
-				562D624C154DB24900BD4EDD /* ControlsViewController.m */,
+				56EA5BF4154E35D700AB6DF2 /* DocumentViewController.h */,
+				56EA5BF5154E35D700AB6DF2 /* DocumentViewController.m */,
 				560FA1341379BEAA0017EE25 /* LanderViewController_iPad.h */,
 				560FA1351379BEAA0017EE25 /* LanderViewController_iPad.m */,
+				562D624B154DB24900BD4EDD /* ControlsViewController.h */,
+				562D624C154DB24900BD4EDD /* ControlsViewController.m */,
 			);
 			path = iPad;
 			sourceTree = "<group>";
@@ -468,7 +476,12 @@
 		562D628E154DEC6A00BD4EDD /* html */ = {
 			isa = PBXGroup;
 			children = (
-				562D6290154DEDA200BD4EDD /* AboutContent.html */,
+				56EF511D154E4DBB001E7B77 /* Credits.html */,
+				56EF511E154E4DBB001E7B77 /* FlightControls.html */,
+				56EF511F154E4DBB001E7B77 /* Hardware.html */,
+				56EF5120154E4DBB001E7B77 /* Software.html */,
+				56EF511B154E4AC0001E7B77 /* FAQ.html */,
+				56EF5118154E45AE001E7B77 /* History.html */,
 			);
 			path = html;
 			sourceTree = "<group>";
@@ -844,8 +857,6 @@
 				561739E9154649DD00380AB4 /* Icon-Small.png in Resources */,
 				561739EB15464A5B00380AB4 /* Icon-Small@2x.png in Resources */,
 				561739ED15464CB200380AB4 /* iTunesArtwork in Resources */,
-				56173A0F154661BB00380AB4 /* Default-Landscape@2x~ipad.png in Resources */,
-				56173A10154661BB00380AB4 /* Default-Landscape~ipad.png in Resources */,
 				56173A11154661BB00380AB4 /* Icon-72.png in Resources */,
 				56173A12154661BB00380AB4 /* Icon-72@2x.png in Resources */,
 				1D1512C61546E6ED008C2B80 /* Icon-Small-50@2x.png in Resources */,
@@ -856,8 +867,13 @@
 				567CD48315485B6D00797BD1 /* explosion-med.caf in Resources */,
 				56CB094F1548E6A700973CBE /* DotMatrix.ttf in Resources */,
 				56CB09501548E6A700973CBE /* DotMatrixBold.ttf in Resources */,
-				562D6291154DEDA200BD4EDD /* AboutContent.html in Resources */,
 				56EA5BCC154E14DF00AB6DF2 /* Moonlander_iPad.storyboard in Resources */,
+				56EF5119154E45AE001E7B77 /* History.html in Resources */,
+				56EF511C154E4AC0001E7B77 /* FAQ.html in Resources */,
+				56EF5121154E4DBB001E7B77 /* Credits.html in Resources */,
+				56EF5122154E4DBB001E7B77 /* FlightControls.html in Resources */,
+				56EF5123154E4DBB001E7B77 /* Hardware.html in Resources */,
+				56EF5124154E4DBB001E7B77 /* Software.html in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -915,9 +931,9 @@
 				5621703515392F1F0094122B /* Explosion.m in Sources */,
 				5650B9EA153CB76900AEF4F2 /* ExplosionManager.m in Sources */,
 				562D6247154DAD1900BD4EDD /* MenuViewController_iPad.m in Sources */,
-				562D624A154DB22B00BD4EDD /* AboutViewController.m in Sources */,
 				562D624D154DB24900BD4EDD /* ControlsViewController.m in Sources */,
 				562D6250154DC3CE00BD4EDD /* NavigationController_iPad.m in Sources */,
+				56EA5BF6154E35D700AB6DF2 /* DocumentViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

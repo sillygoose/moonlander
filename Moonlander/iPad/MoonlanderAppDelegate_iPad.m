@@ -13,6 +13,7 @@
 @synthesize iPadNavagationController=_iPadNavagationController;
 @synthesize menuViewController=_menuViewController;
 @synthesize landerViewController=_landerViewController;
+@synthesize documentViewController=_documentViewController;
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions

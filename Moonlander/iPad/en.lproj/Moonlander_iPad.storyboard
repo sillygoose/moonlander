@@ -23,22 +23,19 @@
             </objects>
             <point key="canvasLocation" x="-1962" y="-315"/>
         </scene>
-        <!--About View Controller-->
+        <!--Document View Controller - History of Moonlander-->
         <scene sceneID="jol-Ph-oD0">
             <objects>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LM1-pa-wPd" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <viewController id="wiC-qw-u8d" customClass="AboutViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="History" title="History of Moonlander" id="wiC-qw-u8d" customClass="DocumentViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="jvq-iW-LWg">
                         <rect key="frame" x="0.0" y="20" width="1024" height="748"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <webView contentMode="scaleToFill" id="Ul6-zP-S4g">
-                                <rect key="frame" x="-5" y="0.0" width="1039" height="758"/>
+                                <rect key="frame" x="-7" y="0.0" width="1039" height="758"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <connections>
-                                    <outlet property="delegate" destination="jvq-iW-LWg" id="lEH-xu-JTR"/>
-                                </connections>
                             </webView>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -46,11 +43,11 @@
                     </view>
                     <navigationItem key="navigationItem" id="d7V-1G-sx8"/>
                     <connections>
-                        <outlet property="_aboutContent" destination="Ul6-zP-S4g" id="8m5-u3-hUr"/>
+                        <outlet property="_documentContent" destination="Ul6-zP-S4g" id="Sh9-n7-Uca"/>
                     </connections>
                 </viewController>
             </objects>
-            <point key="canvasLocation" x="555" y="-1233"/>
+            <point key="canvasLocation" x="558" y="-2078"/>
         </scene>
         <!--Lander View Controller i Pad-->
         <scene sceneID="5RS-CZ-sRV">
@@ -66,58 +63,136 @@
                     <navigationItem key="navigationItem" id="Np7-XI-KH2"/>
                 </viewController>
             </objects>
-            <point key="canvasLocation" x="562" y="-315"/>
+            <point key="canvasLocation" x="558" y="-1203"/>
         </scene>
-        <!--Controls View Controller-->
+        <!--Hardware-->
+        <scene sceneID="NSj-t0-vrB">
+            <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="OjY-Rn-uh0" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <viewController storyboardIdentifier="Hardware" title="Hardware" id="AwO-aS-9yc" userLabel="Hardware" customClass="DocumentViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="gu4-kg-5bF">
+                        <rect key="frame" x="0.0" y="20" width="1024" height="748"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <webView contentMode="scaleToFill" id="mKZ-Ty-GnA">
+                                <rect key="frame" x="0.0" y="0.0" width="1024" height="748"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            </webView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="9Uh-La-Wtt"/>
+                    <connections>
+                        <outlet property="_documentContent" destination="mKZ-Ty-GnA" id="ymq-Vz-nBh"/>
+                    </connections>
+                </viewController>
+            </objects>
+            <point key="canvasLocation" x="558" y="1439"/>
+        </scene>
+        <!--Software-->
+        <scene sceneID="hOs-6C-xXp">
+            <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="i5M-sg-pNI" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <viewController storyboardIdentifier="Software" title="Original Moonlander Source Code" id="CUY-h8-yir" userLabel="Software" customClass="DocumentViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="lLK-Vz-dUM">
+                        <rect key="frame" x="0.0" y="20" width="1024" height="748"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <webView contentMode="scaleToFill" id="gG5-ZM-02n">
+                                <rect key="frame" x="0.0" y="0.0" width="1024" height="748"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            </webView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="3NR-wz-ujx"/>
+                    <connections>
+                        <outlet property="_documentContent" destination="gG5-ZM-02n" id="1nm-Es-YC9"/>
+                    </connections>
+                </viewController>
+            </objects>
+            <point key="canvasLocation" x="558" y="2320"/>
+        </scene>
+        <!--Credits-->
+        <scene sceneID="Ol5-7c-SaJ">
+            <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ZRa-hl-yoZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <viewController storyboardIdentifier="Credits" title="Credits" id="p0M-gl-NyC" userLabel="Credits" customClass="DocumentViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Ey9-MU-hVV">
+                        <rect key="frame" x="0.0" y="20" width="1024" height="748"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <webView contentMode="scaleToFill" id="73n-El-CVq">
+                                <rect key="frame" x="0.0" y="0.0" width="1024" height="748"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            </webView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="XM2-a7-6ZN"/>
+                    <connections>
+                        <outlet property="_documentContent" destination="73n-El-CVq" id="Fx9-rq-b5M"/>
+                    </connections>
+                </viewController>
+            </objects>
+            <point key="canvasLocation" x="558" y="3199"/>
+        </scene>
+        <!--FlightControls-->
         <scene sceneID="I0T-7j-gzN">
             <objects>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="R3Q-wE-MKa" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <viewController id="30K-dx-DsS" customClass="ControlsViewController" sceneMemberID="viewController">
+                <viewController title="Flight Controls" id="30K-dx-DsS" userLabel="FlightControls" customClass="ControlsViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="3Pi-qR-QKJ">
                         <rect key="frame" x="0.0" y="20" width="1024" height="748"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Instructions for controlling your lander:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" id="I9g-JW-Gw4">
-                                <rect key="frame" x="81" y="152" width="440" height="67"/>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Instructions for controlling your lander:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" adjustsFontSizeToFit="NO" id="I9g-JW-Gw4">
+                                <rect key="frame" x="49" y="33" width="789" height="67"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="36"/>
                                 <color key="textColor" red="0.0" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Control the thrust by using the throttle slider at the upper right side of the display." lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" minimumFontSize="10" adjustsFontSizeToFit="NO" id="ArV-Qd-ZmN">
-                                <rect key="frame" x="124" y="272" width="768" height="40"/>
+                                <rect key="frame" x="75" y="122" width="900" height="60"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
                                 <color key="textColor" red="0.0" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" lineBreakMode="wordWrap" numberOfLines="5" baselineAdjustment="alignBaselines" minimumFontSize="10" adjustsFontSizeToFit="NO" id="vh0-Gk-KOh">
-                                <rect key="frame" x="124" y="446" width="768" height="63"/>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" lineBreakMode="wordWrap" numberOfLines="3" baselineAdjustment="alignBaselines" minimumFontSize="10" adjustsFontSizeToFit="NO" id="vh0-Gk-KOh">
+                                <rect key="frame" x="75" y="489" width="900" height="110"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <string key="text">The game will remember your sucessful landings on the lunar surface as well as the crashed landers you have left there.  Be careful not to burn any flags with the flame from your descent engine.</string>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
                                 <color key="textColor" red="0.0" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Control the lander roll angle use the large and small control arrows at the middle right of the display." lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" minimumFontSize="10" adjustsFontSizeToFit="NO" id="clP-6p-RQo">
-                                <rect key="frame" x="124" y="314" width="768" height="41"/>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Control the lander roll angle with the large and small control arrows at the middle right of the display." lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" minimumFontSize="10" adjustsFontSizeToFit="NO" id="clP-6p-RQo">
+                                <rect key="frame" x="75" y="204" width="900" height="104"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
                                 <color key="textColor" red="0.0" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="TopLeft" lineBreakMode="wordWrap" numberOfLines="6" baselineAdjustment="alignBaselines" minimumFontSize="10" adjustsFontSizeToFit="NO" id="fmc-y6-0u8">
-                                <rect key="frame" x="124" y="363" width="768" height="75"/>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="TopLeft" lineBreakMode="wordWrap" numberOfLines="4" baselineAdjustment="alignBaselines" minimumFontSize="10" adjustsFontSizeToFit="NO" id="fmc-y6-0u8">
+                                <rect key="frame" x="75" y="324" width="900" height="132"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <string key="text">Your lander instrument panel can only display four instruments at a time.  If you wish to see another instrument, select it from the list on the lower right side of the display (it will begin to blink) then touch control panel where you would like it to be displayed.</string>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
                                 <color key="textColor" red="0.0" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Don't forget to visit the only McDonalds on the moon for a special treat." lineBreakMode="wordWrap" numberOfLines="5" baselineAdjustment="alignBaselines" minimumFontSize="10" adjustsFontSizeToFit="NO" id="ZZW-4C-2xv">
-                                <rect key="frame" x="124" y="517" width="768" height="39"/>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Don't forget to visit the only McDonalds on the moon for a special treat." lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" minimumFontSize="10" adjustsFontSizeToFit="NO" id="ZZW-4C-2xv">
+                                <rect key="frame" x="75" y="637" width="900" height="39"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
                                 <color key="textColor" red="0.0" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -128,23 +203,49 @@
                     <navigationItem key="navigationItem" id="ukE-5q-55j"/>
                 </viewController>
             </objects>
-            <point key="canvasLocation" x="555" y="594"/>
+            <point key="canvasLocation" x="558" y="-315"/>
         </scene>
-        <!--Menu View Controller i Pad-->
+        <!--FAQ-->
+        <scene sceneID="5ld-uG-bXf">
+            <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="bvq-Ng-3LZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <viewController storyboardIdentifier="FAQ" title="Moonlander FAQ" id="1bG-Yx-9C2" userLabel="FAQ" customClass="DocumentViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="F03-jS-Lxx">
+                        <rect key="frame" x="0.0" y="20" width="1024" height="748"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <webView contentMode="scaleToFill" id="bXf-i4-xLT">
+                                <rect key="frame" x="0.0" y="0.0" width="1024" height="748"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            </webView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="QYM-rk-SbJ"/>
+                    <connections>
+                        <outlet property="_documentContent" destination="bXf-i4-xLT" id="WY8-3m-tJe"/>
+                    </connections>
+                </viewController>
+            </objects>
+            <point key="canvasLocation" x="558" y="562"/>
+        </scene>
+        <!--Menu View Controller i Pad - Menu-->
         <scene sceneID="YMf-cD-nJb">
             <objects>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8g8-HB-rrU" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <viewController wantsFullScreenLayout="YES" id="6C4-ba-SyT" customClass="MenuViewController_iPad" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="Menu" title="Menu" wantsFullScreenLayout="YES" id="6C4-ba-SyT" customClass="MenuViewController_iPad" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8uC-Aj-fss">
                         <rect key="frame" x="0.0" y="20" width="1024" height="748"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="0U1-cE-H2X">
-                                <rect key="frame" x="767" y="67" width="175" height="128"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="0U1-cE-H2X" userLabel="History">
+                                <rect key="frame" x="500" y="46" width="400" height="60"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="48"/>
-                                <state key="normal" title="About">
+                                <state key="normal" title="History">
                                     <color key="titleColor" red="0.0" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -152,15 +253,15 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="wiC-qw-u8d" kind="push" id="zhK-Ah-9JB"/>
+                                    <segue destination="wiC-qw-u8d" kind="push" identifier="History" id="rEw-Gq-HuY"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Cne-ZE-E0a">
-                                <rect key="frame" x="767" y="259" width="175" height="128"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Cne-ZE-E0a" userLabel="Play">
+                                <rect key="frame" x="500" y="121" width="400" height="60"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="48"/>
-                                <state key="normal" title="Play">
+                                <state key="normal" title="Play Moonlander ">
                                     <color key="titleColor" red="0.0" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -168,15 +269,15 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="L9k-eU-Udb" kind="push" id="fbc-QC-LUL"/>
+                                    <segue destination="L9k-eU-Udb" kind="push" identifier="Play" id="Nu5-eT-5vu"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="QD4-7c-czr">
-                                <rect key="frame" x="767" y="438" width="222" height="128"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="QD4-7c-czr" userLabel="FlightControls">
+                                <rect key="frame" x="500" y="200" width="400" height="60"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="48"/>
-                                <state key="normal" title="Controls">
+                                <state key="normal" title="Flight Controls">
                                     <color key="titleColor" red="0.0" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -184,7 +285,71 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="30K-dx-DsS" kind="push" id="uDC-p0-6th"/>
+                                    <segue destination="30K-dx-DsS" kind="push" identifier="FlightControls" id="xfl-sc-Tul"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="fAr-Om-uPQ" userLabel="FAQ">
+                                <rect key="frame" x="500" y="275" width="400" height="60"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="48"/>
+                                <state key="normal" title="FAQ">
+                                    <color key="titleColor" red="0.0" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="1bG-Yx-9C2" kind="push" identifier="FAQ" id="5oS-Fm-JKh"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="PU3-yj-FiE" userLabel="Hardware">
+                                <rect key="frame" x="500" y="350" width="400" height="60"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="48"/>
+                                <state key="normal" title="Hardware">
+                                    <color key="titleColor" red="0.0" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="AwO-aS-9yc" kind="push" identifier="Hardware" id="CNg-oh-Glq"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="8gz-98-20S" userLabel="Software">
+                                <rect key="frame" x="500" y="425" width="400" height="60"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="48"/>
+                                <state key="normal" title="Software">
+                                    <color key="titleColor" red="0.0" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="CUY-h8-yir" kind="push" identifier="Software" id="i3K-0Q-nes"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="iZL-7G-cl7" userLabel="Credits">
+                                <rect key="frame" x="500" y="500" width="400" height="60"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="48"/>
+                                <state key="normal" title="Credits">
+                                    <color key="titleColor" red="0.0" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="p0M-gl-NyC" kind="push" identifier="Credits" id="h8M-BI-WsP"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -198,14 +363,14 @@
         </scene>
     </scenes>
     <classes>
-        <class className="AboutViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/AboutViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="_aboutContent" candidateClass="UIWebView"/>
-            </relationships>
-        </class>
         <class className="ControlsViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/ControlsViewController.h"/>
+        </class>
+        <class className="DocumentViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/DocumentViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="_documentContent" candidateClass="UIWebView"/>
+            </relationships>
         </class>
         <class className="LanderViewController_iPad" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/LanderViewController_iPad.h"/>
