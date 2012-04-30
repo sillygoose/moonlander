@@ -308,7 +308,7 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="1bG-Yx-9C2" kind="push" identifier="Frequently Asked Questions" id="5oS-Fm-JKh"/>
+                                    <segue destination="1bG-Yx-9C2" kind="push" identifier="Frequently Asked Questions.html" id="5oS-Fm-JKh"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="PU3-yj-FiE" userLabel="Hardware">
@@ -324,7 +324,7 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="AwO-aS-9yc" kind="push" identifier="Hardware" id="CNg-oh-Glq"/>
+                                    <segue destination="AwO-aS-9yc" kind="push" identifier="Hardware.html" id="CNg-oh-Glq"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="8gz-98-20S" userLabel="Software">
@@ -340,7 +340,7 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="CUY-h8-yir" kind="push" identifier="Software" id="i3K-0Q-nes"/>
+                                    <segue destination="CUY-h8-yir" kind="push" identifier="GTLEM Source Code.html" id="i3K-0Q-nes"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="iZL-7G-cl7" userLabel="Credits">
@@ -356,7 +356,7 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="p0M-gl-NyC" kind="push" identifier="Credits" id="h8M-BI-WsP"/>
+                                    <segue destination="p0M-gl-NyC" kind="push" identifier="Credits.html" id="h8M-BI-WsP"/>
                                 </connections>
                             </button>
                         </subviews>

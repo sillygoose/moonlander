@@ -15,6 +15,7 @@
 @implementation DocumentViewController
 
 @synthesize documentName=_documentName;
+@synthesize documentType=_documentType;
 @synthesize documentContent=_documentContent;
 
 
@@ -23,10 +24,10 @@
     [super viewDidLoad];
     
     // Setup the content for our document view
-	NSString *path = [[NSBundle mainBundle] pathForResource:self.documentName ofType:@"html"];
-	NSFileHandle *readHandle = [NSFileHandle fileHandleForReadingAtPath:path];
-	NSString *htmlString = [[NSString alloc] initWithData:[readHandle readDataToEndOfFile] encoding:NSUTF8StringEncoding];
-	[self.documentContent loadHTMLString:htmlString baseURL:nil];
+    NSString *path = [[NSBundle mainBundle] pathForResource:self.documentName ofType:self.documentType];
+    NSURL *url = [NSURL fileURLWithPath:path];
+    NSURLRequest *request = [NSURLRequest requestWithURL:url];
+    [self.documentContent loadRequest:request];
 }
 
 - (void)viewDidUnload
@@ -41,9 +42,11 @@
     // Allow scrolling/zooming in a document
     self.documentContent.scalesPageToFit = YES;
     
+    // Add the document to the navigation bar
+    self.title = self.documentName;
+    
     // Show the navagation bar in this view so we can get back
     self.navigationController.navigationBar.barStyle = UIBarStyleBlack; 
-    self.title = self.documentName;
     [[self navigationController] setNavigationBarHidden:NO animated:NO];
 }
 

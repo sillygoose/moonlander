@@ -10,10 +10,12 @@
 
 @interface DocumentViewController : UIViewController {
                 NSString            *_documentName; 
+                NSString            *_documentType; 
     IBOutlet    UIWebView           *_documentContent;
 }
 
 @property (nonatomic, strong) NSString *documentName;
+@property (nonatomic, strong) NSString *documentType;
 @property (nonatomic, strong) UIWebView *documentContent;
 
 @end

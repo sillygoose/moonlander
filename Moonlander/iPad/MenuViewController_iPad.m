@@ -22,10 +22,13 @@
 {
     // If the destination view is the name pass the segue name as the content to display
     if ([segue.destinationViewController isKindOfClass:[DocumentViewController class]]) {
+        NSURL *url = [NSURL fileURLWithPath:segue.identifier];
+        NSURL *urlSansExtension = [url URLByDeletingPathExtension];
         DocumentViewController *dvc = segue.destinationViewController;
-        dvc.documentName = segue.identifier;
+        dvc.documentType = [url pathExtension];
+        dvc.documentName = [urlSansExtension relativePath];
     }
-    if ([segue.destinationViewController isKindOfClass:[WebPageViewController class]]) {
+    else if ([segue.destinationViewController isKindOfClass:[WebPageViewController class]]) {
         WebPageViewController *wpvc = segue.destinationViewController;
         wpvc.urlName = segue.identifier;
     }

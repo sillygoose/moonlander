@@ -47,7 +47,7 @@
     
     // Show the navagation bar in this view so we can get back
     self.navigationController.navigationBar.barStyle = UIBarStyleBlack; 
-    //###self.title = self.urlName;
+    //self.title = self.urlName;
     [[self navigationController] setNavigationBarHidden:NO animated:NO];
 }
 
