@@ -50,10 +50,11 @@
 
         // Text label font/background colors
         UIColor *labelText = self.viewColor;
-        UIColor *labelBackground = [UIColor blackColor] ;
+        UIColor *labelBackground = [UIColor clearColor] ;
 
         // Create the text label 
         self.dialogText = [[UILabel alloc] initWithFrame:textRect];
+        self.dialogText.opaque = NO;
         self.dialogText.text = @"New game?";
         self.dialogText.font = fontInfo;
         self.dialogText.textColor = labelText;
@@ -62,6 +63,7 @@
         [self addSubview:self.dialogText];
 
         // Buttons are black text on a green background
+        self.yesButtonView.opaque = YES;
         self.dialogYesButton = [UIButton buttonWithType:UIButtonTypeCustom];
         [self.dialogYesButton setFrame:yesRect];
         [self.dialogYesButton setTitle:@"Yes" forState:UIControlStateNormal];
@@ -74,6 +76,7 @@
         self.dialogYesButton.titleLabel.baselineAdjustment = UIBaselineAdjustmentAlignCenters;
         [self addSubview:self.dialogYesButton];
 
+        self.dialogNoButton.opaque = YES;
         self.dialogNoButton = [UIButton buttonWithType:UIButtonTypeCustom];
         [self.dialogNoButton setFrame:noRect];
         [self.dialogNoButton setTitle:@"No" forState:UIControlStateNormal];
