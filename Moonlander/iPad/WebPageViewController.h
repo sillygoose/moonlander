@@ -8,13 +8,15 @@
 
 #import <UIKit/UIKit.h>
 
-@interface WebPageViewController : UIViewController
+@interface WebPageViewController : UIViewController <UIWebViewDelegate>
 {
-                NSString            *_urlName; 
-    IBOutlet    UIWebView           *_urlContent;
+                NSString                    *_urlName; 
+    IBOutlet    UIWebView                   *_urlContent;
+                UIActivityIndicatorView     *_activetyIndicator;
 }
 
 @property (nonatomic, strong) NSString *urlName;
 @property (nonatomic, strong) UIWebView *urlContent;
+@property (nonatomic, strong) UIActivityIndicatorView *activityIndicator;
 
 @end
