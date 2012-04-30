@@ -1,32 +1,31 @@
 //
-//  DocumentViewController.m
+//  WebPageViewController.m
 //  Moonlander
 //
-//  Created by Rick Naro on 4/29/12.
+//  Created by Rick Naro on 4/30/12.
 //  Copyright (c) 2012 Paradigm Systems. All rights reserved.
 //
 
-#import "DocumentViewController.h"
+#import "WebPageViewController.h"
 
-@interface DocumentViewController ()
+@interface WebPageViewController ()
 
 @end
 
-@implementation DocumentViewController
+@implementation WebPageViewController
 
-@synthesize documentName=_documentName;
-@synthesize documentContent=_documentContent;
+@synthesize urlName=_urlName;
+@synthesize urlContent=_urlContent;
 
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     
-    // Setup the content for our document view
-	NSString *path = [[NSBundle mainBundle] pathForResource:self.documentName ofType:@"html"];
-	NSFileHandle *readHandle = [NSFileHandle fileHandleForReadingAtPath:path];
-	NSString *htmlString = [[NSString alloc] initWithData:[readHandle readDataToEndOfFile] encoding:NSUTF8StringEncoding];
-	[self.documentContent loadHTMLString:htmlString baseURL:nil];
+    // Create a URL object.
+    NSURL *url = [NSURL URLWithString:self.urlName];
+    NSURLRequest *requestObj = [NSURLRequest requestWithURL:url];
+    [self.urlContent loadRequest:requestObj];
 }
 
 - (void)viewDidUnload
@@ -39,11 +38,11 @@
     [super viewWillAppear:animated];
     
     // Allow scrolling/zooming in a document
-    self.documentContent.scalesPageToFit = YES;
+    self.urlContent.scalesPageToFit = YES;
     
     // Show the navagation bar in this view so we can get back
     self.navigationController.navigationBar.barStyle = UIBarStyleBlack; 
-    self.title = self.documentName;
+    //###self.title = self.urlName;
     [[self navigationController] setNavigationBarHidden:NO animated:NO];
 }
 

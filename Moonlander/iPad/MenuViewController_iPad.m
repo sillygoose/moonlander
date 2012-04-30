@@ -3,11 +3,13 @@
 //  Moonlander
 //
 //  Created by Rick Naro on 4/29/12.
-//  Copyright (c) 2012 Silly Goose Software. All rights reserved.
+//  Copyright (c) 2012 Paradigm Systemse. All rights reserved.
 //
 
 #import "MenuViewController_iPad.h"
 #import "DocumentViewController.h"
+#import "WebPageViewController.h"
+
 
 @interface MenuViewController_iPad ()
 
@@ -22,6 +24,10 @@
     if ([segue.destinationViewController isKindOfClass:[DocumentViewController class]]) {
         DocumentViewController *dvc = segue.destinationViewController;
         dvc.documentName = segue.identifier;
+    }
+    if ([segue.destinationViewController isKindOfClass:[WebPageViewController class]]) {
+        WebPageViewController *wpvc = segue.destinationViewController;
+        wpvc.urlName = segue.identifier;
     }
 }
 

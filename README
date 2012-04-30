@@ -11,10 +11,10 @@ Features wish list
 
 Issues to do list
 =================
-- create app UI
 - increase font size and space out controls for easier access
 - missing iTunesArtwork@2x (1024x1024)
-
+- complete content for software/hardware/faq/credits/history/controls
 
 Completed
 =========
+Basic UI design implemented
