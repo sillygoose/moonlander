@@ -86,6 +86,8 @@
 		56EF5122154E4DBB001E7B77 /* FlightControls.html in Resources */ = {isa = PBXBuildFile; fileRef = 56EF511E154E4DBB001E7B77 /* FlightControls.html */; };
 		56EF5123154E4DBB001E7B77 /* Hardware.html in Resources */ = {isa = PBXBuildFile; fileRef = 56EF511F154E4DBB001E7B77 /* Hardware.html */; };
 		56EF5124154E4DBB001E7B77 /* Software.html in Resources */ = {isa = PBXBuildFile; fileRef = 56EF5120154E4DBB001E7B77 /* Software.html */; };
+		56EF512E154E52A4001E7B77 /* Default-Landscape~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 56EF512D154E52A4001E7B77 /* Default-Landscape~ipad.png */; };
+		56EF5131154E52B5001E7B77 /* Default-Landscape@2x~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 56EF5130154E52B5001E7B77 /* Default-Landscape@2x~ipad.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -277,6 +279,8 @@
 		56EF511E154E4DBB001E7B77 /* FlightControls.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = FlightControls.html; sourceTree = "<group>"; };
 		56EF511F154E4DBB001E7B77 /* Hardware.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = Hardware.html; sourceTree = "<group>"; };
 		56EF5120154E4DBB001E7B77 /* Software.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = Software.html; sourceTree = "<group>"; };
+		56EF512D154E52A4001E7B77 /* Default-Landscape~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Landscape~ipad.png"; sourceTree = "<group>"; };
+		56EF5130154E52B5001E7B77 /* Default-Landscape@2x~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Landscape@2x~ipad.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -322,6 +326,8 @@
 		560FA0C0137991AD0017EE25 = {
 			isa = PBXGroup;
 			children = (
+				56EF5130154E52B5001E7B77 /* Default-Landscape@2x~ipad.png */,
+				56EF512D154E52A4001E7B77 /* Default-Landscape~ipad.png */,
 				560D212814115314000F3A22 /* README */,
 				561739D8154624BC00380AB4 /* Credits */,
 				560FA0D5137991AE0017EE25 /* Moonlander */,
@@ -874,6 +880,8 @@
 				56EF5122154E4DBB001E7B77 /* FlightControls.html in Resources */,
 				56EF5123154E4DBB001E7B77 /* Hardware.html in Resources */,
 				56EF5124154E4DBB001E7B77 /* Software.html in Resources */,
+				56EF512E154E52A4001E7B77 /* Default-Landscape~ipad.png in Resources */,
+				56EF5131154E52B5001E7B77 /* Default-Landscape@2x~ipad.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
