@@ -57,6 +57,9 @@
 		567CD48215485B6D00797BD1 /* explosion-low.caf in Resources */ = {isa = PBXBuildFile; fileRef = 567CD47F15485B6D00797BD1 /* explosion-low.caf */; };
 		567CD48315485B6D00797BD1 /* explosion-med.caf in Resources */ = {isa = PBXBuildFile; fileRef = 567CD48015485B6D00797BD1 /* explosion-med.caf */; };
 		56903D29154EDCC300DE54BD /* GTLEM Source Code.html in Resources */ = {isa = PBXBuildFile; fileRef = 56903D28154EDCC300DE54BD /* GTLEM Source Code.html */; };
+		56903D32154EDF7900DE54BD /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 56903D31154EDF7900DE54BD /* Credits.rtf */; };
+		56903D34154EE40100DE54BD /* Frequently Asked Questions.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 56903D33154EE40100DE54BD /* Frequently Asked Questions.rtf */; };
+		56903D38154EE4E900DE54BD /* Hardware.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 56903D37154EE4E900DE54BD /* Hardware.rtf */; };
 		5694D1D813920A8C00A61F22 /* Moon.m in Sources */ = {isa = PBXBuildFile; fileRef = 5694D1D713920A8C00A61F22 /* Moon.m */; };
 		5695F1DA137F753B0075CD26 /* LargeRightArrow.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5695F1D7137F753B0075CD26 /* LargeRightArrow.plist */; };
 		5695F1DB137F753B0075CD26 /* SmallLeftArrow.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5695F1D8137F753B0075CD26 /* SmallLeftArrow.plist */; };
@@ -132,7 +135,6 @@
 		560FA13E1379C95B0017EE25 /* LanderPhysicsDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LanderPhysicsDataSource.h; sourceTree = "<group>"; };
 		5613DDE6143A85F80059077A /* VGDialog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VGDialog.h; sourceTree = "<group>"; };
 		5613DDE7143A85F80059077A /* VGDialog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VGDialog.m; sourceTree = "<group>"; };
-		561739D8154624BC00380AB4 /* Credits */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Credits; sourceTree = "<group>"; };
 		561739DF154631C200380AB4 /* EmptySplashTemplate.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = EmptySplashTemplate.png; sourceTree = "<group>"; };
 		561739E6154649DD00380AB4 /* Icon-Small-50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-Small-50.png"; sourceTree = "<group>"; };
 		561739E7154649DD00380AB4 /* Icon-Small.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-Small.png"; sourceTree = "<group>"; };
@@ -200,6 +202,9 @@
 		567CD48015485B6D00797BD1 /* explosion-med.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "explosion-med.caf"; sourceTree = "<group>"; };
 		56903D28154EDCC300DE54BD /* GTLEM Source Code.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = "GTLEM Source Code.html"; sourceTree = "<group>"; };
 		56903D2A154EDE1900DE54BD /* GTLEM Source Code.mac */ = {isa = PBXFileReference; lastKnownFileType = text; path = "GTLEM Source Code.mac"; sourceTree = "<group>"; };
+		56903D31154EDF7900DE54BD /* Credits.rtf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.rtf; name = Credits.rtf; path = text/Credits.rtf; sourceTree = "<group>"; };
+		56903D33154EE40100DE54BD /* Frequently Asked Questions.rtf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.rtf; name = "Frequently Asked Questions.rtf"; path = "text/Frequently Asked Questions.rtf"; sourceTree = "<group>"; };
+		56903D37154EE4E900DE54BD /* Hardware.rtf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.rtf; name = Hardware.rtf; path = text/Hardware.rtf; sourceTree = "<group>"; };
 		5694D1D613920A8C00A61F22 /* Moon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Moon.h; sourceTree = "<group>"; };
 		5694D1D713920A8C00A61F22 /* Moon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Moon.m; sourceTree = "<group>"; };
 		5695F1D7137F753B0075CD26 /* LargeRightArrow.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = LargeRightArrow.plist; sourceTree = "<group>"; };
@@ -330,7 +335,6 @@
 			isa = PBXGroup;
 			children = (
 				560D212814115314000F3A22 /* README */,
-				561739D8154624BC00380AB4 /* Credits */,
 				560FA0D5137991AE0017EE25 /* Moonlander */,
 				56ECD8ED1540703500565615 /* Moonlander Classic */,
 				560FA0FA137991AE0017EE25 /* MoonlanderTests */,
@@ -444,6 +448,7 @@
 		560FA13B1379C3900017EE25 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				56903D2F154EDF5100DE54BD /* text */,
 				56903D21154ECBCA00DE54BD /* pdf */,
 				562D62A3154DF5C800BD4EDD /* plist */,
 				562D628E154DEC6A00BD4EDD /* html */,
@@ -613,6 +618,16 @@
 			children = (
 			);
 			name = pdf;
+			sourceTree = "<group>";
+		};
+		56903D2F154EDF5100DE54BD /* text */ = {
+			isa = PBXGroup;
+			children = (
+				56903D31154EDF7900DE54BD /* Credits.rtf */,
+				56903D33154EE40100DE54BD /* Frequently Asked Questions.rtf */,
+				56903D37154EE4E900DE54BD /* Hardware.rtf */,
+			);
+			name = text;
 			sourceTree = "<group>";
 		};
 		5695F1A9137F52B50075CD26 /* Vector Graphics */ = {
@@ -895,6 +910,9 @@
 				56EF5137154E59A3001E7B77 /* Default-Landscape~ipad.png in Resources */,
 				56EF5138154E59AC001E7B77 /* Default-Landscape@2x~ipad.png in Resources */,
 				56903D29154EDCC300DE54BD /* GTLEM Source Code.html in Resources */,
+				56903D32154EDF7900DE54BD /* Credits.rtf in Resources */,
+				56903D34154EE40100DE54BD /* Frequently Asked Questions.rtf in Resources */,
+				56903D38154EE4E900DE54BD /* Hardware.rtf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
