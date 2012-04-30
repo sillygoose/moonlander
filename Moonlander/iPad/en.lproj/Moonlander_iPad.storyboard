@@ -166,14 +166,14 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Control the thrust by using the throttle slider at the upper right side of the display." lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" minimumFontSize="10" adjustsFontSizeToFit="NO" id="ArV-Qd-ZmN">
-                                <rect key="frame" x="75" y="122" width="900" height="60"/>
+                                <rect key="frame" x="75" y="98" width="900" height="60"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="24"/>
                                 <color key="textColor" red="0.0" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" lineBreakMode="wordWrap" numberOfLines="3" baselineAdjustment="alignBaselines" minimumFontSize="10" adjustsFontSizeToFit="NO" id="vh0-Gk-KOh">
-                                <rect key="frame" x="75" y="489" width="900" height="110"/>
+                                <rect key="frame" x="75" y="398" width="900" height="110"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <string key="text">The game will remember your sucessful landings on the lunar surface as well as the crashed landers you have left there.  Be careful not to burn any flags with the flame from your descent engine.</string>
                                 <fontDescription key="fontDescription" type="system" pointSize="24"/>
@@ -181,14 +181,14 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Control the lander roll angle with the large and small control arrows at the middle right of the display." lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" minimumFontSize="10" adjustsFontSizeToFit="NO" id="clP-6p-RQo">
-                                <rect key="frame" x="75" y="204" width="900" height="104"/>
+                                <rect key="frame" x="75" y="153" width="900" height="104"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="24"/>
                                 <color key="textColor" red="0.0" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="TopLeft" lineBreakMode="wordWrap" numberOfLines="4" baselineAdjustment="alignBaselines" minimumFontSize="10" adjustsFontSizeToFit="NO" id="fmc-y6-0u8">
-                                <rect key="frame" x="75" y="324" width="900" height="132"/>
+                                <rect key="frame" x="75" y="258" width="900" height="132"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <string key="text">Your lander instrument panel can only display four instruments at a time.  If you wish to see another instrument, select it from the list on the lower right side of the display (it will begin to blink) then touch control panel where you would like it to be displayed.</string>
                                 <fontDescription key="fontDescription" type="system" pointSize="24"/>
@@ -196,7 +196,14 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Don't forget to visit the only McDonalds on the moon for a special treat." lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" minimumFontSize="10" adjustsFontSizeToFit="NO" id="ZZW-4C-2xv">
-                                <rect key="frame" x="75" y="637" width="900" height="39"/>
+                                <rect key="frame" x="75" y="611" width="900" height="39"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                <color key="textColor" red="0.0" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Shake the tablet to bring up a dialog to end the game early." lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" minimumFontSize="10" adjustsFontSizeToFit="NO" id="zKe-Pt-3dr">
+                                <rect key="frame" x="75" y="538" width="900" height="39"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="24"/>
                                 <color key="textColor" red="0.0" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>

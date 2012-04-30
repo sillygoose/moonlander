@@ -18,4 +18,5 @@ Issues to do list
 
 Completed
 =========
-Basic UI design implemented
+- Basic UI design implemented
+- Added shake gesture to quit a game early

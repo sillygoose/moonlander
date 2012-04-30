@@ -94,7 +94,6 @@
     
 	SystemSoundID       _beepSound;
     SystemSoundID       _explosionSound;
-    
 }
 
 @property (nonatomic, strong) LanderPhysicsModel *landerModel;

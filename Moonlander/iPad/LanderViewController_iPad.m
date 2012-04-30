@@ -763,9 +763,11 @@ const float OffcomDelay = 2.0f;
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    
-    // Create moon view since bounds are updated here (but not in viewDidLoad)
-    // Create the moon view
+
+    // Let's register for motion events
+    [self becomeFirstResponder];
+
+    // Create moon view here since the bounds are updated by the orientation transform (but not in viewDidLoad)
     self.moonView = [[Moon alloc] initWithFrame:self.view.bounds];
     [self.view addSubview:self.moonView];
 
@@ -786,6 +788,27 @@ const float OffcomDelay = 2.0f;
 - (void)viewDidDisappear:(BOOL)animated
 {
     [super viewDidDisappear:animated];
+}
+
+- (BOOL)canBecomeFirstResponder
+{
+    return YES;
+}
+
+- (void)motionBegan:(UIEventSubtype)motion withEvent:(UIEvent *)event
+{
+}
+
+- (void)motionEnded:(UIEventSubtype)motion withEvent:(UIEvent *)event
+{
+    if (event.subtype == UIEventSubtypeMotionShake) {
+        // See if the user wished to continue
+        [self performSelector:@selector(continueGame) withObject:nil afterDelay:0];
+    }
+}
+
+- (void)motionCancelled:(UIEventSubtype)motion withEvent:(UIEvent *)event
+{
 }
 
 - (void)viewDidUnload
@@ -1032,6 +1055,54 @@ const float OffcomDelay = 2.0f;
     const CGFloat DialogY = self.view.bounds.size.height / 2 - DialogHeight / 2;
     CGRect dialogRect = CGRectMake(DialogX, DialogY, DialogWidth, DialogHeight);
     self.anotherGameDialog = [[VGDialog alloc] initWithFrame:dialogRect addTarget:self onSelection:@selector(getYesNo)];
+    [self.view addSubview:self.anotherGameDialog];
+}
+
+- (void)getContinueYesNo
+{
+    // Get the user's input
+    BOOL result = [self.anotherGameDialog dialogResult];
+    
+    // Remove the dialog
+    [self.anotherGameDialog removeFromSuperview];
+    self.anotherGameDialog = nil;
+    
+    // Decide what to do
+    if (result == YES) {
+        // Do nothing - keep playing
+    }
+    else {
+        //###
+        // Kill the timers that might be running
+        [self.gameLogicTimer invalidate];
+        self.gameLogicTimer = nil;
+        [self.landerUpdateTimer invalidate];
+        self.landerUpdateTimer = nil;
+        [self.positionUpdateTimer invalidate];
+        self.positionUpdateTimer = nil;
+        [self.instrumentUpdateTimer invalidate];
+        self.instrumentUpdateTimer = nil;
+        
+        // Clean up any controls
+        [self cleanupControls];
+        
+        // Remove any messages that might be left over
+        [self.landerMessages removeAllLanderMessages];
+        // Return to the main menu
+        [self.navigationController popToRootViewControllerAnimated:YES];
+    }
+}
+
+- (void)continueGame
+{
+    // Setup our yes/no dialog for a new game
+    const CGFloat DialogWidth = 125;
+    const CGFloat DialogHeight = 125;
+    const CGFloat DialogX = self.view.bounds.size.width / 2 - DialogWidth / 2;
+    const CGFloat DialogY = self.view.bounds.size.height / 2 - DialogHeight / 2;
+    CGRect dialogRect = CGRectMake(DialogX, DialogY, DialogWidth, DialogHeight);
+    self.anotherGameDialog = [[VGDialog alloc] initWithFrame:dialogRect addTarget:self onSelection:@selector(getContinueYesNo)];
+    self.anotherGameDialog.dialogText.text = @"Continue?";
     [self.view addSubview:self.anotherGameDialog];
 }
 
