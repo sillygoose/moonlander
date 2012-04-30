@@ -43,7 +43,7 @@
 	<key>NSMainNibFile</key>
 	<string></string>
 	<key>UIMainStoryboardFile~ipad</key>
-	<string>Moonlander_iPad</string>
+	<string>Moonlander_iPad1</string>
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
 		<string>UIInterfaceOrientationLandscapeLeft</string>

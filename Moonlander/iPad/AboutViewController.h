@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface AboutViewController : UIViewController {
-    UIWebView                  *_aboutContent;
+    IBOutlet UIWebView                  *_aboutContent;
 }
 
 @property (nonatomic, strong) UIWebView *aboutContent;
