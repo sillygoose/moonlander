@@ -2,8 +2,8 @@
 //  VGSlider.h
 //  Moonlander
 //
-//  Created by Silly Goose on 5/15/11.
-//  Copyright 2011 Silly Goose Software. All rights reserved.
+//  Created by Rick on 5/15/11.
+//  Copyright 2012 Paradigm Systems. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>

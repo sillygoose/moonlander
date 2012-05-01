@@ -2,7 +2,7 @@
 //  LanderPhysicsProtocol.h
 //  Moonlander
 //
-//  Created by Rickon 5/10/11.
+//  Created by Rick on 5/10/11.
 //  Copyright 2011 Paradigm Systems. All rights reserved.
 //
 
