@@ -88,6 +88,8 @@
 @synthesize beepSound=_beepSound;
 @synthesize explosionSound=_explosionSound;
 
+@synthesize playEnhandedGame=_playEnhancedGame;
+
 
 // Simulation constants
 const float GameLogicTimerInterval = 0.025;         // How often the game logic checks run
@@ -1023,14 +1025,20 @@ const float OffcomDelay = 2.0f;
 
 - (void)waitNewGame
 {
-    // Setup our yes/no dialog for a new game
-    const CGFloat DialogWidth = 125;
-    const CGFloat DialogHeight = 125;
-    const CGFloat DialogX = self.view.bounds.size.width / 2 - DialogWidth / 2;
-    const CGFloat DialogY = self.view.bounds.size.height / 2 - DialogHeight / 2;
-    CGRect dialogRect = CGRectMake(DialogX, DialogY, DialogWidth, DialogHeight);
-    self.anotherGameDialog = [[VGDialog alloc] initWithFrame:dialogRect addTarget:self onSelection:@selector(getYesNo)];
-    [self.view addSubview:self.anotherGameDialog];
+    if (self.playEnhandedGame) {
+        // Setup the yes/no dialog for a new game
+        const CGFloat DialogWidth = 125;
+        const CGFloat DialogHeight = 125;
+        const CGFloat DialogX = self.view.bounds.size.width / 2 - DialogWidth / 2;
+        const CGFloat DialogY = self.view.bounds.size.height / 2 - DialogHeight / 2;
+        CGRect dialogRect = CGRectMake(DialogX, DialogY, DialogWidth, DialogHeight);
+        self.anotherGameDialog = [[VGDialog alloc] initWithFrame:dialogRect addTarget:self onSelection:@selector(getYesNo)];
+        [self.view addSubview:self.anotherGameDialog];
+    }
+    else {
+        // Start over again without dialog
+        [self performSelector:@selector(startGameDelay) withObject:nil afterDelay:NewGameDelay];
+    }
 }
 
 - (void)prepareForNewGame
@@ -1619,7 +1627,7 @@ const float OffcomDelay = 2.0f;
             [self INTEL];
             
             // Wait till 150 feet above surface before kicking up dust
-            [self.dustView generateDust];
+            [self.dustView generateDust:self.playEnhandedGame];
 
             // Redraw surface if changed
             [self.moonView useCloseUpView:self.LEFTEDGE];

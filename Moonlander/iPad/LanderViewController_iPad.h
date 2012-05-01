@@ -95,6 +95,7 @@
 	SystemSoundID       _beepSound;
     SystemSoundID       _explosionSound;
     
+    BOOL                _playEnhancedGame;
 }
 
 @property (nonatomic, strong) LanderPhysicsModel *landerModel;
@@ -177,6 +178,8 @@
 
 @property (nonatomic) SystemSoundID beepSound;
 @property (nonatomic) SystemSoundID explosionSound;
+
+@property (nonatomic) BOOL playEnhandedGame;
 
 
 - (IBAction)thrusterChanged:(VGSlider *)sender;
