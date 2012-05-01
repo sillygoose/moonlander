@@ -43,7 +43,7 @@ const float DustViewHeight = 64;
         // Angle must be reasonable as well
         short angleD = self.delegate.ANGLED;
         if (angleD >= -45 && angleD <= 45) {
-            // This code conditioanlly fixes the dust bug
+            // This code conditionally fixes the original dust bug
             if (!enhanced || (self.delegate.THRUST > 0)) {
                 // See if we need to display any dust
                 //(DUSTB1)  Magnitude of dust determines intensity level

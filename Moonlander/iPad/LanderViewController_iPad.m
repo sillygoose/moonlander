@@ -14,9 +14,9 @@
 #if defined(TARGET_IPHONE_SIMULATOR) && defined(DEBUG)
 #define DEBUG_SHORT_DELAYS
 //#define DEBUG_EXTRA_INSTRUMENTS
-#define DEBUG_NO_SPLASH
+//#define DEBUG_NO_SPLASH
 //#define DEBUG_GRAB_EMPTY_SCREEN
-#define DEBUG_ENHANCED
+//#define DEBUG_ENHANCED
 #endif
 
 
