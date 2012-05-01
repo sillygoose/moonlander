@@ -8,6 +8,8 @@
 			<dict>
 				<key>name</key>
 				<string>Small Right Arrow</string>
+				<key>intensity</key>
+				<integer>4</integer>
 				<key>line</key>
 				<dict>
 					<key>width</key>

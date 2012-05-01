@@ -2770,7 +2770,7 @@ DITEM1:
 	.WORD	ITEMF1
 DITEM2:
     .WORD	170240          ;LSA - intensified, normal font
-	.WORD	117560          ;point mode, intensity 7, blink off
+	.WORD	117560          ;9F70H - point mode, intensity 6, LP interupt enabled, blink off
 	.WORD	DX2             ;250
 	.WORD	DY2             ;730
 	.WORD	100000          ;character mode
@@ -2779,7 +2779,7 @@ DITEM2:
 	.WORD	ITEMF2          ;ITEMF2
 DITEM3:
     .WORD	170240
-	.WORD	117560          ;point mode, intensity 7, blink off
+	.WORD	117560          ;9F70H - point mode, intensity 6, LP interupt enabled, blink off
 	.WORD	DX3             ;500
 	.WORD	DY3             ;730
 	.WORD	100000          ;character mode
@@ -2788,7 +2788,7 @@ DITEM3:
 	.WORD	ITEMF3
 DITEM4:
     .WORD	170240
-	.WORD	117560          ;point mode, intensity 7, blink off
+	.WORD	117560          ;9F70H - point mode, intensity 6, LP interupt enabled, blink off
 	.WORD	DX4             ;750
 	.WORD	DY4             ;750
 	.WORD	100000          ;character mode
@@ -2804,7 +2804,7 @@ ITEM1:
 	.WORD	0               ;WHERE ITEM IS AND WHAT TO DIVIDE IT BY.
 ITEME1:
     .WORD	170260          ;LSA intensify light pen, italics   ACTUALLY DISPLAY PORTION HERE.
-	.WORD	117560          ;point mode, intensity 6, blink off
+	.WORD	117560          ;9F70H - point mode, intensity 6, LP interupt enabled, blink off
 	.WORD	ITEMX1          ;900
 	.WORD	ITEMY1          ;247
 	.WORD	100000          ;character mode
@@ -2817,7 +2817,7 @@ ITEM2:
 	.WORD	0               ;no divisor
 ITEME2:
     .WORD	170260          ;LSA intensify light pen, italics
-	.WORD	117560          ;point mode, intensity 6, blink off
+	.WORD	117560          ;9F70H - point mode, intensity 6, LP interupt enabled, blink off
 	.WORD	ITEMX2          ;900
 	.WORD	ITEMY2          ;225
 	.WORD	100000          ;character set mode
@@ -2830,7 +2830,7 @@ ITEM3:
 	.WORD	0
 ITEME3:
     .WORD	170260          ;LSA intensify light pen, italics
-	.WORD	117560          ;point mode, intensity 6, blink off
+	.WORD	117560          ;9F70H - point mode, intensity 6, LP interupt enabled, blink off
 	.WORD	ITEMX3          ;900
 	.WORD	ITEMY3          ;203
 	.WORD	100000          ;character  mode
@@ -2843,7 +2843,7 @@ ITEM4:
 	.WORD	10.             ;divide by 10 for display
 ITEME4:
     .WORD	170260          ;LSA intensify light pen, italics
-	.WORD	117560          ;point mode
+	.WORD	117560          ;9F70H - point mode, intensity 6, LP interupt enabled, blink off
 	.WORD	ITEMX4          ;900
 	.WORD	ITEMY4          ;181
 	.WORD	100000          ;character mode
@@ -2856,7 +2856,7 @@ ITEM5:
 	.WORD	0
 ITEME5:
     .WORD	170260          ;LSA intensify light pen, italics
-	.WORD	117560          ;point mode, intensity 6, blink off
+	.WORD	117560          ;9F70H - point mode, intensity 6, LP interupt enabled, blink off
 	.WORD	ITEMX5          ;900
 	.WORD	ITEMY5          ;159
 	.WORD	100000          ;character mode
@@ -2869,7 +2869,7 @@ ITEM6:
 	.WORD	0
 ITEME6:
     .WORD	170260          ;LSA intensify light pen, italics
-	.WORD	117560          ;point mode, intensity 6, blink off
+	.WORD	117560          ;9F70H - point mode, intensity 6, LP interupt enabled, blink off
 	.WORD	ITEMX6          ;900
 	.WORD	ITEMY6          ;137
 	.WORD	100000          ;character mode
@@ -2882,7 +2882,7 @@ ITEM7:
 	.WORD	0
 ITEME7:
     .WORD	170260          ;LSA intensify light pen, italics
-	.WORD	117560          ;point mode, intensity 6, blink off
+	.WORD	117560          ;9F70H - point mode, intensity 6, LP interupt enabled, blink off
 	.WORD	ITEMX7          ;900
 	.WORD	ITEMY7          ;115
 	.WORD	100000          ;character mode
@@ -2895,7 +2895,7 @@ ITEM8:
 	.WORD	10.
 ITEME8:
     .WORD	170260          ;LSA intensify light pen, italics
-	.WORD	117560          ;point mode, intensity 6, blink off
+	.WORD	117560          ;9F70H - point mode, intensity 6, LP interupt enabled, blink off
 	.WORD	ITEMX8          ;900
 	.WORD	ITEMY8          ;93
 	.WORD	100000          ;character mode
@@ -2908,7 +2908,7 @@ ITEM9:
 	.WORD	10.
 ITEME9:
     .WORD	170260          ;LSA intensify light pen, italics
-	.WORD	117560          ;point mode, intensity 6, blink off
+	.WORD	117560          ;9F70H - point mode, intensity 6, LP interupt enabled, blink off
 	.WORD	ITEMX9          ;900
 	.WORD	ITEMY9          ;71
 	.WORD	100000          ;character mode
@@ -2921,7 +2921,7 @@ ITEM10:
 	.WORD	500.
 ITEMET:
     .WORD	170260          ;LSA intensify light pen, italics
-	.WORD	117560          ;point mode, intensity 6, blink off
+	.WORD	117560          ;9F70H - point mode, intensity 6, LP interupt enabled, blink off
 	.WORD	ITEMXT          ;900
 	.WORD	ITEMYT          ;49
 	.WORD	100000          ;character mode
@@ -2947,7 +2947,7 @@ ITEM12:
 	.WORD	60.
 ITEMES:
     .WORD	170260          ;LSA intensify light pen, italics
-	.WORD	117560          ;point mode, intensity 6, blink off
+	.WORD	117560          ;9F70H - point mode, intensity 6, LP interupt enabled, blink off
 	.WORD	ITEMXS          ;900
 	.WORD	ITEMYS          ;5
 	.WORD	100000          ;character mode
@@ -3342,11 +3342,11 @@ BRGTA:
 ;		THRUST OF THE ROCKET ENGINE.
 ;
 LPBAR:
-    .WORD	116764          ;9DF4H
-	.WORD	170200          ;F080H
+    .WORD	116764          ;9DF4H - point mode, intensity 5, light pen enabled, blink off
+	.WORD	170200          ;F080H - Load status register A, intensify light pen
 	.WORD	BARLX+0         ;BARLX=947.
 	.WORD	BARTY           ;BARTY=700.
-	.WORD	110140          ;9060H
+	.WORD	110140          ;9060H - long vector mode, enable light pen
 	.WORD	INT             ;INT=40000
 	.WORD	BARSIZ+DOWN     ;BARSIZ=250. DOWN=20000
 	.WORD	3               ;
@@ -3373,7 +3373,7 @@ LPBARC:
 LPSW:
     .WORD	DISTOP          ;0 ON FUEL LOW--FALL TO NEXT MSG
 	.WORD	0
-	.WORD	117130          ;point mode, blink
+	.WORD	117130          ;9E58H - point mode, intensity 4, LP interrupt disabled, blink
 	.WORD	350.            ;X = 350
 	.WORD	700.            ;Y = 700
 	.WORD	100000          ;character mode
@@ -5692,11 +5692,11 @@ STACK:
 ;		STARTING UP THE FIRST TIME
 ;
 STARTM:
-    .WORD	116720
-	.WORD	0.
-	.WORD	650.
-	.WORD	170240
-	.WORD	100000
+    .WORD	116720      ;9DD0H - set point mode, intensity 3, light pen disabled, blink off
+    .WORD	0.          ;
+    .WORD	650.        ;
+    .WORD	170240      ;F0A0H - Load Status Register A, no light pen, no italics
+    .WORD	100000      ;8000H - set character mode
 	.ASCII	'            R T - 1 1  L U N A R  L A N D E R'
 	.BYTE	15,12
 	.ASCII	'              -----------------------------'

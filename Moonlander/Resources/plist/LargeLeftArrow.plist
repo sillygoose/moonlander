@@ -6,6 +6,8 @@
 	<array>
 		<array>
 			<dict>
+				<key>intensity</key>
+				<integer>4</integer>
 				<key>name</key>
 				<string>Large Left Arrow</string>
 				<key>line</key>

@@ -18,7 +18,12 @@
 {
     self = [super initWithFrame:frameRect];
     if (self) {
+        // Default for instruments is intensity 6 and hidden
+        self.titleLabel.intensity = 6;
+        self.hidden = YES;
+#ifdef DEBUG
         self.titleLabel.vectorName = @"instrument";
+#endif
     }
     return self;
 }

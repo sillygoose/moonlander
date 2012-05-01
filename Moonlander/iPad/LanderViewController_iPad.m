@@ -13,10 +13,11 @@
 // Add any custom debugging options
 #if defined(TARGET_IPHONE_SIMULATOR) && defined(DEBUG)
 #define DEBUG_SHORT_DELAYS
+#define DEBUG_NO_SPLASH
 //#define DEBUG_EXTRA_INSTRUMENTS
-//#define DEBUG_NO_SPLASH
 //#define DEBUG_GRAB_EMPTY_SCREEN
 //#define DEBUG_ENHANCED
+//#define DEBUG_MESSAGES
 #endif
 
 
@@ -151,7 +152,7 @@ const float OffcomDelay = 2.0f;
 #endif
 }
 
-- (CGFloat)gameFont
+- (CGFloat)gameFontSize
 {
     return (self.enhancedGame) ? 15 : 12;
 }
@@ -411,6 +412,10 @@ const float OffcomDelay = 2.0f;
 {
     // Splash screen
 #ifdef DEBUG_NO_SPLASH
+#ifdef DEBUG_MESSAGES
+    // Put each message on the screen to allow checking
+    [self.landerMessages test];
+#endif
     [self performSelector:@selector(initGame2) withObject:nil afterDelay:0];
 #else
     self.landerMessages.hidden = NO;
@@ -474,13 +479,14 @@ const float OffcomDelay = 2.0f;
     
     // Create the message manager
     self.landerMessages = [[LanderMessages alloc] init];
+    self.landerMessages.delegate = self;
     [self.view addSubview:self.landerMessages];
     
     // Create the roll control arrows
     const float RollButtonRepeatInterval = 0.20;
     const float SmallRollArrowWidth = 35;
     const float SmallRollArrowHeight = 40;
-    const CGFloat SmallRollYPos = (self.enhancedGame) ? 425 : 355;
+    const CGFloat SmallRollYPos = (self.enhancedGame) ? 400 : 355;
     NSString *slaPath = [[NSBundle mainBundle] pathForResource:@"SmallLeftArrow" ofType:@"plist"];
     self.smallLeftArrow = [[VGButton alloc] initWithFrame:CGRectMake(910, SmallRollYPos, SmallRollArrowWidth, SmallRollArrowHeight)  withPaths:slaPath andRepeat:RollButtonRepeatInterval];
 	[self.smallLeftArrow addTarget:self 
@@ -503,7 +509,7 @@ const float OffcomDelay = 2.0f;
     
     const float LargeRollArrowWidth = 50;
     const float LargeRollArrowHeight = 40;
-    const CGFloat LargeRollYPos = (self.enhancedGame) ? 360 : 310;
+    const CGFloat LargeRollYPos = (self.enhancedGame) ? 350: 310;
     NSString *llaPath = [[NSBundle mainBundle] pathForResource:@"LargeLeftArrow" ofType:@"plist"];
     self.largeLeftArrow = [[VGButton alloc] initWithFrame:CGRectMake(895, LargeRollYPos, LargeRollArrowWidth, LargeRollArrowHeight) withPaths:llaPath andRepeat:RollButtonRepeatInterval];
 	[self.largeLeftArrow addTarget:self 
@@ -526,15 +532,15 @@ const float OffcomDelay = 2.0f;
     
     // Create the thruster control
     const short ThrusterSliderWidth = 200;
-    const short ThrusterSliderHeight = 252;
+    const short ThrusterSliderHeight = (self.enhancedGame) ? 232 : 252;
     const short ThrusterXPos = 816;
-    const short ThrusterYPos = (self.enhancedGame) ? 500 : 450;
+    const short ThrusterYPos = (self.enhancedGame) ? 470 : 450;
     self.thrusterSlider = [[VGSlider alloc] initWithFrame:CGRectMake(ThrusterXPos, ThrusterYPos, ThrusterSliderWidth, ThrusterSliderHeight)];
 	[self.thrusterSlider addTarget:self 
                             action:@selector(thrusterChanged:) 
                   forControlEvents:UIControlEventValueChanged];
     self.thrusterSlider.hidden = YES;
-    self.thrusterSlider.thrusterValue.fontSize = self.gameFont;
+    self.thrusterSlider.thrusterValue.fontSize = self.gameFontSize;
     [self.view addSubview:self.thrusterSlider];
     
     // Create the telemetry items
@@ -552,8 +558,7 @@ const float OffcomDelay = 2.0f;
 	[self.heightData addTarget:self 
                            action:@selector(telemetrySelected:) 
                  forControlEvents:UIControlEventTouchUpInside];
-    self.heightData.hidden = YES;
-    self.heightData.titleLabel.fontSize = self.gameFont;
+    self.heightData.titleLabel.fontSize = self.gameFontSize;
     self.heightData.titleLabel.vectorName = @"heightData";
     [self.view addSubview:self.heightData];
     
@@ -564,8 +569,7 @@ const float OffcomDelay = 2.0f;
 	[self.altitudeData addTarget:self 
                            action:@selector(telemetrySelected:) 
                  forControlEvents:UIControlEventTouchUpInside];
-    self.altitudeData.hidden = YES;
-    self.altitudeData.titleLabel.fontSize = self.gameFont;
+    self.altitudeData.titleLabel.fontSize = self.gameFontSize;
     self.altitudeData.titleLabel.vectorName = @"altitudeData";
     [self.view addSubview:self.altitudeData];
     
@@ -576,8 +580,7 @@ const float OffcomDelay = 2.0f;
 	[self.distanceData addTarget:self 
                            action:@selector(telemetrySelected:) 
                  forControlEvents:UIControlEventTouchUpInside];
-    self.distanceData.hidden = YES;
-    self.distanceData.titleLabel.fontSize = self.gameFont;
+    self.distanceData.titleLabel.fontSize = self.gameFontSize;
     self.distanceData.titleLabel.vectorName = @"distanceData";
     [self.view addSubview:self.distanceData];
     
@@ -589,8 +592,7 @@ const float OffcomDelay = 2.0f;
 	[self.fuelLeftData addTarget:self 
                          action:@selector(telemetrySelected:) 
                forControlEvents:UIControlEventTouchUpInside];
-    self.fuelLeftData.hidden = YES;
-    self.fuelLeftData.titleLabel.fontSize = self.gameFont;
+    self.fuelLeftData.titleLabel.fontSize = self.gameFontSize;
     self.fuelLeftData.titleLabel.vectorName = @"fuelLeftData";
     [self.view addSubview:self.fuelLeftData];
     
@@ -601,8 +603,7 @@ const float OffcomDelay = 2.0f;
 	[self.weightData addTarget:self 
                                    action:@selector(telemetrySelected:) 
                          forControlEvents:UIControlEventTouchUpInside];
-    self.weightData.hidden = YES;
-    self.weightData.titleLabel.fontSize = self.gameFont;
+    self.weightData.titleLabel.fontSize = self.gameFontSize;
     self.weightData.titleLabel.vectorName = @"weightData";
     [self.view addSubview:self.weightData];
 
@@ -613,8 +614,7 @@ const float OffcomDelay = 2.0f;
 	[self.thrustData addTarget:self 
                         action:@selector(telemetrySelected:) 
               forControlEvents:UIControlEventTouchUpInside];
-    self.thrustData.hidden = YES;
-    self.thrustData.titleLabel.fontSize = self.gameFont;
+    self.thrustData.titleLabel.fontSize = self.gameFontSize;
     self.thrustData.titleLabel.vectorName = @"thrustData";
     [self.view addSubview:self.thrustData];
     
@@ -625,8 +625,7 @@ const float OffcomDelay = 2.0f;
 	[self.thrustAngleData addTarget:self 
                         action:@selector(telemetrySelected:) 
               forControlEvents:UIControlEventTouchUpInside];
-    self.thrustAngleData.hidden = YES;
-    self.thrustAngleData.titleLabel.fontSize = self.gameFont;
+    self.thrustAngleData.titleLabel.fontSize = self.gameFontSize;
     self.thrustAngleData.titleLabel.vectorName = @"thrustAngleData";
     [self.view addSubview:self.thrustAngleData];
     
@@ -637,8 +636,7 @@ const float OffcomDelay = 2.0f;
 	[self.verticalVelocityData addTarget:self 
                         action:@selector(telemetrySelected:) 
               forControlEvents:UIControlEventTouchUpInside];
-    self.verticalVelocityData.hidden = YES;
-    self.verticalVelocityData.titleLabel.fontSize = self.gameFont;
+    self.verticalVelocityData.titleLabel.fontSize = self.gameFontSize;
     self.verticalVelocityData.titleLabel.vectorName = @"verticalVelocityData";
     [self.view addSubview:self.verticalVelocityData];
     
@@ -649,8 +647,7 @@ const float OffcomDelay = 2.0f;
 	[self.horizontalVelocityData addTarget:self 
                         action:@selector(telemetrySelected:) 
               forControlEvents:UIControlEventTouchUpInside];
-    self.horizontalVelocityData.hidden = YES;
-    self.horizontalVelocityData.titleLabel.fontSize = self.gameFont;
+    self.horizontalVelocityData.titleLabel.fontSize = self.gameFontSize;
     self.horizontalVelocityData.titleLabel.vectorName = @"horizontalVelocityData";
     [self.view addSubview:self.horizontalVelocityData];
     
@@ -661,8 +658,7 @@ const float OffcomDelay = 2.0f;
 	[self.verticalAccelerationData addTarget:self 
                         action:@selector(telemetrySelected:) 
               forControlEvents:UIControlEventTouchUpInside];
-    self.verticalAccelerationData.hidden = YES;
-    self.verticalAccelerationData.titleLabel.fontSize = self.gameFont;
+    self.verticalAccelerationData.titleLabel.fontSize = self.gameFontSize;
     self.verticalAccelerationData.titleLabel.vectorName = @"verticalAccelerationData";
     [self.view addSubview:self.verticalAccelerationData];
     
@@ -673,8 +669,7 @@ const float OffcomDelay = 2.0f;
 	[self.horizontalAccelerationData addTarget:self 
                         action:@selector(telemetrySelected:) 
               forControlEvents:UIControlEventTouchUpInside];
-    self.horizontalAccelerationData.hidden = YES;
-    self.horizontalAccelerationData.titleLabel.fontSize = self.gameFont;
+    self.horizontalAccelerationData.titleLabel.fontSize = self.gameFontSize;
     self.horizontalAccelerationData.titleLabel.vectorName = @"horizontalAccelerationData";
     [self.view addSubview:self.horizontalAccelerationData];
     
@@ -685,8 +680,7 @@ const float OffcomDelay = 2.0f;
 	[self.secondsData addTarget:self 
                         action:@selector(telemetrySelected:) 
               forControlEvents:UIControlEventTouchUpInside];
-    self.secondsData.hidden = YES;
-    self.secondsData.titleLabel.fontSize = self.gameFont;
+    self.secondsData.titleLabel.fontSize = self.gameFontSize;
     self.secondsData.titleLabel.vectorName = @"secondsData";
     [self.view addSubview:self.secondsData];
  
@@ -694,14 +688,13 @@ const float OffcomDelay = 2.0f;
     const float InstrumentSizeWidth = 200;
     const float InstrumentSizeHeight = 24;
     const float InstrumentYCoordinate = 720;
-    const float InstrumentYCoordinate2 = InstrumentYCoordinate + InstrumentSizeHeight;
+    const float InstrumentYCoordinate2 = InstrumentYCoordinate - InstrumentSizeHeight;
     self.instrument1 = [[Instrument alloc] initWithFrame:CGRectMake(0, InstrumentYCoordinate, InstrumentSizeWidth, InstrumentSizeHeight)];
     self.instrument1.instrument = self.heightData;
 	[self.instrument1 addTarget:self 
                          action:@selector(instrumentSelected:) 
                forControlEvents:UIControlEventTouchUpInside];
-    self.instrument1.hidden = YES;
-    self.instrument1.titleLabel.fontSize = self.gameFont;
+    self.instrument1.titleLabel.fontSize = self.gameFontSize;
     self.instrument1.titleLabel.vectorName = @"instrument1";
     [self.view addSubview:self.instrument1];
     
@@ -710,8 +703,7 @@ const float OffcomDelay = 2.0f;
 	[self.instrument2 addTarget:self 
                          action:@selector(instrumentSelected:) 
                forControlEvents:UIControlEventTouchUpInside];
-    self.instrument2.hidden = YES;
-    self.instrument2.titleLabel.fontSize = self.gameFont;
+    self.instrument2.titleLabel.fontSize = self.gameFontSize;
     self.instrument2.titleLabel.vectorName = @"instrument2";
     [self.view addSubview:self.instrument2];
     
@@ -720,8 +712,7 @@ const float OffcomDelay = 2.0f;
 	[self.instrument3 addTarget:self 
                          action:@selector(instrumentSelected:) 
                forControlEvents:UIControlEventTouchUpInside];
-    self.instrument3.hidden = YES;
-    self.instrument3.titleLabel.fontSize = self.gameFont;
+    self.instrument3.titleLabel.fontSize = self.gameFontSize;
     self.instrument3.titleLabel.vectorName = @"instrument3";
     [self.view addSubview:self.instrument3];
     
@@ -730,8 +721,7 @@ const float OffcomDelay = 2.0f;
 	[self.instrument4 addTarget:self 
                          action:@selector(instrumentSelected:) 
                forControlEvents:UIControlEventTouchUpInside];
-    self.instrument4.hidden = YES;
-    self.instrument4.titleLabel.fontSize = self.gameFont;
+    self.instrument4.titleLabel.fontSize = self.gameFontSize;
     self.instrument4.titleLabel.vectorName = @"instrument4";
     [self.view addSubview:self.instrument4];
 
@@ -740,8 +730,7 @@ const float OffcomDelay = 2.0f;
 	[self.instrument5 addTarget:self 
                          action:@selector(instrumentSelected:) 
                forControlEvents:UIControlEventTouchUpInside];
-    self.instrument5.hidden = YES;
-    self.instrument5.titleLabel.fontSize = self.gameFont;
+    self.instrument5.titleLabel.fontSize = self.gameFontSize;
     self.instrument5.titleLabel.vectorName = @"instrument5";
     [self.view addSubview:self.instrument5];
     
@@ -750,8 +739,7 @@ const float OffcomDelay = 2.0f;
 	[self.instrument6 addTarget:self 
                          action:@selector(instrumentSelected:) 
                forControlEvents:UIControlEventTouchUpInside];
-    self.instrument6.hidden = YES;
-    self.instrument6.titleLabel.fontSize = self.gameFont;
+    self.instrument6.titleLabel.fontSize = self.gameFontSize;
     self.instrument6.titleLabel.vectorName = @"instrument6";
     [self.view addSubview:self.instrument6];
     
@@ -760,8 +748,7 @@ const float OffcomDelay = 2.0f;
 	[self.instrument7 addTarget:self 
                          action:@selector(instrumentSelected:) 
                forControlEvents:UIControlEventTouchUpInside];
-    self.instrument7.hidden = YES;
-    self.instrument7.titleLabel.fontSize = self.gameFont;
+    self.instrument7.titleLabel.fontSize = self.gameFontSize;
     self.instrument7.titleLabel.vectorName = @"instrument7";
     [self.view addSubview:self.instrument7];
     
@@ -770,8 +757,7 @@ const float OffcomDelay = 2.0f;
 	[self.instrument8 addTarget:self 
                          action:@selector(instrumentSelected:) 
                forControlEvents:UIControlEventTouchUpInside];
-    self.instrument8.titleLabel.fontSize = self.gameFont;
-    self.instrument8.hidden = YES;
+    self.instrument8.titleLabel.fontSize = self.gameFontSize;
     self.instrument8.titleLabel.vectorName = @"instrument8";
     [self.view addSubview:self.instrument8];
     

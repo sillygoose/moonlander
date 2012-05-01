@@ -133,7 +133,7 @@
 @property (nonatomic, readonly) short FUEL;
 
 @property (nonatomic, readonly) BOOL enhancedGame;
-@property (nonatomic, readonly) CGFloat gameFont;
+@property (nonatomic, readonly) CGFloat gameFontSize;
 
 @property (nonatomic, strong) Moon *moonView;
 @property (nonatomic, strong) Lander *landerView;

@@ -25,5 +25,6 @@
 - (void)explosion;
 
 - (BOOL)enhancedGame;
+- (CGFloat)gameFontSize;
 
 @end

@@ -23,7 +23,12 @@
 {
     self = [super initWithFrame:frameRect];
     if (self) {
+        // Defaults for telemetry
+        self.titleLabel.intensity = 6;
+        self.hidden = YES;
+#ifdef DEBUG
         self.titleLabel.vectorName = @"telemetry";
+#endif
     }
     return self;
 }

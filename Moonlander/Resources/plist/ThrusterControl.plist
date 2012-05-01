@@ -8,6 +8,8 @@
 	<array>
 		<array>
 			<dict>
+				<key>intensity</key>
+				<integer>5</integer>
 				<key>name</key>
 				<string>Thruster Control</string>
 				<key>line</key>

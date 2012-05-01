@@ -22,13 +22,15 @@
 					<key>height</key>
 					<integer>150</integer>
 					<key>width</key>
-					<integer>400</integer>
+					<integer>600</integer>
 				</dict>
 			</dict>
 			<key>text</key>
 			<array>
 				<array>
 					<dict>
+						<key>intensity</key>
+						<integer>3</integer>
 						<key>text</key>
 						<string>            R T - 1 1  L U N A R  L A N D E R</string>
 					</dict>
@@ -40,7 +42,7 @@
 					</dict>
 					<dict>
 						<key>newline</key>
-						<integer>2</integer>
+						<integer>3</integer>
 						<key>text</key>
 						<string>    ALL INTERNAL NAVIGATIONAL SYSTEMS HAVE DIED ON YOU</string>
 					</dict>
@@ -81,13 +83,15 @@
 					<key>height</key>
 					<integer>50</integer>
 					<key>width</key>
-					<integer>350</integer>
+					<integer>450</integer>
 				</dict>
 			</dict>
 			<key>text</key>
 			<array>
 				<array>
 					<dict>
+						<key>intensity</key>
+						<integer>6</integer>
 						<key>text</key>
 						<string>BUT THE TERRAIN IS TOO ROUGH, AND YOU TIPPED OVER</string>
 					</dict>
@@ -105,12 +109,16 @@
 						<string>SORRY, BUT THERE WERE </string>
 					</dict>
 					<dict>
+						<key>intensity</key>
+						<integer>7</integer>
 						<key>blink</key>
 						<true/>
 						<key>text</key>
 						<string>NO</string>
 					</dict>
 					<dict>
+						<key>intensity</key>
+						<integer>6</integer>
 						<key>text</key>
 						<string> SURVIVORS</string>
 					</dict>
@@ -133,13 +141,15 @@
 					<key>height</key>
 					<integer>30</integer>
 					<key>width</key>
-					<integer>450</integer>
+					<integer>600</integer>
 				</dict>
 			</dict>
 			<key>text</key>
 			<array>
 				<array>
 					<dict>
+						<key>intensity</key>
+						<integer>6</integer>
 						<key>text</key>
 						<string>THE LANDING WAS TOO FAST AND DAMAGE WAS DONE TO THE SHIP</string>
 					</dict>
@@ -162,13 +172,15 @@
 					<key>height</key>
 					<integer>30</integer>
 					<key>width</key>
-					<integer>450</integer>
+					<integer>600</integer>
 				</dict>
 			</dict>
 			<key>text</key>
 			<array>
 				<array>
 					<dict>
+						<key>intensity</key>
+						<integer>6</integer>
 						<key>blink</key>
 						<true/>
 						<key>text</key>
@@ -193,13 +205,15 @@
 					<key>height</key>
 					<integer>30</integer>
 					<key>width</key>
-					<integer>300</integer>
+					<integer>400</integer>
 				</dict>
 			</dict>
 			<key>text</key>
 			<array>
 				<array>
 					<dict>
+						<key>intensity</key>
+						<integer>6</integer>
 						<key>text</key>
 						<string>BETTER START SLOWING IT UP PRETTY SOON</string>
 					</dict>
@@ -222,13 +236,15 @@
 					<key>height</key>
 					<integer>50</integer>
 					<key>width</key>
-					<integer>500</integer>
+					<integer>600</integer>
 				</dict>
 			</dict>
 			<key>text</key>
 			<array>
 				<array>
 					<dict>
+						<key>intensity</key>
+						<integer>6</integer>
 						<key>text</key>
 						<string>BUT THE HORIZONTAL VELOCITY WAS TOO GREAT, AND YOU CRASHED ANYWAY</string>
 					</dict>
@@ -246,12 +262,16 @@
 						<string>SORRY, BUT THERE WERE </string>
 					</dict>
 					<dict>
+						<key>intensity</key>
+						<integer>7</integer>
 						<key>blink</key>
 						<true/>
 						<key>text</key>
 						<string>NO</string>
 					</dict>
 					<dict>
+						<key>intensity</key>
+						<integer>6</integer>
 						<key>text</key>
 						<string> SURVIVORS</string>
 					</dict>
@@ -274,13 +294,15 @@
 					<key>height</key>
 					<integer>15</integer>
 					<key>width</key>
-					<integer>60</integer>
+					<integer>100</integer>
 				</dict>
 			</dict>
 			<key>text</key>
 			<array>
 				<array>
 					<dict>
+						<key>intensity</key>
+						<integer>4</integer>
 						<key>blink</key>
 						<true/>
 						<key>text</key>
@@ -305,13 +327,15 @@
 					<key>height</key>
 					<integer>30</integer>
 					<key>width</key>
-					<integer>250</integer>
+					<integer>300</integer>
 				</dict>
 			</dict>
 			<key>text</key>
 			<array>
 				<array>
 					<dict>
+						<key>intensity</key>
+						<integer>6</integer>
 						<key>text</key>
 						<string>CONGRATULATIONS ON A GOOD LANDING</string>
 					</dict>
@@ -334,13 +358,15 @@
 					<key>height</key>
 					<integer>30</integer>
 					<key>width</key>
-					<integer>200</integer>
+					<integer>300</integer>
 				</dict>
 			</dict>
 			<key>text</key>
 			<array>
 				<array>
 					<dict>
+						<key>intensity</key>
+						<integer>6</integer>
 						<key>text</key>
 						<string>FANTASTIC, A PERFECT LANDING</string>
 					</dict>
@@ -361,15 +387,17 @@
 				<key>size</key>
 				<dict>
 					<key>height</key>
-					<integer>50</integer>
+					<integer>60</integer>
 					<key>width</key>
-					<integer>450</integer>
+					<integer>600</integer>
 				</dict>
 			</dict>
 			<key>text</key>
 			<array>
 				<array>
 					<dict>
+						<key>intensity</key>
+						<integer>6</integer>
 						<key>text</key>
 						<string>NICE WORK. YOU JUST CRASHED INTO A PREVIOUSLY CRASHED SHIP</string>
 					</dict>
@@ -387,12 +415,16 @@
 						<string>SORRY, BUT THERE WERE </string>
 					</dict>
 					<dict>
+						<key>intensity</key>
+						<integer>7</integer>
 						<key>blink</key>
 						<true/>
 						<key>text</key>
 						<string>NO</string>
 					</dict>
 					<dict>
+						<key>intensity</key>
+						<integer>6</integer>
 						<key>text</key>
 						<string> SURVIVORS</string>
 					</dict>
@@ -413,15 +445,17 @@
 				<key>size</key>
 				<dict>
 					<key>height</key>
-					<integer>50</integer>
+					<integer>60</integer>
 					<key>width</key>
-					<integer>350</integer>
+					<integer>500</integer>
 				</dict>
 			</dict>
 			<key>text</key>
 			<array>
 				<array>
 					<dict>
+						<key>intensity</key>
+						<integer>6</integer>
 						<key>text</key>
 						<string>YOU JUST CRASHED ON TOP OF AN OLD LUNAR MODULE</string>
 					</dict>
@@ -439,12 +473,16 @@
 						<string>SORRY, BUT THERE WERE </string>
 					</dict>
 					<dict>
+						<key>intensity</key>
+						<integer>7</integer>
 						<key>blink</key>
 						<true/>
 						<key>text</key>
 						<string>NO</string>
 					</dict>
 					<dict>
+						<key>intensity</key>
+						<integer>6</integer>
 						<key>text</key>
 						<string> SURVIVORS</string>
 					</dict>
@@ -465,15 +503,17 @@
 				<key>size</key>
 				<dict>
 					<key>height</key>
-					<integer>50</integer>
+					<integer>60</integer>
 					<key>width</key>
-					<integer>350</integer>
+					<integer>550</integer>
 				</dict>
 			</dict>
 			<key>text</key>
 			<array>
 				<array>
 					<dict>
+						<key>intensity</key>
+						<integer>6</integer>
 						<key>text</key>
 						<string>Well you&apos;ve just destroyed the only MacDonald&apos;s</string>
 					</dict>
@@ -509,13 +549,15 @@
 					<key>height</key>
 					<integer>30</integer>
 					<key>width</key>
-					<integer>450</integer>
+					<integer>600</integer>
 				</dict>
 			</dict>
 			<key>text</key>
 			<array>
 				<array>
 					<dict>
+						<key>intensity</key>
+						<integer>6</integer>
 						<key>text</key>
 						<string>YOU HAVE JUST VAPORIZED A PREVIOUSLY PLANTED AMERICAN FLAG</string>
 					</dict>
@@ -538,13 +580,15 @@
 					<key>height</key>
 					<integer>50</integer>
 					<key>width</key>
-					<integer>300</integer>
+					<integer>400</integer>
 				</dict>
 			</dict>
 			<key>text</key>
 			<array>
 				<array>
 					<dict>
+						<key>intensity</key>
+						<integer>6</integer>
 						<key>text</key>
 						<string>YOU JUST CRASHED INTO THAT ROCK</string>
 					</dict>
@@ -562,12 +606,16 @@
 						<string>SORRY, BUT THERE WERE </string>
 					</dict>
 					<dict>
+						<key>intensity</key>
+						<integer>7</integer>
 						<key>blink</key>
 						<true/>
 						<key>text</key>
 						<string>NO</string>
 					</dict>
 					<dict>
+						<key>intensity</key>
+						<integer>6</integer>
 						<key>text</key>
 						<string> SURVIVORS</string>
 					</dict>
@@ -590,17 +638,21 @@
 					<key>height</key>
 					<integer>40</integer>
 					<key>width</key>
-					<integer>200</integer>
+					<integer>300</integer>
 				</dict>
 			</dict>
 			<key>text</key>
 			<array>
 				<array>
 					<dict>
+						<key>intensity</key>
+						<integer>6</integer>
 						<key>text</key>
 						<string>BOY, ARE YOU</string>
 					</dict>
 					<dict>
+						<key>intensity</key>
+						<integer>7</integer>
 						<key>blink</key>
 						<true/>
 						<key>text</key>
@@ -625,13 +677,15 @@
 					<key>height</key>
 					<integer>40</integer>
 					<key>width</key>
-					<integer>350</integer>
+					<integer>400</integer>
 				</dict>
 			</dict>
 			<key>text</key>
 			<array>
 				<array>
 					<dict>
+						<key>intensity</key>
+						<integer>6</integer>
 						<key>moveto</key>
 						<dict>
 							<key>x</key>
@@ -639,18 +693,20 @@
 							<key>y</key>
 							<integer>30</integer>
 						</dict>
-						<key>newline</key>
-						<integer>2</integer>
 						<key>text</key>
 						<string>SORRY, BUT THERE WERE </string>
 					</dict>
 					<dict>
+						<key>intensity</key>
+						<integer>7</integer>
 						<key>blink</key>
 						<true/>
 						<key>text</key>
 						<string>NO</string>
 					</dict>
 					<dict>
+						<key>intensity</key>
+						<integer>6</integer>
 						<key>text</key>
 						<string> SURVIVORS</string>
 					</dict>
@@ -673,13 +729,15 @@
 					<key>height</key>
 					<integer>30</integer>
 					<key>width</key>
-					<integer>400</integer>
+					<integer>500</integer>
 				</dict>
 			</dict>
 			<key>text</key>
 			<array>
 				<array>
 					<dict>
+						<key>intensity</key>
+						<integer>6</integer>
 						<key>text</key>
 						<string>TAKE IT NICE AND EASY. A PERFECT LANDING IS UNDER 8 FPS</string>
 					</dict>
@@ -702,13 +760,15 @@
 					<key>height</key>
 					<integer>40</integer>
 					<key>width</key>
-					<integer>450</integer>
+					<integer>600</integer>
 				</dict>
 			</dict>
 			<key>text</key>
 			<array>
 				<array>
 					<dict>
+						<key>intensity</key>
+						<integer>6</integer>
 						<key>text</key>
 						<string>THAT&apos;S ONE SMALL STEP FOR A MAN, ONE GIANT LEAP FOR MANKIND.</string>
 					</dict>
@@ -729,21 +789,28 @@
 				<key>size</key>
 				<dict>
 					<key>height</key>
-					<integer>40</integer>
+					<integer>100</integer>
 					<key>width</key>
-					<integer>200</integer>
+					<integer>400</integer>
 				</dict>
 			</dict>
 			<key>text</key>
 			<array>
 				<array>
 					<dict>
+						<key>intensity</key>
+						<integer>6</integer>
 						<key>text</key>
 						<string>  YOU HAVE JUST CRASHED</string>
 					</dict>
 					<dict>
-						<key>newline</key>
-						<integer>2</integer>
+						<key>moveto</key>
+						<dict>
+							<key>x</key>
+							<integer>0</integer>
+							<key>y</key>
+							<integer>30</integer>
+						</dict>
 						<key>text</key>
 						<string>INTO THE EDGE OF THE MOON</string>
 					</dict>
@@ -766,13 +833,15 @@
 					<key>height</key>
 					<integer>30</integer>
 					<key>width</key>
-					<integer>240</integer>
+					<integer>300</integer>
 				</dict>
 			</dict>
 			<key>text</key>
 			<array>
 				<array>
 					<dict>
+						<key>intensity</key>
+						<integer>6</integer>
 						<key>text</key>
 						<string>THE LANDING WAS A LITTLE FAST</string>
 					</dict>
@@ -795,13 +864,15 @@
 					<key>height</key>
 					<integer>50</integer>
 					<key>width</key>
-					<integer>400</integer>
+					<integer>500</integer>
 				</dict>
 			</dict>
 			<key>text</key>
 			<array>
 				<array>
 					<dict>
+						<key>intensity</key>
+						<integer>6</integer>
 						<key>text</key>
 						<string>BUT THE ANGLE WAS TOO GREAT AND THE SHIP TIPPED OVER</string>
 					</dict>
@@ -819,12 +890,16 @@
 						<string>SORRY, BUT THERE WERE </string>
 					</dict>
 					<dict>
+						<key>intensity</key>
+						<integer>7</integer>
 						<key>blink</key>
 						<true/>
 						<key>text</key>
 						<string>NO</string>
 					</dict>
 					<dict>
+						<key>intensity</key>
+						<integer>6</integer>
 						<key>text</key>
 						<string> SURVIVORS</string>
 					</dict>
@@ -847,13 +922,15 @@
 					<key>height</key>
 					<integer>40</integer>
 					<key>width</key>
-					<integer>450</integer>
+					<integer>600</integer>
 				</dict>
 			</dict>
 			<key>text</key>
 			<array>
 				<array>
 					<dict>
+						<key>intensity</key>
+						<integer>6</integer>
 						<key>text</key>
 						<string>SORRY, BUT WHEN YOU LOSE TV COVERAGE, YOU ALSO LOSE YOUR FUEL</string>
 					</dict>
@@ -876,13 +953,15 @@
 					<key>height</key>
 					<integer>30</integer>
 					<key>width</key>
-					<integer>250</integer>
+					<integer>300</integer>
 				</dict>
 			</dict>
 			<key>text</key>
 			<array>
 				<array>
 					<dict>
+						<key>intensity</key>
+						<integer>7</integer>
 						<key>blink</key>
 						<true/>
 						<key>text</key>
@@ -907,13 +986,15 @@
 					<key>height</key>
 					<integer>30</integer>
 					<key>width</key>
-					<integer>400</integer>
+					<integer>500</integer>
 				</dict>
 			</dict>
 			<key>text</key>
 			<array>
 				<array>
 					<dict>
+						<key>intensity</key>
+						<integer>6</integer>
 						<key>text</key>
 						<string>TWO CHEESEBURGERS AND A BIG MAC TO GO.</string>
 					</dict>

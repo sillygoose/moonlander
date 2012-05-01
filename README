@@ -11,12 +11,15 @@ Features wish list
 
 Issues to do list
 =================
-- increase font size and space out controls for easier access
 - missing iTunesArtwork@2x (1024x1024)
 - complete content for software/hardware/faq/credits/history/controls
+- update delays in modern so speed things up
+- looks like a drawing glitch in the thrust view
 
 
 Completed
 =========
+- increase font size and space out controls for easier access (in classic/modern)
+- added intensity control to labels
 - Basic UI design implemented
 - Added shake gesture to quit a game early

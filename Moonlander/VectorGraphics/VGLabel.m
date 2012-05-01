@@ -8,44 +8,46 @@
 
 #import "VGLabel.h"
 
-
 @implementation VGLabel
 
 @synthesize text=_text;
 @synthesize font=_font;
 @synthesize textColor=_textColor;
 @synthesize textAlignment=_textAlignment;
-@synthesize blink=_blink;
 
+@synthesize intensity=_intensity;
+@synthesize blink=_blink;
 
 - (id)initWithFrame:(CGRect)frameRect
 {
     self = [super initWithFrame:frameRect];
     if (self) {
-//        self.font = [UIFont fontWithName:@"Courier" size:12.0f];
-//        self.textColor = [UIColor colorWithRed:0.026f green:1.0f blue:0.00121f alpha:1.0f] ;
+        // Defaults are full intensity and align text left
         _textAlignment = UITextAlignmentLeft;
+        _intensity = 7;
         
         // For debugging purposes
+#ifdef DEBUG
         self.vectorName = @"[VGLabel initWithFrame]";
-        //self.backgroundColor = [UIColor grayColor];
+#ifdef DEBUG_FRAMES
+        self.backgroundColor = [UIColor grayColor];
+#endif
+#endif
     }
     return self;
 }
 
 -(void)updateDrawingDictionary
 {
-    // Name info
-    NSString *viewName = self.vectorName;
-    NSDictionary *name = [NSDictionary dictionaryWithObjectsAndKeys:viewName, @"name", nil];
-    
     // Blink state and text alignment
     NSNumber *textAlign = [NSNumber numberWithInt:self.textAlignment];
+    NSNumber *intensity = [NSNumber numberWithInt:self.intensity];
     NSNumber *blinkState = (self.blink) ? [NSNumber numberWithBool:self.blink] : nil;
     
     // Build the draw dictionary (blinkState is nil will terminate the list early)
-    NSDictionary *drawDict = [NSDictionary dictionaryWithObjectsAndKeys:self.text, @"text", textAlign, @"alignment", name, @"name", blinkState, @"blink", nil];
-    NSArray *path = [NSArray arrayWithObjects:drawDict, nil];
+    NSDictionary *drawDict = [NSDictionary dictionaryWithObjectsAndKeys:self.text, @"text", textAlign, @"alignment", intensity, @"intensity", blinkState, @"blink", nil];
+    NSDictionary *nameDict = (self.vectorName) ? [NSDictionary dictionaryWithObjectsAndKeys:self.vectorName, @"name", nil] : nil;
+    NSArray *path = [NSArray arrayWithObjects:drawDict, nameDict, nil];
     NSArray *paths = [NSArray arrayWithObject:path];
     self.drawPaths = paths;
     
