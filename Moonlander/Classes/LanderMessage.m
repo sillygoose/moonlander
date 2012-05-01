@@ -14,7 +14,11 @@
 
 @synthesize landerMessages=_landerMessages;
 @synthesize displayedMessages=_displayedMessages;
+
 @synthesize fuelWarningOn=_fuelWarningOn;
+
+@synthesize delegate=_delegate;
+
 
 - (id)init
 {
@@ -73,6 +77,7 @@
         
         // Create a label and add it as a subview and to the dictionary
         VGLabel *fuelLabel = [[VGLabel alloc] initWithFrame:frameRect];
+        fuelLabel.fontSize = self.delegate.gameFontSize;
         fuelLabel.drawPaths = [fuelMessage objectForKey:@"text"];
         fuelLabel.vectorName = @"FuelLow";
         [self addSubview:fuelLabel];
@@ -111,6 +116,7 @@
         
         // Create a label and add it as a subview and to the dictionary
         VGLabel *sysLabel = [[VGLabel alloc] initWithFrame:frameRect];
+        sysLabel.fontSize = self.delegate.gameFontSize;
         sysLabel.drawPaths = [sysMessage objectForKey:@"text"];
         sysLabel.vectorName = message;
         [self addSubview:sysLabel];
@@ -143,6 +149,7 @@
     
     // Create a label and add it as a subview and to the dictionary
     VGLabel *flameLabel = [[VGLabel alloc] initWithFrame:frameRect];
+    flameLabel.fontSize = self.delegate.gameFontSize;
     flameLabel.drawPaths = [flameMessage objectForKey:@"text"];
     flameLabel.vectorName = message;
     [self addSubview:flameLabel];
@@ -160,6 +167,65 @@
             [self removeLanderMessage:@"FSUBC"];
         }
     }
+}
+
+- (void)test
+{
+    __block float delayTime = 3.0;
+    __block NSMutableArray *messageItems = [NSMutableArray array];
+    __block NSMutableArray *removeItems = [NSMutableArray array];
+    dispatch_queue_t messageQueue = dispatch_queue_create("com.devtools.moonlander.messages", NULL);
+    dispatch_queue_t removeQueue = dispatch_queue_create("com.devtools.moonlander.remove", NULL);
+
+    void (^createMessage)(void) = ^{
+        void (^removeMessage)(void) = ^{
+            if ([removeItems count]) {
+                dispatch_sync(dispatch_get_main_queue(), ^{
+                    VGLabel *label = [removeItems objectAtIndex:0];
+                    [removeItems removeObject:0];
+                    if (label) {
+                        [self removeAllLanderMessages];
+                    }
+                });
+            }
+            else {
+                dispatch_release(removeQueue);
+            }
+        };
+        
+        VGLabel *sysLabel  = [messageItems lastObject];
+        [messageItems removeLastObject];
+        [removeItems addObject:sysLabel];
+        
+        dispatch_sync(dispatch_get_main_queue(), ^{
+            sysLabel.hidden = NO;
+            [self addSubview:sysLabel];
+        });
+        [self.displayedMessages setObject:sysLabel forKey:@"SYSMES"];
+        dispatch_sync(dispatch_get_main_queue(), ^{
+            [self setNeedsDisplay];
+        });
+        
+        dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, 2.5 * NSEC_PER_SEC);
+        dispatch_after(popTime, removeQueue, removeMessage);
+    };
+
+    NSEnumerator *messageEnumerator = [self.landerMessages objectEnumerator];
+    NSDictionary *currentMessage;
+    while ((currentMessage = [messageEnumerator nextObject])) {
+        CGRect frameRect = [self getRect:currentMessage];
+        VGLabel *sysLabel = [[VGLabel alloc] initWithFrame:frameRect];
+        sysLabel.fontSize = self.delegate.gameFontSize;
+        sysLabel.drawPaths = [currentMessage objectForKey:@"text"];
+        sysLabel.vectorName = @"test";
+        sysLabel.hidden = YES;
+
+        [messageItems addObject:sysLabel];
+        dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, delayTime);
+        dispatch_after(popTime, messageQueue, createMessage);
+        delayTime += 3.0 * NSEC_PER_SEC;
+    }
+    dispatch_release(messageQueue);
 }
 
 @end

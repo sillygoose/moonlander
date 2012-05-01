@@ -8,18 +8,24 @@
 
 #import <Foundation/Foundation.h>
 
+#import "LanderDelegate.h"
+
 
 @interface LanderMessages : UIView {
     NSDictionary            *_landerMessages;
     NSMutableDictionary     *_displayedMessages;
     
     BOOL                    _fuelWarningOn;
+    
+    id <LanderDelegate> __unsafe_unretained     _delegate;
 }
 
 @property (nonatomic) NSDictionary *landerMessages;
 @property (nonatomic) NSMutableDictionary *displayedMessages;
 
 @property (nonatomic) BOOL fuelWarningOn;
+
+@property (unsafe_unretained) id <LanderDelegate> delegate;
 
 
 - (id)init;
@@ -35,5 +41,7 @@
 
 - (void)addFuelMessage;
 - (void)removeFuelMessage;
+
+- (void)test;
 
 @end
