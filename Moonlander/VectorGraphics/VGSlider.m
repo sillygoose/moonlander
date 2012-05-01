@@ -49,11 +49,12 @@
         CGFloat SliderXPos = 100;
         CGFloat SliderYPos = 1;
         CGFloat SliderWidth = frameRect.size.width / 3;
-        CGFloat SliderHeight = 200;
+        CGFloat SliderHeight = frameRect.size.height - 2 ;
         CGRect sliderFrame = CGRectMake(SliderXPos, SliderYPos, SliderWidth, SliderHeight);
         NSString *tsPath = [[NSBundle mainBundle] pathForResource:@"ThrusterControl" ofType:@"plist"];
         self.thrusterSlider = [[VGView alloc] initWithFrame:sliderFrame withPaths:tsPath];
         self.thrusterSlider.userInteractionEnabled = YES;
+        self.thrusterSlider.vectorName = @"thrusterSlider";
         //self.thrusterSlider.backgroundColor = [UIColor grayColor];
         [self addSubview:self.thrusterSlider];
         
@@ -62,6 +63,7 @@
         NSString *tiPath = [[NSBundle mainBundle] pathForResource:@"ThrusterNeedle" ofType:@"plist"];
         self.thrusterIndicator = [[VGView alloc] initWithFrame:needleFrame withPaths:tiPath];
         self.thrusterIndicator.userInteractionEnabled = NO;
+        self.thrusterIndicator.vectorName = @"thrusterIndicator";
         //self.thrusterIndicator.backgroundColor = [UIColor grayColor];
         [self addSubview:self.thrusterIndicator];
         
@@ -69,6 +71,8 @@
         CGRect valueFrame = CGRectMake(25, frameRect.size.height, 40, 16);
         self.thrusterValue = [[VGLabel alloc] initWithFrame:valueFrame];
         self.thrusterValue.userInteractionEnabled = NO;
+        self.thrusterValue.textAlignment = UITextAlignmentRight;
+        self.thrusterValue.vectorName = @"thrusterValue";
         //self.thrusterValue.backgroundColor = [UIColor grayColor];
         [self addSubview:self.thrusterValue];
         
@@ -85,20 +89,28 @@
     // Save our updated thruster value
     _value = newValue;
     
+    // Calculate the scale
+    float scaleValue = (self.thrusterSlider.frame.size.height - 2) / 100.0;
+    
+    // Position the needle within the view
     const CGFloat NeedleValueX = self.thrusterIndicator.frame.origin.x;
-    const CGFloat NeedleValueY = (( (2 * self.value)) - self.thrusterIndicator.frame.size.height / 2);
+    const CGFloat NeedleValueY = (((scaleValue * self.value)) - self.thrusterIndicator.frame.size.height / 2);
     CGRect newNeedleFrame = CGRectMake(NeedleValueX, NeedleValueY, self.thrusterIndicator.frame.size.width, self.thrusterIndicator.frame.size.height);
     [self.thrusterIndicator setFrame:newNeedleFrame];
     [self.thrusterIndicator setNeedsDisplay];
     
+    // Position the thrust value within the view
+    const CGFloat yAdjust = self.thrusterValue.fontSize - 12;
     const CGFloat ThrusterValueX = self.thrusterValue.frame.origin.x;
-    const CGFloat ThrusterValueY = (( (2 * self.value)) - self.thrusterValue.frame.size.height / 2);
+    const CGFloat ThrusterValueY = (((scaleValue * self.value)) - self.thrusterValue.frame.size.height / 2 + yAdjust);
     CGRect newValueFrame = CGRectMake(ThrusterValueX, ThrusterValueY, self.thrusterValue.frame.size.width, self.thrusterValue.frame.size.height);
     [self.thrusterValue setFrame:newValueFrame];
     
     // Update the % thrust subview by dynamically creating a draw path
     NSString *thrustValue = [NSString stringWithFormat:@"%3.0f%%", self.value];
-    NSDictionary *currentThrustPath = [NSDictionary dictionaryWithObjectsAndKeys:thrustValue, @"text", nil];
+    NSNumber *textAlign = [NSNumber numberWithInt:self.thrusterValue.textAlignment];
+
+    NSDictionary *currentThrustPath = [NSDictionary dictionaryWithObjectsAndKeys:textAlign, @"alignment", thrustValue, @"text", nil];
     NSArray *path = [NSArray arrayWithObject:currentThrustPath];
     NSArray *paths = [NSArray arrayWithObject:path];
     self.thrusterValue.drawPaths = paths;

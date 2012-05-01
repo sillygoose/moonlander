@@ -24,4 +24,6 @@
 - (void)beep;
 - (void)explosion;
 
+- (BOOL)enhancedGame;
+
 @end

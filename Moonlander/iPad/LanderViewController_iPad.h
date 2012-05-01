@@ -94,6 +94,8 @@
     
 	SystemSoundID       _beepSound;
     SystemSoundID       _explosionSound;
+    
+    BOOL                _playEnhancedGame;
 }
 
 @property (nonatomic, strong) LanderPhysicsModel *landerModel;
@@ -128,7 +130,10 @@
 @property (nonatomic, readonly) short WEIGHT;
 @property (nonatomic, readonly) short THRUST;
 @property (nonatomic, readonly) short TIME;
-@property (nonatomic) short FUEL;
+@property (nonatomic, readonly) short FUEL;
+
+@property (nonatomic, readonly) BOOL enhancedGame;
+@property (nonatomic, readonly) CGFloat gameFont;
 
 @property (nonatomic, strong) Moon *moonView;
 @property (nonatomic, strong) Lander *landerView;
@@ -176,6 +181,8 @@
 
 @property (nonatomic) SystemSoundID beepSound;
 @property (nonatomic) SystemSoundID explosionSound;
+
+@property (nonatomic) BOOL playEnhancedGame;
 
 
 - (IBAction)thrusterChanged:(VGSlider *)sender;

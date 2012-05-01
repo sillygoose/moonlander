@@ -22,9 +22,9 @@
 {
     self = [super initWithFrame:frameRect];
     if (self) {
-        self.font = [UIFont fontWithName:@"Courier" size:12.0f];
-        self.textColor = [UIColor colorWithRed:0.026f green:1.0f blue:0.00121f alpha:1.0f] ;
-        self.textAlignment = UITextAlignmentLeft;
+//        self.font = [UIFont fontWithName:@"Courier" size:12.0f];
+//        self.textColor = [UIColor colorWithRed:0.026f green:1.0f blue:0.00121f alpha:1.0f] ;
+        _textAlignment = UITextAlignmentLeft;
         
         // For debugging purposes
         self.vectorName = @"[VGLabel initWithFrame]";
@@ -35,27 +35,6 @@
 
 -(void)updateDrawingDictionary
 {
-    // Get the font info
-    NSDictionary *fontDict = nil;
-    if (self.font) {
-        NSNumber *fontSize = [NSNumber numberWithFloat:self.font.pointSize];
-        fontDict = [NSDictionary dictionaryWithObjectsAndKeys:self.font.fontName, @"name", fontSize, @"size", nil];
-    }
-    
-    // Get the color info
-    NSDictionary *colorDict = nil;
-    if (self.textColor) {
-        size_t nComp = CGColorGetNumberOfComponents(self.textColor.CGColor);
-        if (nComp >= 4) {
-            const CGFloat *colorComp = CGColorGetComponents(self.textColor.CGColor);
-            NSNumber *r = [NSNumber numberWithFloat:colorComp[0]];
-            NSNumber *g = [NSNumber numberWithFloat:colorComp[1]];
-            NSNumber *b = [NSNumber numberWithFloat:colorComp[2]];
-            NSNumber *a = [NSNumber numberWithFloat:colorComp[3]];
-            colorDict = [NSDictionary dictionaryWithObjectsAndKeys:r, @"r", g, @"g", b, @"b", a, @"alpha", nil];
-        }
-    }
-    
     // Name info
     NSString *viewName = self.vectorName;
     NSDictionary *name = [NSDictionary dictionaryWithObjectsAndKeys:viewName, @"name", nil];
@@ -65,7 +44,7 @@
     NSNumber *blinkState = (self.blink) ? [NSNumber numberWithBool:self.blink] : nil;
     
     // Build the draw dictionary (blinkState is nil will terminate the list early)
-    NSDictionary *drawDict = [NSDictionary dictionaryWithObjectsAndKeys:self.text, @"text", textAlign, @"alignment", fontDict, @"font", colorDict, @"color", name, @"name", blinkState, @"blink", nil];
+    NSDictionary *drawDict = [NSDictionary dictionaryWithObjectsAndKeys:self.text, @"text", textAlign, @"alignment", name, @"name", blinkState, @"blink", nil];
     NSArray *path = [NSArray arrayWithObjects:drawDict, nil];
     NSArray *paths = [NSArray arrayWithObject:path];
     self.drawPaths = paths;

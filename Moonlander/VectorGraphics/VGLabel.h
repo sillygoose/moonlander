@@ -26,6 +26,7 @@
 
 @property (nonatomic) BOOL blink;
 
+
 - (id)initWithFrame:(CGRect)frameRect;
 
 @end
