@@ -16,7 +16,7 @@
 //#define DEBUG_EXTRA_INSTRUMENTS
 #define DEBUG_NO_SPLASH
 //#define DEBUG_GRAB_EMPTY_SCREEN
-//#define DEBUG_ENHANCED
+#define DEBUG_ENHANCED
 #endif
 
 
@@ -478,19 +478,19 @@ const float OffcomDelay = 2.0f;
     const float RollButtonRepeatInterval = 0.20;
     const float SmallRollArrowWidth = 35;
     const float SmallRollArrowHeight = 40;
-    const CGFloat SmallRollYPos = (self.enhancedGame) ? 425 : 375;
+    const CGFloat SmallRollYPos = (self.enhancedGame) ? 425 : 355;
     NSString *slaPath = [[NSBundle mainBundle] pathForResource:@"SmallLeftArrow" ofType:@"plist"];
-    self.smallLeftArrow = [[VGButton alloc] initWithFrame:CGRectMake(920, SmallRollYPos, SmallRollArrowWidth, SmallRollArrowHeight)  withPaths:slaPath andRepeat:RollButtonRepeatInterval];
+    self.smallLeftArrow = [[VGButton alloc] initWithFrame:CGRectMake(910, SmallRollYPos, SmallRollArrowWidth, SmallRollArrowHeight)  withPaths:slaPath andRepeat:RollButtonRepeatInterval];
 	[self.smallLeftArrow addTarget:self 
                             action:@selector(rotateLander:) 
                   forControlEvents:UIControlEventValueChanged];
     self.smallLeftArrow.hidden = YES;
     self.smallLeftArrow.brighten = YES;
-    self.smallLeftArrow.titleLabel.vectorName = @"sra";
+    self.smallLeftArrow.titleLabel.vectorName = @"sla";
     [self.view addSubview:self.smallLeftArrow];
     
     NSString *sraPath = [[NSBundle mainBundle] pathForResource:@"SmallRightArrow" ofType:@"plist"];
-    self.smallRightArrow = [[VGButton alloc] initWithFrame:CGRectMake(960, SmallRollYPos, SmallRollArrowWidth, SmallRollArrowHeight) withPaths:sraPath andRepeat:RollButtonRepeatInterval];
+    self.smallRightArrow = [[VGButton alloc] initWithFrame:CGRectMake(950, SmallRollYPos, SmallRollArrowWidth, SmallRollArrowHeight) withPaths:sraPath andRepeat:RollButtonRepeatInterval];
 	[self.smallRightArrow addTarget:self 
                              action:@selector(rotateLander:) 
                    forControlEvents:UIControlEventValueChanged];
@@ -501,9 +501,9 @@ const float OffcomDelay = 2.0f;
     
     const float LargeRollArrowWidth = 50;
     const float LargeRollArrowHeight = 40;
-    const CGFloat LargeRollYPos = (self.enhancedGame) ? 360 : 320;
+    const CGFloat LargeRollYPos = (self.enhancedGame) ? 360 : 310;
     NSString *llaPath = [[NSBundle mainBundle] pathForResource:@"LargeLeftArrow" ofType:@"plist"];
-    self.largeLeftArrow = [[VGButton alloc] initWithFrame:CGRectMake(905, LargeRollYPos, LargeRollArrowWidth, LargeRollArrowHeight) withPaths:llaPath andRepeat:RollButtonRepeatInterval];
+    self.largeLeftArrow = [[VGButton alloc] initWithFrame:CGRectMake(895, LargeRollYPos, LargeRollArrowWidth, LargeRollArrowHeight) withPaths:llaPath andRepeat:RollButtonRepeatInterval];
 	[self.largeLeftArrow addTarget:self 
                             action:@selector(rotateLander:) 
                   forControlEvents:UIControlEventValueChanged];
@@ -513,7 +513,7 @@ const float OffcomDelay = 2.0f;
     [self.view addSubview:self.largeLeftArrow];
     
     NSString *lraPath = [[NSBundle mainBundle] pathForResource:@"LargeRightArrow" ofType:@"plist"];
-    self.largeRightArrow = [[VGButton alloc] initWithFrame:CGRectMake(960, LargeRollYPos, LargeRollArrowWidth, LargeRollArrowHeight) withPaths:lraPath andRepeat:RollButtonRepeatInterval];
+    self.largeRightArrow = [[VGButton alloc] initWithFrame:CGRectMake(950, LargeRollYPos, LargeRollArrowWidth, LargeRollArrowHeight) withPaths:lraPath andRepeat:RollButtonRepeatInterval];
 	[self.largeRightArrow addTarget:self 
                              action:@selector(rotateLander:) 
                    forControlEvents:UIControlEventValueChanged];
@@ -524,8 +524,8 @@ const float OffcomDelay = 2.0f;
     
     // Create the thruster control
     const short ThrusterSliderWidth = 200;
-    const short ThrusterSliderHeight = 202;
-    const short ThrusterXPos = 822;
+    const short ThrusterSliderHeight = 252;
+    const short ThrusterXPos = 816;
     const short ThrusterYPos = (self.enhancedGame) ? 500 : 450;
     self.thrusterSlider = [[VGSlider alloc] initWithFrame:CGRectMake(ThrusterXPos, ThrusterYPos, ThrusterSliderWidth, ThrusterSliderHeight)];
 	[self.thrusterSlider addTarget:self 

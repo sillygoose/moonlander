@@ -49,7 +49,7 @@
         CGFloat SliderXPos = 100;
         CGFloat SliderYPos = 1;
         CGFloat SliderWidth = frameRect.size.width / 3;
-        CGFloat SliderHeight = 200;
+        CGFloat SliderHeight = frameRect.size.height - 2 ;
         CGRect sliderFrame = CGRectMake(SliderXPos, SliderYPos, SliderWidth, SliderHeight);
         NSString *tsPath = [[NSBundle mainBundle] pathForResource:@"ThrusterControl" ofType:@"plist"];
         self.thrusterSlider = [[VGView alloc] initWithFrame:sliderFrame withPaths:tsPath];
@@ -89,15 +89,20 @@
     // Save our updated thruster value
     _value = newValue;
     
+    // Calculate the scale
+    float scaleValue = (self.thrusterSlider.frame.size.height - 2) / 100.0;
+    
+    // Position the needle within the view
     const CGFloat NeedleValueX = self.thrusterIndicator.frame.origin.x;
-    const CGFloat NeedleValueY = (( (2 * self.value)) - self.thrusterIndicator.frame.size.height / 2);
+    const CGFloat NeedleValueY = (((scaleValue * self.value)) - self.thrusterIndicator.frame.size.height / 2);
     CGRect newNeedleFrame = CGRectMake(NeedleValueX, NeedleValueY, self.thrusterIndicator.frame.size.width, self.thrusterIndicator.frame.size.height);
     [self.thrusterIndicator setFrame:newNeedleFrame];
     [self.thrusterIndicator setNeedsDisplay];
     
+    // Position the thrust value within the view
     const CGFloat yAdjust = self.thrusterValue.fontSize - 12;
     const CGFloat ThrusterValueX = self.thrusterValue.frame.origin.x;
-    const CGFloat ThrusterValueY = (( (2 * self.value)) - self.thrusterValue.frame.size.height / 2 + yAdjust);
+    const CGFloat ThrusterValueY = (((scaleValue * self.value)) - self.thrusterValue.frame.size.height / 2 + yAdjust);
     CGRect newValueFrame = CGRectMake(ThrusterValueX, ThrusterValueY, self.thrusterValue.frame.size.width, self.thrusterValue.frame.size.height);
     [self.thrusterValue setFrame:newValueFrame];
     

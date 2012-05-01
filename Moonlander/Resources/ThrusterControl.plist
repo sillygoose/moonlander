@@ -27,12 +27,12 @@
 					<key>x</key>
 					<integer>0</integer>
 					<key>y</key>
-					<integer>-100</integer>
+					<integer>-125</integer>
 				</dict>
 				<key>x</key>
 				<integer>0</integer>
 				<key>y</key>
-				<integer>200</integer>
+				<integer>250</integer>
 			</dict>
 		</array>
 		<array>
@@ -54,12 +54,12 @@
 					<key>x</key>
 					<integer>-3</integer>
 					<key>y</key>
-					<integer>-100</integer>
+					<integer>-125</integer>
 				</dict>
 				<key>x</key>
 				<integer>0</integer>
 				<key>y</key>
-				<integer>200</integer>
+				<integer>250</integer>
 			</dict>
 		</array>
 		<array>
@@ -81,12 +81,12 @@
 					<key>x</key>
 					<integer>3</integer>
 					<key>y</key>
-					<integer>-100</integer>
+					<integer>-125</integer>
 				</dict>
 				<key>x</key>
 				<integer>0</integer>
 				<key>y</key>
-				<integer>200</integer>
+				<integer>250</integer>
 			</dict>
 		</array>
 	</array>
