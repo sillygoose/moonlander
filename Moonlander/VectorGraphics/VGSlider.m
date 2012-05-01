@@ -54,6 +54,7 @@
         NSString *tsPath = [[NSBundle mainBundle] pathForResource:@"ThrusterControl" ofType:@"plist"];
         self.thrusterSlider = [[VGView alloc] initWithFrame:sliderFrame withPaths:tsPath];
         self.thrusterSlider.userInteractionEnabled = YES;
+        self.thrusterSlider.vectorName = @"thrusterSlider";
         //self.thrusterSlider.backgroundColor = [UIColor grayColor];
         [self addSubview:self.thrusterSlider];
         
@@ -62,6 +63,7 @@
         NSString *tiPath = [[NSBundle mainBundle] pathForResource:@"ThrusterNeedle" ofType:@"plist"];
         self.thrusterIndicator = [[VGView alloc] initWithFrame:needleFrame withPaths:tiPath];
         self.thrusterIndicator.userInteractionEnabled = NO;
+        self.thrusterIndicator.vectorName = @"thrusterIndicator";
         //self.thrusterIndicator.backgroundColor = [UIColor grayColor];
         [self addSubview:self.thrusterIndicator];
         
@@ -69,6 +71,8 @@
         CGRect valueFrame = CGRectMake(25, frameRect.size.height, 40, 16);
         self.thrusterValue = [[VGLabel alloc] initWithFrame:valueFrame];
         self.thrusterValue.userInteractionEnabled = NO;
+        self.thrusterValue.textAlignment = UITextAlignmentRight;
+        self.thrusterValue.vectorName = @"thrusterValue";
         //self.thrusterValue.backgroundColor = [UIColor grayColor];
         [self addSubview:self.thrusterValue];
         
@@ -91,14 +95,17 @@
     [self.thrusterIndicator setFrame:newNeedleFrame];
     [self.thrusterIndicator setNeedsDisplay];
     
+    const CGFloat yAdjust = self.thrusterValue.fontSize - 12;
     const CGFloat ThrusterValueX = self.thrusterValue.frame.origin.x;
-    const CGFloat ThrusterValueY = (( (2 * self.value)) - self.thrusterValue.frame.size.height / 2);
+    const CGFloat ThrusterValueY = (( (2 * self.value)) - self.thrusterValue.frame.size.height / 2 + yAdjust);
     CGRect newValueFrame = CGRectMake(ThrusterValueX, ThrusterValueY, self.thrusterValue.frame.size.width, self.thrusterValue.frame.size.height);
     [self.thrusterValue setFrame:newValueFrame];
     
     // Update the % thrust subview by dynamically creating a draw path
     NSString *thrustValue = [NSString stringWithFormat:@"%3.0f%%", self.value];
-    NSDictionary *currentThrustPath = [NSDictionary dictionaryWithObjectsAndKeys:thrustValue, @"text", nil];
+    NSNumber *textAlign = [NSNumber numberWithInt:self.thrusterValue.textAlignment];
+
+    NSDictionary *currentThrustPath = [NSDictionary dictionaryWithObjectsAndKeys:textAlign, @"alignment", thrustValue, @"text", nil];
     NSArray *path = [NSArray arrayWithObject:currentThrustPath];
     NSArray *paths = [NSArray arrayWithObject:path];
     self.thrusterValue.drawPaths = paths;
