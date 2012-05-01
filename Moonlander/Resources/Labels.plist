@@ -305,8 +305,6 @@
 		</dict>
 		<key>Seconds</key>
 		<dict>
-			<key>name</key>
-			<string>seconds</string>
 			<key>frame</key>
 			<dict>
 				<key>origin</key>
