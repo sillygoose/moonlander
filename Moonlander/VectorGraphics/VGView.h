@@ -9,6 +9,8 @@
 #import <UIKit/UIKit.h>
 
 typedef enum { VGLineSolid = 0, VGLineLongDash, VGLineShortDash, VGLineDotDash } VGLineType;
+typedef enum { VGDefaultIntensity = 5, VGBrightIntensity = 7 } VGIntensity;
+
 
 typedef struct {
     float x;
@@ -18,15 +20,15 @@ typedef struct {
 
 
 @interface VGView : UIView {
-    NSArray     *_drawPaths;
-    NSString    *_vectorName;
+    NSArray                 *_drawPaths;
   
-    CGFloat     _fontSize;
-    UIColor     *_viewColor;
-    NSTimer     *__weak _blinkTimer;
+    CGFloat                 _fontSize;
+    UIColor                 *_viewColor;
+    NSTimer                 *__weak _blinkTimer;
+    BOOL                    _blinkOn;
     
-    BOOL        _blinkOn;
-    CGRect      _actualBounds;
+    CGRect                  _actualBounds;
+    NSString                *_vectorName;
 }
 
 @property (nonatomic) NSArray *drawPaths;
