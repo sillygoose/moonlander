@@ -40,7 +40,9 @@
         // Read the moon drawing dictionary
         NSString *moonPath = [[NSBundle mainBundle] pathForResource:@"Moon" ofType:@"plist"];
         NSMutableDictionary *moonDict = [NSMutableDictionary dictionaryWithContentsOfFile:moonPath];
+#ifdef DEBUG
         self.vectorName = @"[Moon init]";
+#endif
 
         // Cache the lunar terrain data
         self.moonArray = [[[NSMutableArray arrayWithObject:[moonDict objectForKey:@"paths"]] objectAtIndex:0] objectAtIndex:0];

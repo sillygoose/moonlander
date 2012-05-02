@@ -68,14 +68,18 @@
         NSString *landerPath = [[NSBundle mainBundle] pathForResource:@"Lander" ofType:@"plist"];
         NSDictionary *landerDict = [NSDictionary dictionaryWithContentsOfFile:landerPath];
         self.drawPaths = [landerDict objectForKey:@"paths"];
+#ifdef DEBUG
         self.vectorName = @"[Lander init]";
+#endif
         
         // Create a view to display the thrust vectors
         const float ThrustXAdjust = -1;
         const float ThrustYAdjust = -LanderHeight / 2 + 3;
         CGRect thrustRect = CGRectMake(ThrustXAdjust, ThrustYAdjust, ThrustWidth, ThrustHeight);
         self.thrust = [[VGView alloc] initWithFrame:thrustRect];
+#ifdef DEBUG
         self.thrust.vectorName = @"thrustRect";
+#endif
         [self addSubview:self.thrust];
     }
     return self;
@@ -144,8 +148,7 @@
             [path addObject:line];
             [path addObject:intensity];
             
-#define DEBUG_NAMES
-#ifdef DEBUG_NAMES
+#ifdef DEBUG
             // Add a name field for debugging
             NSString *viewName = @"thrust";
             NSDictionary *name = [NSDictionary dictionaryWithObjectsAndKeys:viewName, @"name", nil];

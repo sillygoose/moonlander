@@ -21,7 +21,9 @@
         NSString *flagPath = [[NSBundle mainBundle] pathForResource:@"Flag" ofType:@"plist"];
         NSDictionary *flagDict = [NSDictionary dictionaryWithContentsOfFile:flagPath];
         self.drawPaths = [flagDict objectForKey:@"paths"];
+#ifdef DEBUG
         self.vectorName = @"[Man init]";
+#endif
     }
     return self;
 }

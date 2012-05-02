@@ -21,7 +21,9 @@
         NSString *manPath = [[NSBundle mainBundle] pathForResource:@"Man" ofType:@"plist"];
         NSDictionary *manDict = [NSDictionary dictionaryWithContentsOfFile:manPath];
         self.drawPaths = [manDict objectForKey:@"paths"];
+#ifdef DEBUG
         self.vectorName = @"[Man init]";
+#endif
         
         // Adjust the center for the width of the man view
         self.center = CGPointMake(self.center.x - (self.bounds.size.width / 2), self.center.y);
