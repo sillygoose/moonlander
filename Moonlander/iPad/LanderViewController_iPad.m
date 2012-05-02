@@ -13,7 +13,7 @@
 // Add any custom debugging options
 #if defined(TARGET_IPHONE_SIMULATOR) && defined(DEBUG)
 #define DEBUG_SHORT_DELAYS
-#define DEBUG_NO_SPLASH
+//#define DEBUG_NO_SPLASH
 //#define DEBUG_EXTRA_INSTRUMENTS
 //#define DEBUG_GRAB_EMPTY_SCREEN
 //#define DEBUG_ENHANCED
@@ -99,33 +99,58 @@ const float LanderUpdateInterval = 0.10f;           // How often the lander is u
 const float PositionUpdateInterval = 0.01;          // How often the lander position is updated
 const float InstrumentUpdateInterval = 0.2;         // How often the instrument displays are updated
 
-#ifndef DEBUG_SHORT_DELAYS
-// Timings for normal operation
-const float SplashScreenInterval = 10.0f;
-const float LandingDelay = 4.0f;
-const float MoveInterval = 0.16f;
-const float InitialFoodDelay = 8.0f;
-const float SecondFoodDelay = 2.0f;
-const float LaunchDelay = 2.0f;
-const float EndDelay = 3.0f;
-const float NewGameDelay = 3.0f;
-const float FlagFinalDelay = 10.0f;
-const float ExplodeDelay = 5.0f;
-const float OffcomDelay = 5.0f;
+typedef enum MoonlanderDelays {
+    DelaySplashScreen,
+    DelayLanding,
+    DelayMove,
+    DelayOrderFood,
+    DelayPickupFood,
+    DelayTakeoff,
+    DelayGameover,
+    DelayNewGame,
+    DelayFlagPlanted,
+    DelayExplode,
+    DelayOffcom,
+    DelayLast
+} MoonlanderDelay ;
+
+- (float)getDelay:(MoonlanderDelay)delayItem
+{
+#if defined(DEBUG) && defined(DEBUG_SHORT_DELAYS)
+    static float Delays[DelayLast][2] = {
+        {  2.0,  2.0 },   // DelaySplashScreen
+        {  0.5,  0.5 },   // DelayLanding
+        {  0.03, 0.03 },  // DelayMove
+        {  1.0,  1.0 },   // DelayOrderFood
+        {  0.5,  0.5 },   // DelayPickupFood
+        {  0.5,  0.5 },   // DelayTakeoff
+        {  1.0,  1.0 },   // DelayGameover
+        {  1.0,  1.0 },   // DelayNewGame
+        {  2.0,  2.0 },   // DelayFlagPlanted
+        {  2.0,  2.0 },   // DelayExplode
+        {  2.0,  2.0 },   // DelayOffcom
+    };
 #else
-// Sped up timings for debug
-const float SplashScreenInterval = 2.0f;
-const float LandingDelay = 0.5f;
-const float MoveInterval = 0.03f;
-const float InitialFoodDelay = 1.0f;
-const float SecondFoodDelay = 0.5f;
-const float LaunchDelay = 0.5f;
-const float EndDelay = 1.0f;
-const float NewGameDelay = 1.0f;
-const float FlagFinalDelay = 2.0f;
-const float ExplodeDelay = 2.0f;
-const float OffcomDelay = 2.0f;
+    static float Delays[DelayLast][2] = {
+        { 10.0,  5.0 },   // DelaySplashScreen
+        {  4.0,  2.0 },   // DelayLanding
+        {  0.16, 0.10 },  // DelayMove
+        {  8.0,  3.0 },   // DelayOrderFood
+        {  2.0,  1.0 },   // DelayPickupFood
+        {  2.0,  1.0 },   // DelayTakeoff
+        {  3.0,  2.0 },   // DelayGameover
+        {  3.0,  3.0 },   // DelayNewGame
+        { 10.0,  4.0 },   // DelayFlagPlanted
+        {  5.0,  3.0 },   // DelayExplode
+        {  5.0,  3.0 },   // DelayOffcom
+    };
 #endif
+    assert(sizeof(Delays)/sizeof(Delays[0]) == DelayLast);
+    
+    BOOL modernGame = self.playEnhancedGame;
+    float delay = Delays[delayItem][modernGame];
+    return delay;
+}
 
 
 #pragma -
@@ -411,8 +436,8 @@ const float OffcomDelay = 2.0f;
 - (void)initGame
 {
     // Splash screen
-#ifdef DEBUG_NO_SPLASH
-#ifdef DEBUG_MESSAGES
+#if defined(DEBUG_NO_SPLASH) || defined(DEBUG_MESSAGES)
+#if defined(DEBUG_MESSAGES)
     // Put each message on the screen to allow checking
     [self.landerMessages test];
 #endif
@@ -420,7 +445,7 @@ const float OffcomDelay = 2.0f;
 #else
     self.landerMessages.hidden = NO;
     [self.landerMessages addSystemMessage:@"SplashScreen"];
-    [self performSelector:@selector(initGame2) withObject:nil afterDelay:SplashScreenInterval];
+    [self performSelector:@selector(initGame2) withObject:nil afterDelay:[self getDelay: DelaySplashScreen]];
 #endif
 }
 
@@ -1071,7 +1096,7 @@ const float OffcomDelay = 2.0f;
     // Decide what to do
     if (result == YES) {
         // Delay a bit before starting the new game
-        [self performSelector:@selector(startGameDelay) withObject:nil afterDelay:NewGameDelay];
+        [self performSelector:@selector(startGameDelay) withObject:nil afterDelay:[self getDelay: DelayNewGame]];
     }
     else {
         // Return to the main menu
@@ -1093,7 +1118,7 @@ const float OffcomDelay = 2.0f;
     }
     else {
         // Start over again without dialog
-        [self performSelector:@selector(startGameDelay) withObject:nil afterDelay:NewGameDelay];
+        [self performSelector:@selector(startGameDelay) withObject:nil afterDelay:[self getDelay: DelayNewGame]];
     }
 }
 
@@ -1164,7 +1189,7 @@ const float OffcomDelay = 2.0f;
     [self.landerMessages removeAllLanderMessages];
     
     // Short they and then restart
-    [self performSelector:@selector(waitNewGame) withObject:nil afterDelay:NewGameDelay];
+    [self performSelector:@selector(waitNewGame) withObject:nil afterDelay:[self getDelay: DelayNewGame]];
 }
 
 - (void)landerLiftoff
@@ -1184,7 +1209,7 @@ const float OffcomDelay = 2.0f;
         self.landerView.hidden = YES;
 
         // Wait a bit before continuing
-        [self performSelector:@selector(prepareForNewGame) withObject:nil afterDelay:LaunchDelay];
+        [self performSelector:@selector(prepareForNewGame) withObject:nil afterDelay:[self getDelay: DelayTakeoff]];
     }
     else {
         // Keep waiting for screen change
@@ -1284,7 +1309,7 @@ const float OffcomDelay = 2.0f;
         
         void (^moveComplete)(BOOL) = ^(BOOL f) {
             // Slight delay before taking off again
-            dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, LaunchDelay * NSEC_PER_SEC);
+            dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, [self getDelay: DelayTakeoff] * NSEC_PER_SEC);
             dispatch_after(popTime, dispatch_get_main_queue(), prepareForLiftoff);
         };
         
@@ -1313,7 +1338,7 @@ const float OffcomDelay = 2.0f;
             // We are moving back after a delay
             delta.x = destination.x + 1 * direction;
             delta.y = destination.y;
-            [Man animateWithDuration:FoodWaitDuration delay:InitialFoodDelay options:animateOptions animations:moveMan completion:moveManBack];
+            [Man animateWithDuration:FoodWaitDuration delay:[self getDelay: DelayOrderFood] options:animateOptions animations:moveMan completion:moveManBack];
         };
         
         void (^moveManOver)(BOOL) = ^(BOOL f) {
@@ -1349,7 +1374,7 @@ const float OffcomDelay = 2.0f;
             [self.moonView addFeature:TF_OldLander atIndex:self.INDEXL];
             
             // Let's delay a bit before presenting the new game dialog
-            [self performSelector:@selector(prepareForNewGame) withObject:nil afterDelay:NewGameDelay];
+            [self performSelector:@selector(prepareForNewGame) withObject:nil afterDelay:[self getDelay: DelayNewGame]];
         };
         
         void (^plantFlag)(BOOL) = ^(BOOL f) {
@@ -1359,7 +1384,7 @@ const float OffcomDelay = 2.0f;
             [self.landerMessages addSystemMessage:@"OneSmallStep"];
             
             // Delay a bit before finishing the game
-            dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, FlagFinalDelay * NSEC_PER_SEC);
+            dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, [self getDelay: DelayFlagPlanted] * NSEC_PER_SEC);
             dispatch_after(popTime, dispatch_get_main_queue(), waitFlagMan);
         };
         
@@ -1382,7 +1407,7 @@ const float OffcomDelay = 2.0f;
 - (void)PALSY
 {
     // Start with a delay of 4 seconds
-    [self performSelector:@selector(moveMan) withObject:nil afterDelay:LandingDelay];
+    [self performSelector:@selector(moveMan) withObject:nil afterDelay:[self getDelay: DelayLanding]];
 }
 
 - (void)EXPLOD
@@ -1395,7 +1420,7 @@ const float OffcomDelay = 2.0f;
 
     // Completion code for explosion manager
     void (^completionBlock)(void) = ^{
-        [self performSelector:@selector(prepareForNewGame) withObject:nil afterDelay:ExplodeDelay];
+        [self performSelector:@selector(prepareForNewGame) withObject:nil afterDelay:[self getDelay: DelayExplode]];
     };
     
     //(EXPLD1)  Setup the explosion animation manager
@@ -1498,7 +1523,7 @@ const float OffcomDelay = 2.0f;
                     [self landerDown];
 
                     // Let's delay a bit before presenting the new game dialog
-                    [self performSelector:@selector(prepareForNewGame) withObject:nil afterDelay:ExplodeDelay];
+                    [self performSelector:@selector(prepareForNewGame) withObject:nil afterDelay:[self getDelay: DelayExplode]];
                 }
             }
         }
@@ -1520,7 +1545,7 @@ const float OffcomDelay = 2.0f;
                     [self landerDown];
                     
                     // Let's delay a bit before presenting the new game dialog
-                    [self performSelector:@selector(prepareForNewGame) withObject:nil afterDelay:ExplodeDelay];
+                    [self performSelector:@selector(prepareForNewGame) withObject:nil afterDelay:[self getDelay: DelayExplode]];
                 }
             }
         }
@@ -1604,7 +1629,7 @@ const float OffcomDelay = 2.0f;
             }
             
             // Let's delay a bit before presenting the new game dialog
-            [self performSelector:@selector(prepareForNewGame) withObject:nil afterDelay:ExplodeDelay];
+            [self performSelector:@selector(prepareForNewGame) withObject:nil afterDelay:[self getDelay: DelayExplode]];
         }
     }
     

@@ -202,7 +202,7 @@
         if ([currentVector objectForKey:@"newline"]) {
             CGFloat nLines = [[currentVector objectForKey:@"newline"] floatValue];
             currentPosition.x = 0.0f;
-            currentPosition.y = currentPosition.y - (nLines * self.fontSize);
+            currentPosition.y = currentPosition.y - (nLines * (self.fontSize + (self.fontSize * 0.4)));
         }
         
         // "blink" is used to blink the text

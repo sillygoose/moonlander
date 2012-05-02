@@ -20,7 +20,7 @@
 				<key>size</key>
 				<dict>
 					<key>height</key>
-					<integer>150</integer>
+					<integer>200</integer>
 					<key>width</key>
 					<integer>600</integer>
 				</dict>
@@ -76,12 +76,12 @@
 					<key>x</key>
 					<integer>100</integer>
 					<key>y</key>
-					<integer>570</integer>
+					<integer>562</integer>
 				</dict>
 				<key>size</key>
 				<dict>
 					<key>height</key>
-					<integer>50</integer>
+					<integer>40</integer>
 					<key>width</key>
 					<integer>450</integer>
 				</dict>
@@ -98,13 +98,8 @@
 				</array>
 				<array>
 					<dict>
-						<key>moveto</key>
-						<dict>
-							<key>x</key>
-							<integer>0</integer>
-							<key>y</key>
-							<integer>30</integer>
-						</dict>
+						<key>newline</key>
+						<integer>1</integer>
 						<key>text</key>
 						<string>SORRY, BUT THERE WERE </string>
 					</dict>
@@ -139,7 +134,7 @@
 				<key>size</key>
 				<dict>
 					<key>height</key>
-					<integer>30</integer>
+					<integer>20</integer>
 					<key>width</key>
 					<integer>600</integer>
 				</dict>
@@ -170,7 +165,7 @@
 				<key>size</key>
 				<dict>
 					<key>height</key>
-					<integer>30</integer>
+					<integer>20</integer>
 					<key>width</key>
 					<integer>600</integer>
 				</dict>
@@ -203,7 +198,7 @@
 				<key>size</key>
 				<dict>
 					<key>height</key>
-					<integer>30</integer>
+					<integer>20</integer>
 					<key>width</key>
 					<integer>400</integer>
 				</dict>
@@ -229,12 +224,12 @@
 					<key>x</key>
 					<integer>100</integer>
 					<key>y</key>
-					<integer>570</integer>
+					<integer>562</integer>
 				</dict>
 				<key>size</key>
 				<dict>
 					<key>height</key>
-					<integer>50</integer>
+					<integer>40</integer>
 					<key>width</key>
 					<integer>600</integer>
 				</dict>
@@ -251,13 +246,8 @@
 				</array>
 				<array>
 					<dict>
-						<key>moveto</key>
-						<dict>
-							<key>x</key>
-							<integer>0</integer>
-							<key>y</key>
-							<integer>30</integer>
-						</dict>
+						<key>newline</key>
+						<integer>1</integer>
 						<key>text</key>
 						<string>SORRY, BUT THERE WERE </string>
 					</dict>
@@ -292,7 +282,7 @@
 				<key>size</key>
 				<dict>
 					<key>height</key>
-					<integer>15</integer>
+					<integer>20</integer>
 					<key>width</key>
 					<integer>100</integer>
 				</dict>
@@ -325,7 +315,7 @@
 				<key>size</key>
 				<dict>
 					<key>height</key>
-					<integer>30</integer>
+					<integer>20</integer>
 					<key>width</key>
 					<integer>300</integer>
 				</dict>
@@ -356,7 +346,7 @@
 				<key>size</key>
 				<dict>
 					<key>height</key>
-					<integer>30</integer>
+					<integer>20</integer>
 					<key>width</key>
 					<integer>300</integer>
 				</dict>
@@ -387,7 +377,7 @@
 				<key>size</key>
 				<dict>
 					<key>height</key>
-					<integer>60</integer>
+					<integer>40</integer>
 					<key>width</key>
 					<integer>600</integer>
 				</dict>
@@ -404,13 +394,8 @@
 				</array>
 				<array>
 					<dict>
-						<key>moveto</key>
-						<dict>
-							<key>x</key>
-							<integer>0</integer>
-							<key>y</key>
-							<integer>30</integer>
-						</dict>
+						<key>newline</key>
+						<integer>1</integer>
 						<key>text</key>
 						<string>SORRY, BUT THERE WERE </string>
 					</dict>
@@ -440,12 +425,12 @@
 					<key>x</key>
 					<integer>100</integer>
 					<key>y</key>
-					<integer>570</integer>
+					<integer>562</integer>
 				</dict>
 				<key>size</key>
 				<dict>
 					<key>height</key>
-					<integer>60</integer>
+					<integer>40</integer>
 					<key>width</key>
 					<integer>500</integer>
 				</dict>
@@ -462,13 +447,8 @@
 				</array>
 				<array>
 					<dict>
-						<key>moveto</key>
-						<dict>
-							<key>x</key>
-							<integer>0</integer>
-							<key>y</key>
-							<integer>30</integer>
-						</dict>
+						<key>newline</key>
+						<integer>1</integer>
 						<key>text</key>
 						<string>SORRY, BUT THERE WERE </string>
 					</dict>
@@ -498,12 +478,12 @@
 					<key>x</key>
 					<integer>10</integer>
 					<key>y</key>
-					<integer>570</integer>
+					<integer>562</integer>
 				</dict>
 				<key>size</key>
 				<dict>
 					<key>height</key>
-					<integer>60</integer>
+					<integer>40</integer>
 					<key>width</key>
 					<integer>550</integer>
 				</dict>
@@ -520,13 +500,8 @@
 				</array>
 				<array>
 					<dict>
-						<key>moveto</key>
-						<dict>
-							<key>x</key>
-							<integer>0</integer>
-							<key>y</key>
-							<integer>30</integer>
-						</dict>
+						<key>newline</key>
+						<integer>1</integer>
 						<key>text</key>
 						<string>on the moon. What a CLOD.</string>
 					</dict>
@@ -547,7 +522,7 @@
 				<key>size</key>
 				<dict>
 					<key>height</key>
-					<integer>30</integer>
+					<integer>20</integer>
 					<key>width</key>
 					<integer>600</integer>
 				</dict>
@@ -573,12 +548,12 @@
 					<key>x</key>
 					<integer>100</integer>
 					<key>y</key>
-					<integer>570</integer>
+					<integer>562</integer>
 				</dict>
 				<key>size</key>
 				<dict>
 					<key>height</key>
-					<integer>50</integer>
+					<integer>40</integer>
 					<key>width</key>
 					<integer>400</integer>
 				</dict>
@@ -595,13 +570,8 @@
 				</array>
 				<array>
 					<dict>
-						<key>moveto</key>
-						<dict>
-							<key>x</key>
-							<integer>0</integer>
-							<key>y</key>
-							<integer>30</integer>
-						</dict>
+						<key>newline</key>
+						<integer>1</integer>
 						<key>text</key>
 						<string>SORRY, BUT THERE WERE </string>
 					</dict>
@@ -636,7 +606,7 @@
 				<key>size</key>
 				<dict>
 					<key>height</key>
-					<integer>40</integer>
+					<integer>20</integer>
 					<key>width</key>
 					<integer>300</integer>
 				</dict>
@@ -661,58 +631,6 @@
 				</array>
 			</array>
 		</dict>
-		<key>NoSurvivors</key>
-		<dict>
-			<key>frame</key>
-			<dict>
-				<key>origin</key>
-				<dict>
-					<key>x</key>
-					<integer>100</integer>
-					<key>y</key>
-					<integer>540</integer>
-				</dict>
-				<key>size</key>
-				<dict>
-					<key>height</key>
-					<integer>40</integer>
-					<key>width</key>
-					<integer>400</integer>
-				</dict>
-			</dict>
-			<key>text</key>
-			<array>
-				<array>
-					<dict>
-						<key>intensity</key>
-						<integer>6</integer>
-						<key>moveto</key>
-						<dict>
-							<key>x</key>
-							<integer>0</integer>
-							<key>y</key>
-							<integer>30</integer>
-						</dict>
-						<key>text</key>
-						<string>SORRY, BUT THERE WERE </string>
-					</dict>
-					<dict>
-						<key>intensity</key>
-						<integer>7</integer>
-						<key>blink</key>
-						<true/>
-						<key>text</key>
-						<string>NO</string>
-					</dict>
-					<dict>
-						<key>intensity</key>
-						<integer>6</integer>
-						<key>text</key>
-						<string> SURVIVORS</string>
-					</dict>
-				</array>
-			</array>
-		</dict>
 		<key>Not2Fast</key>
 		<dict>
 			<key>frame</key>
@@ -727,7 +645,7 @@
 				<key>size</key>
 				<dict>
 					<key>height</key>
-					<integer>30</integer>
+					<integer>20</integer>
 					<key>width</key>
 					<integer>500</integer>
 				</dict>
@@ -751,14 +669,14 @@
 				<key>origin</key>
 				<dict>
 					<key>x</key>
-					<integer>50</integer>
+					<integer>40</integer>
 					<key>y</key>
 					<integer>2</integer>
 				</dict>
 				<key>size</key>
 				<dict>
 					<key>height</key>
-					<integer>40</integer>
+					<integer>25</integer>
 					<key>width</key>
 					<integer>600</integer>
 				</dict>
@@ -789,7 +707,7 @@
 				<key>size</key>
 				<dict>
 					<key>height</key>
-					<integer>100</integer>
+					<integer>40</integer>
 					<key>width</key>
 					<integer>400</integer>
 				</dict>
@@ -804,13 +722,8 @@
 						<string>  YOU HAVE JUST CRASHED</string>
 					</dict>
 					<dict>
-						<key>moveto</key>
-						<dict>
-							<key>x</key>
-							<integer>0</integer>
-							<key>y</key>
-							<integer>30</integer>
-						</dict>
+						<key>newline</key>
+						<integer>1</integer>
 						<key>text</key>
 						<string>INTO THE EDGE OF THE MOON</string>
 					</dict>
@@ -831,7 +744,7 @@
 				<key>size</key>
 				<dict>
 					<key>height</key>
-					<integer>30</integer>
+					<integer>20</integer>
 					<key>width</key>
 					<integer>300</integer>
 				</dict>
@@ -857,12 +770,12 @@
 					<key>x</key>
 					<integer>100</integer>
 					<key>y</key>
-					<integer>570</integer>
+					<integer>562</integer>
 				</dict>
 				<key>size</key>
 				<dict>
 					<key>height</key>
-					<integer>50</integer>
+					<integer>40</integer>
 					<key>width</key>
 					<integer>500</integer>
 				</dict>
@@ -879,13 +792,8 @@
 				</array>
 				<array>
 					<dict>
-						<key>moveto</key>
-						<dict>
-							<key>x</key>
-							<integer>0</integer>
-							<key>y</key>
-							<integer>30</integer>
-						</dict>
+						<key>newline</key>
+						<integer>1</integer>
 						<key>text</key>
 						<string>SORRY, BUT THERE WERE </string>
 					</dict>
@@ -920,7 +828,7 @@
 				<key>size</key>
 				<dict>
 					<key>height</key>
-					<integer>40</integer>
+					<integer>20</integer>
 					<key>width</key>
 					<integer>600</integer>
 				</dict>
@@ -951,7 +859,7 @@
 				<key>size</key>
 				<dict>
 					<key>height</key>
-					<integer>30</integer>
+					<integer>20</integer>
 					<key>width</key>
 					<integer>300</integer>
 				</dict>
@@ -984,7 +892,7 @@
 				<key>size</key>
 				<dict>
 					<key>height</key>
-					<integer>30</integer>
+					<integer>20</integer>
 					<key>width</key>
 					<integer>500</integer>
 				</dict>

@@ -171,7 +171,9 @@
 
 - (void)test
 {
-    __block float delayTime = 3.0;
+    __block float delayTime = 5.0;
+    const float showNextMessage = 4.0;
+    const float clearNextMessage = 3.0;
     __block NSMutableArray *messageItems = [NSMutableArray array];
     __block NSMutableArray *removeItems = [NSMutableArray array];
     dispatch_queue_t messageQueue = dispatch_queue_create("com.devtools.moonlander.messages", NULL);
@@ -206,7 +208,7 @@
             [self setNeedsDisplay];
         });
         
-        dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, 2.5 * NSEC_PER_SEC);
+        dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, clearNextMessage * NSEC_PER_SEC);
         dispatch_after(popTime, removeQueue, removeMessage);
     };
 
@@ -223,7 +225,7 @@
         [messageItems addObject:sysLabel];
         dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, delayTime);
         dispatch_after(popTime, messageQueue, createMessage);
-        delayTime += 3.0 * NSEC_PER_SEC;
+        delayTime += showNextMessage * NSEC_PER_SEC;
     }
     dispatch_release(messageQueue);
 }
