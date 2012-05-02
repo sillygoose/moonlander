@@ -8,17 +8,19 @@
 
 #import <Foundation/Foundation.h>
 
-#include "VGButton.h"
+#import "VGButton.h"
+
 
 typedef short (^telemetry_data_t)();
 
 @interface Telemetry : VGButton {
-    NSString            *_format;
-    telemetry_data_t   _data;
+    NSString                        *_format;
+    telemetry_data_t                _data;
 }
 
 @property (nonatomic, copy) NSString *format;
 @property (nonatomic, copy) telemetry_data_t data;
+
 
 - (id)initWithFrame:(CGRect)frameRect;
 
