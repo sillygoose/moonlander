@@ -18,6 +18,7 @@ Issues to do list
 
 Completed
 =========
+- broke out model timer so it can be updated separately from controls
 - update delays in modern so speed things up
 - increase font size and space out controls for easier access (in classic/modern)
 - added intensity control to labels
