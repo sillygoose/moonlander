@@ -88,7 +88,6 @@
 		56EF5124154E4DBB001E7B77 /* Software.html in Resources */ = {isa = PBXBuildFile; fileRef = 56EF5120154E4DBB001E7B77 /* Software.html */; };
 		56EF5137154E59A3001E7B77 /* Default-Landscape~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 56173A0C154661BB00380AB4 /* Default-Landscape~ipad.png */; };
 		56EF5138154E59AC001E7B77 /* Default-Landscape@2x~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 56173A0B154661BB00380AB4 /* Default-Landscape@2x~ipad.png */; };
-		56EF5140154E60A4001E7B77 /* WebPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 56EF513F154E60A4001E7B77 /* WebPageViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -279,8 +278,6 @@
 		56EF511E154E4DBB001E7B77 /* FlightControls.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = FlightControls.html; sourceTree = "<group>"; };
 		56EF511F154E4DBB001E7B77 /* Hardware.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = Hardware.html; sourceTree = "<group>"; };
 		56EF5120154E4DBB001E7B77 /* Software.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = Software.html; sourceTree = "<group>"; };
-		56EF513E154E60A3001E7B77 /* WebPageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebPageViewController.h; sourceTree = "<group>"; };
-		56EF513F154E60A4001E7B77 /* WebPageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebPageViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -394,8 +391,6 @@
 				562D6246154DAD1900BD4EDD /* MenuViewController_iPad.m */,
 				56EA5BF4154E35D700AB6DF2 /* DocumentViewController.h */,
 				56EA5BF5154E35D700AB6DF2 /* DocumentViewController.m */,
-				56EF513E154E60A3001E7B77 /* WebPageViewController.h */,
-				56EF513F154E60A4001E7B77 /* WebPageViewController.m */,
 				560FA1341379BEAA0017EE25 /* LanderViewController_iPad.h */,
 				560FA1351379BEAA0017EE25 /* LanderViewController_iPad.m */,
 				562D624B154DB24900BD4EDD /* ControlsViewController.h */,
@@ -973,7 +968,6 @@
 				562D624D154DB24900BD4EDD /* ControlsViewController.m in Sources */,
 				562D6250154DC3CE00BD4EDD /* NavigationController_iPad.m in Sources */,
 				56EA5BF6154E35D700AB6DF2 /* DocumentViewController.m in Sources */,
-				56EF5140154E60A4001E7B77 /* WebPageViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

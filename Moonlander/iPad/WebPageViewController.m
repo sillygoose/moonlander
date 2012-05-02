@@ -32,6 +32,7 @@
     
     // Create a URL object.
     NSURL *url = [NSURL URLWithString:self.urlName];
+//    NSLog(@"%@", [url absoluteURL]);
     NSURLRequest *requestObj = [NSURLRequest requestWithURL:url];
     [self.urlContent loadRequest:requestObj];
 }

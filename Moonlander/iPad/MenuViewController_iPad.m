@@ -9,7 +9,6 @@
 #import "MenuViewController_iPad.h"
 #import "LanderViewController_iPad.h"
 #import "DocumentViewController.h"
-#import "WebPageViewController.h"
 
 
 @interface MenuViewController_iPad ()
@@ -28,10 +27,6 @@
         DocumentViewController *dvc = segue.destinationViewController;
         dvc.documentType = [url pathExtension];
         dvc.documentName = [urlSansExtension relativePath];
-    }
-    else if ([segue.destinationViewController isKindOfClass:[WebPageViewController class]]) {
-        WebPageViewController *wpvc = segue.destinationViewController;
-        wpvc.urlName = segue.identifier;
     }
     else if ([segue.destinationViewController isKindOfClass:[LanderViewController_iPad class]]) {
         LanderViewController_iPad *lvc = segue.destinationViewController;
