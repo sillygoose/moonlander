@@ -57,6 +57,7 @@
     
     VGSlider            *_thrusterSlider;
     
+    NSTimer             *__unsafe_unretained _landerModelTimer;
     NSTimer             *__unsafe_unretained _gameLogicTimer;
     NSTimer             *__unsafe_unretained _landerUpdateTimer;
     NSTimer             *__unsafe_unretained _positionUpdateTimer;
@@ -100,6 +101,7 @@
 
 @property (nonatomic, strong) LanderPhysicsModel *landerModel;
 
+@property (nonatomic, unsafe_unretained) NSTimer *landerModelTimer;
 @property (nonatomic, unsafe_unretained) NSTimer *gameLogicTimer;
 @property (nonatomic, unsafe_unretained) NSTimer *landerUpdateTimer;
 @property (nonatomic, unsafe_unretained) NSTimer *positionUpdateTimer;

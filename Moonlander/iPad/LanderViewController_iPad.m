@@ -53,6 +53,7 @@
 
 @synthesize selectedTelemetry=_selectedTelemetry;
 
+@synthesize landerModelTimer=_landerModelTimer;
 @synthesize gameLogicTimer=_gameLogicTimer;
 @synthesize landerUpdateTimer=_landerUpdateTimer;
 @synthesize positionUpdateTimer=_positionUpdateTimer;
@@ -95,9 +96,13 @@
 
 // Simulation constants
 const float GameLogicTimerInterval = 0.025;         // How often the game logic checks run
-const float LanderUpdateInterval = 0.10f;           // How often the lander is updated (affects rotation and thrust vector drawing)
+const float LanderViewUpdateInterval = 0.10f;       // How often the lander view is updated (affects rotation and thrust vector drawing)
 const float PositionUpdateInterval = 0.01;          // How often the lander position is updated
 const float InstrumentUpdateInterval = 0.2;         // How often the instrument displays are updated
+const float LanderModelUpdateInterval = 0.05;       // How often the lander model is updated
+
+const float RollButtonRepeatInterval = 0.20;        // Timer value for roll button holddown
+
 
 typedef enum MoonlanderDelays {
     DelaySplashScreen,
@@ -419,8 +424,9 @@ typedef enum MoonlanderDelays {
 #endif
     
     // Setup the game timers
+	self.landerModelTimer = [NSTimer scheduledTimerWithTimeInterval:LanderModelUpdateInterval target:self selector:@selector(landerModelTimerEvent) userInfo:nil repeats:YES];
 	self.gameLogicTimer = [NSTimer scheduledTimerWithTimeInterval:GameLogicTimerInterval target:self selector:@selector(gameLogicTimerEvent) userInfo:nil repeats:YES];
-	self.landerUpdateTimer = [NSTimer scheduledTimerWithTimeInterval:LanderUpdateInterval target:self selector:@selector(updateLander) userInfo:nil repeats:YES];
+	self.landerUpdateTimer = [NSTimer scheduledTimerWithTimeInterval:LanderViewUpdateInterval target:self selector:@selector(updateLander) userInfo:nil repeats:YES];
 	self.positionUpdateTimer = [NSTimer scheduledTimerWithTimeInterval:PositionUpdateInterval target:self selector:@selector(updateLanderPosition) userInfo:nil repeats:YES];
 	self.instrumentUpdateTimer = [NSTimer scheduledTimerWithTimeInterval:InstrumentUpdateInterval target:self selector:@selector(updateInstruments) userInfo:nil repeats:YES];
 
@@ -508,7 +514,6 @@ typedef enum MoonlanderDelays {
     [self.view addSubview:self.landerMessages];
     
     // Create the roll control arrows
-    const float RollButtonRepeatInterval = 0.20;
     const float SmallRollArrowWidth = 35;
     const float SmallRollArrowHeight = 40;
     const CGFloat SmallRollYPos = (self.enhancedGame) ? 400 : 355;
@@ -874,6 +879,8 @@ typedef enum MoonlanderDelays {
     [super viewDidUnload];
     
     // Kill any active timers
+    [self.landerModelTimer invalidate];
+    self.landerModelTimer = nil;
     [self.gameLogicTimer invalidate];
     self.gameLogicTimer = nil;
     [self.landerUpdateTimer invalidate];
@@ -1138,6 +1145,8 @@ typedef enum MoonlanderDelays {
     else {
         //###
         // Kill the timers that might be running
+        [self.landerModelTimer invalidate];
+        self.landerModelTimer = nil;
         [self.gameLogicTimer invalidate];
         self.gameLogicTimer = nil;
         [self.landerUpdateTimer invalidate];
@@ -1152,6 +1161,7 @@ typedef enum MoonlanderDelays {
         
         // Remove any messages that might be left over
         [self.landerMessages removeAllLanderMessages];
+        
         // Return to the main menu
         [self.navigationController popToRootViewControllerAnimated:YES];
     }
@@ -1172,7 +1182,9 @@ typedef enum MoonlanderDelays {
 
 - (void)prepareForNewGame
 {
-    // Kill the timers that might be running
+    // Kill the timers that might be running ### third place, fixme!
+    [self.landerModelTimer invalidate];
+    self.landerModelTimer = nil;
     [self.gameLogicTimer invalidate];
     self.gameLogicTimer = nil;
     [self.landerUpdateTimer invalidate];
@@ -1640,16 +1652,20 @@ typedef enum MoonlanderDelays {
     }
 }
 
-- (void)gameLogicTimerEvent
+- (void)landerModelTimerEvent
 {
     // Update simulation time
 #ifdef DEBUG_GRAB_EMPTY_SCREEN
     // Hide the lander and don't update the model
     self.landerView.hidden = YES;
 #else
-    [self.landerModel.delegate updateTime:GameLogicTimerInterval];
+    [self.landerModel.delegate updateTime:LanderModelUpdateInterval];
 #endif
+   
+}
 
+- (void)gameLogicTimerEvent
+{
     if (![self.landerModel onSurface]) {
         // Display a low fuel message
         if (self.FUEL <= 0) {
