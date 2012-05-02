@@ -15,13 +15,13 @@
 
 
 @interface VGButton : UIControl {
-    VGLabel     *_titleLabel;
+    VGLabel                 *_titleLabel;
     
-    NSTimer     *_repeatTimer;
-    float       _autoRepeatInterval;
-    CGRect      _actualBounds;
+    NSTimer                 *_repeatTimer;
+    float                   _autoRepeatInterval;
+    CGRect                  _actualBounds;
     
-    BOOL        _brighten;
+    BOOL                    _brighten;
 }
 
 @property (nonatomic, strong) VGLabel *titleLabel;

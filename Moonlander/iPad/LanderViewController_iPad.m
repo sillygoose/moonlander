@@ -44,6 +44,8 @@
 @synthesize AVERT=_AVERT;
 @synthesize DUSTX=_DUSTX;
 
+@synthesize lastTime=_lastTime;
+
 @synthesize smallLeftArrow=_smallLeftArrow;
 @synthesize smallRightArrow=_smallRightArrow;
 @synthesize largeLeftArrow=_largeLeftArrow;
@@ -95,13 +97,13 @@
 
 
 // Simulation constants
-const float GameLogicTimerInterval = 0.025;         // How often the game logic checks run
+const float GameLogicTimerInterval = 0.10;          // How often the game logic checks run (10 hz)
 const float LanderViewUpdateInterval = 0.10f;       // How often the lander view is updated (affects rotation and thrust vector drawing)
 const float PositionUpdateInterval = 0.01;          // How often the lander position is updated
 const float InstrumentUpdateInterval = 0.2;         // How often the instrument displays are updated
-const float LanderModelUpdateInterval = 0.05;       // How often the lander model is updated
+const float LanderModelUpdateInterval = 0.02;       // How often the lander model is updated (aka PDP11 line clock)
 
-const float RollButtonRepeatInterval = 0.20;        // Timer value for roll button holddown
+const float RollButtonRepeatInterval = 0.10;        // Timer value for roll button holddown
 
 
 typedef enum MoonlanderDelays {
@@ -280,7 +282,7 @@ typedef enum MoonlanderDelays {
     [self.landerModel.dataSource setThrust:value];
 }
 
-- (short)TIME
+- (float)TIME
 {
     return [self.landerModel.dataSource time];
 }
@@ -1011,10 +1013,10 @@ typedef enum MoonlanderDelays {
 - (IBAction)rotateLander:(id)sender
 {
     // Roll rates in degrees
-    const float MajorRollRate = 5;
-    const float MinorRollRate = 1;
+    const float MajorRollRate = 100;
+    const float MinorRollRate = 15;
     
-    short deltaAngle = 0;
+    float deltaAngle = 0;
     VGButton *buttonInUse = (VGButton *)sender;
     if ( buttonInUse == self.smallLeftArrow) {
         deltaAngle = -MinorRollRate;
@@ -1033,8 +1035,11 @@ typedef enum MoonlanderDelays {
         assert(TRUE);
     }
     
+    // Calculate the change in roll angle
+    deltaAngle = deltaAngle * RollButtonRepeatInterval;
+    
     // Update the model with the change in roll angle
-    self.ANGLED += deltaAngle;
+    self.ANGLED += (short)deltaAngle;
 }
 
 - (void)newGame

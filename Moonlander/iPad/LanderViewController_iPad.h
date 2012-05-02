@@ -50,6 +50,8 @@
     short               _AVERY;
     short               _AVERT;
     
+    clock_t             _lastTime;
+    
     VGButton            *_smallLeftArrow;
     VGButton            *_smallRightArrow;
     VGButton            *_largeLeftArrow;
@@ -119,6 +121,8 @@
 @property (nonatomic) short AVERT;
 @property (nonatomic) short DUSTX;
 
+@property (nonatomic) clock_t lastTime;
+
 @property (nonatomic, readonly) CGPoint LANDER;
 @property (nonatomic) short VERDIS;
 @property (nonatomic) short HORDIS;
@@ -131,7 +135,7 @@
 @property (nonatomic, readonly) short HORACC;
 @property (nonatomic, readonly) short WEIGHT;
 @property (nonatomic, readonly) short THRUST;
-@property (nonatomic, readonly) short TIME;
+@property (nonatomic, readonly) float TIME;
 @property (nonatomic, readonly) short FUEL;
 
 @property (nonatomic, readonly) BOOL enhancedGame;
