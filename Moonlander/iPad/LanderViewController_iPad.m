@@ -105,9 +105,10 @@ const float RollButtonRepeatInterval = 0.20;        // Timer value for roll butt
 
 
 typedef enum MoonlanderDelays {
+    DelayZero,
     DelaySplashScreen,
     DelayLanding,
-    DelayMove,
+    DelayMoveMan,
     DelayOrderFood,
     DelayPickupFood,
     DelayTakeoff,
@@ -123,9 +124,10 @@ typedef enum MoonlanderDelays {
 {
 #if defined(DEBUG) && defined(DEBUG_SHORT_DELAYS)
     static float Delays[DelayLast][2] = {
+        {  0.0,  0.0 },   // DelayZero
         {  2.0,  2.0 },   // DelaySplashScreen
         {  0.5,  0.5 },   // DelayLanding
-        {  0.03, 0.03 },  // DelayMove
+        {  0.05, 0.05 },  // DelayMoveMan
         {  1.0,  1.0 },   // DelayOrderFood
         {  0.5,  0.5 },   // DelayPickupFood
         {  0.5,  0.5 },   // DelayTakeoff
@@ -137,9 +139,10 @@ typedef enum MoonlanderDelays {
     };
 #else
     static float Delays[DelayLast][2] = {
-        { 10.0,  5.0 },   // DelaySplashScreen
-        {  4.0,  2.0 },   // DelayLanding
-        {  0.16, 0.10 },  // DelayMove
+        {  0.0,  0.0 },   // DelayZero
+        { 10.0,  7.0 },   // DelaySplashScreen
+        {  4.0,  3.0 },   // DelayLanding
+        {  0.08, 0.07 },  // DelayMoveMan
         {  8.0,  3.0 },   // DelayOrderFood
         {  2.0,  1.0 },   // DelayPickupFood
         {  2.0,  1.0 },   // DelayTakeoff
@@ -879,16 +882,7 @@ typedef enum MoonlanderDelays {
     [super viewDidUnload];
     
     // Kill any active timers
-    [self.landerModelTimer invalidate];
-    self.landerModelTimer = nil;
-    [self.gameLogicTimer invalidate];
-    self.gameLogicTimer = nil;
-    [self.landerUpdateTimer invalidate];
-    self.landerUpdateTimer = nil;
-    [self.positionUpdateTimer invalidate];
-    self.positionUpdateTimer = nil;
-    [self.instrumentUpdateTimer invalidate];
-    self.instrumentUpdateTimer = nil;
+    [self cleanupTimers];
     
     // Disable telemetry
     self.selectedTelemetry = nil;
@@ -935,6 +929,20 @@ typedef enum MoonlanderDelays {
     // Audio resources
     AudioServicesDisposeSystemSoundID(self.beepSound);
     AudioServicesDisposeSystemSoundID(self.explosionSound);
+}
+
+- (void)cleanupTimers
+{
+    [self.landerModelTimer invalidate];
+    self.landerModelTimer = nil;
+    [self.gameLogicTimer invalidate];
+    self.gameLogicTimer = nil;
+    [self.landerUpdateTimer invalidate];
+    self.landerUpdateTimer = nil;
+    [self.positionUpdateTimer invalidate];
+    self.positionUpdateTimer = nil;
+    [self.instrumentUpdateTimer invalidate];
+    self.instrumentUpdateTimer = nil;
 }
 
 - (void)cleanupControls
@@ -1143,20 +1151,8 @@ typedef enum MoonlanderDelays {
         // Do nothing - keep playing
     }
     else {
-        //###
-        // Kill the timers that might be running
-        [self.landerModelTimer invalidate];
-        self.landerModelTimer = nil;
-        [self.gameLogicTimer invalidate];
-        self.gameLogicTimer = nil;
-        [self.landerUpdateTimer invalidate];
-        self.landerUpdateTimer = nil;
-        [self.positionUpdateTimer invalidate];
-        self.positionUpdateTimer = nil;
-        [self.instrumentUpdateTimer invalidate];
-        self.instrumentUpdateTimer = nil;
-        
-        // Clean up any controls
+        // Clean up any timers and flight controls
+        [self cleanupTimers];
         [self cleanupControls];
         
         // Remove any messages that might be left over
@@ -1182,19 +1178,8 @@ typedef enum MoonlanderDelays {
 
 - (void)prepareForNewGame
 {
-    // Kill the timers that might be running ### third place, fixme!
-    [self.landerModelTimer invalidate];
-    self.landerModelTimer = nil;
-    [self.gameLogicTimer invalidate];
-    self.gameLogicTimer = nil;
-    [self.landerUpdateTimer invalidate];
-    self.landerUpdateTimer = nil;
-    [self.positionUpdateTimer invalidate];
-    self.positionUpdateTimer = nil;
-    [self.instrumentUpdateTimer invalidate];
-    self.instrumentUpdateTimer = nil;
-    
-    // Clean up any controls
+    // Clean up any timers and flight controls
+    [self cleanupTimers];
     [self cleanupControls];
     
     // Remove any messages that might be left over
@@ -1232,15 +1217,10 @@ typedef enum MoonlanderDelays {
 
 - (float)durationFrom:(CGPoint)start toEnd:(CGPoint)end
 {
-#ifdef DEBUG_SHORT_DELAYS
-    const float MosyRate = 0.01;
-#else
-    const float MosyRate = 0.05;
-#endif
     float xDiff = start.x - end.x;
     float yDiff = start.y - end.y;
     float distance = sqrt(xDiff * xDiff + yDiff * yDiff);
-    float animationDuration = MosyRate * distance;
+    float animationDuration = [self getDelay:DelayMoveMan] * distance;
     return animationDuration;
 }
 
@@ -1250,12 +1230,6 @@ typedef enum MoonlanderDelays {
     const float ManHeightOffFloor = 8;
     const float ManVerticalAdjust = -3;
   
-    const float MosyDelayZero = 0;
-#ifdef DEBUG_SHORT_DELAYS
-    const float MosyStartDelay = 1;
-#else
-    const float MosyStartDelay = 4;
-#endif
     const UIViewAnimationOptions animateOptions = UIViewAnimationOptionBeginFromCurrentState | UIViewAnimationOptionCurveLinear;
     
     // Animation constants for tweaking getting in and out of the lander
@@ -1278,12 +1252,6 @@ typedef enum MoonlanderDelays {
     
     // What is it - plant a flag or visit Mcdonalds?
     if (self.moonView.displayHasMcDonalds) {
-#ifdef DEBUG_SHORT_DELAYS
-        const float FoodWaitDuration = 1;
-#else
-        const float FoodWaitDuration = 3;
-#endif
-
         // Move the man out of the lander to the ground
         __block CGPoint destination = CGPointMake(self.moonView.MACX, self.moonView.MACY + ManHeightOffFloor);
         direction = (destination.x < start.x) ? -1 : 1;
@@ -1329,44 +1297,44 @@ typedef enum MoonlanderDelays {
             // Complete the move up into the lander
             delta = startCenter;
             animationDuration = [self durationFrom:self.manView.center toEnd:delta];
-            [Man animateWithDuration:animationDuration delay:MosyDelayZero options:animateOptions animations:moveMan completion:moveComplete];
+            [Man animateWithDuration:animationDuration delay:[self getDelay:DelayZero] options:animateOptions animations:moveMan completion:moveComplete];
         };
         
         void (^moveManBack)(BOOL) = ^(BOOL f) {
-            // Remove our message and head back to the lander
+            // Dismiss our message and head back to the lander
             [self.landerMessages removeSystemMessage:@"YourOrder"];
             
             // Complete the move back to the lander
             delta.x = startCenter.x + LanderMoveX * direction;
             delta.y = destination.y;
             animationDuration = [self durationFrom:self.manView.center toEnd:delta];
-            [Man animateWithDuration:animationDuration delay:MosyDelayZero options:animateOptions animations:moveMan completion:moveManUp];
+            [Man animateWithDuration:animationDuration delay:[self getDelay:DelayZero] options:animateOptions animations:moveMan completion:moveManUp];
         };
         
         void (^getLunch)(BOOL) = ^(BOOL f) {
             // Order some food and wait
             [self.landerMessages addSystemMessage:@"YourOrder"];
             
-            // We are moving back after a delay
+            // Trick to do a minicule move so use the deal option
             delta.x = destination.x + 1 * direction;
             delta.y = destination.y;
-            [Man animateWithDuration:FoodWaitDuration delay:[self getDelay: DelayOrderFood] options:animateOptions animations:moveMan completion:moveManBack];
+            [Man animateWithDuration:[self getDelay:DelayZero] delay:[self getDelay: DelayOrderFood] options:animateOptions animations:moveMan completion:moveManBack];
         };
         
         void (^moveManOver)(BOOL) = ^(BOOL f) {
             // Get our current position
             delta = destination;
             animationDuration = [self durationFrom:self.manView.center toEnd:delta];
-            [Man animateWithDuration:animationDuration delay:MosyDelayZero options:animateOptions animations:moveMan completion:getLunch];
+            [Man animateWithDuration:animationDuration delay:[self getDelay:DelayZero] options:animateOptions animations:moveMan completion:getLunch];
         };
         
         // First move down to the base of the lander and out to plant a flag
         delta = CGPointMake(startCenter.x + LanderMoveX * direction, destination.y);
         animationDuration = [self durationFrom:startCenter toEnd:delta];
-        [Man animateWithDuration:animationDuration delay:MosyStartDelay options:animateOptions animations:moveMan completion:moveManOver];
+        [Man animateWithDuration:animationDuration delay:[self getDelay:DelayZero] options:animateOptions animations:moveMan completion:moveManOver];
     }
     else {
-        // Select a direction at random
+        // Select a direction at random to plant the flag
         direction = (random() % 2) ? 1 : -1;
         
         // Destination is the flag plant spot
@@ -1401,10 +1369,10 @@ typedef enum MoonlanderDelays {
         };
         
         // Move the man over to the flag
-        void (^moveComplete)(BOOL) = ^(BOOL f) {
+        void (^moveManOver)(BOOL) = ^(BOOL f) {
             delta = destination;
             animationDuration = [self durationFrom:self.manView.center toEnd:delta];
-            [Man animateWithDuration:animationDuration delay:MosyDelayZero options:animateOptions animations:moveMan completion:plantFlag];
+            [Man animateWithDuration:animationDuration delay:[self getDelay:DelayZero] options:animateOptions animations:moveMan completion:plantFlag];
         };
         
         // First move down to the base of the lander
@@ -1412,7 +1380,7 @@ typedef enum MoonlanderDelays {
         delta.x -= direction * LanderMoveX / 2;
         delta.y -= LanderMoveY;
         animationDuration = [self durationFrom:startCenter toEnd:delta];
-        [Man animateWithDuration:animationDuration delay:MosyStartDelay options:animateOptions animations:moveMan completion:moveComplete];
+        [Man animateWithDuration:animationDuration delay:[self getDelay:DelayZero] options:animateOptions animations:moveMan completion:moveManOver];
     }
 }
 

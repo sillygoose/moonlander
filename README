@@ -14,10 +14,12 @@ Issues to do list
 - missing iTunesArtwork@2x (1024x1024)
 - complete content for software/hardware/faq/credits/history/controls
 - looks like a possible drawing glitch in the thrust view
+- fix roll rate updates form flight controls
 
 
 Completed
 =========
+- cleanup game logic so there is a single start/end selector
 - broke out model timer so it can be updated separately from controls
 - update delays in modern so speed things up
 - increase font size and space out controls for easier access (in classic/modern)
