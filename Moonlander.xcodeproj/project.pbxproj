@@ -207,6 +207,7 @@
 		56A480B3137C5E3D00742877 /* LanderPhysicsDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LanderPhysicsDelegate.h; sourceTree = "<group>"; };
 		56A480C1137C6C5500742877 /* LanderPhysicsConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LanderPhysicsConstants.h; sourceTree = "<group>"; };
 		56A480C2137C6C5500742877 /* LanderPhysicsConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LanderPhysicsConstants.m; sourceTree = "<group>"; };
+		56AF86591552160600C45FD1 /* lunar.fcl */ = {isa = PBXFileReference; lastKnownFileType = text; path = lunar.fcl; sourceTree = "<group>"; };
 		56B4D62B1417D9AF00029FC8 /* Flag.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Flag.h; sourceTree = "<group>"; };
 		56B4D62C1417D9AF00029FC8 /* Flag.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Flag.m; sourceTree = "<group>"; };
 		56BC68631388BDE200403643 /* Labels.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Labels.plist; sourceTree = "<group>"; };
@@ -557,6 +558,7 @@
 				565D23621540E9760074D3AD /* mlc.mac */,
 				565D23601540E9760074D3AD /* gtlem.mac */,
 				565D23651540E9760074D3AD /* rtlem.mac */,
+				56AF86591552160600C45FD1 /* lunar.fcl */,
 				565D23671540F0230074D3AD /* rocket.bas */,
 				565D23611540E9760074D3AD /* lunar.bas */,
 			);
