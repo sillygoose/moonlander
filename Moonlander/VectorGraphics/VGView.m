@@ -19,6 +19,8 @@
 @synthesize fontSize=_fontSize;
 @synthesize viewColor=_viewColor;
 
+const float VGBlinkInterval = 0.75;
+
 
 - (id)initWithFrame:(CGRect)frameRect
 {
@@ -209,7 +211,7 @@
         if ([currentVector objectForKey:@"blink"]) {
             doBlink = [[currentVector objectForKey:@"blink"] boolValue];
             if (doBlink && !self.blinkTimer) {
-                self.blinkTimer = [NSTimer scheduledTimerWithTimeInterval:0.5f target:self selector:@selector(blinkIntervalPassed:) userInfo:nil repeats:YES];
+                self.blinkTimer = [NSTimer scheduledTimerWithTimeInterval:VGBlinkInterval target:self selector:@selector(blinkIntervalPassed:) userInfo:nil repeats:YES];
             }
         }
         

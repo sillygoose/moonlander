@@ -11,7 +11,6 @@
 typedef enum { VGLineSolid = 0, VGLineLongDash, VGLineShortDash, VGLineDotDash } VGLineType;
 typedef enum { VGDefaultIntensity = 5, VGBrightIntensity = 7 } VGIntensity;
 
-
 typedef struct {
     float x;
     float y;
