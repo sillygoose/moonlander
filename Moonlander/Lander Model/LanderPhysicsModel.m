@@ -17,7 +17,8 @@
 //#define DEBUG_LOCATION
 //#define DEBUG_FLAME
 //#define HOLD_VELOCITY
-//#define HOLD_POSITION
+//#define DEBUG_HOLD_HORIZONTAL_POSITION
+//#define DEBUG_HOLD_VERTICAL_POSITION
 #endif
 
 
@@ -258,15 +259,15 @@ static float RadiansToDegrees(float radians)
 {
     // Start in flight mode
     self.lemOnSurface = NO;
-#if defined(DEBUG) && (defined(DEBUG_DUST) || defined(DEBUG_FLAME) || defined(DEBUG_LOCATION))
+#if defined(DEBUG) && (defined(DEBUG_DUST) || defined(DEBUG_FLAME) || defined(DEBUG_HOLD_HORIZONTAL_POSITION) || defined(DEBUG_HOLD_VERTICAL_POSITION))
     // Custom lander start point
     self.fuelRemaining = self.lemInitalFuel;
-    self.turnAngle = 0;
-    self.horizontalVelocity = 0;
-    self.verticalVelocity = -10;
-    self.horizontalDistance = 0;
-    self.verticalDistance = 100;
-    self.percentThrustRequested = 18;
+    self.turnAngle = -70.0f;
+    self.horizontalVelocity = 1000.0f;
+    self.verticalVelocity = -500.0f;
+    self.horizontalDistance = -22000.0;
+    self.verticalDistance = 20000.0f;
+    self.percentThrustRequested = 75.0f;
     self.clockTicks = 0.0f;
 #else
     // Default game start point
@@ -310,9 +311,11 @@ static float RadiansToDegrees(float radians)
         self.verticalVelocity += self.verticalAcceleration * timeElapsed;
 #endif
         
-#ifndef HOLD_POSITION
         // Horizontal/vertical position updates
+#ifndef DEBUG_HOLD_HORIZONTAL_POSITION
         self.horizontalDistance += self.horizontalVelocity * timeElapsed;
+#endif
+#ifndef DEBUG_HOLD_VERTICAL_POSITION
         self.verticalDistance += self.verticalVelocity * timeElapsed;
 #endif
     }
