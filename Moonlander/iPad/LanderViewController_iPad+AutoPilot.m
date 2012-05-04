@@ -14,8 +14,8 @@ const float AutoPilotUpdateInterval = 0.10;         // How often the autopilot c
 
 
 // This is where we want to land
-const short targetVerticalPosition = 0;
-const short targetHorizontalPosition = -200;
+const short TargetVerticalPosition = 0;
+const short TargetHorizontalPosition = -200;
 
 
 - (void)calculateVerticalControls
@@ -31,45 +31,36 @@ const short targetHorizontalPosition = -200;
     float lunarGravity = self.GRAVITY;
     float forceDueToGravity = (landerWeight / 32) * lunarGravity;
     
-    // Land with some velocity
-    vvOutput -= -12;
-    NSLog(@"vpOutput: %f, vvOutput: %f", vpOutput, vvOutput);
+    // First the thrust to hold position against gravity (then fudge it)
+    float neededThrust = forceDueToGravity / 2;
+    float thrustFromVelocity = 0;
     
-    float neededThrust = ((1.3 * forceDueToGravity) / maxThrust) * 100;
-    if (vpOutput < 20) {
-        neededThrust = 2.0 * vvOutput;
-    }
-    else if (vpOutput < 50) {
-        neededThrust = 2.3 * vvOutput;
-    }
-    else if (vpOutput < 100) {
-        neededThrust = 1.8 * vvOutput;
-    }
-    else if (vpOutput < 200) {
-        neededThrust = 1.3 * vvOutput;
-    }
-    else if (vpOutput < 500) {
-        neededThrust = 1.0 * vvOutput;
-    }
-    else if (vpOutput < 1000) {
-        neededThrust = ((1.5 * forceDueToGravity) / maxThrust) * 100;
-    }
-    else if (vpOutput < 2500) {
-        neededThrust = ((1.75 * forceDueToGravity) / maxThrust) * 100;
-    }
-    else if (vpOutput < 5000) {
-        neededThrust = ((2 * forceDueToGravity) / maxThrust) * 100;
-    }
+    // Clamp since we need to have in the range (-1,1)
+    if (vpOutput > 1)
+        vpOutput = 1;
+    else if (vpOutput < -1)
+        vpOutput = -1;
+
+    // Calculate the velocity gain for when speed is out of whack with distance
+    float vGain = (vpOutput == 0.0) ? 10 : fabs(vvOutput/vpOutput) ;
+    neededThrust += thrustFromVelocity = -(1 - vpOutput) * vvOutput * maxThrust * vGain;
     
+    // Adjust the thrust for any angle
     neededThrust = (cosThrustAngle != 0.0) ? neededThrust / cosThrustAngle : 100;
+    
+    // Land with some velocity
+    NSLog(@"Alt: %d  vpOutput: %f, vvOutput: %f  tV: %5.0f  vG: %4.3f", self.VERDIS, vpOutput, vvOutput, thrustFromVelocity, vGain);
+    
+    // Convert the thrust to a percentage
+    neededThrust = MIN(neededThrust, maxThrust) / maxThrust * 100;
     self.PERTRS = (short)(fabs(neededThrust));
 }
 
 - (void)calculateHorizontalControls
 {
-    float hpOutput = self.autoPilot.horizontalPosition.output;
-    float hvOutput = self.autoPilot.horizontalVelocity.output;
-    NSLog(@"hpOutput: %f, hvOutput: %f", hpOutput, hvOutput);
+    //float hpOutput = self.autoPilot.horizontalPosition.output;
+    //float hvOutput = self.autoPilot.horizontalVelocity.output;
+    //NSLog(@"hpOutput: %f, hvOutput: %f", hpOutput, hvOutput);
     
 }
 
@@ -84,60 +75,6 @@ const short targetHorizontalPosition = -200;
         
         [self calculateVerticalControls];
         [self calculateHorizontalControls];
-        
-    #if 0
-        // Calculate a thrust angle
-        float hOutput = self.autoPilot.horizontalPosition.output;
-        float vOutput = self.autoPilot.horizontalVelocity.output;
-
-        // Limiting
-        if (hOutput < -10.0)
-            hOutput = -10.0;
-        else if (hOutput > 100.0)
-            hOutput = 10.0;
-        
-        if (vOutput < -10.0)
-            vOutput = -10.0;
-        else if (vOutput > 10.0)
-            vOutput = 10.0;
-        NSLog(@"houtput: %f, voutput: %f", hOutput, vOutput);
-        
-        // Roll angle partitioning
-        float angleHOutput = -atanf(hOutput);
-        float angleVOutput = atanf(vOutput);
-        angleHOutput = angleHOutput * 180.0 / M_PI;
-        angleVOutput = angleVOutput * 180.0 / M_PI;
-        
-    #if 0
-        if (vOutput > 2.0) {
-            hOutput = vOutput;
-            angleHOutput = angleVOutput;
-        }
-        else if (vOutput < -2.0) {
-            hOutput = vOutput;
-            angleHOutput = angleVOutput;
-        }
-    #endif
-        NSLog(@"hangle: %f, vangle: %f", angleHOutput, angleVOutput);
-        
-        float thrustAngle = angleVOutput - angleHOutput;
-    //    thrustAngle = -90;
-
-        // Roll angle has rate limits we must enforce
-        float deltaAngle = ((float)self.ANGLED - thrustAngle) * 1;
-        
-        // Thruster limits
-        float newThrust = fabs(hOutput) * 100;
-        if (newThrust > 100)
-            newThrust = 100;
-        else if (newThrust < 10)
-            newThrust = 10;
-        
-        // Update the control outputs
-        self.PERTRS = newThrust;
-        [self.thrusterSlider setValue:self.PERTRS];
-        self.ANGLED -= (short)deltaAngle;
-#endif
     }
 }
 
@@ -189,12 +126,12 @@ const short targetHorizontalPosition = -200;
 {
     self.autoPilot.verticalPosition.setPoint = [^{ return [self vpSetPoint];} copy];
     self.autoPilot.verticalPosition.processValue = [^{ return [self vpProcessValue];} copy];
-    self.autoPilot.verticalPosition.Kp = -1.0 / 1.0;
+    self.autoPilot.verticalPosition.Kp = -1.0 / 20000.0;
     self.autoPilot.verticalPosition.Kd = 0;
     
     self.autoPilot.verticalVelocity.setPoint = [^{ return [self vvSetPoint];} copy];
     self.autoPilot.verticalVelocity.processValue = [^{ return [self vvProcessValue];} copy];
-    self.autoPilot.verticalVelocity.Kp = -1.0 / 1.0;
+    self.autoPilot.verticalVelocity.Kp = -1.0 / 500.0;
     self.autoPilot.verticalVelocity.Kd = 0;
     
     self.autoPilot.horizontalPosition.setPoint = [^{ return [self hpSetPoint];} copy];
@@ -216,8 +153,8 @@ const short targetHorizontalPosition = -200;
     self.autoPilotSwitch.titleLabel.blink = self.autoPilot.enabled;
     if (self.autoPilot.enabled == YES) {
         // Set the destinations
-        self.autoPilot.targetAltitude = 0;
-        self.autoPilot.targetRange = -200;
+        self.autoPilot.targetAltitude = TargetVerticalPosition;
+        self.autoPilot.targetRange = TargetHorizontalPosition;
         
         // Initialize PID controllers
         [self initializePIDControllers];
