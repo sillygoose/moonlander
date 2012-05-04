@@ -11,12 +11,12 @@
 @implementation LanderViewController_iPad (AutoPilot)
 
 #ifdef DEBUG
-#define DEBUG_HORIZONTAL_AUTOPILOT
-#define DEBUG_VERTICAL_AUTOPILOT
+//#define DEBUG_HORIZONTAL_AUTOPILOT
+//#define DEBUG_VERTICAL_AUTOPILOT
 
 // This is where we want to land
 const short TargetVerticalPosition = 0;
-const short TargetHorizontalPosition = -200;
+const short TargetHorizontalPosition = 1000;
 #endif
 
 const float AutoPilotUpdateInterval = 0.10;         // How often the autopilot control law execute
@@ -28,7 +28,7 @@ const float AutoPilotUpdateInterval = 0.10;         // How often the autopilot c
     // First the thrust to hold position against gravity (then fudge it)
     float neededThrust = 0;
 
-#if !defined(DEBUG) || defined(DEBUG_VERTICAL_AUTOPILOT)
+#ifndef DEBUG_HORIZONTAL_AUTOPILOT
     // Some state data we use
     float landerWeight = self.WEIGHT;
     float maxThrust = self.MAXTHRUST;
@@ -66,7 +66,7 @@ const float AutoPilotUpdateInterval = 0.10;         // How often the autopilot c
     // First the thrust to hold position against gravity (then fudge it)
     float neededThrust = 0;
     
-#if !defined(DEBUG) || defined(DEBUG_HORIZONTAL_AUTOPILOT)
+#ifndef DEBUG_VERTICAL_AUTOPILOT
     // Some state data we use
     float maxThrust = self.MAXTHRUST;
     
@@ -210,9 +210,9 @@ const float AutoPilotUpdateInterval = 0.10;         // How often the autopilot c
         self.autoPilot.targetAltitude = TargetVerticalPosition;
         self.autoPilot.targetRange = TargetHorizontalPosition;
 #else
-        //### Pick a random destinations
-        self.autoPilot.targetAltitude = TargetVerticalPosition;
-        self.autoPilot.targetRange = TargetHorizontalPosition;
+        // Pick a random destination
+        self.autoPilot.targetAltitude = 0;
+        self.autoPilot.targetRange = 1000 - (random() % 2000);
 #endif
         
         // Initialize PID controllers

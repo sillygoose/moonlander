@@ -596,21 +596,6 @@ typedef enum MoonlanderDelays {
     self.largeRightArrow.titleLabel.vectorName = @"lra";
     [self.view addSubview:self.largeRightArrow];
 
-    // Autopilot
-    self.autoPilot = [[Autopilot alloc] init];
-    
-    // Autopilot control switch
-    self.autoPilotSwitch = [[VGButton alloc] initWithFrame:CGRectMake(10, 600, 80, 40)];
-    self.autoPilotSwitch.titleLabel.fontSize = [self gameFontSize];
-    self.autoPilotSwitch.titleLabel.text = @"AUTOPILOT";
-    self.autoPilotSwitch.titleLabel.textAlignment = UITextAlignmentCenter;
-	[self.autoPilotSwitch addTarget:self 
-                             action:@selector(autoPilotChange) 
-                   forControlEvents:UIControlEventValueChanged];
-    self.autoPilotSwitch.hidden = YES;
-    self.autoPilotSwitch.titleLabel.vectorName = @"autopilot";
-    [self.view addSubview:self.autoPilotSwitch];
-    
     // Create the thruster control
     const short ThrusterSliderWidth = 200;
     const short ThrusterSliderHeight = (self.enhancedGame) ? 232 : 252;
@@ -629,8 +614,23 @@ typedef enum MoonlanderDelays {
     const short TelemetryXSize = 100;
     const short TelemetryYSize = 24;
     short instrumentID = 0;
-    short instrumentY = (self.enhancedGame) ? 300 : 235;
+    short instrumentY = (self.enhancedGame) ? 320 : 235;
     short instrumentYDelta = (self.enhancedGame) ? 27 : 22;;
+    
+    // Autopilot
+    self.autoPilot = [[Autopilot alloc] init];
+    
+    // Autopilot control switch
+    self.autoPilotSwitch = [[VGButton alloc] initWithFrame:CGRectMake(TelemetryXPos, (instrumentY - instrumentYDelta * instrumentID++), TelemetryXSize, TelemetryYSize)];
+    self.autoPilotSwitch.titleLabel.fontSize = [self gameFontSize];
+    self.autoPilotSwitch.titleLabel.text = @"AUTOPILOT";
+    //self.autoPilotSwitch.titleLabel.textAlignment = UITextAlignmentCenter;
+	[self.autoPilotSwitch addTarget:self 
+                             action:@selector(autoPilotChange) 
+                   forControlEvents:UIControlEventValueChanged];
+    self.autoPilotSwitch.hidden = YES;
+    self.autoPilotSwitch.titleLabel.vectorName = @"autopilot";
+    [self.view addSubview:self.autoPilotSwitch];
     
     self.heightData = [[Telemetry alloc] initWithFrame:CGRectMake(TelemetryXPos, (instrumentY - instrumentYDelta * instrumentID++), TelemetryXSize, TelemetryYSize)];
     self.heightData.titleLabel.text = @"HEIGHT";
