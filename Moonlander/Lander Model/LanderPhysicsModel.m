@@ -13,7 +13,7 @@
 
 // Add any custom debugging options
 #if defined(TARGET_IPHONE_SIMULATOR) && defined(DEBUG)
-#define DEBUG_AUTOPILOT
+//#define DEBUG_AUTOPILOT
 //#define DEBUG_DUST
 //#define DEBUG_LOCATION
 //#define DEBUG_FLAME
@@ -44,6 +44,7 @@
 
 @synthesize actualThrust=_actualThrust;
 
+@synthesize modernModel=_modernModel;
 @synthesize lemMass=_lemMass;
 
 @synthesize lemOnSurface=_lemOnSurface;
@@ -310,11 +311,20 @@ static float RadiansToDegrees(float radians)
             self.verticalAcceleration = -self.lunarGravity;
         }
         else {
-            float fuelUsed = self.actualThrust * timeElapsed / 260.0f;
-            self.fuelRemaining -= fuelUsed;
             self.actualThrust = self.percentThrustRequested * self.maxThrust / 100.0f;
+
+            float fuelUsed = self.actualThrust * timeElapsed / 250.0f;
+            self.fuelRemaining -= fuelUsed;
+            
+            //(FUELKO)
             self.lemMass = self.fuelRemaining + self.lemEmptyMass;
-            self.lemAcceleration = self.actualThrust * self.earthGravity / self.lemMass * 1.50f;
+            
+            if (self.modernModel) {
+                self.lemAcceleration = self.actualThrust * self.earthGravity / self.lemMass;
+            }
+            else {
+                self.lemAcceleration = self.actualThrust * self.earthGravity / 10674.0;
+            }
             self.horizontalAcceleration = self.lemAcceleration * sinf(self.turnAngleRadians);
             self.verticalAcceleration = self.lemAcceleration * cosf(self.turnAngleRadians) - self.lunarGravity;
         }

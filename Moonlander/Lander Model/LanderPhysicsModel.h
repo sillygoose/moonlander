@@ -29,6 +29,7 @@
     float       _actualThrust;
     float       _fuelRemaining;
     
+    BOOL        _modernModel;
     float       _lemMass;
     
     BOOL        _lemOnSurface;
@@ -54,6 +55,7 @@
 @property (nonatomic) float actualThrust;                   // lb
 @property (nonatomic) float fuelRemaining;                  // lbs
 
+@property (nonatomic) BOOL modernModel;                     // if TRUE apply bug fixes
 @property (nonatomic) float lemMass;                        // lbs
 
 @property (nonatomic) BOOL lemOnSurface;                    // LEM has landed

@@ -19,6 +19,8 @@ Issues to do list
 
 Completed
 =========
+- found bug in original lander that causes the flight dynamics to vary in the various builds
+  added to the classic build and fixed in the modern version
 - looks like a possible drawing glitch in the thrust view - don't see it
 - fix roll rate updates from flight controls
 - cleanup game logic so there is a single start/end selector

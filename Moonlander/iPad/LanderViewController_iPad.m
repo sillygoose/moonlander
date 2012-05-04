@@ -537,6 +537,7 @@ typedef enum MoonlanderDelays {
 
     // Create the lander simulation model
     self.landerModel = [[LanderPhysicsModel alloc] init];
+    self.landerModel.modernModel = (self.enhancedGame);
     
     // Create the dust view
     self.dustView = [[Dust alloc] init];
