@@ -13,6 +13,7 @@
 
 // Add any custom debugging options
 #if defined(TARGET_IPHONE_SIMULATOR) && defined(DEBUG)
+#define DEBUG_AUTOPILOT
 //#define DEBUG_DUST
 //#define DEBUG_LOCATION
 //#define DEBUG_FLAME
@@ -259,15 +260,15 @@ static float RadiansToDegrees(float radians)
 {
     // Start in flight mode
     self.lemOnSurface = NO;
-#if defined(DEBUG) && (defined(DEBUG_DUST) || defined(DEBUG_FLAME) || defined(DEBUG_HOLD_HORIZONTAL_POSITION) || defined(DEBUG_HOLD_VERTICAL_POSITION))
+#if defined(DEBUG) && (defined(DEBUG_AUTOPILOT) || defined(DEBUG_DUST) || defined(DEBUG_FLAME) || defined(DEBUG_HOLD_HORIZONTAL_POSITION) || defined(DEBUG_HOLD_VERTICAL_POSITION))
     // Custom lander start point
     self.fuelRemaining = self.lemInitalFuel;
-    self.turnAngle = -70.0f;
-    self.horizontalVelocity = 1000.0f;
-    self.verticalVelocity = -500.0f;
-    self.horizontalDistance = -22000.0;
-    self.verticalDistance = 20000.0f;
-    self.percentThrustRequested = 75.0f;
+    self.turnAngle = -0.0f;
+    self.horizontalVelocity = 0.0f;
+    self.verticalVelocity = -20.0f;
+    self.horizontalDistance = -200.0;
+    self.verticalDistance = 300.0f;
+    self.percentThrustRequested = 18.0f;
     self.clockTicks = 0.0f;
 #else
     // Default game start point

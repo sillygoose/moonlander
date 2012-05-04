@@ -13,7 +13,7 @@
 // Add any custom debugging options
 #if defined(TARGET_IPHONE_SIMULATOR) && defined(DEBUG)
 #define DEBUG_SHORT_DELAYS
-//#define DEBUG_NO_SPLASH
+#define DEBUG_NO_SPLASH
 //#define DEBUG_EXTRA_INSTRUMENTS
 //#define DEBUG_GRAB_EMPTY_SCREEN
 //#define DEBUG_ENHANCED
@@ -31,6 +31,7 @@
 @synthesize explosionManager=_explosionManager;
 @synthesize manView=_manView;
 @synthesize flagView=_flagView;
+@synthesize autoPilot=_autoPilot;
 
 @synthesize SHOWX=_SHOWX;
 @synthesize SHOWY=_SHOWY;
@@ -50,6 +51,7 @@
 @synthesize smallRightArrow=_smallRightArrow;
 @synthesize largeLeftArrow=_largeLeftArrow;
 @synthesize largeRightArrow=_largeRightArrow;
+@synthesize autoPilotSwitch=_autoPilotSwitch;
 
 @synthesize thrusterSlider=_thrusterSlider;
 
@@ -60,6 +62,7 @@
 @synthesize landerUpdateTimer=_landerUpdateTimer;
 @synthesize positionUpdateTimer=_positionUpdateTimer;
 @synthesize instrumentUpdateTimer=_instrumentUpdateTimer;
+@synthesize autoPilotTimer=_autoPilotTimer;
 
 @synthesize heightData=_heightData;
 @synthesize altitudeData=_altitudeData;
@@ -93,7 +96,7 @@
 @synthesize beepSound=_beepSound;
 @synthesize explosionSound=_explosionSound;
 
-@synthesize playEnhancedGame=_playEnhancedGamel;
+@synthesize playEnhancedGame=_playEnhancedGame;
 
 
 // Simulation constants
@@ -103,7 +106,7 @@ const float PositionUpdateInterval = 0.01;          // How often the lander posi
 const float InstrumentUpdateInterval = 0.2;         // How often the instrument displays are updated
 const float LanderModelUpdateInterval = 0.02;       // How often the lander model is updated (aka PDP11 line clock)
 
-const float RollButtonRepeatInterval = 0.10;        // Timer value for roll button holddown
+const float RollButtonRepeatInterval = 0.10;        // Timer value for roll button hold down
 
 
 typedef enum MoonlanderDelays {
@@ -321,6 +324,8 @@ typedef enum MoonlanderDelays {
     self.largeRightArrow.enabled = YES;
     
     self.thrusterSlider.enabled = YES;
+
+    self.autoPilotSwitch.enabled = YES;
     
     self.heightData.enabled = YES;
     self.altitudeData.enabled = YES;
@@ -345,6 +350,8 @@ typedef enum MoonlanderDelays {
     
     self.thrusterSlider.enabled = NO;
     
+    self.autoPilotSwitch.enabled = NO;
+
     self.heightData.enabled = NO;
     self.altitudeData.enabled = NO;
     self.distanceData.enabled = NO;
@@ -373,6 +380,16 @@ typedef enum MoonlanderDelays {
     self.smallRightArrow.enabled = YES;
     self.largeLeftArrow.enabled = YES;
     self.largeRightArrow.enabled = YES;
+}
+
+- (void)disableThrustFlightControls
+{
+    self.thrusterSlider.enabled = NO;
+}
+
+- (void)enableThrustFlightControls
+{
+    self.thrusterSlider.enabled = YES;
 }
 
 - (void)getStarted
@@ -479,6 +496,8 @@ typedef enum MoonlanderDelays {
     self.instrument3.hidden = NO;
     self.instrument4.hidden = NO;
 
+    self.autoPilotSwitch.hidden = (self.enhancedGame) ? NO : YES;
+    
     self.heightData.hidden = NO;
     self.altitudeData.hidden = NO;
     self.distanceData.hidden = NO;
@@ -564,6 +583,21 @@ typedef enum MoonlanderDelays {
     self.largeRightArrow.brighten = YES;
     self.largeRightArrow.titleLabel.vectorName = @"lra";
     [self.view addSubview:self.largeRightArrow];
+
+    // Autopilot
+    self.autoPilot = [[Autopilot alloc] init];
+    
+    // Autopilot control switch
+    self.autoPilotSwitch = [[VGButton alloc] initWithFrame:CGRectMake(10, 600, 80, 40)];
+    self.autoPilotSwitch.titleLabel.fontSize = [self gameFontSize];
+    self.autoPilotSwitch.titleLabel.text = @"AUTOPILOT";
+    self.autoPilotSwitch.titleLabel.textAlignment = UITextAlignmentCenter;
+	[self.autoPilotSwitch addTarget:self 
+                             action:@selector(autoPilotChange) 
+                   forControlEvents:UIControlEventValueChanged];
+    self.autoPilotSwitch.hidden = YES;
+    self.autoPilotSwitch.titleLabel.vectorName = @"autopilot";
+    [self.view addSubview:self.autoPilotSwitch];
     
     // Create the thruster control
     const short ThrusterSliderWidth = 200;
@@ -918,6 +952,7 @@ typedef enum MoonlanderDelays {
     self.largeLeftArrow = nil;
     self.largeRightArrow = nil;
     self.thrusterSlider = nil;
+    self.autoPilotSwitch = nil;
 
     // Views
     self.landerView = nil;
@@ -945,13 +980,15 @@ typedef enum MoonlanderDelays {
     self.positionUpdateTimer = nil;
     [self.instrumentUpdateTimer invalidate];
     self.instrumentUpdateTimer = nil;
+    [self.autoPilotTimer invalidate];
+    self.autoPilotTimer = nil;
 }
 
 - (void)cleanupControls
 {
     // Disable the flight controls
     [self disableFlightControls];
-
+    
     // Make sure no controls are left blinking
     self.heightData.titleLabel.blink = NO;
     self.altitudeData.titleLabel.blink = NO;
@@ -965,6 +1002,9 @@ typedef enum MoonlanderDelays {
     self.verticalAccelerationData.titleLabel.blink = NO;
     self.horizontalAccelerationData.titleLabel.blink = NO;
     self.secondsData.titleLabel.blink = NO;
+    
+    self.autoPilotSwitch.titleLabel.blink = NO;
+    self.autoPilotSwitch.enabled = NO;
 }
 
 - (IBAction)telemetrySelected:(Telemetry *)sender
@@ -992,6 +1032,7 @@ typedef enum MoonlanderDelays {
         self.selectedTelemetry = nil;
     }
 }
+
 
 - (IBAction)thrusterChanged:(VGSlider *)sender
 {

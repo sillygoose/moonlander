@@ -25,6 +25,7 @@
 #import "Telemetry.h"
 #import "Instrument.h"
 #import "LanderMessage.h"
+#import "Autopilot.h"
 
 #import "ExplosionManager.h"
 
@@ -38,6 +39,7 @@
     ExplosionManager    *_explosionManager;
     Man                 *_manView;
     Flag                *_flagView;
+    Autopilot           *_autoPilot;
     
     float               _SHOWX;
     float               _SHOWY;
@@ -56,6 +58,7 @@
     VGButton            *_smallRightArrow;
     VGButton            *_largeLeftArrow;
     VGButton            *_largeRightArrow;
+    VGButton            *_autoPilotSwitch;
     
     VGSlider            *_thrusterSlider;
     
@@ -64,6 +67,7 @@
     NSTimer             *__unsafe_unretained _landerUpdateTimer;
     NSTimer             *__unsafe_unretained _positionUpdateTimer;
     NSTimer             *__unsafe_unretained _instrumentUpdateTimer;
+    NSTimer             *__unsafe_unretained _autoPilotTimer;
 
     Telemetry           *_selectedTelemetry;
     Telemetry           *_heightData;
@@ -108,6 +112,7 @@
 @property (nonatomic, unsafe_unretained) NSTimer *landerUpdateTimer;
 @property (nonatomic, unsafe_unretained) NSTimer *positionUpdateTimer;
 @property (nonatomic, unsafe_unretained) NSTimer *instrumentUpdateTimer;
+@property (nonatomic, unsafe_unretained) NSTimer *autoPilotTimer;
 
 @property (nonatomic) float SHOWX;
 @property (nonatomic) float SHOWY;
@@ -126,7 +131,7 @@
 @property (nonatomic, readonly) CGPoint LANDER;
 @property (nonatomic) short VERDIS;
 @property (nonatomic) short HORDIS;
-@property (nonatomic, readonly) short PERTRS;
+@property (nonatomic) short PERTRS;
 @property (nonatomic, readonly) float ANGLE;
 @property (nonatomic) short ANGLED;
 @property (nonatomic) short HORVEL;
@@ -147,11 +152,13 @@
 @property (nonatomic, strong) ExplosionManager *explosionManager;
 @property (nonatomic, strong) Man *manView;
 @property (nonatomic, strong) Flag *flagView;
+@property (nonatomic, strong) Autopilot *autoPilot;
 
 @property (nonatomic, strong) VGButton *smallLeftArrow;
 @property (nonatomic, strong) VGButton *smallRightArrow;
 @property (nonatomic, strong) VGButton *largeLeftArrow;
 @property (nonatomic, strong) VGButton *largeRightArrow;
+@property (nonatomic, strong) VGButton *autoPilotSwitch;
 
 @property (nonatomic, strong) VGSlider *thrusterSlider;
 
@@ -193,5 +200,10 @@
 
 - (IBAction)thrusterChanged:(VGSlider *)sender;
 - (IBAction)rotateLander:(id)sender;
+
+- (void)enableRollFlightControls;
+- (void)disableRollFlightControls;
+- (void)enableThrustFlightControls;
+- (void)disableThrustFlightControls;
 
 @end

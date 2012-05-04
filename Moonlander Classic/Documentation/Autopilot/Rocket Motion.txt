@@ -1,0 +1,134 @@
+                               CS 4: Lecture 21
+                            Monday, April 10, 2006
+
+The Project:  Rocket Motion
+---------------------------
+The Lunar Lander project asks you to simulate the motion of a rocket.  One way
+that rocket motion differs from pool balls is that the rocket propels itself by
+expelling fuel, so its mass decreases as it moves.
+
+Let q(t) be the flow rate of the expelled gas, measured in kg/s, as a function
+of time.  The flow rate is controlled by the rocket's driver.
+
+Let m(t) be the mass of the rocket as a function of time.  The mass can be
+determined by integrating the differential equation
+
+     d m(t)
+     ------ = - q(t).                                                       (1)
+       dt
+
+Conservation of momentum is the principle that underlies the rocket's
+propulsion.  The change in momentum of the fuel expelled from the rocket's
+tail is matched by increased momentum in the rocket.
+
+If q(t) is constant over the duration of a timestep (which is always true in
+the Lunar Lander project), then Euler's method is all you need for time
+integration of this differential equation with perfect accuracy.
+
+Let F_re be the force applied to the rocket by the exhaust, and F_er be the
+force applied to the exhaust by the rocket.  By Newton's Third Law,
+
+    F   = - F  .
+     re      er
+
+If the rocket experiences gravity, the total force on the rocket is
+
+    F (t) = - F  (t) + g m(t),
+     r         er
+
+where g is the gravitational acceleration, which points toward the planet or
+moon that exerts the gravitational force.  (Note that g and the F's are
+vectors, and may point in different directions.)
+
+The force on the exhaust is its flow rate times its velocity,
+
+    F  (t) = q(t) v (t).
+     er            e
+
+What is its velocity?  Let w be the velocity of the exhaust, _relative_ to the
+rocket.  The magnitude of w depends on chemical processes, and is typically
+roughly constant.  Let v(t) be the velocity of the rocket as a function of
+time.  The _absolute_ velocity of the exhaust is v_e(t) = w + v(t), because the
+fuel was moving with the rocket until the moment it was exhausted.
+
+In the Lunar Lander project, w is fixed at 1,700 m/s.  The direction of w
+depends on how the rocket is oriented--the exhaust shoots out the rocket's
+tail.  In Lunar Lander, the orientation of the lander is not always the same as
+the direction it's moving.
+
+So we have
+
+    F (t) = - q(t) [w + v(t)] + m(t) g.
+     r
+
+Normally, the next step would be to use Newton's Second Law, F = ma.  But
+there's a surprising problem...
+
+    F = ma is WRONG when m changes as a function of time!
+
+So what can we do instead?  Well, force is the rate of change of momentum.
+Let p(t) be the rocket's momentum as a function of time.  Then
+
+    d p(t)
+    ------ = - q(t) [w + v(t)] + m(t) g.
+      dt
+
+Momentum is mass times velocity, i.e., p(t) = m(t) v(t).  By the chain rule,
+
+    d p(t)        d v(t)   d m(t)
+    ------ = m(t) ------ + ------ v(t) = - q(t) [w + v(t)] + m(t) g.
+      dt            dt       dt
+
+Notice that one of the derivatives is the acceleration a(t) = dv/dt.  So
+although F = ma is wrong, the truth is something close:  F = ma + m'v.  That's
+how Newton's Second Law changes when mass is not constant.
+
+Recall from (1) that dm/dt = - q(t).  Therefore, two of the terms cancel each
+other out, and we have
+
+         d v(t)
+    m(t) ------ = - q(t) w + m(t) g.
+           dt
+
+Dividing both sides by m(t) gives
+
+    d v(t)     q(t)
+    ------ = - ---- w + g.                                                  (2)
+      dt       m(t)
+
+We can integrate this differential equation with Euler's Method and solve for
+the rocket's velocity.  However, because the mass changes value during each
+timestep, we'll get a more accurate result if we use Heun's method.
+
+Knowing the velocity, we can also advance the position x(t) of the rocket.
+
+    d x(t)
+    ------ = v(t).
+      dt
+
+Again, Euler's Method is a good start, but Heun's Method is more accurate.
+
+Heun's Method
+-------------
+Heun's Method gives better accuracy than Euler's Method for computing v(t) and
+x(t).  Here's how you use it.  First, compute m(t + T) (after one timestep)
+with Euler's Method.  This gives an accurate result because q(t) doesn't vary
+during a timestep.
+
+    m(t + T) = m(t) - q(t) T.
+
+Then use the trapezoid rule to integrate (2) and compute an accurate v(t + T).
+
+                                 1          1
+    v(t + T) ~ v(t) - T q(t) [ ------ + ---------- ] w + T g.
+                               2 m(t)   2 m(t + T)
+
+Finally, use the trapezoid rule to compute an accurate x(t + T).
+
+                      T
+    x(t + T) ~ x(t) + - [ v(t) + v(t + T) ].
+                      2
+
+Note that because v doesn't depend on x, and m doesn't depend on v or x, we
+don't have to use an Euler "guess" (recall Lecture 9) to use Heun's method
+here.

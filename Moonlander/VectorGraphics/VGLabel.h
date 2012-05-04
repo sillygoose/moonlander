@@ -11,13 +11,13 @@
 #import "VGView.h"
 
 @interface VGLabel : VGView {
-    NSString        *_text;
-    UIFont          *_font;
-    UIColor         *_textColor;
-    UITextAlignment _textAlignment;
+    NSString                    *_text;
+    UIFont                      *_font;
+    UIColor                     *_textColor;
+    UITextAlignment             _textAlignment;
 
-    short           _intensity;
-    BOOL            _blink;
+    short                       _intensity;
+    BOOL                        _blink;
 }
 
 @property (nonatomic, copy) NSString *text;
