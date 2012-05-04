@@ -76,6 +76,7 @@
 		56E80E60137E599E009E7F15 /* VGView.m in Sources */ = {isa = PBXBuildFile; fileRef = 56E80E5F137E599E009E7F15 /* VGView.m */; };
 		56E837291553026700022A1E /* LanderViewController_iPad+AutoPilot.m in Sources */ = {isa = PBXBuildFile; fileRef = 56E837281553026700022A1E /* LanderViewController_iPad+AutoPilot.m */; };
 		56E8372F1553061B00022A1E /* Autopilot.m in Sources */ = {isa = PBXBuildFile; fileRef = 56E8372E1553061B00022A1E /* Autopilot.m */; };
+		56E8373715535DF400022A1E /* PIDController.m in Sources */ = {isa = PBXBuildFile; fileRef = 56E8373615535DF400022A1E /* PIDController.m */; };
 		56E87D31154477EC00C5C764 /* beep-high.caf in Resources */ = {isa = PBXBuildFile; fileRef = 56E87D2E154477EC00C5C764 /* beep-high.caf */; };
 		56E87D32154477EC00C5C764 /* beep-low.caf in Resources */ = {isa = PBXBuildFile; fileRef = 56E87D2F154477EC00C5C764 /* beep-low.caf */; };
 		56E87D33154477EC00C5C764 /* beep-med.caf in Resources */ = {isa = PBXBuildFile; fileRef = 56E87D30154477EC00C5C764 /* beep-med.caf */; };
@@ -235,6 +236,8 @@
 		56E837281553026700022A1E /* LanderViewController_iPad+AutoPilot.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "LanderViewController_iPad+AutoPilot.m"; sourceTree = "<group>"; };
 		56E8372D1553061B00022A1E /* Autopilot.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Autopilot.h; sourceTree = "<group>"; };
 		56E8372E1553061B00022A1E /* Autopilot.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Autopilot.m; sourceTree = "<group>"; };
+		56E8373515535DF400022A1E /* PIDController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PIDController.h; sourceTree = "<group>"; };
+		56E8373615535DF400022A1E /* PIDController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PIDController.m; sourceTree = "<group>"; };
 		56E87D2E154477EC00C5C764 /* beep-high.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "beep-high.caf"; sourceTree = "<group>"; };
 		56E87D2F154477EC00C5C764 /* beep-low.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "beep-low.caf"; sourceTree = "<group>"; };
 		56E87D30154477EC00C5C764 /* beep-med.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "beep-med.caf"; sourceTree = "<group>"; };
@@ -602,6 +605,8 @@
 		567CD473154853D800797BD1 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				56E8373515535DF400022A1E /* PIDController.h */,
+				56E8373615535DF400022A1E /* PIDController.m */,
 				56E8372D1553061B00022A1E /* Autopilot.h */,
 				56E8372E1553061B00022A1E /* Autopilot.m */,
 				5694D1D613920A8C00A61F22 /* Moon.h */,
@@ -998,6 +1003,7 @@
 				56EA5BF6154E35D700AB6DF2 /* DocumentViewController.m in Sources */,
 				56E837291553026700022A1E /* LanderViewController_iPad+AutoPilot.m in Sources */,
 				56E8372F1553061B00022A1E /* Autopilot.m in Sources */,
+				56E8373715535DF400022A1E /* PIDController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
