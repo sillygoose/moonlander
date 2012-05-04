@@ -319,12 +319,14 @@ static float RadiansToDegrees(float radians)
             //(FUELKO)
             self.lemMass = self.fuelRemaining + self.lemEmptyMass;
             
+            //### needs fixing
             if (self.modernModel) {
                 self.lemAcceleration = self.actualThrust * self.earthGravity / self.lemMass * 1.5;
             }
             else {
                 self.lemAcceleration = self.actualThrust * self.earthGravity / 10674.0;
             }
+            //###
             self.horizontalAcceleration = self.lemAcceleration * sinf(self.turnAngleRadians);
             self.verticalAcceleration = self.lemAcceleration * cosf(self.turnAngleRadians) - self.lunarGravity;
         }
