@@ -41,7 +41,9 @@
 - (short)horizAccel;
 - (short)vertAccel;
 - (short)acceleration;
-- (short)time;
+- (float)time;
+- (short)maximumThrust;
+- (float)moonGravity;
 
 - (BOOL)onSurface;
 

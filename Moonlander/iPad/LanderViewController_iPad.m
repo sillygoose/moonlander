@@ -228,6 +228,7 @@ typedef enum MoonlanderDelays {
 - (void)setPERTRS:(short)value
 {
     [self.landerModel.dataSource setThrust:value];
+    [self.thrusterSlider setValue:self.PERTRS];
 }
 
 - (float)ANGLE
@@ -285,9 +286,19 @@ typedef enum MoonlanderDelays {
     [self.landerModel.dataSource setThrust:value];
 }
 
+- (short)MAXTHRUST
+{
+    return [self.landerModel.dataSource maximumThrust];
+}
+
 - (float)TIME
 {
     return [self.landerModel.dataSource time];
+}
+
+- (float)GRAVITY
+{
+    return [self.landerModel.dataSource moonGravity];
 }
 
 - (short)WEIGHT

@@ -148,6 +148,9 @@ static float RadiansToDegrees(float radians)
     if (thrustPercent < 10) {
         thrustPercent = 10;
     }
+    else if (thrustPercent > 100) {
+        thrustPercent = 100;
+    }
     self.percentThrustRequested = thrustPercent;
 }
 
@@ -206,9 +209,19 @@ static float RadiansToDegrees(float radians)
     return (short)self.verticalAcceleration;
 }
 
-- (short)time
+- (float)time
 {
-    return (short)self.clockTicks;
+    return self.clockTicks;
+}
+
+- (float)moonGravity
+{
+    return self.lunarGravity;
+}
+
+- (short)maximumThrust
+{
+    return (short)self.maxThrust;
 }
 
 - (float)updateTime:(float)timeElasped
@@ -265,9 +278,9 @@ static float RadiansToDegrees(float radians)
     self.fuelRemaining = self.lemInitalFuel;
     self.turnAngle = -0.0f;
     self.horizontalVelocity = 0.0f;
-    self.verticalVelocity = -20.0f;
+    self.verticalVelocity = -500.0f;
     self.horizontalDistance = -200.0;
-    self.verticalDistance = 300.0f;
+    self.verticalDistance = 21400.0f;
     self.percentThrustRequested = 18.0f;
     self.clockTicks = 0.0f;
 #else

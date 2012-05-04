@@ -22,8 +22,47 @@ const short targetHorizontalPosition = -200;
 {
     float vpOutput = self.autoPilot.verticalPosition.output;
     float vvOutput = self.autoPilot.verticalVelocity.output;
+    
+    // Some state data
+    float landerWeight = self.WEIGHT;
+    float maxThrust = self.MAXTHRUST;
+    float thrustAngle = self.ANGLE;
+    float cosThrustAngle = cos(thrustAngle);
+    float lunarGravity = self.GRAVITY;
+    float forceDueToGravity = (landerWeight / 32) * lunarGravity;
+    
+    // Land with some velocity
+    vvOutput -= -12;
     NSLog(@"vpOutput: %f, vvOutput: %f", vpOutput, vvOutput);
     
+    float neededThrust = ((1.3 * forceDueToGravity) / maxThrust) * 100;
+    if (vpOutput < 20) {
+        neededThrust = 2.0 * vvOutput;
+    }
+    else if (vpOutput < 50) {
+        neededThrust = 2.3 * vvOutput;
+    }
+    else if (vpOutput < 100) {
+        neededThrust = 1.8 * vvOutput;
+    }
+    else if (vpOutput < 200) {
+        neededThrust = 1.3 * vvOutput;
+    }
+    else if (vpOutput < 500) {
+        neededThrust = 1.0 * vvOutput;
+    }
+    else if (vpOutput < 1000) {
+        neededThrust = ((1.5 * forceDueToGravity) / maxThrust) * 100;
+    }
+    else if (vpOutput < 2500) {
+        neededThrust = ((1.75 * forceDueToGravity) / maxThrust) * 100;
+    }
+    else if (vpOutput < 5000) {
+        neededThrust = ((2 * forceDueToGravity) / maxThrust) * 100;
+    }
+    
+    neededThrust = (cosThrustAngle != 0.0) ? neededThrust / cosThrustAngle : 100;
+    self.PERTRS = (short)(fabs(neededThrust));
 }
 
 - (void)calculateHorizontalControls
@@ -150,12 +189,12 @@ const short targetHorizontalPosition = -200;
 {
     self.autoPilot.verticalPosition.setPoint = [^{ return [self vpSetPoint];} copy];
     self.autoPilot.verticalPosition.processValue = [^{ return [self vpProcessValue];} copy];
-    self.autoPilot.verticalPosition.Kp = 1.0 / 1000.0;
+    self.autoPilot.verticalPosition.Kp = -1.0 / 1.0;
     self.autoPilot.verticalPosition.Kd = 0;
     
     self.autoPilot.verticalVelocity.setPoint = [^{ return [self vvSetPoint];} copy];
     self.autoPilot.verticalVelocity.processValue = [^{ return [self vvProcessValue];} copy];
-    self.autoPilot.verticalVelocity.Kp = 1.0 / 1000.0;
+    self.autoPilot.verticalVelocity.Kp = -1.0 / 1.0;
     self.autoPilot.verticalVelocity.Kd = 0;
     
     self.autoPilot.horizontalPosition.setPoint = [^{ return [self hpSetPoint];} copy];

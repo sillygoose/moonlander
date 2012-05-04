@@ -18,6 +18,7 @@
 
 - (short)PERTRS;
 - (short)THRUST;
+- (short)MAXTHRUST;
 - (float)ANGLE;
 - (short)ANGLED;
 
