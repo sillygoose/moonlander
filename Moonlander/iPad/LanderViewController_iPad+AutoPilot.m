@@ -26,8 +26,8 @@ const short TargetHorizontalPosition = -200;
     // Some state data
     float landerWeight = self.WEIGHT;
     float maxThrust = self.MAXTHRUST;
-    float thrustAngle = self.ANGLE;
-    float cosThrustAngle = cos(thrustAngle);
+    //float thrustAngle = self.ANGLE;
+    //float cosThrustAngle = cos(thrustAngle);
     float lunarGravity = self.GRAVITY;
     float forceDueToGravity = (landerWeight / 32) * lunarGravity;
     
@@ -45,15 +45,11 @@ const short TargetHorizontalPosition = -200;
     float vGain = (vpOutput == 0.0) ? 10 : fabs(vvOutput/vpOutput) ;
     neededThrust += thrustFromVelocity = -(1 - vpOutput) * vvOutput * maxThrust * vGain;
     
-    // Adjust the thrust for any angle
-    neededThrust = (cosThrustAngle != 0.0) ? neededThrust / cosThrustAngle : 100;
-    
     // Land with some velocity
-    NSLog(@"Alt: %d  vpOutput: %f, vvOutput: %f  tV: %5.0f  vG: %4.3f", self.VERDIS, vpOutput, vvOutput, thrustFromVelocity, vGain);
+    //NSLog(@"Alt: %d  vpOutput: %f, vvOutput: %f  tV: %5.0f  vG: %4.3f", self.VERDIS, vpOutput, vvOutput, thrustFromVelocity, vGain);
     
-    // Convert the thrust to a percentage
-    neededThrust = MIN(neededThrust, maxThrust) / maxThrust * 100;
-    self.PERTRS = (short)(fabs(neededThrust));
+    // Save the vertical trhust component
+    self.autoPilot.verticalThrustRequested = neededThrust;
 }
 
 - (void)calculateHorizontalControls
@@ -62,11 +58,15 @@ const short TargetHorizontalPosition = -200;
     //float hvOutput = self.autoPilot.horizontalVelocity.output;
     //NSLog(@"hpOutput: %f, hvOutput: %f", hpOutput, hvOutput);
     
+    // Save the vertical trhust component
+    float neededThrust = 0;
+    self.autoPilot.horizontalThrustRequested = neededThrust;
 }
 
 - (void)stepAutoPilot
 {
     if ([self.landerModel onSurface]) {
+        // Shut down
         [self autoPilotChange];
     }
     else {
@@ -75,6 +75,25 @@ const short TargetHorizontalPosition = -200;
         
         [self calculateVerticalControls];
         [self calculateHorizontalControls];
+        
+        // Set the control outputs
+        float verticalThrustRequested = self.autoPilot.verticalThrustRequested;
+        float horizontalThrustRequested = self.autoPilot.horizontalThrustRequested;
+        
+        // Calculate the resulant vector that contains our vertical and horizontal components
+        float maxThrust = self.MAXTHRUST;
+        float totalThrust = sqrt(horizontalThrustRequested * horizontalThrustRequested + verticalThrustRequested * verticalThrustRequested);
+        totalThrust = (totalThrust / maxThrust) * 100;
+        self.PERTRS = (short)totalThrust;
+        
+        // Find an angle that will provide the thrust components
+        float thrustAngleRatio = 0;
+        if (verticalThrustRequested != 0) {
+            thrustAngleRatio = horizontalThrustRequested / verticalThrustRequested;
+        }
+        float thrustAngle = atanf(thrustAngleRatio);
+        float thrustAngleDegrees = thrustAngle  * 180 / M_PI;
+        self.ANGLED = (short)thrustAngleDegrees;
     }
 }
 

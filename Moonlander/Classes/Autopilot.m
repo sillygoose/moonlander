@@ -23,6 +23,9 @@
 @synthesize horizontalPosition=_horizontalPosition;
 @synthesize horizontalVelocity=_horizontalVelocity;
 
+@synthesize verticalThrustRequested=_verticalThrustRequested;
+@synthesize horizontalThrustRequested=_horizontalThrustRequested;
+
 
 - (id)init
 {

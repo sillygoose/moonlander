@@ -25,6 +25,9 @@
     
     PIDController       *_horizontalPosition;
     PIDController       *_horizontalVelocity;
+    
+    float               _verticalThrustRequested;
+    float               _horizontalThrustRequested;
 }
 
 @property (nonatomic) float targetAltitude;
@@ -39,6 +42,9 @@
 
 @property (nonatomic, strong) PIDController *horizontalPosition;
 @property (nonatomic, strong) PIDController *horizontalVelocity;
+
+@property (nonatomic) float verticalThrustRequested;
+@property (nonatomic) float horizontalThrustRequested;
 
 
 - (id)init;
