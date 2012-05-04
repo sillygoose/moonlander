@@ -13,7 +13,7 @@
 
 // Add any custom debugging options
 #if defined(TARGET_IPHONE_SIMULATOR) && defined(DEBUG)
-#define DEBUG_AUTOPILOT
+//#define DEBUG_AUTOPILOT
 //#define DEBUG_DUST
 //#define DEBUG_LOCATION
 //#define DEBUG_FLAME
@@ -278,10 +278,10 @@ static float RadiansToDegrees(float radians)
     // Custom lander start point
     self.fuelRemaining = self.lemInitalFuel;
     self.turnAngle = -0.0f;
-    self.horizontalVelocity = 0.0f;
-    self.verticalVelocity = -500.0f;
-    self.horizontalDistance = -200.0;
-    self.verticalDistance = 23000.0f;
+    self.horizontalVelocity = 500.0f;
+    self.verticalVelocity = 0.0f;
+    self.horizontalDistance = -22000.0;
+    self.verticalDistance = 18000.0f;
     self.percentThrustRequested = 18.0f;
     self.clockTicks = 0.0f;
 #else
@@ -320,7 +320,7 @@ static float RadiansToDegrees(float radians)
             self.lemMass = self.fuelRemaining + self.lemEmptyMass;
             
             if (self.modernModel) {
-                self.lemAcceleration = self.actualThrust * self.earthGravity / self.lemMass;
+                self.lemAcceleration = self.actualThrust * self.earthGravity / self.lemMass * 1.5;
             }
             else {
                 self.lemAcceleration = self.actualThrust * self.earthGravity / 10674.0;

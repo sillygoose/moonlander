@@ -10,30 +10,34 @@
 
 @implementation LanderViewController_iPad (AutoPilot)
 
-const float AutoPilotUpdateInterval = 0.10;         // How often the autopilot control law execute
-
+#ifdef DEBUG
+#define DEBUG_HORIZONTAL_AUTOPILOT
+#define DEBUG_VERTICAL_AUTOPILOT
 
 // This is where we want to land
 const short TargetVerticalPosition = 0;
 const short TargetHorizontalPosition = -200;
+#endif
+
+const float AutoPilotUpdateInterval = 0.10;         // How often the autopilot control law execute
+
 
 
 - (void)calculateVerticalControls
 {
-    float vpOutput = self.autoPilot.verticalPosition.output;
-    float vvOutput = self.autoPilot.verticalVelocity.output;
-    
-    // Some state data
+    // First the thrust to hold position against gravity (then fudge it)
+    float neededThrust = 0;
+
+#if !defined(DEBUG) || defined(DEBUG_VERTICAL_AUTOPILOT)
+    // Some state data we use
     float landerWeight = self.WEIGHT;
     float maxThrust = self.MAXTHRUST;
-    //float thrustAngle = self.ANGLE;
-    //float cosThrustAngle = cos(thrustAngle);
     float lunarGravity = self.GRAVITY;
     float forceDueToGravity = (landerWeight / 32) * lunarGravity;
     
-    // First the thrust to hold position against gravity (then fudge it)
-    float neededThrust = forceDueToGravity / 2;
-    float thrustFromVelocity = 0;
+    // PID controller outputs
+    float vpOutput = self.autoPilot.verticalPosition.output;
+    float vvOutput = self.autoPilot.verticalVelocity.output;
     
     // Clamp since we need to have in the range (-1,1)
     if (vpOutput > 1)
@@ -41,25 +45,50 @@ const short TargetHorizontalPosition = -200;
     else if (vpOutput < -1)
         vpOutput = -1;
 
+    // Correct for lunar gravity
+    neededThrust += forceDueToGravity / 2;
+
     // Calculate the velocity gain for when speed is out of whack with distance
     float vGain = (vpOutput == 0.0) ? 10 : fabs(vvOutput/vpOutput) ;
-    neededThrust += thrustFromVelocity = -(1 - vpOutput) * vvOutput * maxThrust * vGain;
+    neededThrust += -(1 - vpOutput) * vvOutput * maxThrust * vGain;
     
-    // Land with some velocity
-    //NSLog(@"Alt: %d  vpOutput: %f, vvOutput: %f  tV: %5.0f  vG: %4.3f", self.VERDIS, vpOutput, vvOutput, thrustFromVelocity, vGain);
+#ifdef DEBUG_VERTICAL_AUTOPILOT
+    NSLog(@"Alt: %d  vpOutput: %f, vvOutput: %f  tV: %5.0f  vG: %4.3f", self.VERDIS, vpOutput, vvOutput, neededThrust, vGain);
+#endif
+#endif
     
-    // Save the vertical trhust component
+    // Save the vertical thrust component
     self.autoPilot.verticalThrustRequested = neededThrust;
 }
 
 - (void)calculateHorizontalControls
 {
-    //float hpOutput = self.autoPilot.horizontalPosition.output;
-    //float hvOutput = self.autoPilot.horizontalVelocity.output;
-    //NSLog(@"hpOutput: %f, hvOutput: %f", hpOutput, hvOutput);
-    
-    // Save the vertical trhust component
+    // First the thrust to hold position against gravity (then fudge it)
     float neededThrust = 0;
+    
+#if !defined(DEBUG) || defined(DEBUG_HORIZONTAL_AUTOPILOT)
+    // Some state data we use
+    float maxThrust = self.MAXTHRUST;
+    
+    // PID controller outputs
+    float hpOutput = self.autoPilot.horizontalPosition.output;
+    float hvOutput = self.autoPilot.horizontalVelocity.output;
+
+    // Clamp since we need to have in the range (-1,1)
+    if (hpOutput > 1)
+        hpOutput = 1;
+    else if (hpOutput < -1)
+        hpOutput = -1;
+    
+    float hGain = (hpOutput == 0.0) ? 10 : fabs(hvOutput/hpOutput) ;
+    neededThrust += -(1 - hpOutput) * hvOutput * maxThrust * hGain;
+
+#ifdef DEBUG_HORIZONTAL_AUTOPILOT
+    NSLog(@"Dis: %d  hpOutput: %f, hvOutput: %f  tV: %5.0f  vG: %4.3f", self.HORDIS, hpOutput, hvOutput, neededThrust, hGain);
+#endif
+#endif
+
+    // Save the horizontal thrust component
     self.autoPilot.horizontalThrustRequested = neededThrust;
 }
 
@@ -91,6 +120,10 @@ const short TargetHorizontalPosition = -200;
         if (verticalThrustRequested != 0) {
             thrustAngleRatio = horizontalThrustRequested / verticalThrustRequested;
         }
+        else {
+            float signHorizontalThrust = (horizontalThrustRequested < 0) ? -1 : 1;
+            thrustAngleRatio = 1000 * signHorizontalThrust;
+        }
         float thrustAngle = atanf(thrustAngleRatio);
         float thrustAngleDegrees = thrustAngle  * 180 / M_PI;
         self.ANGLED = (short)thrustAngleDegrees;
@@ -104,12 +137,13 @@ const short TargetHorizontalPosition = -200;
 
 - (float)vpProcessValue
 {
-    float vAltitude = self.RADARY;
+    float vAltitude = self.VERDIS;
     return vAltitude;
 }
 
 - (float)vvSetPoint
 {
+    //### Maybe someting small to ensure a landing (or a crash)
     return 0;
 }
 
@@ -155,12 +189,12 @@ const short TargetHorizontalPosition = -200;
     
     self.autoPilot.horizontalPosition.setPoint = [^{ return [self hpSetPoint];} copy];
     self.autoPilot.horizontalPosition.processValue = [^{ return [self hpProcessValue];} copy];
-    self.autoPilot.horizontalPosition.Kp = 1.0 / 1000.0;
+    self.autoPilot.horizontalPosition.Kp =  -1.0 / 20000.0;
     self.autoPilot.horizontalPosition.Kd = 0;
 
     self.autoPilot.horizontalVelocity.setPoint = [^{ return [self hvSetPoint];} copy];
     self.autoPilot.horizontalVelocity.processValue = [^{ return [self hvProcessValue];} copy];
-    self.autoPilot.horizontalVelocity.Kp = 1.0 / 1000.0;
+    self.autoPilot.horizontalVelocity.Kp = -1.0 / 1000.0;
     //self.autoPilot.horizontalVelocity.Kd = 0;
 
     [self.autoPilot setup];
@@ -171,9 +205,15 @@ const short TargetHorizontalPosition = -200;
     self.autoPilot.enabled = !self.autoPilot.enabled;
     self.autoPilotSwitch.titleLabel.blink = self.autoPilot.enabled;
     if (self.autoPilot.enabled == YES) {
+#ifdef DEBUG
         // Set the destinations
         self.autoPilot.targetAltitude = TargetVerticalPosition;
         self.autoPilot.targetRange = TargetHorizontalPosition;
+#else
+        //### Pick a random destinations
+        self.autoPilot.targetAltitude = TargetVerticalPosition;
+        self.autoPilot.targetRange = TargetHorizontalPosition;
+#endif
         
         // Initialize PID controllers
         [self initializePIDControllers];
@@ -184,6 +224,7 @@ const short TargetHorizontalPosition = -200;
         self.autoPilotTimer = [NSTimer scheduledTimerWithTimeInterval:AutoPilotUpdateInterval target:self selector:@selector(stepAutoPilot) userInfo:nil repeats:YES];
     }
     else {
+        // Disengage the autopilot
         [self.autoPilotTimer invalidate];
         self.autoPilotTimer = nil;
         [self enableRollFlightControls];
