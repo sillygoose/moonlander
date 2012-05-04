@@ -7,8 +7,7 @@ Features wish list
 ===================
 - generate 6x8 dot matrix fonts
 - throttle dust/thrust updates or at least phosphor age them
-- autopilot (for modern and background)
-    http://inst.eecs.berkeley.edu/~cs4/fa04/prj/
+- add ID to the existing autopilot P controller
 
 
 Issues to do list
@@ -19,6 +18,7 @@ Issues to do list
 
 Completed
 =========
+- autopilot (for modern and background)
 - found bug in original lander that causes the flight dynamics to vary in the various builds
   added to the classic build and fixed in the modern version
 - looks like a possible drawing glitch in the thrust view - don't see it
