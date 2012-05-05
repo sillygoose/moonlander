@@ -491,6 +491,7 @@
         self.currentView = TV_Detailed;
         self.LEFTEDGE = xCoordinate;
         self.drawPaths = [self buildDetailedLunarSurface];
+        self.hidden = NO;
         self.dirtySurface = NO;
         [self setNeedsDisplay];
     }
@@ -506,6 +507,7 @@
 
         self.currentView = TV_Normal;
         self.drawPaths = [self buildLunarSurface];
+        self.hidden = NO;
         [self setNeedsDisplay];
     }
 }

@@ -7,7 +7,6 @@
 //
 
 #import "MenuViewController_iPad.h"
-#import "LanderViewController_iPad.h"
 #import "DocumentViewController.h"
 
 
@@ -32,7 +31,7 @@
     }
     else if ([segue.destinationViewController isKindOfClass:[LanderViewController_iPad class]]) {
         LanderViewController_iPad *lvc = segue.destinationViewController;
-        lvc.playEnhancedGame = [segue.identifier isEqualToString:@"PlayModern"];
+        lvc.playEnhancedGame = [segue.identifier isEqualToString:@"PlayModernSegue"];
     }
     NSLog(@"Seque to %@", segue.identifier);
 }
@@ -45,7 +44,6 @@
     self.view.opaque = NO;
     self.view.backgroundColor = [UIColor clearColor];
 
-#if 0
     UIStoryboard *storyboard = self.storyboard;
     self.menuBackground = [storyboard instantiateViewControllerWithIdentifier:@"ModernSim"];
     
@@ -57,23 +55,7 @@
     [self.view addSubview:self.menuBackground.view];
     [self.view sendSubviewToBack:self.menuBackground.view];
     [self addChildViewController:self.menuBackground];
-    [self didMoveToParentViewController:self.menuBackground];
-#endif
-    
-#if 0
-    // Create our simulation background view
-    self.menuBackground = [[LanderViewController_iPad alloc] init];
-    //self.menuBackground.view.frame = self.view.frame;
-    //self.menuBackground.view.bounds = self.view.bounds;
-    self.menuBackground.playEnhancedGame = YES;
-    self.menuBackground.menuSubview = YES;
-
-    [self.view addSubview:self.menuBackground.view];
-    [self.view sendSubviewToBack:self.menuBackground.view];
-    [self addChildViewController:self.menuBackground];
-    [self didMoveToParentViewController:self.menuBackground];
-#endif
-    //###
+    [self.menuBackground didMoveToParentViewController:self];
 }
 
 - (void)viewDidUnload
@@ -97,13 +79,19 @@
     //self.menuBackground.view.hidden = NO;
 }
 
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    
+    NSLog(@"menuVC:viewDidAppear  %@  %@", NSStringFromCGRect(self.view.bounds), NSStringFromCGAffineTransform(self.view.transform));
+    // Hide the navigation bar in this view
+    ///###[[self navigationController] setNavigationBarHidden:YES animated:NO];
+    //NSLog(@"viewWillAppear  frame: %@  bounds: %@  transform: %@", NSStringFromCGRect(self.view.frame), NSStringFromCGRect(self.view.bounds), NSStringFromCGAffineTransform(self.view.transform));
+}
+
 - (void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
-    
-    // Disable the background flight sim
-    //[self.menuBackground viewWillDisappear:animated];
-    //###[self.menuBackground cleanupTimers];
 }
 
 - (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation

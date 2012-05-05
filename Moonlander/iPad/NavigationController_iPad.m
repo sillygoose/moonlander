@@ -15,6 +15,8 @@
 
 @implementation NavigationController_iPad
 
+
+//###delete if not used/needed
 - (void)viewDidLoad
 {
     [super viewDidLoad];

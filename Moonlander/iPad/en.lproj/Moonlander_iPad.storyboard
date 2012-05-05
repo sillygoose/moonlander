@@ -19,11 +19,11 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </toolbar>
                     <connections>
-                        <segue destination="6C4-ba-SyT" kind="relationship" relationship="rootViewController" id="wqT-dw-dNg"/>
+                        <segue destination="0zl-dS-tgB" kind="relationship" relationship="rootViewController" id="afw-5O-621"/>
                     </connections>
                 </navigationController>
             </objects>
-            <point key="canvasLocation" x="-1962" y="-315"/>
+            <point key="canvasLocation" x="-3178" y="-315"/>
         </scene>
         <!--Document View Controller - History of Moonlander-->
         <scene sceneID="jol-Ph-oD0">
@@ -252,6 +252,59 @@
             </objects>
             <point key="canvasLocation" x="558" y="562"/>
         </scene>
+        <!--Splash View Controller - Splash-->
+        <scene sceneID="q71-Lg-nUB">
+            <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ugm-KW-1RZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <viewController storyboardIdentifier="SplashVC" title="Splash" id="0zl-dS-tgB" customClass="SplashViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="vTP-GA-5rD">
+                        <rect key="frame" x="0.0" y="20" width="1024" height="748"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.0" contentMode="left" text="... but only a select few ever noticed.  Now you can experience what so few others did." lineBreakMode="wordWrap" numberOfLines="5" baselineAdjustment="alignBaselines" minimumFontSize="44" adjustsFontSizeToFit="NO" id="bnY-h4-MQX">
+                                <rect key="frame" x="109" y="370" width="915" height="335"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <accessibility key="accessibilityConfiguration" label="SplashPart2">
+                                    <accessibilityTraits key="traits" none="YES" staticText="YES" notEnabled="YES"/>
+                                </accessibility>
+                                <fontDescription key="fontDescription" type="system" pointSize="72"/>
+                                <color key="textColor" red="0.0" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.0" contentMode="left" text="In 1973 the computer gaming world was shaken..." lineBreakMode="wordWrap" numberOfLines="4" baselineAdjustment="alignBaselines" minimumFontSize="44" adjustsFontSizeToFit="NO" id="v0r-ch-1KH">
+                                <rect key="frame" x="36" y="0.0" width="937" height="300"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <accessibility key="accessibilityConfiguration" label="SplashPart1">
+                                    <accessibilityTraits key="traits" none="YES" staticText="YES" notEnabled="YES"/>
+                                </accessibility>
+                                <fontDescription key="fontDescription" type="system" pointSize="72"/>
+                                <color key="textColor" red="0.0" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.0" contentMode="left" text="Moonlander" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" id="iVZ-N0-tjw">
+                                <rect key="frame" x="20" y="138" width="976" height="422"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="96"/>
+                                <color key="textColor" red="0.0" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                        <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="LXq-vu-d2k"/>
+                    <connections>
+                        <outlet property="firstPart" destination="v0r-ch-1KH" id="SRG-VM-y4q"/>
+                        <outlet property="moonLander" destination="iVZ-N0-tjw" id="eNt-eb-TYY"/>
+                        <outlet property="secondfPart" destination="bnY-h4-MQX" id="6Hm-rQ-Jqw"/>
+                        <segue destination="6C4-ba-SyT" kind="push" identifier="MenuSegue" id="6dv-ph-lfy"/>
+                    </connections>
+                </viewController>
+            </objects>
+            <point key="canvasLocation" x="-1990" y="-315"/>
+        </scene>
         <!--Menu View Controller i Pad - Menu-->
         <scene sceneID="YMf-cD-nJb">
             <objects>
@@ -262,7 +315,7 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="0U1-cE-H2X" userLabel="History">
-                                <rect key="frame" x="561" y="73" width="400" height="60"/>
+                                <rect key="frame" x="604" y="67" width="400" height="60"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="48"/>
@@ -278,7 +331,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Cne-ZE-E0a" userLabel="Play">
-                                <rect key="frame" x="251" y="148" width="710" height="60"/>
+                                <rect key="frame" x="294" y="142" width="710" height="60"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="48"/>
@@ -290,11 +343,11 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="Ngu-au-laf" kind="push" identifier="PlayClassic" id="tgb-T0-pMy"/>
+                                    <segue destination="Ngu-au-laf" kind="push" identifier="PlayClassicSegue" id="tgb-T0-pMy"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="QD4-7c-czr" userLabel="FlightControls">
-                                <rect key="frame" x="561" y="298" width="400" height="60"/>
+                                <rect key="frame" x="604" y="292" width="400" height="60"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="48"/>
@@ -310,7 +363,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="fAr-Om-uPQ" userLabel="FAQ">
-                                <rect key="frame" x="561" y="373" width="400" height="60"/>
+                                <rect key="frame" x="604" y="367" width="400" height="60"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="48"/>
@@ -326,7 +379,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="PU3-yj-FiE" userLabel="Hardware">
-                                <rect key="frame" x="561" y="448" width="400" height="60"/>
+                                <rect key="frame" x="604" y="442" width="400" height="60"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="48"/>
@@ -342,7 +395,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="8gz-98-20S" userLabel="Software">
-                                <rect key="frame" x="561" y="523" width="400" height="60"/>
+                                <rect key="frame" x="604" y="517" width="400" height="60"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="48"/>
@@ -358,7 +411,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="iZL-7G-cl7" userLabel="Credits">
-                                <rect key="frame" x="561" y="598" width="400" height="60"/>
+                                <rect key="frame" x="604" y="592" width="400" height="60"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="48"/>
@@ -374,7 +427,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="IeM-sv-rqP" userLabel="Play">
-                                <rect key="frame" x="264" y="223" width="697" height="60"/>
+                                <rect key="frame" x="307" y="217" width="697" height="60"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="48"/>
@@ -386,7 +439,7 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="FX2-L3-oki" kind="push" identifier="PlayModern" id="dRH-9V-4iw"/>
+                                    <segue destination="FX2-L3-oki" kind="push" identifier="PlayModernSegue" id="dRH-9V-4iw"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -438,6 +491,14 @@
         </class>
         <class className="NavigationController_iPad" superclassName="UINavigationController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/NavigationController_iPad.h"/>
+        </class>
+        <class className="SplashViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/SplashViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="firstPart" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="moonLander" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="secondfPart" candidateClass="UILabel"/>
+            </relationships>
         </class>
         <class className="VGSlider" superclassName="UIControl">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/VGSlider.h"/>

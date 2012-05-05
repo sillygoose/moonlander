@@ -498,10 +498,8 @@ typedef enum MoonlanderDelays {
 {
     // Remove splash screen (if present)
     [self.landerMessages removeSystemMessage:@"SplashScreen"];
-    
-    // We need a lunar view in any mode
-    self.moonView.hidden = NO;
-    
+
+    //### to ugly, derive classic/modern/menu from lander class
     if (self.menuSubview == NO) {
         // Enable message display
         self.landerMessages.hidden = NO;
@@ -540,8 +538,6 @@ typedef enum MoonlanderDelays {
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
-    NSLog(@"viewDidLoad  %@  %@", NSStringFromCGRect(self.view.bounds), NSStringFromCGAffineTransform(self.view.transform));
 
     // Hide the navigation bar so we have the entire screen
     [[self navigationController] setNavigationBarHidden:YES animated:NO];
@@ -906,17 +902,25 @@ typedef enum MoonlanderDelays {
         [self becomeFirstResponder];
     }
 
-    NSLog(@"viewWillAppear  %@  %@  %@", NSStringFromCGRect(self.view.frame), NSStringFromCGRect(self.view.bounds), NSStringFromCGAffineTransform(self.view.transform));
+    NSLog(@"viewWillAppear  %@  %@  %@", NSStringFromCGRect(self.view.frame), NSStringFromCGRect(self.view.bounds), NSStringFromCGPoint(self.view.center));
+    if (self.menuSubview == NO) {
     // Create moon view here since the bounds are updated by the orientation transform (but not in viewDidLoad)
     self.moonView = [[Moon alloc] initWithFrame:self.view.bounds];
     [self.view addSubview:self.moonView];
+    }
 }
 
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
     
-    NSLog(@"viewDidAppear  %@  %@  %@", NSStringFromCGRect(self.view.frame), NSStringFromCGRect(self.view.bounds), NSStringFromCGAffineTransform(self.view.transform));
+    NSLog(@"viewDidAppear  %@  %@  %@", NSStringFromCGRect(self.view.frame), NSStringFromCGRect(self.view.bounds), NSStringFromCGPoint(self.view.center));
+
+    if (self.menuSubview == YES) {
+        // Create moon view here since the bounds are updated by the orientation transform (but not in viewDidLoad)
+        self.moonView = [[Moon alloc] initWithFrame:self.view.bounds];
+        [self.view addSubview:self.moonView];
+    }
     // Start/restart the simulation
     [self setupTimers]; 
 }
@@ -1227,7 +1231,7 @@ typedef enum MoonlanderDelays {
     }
     else {
         // Return to the main menu
-        [self.navigationController popToRootViewControllerAnimated:YES];
+        [self.navigationController popViewControllerAnimated:YES];
     }
 }
 
@@ -1271,7 +1275,7 @@ typedef enum MoonlanderDelays {
         [self.landerMessages removeAllLanderMessages];
         
         // Return to the main menu
-        [self.navigationController popToRootViewControllerAnimated:YES];
+        [self.navigationController popViewControllerAnimated:YES];
     }
 }
 

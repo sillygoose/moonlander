@@ -44,6 +44,7 @@
 		564EBC4D138349F2007D477C /* Flag.plist in Resources */ = {isa = PBXBuildFile; fileRef = 564EBC4C138349F2007D477C /* Flag.plist */; };
 		564EBC4F13834A07007D477C /* Man.plist in Resources */ = {isa = PBXBuildFile; fileRef = 564EBC4E13834A07007D477C /* Man.plist */; };
 		564EBC5113834A17007D477C /* McDonalds.plist in Resources */ = {isa = PBXBuildFile; fileRef = 564EBC5013834A17007D477C /* McDonalds.plist */; };
+		564FF2471555C260007F5AB5 /* SplashViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 564FF2461555C260007F5AB5 /* SplashViewController.m */; };
 		5650B9EA153CB76900AEF4F2 /* ExplosionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5650B9E9153CB76800AEF4F2 /* ExplosionManager.m */; };
 		565B00E114447E400071231D /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5675E5D41425004400882CD8 /* AudioToolbox.framework */; };
 		56678FCC139A7D4D00026588 /* OldLander.plist in Resources */ = {isa = PBXBuildFile; fileRef = 56678FCB139A7D4D00026588 /* OldLander.plist */; };
@@ -163,6 +164,8 @@
 		564EBC4C138349F2007D477C /* Flag.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Flag.plist; sourceTree = "<group>"; };
 		564EBC4E13834A07007D477C /* Man.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Man.plist; sourceTree = "<group>"; };
 		564EBC5013834A17007D477C /* McDonalds.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = McDonalds.plist; sourceTree = "<group>"; };
+		564FF2451555C260007F5AB5 /* SplashViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SplashViewController.h; sourceTree = "<group>"; };
+		564FF2461555C260007F5AB5 /* SplashViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SplashViewController.m; sourceTree = "<group>"; };
 		5650B9E8153CB76800AEF4F2 /* ExplosionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExplosionManager.h; sourceTree = "<group>"; };
 		5650B9E9153CB76800AEF4F2 /* ExplosionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExplosionManager.m; sourceTree = "<group>"; };
 		5652574D154CBABB0022EF77 /* disasm.doc */ = {isa = PBXFileReference; lastKnownFileType = text; path = disasm.doc; sourceTree = "<group>"; };
@@ -401,6 +404,8 @@
 				560FA0EA137991AE0017EE25 /* MoonlanderAppDelegate_iPad.m */,
 				562D624E154DC3CD00BD4EDD /* NavigationController_iPad.h */,
 				562D624F154DC3CE00BD4EDD /* NavigationController_iPad.m */,
+				564FF2451555C260007F5AB5 /* SplashViewController.h */,
+				564FF2461555C260007F5AB5 /* SplashViewController.m */,
 				562D6245154DAD1900BD4EDD /* MenuViewController_iPad.h */,
 				562D6246154DAD1900BD4EDD /* MenuViewController_iPad.m */,
 				56EA5BF4154E35D700AB6DF2 /* DocumentViewController.h */,
@@ -1004,6 +1009,7 @@
 				56E837291553026700022A1E /* LanderViewController_iPad+AutoPilot.m in Sources */,
 				56E8372F1553061B00022A1E /* Autopilot.m in Sources */,
 				56E8373715535DF400022A1E /* PIDController.m in Sources */,
+				564FF2471555C260007F5AB5 /* SplashViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
