@@ -19,6 +19,7 @@ Issues to do list
 - update modern splash screen to mention the autopilot
 - rate limit flight controls in autopilot mode
 - add scoring to modern game
+- fix screen sleep so it is allowed except in game play
 
 
 Completed

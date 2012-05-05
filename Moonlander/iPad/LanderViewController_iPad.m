@@ -621,16 +621,17 @@ typedef enum MoonlanderDelays {
     self.autoPilot = [[Autopilot alloc] init];
     
     // Autopilot control switch
-    self.autoPilotSwitch = [[VGButton alloc] initWithFrame:CGRectMake(TelemetryXPos, (instrumentY - instrumentYDelta * instrumentID++), TelemetryXSize, TelemetryYSize)];
-    self.autoPilotSwitch.titleLabel.fontSize = [self gameFontSize];
-    self.autoPilotSwitch.titleLabel.text = @"AUTOPILOT";
-    //self.autoPilotSwitch.titleLabel.textAlignment = UITextAlignmentCenter;
-	[self.autoPilotSwitch addTarget:self 
-                             action:@selector(autoPilotChange) 
-                   forControlEvents:UIControlEventValueChanged];
-    self.autoPilotSwitch.hidden = YES;
-    self.autoPilotSwitch.titleLabel.vectorName = @"autopilot";
-    [self.view addSubview:self.autoPilotSwitch];
+    if (self.enhancedGame == YES) {
+        self.autoPilotSwitch = [[VGButton alloc] initWithFrame:CGRectMake(TelemetryXPos, (instrumentY - instrumentYDelta * instrumentID++), TelemetryXSize, TelemetryYSize)];
+        self.autoPilotSwitch.titleLabel.fontSize = [self gameFontSize];
+        self.autoPilotSwitch.titleLabel.text = @"AUTOPILOT";
+        [self.autoPilotSwitch addTarget:self 
+                                 action:@selector(autoPilotChange) 
+                       forControlEvents:UIControlEventValueChanged];
+        self.autoPilotSwitch.hidden = YES;
+        self.autoPilotSwitch.titleLabel.vectorName = @"autopilot";
+        [self.view addSubview:self.autoPilotSwitch];
+    }
     
     self.heightData = [[Telemetry alloc] initWithFrame:CGRectMake(TelemetryXPos, (instrumentY - instrumentYDelta * instrumentID++), TelemetryXSize, TelemetryYSize)];
     self.heightData.titleLabel.text = @"HEIGHT";
@@ -757,7 +758,7 @@ typedef enum MoonlanderDelays {
     self.secondsData = [[Telemetry alloc] initWithFrame:CGRectMake(TelemetryXPos, (instrumentY - instrumentYDelta * instrumentID++), TelemetryXSize, TelemetryYSize)];
     self.secondsData.titleLabel.text = @"SECONDS";
     self.secondsData.format = @"%6d %@";
-    self.secondsData.data =[^{ return self.TIME;} copy];
+    self.secondsData.data =[^{ return (short)self.TIME;} copy];
 	[self.secondsData addTarget:self 
                         action:@selector(telemetrySelected:) 
               forControlEvents:UIControlEventTouchUpInside];
