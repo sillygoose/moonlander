@@ -72,8 +72,9 @@ static float RadiansToDegrees(float radians)
 
 - (void)setPercentThrustRequested:(short)thrustRequested
 {
+    short mt = (self.modernModel) ? self.maxThrustLEM : self.maxThrust;
     _percentThrustRequested = thrustRequested;
-    self.actualThrust = (self.fuelRemaining > 0) ? (_percentThrustRequested * self.maxThrust / 100) : 0;
+    self.actualThrust = (self.fuelRemaining > 0) ? (_percentThrustRequested * mt / 100) : 0;
 }
 
 - (void)setTurnAngle:(short)angle
@@ -222,7 +223,7 @@ static float RadiansToDegrees(float radians)
 
 - (short)maximumThrust
 {
-    return (short)self.maxThrust;
+    return (self.modernModel) ? self.maxThrustLEM : self.maxThrust;
 }
 
 - (float)updateTime:(float)timeElasped
@@ -304,29 +305,29 @@ static float RadiansToDegrees(float radians)
         // Calculate fuel and accelerations (ROCKET subroutine)
         if (self.fuelRemaining <= 0) {
             self.fuelRemaining = 0;
-            self.lemMass = self.lemEmptyMass;
+            self.lemMass = (self.modernModel) ? self.lemEmptyMassLEM : self.lemEmptyMass;
             self.actualThrust = 0;
             self.lemAcceleration = 0;
             self.horizontalAcceleration = 0;
             self.verticalAcceleration = -self.lunarGravity;
         }
         else {
-            self.actualThrust = self.percentThrustRequested * self.maxThrust / 100.0f;
+            short maxThrust = (self.modernModel) ? self.maxThrustLEM : self.maxThrust;
+            self.actualThrust = self.percentThrustRequested * maxThrust / 100.0f;
 
             float fuelUsed = self.actualThrust * timeElapsed / 250.0f;
             self.fuelRemaining -= fuelUsed;
             
             //(FUELKO)
-            self.lemMass = self.fuelRemaining + self.lemEmptyMass;
+            short lemEmptyMass = (self.modernModel) ? self.lemEmptyMassLEM : self.lemEmptyMass;
+            self.lemMass = self.fuelRemaining + lemEmptyMass;
             
-            //### needs fixing
             if (self.modernModel) {
-                self.lemAcceleration = self.actualThrust * self.earthGravity / self.lemMass * 1.5;
+                self.lemAcceleration = self.actualThrust * self.earthGravity / self.lemMass;
             }
             else {
                 self.lemAcceleration = self.actualThrust * self.earthGravity / 10674.0;
             }
-            //###
             self.horizontalAcceleration = self.lemAcceleration * sinf(self.turnAngleRadians);
             self.verticalAcceleration = self.lemAcceleration * cosf(self.turnAngleRadians) - self.lunarGravity;
         }

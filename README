@@ -6,7 +6,7 @@ will be getting UI elements making it a pain to test game elements.
 Features wish list
 ===================
 - generate 6x8 dot matrix fonts
-- throttle dust/thrust updates or at least phosphor age them
+- throttle dust/thrust updates or at least phosphor age them (modern game)
 - add ID to the existing autopilot P controller
 
 

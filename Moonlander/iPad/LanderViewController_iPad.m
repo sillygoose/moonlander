@@ -552,7 +552,7 @@ typedef enum MoonlanderDelays {
     // Create the roll control arrows
     const float SmallRollArrowWidth = 35;
     const float SmallRollArrowHeight = 40;
-    const CGFloat SmallRollYPos = (self.enhancedGame) ? 400 : 355;
+    const CGFloat SmallRollYPos = (self.enhancedGame) ? 410 : 355;
     NSString *slaPath = [[NSBundle mainBundle] pathForResource:@"SmallLeftArrow" ofType:@"plist"];
     self.smallLeftArrow = [[VGButton alloc] initWithFrame:CGRectMake(910, SmallRollYPos, SmallRollArrowWidth, SmallRollArrowHeight)  withPaths:slaPath andRepeat:RollButtonRepeatInterval];
 	[self.smallLeftArrow addTarget:self 
@@ -575,7 +575,7 @@ typedef enum MoonlanderDelays {
     
     const float LargeRollArrowWidth = 50;
     const float LargeRollArrowHeight = 40;
-    const CGFloat LargeRollYPos = (self.enhancedGame) ? 350: 310;
+    const CGFloat LargeRollYPos = (self.enhancedGame) ? 360: 310;
     NSString *llaPath = [[NSBundle mainBundle] pathForResource:@"LargeLeftArrow" ofType:@"plist"];
     self.largeLeftArrow = [[VGButton alloc] initWithFrame:CGRectMake(895, LargeRollYPos, LargeRollArrowWidth, LargeRollArrowHeight) withPaths:llaPath andRepeat:RollButtonRepeatInterval];
 	[self.largeLeftArrow addTarget:self 
