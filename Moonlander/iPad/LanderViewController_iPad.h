@@ -103,6 +103,7 @@
     SystemSoundID       _explosionSound;
     
     BOOL                _playEnhancedGame;
+    BOOL                _menuSubview;
 }
 
 @property (nonatomic, strong) LanderPhysicsModel *landerModel;
@@ -197,6 +198,7 @@
 @property (nonatomic) SystemSoundID explosionSound;
 
 @property (nonatomic) BOOL playEnhancedGame;
+@property (nonatomic) BOOL menuSubview;
 
 
 - (IBAction)thrusterChanged:(VGSlider *)sender;
@@ -206,5 +208,8 @@
 - (void)disableRollFlightControls;
 - (void)enableThrustFlightControls;
 - (void)disableThrustFlightControls;
+
+- (void)setupTimers;
+- (void)cleanupTimers;
 
 @end

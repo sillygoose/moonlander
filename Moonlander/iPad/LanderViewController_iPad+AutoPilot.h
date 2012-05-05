@@ -13,4 +13,7 @@
 
 - (IBAction)autoPilotChange;
 
+- (void)enableAutoPilot;
+- (void)disableAutoPilot;
+
 @end

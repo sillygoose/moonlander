@@ -435,9 +435,11 @@ const float VGBlinkInterval = 0.75;
     CGFontRelease(fontRef);
 
     // Display anything we asked to be logged
+#ifdef DEBUG
     if (logCommand) {
         NSLog(@"Max coordinates for %@: %@", self.vectorName, NSStringFromCGRect(self.actualBounds));
     }
+#endif
 }
 
 - (void)drawPoint:(point_t)point

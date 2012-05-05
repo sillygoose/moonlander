@@ -30,6 +30,7 @@
         // Basic initializations
         self.LEFTEDGE = -1;
         self.mcdExists = YES;
+        self.currentView = TV_Unknown;
         
         // Hide the view for now
         self.hidden = YES;
@@ -372,7 +373,6 @@
             
             x += 4;
             
-            //NSLog(@"TEMP: %d", TEMP);
             xCoordinate = [NSNumber numberWithInt:4];
             yCoordinate = [NSNumber numberWithInt:TEMP];
             NSMutableDictionary *drawItem = [NSDictionary dictionaryWithObjectsAndKeys:xCoordinate, @"x", yCoordinate, @"y", nil];
@@ -457,7 +457,6 @@
             NSDictionary *intensity = [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInt:DINT], @"intensity", nil];
             [path addObject:line];
             [path addObject:intensity];
-            //NSLog(@"X: %f   Intensity: %d    Line type: %d", x, DINT, DTYPE);
         }
         
         CGPoint drawToPoint = CGPointMake(x - previousPoint.x, scaledY - previousPoint.y);
@@ -466,7 +465,6 @@
         NSMutableDictionary *drawItem = [NSDictionary dictionaryWithObjectsAndKeys:xCoordinate, @"x", yCoordinate, @"y", nil];
         [path addObject:drawItem];
         
-        //NSLog(@"%d  %3.0f  %3.0f  %3.0f %@", i, x, y, scaledY, NSStringFromCGPoint(drawToPoint));
         previousPoint.x = x;
         previousPoint.y = scaledY;
     }
@@ -484,7 +482,7 @@
 
 - (void)useCloseUpView:(short)xCoordinate
 {
-    if ((self.currentView == TV_Normal) || (self.currentView == TV_Detailed && self.LEFTEDGE != xCoordinate) || self.dirtySurface) {
+    if ((self.currentView != TV_Detailed) || (self.LEFTEDGE != xCoordinate) || self.dirtySurface) {
         // Remove the subviews whenever we change
         for (UIView *subView in [self subviews]) {
             [subView removeFromSuperview];
@@ -515,6 +513,11 @@
 - (BOOL)viewIsDetailed
 {
     return (self.currentView == TV_Detailed);
+}
+
+- (BOOL)viewIsNormal
+{
+    return (self.currentView == TV_Normal);
 }
 
 @end

@@ -45,6 +45,7 @@ typedef enum { TV_Unknown, TV_Normal, TV_Detailed } TerrainView;
 - (void)useCloseUpView:(short)xCoordinate;
 - (void)useNormalView;
 - (BOOL)viewIsDetailed;
+- (BOOL)viewIsNormal;
 
 - (short)terrainHeight:(short)index;
 - (short)averageTerrainHeight:(short)index;

@@ -212,7 +212,7 @@ const float AutoPilotUpdateInterval = 0.10;         // How often the autopilot c
 #else
         // Pick a random destination
         self.autoPilot.targetAltitude = 0;
-        self.autoPilot.targetRange = 1000 - (random() % 2000);
+        self.autoPilot.targetRange = 750 - (random() % 1500);
 #endif
         
         // Initialize PID controllers
@@ -230,6 +230,29 @@ const float AutoPilotUpdateInterval = 0.10;         // How often the autopilot c
         [self enableRollFlightControls];
         [self enableThrustFlightControls];
     }
+}
+
+- (void)enableAutoPilot
+{
+    self.autoPilot.enabled = YES;
+    self.autoPilotSwitch.hidden = YES;
+    
+    // Pick a random destination
+    self.autoPilot.targetAltitude = 0;
+    self.autoPilot.targetRange = 750 - (random() % 1500);
+    
+    // Initialize PID controllers
+    [self initializePIDControllers];
+    
+    // Prepare for autopilot
+    [self disableRollFlightControls];
+    [self disableThrustFlightControls];
+    self.autoPilotTimer = [NSTimer scheduledTimerWithTimeInterval:AutoPilotUpdateInterval target:self selector:@selector(stepAutoPilot) userInfo:nil repeats:YES];
+}
+
+- (void)disableAutoPilot
+{
+    self.autoPilot.enabled = NO; 
 }
 
 @end

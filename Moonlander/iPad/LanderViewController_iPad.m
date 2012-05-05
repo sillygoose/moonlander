@@ -97,6 +97,7 @@
 @synthesize explosionSound=_explosionSound;
 
 @synthesize playEnhancedGame=_playEnhancedGame;
+@synthesize menuSubview=_menuSubview;
 
 
 // Simulation constants
@@ -170,12 +171,16 @@ typedef enum MoonlanderDelays {
 #pragma mark Delegate
 - (void)beep
 {
-    AudioServicesPlayAlertSound(self.beepSound);
+    if (self.menuSubview == NO) {
+        AudioServicesPlayAlertSound(self.beepSound);
+    }
 }
 
 - (void)explosion
 {
-    AudioServicesPlayAlertSound(self.explosionSound);
+    if (self.menuSubview == NO) {
+        AudioServicesPlayAlertSound(self.explosionSound);
+    }
 }
 
 
@@ -336,8 +341,9 @@ typedef enum MoonlanderDelays {
     
     self.thrusterSlider.enabled = YES;
 
-    self.autoPilotSwitch.enabled = YES;
-    
+    if (self.menuSubview == NO) {
+        self.autoPilotSwitch.enabled = YES;
+    }
     self.heightData.enabled = YES;
     self.altitudeData.enabled = YES;
     self.distanceData.enabled = YES;
@@ -362,7 +368,7 @@ typedef enum MoonlanderDelays {
     self.thrusterSlider.enabled = NO;
     
     self.autoPilotSwitch.enabled = NO;
-
+        
     self.heightData.enabled = NO;
     self.altitudeData.enabled = NO;
     self.distanceData.enabled = NO;
@@ -406,7 +412,6 @@ typedef enum MoonlanderDelays {
 - (void)getStarted
 {
     // Start with a normal view
-    [self.moonView useNormalView];
     [self.landerModel newGame];
     
     // Remove the flag if present
@@ -457,11 +462,7 @@ typedef enum MoonlanderDelays {
 #endif
     
     // Setup the game timers
-	self.landerModelTimer = [NSTimer scheduledTimerWithTimeInterval:LanderModelUpdateInterval target:self selector:@selector(landerModelTimerEvent) userInfo:nil repeats:YES];
-	self.gameLogicTimer = [NSTimer scheduledTimerWithTimeInterval:GameLogicTimerInterval target:self selector:@selector(gameLogicTimerEvent) userInfo:nil repeats:YES];
-	self.landerUpdateTimer = [NSTimer scheduledTimerWithTimeInterval:LanderViewUpdateInterval target:self selector:@selector(updateLander) userInfo:nil repeats:YES];
-	self.positionUpdateTimer = [NSTimer scheduledTimerWithTimeInterval:PositionUpdateInterval target:self selector:@selector(updateLanderPosition) userInfo:nil repeats:YES];
-	self.instrumentUpdateTimer = [NSTimer scheduledTimerWithTimeInterval:InstrumentUpdateInterval target:self selector:@selector(updateInstruments) userInfo:nil repeats:YES];
+    [self setupTimers];
 
     // Starting position
     self.SHOWX = -4096;
@@ -470,6 +471,11 @@ typedef enum MoonlanderDelays {
 
     // Add the lander to the view
     self.landerView.hidden = NO;
+    
+    // Enable the autopilot if in menu mode
+    if (self.menuSubview) {
+        [self performSelector:@selector(enableAutoPilot) withObject:nil afterDelay:[self getDelay: DelayZero]];
+    }
 }
 
 - (void)initGame
@@ -482,7 +488,7 @@ typedef enum MoonlanderDelays {
 #endif
     [self performSelector:@selector(initGame2) withObject:nil afterDelay:0];
 #else
-    self.landerMessages.hidden = NO;
+    self.landerMessages.hidden = self.menuSubview;
     [self.landerMessages addSystemMessage:@"SplashScreen"];
     [self performSelector:@selector(initGame2) withObject:nil afterDelay:[self getDelay: DelaySplashScreen]];
 #endif
@@ -493,35 +499,41 @@ typedef enum MoonlanderDelays {
     // Remove splash screen (if present)
     [self.landerMessages removeSystemMessage:@"SplashScreen"];
     
-    // Unhide the views to get started after splash screen
+    // We need a lunar view in any mode
     self.moonView.hidden = NO;
-    self.landerMessages.hidden = NO;
-    self.smallLeftArrow.hidden = NO;
-    self.smallRightArrow.hidden = NO;
-    self.largeLeftArrow.hidden = NO;
-    self.largeRightArrow.hidden = NO;
-    self.thrusterSlider.hidden = NO;
-
-    self.instrument1.hidden = NO;
-    self.instrument2.hidden = NO;
-    self.instrument3.hidden = NO;
-    self.instrument4.hidden = NO;
-
-    self.autoPilotSwitch.hidden = (self.enhancedGame) ? NO : YES;
     
-    self.heightData.hidden = NO;
-    self.altitudeData.hidden = NO;
-    self.distanceData.hidden = NO;
-    self.fuelLeftData.hidden = NO;
-    self.weightData.hidden = NO;
-    self.thrustData.hidden = NO;
-    self.thrustAngleData.hidden = NO;
-    self.verticalVelocityData.hidden = NO;
-    self.horizontalVelocityData.hidden = NO;
-    self.verticalAccelerationData.hidden = NO;
-    self.horizontalAccelerationData.hidden = NO;
-    self.secondsData.hidden = NO;
-    
+    if (self.menuSubview == NO) {
+        // Enable message display
+        self.landerMessages.hidden = NO;
+        
+        // Enable instrumentation
+        self.instrument1.hidden = NO;
+        self.instrument2.hidden = NO;
+        self.instrument3.hidden = NO;
+        self.instrument4.hidden = NO;
+
+        // Unhide the views to get started after splash screen
+        self.smallLeftArrow.hidden = NO;
+        self.smallRightArrow.hidden = NO;
+        self.largeLeftArrow.hidden = NO;
+        self.largeRightArrow.hidden = NO;
+        self.thrusterSlider.hidden = NO;
+
+        self.autoPilotSwitch.hidden = (self.enhancedGame) ? NO : YES;
+        
+        self.heightData.hidden = NO;
+        self.altitudeData.hidden = NO;
+        self.distanceData.hidden = NO;
+        self.fuelLeftData.hidden = NO;
+        self.weightData.hidden = NO;
+        self.thrustData.hidden = NO;
+        self.thrustAngleData.hidden = NO;
+        self.verticalVelocityData.hidden = NO;
+        self.horizontalVelocityData.hidden = NO;
+        self.verticalAccelerationData.hidden = NO;
+        self.horizontalAccelerationData.hidden = NO;
+        self.secondsData.hidden = NO;
+    }
     [self getStarted];
 }
 
@@ -529,6 +541,8 @@ typedef enum MoonlanderDelays {
 {
     [super viewDidLoad];
     
+    NSLog(@"viewDidLoad  %@  %@", NSStringFromCGRect(self.view.bounds), NSStringFromCGAffineTransform(self.view.transform));
+
     // Hide the navigation bar so we have the entire screen
     [[self navigationController] setNavigationBarHidden:YES animated:NO];
     
@@ -617,10 +631,8 @@ typedef enum MoonlanderDelays {
     short instrumentY = (self.enhancedGame) ? 320 : 235;
     short instrumentYDelta = (self.enhancedGame) ? 27 : 22;;
     
-    // Autopilot
+    // Autopilot and its control switch
     self.autoPilot = [[Autopilot alloc] init];
-    
-    // Autopilot control switch
     if (self.enhancedGame == YES) {
         self.autoPilotSwitch = [[VGButton alloc] initWithFrame:CGRectMake(TelemetryXPos, (instrumentY - instrumentYDelta * instrumentID++), TelemetryXSize, TelemetryYSize)];
         self.autoPilotSwitch.titleLabel.fontSize = [self gameFontSize];
@@ -858,6 +870,10 @@ typedef enum MoonlanderDelays {
     AudioServicesCreateSystemSoundID(beepFileURL, &_beepSound);
     CFURLRef explodeFileURL = (__bridge CFURLRef) [[NSBundle mainBundle] URLForResource: @"explosion-med" withExtension: @"caf"];
     AudioServicesCreateSystemSoundID(explodeFileURL, &_explosionSound);
+    
+    // Setup initial conditions
+    [self initGame];
+    NSLog(@"viewDidLoad  %@  %@", NSStringFromCGRect(self.view.bounds), NSStringFromCGAffineTransform(self.view.transform));
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -868,41 +884,59 @@ typedef enum MoonlanderDelays {
 - (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation
 {
     [super didRotateFromInterfaceOrientation:fromInterfaceOrientation];
+    NSLog(@"didRotateFromInterfaceOrientation  %@  %@  %@", NSStringFromCGRect(self.view.frame), NSStringFromCGRect(self.view.bounds), NSStringFromCGAffineTransform(self.view.transform));
+    //self.view.transform = CGAffineTransformIdentity;
 }
 
 - (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration
 {
     [super willRotateToInterfaceOrientation:toInterfaceOrientation duration:duration];
+    NSLog(@"willRotateToInterfaceOrientation  %@  %@  %@", NSStringFromCGRect(self.view.frame), NSStringFromCGRect(self.view.bounds), NSStringFromCGAffineTransform(self.view.transform));
+    //self.view.transform = CGAffineTransformConcat(self.view.transform, CGAffineTransformMake(1, 0, 0, -1, 0, 0));
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    
+    if (self.menuSubview == YES) {
+    }
+    else {
+        // Let's register for motion events
+        [self becomeFirstResponder];
+    }
 
-    // Let's register for motion events
-    [self becomeFirstResponder];
-
+    NSLog(@"viewWillAppear  %@  %@  %@", NSStringFromCGRect(self.view.frame), NSStringFromCGRect(self.view.bounds), NSStringFromCGAffineTransform(self.view.transform));
     // Create moon view here since the bounds are updated by the orientation transform (but not in viewDidLoad)
     self.moonView = [[Moon alloc] initWithFrame:self.view.bounds];
     [self.view addSubview:self.moonView];
-
-    // Start the timers and other sim stuff
-    [self initGame];
-}
-
-- (void)viewWillDisappear:(BOOL)animated
-{
-    [super viewWillDisappear:animated];
 }
 
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
+    
+    NSLog(@"viewDidAppear  %@  %@  %@", NSStringFromCGRect(self.view.frame), NSStringFromCGRect(self.view.bounds), NSStringFromCGAffineTransform(self.view.transform));
+    // Start/restart the simulation
+    [self setupTimers]; 
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    
+    // Pause simulation when not visible
+    [self cleanupTimers]; 
 }
 
 - (void)viewDidDisappear:(BOOL)animated
 {
     [super viewDidDisappear:animated];
+}
+
+- (void)willMoveToParentViewController:(UIViewController *)parent
+{
+    NSLog(@"willMoveToParentViewController  %@  %@", NSStringFromCGRect(self.view.bounds), NSStringFromCGAffineTransform(self.view.transform));
 }
 
 - (BOOL)canBecomeFirstResponder
@@ -979,6 +1013,25 @@ typedef enum MoonlanderDelays {
     // Audio resources
     AudioServicesDisposeSystemSoundID(self.beepSound);
     AudioServicesDisposeSystemSoundID(self.explosionSound);
+}
+
+- (void)setupTimers
+{
+    if (self.landerModelTimer == nil) {
+        self.landerModelTimer = [NSTimer scheduledTimerWithTimeInterval:LanderModelUpdateInterval target:self selector:@selector(landerModelTimerEvent) userInfo:nil repeats:YES];
+    }
+    if (self.gameLogicTimer == nil) {
+        self.gameLogicTimer = [NSTimer scheduledTimerWithTimeInterval:GameLogicTimerInterval target:self selector:@selector(gameLogicTimerEvent) userInfo:nil repeats:YES];
+    }
+    if (self.landerUpdateTimer == nil) {
+        self.landerUpdateTimer = [NSTimer scheduledTimerWithTimeInterval:LanderViewUpdateInterval target:self selector:@selector(updateLander) userInfo:nil repeats:YES];
+    }
+    if (self.positionUpdateTimer == nil) {
+        self.positionUpdateTimer = [NSTimer scheduledTimerWithTimeInterval:PositionUpdateInterval target:self selector:@selector(updateLanderPosition) userInfo:nil repeats:YES];
+    }
+    if (self.instrumentUpdateTimer == nil) {
+        self.instrumentUpdateTimer = [NSTimer scheduledTimerWithTimeInterval:InstrumentUpdateInterval target:self selector:@selector(updateInstruments) userInfo:nil repeats:YES];
+    }
 }
 
 - (void)cleanupTimers
@@ -1180,7 +1233,7 @@ typedef enum MoonlanderDelays {
 
 - (void)waitNewGame
 {
-    if (self.playEnhancedGame) {
+    if (self.playEnhancedGame && !self.menuSubview) {
         // Setup the yes/no dialog for a new game
         const CGFloat DialogWidth = 125;
         const CGFloat DialogHeight = 125;
@@ -1735,6 +1788,7 @@ typedef enum MoonlanderDelays {
         
         // Switch views if we hit a critical altitude
         if (self.VERDIS < 450) {
+            // Make sure the view is displayed (we might have drifted up)
             //(CLSEUP) Find our horizontal position in the closeup view
             if (![self.moonView viewIsDetailed]) {
                 // Select the closeup view
@@ -1805,8 +1859,10 @@ typedef enum MoonlanderDelays {
             [self.moonView useCloseUpView:self.LEFTEDGE];
         }
         else {
-            // Make sure the view is displayed (we might have drifted up)
-            [self.moonView useNormalView];
+            if (![self.moonView viewIsNormal]) {
+                // Make sure the view is displayed (we might have drifted up)
+                [self.moonView useNormalView];
+            }
             
             // Calculate the position with detail
             self.SHOWX = self.BIGXCT;
