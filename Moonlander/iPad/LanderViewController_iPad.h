@@ -216,7 +216,9 @@ typedef enum {
 - (void)enableThrustFlightControls;
 - (void)disableThrustFlightControls;
 
-- (void)loadTelemetryControls;
+- (void)loadFlightControls;
+- (void)loadTelemetry;
+- (void)loadInstruments;
 - (void)cleanupControls;
 
 - (void)setupTimers;
