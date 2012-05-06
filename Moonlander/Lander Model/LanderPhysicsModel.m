@@ -279,10 +279,10 @@ static float RadiansToDegrees(float radians)
     self.fuelRemaining = self.lemInitalFuel;
     self.turnAngle = -0.0f;
     self.horizontalVelocity = 0.0f;
-    self.verticalVelocity = 10.0f;
-    self.horizontalDistance = -200.0;
-    self.verticalDistance = 500.0f;
-    self.percentThrustRequested = 18.0f;
+    self.verticalVelocity = -410.0f;
+    self.horizontalDistance = -3600.0;
+    self.verticalDistance = 1500.0f;
+    self.percentThrustRequested = 12.0f;
     self.clockTicks = 0.0f;
 #else
     // Default game start point
