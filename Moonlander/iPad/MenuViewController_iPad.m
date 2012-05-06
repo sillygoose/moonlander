@@ -33,17 +33,16 @@
         LanderViewController_iPad *lvc = segue.destinationViewController;
         lvc.playEnhancedGame = [segue.identifier isEqualToString:@"PlayModernSegue"];
     }
-    NSLog(@"Seque to %@", segue.identifier);
 }
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     
-   // NSLog(@"menuVC:viewDidLoad  %@  %@", NSStringFromCGRect(self.view.bounds), NSStringFromCGAffineTransform(self.view.transform));
     self.view.opaque = NO;
     self.view.backgroundColor = [UIColor clearColor];
 
+    // Load the background view controller
     UIStoryboard *storyboard = self.storyboard;
     self.menuBackground = [storyboard instantiateViewControllerWithIdentifier:@"ModernSim"];
     
@@ -51,7 +50,7 @@
     self.menuBackground.playEnhancedGame = YES;
     self.menuBackground.menuSubview = YES;
     
-    //[self presentViewController:self.menuBackground animated:NO completion:nil];
+    // Add to the view and notify everyone
     [self.view addSubview:self.menuBackground.view];
     [self.view sendSubviewToBack:self.menuBackground.view];
     [self addChildViewController:self.menuBackground];
@@ -69,24 +68,13 @@
 {
     [super viewWillAppear:animated];
     
-    //NSLog(@"menuVC:viewWillAppear  %@  %@", NSStringFromCGRect(self.view.bounds), NSStringFromCGAffineTransform(self.view.transform));
     // Hide the navigation bar in this view
-    [[self navigationController] setNavigationBarHidden:YES animated:NO];
-    //NSLog(@"viewWillAppear  frame: %@  bounds: %@  transform: %@", NSStringFromCGRect(self.view.frame), NSStringFromCGRect(self.view.bounds), NSStringFromCGAffineTransform(self.view.transform));
-    
-    //[self.menuBackground setupTimers];
-   // [self.menuBackground viewWillAppear:animated];
-    //self.menuBackground.view.hidden = NO;
+    //[[self navigationController] setNavigationBarHidden:YES animated:NO];
 }
 
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    
-    //NSLog(@"menuVC:viewDidAppear  %@  %@", NSStringFromCGRect(self.view.bounds), NSStringFromCGAffineTransform(self.view.transform));
-    // Hide the navigation bar in this view
-    ///###[[self navigationController] setNavigationBarHidden:YES animated:NO];
-    //NSLog(@"viewWillAppear  frame: %@  bounds: %@  transform: %@", NSStringFromCGRect(self.view.frame), NSStringFromCGRect(self.view.bounds), NSStringFromCGAffineTransform(self.view.transform));
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -97,13 +85,11 @@
 - (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation
 {
     [super didRotateFromInterfaceOrientation:fromInterfaceOrientation];
-    NSLog(@"menuVC:didRotateFromInterfaceOrientation  %@  %@  %@", NSStringFromCGRect(self.view.frame), NSStringFromCGRect(self.view.bounds), NSStringFromCGAffineTransform(self.view.transform));
 }
 
 - (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration
 {
     [super willRotateToInterfaceOrientation:toInterfaceOrientation duration:duration];
-    NSLog(@"menuVC:willRotateToInterfaceOrientation  %@  %@  %@", NSStringFromCGRect(self.view.frame), NSStringFromCGRect(self.view.bounds), NSStringFromCGAffineTransform(self.view.transform));
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation

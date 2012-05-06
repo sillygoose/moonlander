@@ -16,15 +16,10 @@
 @implementation NavigationController_iPad
 
 
-//###delete if not used/needed
 - (void)viewDidLoad
 {
-    [super viewDidLoad];
-}
-
-- (void)viewDidUnload
-{
-    [super viewDidUnload];
+    // Hide the navigation bar
+    [[self navigationController] setNavigationBarHidden:YES animated:NO];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation

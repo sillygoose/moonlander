@@ -28,12 +28,21 @@
 {
     [super viewDidLoad];
 
-#ifndef DEBUG
+    self.firstPart.alpha = self.secondfPart.alpha = self.moonLander.alpha = 0;
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+#ifdef DEBUG
+    [self performSelector:@selector(dismissSplashScreen) withObject:nil afterDelay:0];
+#else
+    [super viewWillAppear:animated];
+    
     const float SplashScreenDelay = 3.0;
     const float textFadeInTime = 2.5;
     const float secondFadeInDelay = textFadeInTime + 0.5;
     const float textFadeOutTime = 2.5;
-
+    
     void (^splashComplete)(BOOL) = ^(BOOL f) {
         [self performSelector:@selector(dismissSplashScreen) withObject:nil afterDelay:SplashScreenDelay];
     };
@@ -54,14 +63,15 @@
     // Fade in the splash screen
     [UILabel animateWithDuration:textFadeInTime animations:fadeInFirst];
     [UILabel animateWithDuration:textFadeInTime delay:secondFadeInDelay options:0 animations:fadeInSecond completion:fadeInComplete];
-#else
-    [self performSelector:@selector(dismissSplashScreen) withObject:nil afterDelay:0];
 #endif
 }
 
 - (void)viewDidUnload
 {
     [super viewDidUnload];
+    self.firstPart = nil;
+    self.secondfPart = nil;
+    self.moonLander = nil;
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
