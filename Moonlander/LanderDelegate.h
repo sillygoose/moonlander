@@ -8,6 +8,12 @@
 
 #import <Foundation/Foundation.h>
 
+typedef enum  {
+    LanderTypeClassic,
+    LanderTypeModern
+} LanderType ;
+
+
 @protocol LanderDelegate <NSObject>
 
 - (float)SHOWX;
@@ -25,7 +31,7 @@
 - (void)beep;
 - (void)explosion;
 
-- (BOOL)enhancedGame;
+- (LanderType)landerType;
 - (CGFloat)gameFontSize;
 
 @end

@@ -8,15 +8,15 @@
 
 #import <UIKit/UIKit.h>
 
-#import "LanderViewController_iPad.h"
+#import "AutoPilotViewController_iPad.h"
 
 
 @interface MenuViewController_iPad : UIViewController
 {
-    LanderViewController_iPad           *_menuBackground;
+    AutoPilotViewController_iPad           *_menuBackground;
 }
 
-@property (nonatomic, strong) LanderViewController_iPad *menuBackground;
+@property (nonatomic, strong) AutoPilotViewController_iPad *menuBackground;
 
 
 @end

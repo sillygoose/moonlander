@@ -42,6 +42,8 @@
 - (void)addFuelMessage;
 - (void)removeFuelMessage;
 
+- (BOOL)hasSystemMessage;
+
 - (void)test;
 
 @end

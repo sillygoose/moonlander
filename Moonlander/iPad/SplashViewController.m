@@ -9,13 +9,11 @@
 #import "SplashViewController.h"
 
 
-
 @implementation SplashViewController
 
 @synthesize firstPart=_firstPart;
 @synthesize secondfPart=_secondPart;
 @synthesize moonLander=_moonLander;
-
 
 
 

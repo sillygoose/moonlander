@@ -11,6 +11,7 @@
 #import "LanderPhysicsDataSource.h"
 #import "LanderPhysicsDelegate.h"
 
+
 @interface LanderPhysicsModel : NSObject <LanderPhysicsDelegate, LanderPhysicsDataSource> {
 @private
     float       _clockTicks;
@@ -29,7 +30,7 @@
     float       _actualThrust;
     float       _fuelRemaining;
     
-    BOOL        _modernModel;
+    LanderType  _modernModel;
     float       _lemMass;
     
     BOOL        _lemOnSurface;
@@ -55,7 +56,7 @@
 @property (nonatomic) float actualThrust;                   // lb
 @property (nonatomic) float fuelRemaining;                  // lbs
 
-@property (nonatomic) BOOL modernModel;                     // if TRUE apply bug fixes
+@property (nonatomic) LanderType modernModel;               // if TRUE apply bug fixes
 @property (nonatomic) float lemMass;                        // lbs
 
 @property (nonatomic) BOOL lemOnSurface;                    // LEM has landed

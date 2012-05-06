@@ -45,6 +45,8 @@
 		564EBC4F13834A07007D477C /* Man.plist in Resources */ = {isa = PBXBuildFile; fileRef = 564EBC4E13834A07007D477C /* Man.plist */; };
 		564EBC5113834A17007D477C /* McDonalds.plist in Resources */ = {isa = PBXBuildFile; fileRef = 564EBC5013834A17007D477C /* McDonalds.plist */; };
 		564FF2471555C260007F5AB5 /* SplashViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 564FF2461555C260007F5AB5 /* SplashViewController.m */; };
+		564FF2531556228A007F5AB5 /* ModernLanderViewController_iPad.m in Sources */ = {isa = PBXBuildFile; fileRef = 564FF2521556228A007F5AB5 /* ModernLanderViewController_iPad.m */; };
+		564FF25715562842007F5AB5 /* AutoPilotViewController_iPad.m in Sources */ = {isa = PBXBuildFile; fileRef = 564FF25615562842007F5AB5 /* AutoPilotViewController_iPad.m */; };
 		5650B9EA153CB76900AEF4F2 /* ExplosionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5650B9E9153CB76800AEF4F2 /* ExplosionManager.m */; };
 		565B00E114447E400071231D /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5675E5D41425004400882CD8 /* AudioToolbox.framework */; };
 		56678FCC139A7D4D00026588 /* OldLander.plist in Resources */ = {isa = PBXBuildFile; fileRef = 56678FCB139A7D4D00026588 /* OldLander.plist */; };
@@ -75,7 +77,7 @@
 		56CE0538138B6C88004FA450 /* Instrument.m in Sources */ = {isa = PBXBuildFile; fileRef = 56CE0537138B6C88004FA450 /* Instrument.m */; };
 		56E80E4C137E4CC3009E7F15 /* Lander.plist in Resources */ = {isa = PBXBuildFile; fileRef = 56E80E4B137E4CC3009E7F15 /* Lander.plist */; };
 		56E80E60137E599E009E7F15 /* VGView.m in Sources */ = {isa = PBXBuildFile; fileRef = 56E80E5F137E599E009E7F15 /* VGView.m */; };
-		56E837291553026700022A1E /* LanderViewController_iPad+AutoPilot.m in Sources */ = {isa = PBXBuildFile; fileRef = 56E837281553026700022A1E /* LanderViewController_iPad+AutoPilot.m */; };
+		56E837291553026700022A1E /* ModernLander_iPad+AutoPilot.m in Sources */ = {isa = PBXBuildFile; fileRef = 56E837281553026700022A1E /* ModernLander_iPad+AutoPilot.m */; };
 		56E8372F1553061B00022A1E /* Autopilot.m in Sources */ = {isa = PBXBuildFile; fileRef = 56E8372E1553061B00022A1E /* Autopilot.m */; };
 		56E8373715535DF400022A1E /* PIDController.m in Sources */ = {isa = PBXBuildFile; fileRef = 56E8373615535DF400022A1E /* PIDController.m */; };
 		56E87D31154477EC00C5C764 /* beep-high.caf in Resources */ = {isa = PBXBuildFile; fileRef = 56E87D2E154477EC00C5C764 /* beep-high.caf */; };
@@ -166,6 +168,10 @@
 		564EBC5013834A17007D477C /* McDonalds.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = McDonalds.plist; sourceTree = "<group>"; };
 		564FF2451555C260007F5AB5 /* SplashViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SplashViewController.h; sourceTree = "<group>"; };
 		564FF2461555C260007F5AB5 /* SplashViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SplashViewController.m; sourceTree = "<group>"; };
+		564FF2511556228A007F5AB5 /* ModernLanderViewController_iPad.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ModernLanderViewController_iPad.h; sourceTree = "<group>"; };
+		564FF2521556228A007F5AB5 /* ModernLanderViewController_iPad.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ModernLanderViewController_iPad.m; sourceTree = "<group>"; };
+		564FF25515562842007F5AB5 /* AutoPilotViewController_iPad.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AutoPilotViewController_iPad.h; sourceTree = "<group>"; };
+		564FF25615562842007F5AB5 /* AutoPilotViewController_iPad.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AutoPilotViewController_iPad.m; sourceTree = "<group>"; };
 		5650B9E8153CB76800AEF4F2 /* ExplosionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExplosionManager.h; sourceTree = "<group>"; };
 		5650B9E9153CB76800AEF4F2 /* ExplosionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExplosionManager.m; sourceTree = "<group>"; };
 		5652574D154CBABB0022EF77 /* disasm.doc */ = {isa = PBXFileReference; lastKnownFileType = text; path = disasm.doc; sourceTree = "<group>"; };
@@ -235,8 +241,8 @@
 		56E837241552F99700022A1E /* Nelder-Mead Simplex Algorithm.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = "Nelder-Mead Simplex Algorithm.txt"; sourceTree = "<group>"; };
 		56E837251552F99700022A1E /* Optimization.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = Optimization.txt; sourceTree = "<group>"; };
 		56E837261552FCB700022A1E /* Autopilot Simulation.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = "Autopilot Simulation.pdf"; sourceTree = "<group>"; };
-		56E837271553026700022A1E /* LanderViewController_iPad+AutoPilot.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "LanderViewController_iPad+AutoPilot.h"; sourceTree = "<group>"; };
-		56E837281553026700022A1E /* LanderViewController_iPad+AutoPilot.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "LanderViewController_iPad+AutoPilot.m"; sourceTree = "<group>"; };
+		56E837271553026700022A1E /* ModernLander_iPad+AutoPilot.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ModernLander_iPad+AutoPilot.h"; sourceTree = "<group>"; };
+		56E837281553026700022A1E /* ModernLander_iPad+AutoPilot.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ModernLander_iPad+AutoPilot.m"; sourceTree = "<group>"; };
 		56E8372D1553061B00022A1E /* Autopilot.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Autopilot.h; sourceTree = "<group>"; };
 		56E8372E1553061B00022A1E /* Autopilot.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Autopilot.m; sourceTree = "<group>"; };
 		56E8373515535DF400022A1E /* PIDController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PIDController.h; sourceTree = "<group>"; };
@@ -414,8 +420,12 @@
 				562D624C154DB24900BD4EDD /* ControlsViewController.m */,
 				560FA1341379BEAA0017EE25 /* LanderViewController_iPad.h */,
 				560FA1351379BEAA0017EE25 /* LanderViewController_iPad.m */,
-				56E837271553026700022A1E /* LanderViewController_iPad+AutoPilot.h */,
-				56E837281553026700022A1E /* LanderViewController_iPad+AutoPilot.m */,
+				56E837271553026700022A1E /* ModernLander_iPad+AutoPilot.h */,
+				56E837281553026700022A1E /* ModernLander_iPad+AutoPilot.m */,
+				564FF2511556228A007F5AB5 /* ModernLanderViewController_iPad.h */,
+				564FF2521556228A007F5AB5 /* ModernLanderViewController_iPad.m */,
+				564FF25515562842007F5AB5 /* AutoPilotViewController_iPad.h */,
+				564FF25615562842007F5AB5 /* AutoPilotViewController_iPad.m */,
 			);
 			path = iPad;
 			sourceTree = "<group>";
@@ -1006,10 +1016,12 @@
 				562D624D154DB24900BD4EDD /* ControlsViewController.m in Sources */,
 				562D6250154DC3CE00BD4EDD /* NavigationController_iPad.m in Sources */,
 				56EA5BF6154E35D700AB6DF2 /* DocumentViewController.m in Sources */,
-				56E837291553026700022A1E /* LanderViewController_iPad+AutoPilot.m in Sources */,
+				56E837291553026700022A1E /* ModernLander_iPad+AutoPilot.m in Sources */,
 				56E8372F1553061B00022A1E /* Autopilot.m in Sources */,
 				56E8373715535DF400022A1E /* PIDController.m in Sources */,
 				564FF2471555C260007F5AB5 /* SplashViewController.m in Sources */,
+				564FF2531556228A007F5AB5 /* ModernLanderViewController_iPad.m in Sources */,
+				564FF25715562842007F5AB5 /* AutoPilotViewController_iPad.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

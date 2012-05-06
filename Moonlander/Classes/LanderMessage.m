@@ -49,6 +49,15 @@
     return rect;
 }
 
+- (BOOL)hasSystemMessage
+{
+    BOOL hasSystemMessage = NO;
+    if ([self currentSystemMessage]) {
+        hasSystemMessage = YES;
+    }
+    return hasSystemMessage;
+}
+
 - (void)removeLanderMessage:(NSString *)message
 {
     VGLabel *label = [self.displayedMessages objectForKey:message];

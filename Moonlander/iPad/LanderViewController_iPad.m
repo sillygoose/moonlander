@@ -24,6 +24,7 @@
 @implementation LanderViewController_iPad
 
 @synthesize landerModel=_landerModel;
+@synthesize landerType=_landerType;
 
 @synthesize moonView=_moonView;
 @synthesize landerView=_landerView;
@@ -31,7 +32,6 @@
 @synthesize explosionManager=_explosionManager;
 @synthesize manView=_manView;
 @synthesize flagView=_flagView;
-@synthesize autoPilot=_autoPilot;
 
 @synthesize SHOWX=_SHOWX;
 @synthesize SHOWY=_SHOWY;
@@ -51,7 +51,6 @@
 @synthesize smallRightArrow=_smallRightArrow;
 @synthesize largeLeftArrow=_largeLeftArrow;
 @synthesize largeRightArrow=_largeRightArrow;
-@synthesize autoPilotSwitch=_autoPilotSwitch;
 
 @synthesize thrusterSlider=_thrusterSlider;
 
@@ -62,7 +61,6 @@
 @synthesize landerUpdateTimer=_landerUpdateTimer;
 @synthesize positionUpdateTimer=_positionUpdateTimer;
 @synthesize instrumentUpdateTimer=_instrumentUpdateTimer;
-@synthesize autoPilotTimer=_autoPilotTimer;
 
 @synthesize heightData=_heightData;
 @synthesize altitudeData=_altitudeData;
@@ -96,9 +94,6 @@
 @synthesize beepSound=_beepSound;
 @synthesize explosionSound=_explosionSound;
 
-@synthesize playEnhancedGame=_playEnhancedGame;
-@synthesize menuSubview=_menuSubview;
-
 
 // Simulation constants
 const float GameLogicTimerInterval = 0.10;          // How often the game logic checks run (10 hz)
@@ -110,21 +105,6 @@ const float LanderModelUpdateInterval = 0.02;       // How often the lander mode
 const float RollButtonRepeatInterval = 0.10;        // Timer value for roll button hold down
 
 
-typedef enum MoonlanderDelays {
-    DelayZero,
-    DelaySplashScreen,
-    DelayLanding,
-    DelayMoveMan,
-    DelayOrderFood,
-    DelayPickupFood,
-    DelayTakeoff,
-    DelayGameover,
-    DelayNewGame,
-    DelayFlagPlanted,
-    DelayExplode,
-    DelayOffcom,
-    DelayLast
-} MoonlanderDelay ;
 
 - (float)getDelay:(MoonlanderDelay)delayItem
 {
@@ -161,7 +141,7 @@ typedef enum MoonlanderDelays {
 #endif
     assert(sizeof(Delays)/sizeof(Delays[0]) == DelayLast);
     
-    BOOL modernGame = self.playEnhancedGame;
+    LanderType modernGame = self.landerType;
     float delay = Delays[delayItem][modernGame];
     return delay;
 }
@@ -171,33 +151,26 @@ typedef enum MoonlanderDelays {
 #pragma mark Delegate
 - (void)beep
 {
-    if (self.menuSubview == NO) {
-        AudioServicesPlayAlertSound(self.beepSound);
-    }
+    AudioServicesPlayAlertSound(self.beepSound);
 }
 
 - (void)explosion
 {
-    if (self.menuSubview == NO) {
-        AudioServicesPlayAlertSound(self.explosionSound);
-    }
+    AudioServicesPlayAlertSound(self.explosionSound);
 }
 
 
 #pragma -
 #pragma mark Data source
-- (BOOL)enhancedGame
-{
-#ifdef DEBUG_ENHANCED
-    return YES;
-#else
-    return self.playEnhancedGame;
-#endif
-}
 
 - (CGFloat)gameFontSize
 {
-    return (self.enhancedGame) ? 15 : 12;
+    return 12;
+}
+
+- (LanderType)landerType
+{
+    return LanderTypeClassic;
 }
 
 - (CGPoint)LANDER
@@ -341,9 +314,6 @@ typedef enum MoonlanderDelays {
     
     self.thrusterSlider.enabled = YES;
 
-    if (self.menuSubview == NO) {
-        self.autoPilotSwitch.enabled = YES;
-    }
     self.heightData.enabled = YES;
     self.altitudeData.enabled = YES;
     self.distanceData.enabled = YES;
@@ -367,8 +337,6 @@ typedef enum MoonlanderDelays {
     
     self.thrusterSlider.enabled = NO;
     
-    self.autoPilotSwitch.enabled = NO;
-        
     self.heightData.enabled = NO;
     self.altitudeData.enabled = NO;
     self.distanceData.enabled = NO;
@@ -471,11 +439,6 @@ typedef enum MoonlanderDelays {
 
     // Add the lander to the view
     self.landerView.hidden = NO;
-    
-    // Enable the autopilot if in menu mode
-    if (self.menuSubview) {
-        [self performSelector:@selector(enableAutoPilot) withObject:nil afterDelay:[self getDelay: DelayZero]];
-    }
 }
 
 - (void)initGame
@@ -488,20 +451,11 @@ typedef enum MoonlanderDelays {
 #endif
     [self performSelector:@selector(initGame2) withObject:nil afterDelay:0];
 #else
-    self.landerMessages.hidden = self.menuSubview;
-    if (self.enhancedGame) {
-        [self.landerMessages addSystemMessage:@"SplashScreenModern"];
-    }
-    else {
+    if ([self.landerMessages hasSystemMessage] == NO) {
         [self.landerMessages addSystemMessage:@"SplashScreen"];
     }
-    
-    if (self.menuSubview) {
-        [self performSelector:@selector(initGame2) withObject:nil afterDelay:[self getDelay: DelayZero]];
-    }
-    else {
-        [self performSelector:@selector(initGame2) withObject:nil afterDelay:[self getDelay: DelaySplashScreen]];
-    }
+    self.landerMessages.hidden = NO;
+    [self performSelector:@selector(initGame2) withObject:nil afterDelay:[self getDelay: DelayZero]];
 #endif
 }
 
@@ -510,46 +464,190 @@ typedef enum MoonlanderDelays {
     // Remove splash screen (if present)
     [self.landerMessages removeAllLanderMessages];
 
-    //### to ugly, derive classic/modern/menu from lander class
-    if (self.menuSubview == NO) {
-        // Enable message display
-        self.landerMessages.hidden = NO;
-        
-        // Enable instrumentation
-        self.instrument1.hidden = NO;
-        self.instrument2.hidden = NO;
-        self.instrument3.hidden = NO;
-        self.instrument4.hidden = NO;
+    // Enable message display
+    self.landerMessages.hidden = NO;
+    
+    // Enable instrumentation
+    self.instrument1.hidden = NO;
+    self.instrument2.hidden = NO;
+    self.instrument3.hidden = NO;
+    self.instrument4.hidden = NO;
 
-        // Unhide the views to get started after splash screen
-        self.smallLeftArrow.hidden = NO;
-        self.smallRightArrow.hidden = NO;
-        self.largeLeftArrow.hidden = NO;
-        self.largeRightArrow.hidden = NO;
-        self.thrusterSlider.hidden = NO;
+    // Unhide the views to get started after splash screen
+    self.smallLeftArrow.hidden = NO;
+    self.smallRightArrow.hidden = NO;
+    self.largeLeftArrow.hidden = NO;
+    self.largeRightArrow.hidden = NO;
+    self.thrusterSlider.hidden = NO;
 
-        self.autoPilotSwitch.hidden = (self.enhancedGame) ? NO : YES;
-        
-        self.heightData.hidden = NO;
-        self.altitudeData.hidden = NO;
-        self.distanceData.hidden = NO;
-        self.fuelLeftData.hidden = NO;
-        self.weightData.hidden = NO;
-        self.thrustData.hidden = NO;
-        self.thrustAngleData.hidden = NO;
-        self.verticalVelocityData.hidden = NO;
-        self.horizontalVelocityData.hidden = NO;
-        self.verticalAccelerationData.hidden = NO;
-        self.horizontalAccelerationData.hidden = NO;
-        self.secondsData.hidden = NO;
-    }
+    self.heightData.hidden = NO;
+    self.altitudeData.hidden = NO;
+    self.distanceData.hidden = NO;
+    self.fuelLeftData.hidden = NO;
+    self.weightData.hidden = NO;
+    self.thrustData.hidden = NO;
+    self.thrustAngleData.hidden = NO;
+    self.verticalVelocityData.hidden = NO;
+    self.horizontalVelocityData.hidden = NO;
+    self.verticalAccelerationData.hidden = NO;
+    self.horizontalAccelerationData.hidden = NO;
+    self.secondsData.hidden = NO;
+
     [self getStarted];
+}
+
+- (void)loadTelemetryControls
+{
+    // Create the telemetry items
+	const CGFloat TelemetryXPos = 900;
+    const CGFloat TelemetryXSize = 100;
+    const CGFloat TelemetryYSize = 24;
+    short instrumentID = (self.landerType == LanderTypeModern) ? 1 : 0;
+    short instrumentY = (self.landerType == LanderTypeModern) ? 320 : 235;
+    short instrumentYDelta = (self.landerType == LanderTypeModern) ? 27 : 22;;
+
+    self.heightData = [[Telemetry alloc] initWithFrame:CGRectMake(TelemetryXPos, (instrumentY - instrumentYDelta * instrumentID++), TelemetryXSize, TelemetryYSize)];
+    self.heightData.titleLabel.text = @"HEIGHT";
+    self.heightData.format = @"%6d %@";
+    self.heightData.data = [^{ return self.RADARY;} copy];
+	[self.heightData addTarget:self 
+                        action:@selector(telemetrySelected:) 
+              forControlEvents:UIControlEventTouchUpInside];
+    self.heightData.titleLabel.fontSize = self.gameFontSize;
+    self.heightData.titleLabel.vectorName = @"heightData";
+    [self.view addSubview:self.heightData];
+    
+    self.altitudeData = [[Telemetry alloc] initWithFrame:CGRectMake(TelemetryXPos, (instrumentY - instrumentYDelta * instrumentID++), TelemetryXSize, TelemetryYSize)];
+    self.altitudeData.titleLabel.text = @"ALTITUDE";
+    self.altitudeData.format = @"%6d %@";
+    self.altitudeData.data = [^{ return self.VERDIS;} copy];
+	[self.altitudeData addTarget:self 
+                          action:@selector(telemetrySelected:) 
+                forControlEvents:UIControlEventTouchUpInside];
+    self.altitudeData.titleLabel.fontSize = self.gameFontSize;
+    self.altitudeData.titleLabel.vectorName = @"altitudeData";
+    [self.view addSubview:self.altitudeData];
+    
+    self.distanceData = [[Telemetry alloc] initWithFrame:CGRectMake(TelemetryXPos, (instrumentY - instrumentYDelta * instrumentID++), TelemetryXSize, TelemetryYSize)];
+    self.distanceData.titleLabel.text = @"DISTANCE";
+    self.distanceData.format = @"%6d %@";
+    self.distanceData.data = [^{ return self.HORDIS;} copy];
+	[self.distanceData addTarget:self 
+                          action:@selector(telemetrySelected:) 
+                forControlEvents:UIControlEventTouchUpInside];
+    self.distanceData.titleLabel.fontSize = self.gameFontSize;
+    self.distanceData.titleLabel.vectorName = @"distanceData";
+    [self.view addSubview:self.distanceData];
+    
+    
+    self.fuelLeftData = [[Telemetry alloc] initWithFrame:CGRectMake(TelemetryXPos, (instrumentY - instrumentYDelta * instrumentID++), TelemetryXSize, TelemetryYSize)];
+    self.fuelLeftData.titleLabel.text = @"FUEL LEFT";
+    self.fuelLeftData.format = @"%6d %@";
+    self.fuelLeftData.data = [^{ return self.FUEL;} copy];
+	[self.fuelLeftData addTarget:self 
+                          action:@selector(telemetrySelected:) 
+                forControlEvents:UIControlEventTouchUpInside];
+    self.fuelLeftData.titleLabel.fontSize = self.gameFontSize;
+    self.fuelLeftData.titleLabel.vectorName = @"fuelLeftData";
+    [self.view addSubview:self.fuelLeftData];
+    
+    self.weightData = [[Telemetry alloc] initWithFrame:CGRectMake(TelemetryXPos, (instrumentY - instrumentYDelta * instrumentID++), TelemetryXSize, TelemetryYSize)];
+    self.weightData.titleLabel.text = @"WEIGHT";
+    self.weightData.format = @"%6d %@";
+    self.weightData.data = [^{ return self.WEIGHT;} copy];
+	[self.weightData addTarget:self 
+                        action:@selector(telemetrySelected:) 
+              forControlEvents:UIControlEventTouchUpInside];
+    self.weightData.titleLabel.fontSize = self.gameFontSize;
+    self.weightData.titleLabel.vectorName = @"weightData";
+    [self.view addSubview:self.weightData];
+    
+    self.thrustData = [[Telemetry alloc] initWithFrame:CGRectMake(TelemetryXPos, (instrumentY - instrumentYDelta * instrumentID++), TelemetryXSize, TelemetryYSize)];
+    self.thrustData.titleLabel.text = @"THRUST";
+    self.thrustData.format = @"%6d %@";
+    self.thrustData.data = [^{ return self.THRUST;} copy];
+	[self.thrustData addTarget:self 
+                        action:@selector(telemetrySelected:) 
+              forControlEvents:UIControlEventTouchUpInside];
+    self.thrustData.titleLabel.fontSize = self.gameFontSize;
+    self.thrustData.titleLabel.vectorName = @"thrustData";
+    [self.view addSubview:self.thrustData];
+    
+    self.thrustAngleData = [[Telemetry alloc] initWithFrame:CGRectMake(TelemetryXPos, (instrumentY - instrumentYDelta * instrumentID++), TelemetryXSize, TelemetryYSize)];
+    self.thrustAngleData.titleLabel.text = @"ANGLE";
+    self.thrustAngleData.format = @"%6d %@";
+    self.thrustAngleData.data = [^{ return self.ANGLED;} copy];
+	[self.thrustAngleData addTarget:self 
+                             action:@selector(telemetrySelected:) 
+                   forControlEvents:UIControlEventTouchUpInside];
+    self.thrustAngleData.titleLabel.fontSize = self.gameFontSize;
+    self.thrustAngleData.titleLabel.vectorName = @"thrustAngleData";
+    [self.view addSubview:self.thrustAngleData];
+    
+    self.verticalVelocityData = [[Telemetry alloc] initWithFrame:CGRectMake(TelemetryXPos, (instrumentY - instrumentYDelta * instrumentID++), TelemetryXSize, TelemetryYSize)];
+    self.verticalVelocityData.titleLabel.text = @"VER VEL";
+    self.verticalVelocityData.format = @"%6d %@";
+    self.verticalVelocityData.data = [^{ return self.VERVEL;} copy];
+	[self.verticalVelocityData addTarget:self 
+                                  action:@selector(telemetrySelected:) 
+                        forControlEvents:UIControlEventTouchUpInside];
+    self.verticalVelocityData.titleLabel.fontSize = self.gameFontSize;
+    self.verticalVelocityData.titleLabel.vectorName = @"verticalVelocityData";
+    [self.view addSubview:self.verticalVelocityData];
+    
+    self.horizontalVelocityData = [[Telemetry alloc] initWithFrame:CGRectMake(TelemetryXPos, (instrumentY - instrumentYDelta * instrumentID++), TelemetryXSize, TelemetryYSize)];
+    self.horizontalVelocityData.titleLabel.text = @"HOR VEL";
+    self.horizontalVelocityData.format = @"%6d %@";
+    self.horizontalVelocityData.data = [^{ return self.HORVEL;} copy];
+	[self.horizontalVelocityData addTarget:self 
+                                    action:@selector(telemetrySelected:) 
+                          forControlEvents:UIControlEventTouchUpInside];
+    self.horizontalVelocityData.titleLabel.fontSize = self.gameFontSize;
+    self.horizontalVelocityData.titleLabel.vectorName = @"horizontalVelocityData";
+    [self.view addSubview:self.horizontalVelocityData];
+    
+    self.verticalAccelerationData = [[Telemetry alloc] initWithFrame:CGRectMake(TelemetryXPos, (instrumentY - instrumentYDelta * instrumentID++), TelemetryXSize, TelemetryYSize)];
+    self.verticalAccelerationData.titleLabel.text = @"VER ACC";
+    self.verticalAccelerationData.format = @"%6d %@";
+    self.verticalAccelerationData.data = [^{ return self.VERACC;} copy];
+	[self.verticalAccelerationData addTarget:self 
+                                      action:@selector(telemetrySelected:) 
+                            forControlEvents:UIControlEventTouchUpInside];
+    self.verticalAccelerationData.titleLabel.fontSize = self.gameFontSize;
+    self.verticalAccelerationData.titleLabel.vectorName = @"verticalAccelerationData";
+    [self.view addSubview:self.verticalAccelerationData];
+    
+    self.horizontalAccelerationData = [[Telemetry alloc] initWithFrame:CGRectMake(TelemetryXPos, (instrumentY - instrumentYDelta * instrumentID++), TelemetryXSize, TelemetryYSize)];
+    self.horizontalAccelerationData.titleLabel.text = @"HOR ACC";
+    self.horizontalAccelerationData.format = @"%6d %@";
+    self.horizontalAccelerationData.data = [^{ return self.HORACC;} copy];
+	[self.horizontalAccelerationData addTarget:self 
+                                        action:@selector(telemetrySelected:) 
+                              forControlEvents:UIControlEventTouchUpInside];
+    self.horizontalAccelerationData.titleLabel.fontSize = self.gameFontSize;
+    self.horizontalAccelerationData.titleLabel.vectorName = @"horizontalAccelerationData";
+    [self.view addSubview:self.horizontalAccelerationData];
+    
+    self.secondsData = [[Telemetry alloc] initWithFrame:CGRectMake(TelemetryXPos, (instrumentY - instrumentYDelta * instrumentID++), TelemetryXSize, TelemetryYSize)];
+    self.secondsData.titleLabel.text = @"SECONDS";
+    self.secondsData.format = @"%6d %@";
+    self.secondsData.data =[^{ return (short)self.TIME;} copy];
+	[self.secondsData addTarget:self 
+                         action:@selector(telemetrySelected:) 
+               forControlEvents:UIControlEventTouchUpInside];
+    self.secondsData.titleLabel.fontSize = self.gameFontSize;
+    self.secondsData.titleLabel.vectorName = @"secondsData";
+    [self.view addSubview:self.secondsData];
 }
 
 - (void)viewDidLoad
 {
+    // Have our super view do its work
     [super viewDidLoad];
 
+    // Set out lander type
+    self.landerType = LanderTypeClassic;
+    
     // Hide the navigation bar so we have the entire screen
     [[self navigationController] setNavigationBarHidden:YES animated:NO];
     
@@ -558,7 +656,7 @@ typedef enum MoonlanderDelays {
 
     // Create the lander simulation model
     self.landerModel = [[LanderPhysicsModel alloc] init];
-    self.landerModel.modernModel = (self.enhancedGame);
+    self.landerModel.modernModel = self.landerType;
     
     // Create the dust view
     self.dustView = [[Dust alloc] init];
@@ -573,7 +671,7 @@ typedef enum MoonlanderDelays {
     // Create the roll control arrows
     const float SmallRollArrowWidth = 35;
     const float SmallRollArrowHeight = 40;
-    const CGFloat SmallRollYPos = (self.enhancedGame) ? 410 : 355;
+    const CGFloat SmallRollYPos = (self.landerType == LanderTypeClassic) ? 355 : 410;
     NSString *slaPath = [[NSBundle mainBundle] pathForResource:@"SmallLeftArrow" ofType:@"plist"];
     self.smallLeftArrow = [[VGButton alloc] initWithFrame:CGRectMake(910, SmallRollYPos, SmallRollArrowWidth, SmallRollArrowHeight)  withPaths:slaPath andRepeat:RollButtonRepeatInterval];
 	[self.smallLeftArrow addTarget:self 
@@ -596,7 +694,7 @@ typedef enum MoonlanderDelays {
     
     const float LargeRollArrowWidth = 50;
     const float LargeRollArrowHeight = 40;
-    const CGFloat LargeRollYPos = (self.enhancedGame) ? 360: 310;
+    const CGFloat LargeRollYPos = (self.landerType == LanderTypeClassic) ? 310: 360;
     NSString *llaPath = [[NSBundle mainBundle] pathForResource:@"LargeLeftArrow" ofType:@"plist"];
     self.largeLeftArrow = [[VGButton alloc] initWithFrame:CGRectMake(895, LargeRollYPos, LargeRollArrowWidth, LargeRollArrowHeight) withPaths:llaPath andRepeat:RollButtonRepeatInterval];
 	[self.largeLeftArrow addTarget:self 
@@ -619,9 +717,9 @@ typedef enum MoonlanderDelays {
 
     // Create the thruster control
     const short ThrusterSliderWidth = 200;
-    const short ThrusterSliderHeight = (self.enhancedGame) ? 232 : 252;
+    const short ThrusterSliderHeight = (self.landerType == LanderTypeClassic) ? 252 : 232;
     const short ThrusterXPos = 816;
-    const short ThrusterYPos = (self.enhancedGame) ? 470 : 450;
+    const short ThrusterYPos = (self.landerType == LanderTypeClassic) ? 450 : 470;
     self.thrusterSlider = [[VGSlider alloc] initWithFrame:CGRectMake(ThrusterXPos, ThrusterYPos, ThrusterSliderWidth, ThrusterSliderHeight)];
 	[self.thrusterSlider addTarget:self 
                             action:@selector(thrusterChanged:) 
@@ -630,161 +728,8 @@ typedef enum MoonlanderDelays {
     self.thrusterSlider.thrusterValue.fontSize = self.gameFontSize;
     [self.view addSubview:self.thrusterSlider];
     
-    // Create the telemetry items
-	const short TelemetryXPos = 900;
-    const short TelemetryXSize = 100;
-    const short TelemetryYSize = 24;
-    short instrumentID = 0;
-    short instrumentY = (self.enhancedGame) ? 320 : 235;
-    short instrumentYDelta = (self.enhancedGame) ? 27 : 22;;
+    [self loadTelemetryControls];
     
-    // Autopilot and its control switch
-    self.autoPilot = [[Autopilot alloc] init];
-    if (self.enhancedGame == YES) {
-        self.autoPilotSwitch = [[VGButton alloc] initWithFrame:CGRectMake(TelemetryXPos, (instrumentY - instrumentYDelta * instrumentID++), TelemetryXSize, TelemetryYSize)];
-        self.autoPilotSwitch.titleLabel.fontSize = [self gameFontSize];
-        self.autoPilotSwitch.titleLabel.text = @"AUTOPILOT";
-        [self.autoPilotSwitch addTarget:self 
-                                 action:@selector(autoPilotChange) 
-                       forControlEvents:UIControlEventValueChanged];
-        self.autoPilotSwitch.hidden = YES;
-        self.autoPilotSwitch.titleLabel.vectorName = @"autopilot";
-        [self.view addSubview:self.autoPilotSwitch];
-    }
-    
-    self.heightData = [[Telemetry alloc] initWithFrame:CGRectMake(TelemetryXPos, (instrumentY - instrumentYDelta * instrumentID++), TelemetryXSize, TelemetryYSize)];
-    self.heightData.titleLabel.text = @"HEIGHT";
-    self.heightData.format = @"%6d %@";
-    self.heightData.data = [^{ return self.RADARY;} copy];
-	[self.heightData addTarget:self 
-                           action:@selector(telemetrySelected:) 
-                 forControlEvents:UIControlEventTouchUpInside];
-    self.heightData.titleLabel.fontSize = self.gameFontSize;
-    self.heightData.titleLabel.vectorName = @"heightData";
-    [self.view addSubview:self.heightData];
-    
-    self.altitudeData = [[Telemetry alloc] initWithFrame:CGRectMake(TelemetryXPos, (instrumentY - instrumentYDelta * instrumentID++), TelemetryXSize, TelemetryYSize)];
-    self.altitudeData.titleLabel.text = @"ALTITUDE";
-    self.altitudeData.format = @"%6d %@";
-    self.altitudeData.data = [^{ return self.VERDIS;} copy];
-	[self.altitudeData addTarget:self 
-                           action:@selector(telemetrySelected:) 
-                 forControlEvents:UIControlEventTouchUpInside];
-    self.altitudeData.titleLabel.fontSize = self.gameFontSize;
-    self.altitudeData.titleLabel.vectorName = @"altitudeData";
-    [self.view addSubview:self.altitudeData];
-    
-    self.distanceData = [[Telemetry alloc] initWithFrame:CGRectMake(TelemetryXPos, (instrumentY - instrumentYDelta * instrumentID++), TelemetryXSize, TelemetryYSize)];
-    self.distanceData.titleLabel.text = @"DISTANCE";
-    self.distanceData.format = @"%6d %@";
-    self.distanceData.data = [^{ return self.HORDIS;} copy];
-	[self.distanceData addTarget:self 
-                           action:@selector(telemetrySelected:) 
-                 forControlEvents:UIControlEventTouchUpInside];
-    self.distanceData.titleLabel.fontSize = self.gameFontSize;
-    self.distanceData.titleLabel.vectorName = @"distanceData";
-    [self.view addSubview:self.distanceData];
-    
-
-    self.fuelLeftData = [[Telemetry alloc] initWithFrame:CGRectMake(TelemetryXPos, (instrumentY - instrumentYDelta * instrumentID++), TelemetryXSize, TelemetryYSize)];
-    self.fuelLeftData.titleLabel.text = @"FUEL LEFT";
-    self.fuelLeftData.format = @"%6d %@";
-    self.fuelLeftData.data = [^{ return self.FUEL;} copy];
-	[self.fuelLeftData addTarget:self 
-                         action:@selector(telemetrySelected:) 
-               forControlEvents:UIControlEventTouchUpInside];
-    self.fuelLeftData.titleLabel.fontSize = self.gameFontSize;
-    self.fuelLeftData.titleLabel.vectorName = @"fuelLeftData";
-    [self.view addSubview:self.fuelLeftData];
-    
-    self.weightData = [[Telemetry alloc] initWithFrame:CGRectMake(TelemetryXPos, (instrumentY - instrumentYDelta * instrumentID++), TelemetryXSize, TelemetryYSize)];
-    self.weightData.titleLabel.text = @"WEIGHT";
-    self.weightData.format = @"%6d %@";
-    self.weightData.data = [^{ return self.WEIGHT;} copy];
-	[self.weightData addTarget:self 
-                                   action:@selector(telemetrySelected:) 
-                         forControlEvents:UIControlEventTouchUpInside];
-    self.weightData.titleLabel.fontSize = self.gameFontSize;
-    self.weightData.titleLabel.vectorName = @"weightData";
-    [self.view addSubview:self.weightData];
-
-    self.thrustData = [[Telemetry alloc] initWithFrame:CGRectMake(TelemetryXPos, (instrumentY - instrumentYDelta * instrumentID++), TelemetryXSize, TelemetryYSize)];
-    self.thrustData.titleLabel.text = @"THRUST";
-    self.thrustData.format = @"%6d %@";
-    self.thrustData.data = [^{ return self.THRUST;} copy];
-	[self.thrustData addTarget:self 
-                        action:@selector(telemetrySelected:) 
-              forControlEvents:UIControlEventTouchUpInside];
-    self.thrustData.titleLabel.fontSize = self.gameFontSize;
-    self.thrustData.titleLabel.vectorName = @"thrustData";
-    [self.view addSubview:self.thrustData];
-    
-    self.thrustAngleData = [[Telemetry alloc] initWithFrame:CGRectMake(TelemetryXPos, (instrumentY - instrumentYDelta * instrumentID++), TelemetryXSize, TelemetryYSize)];
-    self.thrustAngleData.titleLabel.text = @"ANGLE";
-    self.thrustAngleData.format = @"%6d %@";
-    self.thrustAngleData.data = [^{ return self.ANGLED;} copy];
-	[self.thrustAngleData addTarget:self 
-                        action:@selector(telemetrySelected:) 
-              forControlEvents:UIControlEventTouchUpInside];
-    self.thrustAngleData.titleLabel.fontSize = self.gameFontSize;
-    self.thrustAngleData.titleLabel.vectorName = @"thrustAngleData";
-    [self.view addSubview:self.thrustAngleData];
-    
-    self.verticalVelocityData = [[Telemetry alloc] initWithFrame:CGRectMake(TelemetryXPos, (instrumentY - instrumentYDelta * instrumentID++), TelemetryXSize, TelemetryYSize)];
-    self.verticalVelocityData.titleLabel.text = @"VER VEL";
-    self.verticalVelocityData.format = @"%6d %@";
-    self.verticalVelocityData.data = [^{ return self.VERVEL;} copy];
-	[self.verticalVelocityData addTarget:self 
-                        action:@selector(telemetrySelected:) 
-              forControlEvents:UIControlEventTouchUpInside];
-    self.verticalVelocityData.titleLabel.fontSize = self.gameFontSize;
-    self.verticalVelocityData.titleLabel.vectorName = @"verticalVelocityData";
-    [self.view addSubview:self.verticalVelocityData];
-    
-    self.horizontalVelocityData = [[Telemetry alloc] initWithFrame:CGRectMake(TelemetryXPos, (instrumentY - instrumentYDelta * instrumentID++), TelemetryXSize, TelemetryYSize)];
-    self.horizontalVelocityData.titleLabel.text = @"HOR VEL";
-    self.horizontalVelocityData.format = @"%6d %@";
-    self.horizontalVelocityData.data = [^{ return self.HORVEL;} copy];
-	[self.horizontalVelocityData addTarget:self 
-                        action:@selector(telemetrySelected:) 
-              forControlEvents:UIControlEventTouchUpInside];
-    self.horizontalVelocityData.titleLabel.fontSize = self.gameFontSize;
-    self.horizontalVelocityData.titleLabel.vectorName = @"horizontalVelocityData";
-    [self.view addSubview:self.horizontalVelocityData];
-    
-    self.verticalAccelerationData = [[Telemetry alloc] initWithFrame:CGRectMake(TelemetryXPos, (instrumentY - instrumentYDelta * instrumentID++), TelemetryXSize, TelemetryYSize)];
-    self.verticalAccelerationData.titleLabel.text = @"VER ACC";
-    self.verticalAccelerationData.format = @"%6d %@";
-    self.verticalAccelerationData.data = [^{ return self.VERACC;} copy];
-	[self.verticalAccelerationData addTarget:self 
-                        action:@selector(telemetrySelected:) 
-              forControlEvents:UIControlEventTouchUpInside];
-    self.verticalAccelerationData.titleLabel.fontSize = self.gameFontSize;
-    self.verticalAccelerationData.titleLabel.vectorName = @"verticalAccelerationData";
-    [self.view addSubview:self.verticalAccelerationData];
-    
-    self.horizontalAccelerationData = [[Telemetry alloc] initWithFrame:CGRectMake(TelemetryXPos, (instrumentY - instrumentYDelta * instrumentID++), TelemetryXSize, TelemetryYSize)];
-    self.horizontalAccelerationData.titleLabel.text = @"HOR ACC";
-    self.horizontalAccelerationData.format = @"%6d %@";
-    self.horizontalAccelerationData.data = [^{ return self.HORACC;} copy];
-	[self.horizontalAccelerationData addTarget:self 
-                        action:@selector(telemetrySelected:) 
-              forControlEvents:UIControlEventTouchUpInside];
-    self.horizontalAccelerationData.titleLabel.fontSize = self.gameFontSize;
-    self.horizontalAccelerationData.titleLabel.vectorName = @"horizontalAccelerationData";
-    [self.view addSubview:self.horizontalAccelerationData];
-    
-    self.secondsData = [[Telemetry alloc] initWithFrame:CGRectMake(TelemetryXPos, (instrumentY - instrumentYDelta * instrumentID++), TelemetryXSize, TelemetryYSize)];
-    self.secondsData.titleLabel.text = @"SECONDS";
-    self.secondsData.format = @"%6d %@";
-    self.secondsData.data =[^{ return (short)self.TIME;} copy];
-	[self.secondsData addTarget:self 
-                        action:@selector(telemetrySelected:) 
-              forControlEvents:UIControlEventTouchUpInside];
-    self.secondsData.titleLabel.fontSize = self.gameFontSize;
-    self.secondsData.titleLabel.vectorName = @"secondsData";
-    [self.view addSubview:self.secondsData];
- 
     // Create the instrumentation labels
     const float InstrumentSizeWidth = 200;
     const float InstrumentSizeHeight = 24;
@@ -905,36 +850,13 @@ typedef enum MoonlanderDelays {
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    
-    if (self.menuSubview == YES) {
-    }
-    else {
-        // Let's register for motion events
-        [self becomeFirstResponder];
-    }
-
-    //NSLog(@"viewWillAppear  %@  %@  %@", NSStringFromCGRect(self.view.frame), NSStringFromCGRect(self.view.bounds), NSStringFromCGPoint(self.view.center));
-    if (self.menuSubview == NO) {
-        //### Create moon view here since the bounds are updated by the orientation transform (but not in viewDidLoad)
-        self.moonView = [[Moon alloc] initWithFrame:self.view.bounds];
-        [self.view addSubview:self.moonView];
-    }
+    self.moonView = [[Moon alloc] initWithFrame:self.view.bounds];
+    [self.view addSubview:self.moonView];
 }
 
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    
-    //NSLog(@"viewDidAppear  %@  %@  %@", NSStringFromCGRect(self.view.frame), NSStringFromCGRect(self.view.bounds), NSStringFromCGPoint(self.view.center));
-
-    if (self.menuSubview == YES) {
-        //### Create moon view here since the bounds are updated by the orientation transform (but not in viewDidLoad)
-        self.moonView = [[Moon alloc] initWithFrame:self.view.bounds];
-        [self.view addSubview:self.moonView];
-        
-        // Start/restart the simulation
-        [self setupTimers]; 
-    }
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -952,7 +874,6 @@ typedef enum MoonlanderDelays {
 
 - (void)willMoveToParentViewController:(UIViewController *)parent
 {
-   // NSLog(@"willMoveToParentViewController  %@  %@", NSStringFromCGRect(self.view.bounds), NSStringFromCGAffineTransform(self.view.transform));
 }
 
 - (BOOL)canBecomeFirstResponder
@@ -1015,7 +936,6 @@ typedef enum MoonlanderDelays {
     self.largeLeftArrow = nil;
     self.largeRightArrow = nil;
     self.thrusterSlider = nil;
-    self.autoPilotSwitch = nil;
 
     // Views
     self.landerView = nil;
@@ -1062,8 +982,6 @@ typedef enum MoonlanderDelays {
     self.positionUpdateTimer = nil;
     [self.instrumentUpdateTimer invalidate];
     self.instrumentUpdateTimer = nil;
-    [self.autoPilotTimer invalidate];
-    self.autoPilotTimer = nil;
 }
 
 - (void)cleanupControls
@@ -1084,9 +1002,6 @@ typedef enum MoonlanderDelays {
     self.verticalAccelerationData.titleLabel.blink = NO;
     self.horizontalAccelerationData.titleLabel.blink = NO;
     self.secondsData.titleLabel.blink = NO;
-    
-    self.autoPilotSwitch.titleLabel.blink = NO;
-    self.autoPilotSwitch.enabled = NO;
 }
 
 - (IBAction)telemetrySelected:(Telemetry *)sender
@@ -1249,20 +1164,14 @@ typedef enum MoonlanderDelays {
 
 - (void)waitNewGame
 {
-    if (self.playEnhancedGame && !self.menuSubview) {
-        // Setup the yes/no dialog for a new game
-        const CGFloat DialogWidth = 125;
-        const CGFloat DialogHeight = 125;
-        const CGFloat DialogX = self.view.bounds.size.width / 2 - DialogWidth / 2;
-        const CGFloat DialogY = self.view.bounds.size.height / 2 - DialogHeight / 2;
-        CGRect dialogRect = CGRectMake(DialogX, DialogY, DialogWidth, DialogHeight);
-        self.anotherGameDialog = [[VGDialog alloc] initWithFrame:dialogRect addTarget:self onSelection:@selector(getYesNo)];
-        [self.view addSubview:self.anotherGameDialog];
-    }
-    else {
-        // Start over again without dialog
-        [self performSelector:@selector(startGameDelay) withObject:nil afterDelay:[self getDelay: DelayNewGame]];
-    }
+    // Setup the yes/no dialog for a new game
+    const CGFloat DialogWidth = 125;
+    const CGFloat DialogHeight = 125;
+    const CGFloat DialogX = self.view.bounds.size.width / 2 - DialogWidth / 2;
+    const CGFloat DialogY = self.view.bounds.size.height / 2 - DialogHeight / 2;
+    CGRect dialogRect = CGRectMake(DialogX, DialogY, DialogWidth, DialogHeight);
+    self.anotherGameDialog = [[VGDialog alloc] initWithFrame:dialogRect addTarget:self onSelection:@selector(getYesNo)];
+    [self.view addSubview:self.anotherGameDialog];
 }
 
 - (void)getContinueYesNo
@@ -1869,7 +1778,7 @@ typedef enum MoonlanderDelays {
             [self INTEL];
             
             // Wait till 150 feet above surface before kicking up dust
-            [self.dustView generateDust:self.playEnhancedGame];
+            [self.dustView generateDust:self.landerType];
 
             // Redraw surface if changed
             [self.moonView useCloseUpView:self.LEFTEDGE];

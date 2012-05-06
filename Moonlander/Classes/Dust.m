@@ -29,7 +29,7 @@ const float DustViewHeight = 64;
     return self;
 }
 
-- (void)generateDust:(BOOL)enhanced
+- (void)generateDust:(LanderType)landerType
 {
     // Some dust generation constants
     const short MaxDisplayDust = 241;
@@ -44,7 +44,7 @@ const float DustViewHeight = 64;
         short angleD = self.delegate.ANGLED;
         if (angleD >= -45 && angleD <= 45) {
             // This code conditionally fixes the original dust bug
-            if (!enhanced || (self.delegate.THRUST > 0)) {
+            if (landerType == LanderTypeClassic || (self.delegate.THRUST > 0)) {
                 // See if we need to display any dust
                 //(DUSTB1)  Magnitude of dust determines intensity level
                 short requestedThrust = self.delegate.PERTRS;

@@ -29,9 +29,26 @@
 
 #import "ExplosionManager.h"
 
+typedef enum {
+    DelayZero,
+    DelaySplashScreen,
+    DelayLanding,
+    DelayMoveMan,
+    DelayOrderFood,
+    DelayPickupFood,
+    DelayTakeoff,
+    DelayGameover,
+    DelayNewGame,
+    DelayFlagPlanted,
+    DelayExplode,
+    DelayOffcom,
+    DelayLast
+} MoonlanderDelay ;
+
 
 @interface LanderViewController_iPad : UIViewController <LanderDelegate> {
-    LanderPhysicsModel *_landerModel;
+    LanderPhysicsModel  *_landerModel;
+    LanderType          _landerType;
     
     Moon                *_moonView;
     Lander              *_landerView;
@@ -39,7 +56,6 @@
     ExplosionManager    *_explosionManager;
     Man                 *_manView;
     Flag                *_flagView;
-    Autopilot           *_autoPilot;
     
     float               _SHOWX;
     float               _SHOWY;
@@ -58,7 +74,6 @@
     VGButton            *_smallRightArrow;
     VGButton            *_largeLeftArrow;
     VGButton            *_largeRightArrow;
-    VGButton            *_autoPilotSwitch;
     
     VGSlider            *_thrusterSlider;
     
@@ -67,7 +82,6 @@
     NSTimer             *__unsafe_unretained _landerUpdateTimer;
     NSTimer             *__unsafe_unretained _positionUpdateTimer;
     NSTimer             *__unsafe_unretained _instrumentUpdateTimer;
-    NSTimer             *__unsafe_unretained _autoPilotTimer;
 
     Telemetry           *_selectedTelemetry;
     Telemetry           *_heightData;
@@ -101,19 +115,16 @@
     
 	SystemSoundID       _beepSound;
     SystemSoundID       _explosionSound;
-    
-    BOOL                _playEnhancedGame;
-    BOOL                _menuSubview;
 }
 
 @property (nonatomic, strong) LanderPhysicsModel *landerModel;
+@property (nonatomic) LanderType landerType;
 
 @property (nonatomic, unsafe_unretained) NSTimer *landerModelTimer;
 @property (nonatomic, unsafe_unretained) NSTimer *gameLogicTimer;
 @property (nonatomic, unsafe_unretained) NSTimer *landerUpdateTimer;
 @property (nonatomic, unsafe_unretained) NSTimer *positionUpdateTimer;
 @property (nonatomic, unsafe_unretained) NSTimer *instrumentUpdateTimer;
-@property (nonatomic, unsafe_unretained) NSTimer *autoPilotTimer;
 
 @property (nonatomic) float SHOWX;
 @property (nonatomic) float SHOWY;
@@ -145,7 +156,6 @@
 @property (nonatomic, readonly) short FUEL;
 @property (nonatomic, readonly) float GRAVITY;
 
-@property (nonatomic, readonly) BOOL enhancedGame;
 @property (nonatomic, readonly) CGFloat gameFontSize;
 
 @property (nonatomic, strong) Moon *moonView;
@@ -154,13 +164,11 @@
 @property (nonatomic, strong) ExplosionManager *explosionManager;
 @property (nonatomic, strong) Man *manView;
 @property (nonatomic, strong) Flag *flagView;
-@property (nonatomic, strong) Autopilot *autoPilot;
 
 @property (nonatomic, strong) VGButton *smallLeftArrow;
 @property (nonatomic, strong) VGButton *smallRightArrow;
 @property (nonatomic, strong) VGButton *largeLeftArrow;
 @property (nonatomic, strong) VGButton *largeRightArrow;
-@property (nonatomic, strong) VGButton *autoPilotSwitch;
 
 @property (nonatomic, strong) VGSlider *thrusterSlider;
 
@@ -197,19 +205,28 @@
 @property (nonatomic) SystemSoundID beepSound;
 @property (nonatomic) SystemSoundID explosionSound;
 
-@property (nonatomic) BOOL playEnhancedGame;
-@property (nonatomic) BOOL menuSubview;
-
 
 - (IBAction)thrusterChanged:(VGSlider *)sender;
 - (IBAction)rotateLander:(id)sender;
 
+- (void)enableFlightControls;
+- (void)disableFlightControls;
 - (void)enableRollFlightControls;
 - (void)disableRollFlightControls;
 - (void)enableThrustFlightControls;
 - (void)disableThrustFlightControls;
 
+- (void)loadTelemetryControls;
+- (void)cleanupControls;
+
 - (void)setupTimers;
 - (void)cleanupTimers;
+
+- (void)initGame;
+- (void)initGame2;
+- (void)getStarted;
+
+- (float)getDelay:(MoonlanderDelay)item;
+
 
 @end

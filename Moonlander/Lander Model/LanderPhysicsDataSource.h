@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
+#import "LanderDelegate.h"
+
 
 @protocol LanderPhysicsDataSource <NSObject>
 

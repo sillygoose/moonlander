@@ -29,10 +29,6 @@
         dvc.documentType = [url pathExtension];
         dvc.documentName = [urlSansExtension relativePath];
     }
-    else if ([segue.destinationViewController isKindOfClass:[LanderViewController_iPad class]]) {
-        LanderViewController_iPad *lvc = segue.destinationViewController;
-        lvc.playEnhancedGame = [segue.identifier isEqualToString:@"PlayModernSegue"];
-    }
 }
 
 - (void)viewDidLoad
@@ -44,11 +40,7 @@
 
     // Load the background view controller
     UIStoryboard *storyboard = self.storyboard;
-    self.menuBackground = [storyboard instantiateViewControllerWithIdentifier:@"ModernSim"];
-    
-    // Configure the new view controller
-    self.menuBackground.playEnhancedGame = YES;
-    self.menuBackground.menuSubview = YES;
+    self.menuBackground = [storyboard instantiateViewControllerWithIdentifier:@"AutoPilotSimulation"];
     
     // Add to the view and notify everyone
     [self.view addSubview:self.menuBackground.view];
@@ -69,7 +61,7 @@
     [super viewWillAppear:animated];
     
     // Hide the navigation bar in this view
-    //[[self navigationController] setNavigationBarHidden:YES animated:NO];
+    [[self navigationController] setNavigationBarHidden:YES animated:NO];
 }
 
 - (void)viewDidAppear:(BOOL)animated

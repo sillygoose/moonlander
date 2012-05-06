@@ -19,6 +19,6 @@
 
 
 - (id)init;
-- (void)generateDust:(BOOL)enhanced;
+- (void)generateDust:(LanderType)enhanced;
 
 @end

@@ -14,7 +14,7 @@
 // Add any custom debugging options
 #if defined(TARGET_IPHONE_SIMULATOR) && defined(DEBUG)
 //#define DEBUG_AUTOPILOT
-//#define DEBUG_DUST
+#define DEBUG_DUST
 //#define DEBUG_FLAME
 //#define HOLD_VELOCITY
 //#define DEBUG_HOLD_HORIZONTAL_POSITION
@@ -280,7 +280,7 @@ static float RadiansToDegrees(float radians)
     self.turnAngle = -0.0f;
     self.horizontalVelocity = 0.0f;
     self.verticalVelocity = -410.0f;
-    self.horizontalDistance = -3600.0;
+    self.horizontalDistance = -1600.0;
     self.verticalDistance = 1500.0f;
     self.percentThrustRequested = 12.0f;
     self.clockTicks = 0.0f;
