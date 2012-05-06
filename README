@@ -16,15 +16,15 @@ Issues to do list
 =================
 - missing iTunesArtwork@2x (1024x1024)
 - complete content for software/hardware/faq/credits/history/controls
-- update modern splash screen to mention the autopilot
 - rate limit flight controls in autopilot mode
 - add scoring to modern game
-- fix screen sleep so it is allowed except in game play
 - tone down the dust so it is less bright and add Retina support
 
 
 Completed
 =========
+- fix screen sleep
+- update modern splash screen to mention the autopilot
 - autopilot
 - found bug in original lander that causes the flight dynamics to vary in the various builds
   added to the classic build and fixed in the modern version
