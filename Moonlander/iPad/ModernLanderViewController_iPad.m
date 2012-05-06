@@ -58,6 +58,11 @@
 - (void)viewDidUnload
 {
     [super viewDidUnload];
+    
+    [self.autoPilotTimer invalidate];
+    self.autoPilotTimer = nil;
+
+    self.autoPilot = nil;
     self.autoPilotSwitch = nil;
 }
 
@@ -108,13 +113,6 @@
 {
     [super initGame2];
     self.autoPilotSwitch.hidden = NO;
-}
-
-- (void)cleanupTimers
-{
-    [super cleanupTimers];
-    [self.autoPilotTimer invalidate];
-    self.autoPilotTimer = nil;
 }
 
 - (void)cleanupControls

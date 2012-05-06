@@ -41,18 +41,11 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-
-    //###
-    [self.moonView removeFromSuperview];
 }
 
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    
-    //### Create moon view here since the bounds are updated by the orientation transform (but not in viewDidLoad)
-    self.moonView = [[Moon alloc] initWithFrame:self.view.bounds];
-    [self.view addSubview:self.moonView];
     
     // Start/restart the simulation
     [self setupTimers]; 

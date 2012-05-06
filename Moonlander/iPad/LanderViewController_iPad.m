@@ -496,7 +496,71 @@ const float RollButtonRepeatInterval = 0.10;        // Timer value for roll butt
     [self getStarted];
 }
 
-- (void)loadTelemetryControls
+- (void)loadFlightControls
+{
+    // Create the roll control arrows
+    const float SmallRollArrowWidth = 35;
+    const float SmallRollArrowHeight = 40;
+    const CGFloat SmallRollYPos = (self.landerType == LanderTypeClassic) ? 355 : 410;
+    NSString *slaPath = [[NSBundle mainBundle] pathForResource:@"SmallLeftArrow" ofType:@"plist"];
+    self.smallLeftArrow = [[VGButton alloc] initWithFrame:CGRectMake(910, SmallRollYPos, SmallRollArrowWidth, SmallRollArrowHeight)  withPaths:slaPath andRepeat:RollButtonRepeatInterval];
+	[self.smallLeftArrow addTarget:self 
+                            action:@selector(rotateLander:) 
+                  forControlEvents:UIControlEventValueChanged];
+    self.smallLeftArrow.hidden = YES;
+    self.smallLeftArrow.brighten = YES;
+    self.smallLeftArrow.titleLabel.vectorName = @"sla";
+    [self.view addSubview:self.smallLeftArrow];
+    
+    NSString *sraPath = [[NSBundle mainBundle] pathForResource:@"SmallRightArrow" ofType:@"plist"];
+    self.smallRightArrow = [[VGButton alloc] initWithFrame:CGRectMake(950, SmallRollYPos, SmallRollArrowWidth, SmallRollArrowHeight) withPaths:sraPath andRepeat:RollButtonRepeatInterval];
+	[self.smallRightArrow addTarget:self 
+                             action:@selector(rotateLander:) 
+                   forControlEvents:UIControlEventValueChanged];
+    self.smallRightArrow.hidden = YES;
+    self.smallRightArrow.brighten = YES;
+    self.smallRightArrow.titleLabel.vectorName = @"sra";
+    [self.view addSubview:self.smallRightArrow];
+    
+    const float LargeRollArrowWidth = 50;
+    const float LargeRollArrowHeight = 40;
+    const CGFloat LargeRollYPos = (self.landerType == LanderTypeClassic) ? 310: 360;
+    NSString *llaPath = [[NSBundle mainBundle] pathForResource:@"LargeLeftArrow" ofType:@"plist"];
+    self.largeLeftArrow = [[VGButton alloc] initWithFrame:CGRectMake(895, LargeRollYPos, LargeRollArrowWidth, LargeRollArrowHeight) withPaths:llaPath andRepeat:RollButtonRepeatInterval];
+	[self.largeLeftArrow addTarget:self 
+                            action:@selector(rotateLander:) 
+                  forControlEvents:UIControlEventValueChanged];
+    self.largeLeftArrow.hidden = YES;
+    self.largeLeftArrow.brighten = YES;
+    self.largeLeftArrow.titleLabel.vectorName = @"lla";
+    [self.view addSubview:self.largeLeftArrow];
+    
+    NSString *lraPath = [[NSBundle mainBundle] pathForResource:@"LargeRightArrow" ofType:@"plist"];
+    self.largeRightArrow = [[VGButton alloc] initWithFrame:CGRectMake(950, LargeRollYPos, LargeRollArrowWidth, LargeRollArrowHeight) withPaths:lraPath andRepeat:RollButtonRepeatInterval];
+	[self.largeRightArrow addTarget:self 
+                             action:@selector(rotateLander:) 
+                   forControlEvents:UIControlEventValueChanged];
+    self.largeRightArrow.hidden = YES;
+    self.largeRightArrow.brighten = YES;
+    self.largeRightArrow.titleLabel.vectorName = @"lra";
+    [self.view addSubview:self.largeRightArrow];
+    
+    // Create the thruster control
+    const short ThrusterSliderWidth = 200;
+    const short ThrusterSliderHeight = (self.landerType == LanderTypeClassic) ? 252 : 232;
+    const short ThrusterXPos = 816;
+    const short ThrusterYPos = (self.landerType == LanderTypeClassic) ? 450 : 470;
+    self.thrusterSlider = [[VGSlider alloc] initWithFrame:CGRectMake(ThrusterXPos, ThrusterYPos, ThrusterSliderWidth, ThrusterSliderHeight)];
+	[self.thrusterSlider addTarget:self 
+                            action:@selector(thrusterChanged:) 
+                  forControlEvents:UIControlEventValueChanged];
+    self.thrusterSlider.hidden = YES;
+    self.thrusterSlider.thrusterValue.fontSize = self.gameFontSize;
+    [self.view addSubview:self.thrusterSlider];
+    
+}
+
+- (void)loadTelemetry
 {
     // Create the telemetry items
 	const CGFloat TelemetryXPos = 900;
@@ -640,96 +704,8 @@ const float RollButtonRepeatInterval = 0.10;        // Timer value for roll butt
     [self.view addSubview:self.secondsData];
 }
 
-- (void)viewDidLoad
+- (void)loadInstruments
 {
-    // Have our super view do its work
-    [super viewDidLoad];
-
-    // Set out lander type
-    self.landerType = LanderTypeClassic;
-    
-    // Hide the navigation bar so we have the entire screen
-    [[self navigationController] setNavigationBarHidden:YES animated:NO];
-    
-    // Setup the transform we need to match the original
-    self.view.transform = CGAffineTransformConcat(self.view.transform, CGAffineTransformMake(1, 0, 0, -1, 0, 0));
-
-    // Create the lander simulation model
-    self.landerModel = [[LanderPhysicsModel alloc] init];
-    self.landerModel.modernModel = self.landerType;
-    
-    // Create the dust view
-    self.dustView = [[Dust alloc] init];
-    self.dustView.delegate = self;
-    [self.view addSubview:self.dustView];
-    
-    // Create the message manager
-    self.landerMessages = [[LanderMessages alloc] init];
-    self.landerMessages.delegate = self;
-    [self.view addSubview:self.landerMessages];
-    
-    // Create the roll control arrows
-    const float SmallRollArrowWidth = 35;
-    const float SmallRollArrowHeight = 40;
-    const CGFloat SmallRollYPos = (self.landerType == LanderTypeClassic) ? 355 : 410;
-    NSString *slaPath = [[NSBundle mainBundle] pathForResource:@"SmallLeftArrow" ofType:@"plist"];
-    self.smallLeftArrow = [[VGButton alloc] initWithFrame:CGRectMake(910, SmallRollYPos, SmallRollArrowWidth, SmallRollArrowHeight)  withPaths:slaPath andRepeat:RollButtonRepeatInterval];
-	[self.smallLeftArrow addTarget:self 
-                            action:@selector(rotateLander:) 
-                  forControlEvents:UIControlEventValueChanged];
-    self.smallLeftArrow.hidden = YES;
-    self.smallLeftArrow.brighten = YES;
-    self.smallLeftArrow.titleLabel.vectorName = @"sla";
-    [self.view addSubview:self.smallLeftArrow];
-    
-    NSString *sraPath = [[NSBundle mainBundle] pathForResource:@"SmallRightArrow" ofType:@"plist"];
-    self.smallRightArrow = [[VGButton alloc] initWithFrame:CGRectMake(950, SmallRollYPos, SmallRollArrowWidth, SmallRollArrowHeight) withPaths:sraPath andRepeat:RollButtonRepeatInterval];
-	[self.smallRightArrow addTarget:self 
-                             action:@selector(rotateLander:) 
-                   forControlEvents:UIControlEventValueChanged];
-    self.smallRightArrow.hidden = YES;
-    self.smallRightArrow.brighten = YES;
-    self.smallRightArrow.titleLabel.vectorName = @"sra";
-    [self.view addSubview:self.smallRightArrow];
-    
-    const float LargeRollArrowWidth = 50;
-    const float LargeRollArrowHeight = 40;
-    const CGFloat LargeRollYPos = (self.landerType == LanderTypeClassic) ? 310: 360;
-    NSString *llaPath = [[NSBundle mainBundle] pathForResource:@"LargeLeftArrow" ofType:@"plist"];
-    self.largeLeftArrow = [[VGButton alloc] initWithFrame:CGRectMake(895, LargeRollYPos, LargeRollArrowWidth, LargeRollArrowHeight) withPaths:llaPath andRepeat:RollButtonRepeatInterval];
-	[self.largeLeftArrow addTarget:self 
-                            action:@selector(rotateLander:) 
-                  forControlEvents:UIControlEventValueChanged];
-    self.largeLeftArrow.hidden = YES;
-    self.largeLeftArrow.brighten = YES;
-    self.largeLeftArrow.titleLabel.vectorName = @"lla";
-    [self.view addSubview:self.largeLeftArrow];
-    
-    NSString *lraPath = [[NSBundle mainBundle] pathForResource:@"LargeRightArrow" ofType:@"plist"];
-    self.largeRightArrow = [[VGButton alloc] initWithFrame:CGRectMake(950, LargeRollYPos, LargeRollArrowWidth, LargeRollArrowHeight) withPaths:lraPath andRepeat:RollButtonRepeatInterval];
-	[self.largeRightArrow addTarget:self 
-                             action:@selector(rotateLander:) 
-                   forControlEvents:UIControlEventValueChanged];
-    self.largeRightArrow.hidden = YES;
-    self.largeRightArrow.brighten = YES;
-    self.largeRightArrow.titleLabel.vectorName = @"lra";
-    [self.view addSubview:self.largeRightArrow];
-
-    // Create the thruster control
-    const short ThrusterSliderWidth = 200;
-    const short ThrusterSliderHeight = (self.landerType == LanderTypeClassic) ? 252 : 232;
-    const short ThrusterXPos = 816;
-    const short ThrusterYPos = (self.landerType == LanderTypeClassic) ? 450 : 470;
-    self.thrusterSlider = [[VGSlider alloc] initWithFrame:CGRectMake(ThrusterXPos, ThrusterYPos, ThrusterSliderWidth, ThrusterSliderHeight)];
-	[self.thrusterSlider addTarget:self 
-                            action:@selector(thrusterChanged:) 
-                  forControlEvents:UIControlEventValueChanged];
-    self.thrusterSlider.hidden = YES;
-    self.thrusterSlider.thrusterValue.fontSize = self.gameFontSize;
-    [self.view addSubview:self.thrusterSlider];
-    
-    [self loadTelemetryControls];
-    
     // Create the instrumentation labels
     const float InstrumentSizeWidth = 200;
     const float InstrumentSizeHeight = 24;
@@ -770,7 +746,7 @@ const float RollButtonRepeatInterval = 0.10;        // Timer value for roll butt
     self.instrument4.titleLabel.fontSize = self.gameFontSize;
     self.instrument4.titleLabel.vectorName = @"instrument4";
     [self.view addSubview:self.instrument4];
-
+    
     self.instrument5 = [[Instrument alloc] initWithFrame:CGRectMake(0, InstrumentYCoordinate2, InstrumentSizeWidth, InstrumentSizeHeight)];
     self.instrument5.instrument = self.altitudeData;
 	[self.instrument5 addTarget:self 
@@ -806,6 +782,40 @@ const float RollButtonRepeatInterval = 0.10;        // Timer value for roll butt
     self.instrument8.titleLabel.fontSize = self.gameFontSize;
     self.instrument8.titleLabel.vectorName = @"instrument8";
     [self.view addSubview:self.instrument8];
+}
+
+- (void)viewDidLoad
+{
+    // Have our super view do its work
+    [super viewDidLoad];
+
+    // Set out lander type
+    self.landerType = LanderTypeClassic;
+    
+    // Hide the navigation bar so we have the entire screen
+    [[self navigationController] setNavigationBarHidden:YES animated:NO];
+    
+    // Setup the transform we need to match the original
+    self.view.transform = CGAffineTransformConcat(self.view.transform, CGAffineTransformMake(1, 0, 0, -1, 0, 0));
+
+    // Create the lander simulation model
+    self.landerModel = [[LanderPhysicsModel alloc] init];
+    self.landerModel.modernModel = self.landerType;
+    
+    // Create the dust view
+    self.dustView = [[Dust alloc] init];
+    self.dustView.delegate = self;
+    [self.view addSubview:self.dustView];
+    
+    // Create the message manager
+    self.landerMessages = [[LanderMessages alloc] init];
+    self.landerMessages.delegate = self;
+    [self.view addSubview:self.landerMessages];
+    
+    // Create the flight controls, telemerty, and instrument panel
+    [self loadFlightControls];
+    [self loadTelemetry];
+    [self loadInstruments];
     
     // Create the lander view with data sources
     self.landerView = [[Lander alloc] init];
@@ -825,7 +835,6 @@ const float RollButtonRepeatInterval = 0.10;        // Timer value for roll butt
     
     // Setup initial conditions
     [self initGame];
-   // NSLog(@"viewDidLoad  %@  %@", NSStringFromCGRect(self.view.bounds), NSStringFromCGAffineTransform(self.view.transform));
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -836,27 +845,27 @@ const float RollButtonRepeatInterval = 0.10;        // Timer value for roll butt
 - (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation
 {
     [super didRotateFromInterfaceOrientation:fromInterfaceOrientation];
-    //NSLog(@"didRotateFromInterfaceOrientation  %@  %@  %@", NSStringFromCGRect(self.view.frame), NSStringFromCGRect(self.view.bounds), NSStringFromCGAffineTransform(self.view.transform));
-    //self.view.transform = CGAffineTransformIdentity;
 }
 
 - (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration
 {
     [super willRotateToInterfaceOrientation:toInterfaceOrientation duration:duration];
-    //NSLog(@"willRotateToInterfaceOrientation  %@  %@  %@", NSStringFromCGRect(self.view.frame), NSStringFromCGRect(self.view.bounds), NSStringFromCGAffineTransform(self.view.transform));
-    //self.view.transform = CGAffineTransformConcat(self.view.transform, CGAffineTransformMake(1, 0, 0, -1, 0, 0));
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    self.moonView = [[Moon alloc] initWithFrame:self.view.bounds];
-    [self.view addSubview:self.moonView];
 }
 
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
+    
+    // This works best here.  If is viewWillAppear it works for classic/modern but not for menu background
+    if (self.moonView == nil) {
+        self.moonView = [[Moon alloc] initWithFrame:self.view.bounds];
+        [self.view addSubview:self.moonView];
+    }
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -897,10 +906,8 @@ const float RollButtonRepeatInterval = 0.10;        // Timer value for roll butt
 {
 }
 
-- (void)viewDidUnload
+- (void)prepareToUnload
 {
-    [super viewDidUnload];
-    
     // Kill any active timers
     [self cleanupTimers];
     
@@ -936,10 +943,15 @@ const float RollButtonRepeatInterval = 0.10;        // Timer value for roll butt
     self.largeLeftArrow = nil;
     self.largeRightArrow = nil;
     self.thrusterSlider = nil;
-
+    
+    // Model
+    self.landerModel = nil;
+    
     // Views
+    self.moonView = nil;
     self.landerView = nil;
     self.dustView = nil;
+    self.explosionManager = nil;
     self.manView = nil;
     self.flagView = nil;
     
@@ -949,6 +961,12 @@ const float RollButtonRepeatInterval = 0.10;        // Timer value for roll butt
     // Audio resources
     AudioServicesDisposeSystemSoundID(self.beepSound);
     AudioServicesDisposeSystemSoundID(self.explosionSound);
+}
+
+- (void)viewDidUnload
+{
+    [super viewDidUnload];
+    [self cleanupTimers];
 }
 
 - (void)setupTimers
@@ -1158,6 +1176,8 @@ const float RollButtonRepeatInterval = 0.10;        // Timer value for roll butt
     }
     else {
         // Return to the main menu
+        [self prepareToUnload];
+        [self.view removeFromSuperview];
         [self.navigationController popViewControllerAnimated:YES];
     }
 }
@@ -1186,6 +1206,7 @@ const float RollButtonRepeatInterval = 0.10;        // Timer value for roll butt
     // Decide what to do
     if (result == YES) {
         // Do nothing - keep playing
+        [self setupTimers];
     }
     else {
         // Clean up any timers and flight controls
@@ -1196,12 +1217,17 @@ const float RollButtonRepeatInterval = 0.10;        // Timer value for roll butt
         [self.landerMessages removeAllLanderMessages];
         
         // Return to the main menu
+        [self prepareToUnload];
+        [self.view removeFromSuperview];
         [self.navigationController popViewControllerAnimated:YES];
     }
 }
 
 - (void)continueGame
 {
+    // Stop game play while we wait
+    [self cleanupTimers];
+
     // Setup our yes/no dialog for a new game
     const CGFloat DialogWidth = 125;
     const CGFloat DialogHeight = 125;
@@ -1450,7 +1476,7 @@ const float RollButtonRepeatInterval = 0.10;        // Timer value for roll butt
 
 - (void)ALTER:(short)alterValue
 {
-    [self.moonView alterMoon:alterValue atIndex:(short)self.BIGXCT];
+    [self.moonView alterMoon:alterValue atIndex:(self.landerType == LanderTypeClassic) ? self.BIGXCT : self.BIGXCT-1];
 }
 
 - (void)INTEL

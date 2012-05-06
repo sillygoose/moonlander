@@ -1,8 +1,5 @@
 Moonlander, the classic video game
 
-This branch is for the work on the standalone game as the master
-will be getting UI elements making it a pain to test game elements.
-
 Features wish list
 ===================
 - generate 6x8 dot matrix fonts

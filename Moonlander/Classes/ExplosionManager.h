@@ -29,8 +29,8 @@
     id <LanderDelegate> __unsafe_unretained _delegate;
 }
 
-@property (atomic, strong) NSMutableArray *explosionViews;
-@property (nonatomic, strong) UIView *parentView;
+@property (atomic) NSMutableArray *explosionViews;
+@property (nonatomic) UIView *parentView;
 
 @property (nonatomic, copy) void (^completionBlock)(void);
 
