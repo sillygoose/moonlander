@@ -12,8 +12,8 @@
 
 // Add any custom debugging options
 #if defined(TARGET_IPHONE_SIMULATOR) && defined(DEBUG)
-#define DEBUG_SHORT_DELAYS
-#define DEBUG_NO_SPLASH
+//#define DEBUG_SHORT_DELAYS
+//#define DEBUG_NO_SPLASH
 //#define DEBUG_EXTRA_INSTRUMENTS
 //#define DEBUG_GRAB_EMPTY_SCREEN
 //#define DEBUG_ENHANCED
@@ -489,15 +489,26 @@ typedef enum MoonlanderDelays {
     [self performSelector:@selector(initGame2) withObject:nil afterDelay:0];
 #else
     self.landerMessages.hidden = self.menuSubview;
-    [self.landerMessages addSystemMessage:@"SplashScreen"];
-    [self performSelector:@selector(initGame2) withObject:nil afterDelay:[self getDelay: DelaySplashScreen]];
+    if (self.enhancedGame) {
+        [self.landerMessages addSystemMessage:@"SplashScreenModern"];
+    }
+    else {
+        [self.landerMessages addSystemMessage:@"SplashScreen"];
+    }
+    
+    if (self.menuSubview) {
+        [self performSelector:@selector(initGame2) withObject:nil afterDelay:[self getDelay: DelayZero]];
+    }
+    else {
+        [self performSelector:@selector(initGame2) withObject:nil afterDelay:[self getDelay: DelaySplashScreen]];
+    }
 #endif
 }
 
 - (void)initGame2
 {
     // Remove splash screen (if present)
-    [self.landerMessages removeSystemMessage:@"SplashScreen"];
+    [self.landerMessages removeAllLanderMessages];
 
     //### to ugly, derive classic/modern/menu from lander class
     if (self.menuSubview == NO) {
@@ -869,7 +880,7 @@ typedef enum MoonlanderDelays {
     
     // Setup initial conditions
     [self initGame];
-    NSLog(@"viewDidLoad  %@  %@", NSStringFromCGRect(self.view.bounds), NSStringFromCGAffineTransform(self.view.transform));
+   // NSLog(@"viewDidLoad  %@  %@", NSStringFromCGRect(self.view.bounds), NSStringFromCGAffineTransform(self.view.transform));
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -880,14 +891,14 @@ typedef enum MoonlanderDelays {
 - (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation
 {
     [super didRotateFromInterfaceOrientation:fromInterfaceOrientation];
-    NSLog(@"didRotateFromInterfaceOrientation  %@  %@  %@", NSStringFromCGRect(self.view.frame), NSStringFromCGRect(self.view.bounds), NSStringFromCGAffineTransform(self.view.transform));
+    //NSLog(@"didRotateFromInterfaceOrientation  %@  %@  %@", NSStringFromCGRect(self.view.frame), NSStringFromCGRect(self.view.bounds), NSStringFromCGAffineTransform(self.view.transform));
     //self.view.transform = CGAffineTransformIdentity;
 }
 
 - (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration
 {
     [super willRotateToInterfaceOrientation:toInterfaceOrientation duration:duration];
-    NSLog(@"willRotateToInterfaceOrientation  %@  %@  %@", NSStringFromCGRect(self.view.frame), NSStringFromCGRect(self.view.bounds), NSStringFromCGAffineTransform(self.view.transform));
+    //NSLog(@"willRotateToInterfaceOrientation  %@  %@  %@", NSStringFromCGRect(self.view.frame), NSStringFromCGRect(self.view.bounds), NSStringFromCGAffineTransform(self.view.transform));
     //self.view.transform = CGAffineTransformConcat(self.view.transform, CGAffineTransformMake(1, 0, 0, -1, 0, 0));
 }
 
@@ -902,11 +913,11 @@ typedef enum MoonlanderDelays {
         [self becomeFirstResponder];
     }
 
-    NSLog(@"viewWillAppear  %@  %@  %@", NSStringFromCGRect(self.view.frame), NSStringFromCGRect(self.view.bounds), NSStringFromCGPoint(self.view.center));
+    //NSLog(@"viewWillAppear  %@  %@  %@", NSStringFromCGRect(self.view.frame), NSStringFromCGRect(self.view.bounds), NSStringFromCGPoint(self.view.center));
     if (self.menuSubview == NO) {
-    // Create moon view here since the bounds are updated by the orientation transform (but not in viewDidLoad)
-    self.moonView = [[Moon alloc] initWithFrame:self.view.bounds];
-    [self.view addSubview:self.moonView];
+        //### Create moon view here since the bounds are updated by the orientation transform (but not in viewDidLoad)
+        self.moonView = [[Moon alloc] initWithFrame:self.view.bounds];
+        [self.view addSubview:self.moonView];
     }
 }
 
@@ -914,15 +925,16 @@ typedef enum MoonlanderDelays {
 {
     [super viewDidAppear:animated];
     
-    NSLog(@"viewDidAppear  %@  %@  %@", NSStringFromCGRect(self.view.frame), NSStringFromCGRect(self.view.bounds), NSStringFromCGPoint(self.view.center));
+    //NSLog(@"viewDidAppear  %@  %@  %@", NSStringFromCGRect(self.view.frame), NSStringFromCGRect(self.view.bounds), NSStringFromCGPoint(self.view.center));
 
     if (self.menuSubview == YES) {
-        // Create moon view here since the bounds are updated by the orientation transform (but not in viewDidLoad)
+        //### Create moon view here since the bounds are updated by the orientation transform (but not in viewDidLoad)
         self.moonView = [[Moon alloc] initWithFrame:self.view.bounds];
         [self.view addSubview:self.moonView];
+        
+        // Start/restart the simulation
+        [self setupTimers]; 
     }
-    // Start/restart the simulation
-    [self setupTimers]; 
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -940,7 +952,7 @@ typedef enum MoonlanderDelays {
 
 - (void)willMoveToParentViewController:(UIViewController *)parent
 {
-    NSLog(@"willMoveToParentViewController  %@  %@", NSStringFromCGRect(self.view.bounds), NSStringFromCGAffineTransform(self.view.transform));
+   // NSLog(@"willMoveToParentViewController  %@  %@", NSStringFromCGRect(self.view.bounds), NSStringFromCGAffineTransform(self.view.transform));
 }
 
 - (BOOL)canBecomeFirstResponder

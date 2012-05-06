@@ -17,7 +17,6 @@
 @synthesize moonLander=_moonLander;
 
 
-const float SplashScreenDelay = 3.0;
 
 
 - (void)dismissSplashScreen
@@ -29,6 +28,8 @@ const float SplashScreenDelay = 3.0;
 {
     [super viewDidLoad];
 
+#ifndef DEBUG
+    const float SplashScreenDelay = 3.0;
     const float textFadeInTime = 2.5;
     const float secondFadeInDelay = textFadeInTime + 0.5;
     const float textFadeOutTime = 2.5;
@@ -53,6 +54,9 @@ const float SplashScreenDelay = 3.0;
     // Fade in the splash screen
     [UILabel animateWithDuration:textFadeInTime animations:fadeInFirst];
     [UILabel animateWithDuration:textFadeInTime delay:secondFadeInDelay options:0 animations:fadeInSecond completion:fadeInComplete];
+#else
+    [self performSelector:@selector(dismissSplashScreen) withObject:nil afterDelay:0];
+#endif
 }
 
 - (void)viewDidUnload

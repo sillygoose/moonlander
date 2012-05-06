@@ -67,6 +67,73 @@
 				</array>
 			</array>
 		</dict>
+		<key>SplashScreenModern</key>
+		<dict>
+			<key>frame</key>
+			<dict>
+				<key>origin</key>
+				<dict>
+					<key>x</key>
+					<integer>0</integer>
+					<key>y</key>
+					<integer>400</integer>
+				</dict>
+				<key>size</key>
+				<dict>
+					<key>height</key>
+					<integer>300</integer>
+					<key>width</key>
+					<integer>600</integer>
+				</dict>
+			</dict>
+			<key>text</key>
+			<array>
+				<array>
+					<dict>
+						<key>intensity</key>
+						<integer>3</integer>
+						<key>text</key>
+						<string>            R T - 1 1  L U N A R  L A N D E R</string>
+					</dict>
+					<dict>
+						<key>newline</key>
+						<integer>1</integer>
+						<key>text</key>
+						<string>              -----------------------------</string>
+					</dict>
+					<dict>
+						<key>newline</key>
+						<integer>3</integer>
+						<key>text</key>
+						<string>    ALL INTERNAL NAVIGATIONAL SYSTEMS HAVE DIED ON YOU</string>
+					</dict>
+					<dict>
+						<key>newline</key>
+						<integer>1</integer>
+						<key>text</key>
+						<string>       IT LOOKS AS THOUGH YOU&apos;RE GOING TO HAVE TO</string>
+					</dict>
+					<dict>
+						<key>newline</key>
+						<integer>1</integer>
+						<key>text</key>
+						<string>       LAND THIS THING ON YOUR OWN BUT IF YOU WIMP</string>
+					</dict>
+					<dict>
+						<key>newline</key>
+						<integer>1</integer>
+						<key>text</key>
+						<string>   OUT YOU CAN USE YOUR HANDY APPLE AUTOPILOT WE ADDED</string>
+					</dict>
+					<dict>
+						<key>newline</key>
+						<integer>2</integer>
+						<key>text</key>
+						<string>       ***** GOOD BYE, GOOD LUCK, AND SORRY  *****</string>
+					</dict>
+				</array>
+			</array>
+		</dict>
 		<key>BumpyLanding</key>
 		<dict>
 			<key>frame</key>

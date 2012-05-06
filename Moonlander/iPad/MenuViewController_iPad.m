@@ -40,7 +40,7 @@
 {
     [super viewDidLoad];
     
-    NSLog(@"menuVC:viewDidLoad  %@  %@", NSStringFromCGRect(self.view.bounds), NSStringFromCGAffineTransform(self.view.transform));
+   // NSLog(@"menuVC:viewDidLoad  %@  %@", NSStringFromCGRect(self.view.bounds), NSStringFromCGAffineTransform(self.view.transform));
     self.view.opaque = NO;
     self.view.backgroundColor = [UIColor clearColor];
 
@@ -69,7 +69,7 @@
 {
     [super viewWillAppear:animated];
     
-    NSLog(@"menuVC:viewWillAppear  %@  %@", NSStringFromCGRect(self.view.bounds), NSStringFromCGAffineTransform(self.view.transform));
+    //NSLog(@"menuVC:viewWillAppear  %@  %@", NSStringFromCGRect(self.view.bounds), NSStringFromCGAffineTransform(self.view.transform));
     // Hide the navigation bar in this view
     [[self navigationController] setNavigationBarHidden:YES animated:NO];
     //NSLog(@"viewWillAppear  frame: %@  bounds: %@  transform: %@", NSStringFromCGRect(self.view.frame), NSStringFromCGRect(self.view.bounds), NSStringFromCGAffineTransform(self.view.transform));
@@ -83,7 +83,7 @@
 {
     [super viewWillAppear:animated];
     
-    NSLog(@"menuVC:viewDidAppear  %@  %@", NSStringFromCGRect(self.view.bounds), NSStringFromCGAffineTransform(self.view.transform));
+    //NSLog(@"menuVC:viewDidAppear  %@  %@", NSStringFromCGRect(self.view.bounds), NSStringFromCGAffineTransform(self.view.transform));
     // Hide the navigation bar in this view
     ///###[[self navigationController] setNavigationBarHidden:YES animated:NO];
     //NSLog(@"viewWillAppear  frame: %@  bounds: %@  transform: %@", NSStringFromCGRect(self.view.frame), NSStringFromCGRect(self.view.bounds), NSStringFromCGAffineTransform(self.view.transform));

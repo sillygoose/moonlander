@@ -20,6 +20,7 @@ Issues to do list
 - rate limit flight controls in autopilot mode
 - add scoring to modern game
 - fix screen sleep so it is allowed except in game play
+- tone down the dust so it is less bright and add Retina support
 
 
 Completed
