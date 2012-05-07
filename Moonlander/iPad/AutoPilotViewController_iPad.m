@@ -29,13 +29,11 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view.
 }
 
 - (void)viewDidUnload
 {
     [super viewDidUnload];
-    // Release any retained subviews of the main view.
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -77,7 +75,6 @@
 - (void)initGame2
 {
     [self.landerMessages removeAllLanderMessages];
-    //###self.autoPilotSwitch.hidden = YES;
     [self getStarted];
 }
 

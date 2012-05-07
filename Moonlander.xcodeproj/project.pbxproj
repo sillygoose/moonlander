@@ -197,6 +197,8 @@
 		565D23671540F0230074D3AD /* rocket.bas */ = {isa = PBXFileReference; lastKnownFileType = text; path = rocket.bas; sourceTree = "<group>"; };
 		565D237615411DB30074D3AD /* LanderDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LanderDelegate.h; sourceTree = "<group>"; };
 		56678FCB139A7D4D00026588 /* OldLander.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = OldLander.plist; sourceTree = "<group>"; };
+		5670E7D715577C27003B49ED /* TELETYPE1945-1985.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "TELETYPE1945-1985.ttf"; sourceTree = "<group>"; };
+		5670E7D9155780DC003B49ED /* README */ = {isa = PBXFileReference; lastKnownFileType = text; path = README; sourceTree = "<group>"; };
 		56755FD8138C0B8200455B52 /* Lander.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Lander.h; sourceTree = "<group>"; };
 		56755FD9138C0B8200455B52 /* Lander.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Lander.m; sourceTree = "<group>"; };
 		5675E5D41425004400882CD8 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
@@ -339,6 +341,7 @@
 				56E87D2F154477EC00C5C764 /* beep-low.caf */,
 				56E87D30154477EC00C5C764 /* beep-med.caf */,
 				56ECD94B1540E55E00565615 /* beep.caf */,
+				5670E7D9155780DC003B49ED /* README */,
 			);
 			path = sounds;
 			sourceTree = "<group>";
@@ -686,6 +689,7 @@
 		56CB094A1548E63000973CBE /* fonts */ = {
 			isa = PBXGroup;
 			children = (
+				5670E7D715577C27003B49ED /* TELETYPE1945-1985.ttf */,
 				56CB094C1548E6A700973CBE /* DotMatrix.ttf */,
 				56CB094D1548E6A700973CBE /* DotMatrixBold.ttf */,
 				56CB094E1548E6A700973CBE /* readme.txt */,
