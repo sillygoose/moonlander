@@ -158,6 +158,9 @@
 		562D624F154DC3CE00BD4EDD /* NavigationController_iPad.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NavigationController_iPad.m; sourceTree = "<group>"; };
 		562F26A61417A22E0069169B /* Man.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Man.h; sourceTree = "<group>"; };
 		562F26A71417A22E0069169B /* Man.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Man.m; sourceTree = "<group>"; };
+		56468FC0155B7D0F004D364C /* teletype.aiff */ = {isa = PBXFileReference; lastKnownFileType = audio.aiff; path = teletype.aiff; sourceTree = "<group>"; };
+		56468FC1155B7D0F004D364C /* teletype.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = teletype.mp3; sourceTree = "<group>"; };
+		56468FC2155B7D0F004D364C /* teletype.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = teletype.wav; sourceTree = "<group>"; };
 		564BE59C13800F3400D790D9 /* VGButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VGButton.h; sourceTree = "<group>"; };
 		564BE59D13800F3400D790D9 /* VGButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VGButton.m; sourceTree = "<group>"; };
 		564BE5C213801C0F00D790D9 /* VGSlider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VGSlider.h; sourceTree = "<group>"; };
@@ -236,6 +239,7 @@
 		56CE0534138B5277004FA450 /* Telemetry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Telemetry.m; sourceTree = "<group>"; };
 		56CE0536138B6C88004FA450 /* Instrument.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Instrument.h; sourceTree = "<group>"; };
 		56CE0537138B6C88004FA450 /* Instrument.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Instrument.m; sourceTree = "<group>"; };
+		56DFB6B0155AE76A00149D1E /* macro.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = macro.pdf; sourceTree = "<group>"; };
 		56E80E4B137E4CC3009E7F15 /* Lander.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Lander.plist; sourceTree = "<group>"; };
 		56E80E5E137E599D009E7F15 /* VGView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VGView.h; sourceTree = "<group>"; };
 		56E80E5F137E599E009E7F15 /* VGView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VGView.m; sourceTree = "<group>"; };
@@ -334,6 +338,9 @@
 		1D81BDB8153F567200AE437D /* sounds */ = {
 			isa = PBXGroup;
 			children = (
+				56468FC0155B7D0F004D364C /* teletype.aiff */,
+				56468FC1155B7D0F004D364C /* teletype.mp3 */,
+				56468FC2155B7D0F004D364C /* teletype.wav */,
 				567CD47E15485B6D00797BD1 /* explosion-high.caf */,
 				567CD47F15485B6D00797BD1 /* explosion-low.caf */,
 				567CD48015485B6D00797BD1 /* explosion-med.caf */,
@@ -811,6 +818,7 @@
 		56ECD9141540703500565615 /* PDP11 */ = {
 			isa = PBXGroup;
 			children = (
+				56DFB6B0155AE76A00149D1E /* macro.pdf */,
 				56ECD9151540703500565615 /* DEC GT44 Users Guide.pdf */,
 				56ECD9161540703500565615 /* pdp11 instruction reference.pdf */,
 				56ECD9171540703500565615 /* pdp11_doc.pdf */,
