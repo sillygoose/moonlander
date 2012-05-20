@@ -14,12 +14,8 @@
 		<dict>
 			<key>CFBundleIconFiles</key>
 			<array>
-				<string>Icon.png</string>
-				<string>Icon@2x.png</string>
 				<string>Icon-72.png</string>
 				<string>Icon-72@2x.png</string>
-				<string>Icon-Small.png</string>
-				<string>Icon-Small@2x.png</string>
 				<string>Default-Landscape~ipad.png</string>
 				<string>Default-Landscape@2x~ipad.png</string>
 			</array>

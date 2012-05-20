@@ -11,7 +11,8 @@
 #import "VGView.h"
 
 
-@interface Dust : VGView {
+@interface Dust : VGView
+{
     id <LanderDelegate> __unsafe_unretained     _delegate;
 }
 
