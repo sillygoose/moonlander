@@ -17,6 +17,10 @@
 {
     // Hide the status bar
     [[UIApplication sharedApplication] setStatusBarHidden:YES withAnimation:NO];
+
+    // TeamFlight registration
+    [TestFlight takeOff:@"93c8cc3f61a45f39e4d60a044f9f5f44_OTQzMTIyMDEyLTA1LTI4IDEwOjI5OjA1LjExMzk3NA"];
+
     return YES;
 }
 
