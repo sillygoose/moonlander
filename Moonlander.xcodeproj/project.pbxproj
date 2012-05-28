@@ -376,7 +376,6 @@
 		560FA0C0137991AD0017EE25 = {
 			isa = PBXGroup;
 			children = (
-				1DBF44261573D1E7002BF8E7 /* libz.dylib */,
 				560D212814115314000F3A22 /* README */,
 				560FA0D5137991AE0017EE25 /* Moonlander */,
 				56ECD8ED1540703500565615 /* Moonlander Classic */,
@@ -430,6 +429,7 @@
 				560FA0D8137991AE0017EE25 /* InfoPlist.strings */,
 				560FA0DB137991AE0017EE25 /* Moonlander-Prefix.pch */,
 				560FA0DC137991AE0017EE25 /* main.m */,
+				1DBF44261573D1E7002BF8E7 /* libz.dylib */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
