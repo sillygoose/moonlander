@@ -1,14 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="1.1" toolsVersion="2182" systemVersion="11E53" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" initialViewController="2IX-Dd-gwH">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="3080" systemVersion="12C60" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" initialViewController="2IX-Dd-gwH">
     <dependencies>
-        <development defaultVersion="4200" identifier="xcode"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="1181"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="2078"/>
     </dependencies>
     <scenes>
         <!--Navigation Controller i Pad-->
         <scene sceneID="rmZ-jQ-FO6">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="iEf-aU-Y4B" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController autoresizesArchivedViewToFullSize="NO" wantsFullScreenLayout="YES" definesPresentationContext="YES" navigationBarHidden="YES" id="2IX-Dd-gwH" customClass="NavigationController_iPad" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="EWG-eB-MCM">
                         <autoresizingMask key="autoresizingMask"/>
@@ -21,13 +19,13 @@
                         <segue destination="0zl-dS-tgB" kind="relationship" relationship="rootViewController" id="afw-5O-621"/>
                     </connections>
                 </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="iEf-aU-Y4B" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-3178" y="-315"/>
         </scene>
         <!--Document View Controller - History of Moonlander-->
         <scene sceneID="jol-Ph-oD0">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="LM1-pa-wPd" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController storyboardIdentifier="History" title="History of Moonlander" id="wiC-qw-u8d" customClass="DocumentViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="jvq-iW-LWg">
                         <rect key="frame" x="0.0" y="20" width="1024" height="748"/>
@@ -48,13 +46,13 @@
                         <outlet property="_documentContent" destination="Ul6-zP-S4g" id="nMF-FV-s04"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="LM1-pa-wPd" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="558" y="-2968"/>
         </scene>
         <!--Modern Lander View Controller i Pad-->
         <scene sceneID="TMO-QY-jMC">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Bzc-o0-BHO" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController storyboardIdentifier="ModernSim" wantsFullScreenLayout="YES" id="FX2-L3-oki" customClass="ModernLanderViewController_iPad" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="QOJ-tG-1DO">
                         <rect key="frame" x="0.0" y="20" width="1024" height="748"/>
@@ -64,13 +62,13 @@
                     </view>
                     <navigationItem key="navigationItem" id="fk5-sd-PgS"/>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Bzc-o0-BHO" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="558" y="-1197"/>
         </scene>
         <!--Hardware-->
         <scene sceneID="NSj-t0-vrB">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="OjY-Rn-uh0" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController storyboardIdentifier="Hardware" title="Hardware" id="AwO-aS-9yc" userLabel="Hardware" customClass="DocumentViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="gu4-kg-5bF">
                         <rect key="frame" x="0.0" y="20" width="1024" height="748"/>
@@ -91,13 +89,13 @@
                         <outlet property="_documentContent" destination="mKZ-Ty-GnA" id="ymq-Vz-nBh"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="OjY-Rn-uh0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="558" y="1439"/>
         </scene>
         <!--Software-->
         <scene sceneID="hOs-6C-xXp">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="i5M-sg-pNI" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController storyboardIdentifier="Software" title="Original Moonlander Source Code" id="CUY-h8-yir" userLabel="Software" customClass="DocumentViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="lLK-Vz-dUM">
                         <rect key="frame" x="0.0" y="20" width="1024" height="748"/>
@@ -118,13 +116,13 @@
                         <outlet property="_documentContent" destination="gG5-ZM-02n" id="1nm-Es-YC9"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="i5M-sg-pNI" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="558" y="2320"/>
         </scene>
         <!--Credits-->
         <scene sceneID="Ol5-7c-SaJ">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="ZRa-hl-yoZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController storyboardIdentifier="Credits" title="Credits" id="p0M-gl-NyC" userLabel="Credits" customClass="DocumentViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Ey9-MU-hVV">
                         <rect key="frame" x="0.0" y="20" width="1024" height="748"/>
@@ -145,13 +143,13 @@
                         <outlet property="_documentContent" destination="73n-El-CVq" id="Fx9-rq-b5M"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ZRa-hl-yoZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="558" y="3199"/>
         </scene>
         <!--FlightControls-->
         <scene sceneID="I0T-7j-gzN">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="R3Q-wE-MKa" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController title="Flight Controls" id="30K-dx-DsS" userLabel="FlightControls" customClass="ControlsViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="3Pi-qR-QKJ">
                         <rect key="frame" x="0.0" y="20" width="1024" height="748"/>
@@ -221,13 +219,13 @@
                     </view>
                     <navigationItem key="navigationItem" id="ukE-5q-55j"/>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="R3Q-wE-MKa" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="558" y="-315"/>
         </scene>
         <!--FAQ-->
         <scene sceneID="5ld-uG-bXf">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="bvq-Ng-3LZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController storyboardIdentifier="FAQ" title="Moonlander FAQ" id="1bG-Yx-9C2" userLabel="FAQ" customClass="DocumentViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="F03-jS-Lxx">
                         <rect key="frame" x="0.0" y="20" width="1024" height="748"/>
@@ -248,13 +246,13 @@
                         <outlet property="_documentContent" destination="bXf-i4-xLT" id="WY8-3m-tJe"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="bvq-Ng-3LZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="558" y="562"/>
         </scene>
         <!--Splash View Controller - Splash-->
         <scene sceneID="q71-Lg-nUB">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Ugm-KW-1RZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController storyboardIdentifier="SplashVC" autoresizesArchivedViewToFullSize="NO" title="Splash" id="0zl-dS-tgB" customClass="SplashViewController" sceneMemberID="viewController">
                     <view key="view" userInteractionEnabled="NO" contentMode="scaleToFill" id="vTP-GA-5rD">
                         <rect key="frame" x="0.0" y="20" width="1024" height="748"/>
@@ -301,13 +299,13 @@
                         <segue destination="6C4-ba-SyT" kind="push" identifier="MenuSegue" id="6dv-ph-lfy"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ugm-KW-1RZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-1990" y="-315"/>
         </scene>
         <!--Auto Pilot View Controller i Pad-->
         <scene sceneID="AZ4-dr-uqk">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Axh-FN-hmM" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController storyboardIdentifier="AutoPilotSimulation" wantsFullScreenLayout="YES" id="oUu-6K-xJ6" customClass="AutoPilotViewController_iPad" sceneMemberID="viewController">
                     <view key="view" userInteractionEnabled="NO" contentMode="scaleToFill" id="YZ2-o8-qxl">
                         <rect key="frame" x="0.0" y="20" width="1024" height="748"/>
@@ -319,13 +317,13 @@
                         <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     </view>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Axh-FN-hmM" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-802" y="-1211"/>
         </scene>
         <!--Menu View Controller i Pad - Menu-->
         <scene sceneID="YMf-cD-nJb">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="8g8-HB-rrU" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController storyboardIdentifier="MenuVC" autoresizesArchivedViewToFullSize="NO" title="Menu" id="6C4-ba-SyT" customClass="MenuViewController_iPad" sceneMemberID="viewController">
                     <view key="view" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="8uC-Aj-fss">
                         <rect key="frame" x="0.0" y="20" width="1024" height="748"/>
@@ -459,19 +457,29 @@
                                     <segue destination="FX2-L3-oki" kind="push" identifier="PlayModernSegue" id="dRH-9V-4iw"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Build placeholder" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="E6z-nC-nYr" userLabel="Build">
+                                <rect key="frame" x="887" y="727" width="117" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="12"/>
+                                <color key="textColor" red="0.0" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     </view>
                     <navigationItem key="navigationItem" id="FOS-Wy-hDC"/>
+                    <connections>
+                        <outlet property="buildInfo" destination="E6z-nC-nYr" id="3aV-SS-qbe"/>
+                    </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="8g8-HB-rrU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-802" y="-315"/>
         </scene>
         <!--Lander View Controller i Pad-->
         <scene sceneID="6B9-Pg-inF">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="RT4-QF-HWA" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController storyboardIdentifier="ClassicLander" id="Ngu-au-laf" customClass="LanderViewController_iPad" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="HRH-db-IT3">
                         <rect key="frame" x="0.0" y="20" width="1024" height="748"/>
@@ -481,10 +489,73 @@
                     </view>
                     <navigationItem key="navigationItem" id="bg0-iZ-kLE"/>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="RT4-QF-HWA" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="550" y="-2083"/>
         </scene>
     </scenes>
+    <classes>
+        <class className="AutoPilotViewController_iPad" superclassName="ModernLanderViewController_iPad">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/AutoPilotViewController_iPad.h"/>
+        </class>
+        <class className="ControlsViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/ControlsViewController.h"/>
+        </class>
+        <class className="DocumentViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/DocumentViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="_documentContent" candidateClass="UIWebView"/>
+            </relationships>
+        </class>
+        <class className="Instrument" superclassName="VGButton">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/Instrument.h"/>
+        </class>
+        <class className="LanderViewController_iPad" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/LanderViewController_iPad.h"/>
+            <relationships>
+                <relationship kind="action" name="instrumentSelected:" candidateClass="Instrument"/>
+                <relationship kind="action" name="rotateLander:"/>
+                <relationship kind="action" name="telemetrySelected:" candidateClass="Telemetry"/>
+                <relationship kind="action" name="thrusterChanged:" candidateClass="VGSlider"/>
+            </relationships>
+        </class>
+        <class className="MenuViewController_iPad" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/MenuViewController_iPad.h"/>
+            <relationships>
+                <relationship kind="outlet" name="buildInfo" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+        <class className="ModernLanderViewController_iPad" superclassName="LanderViewController_iPad">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/ModernLanderViewController_iPad.h"/>
+            <relationships>
+                <relationship kind="action" name="autoPilotChange"/>
+            </relationships>
+        </class>
+        <class className="NavigationController_iPad" superclassName="UINavigationController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/NavigationController_iPad.h"/>
+        </class>
+        <class className="SplashViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/SplashViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="firstPart" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="moonLander" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="secondfPart" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+        <class className="Telemetry" superclassName="VGButton">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/Telemetry.h"/>
+        </class>
+        <class className="VGButton" superclassName="UIControl">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/VGButton.h"/>
+            <relationships>
+                <relationship kind="action" name="buttonDown:"/>
+                <relationship kind="action" name="buttonUp:"/>
+            </relationships>
+        </class>
+        <class className="VGSlider" superclassName="UIControl">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/VGSlider.h"/>
+        </class>
+    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar" statusBarStyle="blackTranslucent"/>
         <simulatedOrientationMetrics key="orientation" orientation="landscapeRight"/>

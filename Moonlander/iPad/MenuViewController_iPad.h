@@ -14,9 +14,10 @@
 @interface MenuViewController_iPad : UIViewController
 {
     AutoPilotViewController_iPad           *_menuBackground;
+    UILabel                                *_buildInfo;
 }
 
 @property (nonatomic, strong) AutoPilotViewController_iPad *menuBackground;
-
+@property (nonatomic, strong) IBOutlet UILabel *buildInfo;
 
 @end

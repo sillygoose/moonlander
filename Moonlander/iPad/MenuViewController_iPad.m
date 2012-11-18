@@ -17,6 +17,7 @@
 @implementation MenuViewController_iPad
 
 @synthesize menuBackground=_menuBackground;
+@synthesize buildInfo=_buildInfo;
 
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
@@ -47,6 +48,10 @@
     [self.view sendSubviewToBack:self.menuBackground.view];
     [self addChildViewController:self.menuBackground];
     [self.menuBackground didMoveToParentViewController:self];
+    
+    // Add the software build info to the menu scene
+    NSDictionary* infoDict = [[NSBundle mainBundle] infoDictionary];
+    self.buildInfo.text = [NSString stringWithFormat:@"Build %@", [infoDict objectForKey:@"CFBundleVersion"]];
 }
 
 - (void)viewDidUnload
