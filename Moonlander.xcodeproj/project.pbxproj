@@ -6,9 +6,22 @@
 	objectVersion = 46;
 	objects = {
 
+/* Begin PBXAggregateTarget section */
+		56C072901643594D0079830D /* Versioning */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = 56C072911643594D0079830D /* Build configuration list for PBXAggregateTarget "Versioning" */;
+			buildPhases = (
+				56C07294164359600079830D /* ShellScript */,
+			);
+			dependencies = (
+			);
+			name = Versioning;
+			productName = Versioning;
+		};
+/* End PBXAggregateTarget section */
+
 /* Begin PBXBuildFile section */
 		1D1512C61546E6ED008C2B80 /* Icon-Small-50@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1D1512C51546E6ED008C2B80 /* Icon-Small-50@2x.png */; };
-		1DBF44231573D10F002BF8E7 /* libTestFlight.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DBF441F1573D10F002BF8E7 /* libTestFlight.a */; };
 		1DBF44271573D1E7002BF8E7 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DBF44261573D1E7002BF8E7 /* libz.dylib */; };
 		560FA0D0137991AD0017EE25 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 560FA0CF137991AD0017EE25 /* UIKit.framework */; };
 		560FA0D2137991AD0017EE25 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 560FA0D1137991AD0017EE25 /* Foundation.framework */; };
@@ -17,16 +30,8 @@
 		560FA0DD137991AE0017EE25 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 560FA0DC137991AE0017EE25 /* main.m */; };
 		560FA0E0137991AE0017EE25 /* MoonlanderAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 560FA0DF137991AE0017EE25 /* MoonlanderAppDelegate.m */; };
 		560FA0EB137991AE0017EE25 /* MoonlanderAppDelegate_iPad.m in Sources */ = {isa = PBXBuildFile; fileRef = 560FA0EA137991AE0017EE25 /* MoonlanderAppDelegate_iPad.m */; };
-		560FA0F5137991AE0017EE25 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 560FA0CF137991AD0017EE25 /* UIKit.framework */; };
-		560FA0F6137991AE0017EE25 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 560FA0D1137991AD0017EE25 /* Foundation.framework */; };
-		560FA0F7137991AE0017EE25 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 560FA0D3137991AD0017EE25 /* CoreGraphics.framework */; };
-		560FA0FF137991AE0017EE25 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 560FA0FD137991AE0017EE25 /* InfoPlist.strings */; };
-		560FA102137991AE0017EE25 /* MoonlanderTests.h in Resources */ = {isa = PBXBuildFile; fileRef = 560FA101137991AE0017EE25 /* MoonlanderTests.h */; };
-		560FA104137991AE0017EE25 /* MoonlanderTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 560FA103137991AE0017EE25 /* MoonlanderTests.m */; };
 		560FA110137992E40017EE25 /* LanderPhysicsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 560FA10F137992E40017EE25 /* LanderPhysicsModel.m */; };
-		560FA111137992E40017EE25 /* LanderPhysicsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 560FA10F137992E40017EE25 /* LanderPhysicsModel.m */; };
 		560FA1371379BEAB0017EE25 /* LanderViewController_iPad.m in Sources */ = {isa = PBXBuildFile; fileRef = 560FA1351379BEAA0017EE25 /* LanderViewController_iPad.m */; };
-		560FA1381379BEAB0017EE25 /* LanderViewController_iPad.m in Sources */ = {isa = PBXBuildFile; fileRef = 560FA1351379BEAA0017EE25 /* LanderViewController_iPad.m */; };
 		5613DDE8143A85F80059077A /* VGDialog.m in Sources */ = {isa = PBXBuildFile; fileRef = 5613DDE7143A85F80059077A /* VGDialog.m */; };
 		561739E8154649DD00380AB4 /* Icon-Small-50.png in Resources */ = {isa = PBXBuildFile; fileRef = 561739E6154649DD00380AB4 /* Icon-Small-50.png */; };
 		561739ED15464CB200380AB4 /* iTunesArtwork in Resources */ = {isa = PBXBuildFile; fileRef = 561739EC15464CB200380AB4 /* iTunesArtwork */; };
@@ -50,7 +55,6 @@
 		564FF2531556228A007F5AB5 /* ModernLanderViewController_iPad.m in Sources */ = {isa = PBXBuildFile; fileRef = 564FF2521556228A007F5AB5 /* ModernLanderViewController_iPad.m */; };
 		564FF25715562842007F5AB5 /* AutoPilotViewController_iPad.m in Sources */ = {isa = PBXBuildFile; fileRef = 564FF25615562842007F5AB5 /* AutoPilotViewController_iPad.m */; };
 		5650B9EA153CB76900AEF4F2 /* ExplosionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5650B9E9153CB76800AEF4F2 /* ExplosionManager.m */; };
-		565B00E114447E400071231D /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5675E5D41425004400882CD8 /* AudioToolbox.framework */; };
 		56678FCC139A7D4D00026588 /* OldLander.plist in Resources */ = {isa = PBXBuildFile; fileRef = 56678FCB139A7D4D00026588 /* OldLander.plist */; };
 		56755FDA138C0B8200455B52 /* Lander.m in Sources */ = {isa = PBXBuildFile; fileRef = 56755FD9138C0B8200455B52 /* Lander.m */; };
 		5675E5D51425004400882CD8 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5675E5D41425004400882CD8 /* AudioToolbox.framework */; };
@@ -77,6 +81,9 @@
 		56CE052F138B12A7004FA450 /* LanderMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 56CE052E138B12A7004FA450 /* LanderMessage.m */; };
 		56CE0535138B5277004FA450 /* Telemetry.m in Sources */ = {isa = PBXBuildFile; fileRef = 56CE0534138B5277004FA450 /* Telemetry.m */; };
 		56CE0538138B6C88004FA450 /* Instrument.m in Sources */ = {isa = PBXBuildFile; fileRef = 56CE0537138B6C88004FA450 /* Instrument.m */; };
+		56D6C7D216435290001C2344 /* libTestFlight.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 56D6C7CE16435290001C2344 /* libTestFlight.a */; };
+		56D6C7D316435290001C2344 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 56D6C7CF16435290001C2344 /* README.md */; };
+		56D6C7D416435290001C2344 /* release_notes.md in Resources */ = {isa = PBXBuildFile; fileRef = 56D6C7D016435290001C2344 /* release_notes.md */; };
 		56E80E4C137E4CC3009E7F15 /* Lander.plist in Resources */ = {isa = PBXBuildFile; fileRef = 56E80E4B137E4CC3009E7F15 /* Lander.plist */; };
 		56E80E60137E599E009E7F15 /* VGView.m in Sources */ = {isa = PBXBuildFile; fileRef = 56E80E5F137E599E009E7F15 /* VGView.m */; };
 		56E837291553026700022A1E /* ModernLander_iPad+AutoPilot.m in Sources */ = {isa = PBXBuildFile; fileRef = 56E837281553026700022A1E /* ModernLander_iPad+AutoPilot.m */; };
@@ -99,21 +106,17 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		560FA0F8137991AE0017EE25 /* PBXContainerItemProxy */ = {
+		56C0729516435A3E0079830D /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 560FA0C2137991AD0017EE25 /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 560FA0CA137991AD0017EE25;
-			remoteInfo = Moonlander;
+			remoteGlobalIDString = 56C072901643594D0079830D;
+			remoteInfo = Versioning;
 		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		1D1512C51546E6ED008C2B80 /* Icon-Small-50@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-Small-50@2x.png"; sourceTree = "<group>"; };
-		1DBF441F1573D10F002BF8E7 /* libTestFlight.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libTestFlight.a; sourceTree = "<group>"; };
-		1DBF44201573D10F002BF8E7 /* README.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.txt; sourceTree = "<group>"; };
-		1DBF44211573D10F002BF8E7 /* release_notes.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = release_notes.txt; sourceTree = "<group>"; };
-		1DBF44221573D10F002BF8E7 /* TestFlight.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestFlight.h; sourceTree = "<group>"; };
 		1DBF44261573D1E7002BF8E7 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		560D212814115314000F3A22 /* README */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README; sourceTree = "<group>"; };
 		560FA0CB137991AD0017EE25 /* Moonlander.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Moonlander.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -128,7 +131,6 @@
 		560FA0DF137991AE0017EE25 /* MoonlanderAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MoonlanderAppDelegate.m; sourceTree = "<group>"; };
 		560FA0E9137991AE0017EE25 /* MoonlanderAppDelegate_iPad.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MoonlanderAppDelegate_iPad.h; sourceTree = "<group>"; };
 		560FA0EA137991AE0017EE25 /* MoonlanderAppDelegate_iPad.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MoonlanderAppDelegate_iPad.m; sourceTree = "<group>"; };
-		560FA0F4137991AE0017EE25 /* MoonlanderTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MoonlanderTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		560FA0FC137991AE0017EE25 /* MoonlanderTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "MoonlanderTests-Info.plist"; sourceTree = "<group>"; };
 		560FA0FE137991AE0017EE25 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		560FA100137991AE0017EE25 /* MoonlanderTests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MoonlanderTests-Prefix.pch"; sourceTree = "<group>"; };
@@ -246,6 +248,10 @@
 		56CE0534138B5277004FA450 /* Telemetry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Telemetry.m; sourceTree = "<group>"; };
 		56CE0536138B6C88004FA450 /* Instrument.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Instrument.h; sourceTree = "<group>"; };
 		56CE0537138B6C88004FA450 /* Instrument.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Instrument.m; sourceTree = "<group>"; };
+		56D6C7CE16435290001C2344 /* libTestFlight.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libTestFlight.a; sourceTree = "<group>"; };
+		56D6C7CF16435290001C2344 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
+		56D6C7D016435290001C2344 /* release_notes.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = release_notes.md; sourceTree = "<group>"; };
+		56D6C7D116435290001C2344 /* TestFlight.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestFlight.h; sourceTree = "<group>"; };
 		56DFB6B0155AE76A00149D1E /* macro.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = macro.pdf; sourceTree = "<group>"; };
 		56E80E4B137E4CC3009E7F15 /* Lander.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Lander.plist; sourceTree = "<group>"; };
 		56E80E5E137E599D009E7F15 /* VGView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VGView.h; sourceTree = "<group>"; };
@@ -326,18 +332,7 @@
 				560FA0D4137991AD0017EE25 /* CoreGraphics.framework in Frameworks */,
 				5675E5D51425004400882CD8 /* AudioToolbox.framework in Frameworks */,
 				1DBF44271573D1E7002BF8E7 /* libz.dylib in Frameworks */,
-				1DBF44231573D10F002BF8E7 /* libTestFlight.a in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		560FA0F0137991AE0017EE25 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				560FA0F5137991AE0017EE25 /* UIKit.framework in Frameworks */,
-				560FA0F7137991AE0017EE25 /* CoreGraphics.framework in Frameworks */,
-				560FA0F6137991AE0017EE25 /* Foundation.framework in Frameworks */,
-				565B00E114447E400071231D /* AudioToolbox.framework in Frameworks */,
+				56D6C7D216435290001C2344 /* libTestFlight.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -362,17 +357,6 @@
 			path = sounds;
 			sourceTree = "<group>";
 		};
-		1DBF441D1573D0DA002BF8E7 /* TestFlight */ = {
-			isa = PBXGroup;
-			children = (
-				1DBF44201573D10F002BF8E7 /* README.txt */,
-				1DBF44211573D10F002BF8E7 /* release_notes.txt */,
-				1DBF441F1573D10F002BF8E7 /* libTestFlight.a */,
-				1DBF44221573D10F002BF8E7 /* TestFlight.h */,
-			);
-			path = TestFlight;
-			sourceTree = "<group>";
-		};
 		560FA0C0137991AD0017EE25 = {
 			isa = PBXGroup;
 			children = (
@@ -389,7 +373,6 @@
 			isa = PBXGroup;
 			children = (
 				560FA0CB137991AD0017EE25 /* Moonlander.app */,
-				560FA0F4137991AE0017EE25 /* MoonlanderTests.octest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -415,7 +398,7 @@
 				567CD473154853D800797BD1 /* Classes */,
 				560FA10D1379923D0017EE25 /* Lander Model */,
 				5695F1A9137F52B50075CD26 /* Vector Graphics */,
-				1DBF441D1573D0DA002BF8E7 /* TestFlight */,
+				56D6C7CD16435290001C2344 /* TestFlightSDK1.1 */,
 				560FA13B1379C3900017EE25 /* Resources */,
 				560FA0D6137991AE0017EE25 /* Supporting Files */,
 			);
@@ -726,6 +709,17 @@
 			path = fonts;
 			sourceTree = "<group>";
 		};
+		56D6C7CD16435290001C2344 /* TestFlightSDK1.1 */ = {
+			isa = PBXGroup;
+			children = (
+				56D6C7CE16435290001C2344 /* libTestFlight.a */,
+				56D6C7CF16435290001C2344 /* README.md */,
+				56D6C7D016435290001C2344 /* release_notes.md */,
+				56D6C7D116435290001C2344 /* TestFlight.h */,
+			);
+			path = TestFlightSDK1.1;
+			sourceTree = "<group>";
+		};
 		56E837211552F7C000022A1E /* Autopilot */ = {
 			isa = PBXGroup;
 			children = (
@@ -890,30 +884,12 @@
 			buildRules = (
 			);
 			dependencies = (
+				56C0729616435A3E0079830D /* PBXTargetDependency */,
 			);
 			name = Moonlander;
 			productName = Moonlander;
 			productReference = 560FA0CB137991AD0017EE25 /* Moonlander.app */;
 			productType = "com.apple.product-type.application";
-		};
-		560FA0F3137991AE0017EE25 /* MoonlanderTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 560FA10A137991AE0017EE25 /* Build configuration list for PBXNativeTarget "MoonlanderTests" */;
-			buildPhases = (
-				560FA0EF137991AE0017EE25 /* Sources */,
-				560FA0F0137991AE0017EE25 /* Frameworks */,
-				560FA0F1137991AE0017EE25 /* Resources */,
-				560FA0F2137991AE0017EE25 /* ShellScript */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				560FA0F9137991AE0017EE25 /* PBXTargetDependency */,
-			);
-			name = MoonlanderTests;
-			productName = MoonlanderTests;
-			productReference = 560FA0F4137991AE0017EE25 /* MoonlanderTests.octest */;
-			productType = "com.apple.product-type.bundle";
 		};
 /* End PBXNativeTarget section */
 
@@ -921,7 +897,7 @@
 		560FA0C2137991AD0017EE25 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0430;
+				LastUpgradeCheck = 0450;
 				ORGANIZATIONNAME = "Paradigm Systems";
 			};
 			buildConfigurationList = 560FA0C5137991AD0017EE25 /* Build configuration list for PBXProject "Moonlander" */;
@@ -937,7 +913,7 @@
 			projectRoot = "";
 			targets = (
 				560FA0CA137991AD0017EE25 /* Moonlander */,
-				560FA0F3137991AE0017EE25 /* MoonlanderTests */,
+				56C072901643594D0079830D /* Versioning */,
 			);
 		};
 /* End PBXProject section */
@@ -990,22 +966,15 @@
 				56903D32154EDF7900DE54BD /* Credits.rtf in Resources */,
 				56903D34154EE40100DE54BD /* Frequently Asked Questions.rtf in Resources */,
 				56903D38154EE4E900DE54BD /* Hardware.rtf in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		560FA0F1137991AE0017EE25 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				560FA0FF137991AE0017EE25 /* InfoPlist.strings in Resources */,
-				560FA102137991AE0017EE25 /* MoonlanderTests.h in Resources */,
+				56D6C7D316435290001C2344 /* README.md in Resources */,
+				56D6C7D416435290001C2344 /* release_notes.md in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		560FA0F2137991AE0017EE25 /* ShellScript */ = {
+		56C07294164359600079830D /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -1016,7 +985,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
+			shellScript = "cd \"$PROJECT_DIR\"\nVERSION=`/usr/local/git/bin/git rev-parse --short HEAD`\n\ncd \"$PROJECT_TEMP_DIR\"\necho \"#define GIT_VERSION $VERSION\" > revision.prefix\n\ncd \"$PROJECT_DIR\"\ntouch \"Moonlander-Info.plist\"";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -1059,23 +1028,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		560FA0EF137991AE0017EE25 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				560FA104137991AE0017EE25 /* MoonlanderTests.m in Sources */,
-				560FA111137992E40017EE25 /* LanderPhysicsModel.m in Sources */,
-				560FA1381379BEAB0017EE25 /* LanderViewController_iPad.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		560FA0F9137991AE0017EE25 /* PBXTargetDependency */ = {
+		56C0729616435A3E0079830D /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 560FA0CA137991AD0017EE25 /* Moonlander */;
-			targetProxy = 560FA0F8137991AE0017EE25 /* PBXContainerItemProxy */;
+			target = 56C072901643594D0079830D /* Versioning */;
+			targetProxy = 56C0729516435A3E0079830D /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -1121,7 +1080,9 @@
 				GCC_VERSION = com.apple.compilers.llvmgcc42;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				INFOPLIST_PREFIX_HEADER = $PROJECT_TEMP_DIR/revision.prefix;
+				INFOPLIST_PREPROCESS = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
 				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1139,7 +1100,9 @@
 				GCC_VERSION = com.apple.compilers.llvmgcc42;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				INFOPLIST_PREFIX_HEADER = $PROJECT_TEMP_DIR/revision.prefix;
+				INFOPLIST_PREPROCESS = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
@@ -1164,10 +1127,10 @@
 				GCC_THUMB_SUPPORT = NO;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				INFOPLIST_FILE = "Moonlander/Moonlander-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)/Moonlander/TestFlight\"",
+					"\"$(SRCROOT)/Moonlander/TestFlightSDK1.1\"",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = 2;
@@ -1192,10 +1155,10 @@
 				GCC_THUMB_SUPPORT = NO;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				INFOPLIST_FILE = "Moonlander/Moonlander-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)/Moonlander/TestFlight\"",
+					"\"$(SRCROOT)/Moonlander/TestFlightSDK1.1\"",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
@@ -1206,55 +1169,19 @@
 			};
 			name = Release;
 		};
-		560FA10B137991AE0017EE25 /* Debug */ = {
+		56C072921643594D0079830D /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Moonlander.app/Moonlander";
-				CLANG_ENABLE_OBJC_ARC = YES;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
-				);
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "MoonlanderTests/MoonlanderTests-Prefix.pch";
-				GCC_THUMB_SUPPORT = NO;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
-				INFOPLIST_FILE = "MoonlanderTests/MoonlanderTests-Info.plist";
-				OTHER_LDFLAGS = (
-					"-framework",
-					SenTestingKit,
-				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = iphoneos;
-				TEST_HOST = "$(BUNDLE_LOADER)";
-				WRAPPER_EXTENSION = octest;
 			};
 			name = Debug;
 		};
-		560FA10C137991AE0017EE25 /* Release */ = {
+		56C072931643594D0079830D /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Moonlander.app/Moonlander";
-				CLANG_ENABLE_OBJC_ARC = YES;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
-				);
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "MoonlanderTests/MoonlanderTests-Prefix.pch";
-				GCC_THUMB_SUPPORT = NO;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
-				INFOPLIST_FILE = "MoonlanderTests/MoonlanderTests-Info.plist";
-				OTHER_LDFLAGS = (
-					"-framework",
-					SenTestingKit,
-				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = iphoneos;
-				TEST_HOST = "$(BUNDLE_LOADER)";
-				WRAPPER_EXTENSION = octest;
 			};
 			name = Release;
 		};
@@ -1279,14 +1206,13 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		560FA10A137991AE0017EE25 /* Build configuration list for PBXNativeTarget "MoonlanderTests" */ = {
+		56C072911643594D0079830D /* Build configuration list for PBXAggregateTarget "Versioning" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				560FA10B137991AE0017EE25 /* Debug */,
-				560FA10C137991AE0017EE25 /* Release */,
+				56C072921643594D0079830D /* Debug */,
+				56C072931643594D0079830D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
