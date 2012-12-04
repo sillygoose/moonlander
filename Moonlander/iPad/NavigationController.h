@@ -1,5 +1,5 @@
 //
-//  NavigationController_iPad.h
+//  NavigationController.h
 //  Moonlander
 //
 //  Created by Rick Naro on 4/29/12.
@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface NavigationController_iPad : UINavigationController
+@interface NavigationController : UINavigationController
 
 @end

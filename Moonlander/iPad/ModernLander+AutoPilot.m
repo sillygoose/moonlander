@@ -1,14 +1,14 @@
 //
-//  ModernLander_iPad+AutoPilot.m
+//  ModernLander+AutoPilot.m
 //  Moonlander
 //
 //  Created by Rick Naro on 5/3/12.
 //  Copyright (c) 2012 Paradigm Systems. All rights reserved.
 //
 
-#import "ModernLander_iPad+AutoPilot.h"
+#import "ModernLander+AutoPilot.h"
 
-@implementation ModernLanderViewController_iPad (AutoPilot)
+@implementation ModernLanderViewController (AutoPilot)
 
 #ifdef DEBUG
 //#define DEBUG_HORIZONTAL_AUTOPILOT
@@ -176,7 +176,7 @@ const float AutoPilotUpdateInterval = 0.10;         // How often the autopilot c
 
 - (void)initializePIDControllers
 {
-    __weak ModernLanderViewController_iPad *weakSelf = self;
+    __weak ModernLanderViewController *weakSelf = self;
     
     self.autoPilot.verticalPosition.setPoint = [^{ return [weakSelf vpSetPoint];} copy];
     self.autoPilot.verticalPosition.processValue = [^{ return [weakSelf vpProcessValue];} copy];

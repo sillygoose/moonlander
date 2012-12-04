@@ -1,19 +1,19 @@
 //
-//  NavigationController_iPad.m
+//  NavigationController.m
 //  Moonlander
 //
 //  Created by Rick Naro on 4/29/12.
 //  Copyright (c) 2012 Paradigm Systemse. All rights reserved.
 //
 
-#import "NavigationController_iPad.h"
+#import "NavigationController.h"
 
 
-@interface NavigationController_iPad ()
+@interface NavigationController ()
 
 @end
 
-@implementation NavigationController_iPad
+@implementation NavigationController
 
 
 - (void)viewDidLoad

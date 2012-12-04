@@ -1,14 +1,14 @@
 //
-//  ModernLanderViewController_iPad.h
+//  ModernLanderViewController.h
 //  Moonlander
 //
 //  Created by Rick Naro on 5/5/12.
 //  Copyright (c) 2012 Paradigm Systems. All rights reserved.
 //
 
-#import "LanderViewController_iPad.h"
+#import "LanderViewController.h"
 
-@interface ModernLanderViewController_iPad : LanderViewController_iPad
+@interface ModernLanderViewController : LanderViewController
 {
     Autopilot           *_autoPilot;
     VGButton            *_autoPilotSwitch;

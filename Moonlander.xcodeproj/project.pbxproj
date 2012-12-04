@@ -29,9 +29,8 @@
 		560FA0DA137991AE0017EE25 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 560FA0D8137991AE0017EE25 /* InfoPlist.strings */; };
 		560FA0DD137991AE0017EE25 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 560FA0DC137991AE0017EE25 /* main.m */; };
 		560FA0E0137991AE0017EE25 /* MoonlanderAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 560FA0DF137991AE0017EE25 /* MoonlanderAppDelegate.m */; };
-		560FA0EB137991AE0017EE25 /* MoonlanderAppDelegate_iPad.m in Sources */ = {isa = PBXBuildFile; fileRef = 560FA0EA137991AE0017EE25 /* MoonlanderAppDelegate_iPad.m */; };
 		560FA110137992E40017EE25 /* LanderPhysicsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 560FA10F137992E40017EE25 /* LanderPhysicsModel.m */; };
-		560FA1371379BEAB0017EE25 /* LanderViewController_iPad.m in Sources */ = {isa = PBXBuildFile; fileRef = 560FA1351379BEAA0017EE25 /* LanderViewController_iPad.m */; };
+		560FA1371379BEAB0017EE25 /* LanderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 560FA1351379BEAA0017EE25 /* LanderViewController.m */; };
 		5613DDE8143A85F80059077A /* VGDialog.m in Sources */ = {isa = PBXBuildFile; fileRef = 5613DDE7143A85F80059077A /* VGDialog.m */; };
 		561739E8154649DD00380AB4 /* Icon-Small-50.png in Resources */ = {isa = PBXBuildFile; fileRef = 561739E6154649DD00380AB4 /* Icon-Small-50.png */; };
 		561739ED15464CB200380AB4 /* iTunesArtwork in Resources */ = {isa = PBXBuildFile; fileRef = 561739EC15464CB200380AB4 /* iTunesArtwork */; };
@@ -41,9 +40,9 @@
 		562B108A13841BAA00CC5C97 /* VGLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 562B108913841BAA00CC5C97 /* VGLabel.m */; };
 		562B108D13841D5A00CC5C97 /* LanderMessages.plist in Resources */ = {isa = PBXBuildFile; fileRef = 562B108C13841D5A00CC5C97 /* LanderMessages.plist */; };
 		562CB7BB137F3AE6003CB9B5 /* LargeLeftArrow.plist in Resources */ = {isa = PBXBuildFile; fileRef = 562CB7BA137F3AE6003CB9B5 /* LargeLeftArrow.plist */; };
-		562D6247154DAD1900BD4EDD /* MenuViewController_iPad.m in Sources */ = {isa = PBXBuildFile; fileRef = 562D6246154DAD1900BD4EDD /* MenuViewController_iPad.m */; };
+		562D6247154DAD1900BD4EDD /* MenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 562D6246154DAD1900BD4EDD /* MenuViewController.m */; };
 		562D624D154DB24900BD4EDD /* ControlsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 562D624C154DB24900BD4EDD /* ControlsViewController.m */; };
-		562D6250154DC3CE00BD4EDD /* NavigationController_iPad.m in Sources */ = {isa = PBXBuildFile; fileRef = 562D624F154DC3CE00BD4EDD /* NavigationController_iPad.m */; };
+		562D6250154DC3CE00BD4EDD /* NavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 562D624F154DC3CE00BD4EDD /* NavigationController.m */; };
 		562F26A81417A22E0069169B /* Man.m in Sources */ = {isa = PBXBuildFile; fileRef = 562F26A71417A22E0069169B /* Man.m */; };
 		564BE59E13800F3400D790D9 /* VGButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 564BE59D13800F3400D790D9 /* VGButton.m */; };
 		564BE5C413801C0F00D790D9 /* VGSlider.m in Sources */ = {isa = PBXBuildFile; fileRef = 564BE5C313801C0F00D790D9 /* VGSlider.m */; };
@@ -52,8 +51,8 @@
 		564EBC4F13834A07007D477C /* Man.plist in Resources */ = {isa = PBXBuildFile; fileRef = 564EBC4E13834A07007D477C /* Man.plist */; };
 		564EBC5113834A17007D477C /* McDonalds.plist in Resources */ = {isa = PBXBuildFile; fileRef = 564EBC5013834A17007D477C /* McDonalds.plist */; };
 		564FF2471555C260007F5AB5 /* SplashViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 564FF2461555C260007F5AB5 /* SplashViewController.m */; };
-		564FF2531556228A007F5AB5 /* ModernLanderViewController_iPad.m in Sources */ = {isa = PBXBuildFile; fileRef = 564FF2521556228A007F5AB5 /* ModernLanderViewController_iPad.m */; };
-		564FF25715562842007F5AB5 /* AutoPilotViewController_iPad.m in Sources */ = {isa = PBXBuildFile; fileRef = 564FF25615562842007F5AB5 /* AutoPilotViewController_iPad.m */; };
+		564FF2531556228A007F5AB5 /* ModernLanderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 564FF2521556228A007F5AB5 /* ModernLanderViewController.m */; };
+		564FF25715562842007F5AB5 /* AutoPilotViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 564FF25615562842007F5AB5 /* AutoPilotViewController.m */; };
 		5650B9EA153CB76900AEF4F2 /* ExplosionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5650B9E9153CB76800AEF4F2 /* ExplosionManager.m */; };
 		56678FCC139A7D4D00026588 /* OldLander.plist in Resources */ = {isa = PBXBuildFile; fileRef = 56678FCB139A7D4D00026588 /* OldLander.plist */; };
 		56755FDA138C0B8200455B52 /* Lander.m in Sources */ = {isa = PBXBuildFile; fileRef = 56755FD9138C0B8200455B52 /* Lander.m */; };
@@ -86,7 +85,7 @@
 		56D6C7D416435290001C2344 /* release_notes.md in Resources */ = {isa = PBXBuildFile; fileRef = 56D6C7D016435290001C2344 /* release_notes.md */; };
 		56E80E4C137E4CC3009E7F15 /* Lander.plist in Resources */ = {isa = PBXBuildFile; fileRef = 56E80E4B137E4CC3009E7F15 /* Lander.plist */; };
 		56E80E60137E599E009E7F15 /* VGView.m in Sources */ = {isa = PBXBuildFile; fileRef = 56E80E5F137E599E009E7F15 /* VGView.m */; };
-		56E837291553026700022A1E /* ModernLander_iPad+AutoPilot.m in Sources */ = {isa = PBXBuildFile; fileRef = 56E837281553026700022A1E /* ModernLander_iPad+AutoPilot.m */; };
+		56E837291553026700022A1E /* ModernLander+AutoPilot.m in Sources */ = {isa = PBXBuildFile; fileRef = 56E837281553026700022A1E /* ModernLander+AutoPilot.m */; };
 		56E8372F1553061B00022A1E /* Autopilot.m in Sources */ = {isa = PBXBuildFile; fileRef = 56E8372E1553061B00022A1E /* Autopilot.m */; };
 		56E8373715535DF400022A1E /* PIDController.m in Sources */ = {isa = PBXBuildFile; fileRef = 56E8373615535DF400022A1E /* PIDController.m */; };
 		56E87D31154477EC00C5C764 /* beep-high.caf in Resources */ = {isa = PBXBuildFile; fileRef = 56E87D2E154477EC00C5C764 /* beep-high.caf */; };
@@ -129,8 +128,6 @@
 		560FA0DC137991AE0017EE25 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		560FA0DE137991AE0017EE25 /* MoonlanderAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MoonlanderAppDelegate.h; sourceTree = "<group>"; };
 		560FA0DF137991AE0017EE25 /* MoonlanderAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MoonlanderAppDelegate.m; sourceTree = "<group>"; };
-		560FA0E9137991AE0017EE25 /* MoonlanderAppDelegate_iPad.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MoonlanderAppDelegate_iPad.h; sourceTree = "<group>"; };
-		560FA0EA137991AE0017EE25 /* MoonlanderAppDelegate_iPad.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MoonlanderAppDelegate_iPad.m; sourceTree = "<group>"; };
 		560FA0FC137991AE0017EE25 /* MoonlanderTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "MoonlanderTests-Info.plist"; sourceTree = "<group>"; };
 		560FA0FE137991AE0017EE25 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		560FA100137991AE0017EE25 /* MoonlanderTests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MoonlanderTests-Prefix.pch"; sourceTree = "<group>"; };
@@ -138,8 +135,8 @@
 		560FA103137991AE0017EE25 /* MoonlanderTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MoonlanderTests.m; sourceTree = "<group>"; };
 		560FA10E137992E40017EE25 /* LanderPhysicsModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LanderPhysicsModel.h; sourceTree = "<group>"; };
 		560FA10F137992E40017EE25 /* LanderPhysicsModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LanderPhysicsModel.m; sourceTree = "<group>"; };
-		560FA1341379BEAA0017EE25 /* LanderViewController_iPad.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LanderViewController_iPad.h; sourceTree = "<group>"; };
-		560FA1351379BEAA0017EE25 /* LanderViewController_iPad.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LanderViewController_iPad.m; sourceTree = "<group>"; };
+		560FA1341379BEAA0017EE25 /* LanderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LanderViewController.h; sourceTree = "<group>"; };
+		560FA1351379BEAA0017EE25 /* LanderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LanderViewController.m; sourceTree = "<group>"; };
 		560FA13E1379C95B0017EE25 /* LanderPhysicsDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LanderPhysicsDataSource.h; sourceTree = "<group>"; };
 		5613DDE6143A85F80059077A /* VGDialog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VGDialog.h; sourceTree = "<group>"; };
 		5613DDE7143A85F80059077A /* VGDialog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VGDialog.m; sourceTree = "<group>"; };
@@ -159,12 +156,12 @@
 		562B108913841BAA00CC5C97 /* VGLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VGLabel.m; sourceTree = "<group>"; };
 		562B108C13841D5A00CC5C97 /* LanderMessages.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = LanderMessages.plist; sourceTree = "<group>"; };
 		562CB7BA137F3AE6003CB9B5 /* LargeLeftArrow.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = LargeLeftArrow.plist; sourceTree = "<group>"; };
-		562D6245154DAD1900BD4EDD /* MenuViewController_iPad.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuViewController_iPad.h; sourceTree = "<group>"; };
-		562D6246154DAD1900BD4EDD /* MenuViewController_iPad.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuViewController_iPad.m; sourceTree = "<group>"; };
+		562D6245154DAD1900BD4EDD /* MenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuViewController.h; sourceTree = "<group>"; };
+		562D6246154DAD1900BD4EDD /* MenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuViewController.m; sourceTree = "<group>"; };
 		562D624B154DB24900BD4EDD /* ControlsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ControlsViewController.h; sourceTree = "<group>"; };
 		562D624C154DB24900BD4EDD /* ControlsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ControlsViewController.m; sourceTree = "<group>"; };
-		562D624E154DC3CD00BD4EDD /* NavigationController_iPad.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NavigationController_iPad.h; sourceTree = "<group>"; };
-		562D624F154DC3CE00BD4EDD /* NavigationController_iPad.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NavigationController_iPad.m; sourceTree = "<group>"; };
+		562D624E154DC3CD00BD4EDD /* NavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NavigationController.h; sourceTree = "<group>"; };
+		562D624F154DC3CE00BD4EDD /* NavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NavigationController.m; sourceTree = "<group>"; };
 		562F26A61417A22E0069169B /* Man.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Man.h; sourceTree = "<group>"; };
 		562F26A71417A22E0069169B /* Man.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Man.m; sourceTree = "<group>"; };
 		56468FC0155B7D0F004D364C /* teletype.aiff */ = {isa = PBXFileReference; lastKnownFileType = audio.aiff; path = teletype.aiff; sourceTree = "<group>"; };
@@ -180,10 +177,10 @@
 		564EBC5013834A17007D477C /* McDonalds.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = McDonalds.plist; sourceTree = "<group>"; };
 		564FF2451555C260007F5AB5 /* SplashViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SplashViewController.h; sourceTree = "<group>"; };
 		564FF2461555C260007F5AB5 /* SplashViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SplashViewController.m; sourceTree = "<group>"; };
-		564FF2511556228A007F5AB5 /* ModernLanderViewController_iPad.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ModernLanderViewController_iPad.h; sourceTree = "<group>"; };
-		564FF2521556228A007F5AB5 /* ModernLanderViewController_iPad.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ModernLanderViewController_iPad.m; sourceTree = "<group>"; };
-		564FF25515562842007F5AB5 /* AutoPilotViewController_iPad.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AutoPilotViewController_iPad.h; sourceTree = "<group>"; };
-		564FF25615562842007F5AB5 /* AutoPilotViewController_iPad.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AutoPilotViewController_iPad.m; sourceTree = "<group>"; };
+		564FF2511556228A007F5AB5 /* ModernLanderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ModernLanderViewController.h; sourceTree = "<group>"; };
+		564FF2521556228A007F5AB5 /* ModernLanderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ModernLanderViewController.m; sourceTree = "<group>"; };
+		564FF25515562842007F5AB5 /* AutoPilotViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AutoPilotViewController.h; sourceTree = "<group>"; };
+		564FF25615562842007F5AB5 /* AutoPilotViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AutoPilotViewController.m; sourceTree = "<group>"; };
 		5650B9E8153CB76800AEF4F2 /* ExplosionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExplosionManager.h; sourceTree = "<group>"; };
 		5650B9E9153CB76800AEF4F2 /* ExplosionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExplosionManager.m; sourceTree = "<group>"; };
 		5652574D154CBABB0022EF77 /* disasm.doc */ = {isa = PBXFileReference; lastKnownFileType = text; path = disasm.doc; sourceTree = "<group>"; };
@@ -260,8 +257,8 @@
 		56E837241552F99700022A1E /* Nelder-Mead Simplex Algorithm.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = "Nelder-Mead Simplex Algorithm.txt"; sourceTree = "<group>"; };
 		56E837251552F99700022A1E /* Optimization.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = Optimization.txt; sourceTree = "<group>"; };
 		56E837261552FCB700022A1E /* Autopilot Simulation.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = "Autopilot Simulation.pdf"; sourceTree = "<group>"; };
-		56E837271553026700022A1E /* ModernLander_iPad+AutoPilot.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ModernLander_iPad+AutoPilot.h"; sourceTree = "<group>"; };
-		56E837281553026700022A1E /* ModernLander_iPad+AutoPilot.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ModernLander_iPad+AutoPilot.m"; sourceTree = "<group>"; };
+		56E837271553026700022A1E /* ModernLander+AutoPilot.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ModernLander+AutoPilot.h"; sourceTree = "<group>"; };
+		56E837281553026700022A1E /* ModernLander+AutoPilot.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ModernLander+AutoPilot.m"; sourceTree = "<group>"; };
 		56E8372D1553061B00022A1E /* Autopilot.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Autopilot.h; sourceTree = "<group>"; };
 		56E8372E1553061B00022A1E /* Autopilot.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Autopilot.m; sourceTree = "<group>"; };
 		56E8373515535DF400022A1E /* PIDController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PIDController.h; sourceTree = "<group>"; };
@@ -421,26 +418,24 @@
 			isa = PBXGroup;
 			children = (
 				56EA5BCA154E14DF00AB6DF2 /* Moonlander_iPad.storyboard */,
-				560FA0E9137991AE0017EE25 /* MoonlanderAppDelegate_iPad.h */,
-				560FA0EA137991AE0017EE25 /* MoonlanderAppDelegate_iPad.m */,
-				562D624E154DC3CD00BD4EDD /* NavigationController_iPad.h */,
-				562D624F154DC3CE00BD4EDD /* NavigationController_iPad.m */,
+				562D624E154DC3CD00BD4EDD /* NavigationController.h */,
+				562D624F154DC3CE00BD4EDD /* NavigationController.m */,
 				564FF2451555C260007F5AB5 /* SplashViewController.h */,
 				564FF2461555C260007F5AB5 /* SplashViewController.m */,
-				562D6245154DAD1900BD4EDD /* MenuViewController_iPad.h */,
-				562D6246154DAD1900BD4EDD /* MenuViewController_iPad.m */,
+				562D6245154DAD1900BD4EDD /* MenuViewController.h */,
+				562D6246154DAD1900BD4EDD /* MenuViewController.m */,
 				56EA5BF4154E35D700AB6DF2 /* DocumentViewController.h */,
 				56EA5BF5154E35D700AB6DF2 /* DocumentViewController.m */,
 				562D624B154DB24900BD4EDD /* ControlsViewController.h */,
 				562D624C154DB24900BD4EDD /* ControlsViewController.m */,
-				560FA1341379BEAA0017EE25 /* LanderViewController_iPad.h */,
-				560FA1351379BEAA0017EE25 /* LanderViewController_iPad.m */,
-				56E837271553026700022A1E /* ModernLander_iPad+AutoPilot.h */,
-				56E837281553026700022A1E /* ModernLander_iPad+AutoPilot.m */,
-				564FF2511556228A007F5AB5 /* ModernLanderViewController_iPad.h */,
-				564FF2521556228A007F5AB5 /* ModernLanderViewController_iPad.m */,
-				564FF25515562842007F5AB5 /* AutoPilotViewController_iPad.h */,
-				564FF25615562842007F5AB5 /* AutoPilotViewController_iPad.m */,
+				560FA1341379BEAA0017EE25 /* LanderViewController.h */,
+				560FA1351379BEAA0017EE25 /* LanderViewController.m */,
+				56E837271553026700022A1E /* ModernLander+AutoPilot.h */,
+				56E837281553026700022A1E /* ModernLander+AutoPilot.m */,
+				564FF2511556228A007F5AB5 /* ModernLanderViewController.h */,
+				564FF2521556228A007F5AB5 /* ModernLanderViewController.m */,
+				564FF25515562842007F5AB5 /* AutoPilotViewController.h */,
+				564FF25615562842007F5AB5 /* AutoPilotViewController.m */,
 			);
 			path = iPad;
 			sourceTree = "<group>";
@@ -996,9 +991,8 @@
 			files = (
 				560FA0DD137991AE0017EE25 /* main.m in Sources */,
 				560FA0E0137991AE0017EE25 /* MoonlanderAppDelegate.m in Sources */,
-				560FA0EB137991AE0017EE25 /* MoonlanderAppDelegate_iPad.m in Sources */,
 				560FA110137992E40017EE25 /* LanderPhysicsModel.m in Sources */,
-				560FA1371379BEAB0017EE25 /* LanderViewController_iPad.m in Sources */,
+				560FA1371379BEAB0017EE25 /* LanderViewController.m in Sources */,
 				56A480C3137C6C5500742877 /* LanderPhysicsConstants.m in Sources */,
 				56E80E60137E599E009E7F15 /* VGView.m in Sources */,
 				564BE59E13800F3400D790D9 /* VGButton.m in Sources */,
@@ -1015,16 +1009,16 @@
 				5613DDE8143A85F80059077A /* VGDialog.m in Sources */,
 				5621703515392F1F0094122B /* Explosion.m in Sources */,
 				5650B9EA153CB76900AEF4F2 /* ExplosionManager.m in Sources */,
-				562D6247154DAD1900BD4EDD /* MenuViewController_iPad.m in Sources */,
+				562D6247154DAD1900BD4EDD /* MenuViewController.m in Sources */,
 				562D624D154DB24900BD4EDD /* ControlsViewController.m in Sources */,
-				562D6250154DC3CE00BD4EDD /* NavigationController_iPad.m in Sources */,
+				562D6250154DC3CE00BD4EDD /* NavigationController.m in Sources */,
 				56EA5BF6154E35D700AB6DF2 /* DocumentViewController.m in Sources */,
-				56E837291553026700022A1E /* ModernLander_iPad+AutoPilot.m in Sources */,
+				56E837291553026700022A1E /* ModernLander+AutoPilot.m in Sources */,
 				56E8372F1553061B00022A1E /* Autopilot.m in Sources */,
 				56E8373715535DF400022A1E /* PIDController.m in Sources */,
 				564FF2471555C260007F5AB5 /* SplashViewController.m in Sources */,
-				564FF2531556228A007F5AB5 /* ModernLanderViewController_iPad.m in Sources */,
-				564FF25715562842007F5AB5 /* AutoPilotViewController_iPad.m in Sources */,
+				564FF2531556228A007F5AB5 /* ModernLanderViewController.m in Sources */,
+				564FF25715562842007F5AB5 /* AutoPilotViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1213,6 +1207,7 @@
 				56C072931643594D0079830D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

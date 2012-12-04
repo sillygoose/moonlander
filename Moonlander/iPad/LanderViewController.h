@@ -46,7 +46,7 @@ typedef enum {
 } MoonlanderDelay ;
 
 
-@interface LanderViewController_iPad : UIViewController <LanderDelegate> {
+@interface LanderViewController : UIViewController <LanderDelegate> {
     LanderPhysicsModel  *_landerModel;
     LanderType          _landerType;
     

@@ -1,20 +1,20 @@
 //
-//  MenuViewController_iPad.m
+//  MenuViewController.m
 //  Moonlander
 //
 //  Created by Rick Naro on 4/29/12.
 //  Copyright (c) 2012 Paradigm Systemse. All rights reserved.
 //
 
-#import "MenuViewController_iPad.h"
+#import "MenuViewController.h"
 #import "DocumentViewController.h"
 
 
-@interface MenuViewController_iPad ()
+@interface MenuViewController ()
 
 @end
 
-@implementation MenuViewController_iPad
+@implementation MenuViewController
 
 @synthesize menuBackground=_menuBackground;
 @synthesize buildInfo=_buildInfo;

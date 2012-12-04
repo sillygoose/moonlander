@@ -6,7 +6,7 @@
 //  Copyright 2011, 2012 Paradigm Systems. All rights reserved.
 //
 
-#import "LanderViewController_iPad.h"
+#import "LanderViewController.h"
 
 #import "LanderMessage.h"
 
@@ -21,7 +21,7 @@
 #endif
 
 
-@implementation LanderViewController_iPad
+@implementation LanderViewController
 
 @synthesize landerModel=_landerModel;
 @synthesize landerType=_landerType;
@@ -566,7 +566,7 @@ const float RollButtonRepeatInterval = 0.10;        // Timer value for roll butt
 	const CGFloat TelemetryXPos = 900;
     const CGFloat TelemetryXSize = 100;
     const CGFloat TelemetryYSize = 24;
-    __weak LanderViewController_iPad *weakSelf = self;
+    __weak LanderViewController *weakSelf = self;
 
     short instrumentID = (self.landerType == LanderTypeModern) ? 1 : 0;
     short instrumentY = (self.landerType == LanderTypeModern) ? 320 : 235;
@@ -820,7 +820,7 @@ const float RollButtonRepeatInterval = 0.10;        // Timer value for roll butt
     [self loadInstruments];
     
     // Create the lander view with data sources
-    __weak LanderViewController_iPad *weakSelf = self;
+    __weak LanderViewController *weakSelf = self;
     self.landerView = [[Lander alloc] init];
     self.landerView.userInteractionEnabled = NO;
     self.landerView.contentMode = UIViewContentModeRedraw;

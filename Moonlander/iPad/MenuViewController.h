@@ -1,5 +1,5 @@
 //
-//  MenuViewController_iPad.h
+//  MenuViewController.h
 //  Moonlander
 //
 //  Created by Rick Naro on 4/29/12.
@@ -8,16 +8,16 @@
 
 #import <UIKit/UIKit.h>
 
-#import "AutoPilotViewController_iPad.h"
+#import "AutoPilotViewController.h"
 
 
-@interface MenuViewController_iPad : UIViewController
+@interface MenuViewController : UIViewController
 {
-    AutoPilotViewController_iPad           *_menuBackground;
+    AutoPilotViewController                *_menuBackground;
     UILabel                                *_buildInfo;
 }
 
-@property (nonatomic, strong) AutoPilotViewController_iPad *menuBackground;
+@property (nonatomic, strong) AutoPilotViewController *menuBackground;
 @property (nonatomic, strong) IBOutlet UILabel *buildInfo;
 
 @end
