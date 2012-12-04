@@ -388,6 +388,7 @@
 		560FA0D5137991AE0017EE25 /* Moonlander */ = {
 			isa = PBXGroup;
 			children = (
+				56EA5BCA154E14DF00AB6DF2 /* Moonlander.storyboard */,
 				560FA0DE137991AE0017EE25 /* MoonlanderAppDelegate.h */,
 				560FA0DF137991AE0017EE25 /* MoonlanderAppDelegate.m */,
 				565D237615411DB30074D3AD /* LanderDelegate.h */,
@@ -417,7 +418,6 @@
 		560FA0E8137991AE0017EE25 /* iPad */ = {
 			isa = PBXGroup;
 			children = (
-				56EA5BCA154E14DF00AB6DF2 /* Moonlander.storyboard */,
 				562D624E154DC3CD00BD4EDD /* NavigationController.h */,
 				562D624F154DC3CE00BD4EDD /* NavigationController.m */,
 				564FF2451555C260007F5AB5 /* SplashViewController.h */,
