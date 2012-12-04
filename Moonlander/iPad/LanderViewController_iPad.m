@@ -566,6 +566,8 @@ const float RollButtonRepeatInterval = 0.10;        // Timer value for roll butt
 	const CGFloat TelemetryXPos = 900;
     const CGFloat TelemetryXSize = 100;
     const CGFloat TelemetryYSize = 24;
+    __weak LanderViewController_iPad *weakSelf = self;
+
     short instrumentID = (self.landerType == LanderTypeModern) ? 1 : 0;
     short instrumentY = (self.landerType == LanderTypeModern) ? 320 : 235;
     short instrumentYDelta = (self.landerType == LanderTypeModern) ? 27 : 22;;
@@ -573,7 +575,7 @@ const float RollButtonRepeatInterval = 0.10;        // Timer value for roll butt
     self.heightData = [[Telemetry alloc] initWithFrame:CGRectMake(TelemetryXPos, (instrumentY - instrumentYDelta * instrumentID++), TelemetryXSize, TelemetryYSize)];
     self.heightData.titleLabel.text = @"HEIGHT";
     self.heightData.format = @"%6d %@";
-    self.heightData.data = [^{ return self.RADARY;} copy];
+    self.heightData.data = [^{ return weakSelf.RADARY;} copy];
 	[self.heightData addTarget:self 
                         action:@selector(telemetrySelected:) 
               forControlEvents:UIControlEventTouchUpInside];
@@ -584,7 +586,7 @@ const float RollButtonRepeatInterval = 0.10;        // Timer value for roll butt
     self.altitudeData = [[Telemetry alloc] initWithFrame:CGRectMake(TelemetryXPos, (instrumentY - instrumentYDelta * instrumentID++), TelemetryXSize, TelemetryYSize)];
     self.altitudeData.titleLabel.text = @"ALTITUDE";
     self.altitudeData.format = @"%6d %@";
-    self.altitudeData.data = [^{ return self.VERDIS;} copy];
+    self.altitudeData.data = [^{ return weakSelf.VERDIS;} copy];
 	[self.altitudeData addTarget:self 
                           action:@selector(telemetrySelected:) 
                 forControlEvents:UIControlEventTouchUpInside];
@@ -595,7 +597,7 @@ const float RollButtonRepeatInterval = 0.10;        // Timer value for roll butt
     self.distanceData = [[Telemetry alloc] initWithFrame:CGRectMake(TelemetryXPos, (instrumentY - instrumentYDelta * instrumentID++), TelemetryXSize, TelemetryYSize)];
     self.distanceData.titleLabel.text = @"DISTANCE";
     self.distanceData.format = @"%6d %@";
-    self.distanceData.data = [^{ return self.HORDIS;} copy];
+    self.distanceData.data = [^{ return weakSelf.HORDIS;} copy];
 	[self.distanceData addTarget:self 
                           action:@selector(telemetrySelected:) 
                 forControlEvents:UIControlEventTouchUpInside];
@@ -607,7 +609,7 @@ const float RollButtonRepeatInterval = 0.10;        // Timer value for roll butt
     self.fuelLeftData = [[Telemetry alloc] initWithFrame:CGRectMake(TelemetryXPos, (instrumentY - instrumentYDelta * instrumentID++), TelemetryXSize, TelemetryYSize)];
     self.fuelLeftData.titleLabel.text = @"FUEL LEFT";
     self.fuelLeftData.format = @"%6d %@";
-    self.fuelLeftData.data = [^{ return self.FUEL;} copy];
+    self.fuelLeftData.data = [^{ return weakSelf.FUEL;} copy];
 	[self.fuelLeftData addTarget:self 
                           action:@selector(telemetrySelected:) 
                 forControlEvents:UIControlEventTouchUpInside];
@@ -618,7 +620,7 @@ const float RollButtonRepeatInterval = 0.10;        // Timer value for roll butt
     self.weightData = [[Telemetry alloc] initWithFrame:CGRectMake(TelemetryXPos, (instrumentY - instrumentYDelta * instrumentID++), TelemetryXSize, TelemetryYSize)];
     self.weightData.titleLabel.text = @"WEIGHT";
     self.weightData.format = @"%6d %@";
-    self.weightData.data = [^{ return self.WEIGHT;} copy];
+    self.weightData.data = [^{ return weakSelf.WEIGHT;} copy];
 	[self.weightData addTarget:self 
                         action:@selector(telemetrySelected:) 
               forControlEvents:UIControlEventTouchUpInside];
@@ -629,7 +631,7 @@ const float RollButtonRepeatInterval = 0.10;        // Timer value for roll butt
     self.thrustData = [[Telemetry alloc] initWithFrame:CGRectMake(TelemetryXPos, (instrumentY - instrumentYDelta * instrumentID++), TelemetryXSize, TelemetryYSize)];
     self.thrustData.titleLabel.text = @"THRUST";
     self.thrustData.format = @"%6d %@";
-    self.thrustData.data = [^{ return self.THRUST;} copy];
+    self.thrustData.data = [^{ return weakSelf.THRUST;} copy];
 	[self.thrustData addTarget:self 
                         action:@selector(telemetrySelected:) 
               forControlEvents:UIControlEventTouchUpInside];
@@ -640,7 +642,7 @@ const float RollButtonRepeatInterval = 0.10;        // Timer value for roll butt
     self.thrustAngleData = [[Telemetry alloc] initWithFrame:CGRectMake(TelemetryXPos, (instrumentY - instrumentYDelta * instrumentID++), TelemetryXSize, TelemetryYSize)];
     self.thrustAngleData.titleLabel.text = @"ANGLE";
     self.thrustAngleData.format = @"%6d %@";
-    self.thrustAngleData.data = [^{ return self.ANGLED;} copy];
+    self.thrustAngleData.data = [^{ return weakSelf.ANGLED;} copy];
 	[self.thrustAngleData addTarget:self 
                              action:@selector(telemetrySelected:) 
                    forControlEvents:UIControlEventTouchUpInside];
@@ -651,7 +653,7 @@ const float RollButtonRepeatInterval = 0.10;        // Timer value for roll butt
     self.verticalVelocityData = [[Telemetry alloc] initWithFrame:CGRectMake(TelemetryXPos, (instrumentY - instrumentYDelta * instrumentID++), TelemetryXSize, TelemetryYSize)];
     self.verticalVelocityData.titleLabel.text = @"VER VEL";
     self.verticalVelocityData.format = @"%6d %@";
-    self.verticalVelocityData.data = [^{ return self.VERVEL;} copy];
+    self.verticalVelocityData.data = [^{ return weakSelf.VERVEL;} copy];
 	[self.verticalVelocityData addTarget:self 
                                   action:@selector(telemetrySelected:) 
                         forControlEvents:UIControlEventTouchUpInside];
@@ -662,7 +664,7 @@ const float RollButtonRepeatInterval = 0.10;        // Timer value for roll butt
     self.horizontalVelocityData = [[Telemetry alloc] initWithFrame:CGRectMake(TelemetryXPos, (instrumentY - instrumentYDelta * instrumentID++), TelemetryXSize, TelemetryYSize)];
     self.horizontalVelocityData.titleLabel.text = @"HOR VEL";
     self.horizontalVelocityData.format = @"%6d %@";
-    self.horizontalVelocityData.data = [^{ return self.HORVEL;} copy];
+    self.horizontalVelocityData.data = [^{ return weakSelf.HORVEL;} copy];
 	[self.horizontalVelocityData addTarget:self 
                                     action:@selector(telemetrySelected:) 
                           forControlEvents:UIControlEventTouchUpInside];
@@ -673,7 +675,7 @@ const float RollButtonRepeatInterval = 0.10;        // Timer value for roll butt
     self.verticalAccelerationData = [[Telemetry alloc] initWithFrame:CGRectMake(TelemetryXPos, (instrumentY - instrumentYDelta * instrumentID++), TelemetryXSize, TelemetryYSize)];
     self.verticalAccelerationData.titleLabel.text = @"VER ACC";
     self.verticalAccelerationData.format = @"%6d %@";
-    self.verticalAccelerationData.data = [^{ return self.VERACC;} copy];
+    self.verticalAccelerationData.data = [^{ return weakSelf.VERACC;} copy];
 	[self.verticalAccelerationData addTarget:self 
                                       action:@selector(telemetrySelected:) 
                             forControlEvents:UIControlEventTouchUpInside];
@@ -684,7 +686,7 @@ const float RollButtonRepeatInterval = 0.10;        // Timer value for roll butt
     self.horizontalAccelerationData = [[Telemetry alloc] initWithFrame:CGRectMake(TelemetryXPos, (instrumentY - instrumentYDelta * instrumentID++), TelemetryXSize, TelemetryYSize)];
     self.horizontalAccelerationData.titleLabel.text = @"HOR ACC";
     self.horizontalAccelerationData.format = @"%6d %@";
-    self.horizontalAccelerationData.data = [^{ return self.HORACC;} copy];
+    self.horizontalAccelerationData.data = [^{ return weakSelf.HORACC;} copy];
 	[self.horizontalAccelerationData addTarget:self 
                                         action:@selector(telemetrySelected:) 
                               forControlEvents:UIControlEventTouchUpInside];
@@ -695,7 +697,7 @@ const float RollButtonRepeatInterval = 0.10;        // Timer value for roll butt
     self.secondsData = [[Telemetry alloc] initWithFrame:CGRectMake(TelemetryXPos, (instrumentY - instrumentYDelta * instrumentID++), TelemetryXSize, TelemetryYSize)];
     self.secondsData.titleLabel.text = @"SECONDS";
     self.secondsData.format = @"%6d %@";
-    self.secondsData.data =[^{ return (short)self.TIME;} copy];
+    self.secondsData.data =[^{ return (short)weakSelf.TIME;} copy];
 	[self.secondsData addTarget:self 
                          action:@selector(telemetrySelected:) 
                forControlEvents:UIControlEventTouchUpInside];
@@ -818,12 +820,13 @@ const float RollButtonRepeatInterval = 0.10;        // Timer value for roll butt
     [self loadInstruments];
     
     // Create the lander view with data sources
+    __weak LanderViewController_iPad *weakSelf = self;
     self.landerView = [[Lander alloc] init];
     self.landerView.userInteractionEnabled = NO;
     self.landerView.contentMode = UIViewContentModeRedraw;
-    self.landerView.thrustPercent = [^{ return self.PERTRS;} copy];
-    self.landerView.thrustData = [^{ return self.THRUST;} copy];
-    self.landerView.angleData = [^{ return self.ANGLE;} copy];
+    self.landerView.thrustPercent = [^{ return weakSelf.PERTRS;} copy];
+    self.landerView.thrustData = [^{ return weakSelf.THRUST;} copy];
+    self.landerView.angleData = [^{ return weakSelf.ANGLE;} copy];
     self.landerView.hidden = YES;
     [self.view addSubview:self.landerView];
     

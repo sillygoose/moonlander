@@ -176,23 +176,25 @@ const float AutoPilotUpdateInterval = 0.10;         // How often the autopilot c
 
 - (void)initializePIDControllers
 {
-    self.autoPilot.verticalPosition.setPoint = [^{ return [self vpSetPoint];} copy];
-    self.autoPilot.verticalPosition.processValue = [^{ return [self vpProcessValue];} copy];
+    __weak ModernLanderViewController_iPad *weakSelf = self;
+    
+    self.autoPilot.verticalPosition.setPoint = [^{ return [weakSelf vpSetPoint];} copy];
+    self.autoPilot.verticalPosition.processValue = [^{ return [weakSelf vpProcessValue];} copy];
     self.autoPilot.verticalPosition.Kp = -1.0 / 20000.0;
     self.autoPilot.verticalPosition.Kd = 0;
     
-    self.autoPilot.verticalVelocity.setPoint = [^{ return [self vvSetPoint];} copy];
-    self.autoPilot.verticalVelocity.processValue = [^{ return [self vvProcessValue];} copy];
+    self.autoPilot.verticalVelocity.setPoint = [^{ return [weakSelf vvSetPoint];} copy];
+    self.autoPilot.verticalVelocity.processValue = [^{ return [weakSelf vvProcessValue];} copy];
     self.autoPilot.verticalVelocity.Kp = -1.0 / 500.0;
     self.autoPilot.verticalVelocity.Kd = 0;
     
-    self.autoPilot.horizontalPosition.setPoint = [^{ return [self hpSetPoint];} copy];
-    self.autoPilot.horizontalPosition.processValue = [^{ return [self hpProcessValue];} copy];
+    self.autoPilot.horizontalPosition.setPoint = [^{ return [weakSelf hpSetPoint];} copy];
+    self.autoPilot.horizontalPosition.processValue = [^{ return [weakSelf hpProcessValue];} copy];
     self.autoPilot.horizontalPosition.Kp =  -1.0 / 20000.0;
     self.autoPilot.horizontalPosition.Kd = 0;
 
-    self.autoPilot.horizontalVelocity.setPoint = [^{ return [self hvSetPoint];} copy];
-    self.autoPilot.horizontalVelocity.processValue = [^{ return [self hvProcessValue];} copy];
+    self.autoPilot.horizontalVelocity.setPoint = [^{ return [weakSelf hvSetPoint];} copy];
+    self.autoPilot.horizontalVelocity.processValue = [^{ return [weakSelf hvProcessValue];} copy];
     self.autoPilot.horizontalVelocity.Kp = -1.0 / 1000.0;
     //self.autoPilot.horizontalVelocity.Kd = 0;
 
