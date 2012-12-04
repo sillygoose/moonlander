@@ -91,7 +91,7 @@
 		56E87D31154477EC00C5C764 /* beep-high.caf in Resources */ = {isa = PBXBuildFile; fileRef = 56E87D2E154477EC00C5C764 /* beep-high.caf */; };
 		56E87D32154477EC00C5C764 /* beep-low.caf in Resources */ = {isa = PBXBuildFile; fileRef = 56E87D2F154477EC00C5C764 /* beep-low.caf */; };
 		56E87D33154477EC00C5C764 /* beep-med.caf in Resources */ = {isa = PBXBuildFile; fileRef = 56E87D30154477EC00C5C764 /* beep-med.caf */; };
-		56EA5BCC154E14DF00AB6DF2 /* Moonlander_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 56EA5BCA154E14DF00AB6DF2 /* Moonlander_iPad.storyboard */; };
+		56EA5BCC154E14DF00AB6DF2 /* Moonlander.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 56EA5BCA154E14DF00AB6DF2 /* Moonlander.storyboard */; };
 		56EA5BF6154E35D700AB6DF2 /* DocumentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 56EA5BF5154E35D700AB6DF2 /* DocumentViewController.m */; };
 		56ECD94C1540E55E00565615 /* beep.caf in Resources */ = {isa = PBXBuildFile; fileRef = 56ECD94B1540E55E00565615 /* beep.caf */; };
 		56EF5119154E45AE001E7B77 /* History.html in Resources */ = {isa = PBXBuildFile; fileRef = 56EF5118154E45AE001E7B77 /* History.html */; };
@@ -266,7 +266,7 @@
 		56E87D2E154477EC00C5C764 /* beep-high.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "beep-high.caf"; sourceTree = "<group>"; };
 		56E87D2F154477EC00C5C764 /* beep-low.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "beep-low.caf"; sourceTree = "<group>"; };
 		56E87D30154477EC00C5C764 /* beep-med.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "beep-med.caf"; sourceTree = "<group>"; };
-		56EA5BCB154E14DF00AB6DF2 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/Moonlander_iPad.storyboard; sourceTree = "<group>"; };
+		56EA5BCB154E14DF00AB6DF2 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/Moonlander.storyboard; sourceTree = "<group>"; };
 		56EA5BF4154E35D700AB6DF2 /* DocumentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DocumentViewController.h; sourceTree = "<group>"; };
 		56EA5BF5154E35D700AB6DF2 /* DocumentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DocumentViewController.m; sourceTree = "<group>"; };
 		56ECD8F31540703500565615 /* mlc */ = {isa = PBXFileReference; lastKnownFileType = file; path = mlc; sourceTree = "<group>"; };
@@ -417,7 +417,7 @@
 		560FA0E8137991AE0017EE25 /* iPad */ = {
 			isa = PBXGroup;
 			children = (
-				56EA5BCA154E14DF00AB6DF2 /* Moonlander_iPad.storyboard */,
+				56EA5BCA154E14DF00AB6DF2 /* Moonlander.storyboard */,
 				562D624E154DC3CD00BD4EDD /* NavigationController.h */,
 				562D624F154DC3CE00BD4EDD /* NavigationController.m */,
 				564FF2451555C260007F5AB5 /* SplashViewController.h */,
@@ -948,7 +948,7 @@
 				567CD48315485B6D00797BD1 /* explosion-med.caf in Resources */,
 				56CB094F1548E6A700973CBE /* DotMatrix.ttf in Resources */,
 				56CB09501548E6A700973CBE /* DotMatrixBold.ttf in Resources */,
-				56EA5BCC154E14DF00AB6DF2 /* Moonlander_iPad.storyboard in Resources */,
+				56EA5BCC154E14DF00AB6DF2 /* Moonlander.storyboard in Resources */,
 				56EF5119154E45AE001E7B77 /* History.html in Resources */,
 				56EF511C154E4AC0001E7B77 /* Frequently Asked Questions.html in Resources */,
 				56EF5121154E4DBB001E7B77 /* Credits.html in Resources */,
@@ -1049,12 +1049,12 @@
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
 		};
-		56EA5BCA154E14DF00AB6DF2 /* Moonlander_iPad.storyboard */ = {
+		56EA5BCA154E14DF00AB6DF2 /* Moonlander.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
 				56EA5BCB154E14DF00AB6DF2 /* en */,
 			);
-			name = Moonlander_iPad.storyboard;
+			name = Moonlander.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
