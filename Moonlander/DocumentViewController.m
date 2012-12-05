@@ -28,6 +28,9 @@
     // Set up the delegate
     self.documentContent.delegate = self;
     
+    // Set the background color to black for clean scrolling
+    self.documentContent.backgroundColor = [UIColor blackColor];
+    
     // Replace the view with the activity indicator
     self.activityIndicator = [[UIActivityIndicatorView alloc]initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
     self.activityIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyleWhiteLarge;
