@@ -119,7 +119,7 @@
 		560FA0CF137991AD0017EE25 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		560FA0D1137991AD0017EE25 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		560FA0D3137991AD0017EE25 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
-		560FA0D7137991AE0017EE25 /* Moonlander-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Moonlander-Info.plist"; sourceTree = "<group>"; };
+		560FA0D7137991AE0017EE25 /* Moonlander-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "Moonlander-Info.plist"; path = "../Moonlander-Info.plist"; sourceTree = "<group>"; };
 		560FA0D9137991AE0017EE25 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		560FA0DB137991AE0017EE25 /* Moonlander-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Moonlander-Prefix.pch"; sourceTree = "<group>"; };
 		560FA0DC137991AE0017EE25 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
