@@ -26,26 +26,27 @@
 {
     // If the destination view is the name pass the segue name as the content to display
     if ([segue.destinationViewController isKindOfClass:[DocumentViewController class]]) {
-#if 1
         DocumentViewController *dvc = segue.destinationViewController;
-        NSLog(@"segue: %@", segue.identifier);
         NSURL *url = [NSURL URLWithString:segue.identifier];
-        NSURL *urlSansExtension = [url URLByDeletingPathExtension];
-        if ([url.scheme isEqualToString:@"http"]) {
-            dvc.documentName = segue.identifier;
-            dvc.documentType = nil;
+        if (url) {
+            NSURL *urlSansExtension = [url URLByDeletingPathExtension];
+            if ([url.scheme isEqualToString:@"http"]) {
+                dvc.documentName = segue.identifier;
+                dvc.documentType = nil;
+            }
+            else {
+                dvc.documentName = [urlSansExtension relativePath];
+                dvc.documentType = [url pathExtension];
+            }
         }
         else {
-            dvc.documentName = [urlSansExtension relativePath];
+            url = [NSURL fileURLWithPath:segue.identifier];
+            NSURL *urlSansExtension = [url URLByDeletingPathExtension];
+            DocumentViewController *dvc = segue.destinationViewController;
             dvc.documentType = [url pathExtension];
+            dvc.documentName = [urlSansExtension relativePath];
         }
         dvc.segueActive = YES;
-#else
-        DocumentViewController *dvc = segue.destinationViewController;
-        dvc.documentName = segue.identifier;
-        dvc.documentType = nil;
-        dvc.segueActive = YES;
-#endif
     }
 }
 
@@ -66,7 +67,6 @@
     self.documentURL = (path == nil) ? [NSURL URLWithString:self.documentName] : [NSURL fileURLWithPath:path];
     NSURLRequest *request = [NSURLRequest requestWithURL:self.documentURL];
     [self.documentContent loadRequest:request];
-    NSLog(@"docURL: %@", self.documentURL);
 }
 
 - (void)viewDidUnload
