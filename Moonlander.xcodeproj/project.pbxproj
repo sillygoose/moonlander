@@ -41,7 +41,6 @@
 		562B108D13841D5A00CC5C97 /* LanderMessages.plist in Resources */ = {isa = PBXBuildFile; fileRef = 562B108C13841D5A00CC5C97 /* LanderMessages.plist */; };
 		562CB7BB137F3AE6003CB9B5 /* LargeLeftArrow.plist in Resources */ = {isa = PBXBuildFile; fileRef = 562CB7BA137F3AE6003CB9B5 /* LargeLeftArrow.plist */; };
 		562D6247154DAD1900BD4EDD /* MenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 562D6246154DAD1900BD4EDD /* MenuViewController.m */; };
-		562D624D154DB24900BD4EDD /* ControlsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 562D624C154DB24900BD4EDD /* ControlsViewController.m */; };
 		562D6250154DC3CE00BD4EDD /* NavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 562D624F154DC3CE00BD4EDD /* NavigationController.m */; };
 		562F26A81417A22E0069169B /* Man.m in Sources */ = {isa = PBXBuildFile; fileRef = 562F26A71417A22E0069169B /* Man.m */; };
 		564BE59E13800F3400D790D9 /* VGButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 564BE59D13800F3400D790D9 /* VGButton.m */; };
@@ -57,12 +56,7 @@
 		56678FCC139A7D4D00026588 /* OldLander.plist in Resources */ = {isa = PBXBuildFile; fileRef = 56678FCB139A7D4D00026588 /* OldLander.plist */; };
 		56755FDA138C0B8200455B52 /* Lander.m in Sources */ = {isa = PBXBuildFile; fileRef = 56755FD9138C0B8200455B52 /* Lander.m */; };
 		5675E5D51425004400882CD8 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5675E5D41425004400882CD8 /* AudioToolbox.framework */; };
-		567CD48115485B6D00797BD1 /* explosion-high.caf in Resources */ = {isa = PBXBuildFile; fileRef = 567CD47E15485B6D00797BD1 /* explosion-high.caf */; };
-		567CD48215485B6D00797BD1 /* explosion-low.caf in Resources */ = {isa = PBXBuildFile; fileRef = 567CD47F15485B6D00797BD1 /* explosion-low.caf */; };
-		567CD48315485B6D00797BD1 /* explosion-med.caf in Resources */ = {isa = PBXBuildFile; fileRef = 567CD48015485B6D00797BD1 /* explosion-med.caf */; };
 		56903D29154EDCC300DE54BD /* GTLEM Source Code.html in Resources */ = {isa = PBXBuildFile; fileRef = 56903D28154EDCC300DE54BD /* GTLEM Source Code.html */; };
-		56903D32154EDF7900DE54BD /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 56903D31154EDF7900DE54BD /* Credits.rtf */; };
-		56903D34154EE40100DE54BD /* Frequently Asked Questions.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 56903D33154EE40100DE54BD /* Frequently Asked Questions.rtf */; };
 		56903D38154EE4E900DE54BD /* Hardware.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 56903D37154EE4E900DE54BD /* Hardware.rtf */; };
 		5694D1D813920A8C00A61F22 /* Moon.m in Sources */ = {isa = PBXBuildFile; fileRef = 5694D1D713920A8C00A61F22 /* Moon.m */; };
 		5695F1DA137F753B0075CD26 /* LargeRightArrow.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5695F1D7137F753B0075CD26 /* LargeRightArrow.plist */; };
@@ -86,17 +80,17 @@
 		56D6C7D216435290001C2344 /* libTestFlight.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 56D6C7CE16435290001C2344 /* libTestFlight.a */; };
 		56D6C7D316435290001C2344 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 56D6C7CF16435290001C2344 /* README.md */; };
 		56D6C7D416435290001C2344 /* release_notes.md in Resources */ = {isa = PBXBuildFile; fileRef = 56D6C7D016435290001C2344 /* release_notes.md */; };
+		56DFB15B166FC9090076F4DC /* RotateControl.png in Resources */ = {isa = PBXBuildFile; fileRef = 56DFB157166FC9090076F4DC /* RotateControl.png */; };
+		56DFB15C166FC9090076F4DC /* Instruments.png in Resources */ = {isa = PBXBuildFile; fileRef = 56DFB158166FC9090076F4DC /* Instruments.png */; };
+		56DFB15D166FC9090076F4DC /* Lander.png in Resources */ = {isa = PBXBuildFile; fileRef = 56DFB159166FC9090076F4DC /* Lander.png */; };
+		56DFB15E166FC9090076F4DC /* SliderControl.png in Resources */ = {isa = PBXBuildFile; fileRef = 56DFB15A166FC9090076F4DC /* SliderControl.png */; };
 		56E80E4C137E4CC3009E7F15 /* Lander.plist in Resources */ = {isa = PBXBuildFile; fileRef = 56E80E4B137E4CC3009E7F15 /* Lander.plist */; };
 		56E80E60137E599E009E7F15 /* VGView.m in Sources */ = {isa = PBXBuildFile; fileRef = 56E80E5F137E599E009E7F15 /* VGView.m */; };
 		56E837291553026700022A1E /* ModernLander+AutoPilot.m in Sources */ = {isa = PBXBuildFile; fileRef = 56E837281553026700022A1E /* ModernLander+AutoPilot.m */; };
 		56E8372F1553061B00022A1E /* Autopilot.m in Sources */ = {isa = PBXBuildFile; fileRef = 56E8372E1553061B00022A1E /* Autopilot.m */; };
 		56E8373715535DF400022A1E /* PIDController.m in Sources */ = {isa = PBXBuildFile; fileRef = 56E8373615535DF400022A1E /* PIDController.m */; };
-		56E87D31154477EC00C5C764 /* beep-high.caf in Resources */ = {isa = PBXBuildFile; fileRef = 56E87D2E154477EC00C5C764 /* beep-high.caf */; };
-		56E87D32154477EC00C5C764 /* beep-low.caf in Resources */ = {isa = PBXBuildFile; fileRef = 56E87D2F154477EC00C5C764 /* beep-low.caf */; };
-		56E87D33154477EC00C5C764 /* beep-med.caf in Resources */ = {isa = PBXBuildFile; fileRef = 56E87D30154477EC00C5C764 /* beep-med.caf */; };
 		56EA5BCC154E14DF00AB6DF2 /* Moonlander.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 56EA5BCA154E14DF00AB6DF2 /* Moonlander.storyboard */; };
 		56EA5BF6154E35D700AB6DF2 /* DocumentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 56EA5BF5154E35D700AB6DF2 /* DocumentViewController.m */; };
-		56ECD94C1540E55E00565615 /* beep.caf in Resources */ = {isa = PBXBuildFile; fileRef = 56ECD94B1540E55E00565615 /* beep.caf */; };
 		56EF5119154E45AE001E7B77 /* History.html in Resources */ = {isa = PBXBuildFile; fileRef = 56EF5118154E45AE001E7B77 /* History.html */; };
 		56EF5123154E4DBB001E7B77 /* Hardware.html in Resources */ = {isa = PBXBuildFile; fileRef = 56EF511F154E4DBB001E7B77 /* Hardware.html */; };
 		56EF5124154E4DBB001E7B77 /* Software.html in Resources */ = {isa = PBXBuildFile; fileRef = 56EF5120154E4DBB001E7B77 /* Software.html */; };
@@ -158,15 +152,10 @@
 		562CB7BA137F3AE6003CB9B5 /* LargeLeftArrow.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = LargeLeftArrow.plist; sourceTree = "<group>"; };
 		562D6245154DAD1900BD4EDD /* MenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuViewController.h; sourceTree = "<group>"; };
 		562D6246154DAD1900BD4EDD /* MenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuViewController.m; sourceTree = "<group>"; };
-		562D624B154DB24900BD4EDD /* ControlsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ControlsViewController.h; sourceTree = "<group>"; };
-		562D624C154DB24900BD4EDD /* ControlsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ControlsViewController.m; sourceTree = "<group>"; };
 		562D624E154DC3CD00BD4EDD /* NavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NavigationController.h; sourceTree = "<group>"; };
 		562D624F154DC3CE00BD4EDD /* NavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NavigationController.m; sourceTree = "<group>"; };
 		562F26A61417A22E0069169B /* Man.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Man.h; sourceTree = "<group>"; };
 		562F26A71417A22E0069169B /* Man.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Man.m; sourceTree = "<group>"; };
-		56468FC0155B7D0F004D364C /* teletype.aiff */ = {isa = PBXFileReference; lastKnownFileType = audio.aiff; path = teletype.aiff; sourceTree = "<group>"; };
-		56468FC1155B7D0F004D364C /* teletype.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = teletype.mp3; sourceTree = "<group>"; };
-		56468FC2155B7D0F004D364C /* teletype.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = teletype.wav; sourceTree = "<group>"; };
 		564BE59C13800F3400D790D9 /* VGButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VGButton.h; sourceTree = "<group>"; };
 		564BE59D13800F3400D790D9 /* VGButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VGButton.m; sourceTree = "<group>"; };
 		564BE5C213801C0F00D790D9 /* VGSlider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VGSlider.h; sourceTree = "<group>"; };
@@ -207,17 +196,11 @@
 		565D237615411DB30074D3AD /* LanderDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LanderDelegate.h; sourceTree = "<group>"; };
 		56678FCB139A7D4D00026588 /* OldLander.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = OldLander.plist; sourceTree = "<group>"; };
 		5670E7D715577C27003B49ED /* TELETYPE1945-1985.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "TELETYPE1945-1985.ttf"; sourceTree = "<group>"; };
-		5670E7D9155780DC003B49ED /* README */ = {isa = PBXFileReference; lastKnownFileType = text; path = README; sourceTree = "<group>"; };
 		56755FD8138C0B8200455B52 /* Lander.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Lander.h; sourceTree = "<group>"; };
 		56755FD9138C0B8200455B52 /* Lander.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Lander.m; sourceTree = "<group>"; };
 		5675E5D41425004400882CD8 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
-		567CD47E15485B6D00797BD1 /* explosion-high.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "explosion-high.caf"; sourceTree = "<group>"; };
-		567CD47F15485B6D00797BD1 /* explosion-low.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "explosion-low.caf"; sourceTree = "<group>"; };
-		567CD48015485B6D00797BD1 /* explosion-med.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "explosion-med.caf"; sourceTree = "<group>"; };
 		56903D28154EDCC300DE54BD /* GTLEM Source Code.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = "GTLEM Source Code.html"; sourceTree = "<group>"; };
 		56903D2A154EDE1900DE54BD /* GTLEM Source Code.mac */ = {isa = PBXFileReference; lastKnownFileType = text; path = "GTLEM Source Code.mac"; sourceTree = "<group>"; };
-		56903D31154EDF7900DE54BD /* Credits.rtf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.rtf; name = Credits.rtf; path = text/Credits.rtf; sourceTree = "<group>"; };
-		56903D33154EE40100DE54BD /* Frequently Asked Questions.rtf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.rtf; name = "Frequently Asked Questions.rtf"; path = "text/Frequently Asked Questions.rtf"; sourceTree = "<group>"; };
 		56903D37154EE4E900DE54BD /* Hardware.rtf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.rtf; name = Hardware.rtf; path = text/Hardware.rtf; sourceTree = "<group>"; };
 		5694D1D613920A8C00A61F22 /* Moon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Moon.h; sourceTree = "<group>"; };
 		5694D1D713920A8C00A61F22 /* Moon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Moon.m; sourceTree = "<group>"; };
@@ -252,6 +235,10 @@
 		56D6C7CF16435290001C2344 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
 		56D6C7D016435290001C2344 /* release_notes.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = release_notes.md; sourceTree = "<group>"; };
 		56D6C7D116435290001C2344 /* TestFlight.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestFlight.h; sourceTree = "<group>"; };
+		56DFB157166FC9090076F4DC /* RotateControl.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = RotateControl.png; sourceTree = "<group>"; };
+		56DFB158166FC9090076F4DC /* Instruments.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Instruments.png; sourceTree = "<group>"; };
+		56DFB159166FC9090076F4DC /* Lander.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Lander.png; sourceTree = "<group>"; };
+		56DFB15A166FC9090076F4DC /* SliderControl.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SliderControl.png; sourceTree = "<group>"; };
 		56DFB6B0155AE76A00149D1E /* macro.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = macro.pdf; sourceTree = "<group>"; };
 		56E80E4B137E4CC3009E7F15 /* Lander.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Lander.plist; sourceTree = "<group>"; };
 		56E80E5E137E599D009E7F15 /* VGView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VGView.h; sourceTree = "<group>"; };
@@ -266,9 +253,6 @@
 		56E8372E1553061B00022A1E /* Autopilot.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Autopilot.m; sourceTree = "<group>"; };
 		56E8373515535DF400022A1E /* PIDController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PIDController.h; sourceTree = "<group>"; };
 		56E8373615535DF400022A1E /* PIDController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PIDController.m; sourceTree = "<group>"; };
-		56E87D2E154477EC00C5C764 /* beep-high.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "beep-high.caf"; sourceTree = "<group>"; };
-		56E87D2F154477EC00C5C764 /* beep-low.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "beep-low.caf"; sourceTree = "<group>"; };
-		56E87D30154477EC00C5C764 /* beep-med.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "beep-med.caf"; sourceTree = "<group>"; };
 		56EA5BCB154E14DF00AB6DF2 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/Moonlander.storyboard; sourceTree = "<group>"; };
 		56EA5BF4154E35D700AB6DF2 /* DocumentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DocumentViewController.h; sourceTree = "<group>"; };
 		56EA5BF5154E35D700AB6DF2 /* DocumentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DocumentViewController.m; sourceTree = "<group>"; };
@@ -313,7 +297,6 @@
 		56ECD92B1540703500565615 /* putr.com */ = {isa = PBXFileReference; lastKnownFileType = file; path = putr.com; sourceTree = "<group>"; };
 		56ECD92C1540703500565615 /* putr.ini */ = {isa = PBXFileReference; lastKnownFileType = text; path = putr.ini; sourceTree = "<group>"; };
 		56ECD92D1540703500565615 /* putr.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = putr.txt; sourceTree = "<group>"; };
-		56ECD94B1540E55E00565615 /* beep.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = beep.caf; sourceTree = "<group>"; };
 		56EF5118154E45AE001E7B77 /* History.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = History.html; sourceTree = "<group>"; };
 		56EF511F154E4DBB001E7B77 /* Hardware.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = Hardware.html; sourceTree = "<group>"; };
 		56EF5120154E4DBB001E7B77 /* Software.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = Software.html; sourceTree = "<group>"; };
@@ -336,24 +319,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		1D81BDB8153F567200AE437D /* sounds */ = {
-			isa = PBXGroup;
-			children = (
-				56468FC0155B7D0F004D364C /* teletype.aiff */,
-				56468FC1155B7D0F004D364C /* teletype.mp3 */,
-				56468FC2155B7D0F004D364C /* teletype.wav */,
-				567CD47E15485B6D00797BD1 /* explosion-high.caf */,
-				567CD47F15485B6D00797BD1 /* explosion-low.caf */,
-				567CD48015485B6D00797BD1 /* explosion-med.caf */,
-				56E87D2E154477EC00C5C764 /* beep-high.caf */,
-				56E87D2F154477EC00C5C764 /* beep-low.caf */,
-				56E87D30154477EC00C5C764 /* beep-med.caf */,
-				56ECD94B1540E55E00565615 /* beep.caf */,
-				5670E7D9155780DC003B49ED /* README */,
-			);
-			path = sounds;
-			sourceTree = "<group>";
-		};
 		560FA0C0137991AD0017EE25 = {
 			isa = PBXGroup;
 			children = (
@@ -400,8 +365,6 @@
 				562D6246154DAD1900BD4EDD /* MenuViewController.m */,
 				56EA5BF4154E35D700AB6DF2 /* DocumentViewController.h */,
 				56EA5BF5154E35D700AB6DF2 /* DocumentViewController.m */,
-				562D624B154DB24900BD4EDD /* ControlsViewController.h */,
-				562D624C154DB24900BD4EDD /* ControlsViewController.m */,
 				560FA1341379BEAA0017EE25 /* LanderViewController.h */,
 				560FA1351379BEAA0017EE25 /* LanderViewController.m */,
 				56E837271553026700022A1E /* ModernLander+AutoPilot.h */,
@@ -471,21 +434,11 @@
 				5667CA27154F8D050031415B /* png */,
 				5667CA26154F8CED0031415B /* baseline */,
 				56903D2F154EDF5100DE54BD /* rtf */,
-				56903D21154ECBCA00DE54BD /* pdf */,
 				562D62A3154DF5C800BD4EDD /* plist */,
 				562D628E154DEC6A00BD4EDD /* html */,
 				56CB094A1548E63000973CBE /* fonts */,
-				561739DE1546317400380AB4 /* images */,
-				1D81BDB8153F567200AE437D /* sounds */,
 			);
 			path = Resources;
-			sourceTree = "<group>";
-		};
-		561739DE1546317400380AB4 /* images */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = images;
 			sourceTree = "<group>";
 		};
 		56205CB61545953800C33417 /* Lunar */ = {
@@ -608,6 +561,10 @@
 		5667CA27154F8D050031415B /* png */ = {
 			isa = PBXGroup;
 			children = (
+				56DFB157166FC9090076F4DC /* RotateControl.png */,
+				56DFB158166FC9090076F4DC /* Instruments.png */,
+				56DFB159166FC9090076F4DC /* Lander.png */,
+				56DFB15A166FC9090076F4DC /* SliderControl.png */,
 				561739EC15464CB200380AB4 /* iTunesArtwork */,
 				56173A0D154661BB00380AB4 /* Icon-72.png */,
 				56173A0E154661BB00380AB4 /* Icon-72@2x.png */,
@@ -650,18 +607,9 @@
 			path = Classes;
 			sourceTree = "<group>";
 		};
-		56903D21154ECBCA00DE54BD /* pdf */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = pdf;
-			sourceTree = "<group>";
-		};
 		56903D2F154EDF5100DE54BD /* rtf */ = {
 			isa = PBXGroup;
 			children = (
-				56903D31154EDF7900DE54BD /* Credits.rtf */,
-				56903D33154EE40100DE54BD /* Frequently Asked Questions.rtf */,
 				56903D37154EE4E900DE54BD /* Hardware.rtf */,
 			);
 			name = rtf;
@@ -926,18 +874,11 @@
 				562B108D13841D5A00CC5C97 /* LanderMessages.plist in Resources */,
 				56BC68641388BDE200403643 /* Labels.plist in Resources */,
 				56678FCC139A7D4D00026588 /* OldLander.plist in Resources */,
-				56ECD94C1540E55E00565615 /* beep.caf in Resources */,
-				56E87D31154477EC00C5C764 /* beep-high.caf in Resources */,
-				56E87D32154477EC00C5C764 /* beep-low.caf in Resources */,
-				56E87D33154477EC00C5C764 /* beep-med.caf in Resources */,
 				561739E8154649DD00380AB4 /* Icon-Small-50.png in Resources */,
 				561739ED15464CB200380AB4 /* iTunesArtwork in Resources */,
 				56173A11154661BB00380AB4 /* Icon-72.png in Resources */,
 				56173A12154661BB00380AB4 /* Icon-72@2x.png in Resources */,
 				1D1512C61546E6ED008C2B80 /* Icon-Small-50@2x.png in Resources */,
-				567CD48115485B6D00797BD1 /* explosion-high.caf in Resources */,
-				567CD48215485B6D00797BD1 /* explosion-low.caf in Resources */,
-				567CD48315485B6D00797BD1 /* explosion-med.caf in Resources */,
 				56CB094F1548E6A700973CBE /* DotMatrix.ttf in Resources */,
 				56CB09501548E6A700973CBE /* DotMatrixBold.ttf in Resources */,
 				56EA5BCC154E14DF00AB6DF2 /* Moonlander.storyboard in Resources */,
@@ -947,14 +888,16 @@
 				56EF5137154E59A3001E7B77 /* Default-Landscape~ipad.png in Resources */,
 				56EF5138154E59AC001E7B77 /* Default-Landscape@2x~ipad.png in Resources */,
 				56903D29154EDCC300DE54BD /* GTLEM Source Code.html in Resources */,
-				56903D32154EDF7900DE54BD /* Credits.rtf in Resources */,
-				56903D34154EE40100DE54BD /* Frequently Asked Questions.rtf in Resources */,
 				56903D38154EE4E900DE54BD /* Hardware.rtf in Resources */,
 				56D6C7D316435290001C2344 /* README.md in Resources */,
 				56D6C7D416435290001C2344 /* release_notes.md in Resources */,
 				56A71640166E94B10023EADD /* FAQ.htm in Resources */,
 				56A71642166F12F20023EADD /* Credits.htm in Resources */,
 				56A71649166FA1310023EADD /* Flight Controls.htm in Resources */,
+				56DFB15B166FC9090076F4DC /* RotateControl.png in Resources */,
+				56DFB15C166FC9090076F4DC /* Instruments.png in Resources */,
+				56DFB15D166FC9090076F4DC /* Lander.png in Resources */,
+				56DFB15E166FC9090076F4DC /* SliderControl.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1002,7 +945,6 @@
 				5621703515392F1F0094122B /* Explosion.m in Sources */,
 				5650B9EA153CB76900AEF4F2 /* ExplosionManager.m in Sources */,
 				562D6247154DAD1900BD4EDD /* MenuViewController.m in Sources */,
-				562D624D154DB24900BD4EDD /* ControlsViewController.m in Sources */,
 				562D6250154DC3CE00BD4EDD /* NavigationController.m in Sources */,
 				56EA5BF6154E35D700AB6DF2 /* DocumentViewController.m in Sources */,
 				56E837291553026700022A1E /* ModernLander+AutoPilot.m in Sources */,
