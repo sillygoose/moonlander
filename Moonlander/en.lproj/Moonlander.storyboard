@@ -39,60 +39,6 @@
             </objects>
             <point key="canvasLocation" x="558" y="-1197"/>
         </scene>
-        <!--Hardware-->
-        <scene sceneID="NSj-t0-vrB">
-            <objects>
-                <viewController storyboardIdentifier="Hardware" title="Hardware" id="AwO-aS-9yc" userLabel="Hardware" customClass="DocumentViewController" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="gu4-kg-5bF">
-                        <rect key="frame" x="0.0" y="20" width="1024" height="748"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <subviews>
-                            <webView contentMode="scaleToFill" id="mKZ-Ty-GnA">
-                                <rect key="frame" x="0.0" y="0.0" width="1024" height="748"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <dataDetectorType key="dataDetectorTypes"/>
-                            </webView>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                        <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
-                    </view>
-                    <navigationItem key="navigationItem" id="9Uh-La-Wtt"/>
-                    <connections>
-                        <outlet property="_documentContent" destination="mKZ-Ty-GnA" id="ymq-Vz-nBh"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="OjY-Rn-uh0" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="558" y="1439"/>
-        </scene>
-        <!--Software-->
-        <scene sceneID="hOs-6C-xXp">
-            <objects>
-                <viewController storyboardIdentifier="Software" title="Original Moonlander Source Code" id="CUY-h8-yir" userLabel="Software" customClass="DocumentViewController" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="lLK-Vz-dUM">
-                        <rect key="frame" x="0.0" y="20" width="1024" height="748"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <subviews>
-                            <webView contentMode="scaleToFill" id="gG5-ZM-02n">
-                                <rect key="frame" x="0.0" y="0.0" width="1024" height="748"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <dataDetectorType key="dataDetectorTypes"/>
-                            </webView>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                        <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
-                    </view>
-                    <navigationItem key="navigationItem" id="3NR-wz-ujx"/>
-                    <connections>
-                        <outlet property="_documentContent" destination="gG5-ZM-02n" id="1nm-Es-YC9"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="i5M-sg-pNI" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="558" y="2320"/>
-        </scene>
         <!--Credits-->
         <scene sceneID="Ol5-7c-SaJ">
             <objects>
@@ -120,7 +66,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZRa-hl-yoZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="558" y="3199"/>
+            <point key="canvasLocation" x="558" y="1521"/>
         </scene>
         <!--Controls-->
         <scene sceneID="lt9-O1-TfR">
@@ -173,6 +119,7 @@
                         <segue destination="VJa-TI-oDF" kind="push" identifier="http://en.wikipedia.org/wiki/PDP%2D11" id="XrD-sI-twU"/>
                         <segue destination="VJa-TI-oDF" kind="push" identifier="http://simh.trailing%2Dedge.com/" id="QTb-qD-3xv"/>
                         <segue destination="VJa-TI-oDF" kind="push" identifier="http://bitsavers.trailing-edge.com/" id="fDE-lc-x2d"/>
+                        <segue destination="VJa-TI-oDF" kind="push" identifier="GTLEM Source Code.html" id="6oj-Vl-sly"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bvq-Ng-3LZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -274,7 +221,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Axh-FN-hmM" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-802" y="-1211"/>
+            <point key="canvasLocation" x="-716" y="-1211"/>
         </scene>
         <!--Menu View Controller - Menu-->
         <scene sceneID="YMf-cD-nJb">
@@ -285,7 +232,7 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Cne-ZE-E0a" userLabel="Play">
-                                <rect key="frame" x="294" y="142" width="710" height="60"/>
+                                <rect key="frame" x="294" y="40" width="710" height="60"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="48"/>
@@ -301,7 +248,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="QD4-7c-czr" userLabel="FlightControls">
-                                <rect key="frame" x="604" y="292" width="400" height="60"/>
+                                <rect key="frame" x="604" y="176" width="400" height="60"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="48"/>
@@ -317,7 +264,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="fAr-Om-uPQ" userLabel="FAQ">
-                                <rect key="frame" x="604" y="367" width="400" height="60"/>
+                                <rect key="frame" x="604" y="244" width="400" height="60"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="48"/>
@@ -332,40 +279,8 @@
                                     <segue destination="1bG-Yx-9C2" kind="push" identifier="FAQ.htm" id="C5U-MX-jjw"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="PU3-yj-FiE" userLabel="Hardware">
-                                <rect key="frame" x="604" y="442" width="400" height="60"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="48"/>
-                                <state key="normal" title="Hardware">
-                                    <color key="titleColor" red="0.0" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <state key="highlighted">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <segue destination="AwO-aS-9yc" kind="push" identifier="Hardware.rtf" id="CNg-oh-Glq"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="8gz-98-20S" userLabel="Software">
-                                <rect key="frame" x="604" y="517" width="400" height="60"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="48"/>
-                                <state key="normal" title="Software">
-                                    <color key="titleColor" red="0.0" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <state key="highlighted">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <segue destination="CUY-h8-yir" kind="push" identifier="GTLEM Source Code.html" id="i3K-0Q-nes"/>
-                                </connections>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="iZL-7G-cl7" userLabel="Credits">
-                                <rect key="frame" x="604" y="592" width="400" height="60"/>
+                                <rect key="frame" x="604" y="312" width="400" height="60"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="48"/>
@@ -381,11 +296,11 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="IeM-sv-rqP" userLabel="Play">
-                                <rect key="frame" x="307" y="217" width="697" height="60"/>
+                                <rect key="frame" x="307" y="108" width="697" height="60"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="48"/>
-                                <state key="normal" title="Play Modern Moonlander ">
+                                <state key="normal" title="Play Modern Moonlander">
                                     <color key="titleColor" red="0.0" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -443,15 +358,10 @@
                 <relationship kind="outlet" name="_documentContent" candidateClass="UIWebView"/>
             </relationships>
         </class>
-        <class className="Instrument" superclassName="VGButton">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/Instrument.h"/>
-        </class>
         <class className="LanderViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/LanderViewController.h"/>
             <relationships>
-                <relationship kind="action" name="instrumentSelected:" candidateClass="Instrument"/>
                 <relationship kind="action" name="rotateLander:"/>
-                <relationship kind="action" name="telemetrySelected:" candidateClass="Telemetry"/>
                 <relationship kind="action" name="thrusterChanged:" candidateClass="VGSlider"/>
             </relationships>
         </class>
@@ -478,16 +388,6 @@
                 <relationship kind="outlet" name="secondfPart" candidateClass="UILabel"/>
             </relationships>
         </class>
-        <class className="Telemetry" superclassName="VGButton">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/Telemetry.h"/>
-        </class>
-        <class className="VGButton" superclassName="UIControl">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/VGButton.h"/>
-            <relationships>
-                <relationship kind="action" name="buttonDown:"/>
-                <relationship kind="action" name="buttonUp:"/>
-            </relationships>
-        </class>
         <class className="VGSlider" superclassName="UIControl">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/VGSlider.h"/>
         </class>
@@ -498,6 +398,6 @@
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="muJ-Sx-Yjf"/>
+        <segue reference="FjI-3t-KTj"/>
     </inferredMetricsTieBreakers>
 </document>
