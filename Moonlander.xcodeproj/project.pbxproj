@@ -73,6 +73,7 @@
 		569CC2B31380CC3300E6D82A /* Rock.plist in Resources */ = {isa = PBXBuildFile; fileRef = 569CC2B21380CC3300E6D82A /* Rock.plist */; };
 		56A480C3137C6C5500742877 /* LanderPhysicsConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 56A480C2137C6C5500742877 /* LanderPhysicsConstants.m */; };
 		56A71640166E94B10023EADD /* FAQ.htm in Resources */ = {isa = PBXBuildFile; fileRef = 56A7163F166E94B10023EADD /* FAQ.htm */; };
+		56A71642166F12F20023EADD /* Credits.htm in Resources */ = {isa = PBXBuildFile; fileRef = 56A71641166F12F20023EADD /* Credits.htm */; };
 		56B4D62D1417D9AF00029FC8 /* Flag.m in Sources */ = {isa = PBXBuildFile; fileRef = 56B4D62C1417D9AF00029FC8 /* Flag.m */; };
 		56BC68641388BDE200403643 /* Labels.plist in Resources */ = {isa = PBXBuildFile; fileRef = 56BC68631388BDE200403643 /* Labels.plist */; };
 		56C94AA913A7A7AE001B7EF9 /* Dust.m in Sources */ = {isa = PBXBuildFile; fileRef = 56C94AA813A7A7AE001B7EF9 /* Dust.m */; };
@@ -232,6 +233,7 @@
 		56A480C1137C6C5500742877 /* LanderPhysicsConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LanderPhysicsConstants.h; sourceTree = "<group>"; };
 		56A480C2137C6C5500742877 /* LanderPhysicsConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LanderPhysicsConstants.m; sourceTree = "<group>"; };
 		56A7163F166E94B10023EADD /* FAQ.htm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = FAQ.htm; sourceTree = "<group>"; };
+		56A71641166F12F20023EADD /* Credits.htm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = Credits.htm; sourceTree = "<group>"; };
 		56AF86591552160600C45FD1 /* lunar.fcl */ = {isa = PBXFileReference; lastKnownFileType = text; path = lunar.fcl; sourceTree = "<group>"; };
 		56B4D62B1417D9AF00029FC8 /* Flag.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Flag.h; sourceTree = "<group>"; };
 		56B4D62C1417D9AF00029FC8 /* Flag.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Flag.m; sourceTree = "<group>"; };
@@ -503,6 +505,7 @@
 		562D628E154DEC6A00BD4EDD /* html */ = {
 			isa = PBXGroup;
 			children = (
+				56A71641166F12F20023EADD /* Credits.htm */,
 				56A7163F166E94B10023EADD /* FAQ.htm */,
 				56903D28154EDCC300DE54BD /* GTLEM Source Code.html */,
 				56EF511D154E4DBB001E7B77 /* Credits.html */,
@@ -959,6 +962,7 @@
 				56D6C7D316435290001C2344 /* README.md in Resources */,
 				56D6C7D416435290001C2344 /* release_notes.md in Resources */,
 				56A71640166E94B10023EADD /* FAQ.htm in Resources */,
+				56A71642166F12F20023EADD /* Credits.htm in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

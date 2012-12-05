@@ -15,6 +15,7 @@
                 NSURL                       *_documentURL;
                 UIActivityIndicatorView     *_activetyIndicator;
     IBOutlet    UIWebView                   *_documentContent;
+                BOOL                        _segueActive;
 }
 
 @property (nonatomic, strong) NSString *documentName;
@@ -22,5 +23,6 @@
 @property (nonatomic, strong) NSURL *documentURL;
 @property (nonatomic, strong) UIActivityIndicatorView *activityIndicator;
 @property (nonatomic, strong) UIWebView *documentContent;
+@property (nonatomic) BOOL segueActive;
 
 @end

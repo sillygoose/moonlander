@@ -19,14 +19,23 @@
 @synthesize documentURL=_documentURL;
 @synthesize activityIndicator=_activetyIndicator;
 @synthesize documentContent=_documentContent;
+@synthesize segueActive=_segueActive;
 
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    // If the destination view is the name pass the segue name as the content to display
+    if ([segue.destinationViewController isKindOfClass:[DocumentViewController class]]) {
+        DocumentViewController *dvc = segue.destinationViewController;
+        dvc.documentName = segue.identifier;
+        dvc.documentType = nil;
+        dvc.segueActive = YES;
+    }
+}
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
-    // Set up the delegate
-    self.documentContent.delegate = self;
     
     // Set the background color to black for clean scrolling
     self.documentContent.backgroundColor = [UIColor blackColor];
@@ -52,6 +61,9 @@
 {
     [super viewWillAppear:animated];
     
+    // Set up the delegate
+    self.documentContent.delegate = self;
+
     // Allow scrolling/zooming in a document
     self.documentContent.scalesPageToFit = YES;
     
@@ -65,6 +77,23 @@
     [[self navigationController] setNavigationBarHidden:NO animated:NO];
 }
 
+- (void)viewWillDisappear:(BOOL)animated
+{
+    self.documentContent.delegate = nil;
+}
+
+-(BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType
+{
+    //NSLog(@"type: %d req: %@", navigationType, request.URL.absoluteString);
+    BOOL result = YES;
+    if (navigationType == UIWebViewNavigationTypeLinkClicked && self.segueActive == NO) {
+        // Push a new web view to handle the request
+        result = NO;
+        [self performSegueWithIdentifier:request.URL.absoluteString sender:self];
+    }
+    return result;
+}
+
 - (void)webViewDidStartLoad:(UIWebView *)webView
 {
     [self.activityIndicator startAnimating];
@@ -74,15 +103,14 @@
 {
     [self.activityIndicator stopAnimating];
     self.view = self.documentContent;
-    self.documentContent.delegate = nil;
 }
 
 - (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error
 {
-    // load error, hide the activity indicator in the status bar
+    // Load error, hide the activity indicator in the status bar
     [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
     
-    // report the error inside the webview
+    // Report the error inside the webview
     NSString* errorString = [NSString stringWithFormat:
                              @"<html><center><font size=+5 color='red'>An error occurred:<br>%@</font></center></html>",
                              error.localizedDescription];
