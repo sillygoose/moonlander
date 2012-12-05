@@ -89,7 +89,14 @@
     if (navigationType == UIWebViewNavigationTypeLinkClicked && self.segueActive == NO) {
         // Push a new web view to handle the request
         result = NO;
-        [self performSegueWithIdentifier:request.URL.absoluteString sender:self];
+
+        // Check which name we use for local and web hrefs
+        if ([request.URL.scheme isEqualToString:@"file"]) {
+            [self performSegueWithIdentifier:request.URL.lastPathComponent sender:self];
+        }
+        else {
+            [self performSegueWithIdentifier:request.URL.absoluteString sender:self];
+        }
     }
     return result;
 }
