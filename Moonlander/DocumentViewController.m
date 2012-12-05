@@ -82,7 +82,7 @@
     self.documentContent.delegate = self;
 
     // Allow scrolling/zooming in a document
-    self.documentContent.scalesPageToFit = YES;
+    self.documentContent.scalesPageToFit = NO;
     
     // Add the document to the navigation bar
     if ([self.documentURL isFileURL]) {
