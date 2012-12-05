@@ -56,7 +56,7 @@
 		56678FCC139A7D4D00026588 /* OldLander.plist in Resources */ = {isa = PBXBuildFile; fileRef = 56678FCB139A7D4D00026588 /* OldLander.plist */; };
 		56755FDA138C0B8200455B52 /* Lander.m in Sources */ = {isa = PBXBuildFile; fileRef = 56755FD9138C0B8200455B52 /* Lander.m */; };
 		5675E5D51425004400882CD8 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5675E5D41425004400882CD8 /* AudioToolbox.framework */; };
-		56903D29154EDCC300DE54BD /* GTLEM Source Code.html in Resources */ = {isa = PBXBuildFile; fileRef = 56903D28154EDCC300DE54BD /* GTLEM Source Code.html */; };
+		56903D29154EDCC300DE54BD /* GTLEM Source Code.htm in Resources */ = {isa = PBXBuildFile; fileRef = 56903D28154EDCC300DE54BD /* GTLEM Source Code.htm */; };
 		5694D1D813920A8C00A61F22 /* Moon.m in Sources */ = {isa = PBXBuildFile; fileRef = 5694D1D713920A8C00A61F22 /* Moon.m */; };
 		5695F1DA137F753B0075CD26 /* LargeRightArrow.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5695F1D7137F753B0075CD26 /* LargeRightArrow.plist */; };
 		5695F1DB137F753B0075CD26 /* SmallLeftArrow.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5695F1D8137F753B0075CD26 /* SmallLeftArrow.plist */; };
@@ -90,9 +90,6 @@
 		56E8373715535DF400022A1E /* PIDController.m in Sources */ = {isa = PBXBuildFile; fileRef = 56E8373615535DF400022A1E /* PIDController.m */; };
 		56EA5BCC154E14DF00AB6DF2 /* Moonlander.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 56EA5BCA154E14DF00AB6DF2 /* Moonlander.storyboard */; };
 		56EA5BF6154E35D700AB6DF2 /* DocumentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 56EA5BF5154E35D700AB6DF2 /* DocumentViewController.m */; };
-		56EF5119154E45AE001E7B77 /* History.html in Resources */ = {isa = PBXBuildFile; fileRef = 56EF5118154E45AE001E7B77 /* History.html */; };
-		56EF5123154E4DBB001E7B77 /* Hardware.html in Resources */ = {isa = PBXBuildFile; fileRef = 56EF511F154E4DBB001E7B77 /* Hardware.html */; };
-		56EF5124154E4DBB001E7B77 /* Software.html in Resources */ = {isa = PBXBuildFile; fileRef = 56EF5120154E4DBB001E7B77 /* Software.html */; };
 		56EF5137154E59A3001E7B77 /* Default-Landscape~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 56173A0C154661BB00380AB4 /* Default-Landscape~ipad.png */; };
 		56EF5138154E59AC001E7B77 /* Default-Landscape@2x~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 56173A0B154661BB00380AB4 /* Default-Landscape@2x~ipad.png */; };
 /* End PBXBuildFile section */
@@ -198,7 +195,7 @@
 		56755FD8138C0B8200455B52 /* Lander.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Lander.h; sourceTree = "<group>"; };
 		56755FD9138C0B8200455B52 /* Lander.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Lander.m; sourceTree = "<group>"; };
 		5675E5D41425004400882CD8 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
-		56903D28154EDCC300DE54BD /* GTLEM Source Code.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = "GTLEM Source Code.html"; sourceTree = "<group>"; };
+		56903D28154EDCC300DE54BD /* GTLEM Source Code.htm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = "GTLEM Source Code.htm"; sourceTree = "<group>"; };
 		56903D2A154EDE1900DE54BD /* GTLEM Source Code.mac */ = {isa = PBXFileReference; lastKnownFileType = text; path = "GTLEM Source Code.mac"; sourceTree = "<group>"; };
 		5694D1D613920A8C00A61F22 /* Moon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Moon.h; sourceTree = "<group>"; };
 		5694D1D713920A8C00A61F22 /* Moon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Moon.m; sourceTree = "<group>"; };
@@ -295,9 +292,6 @@
 		56ECD92B1540703500565615 /* putr.com */ = {isa = PBXFileReference; lastKnownFileType = file; path = putr.com; sourceTree = "<group>"; };
 		56ECD92C1540703500565615 /* putr.ini */ = {isa = PBXFileReference; lastKnownFileType = text; path = putr.ini; sourceTree = "<group>"; };
 		56ECD92D1540703500565615 /* putr.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = putr.txt; sourceTree = "<group>"; };
-		56EF5118154E45AE001E7B77 /* History.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = History.html; sourceTree = "<group>"; };
-		56EF511F154E4DBB001E7B77 /* Hardware.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = Hardware.html; sourceTree = "<group>"; };
-		56EF5120154E4DBB001E7B77 /* Software.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = Software.html; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -454,10 +448,7 @@
 				56A71648166FA1310023EADD /* Flight Controls.htm */,
 				56A71641166F12F20023EADD /* Credits.htm */,
 				56A7163F166E94B10023EADD /* FAQ.htm */,
-				56903D28154EDCC300DE54BD /* GTLEM Source Code.html */,
-				56EF511F154E4DBB001E7B77 /* Hardware.html */,
-				56EF5120154E4DBB001E7B77 /* Software.html */,
-				56EF5118154E45AE001E7B77 /* History.html */,
+				56903D28154EDCC300DE54BD /* GTLEM Source Code.htm */,
 			);
 			path = html;
 			sourceTree = "<group>";
@@ -871,12 +862,9 @@
 				56CB094F1548E6A700973CBE /* DotMatrix.ttf in Resources */,
 				56CB09501548E6A700973CBE /* DotMatrixBold.ttf in Resources */,
 				56EA5BCC154E14DF00AB6DF2 /* Moonlander.storyboard in Resources */,
-				56EF5119154E45AE001E7B77 /* History.html in Resources */,
-				56EF5123154E4DBB001E7B77 /* Hardware.html in Resources */,
-				56EF5124154E4DBB001E7B77 /* Software.html in Resources */,
 				56EF5137154E59A3001E7B77 /* Default-Landscape~ipad.png in Resources */,
 				56EF5138154E59AC001E7B77 /* Default-Landscape@2x~ipad.png in Resources */,
-				56903D29154EDCC300DE54BD /* GTLEM Source Code.html in Resources */,
+				56903D29154EDCC300DE54BD /* GTLEM Source Code.htm in Resources */,
 				56D6C7D316435290001C2344 /* README.md in Resources */,
 				56D6C7D416435290001C2344 /* release_notes.md in Resources */,
 				56A71640166E94B10023EADD /* FAQ.htm in Resources */,
