@@ -23,10 +23,10 @@
             </objects>
             <point key="canvasLocation" x="-3178" y="-315"/>
         </scene>
-        <!--Modern Lander View Controller-->
+        <!--Modern Lander View Controller - Modern Lander-->
         <scene sceneID="TMO-QY-jMC">
             <objects>
-                <viewController storyboardIdentifier="ModernSim" wantsFullScreenLayout="YES" id="FX2-L3-oki" customClass="ModernLanderViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ModernSim" title="Modern Lander" wantsFullScreenLayout="YES" id="FX2-L3-oki" customClass="ModernLanderViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="QOJ-tG-1DO">
                         <rect key="frame" x="0.0" y="20" width="1024" height="748"/>
                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
@@ -331,10 +331,10 @@
             </objects>
             <point key="canvasLocation" x="-716" y="-311"/>
         </scene>
-        <!--Lander View Controller-->
+        <!--Lander View Controller - RetroLander-->
         <scene sceneID="6B9-Pg-inF">
             <objects>
-                <viewController storyboardIdentifier="ClassicLander" id="Ngu-au-laf" customClass="LanderViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ClassicLander" title="RetroLander" id="Ngu-au-laf" customClass="LanderViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="HRH-db-IT3">
                         <rect key="frame" x="0.0" y="20" width="1024" height="748"/>
                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
