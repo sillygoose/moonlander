@@ -128,7 +128,7 @@ const float AutoPilotUpdateInterval = 0.10;         // How often the autopilot c
         float thrustAngleDegrees = thrustAngle  * 180 / M_PI;
         
         // Limit the maximum roll authority
-        const float MaxThrustAngle = 75.0;
+        const float MaxThrustAngle = 80.0;
         if (fabs(thrustAngleDegrees) > MaxThrustAngle) {
             float signF = copysignf(1.0, thrustAngleDegrees);
             thrustAngleDegrees = MaxThrustAngle * signF;
@@ -147,8 +147,9 @@ const float AutoPilotUpdateInterval = 0.10;         // How often the autopilot c
         // Final roll angle output
         self.ANGLED -= deltaRollAngle;
         
+        // Switch to low altitude PID
         if (self.RADARY < 1000) {
-            [self cl2];
+            [self lowAltitudePID];
         }
         
         self.autoPilotTimer = [NSTimer scheduledTimerWithTimeInterval:AutoPilotUpdateInterval target:self selector:@selector(stepAutoPilot) userInfo:nil repeats:NO];
@@ -199,7 +200,7 @@ const float AutoPilotUpdateInterval = 0.10;         // How often the autopilot c
     return hVelocity;
 }
 
-- (void)cl2
+- (void)lowAltitudePID
 {
     __weak ModernLanderViewController *weakSelf = self;
     self.autoPilot.verticalPosition.setPoint = [^{ return [weakSelf vpSetPoint];} copy];
@@ -215,8 +216,8 @@ const float AutoPilotUpdateInterval = 0.10;         // How often the autopilot c
     
     self.autoPilot.verticalPosition.setPoint = [^{ return [weakSelf vpSetPoint];} copy];
     self.autoPilot.verticalPosition.processValue = [^{ return [weakSelf vpProcessValue];} copy];
-    self.autoPilot.verticalPosition.Kp = -1.0 / 7000.0;
-    self.autoPilot.verticalPosition.Kd = -2500;
+    self.autoPilot.verticalPosition.Kp = -1.0 / 10000.0;
+    self.autoPilot.verticalPosition.Kd = 0;
     
     self.autoPilot.verticalVelocity.setPoint = [^{ return [weakSelf vvSetPoint];} copy];
     self.autoPilot.verticalVelocity.processValue = [^{ return [weakSelf vvProcessValue];} copy];
