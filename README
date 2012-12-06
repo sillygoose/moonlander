@@ -12,7 +12,6 @@ Features wish list
 Issues to do list
 =================
 - missing iTunesArtwork@2x (1024x1024)
-- complete content for software/hardware/faq/credits/history/controls
 - rate limit flight controls in autopilot mode
 - add scoring to modern game
 - lunar rover upgrade
@@ -22,6 +21,7 @@ Issues to do list
 
 Completed
 =========
+- complete content for software/hardware/faq/credits/history/controls
 - fix screen sleep
 - update modern splash screen to mention the autopilot
 - autopilot
