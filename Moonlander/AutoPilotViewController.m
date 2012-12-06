@@ -26,6 +26,9 @@
 }
 
 
+#pragma -
+#pragma mark - View lifecycle
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -68,8 +71,6 @@
 {
     [super initGame];
     self.landerMessages.hidden = YES;
-    
-//    [self performSelector:@selector(initGame2) withObject:nil afterDelay:0];
 }
 
 - (void)initGame2
@@ -85,13 +86,29 @@
 
 - (void)waitNewGame
 {
-    [self performSelector:@selector(startGameDelay) withObject:nil afterDelay:[self getDelay: DelayNewGame]];
+    [self performSelector:@selector(startGameDelay) withObject:nil afterDelay:[self getDelay:DelayNewGame]];
 }
 
 - (void)getStarted
 {
     [super getStarted];
     [self performSelector:@selector(enableAutoPilot) withObject:nil afterDelay:0];
+    
+    // Initial instrument displays in autopilot mode
+    self.instrument1.instrument = self.heightData;
+    self.instrument2.instrument = self.distanceData;
+    self.instrument3.instrument = self.thrustData;
+    self.instrument4.instrument = self.thrustAngleData;
+    [self.instrument1 display];
+    [self.instrument2 display];
+    [self.instrument3 display];
+    [self.instrument4 display];
+
+    // Enable instrumentation
+    self.instrument1.hidden = NO;
+    self.instrument2.hidden = NO;
+    self.instrument3.hidden = NO;
+    self.instrument4.hidden = NO;
 }
 
 @end

@@ -295,6 +295,9 @@ const float RollButtonRepeatInterval = 0.10;        // Timer value for roll butt
 }
 
 
+#pragma -
+#pragma mark - View lifecycle
+
 - (void)didReceiveMemoryWarning
 {
     // Releases the view if it doesn't have a superview.
@@ -302,8 +305,6 @@ const float RollButtonRepeatInterval = 0.10;        // Timer value for roll butt
     
     // Release any cached data, images, etc that aren't in use.
 }
-
-#pragma mark - View lifecycle
 
 - (void)enableFlightControls
 {
@@ -403,7 +404,7 @@ const float RollButtonRepeatInterval = 0.10;        // Timer value for roll butt
     // Setup controls with model defaults
     self.thrusterSlider.value = self.PERTRS;
     
-    // Initial the instrument displays
+    // Defaultinstrument displays
     self.instrument1.instrument = self.heightData;
     self.instrument2.instrument = self.distanceData;
     self.instrument3.instrument = self.verticalVelocityData;
@@ -557,7 +558,6 @@ const float RollButtonRepeatInterval = 0.10;        // Timer value for roll butt
     self.thrusterSlider.hidden = YES;
     self.thrusterSlider.thrusterValue.fontSize = self.gameFontSize;
     [self.view addSubview:self.thrusterSlider];
-    
 }
 
 - (void)loadTelemetry
@@ -858,6 +858,10 @@ const float RollButtonRepeatInterval = 0.10;        // Timer value for roll butt
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+
+#if defined(TESTFLIGHT_SDK_VERSION) && defined(USE_TESTFLIGHT)
+    [TestFlight passCheckpoint:[NSString stringWithFormat:@"%@:%@", NSStringFromClass([self class]), @""]];
+#endif
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -1384,7 +1388,7 @@ const float RollButtonRepeatInterval = 0.10;        // Timer value for roll butt
             // Trick to do a minicule move so use the deal option
             delta.x = destination.x + 1 * direction;
             delta.y = destination.y;
-            [Man animateWithDuration:[self getDelay:DelayZero] delay:[self getDelay: DelayOrderFood] options:animateOptions animations:moveMan completion:moveManBack];
+            [Man animateWithDuration:[self getDelay:DelayZero] delay:[self getDelay:DelayOrderFood] options:animateOptions animations:moveMan completion:moveManBack];
         };
         
         void (^moveManOver)(BOOL) = ^(BOOL f) {
