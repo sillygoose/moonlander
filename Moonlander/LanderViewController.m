@@ -455,7 +455,7 @@ const float RollButtonRepeatInterval = 0.10;        // Timer value for roll butt
         [self.landerMessages addSystemMessage:@"SplashScreen"];
     }
     self.landerMessages.hidden = NO;
-    [self performSelector:@selector(initGame2) withObject:nil afterDelay:[self getDelay: DelayZero]];
+    [self performSelector:@selector(initGame2) withObject:nil afterDelay:[self getDelay:DelayZero]];
 #endif
 }
 
