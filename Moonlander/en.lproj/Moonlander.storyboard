@@ -220,7 +220,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="48"/>
-                                <state key="normal" title="Play">
+                                <state key="normal" title="Game">
                                     <color key="titleColor" red="0.0" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -326,10 +326,15 @@
                 <relationship kind="outlet" name="_documentContent" candidateClass="UIWebView"/>
             </relationships>
         </class>
+        <class className="Instrument" superclassName="VGButton">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/Instrument.h"/>
+        </class>
         <class className="LanderViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/LanderViewController.h"/>
             <relationships>
+                <relationship kind="action" name="instrumentSelected:" candidateClass="Instrument"/>
                 <relationship kind="action" name="rotateLander:"/>
+                <relationship kind="action" name="telemetrySelected:" candidateClass="Telemetry"/>
                 <relationship kind="action" name="thrusterChanged:" candidateClass="VGSlider"/>
             </relationships>
         </class>
@@ -354,6 +359,16 @@
                 <relationship kind="outlet" name="firstPart" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="moonLander" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="secondfPart" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+        <class className="Telemetry" superclassName="VGButton">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/Telemetry.h"/>
+        </class>
+        <class className="VGButton" superclassName="UIControl">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/VGButton.h"/>
+            <relationships>
+                <relationship kind="action" name="buttonDown:"/>
+                <relationship kind="action" name="buttonUp:"/>
             </relationships>
         </class>
         <class className="VGSlider" superclassName="UIControl">
