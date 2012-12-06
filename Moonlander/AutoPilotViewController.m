@@ -69,7 +69,7 @@
     [super initGame];
     self.landerMessages.hidden = YES;
     
-    [self performSelector:@selector(initGame2) withObject:nil afterDelay:0];
+//    [self performSelector:@selector(initGame2) withObject:nil afterDelay:0];
 }
 
 - (void)initGame2

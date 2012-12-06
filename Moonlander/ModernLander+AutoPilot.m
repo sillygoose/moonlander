@@ -96,7 +96,7 @@ const float AutoPilotUpdateInterval = 0.10;         // How often the autopilot c
 {
     if ([self.landerModel onSurface]) {
         // Shut down
-        [self autoPilotChange];
+        [self autoPilotShutdown];
     }
     else {
         // Update the controllers
@@ -126,7 +126,32 @@ const float AutoPilotUpdateInterval = 0.10;         // How often the autopilot c
         }
         float thrustAngle = atanf(thrustAngleRatio);
         float thrustAngleDegrees = thrustAngle  * 180 / M_PI;
-        self.ANGLED = (short)thrustAngleDegrees;
+        
+        // Limit the maximum roll authority
+        const float MaxThrustAngle = 75.0;
+        if (fabs(thrustAngleDegrees) > MaxThrustAngle) {
+            float signF = copysignf(1.0, thrustAngleDegrees);
+            thrustAngleDegrees = MaxThrustAngle * signF;
+        }
+
+        // Limit the roll rate
+        short previousRollAngle = self.ANGLED;
+        short requestedRollAngle = (short)thrustAngleDegrees;
+        short deltaRollAngle = previousRollAngle - requestedRollAngle;
+        const short MaxRollRate = 1;
+        short signD = (deltaRollAngle < 0) ? -1 : 1;
+        if (abs(deltaRollAngle) > MaxRollRate) {
+            deltaRollAngle = signD * MaxRollRate;
+        }
+        
+        // Final roll angle output
+        self.ANGLED -= deltaRollAngle;
+        
+        if (self.RADARY < 1000) {
+            [self cl2];
+        }
+        
+        self.autoPilotTimer = [NSTimer scheduledTimerWithTimeInterval:AutoPilotUpdateInterval target:self selector:@selector(stepAutoPilot) userInfo:nil repeats:NO];
     }
 }
 
@@ -174,14 +199,24 @@ const float AutoPilotUpdateInterval = 0.10;         // How often the autopilot c
     return hVelocity;
 }
 
+- (void)cl2
+{
+    __weak ModernLanderViewController *weakSelf = self;
+    self.autoPilot.verticalPosition.setPoint = [^{ return [weakSelf vpSetPoint];} copy];
+    self.autoPilot.verticalPosition.processValue = [^{ return [weakSelf vpProcessValue];} copy];
+    self.autoPilot.verticalPosition.Kp = -1.0 / 20000.0;
+    self.autoPilot.verticalPosition.Kd = 0;
+    [self.autoPilot setup];
+}
+
 - (void)initializePIDControllers
 {
     __weak ModernLanderViewController *weakSelf = self;
     
     self.autoPilot.verticalPosition.setPoint = [^{ return [weakSelf vpSetPoint];} copy];
     self.autoPilot.verticalPosition.processValue = [^{ return [weakSelf vpProcessValue];} copy];
-    self.autoPilot.verticalPosition.Kp = -1.0 / 20000.0;
-    self.autoPilot.verticalPosition.Kd = 0;
+    self.autoPilot.verticalPosition.Kp = -1.0 / 7000.0;
+    self.autoPilot.verticalPosition.Kd = -2500;
     
     self.autoPilot.verticalVelocity.setPoint = [^{ return [weakSelf vvSetPoint];} copy];
     self.autoPilot.verticalVelocity.processValue = [^{ return [weakSelf vvProcessValue];} copy];
@@ -192,12 +227,12 @@ const float AutoPilotUpdateInterval = 0.10;         // How often the autopilot c
     self.autoPilot.horizontalPosition.processValue = [^{ return [weakSelf hpProcessValue];} copy];
     self.autoPilot.horizontalPosition.Kp =  -1.0 / 20000.0;
     self.autoPilot.horizontalPosition.Kd = 0;
-
+    
     self.autoPilot.horizontalVelocity.setPoint = [^{ return [weakSelf hvSetPoint];} copy];
     self.autoPilot.horizontalVelocity.processValue = [^{ return [weakSelf hvProcessValue];} copy];
     self.autoPilot.horizontalVelocity.Kp = -1.0 / 1000.0;
     //self.autoPilot.horizontalVelocity.Kd = 0;
-
+    
     [self.autoPilot setup];
 }
 
@@ -222,7 +257,7 @@ const float AutoPilotUpdateInterval = 0.10;         // How often the autopilot c
         // Prepare for autopilot
         [self disableRollFlightControls];
         [self disableThrustFlightControls];
-        self.autoPilotTimer = [NSTimer scheduledTimerWithTimeInterval:AutoPilotUpdateInterval target:self selector:@selector(stepAutoPilot) userInfo:nil repeats:YES];
+        self.autoPilotTimer = [NSTimer scheduledTimerWithTimeInterval:AutoPilotUpdateInterval target:self selector:@selector(stepAutoPilot) userInfo:nil repeats:NO];
     }
     else {
         // Disengage the autopilot
@@ -231,6 +266,18 @@ const float AutoPilotUpdateInterval = 0.10;         // How often the autopilot c
         [self enableRollFlightControls];
         [self enableThrustFlightControls];
     }
+}
+
+- (void)autoPilotShutdown
+{
+    self.autoPilot.enabled = NO;
+    self.autoPilotSwitch.titleLabel.blink = self.autoPilot.enabled;
+
+    // Disengage the autopilot
+    [self.autoPilotTimer invalidate];
+    self.autoPilotTimer = nil;
+    [self enableRollFlightControls];
+    [self enableThrustFlightControls];
 }
 
 - (void)enableAutoPilot
@@ -248,7 +295,7 @@ const float AutoPilotUpdateInterval = 0.10;         // How often the autopilot c
     // Prepare for autopilot
     [self disableRollFlightControls];
     [self disableThrustFlightControls];
-    self.autoPilotTimer = [NSTimer scheduledTimerWithTimeInterval:AutoPilotUpdateInterval target:self selector:@selector(stepAutoPilot) userInfo:nil repeats:YES];
+    self.autoPilotTimer = [NSTimer scheduledTimerWithTimeInterval:AutoPilotUpdateInterval target:self selector:@selector(stepAutoPilot) userInfo:nil repeats:NO];
 }
 
 - (void)disableAutoPilot
