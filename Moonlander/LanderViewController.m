@@ -442,21 +442,25 @@ const float RollButtonRepeatInterval = 0.10;        // Timer value for roll butt
     self.landerView.hidden = NO;
 }
 
-- (void)initGame
+- (void)initGame:(BOOL)splash
 {
-    // Splash screen
+    float delayInterval = (splash) ? [self getDelay:DelaySplashScreen] : [self getDelay:DelayZero];
+    if (splash) {
+        // Splash screen
 #if defined(DEBUG_NO_SPLASH) || defined(DEBUG_MESSAGES)
 #if defined(DEBUG_MESSAGES)
-    // Put each message on the screen to allow checking
-    [self.landerMessages test];
+        // Put each message on the screen to allow checking
+        [self.landerMessages test];
 #endif
-    [self performSelector:@selector(initGame2) withObject:nil afterDelay:0];
+        [self performSelector:@selector(initGame2) withObject:nil afterDelay:0];
 #else
-    if ([self.landerMessages hasSystemMessage] == NO) {
-        [self.landerMessages addSystemMessage:@"SplashScreen"];
+        if ([self.landerMessages hasSystemMessage] == NO) {
+            [self.landerMessages addSystemMessage:@"SplashScreen"];
+        }
+        
+        self.landerMessages.hidden = NO;
     }
-    self.landerMessages.hidden = NO;
-    [self performSelector:@selector(initGame2) withObject:nil afterDelay:[self getDelay:DelayZero]];
+    [self performSelector:@selector(initGame2) withObject:nil afterDelay:delayInterval];
 #endif
 }
 
@@ -504,7 +508,7 @@ const float RollButtonRepeatInterval = 0.10;        // Timer value for roll butt
     const float SmallRollArrowHeight = 40;
     const CGFloat SmallRollYPos = (self.landerType == LanderTypeClassic) ? 355 : 410;
     NSString *slaPath = [[NSBundle mainBundle] pathForResource:@"SmallLeftArrow" ofType:@"plist"];
-    self.smallLeftArrow = [[VGButton alloc] initWithFrame:CGRectMake(910, SmallRollYPos, SmallRollArrowWidth, SmallRollArrowHeight)  withPaths:slaPath andRepeat:RollButtonRepeatInterval];
+    self.smallLeftArrow = [[VGButton alloc] initWithFrame:CGRectMake(920, SmallRollYPos, SmallRollArrowWidth, SmallRollArrowHeight)  withPaths:slaPath andRepeat:RollButtonRepeatInterval];
 	[self.smallLeftArrow addTarget:self 
                             action:@selector(rotateLander:) 
                   forControlEvents:UIControlEventValueChanged];
@@ -514,7 +518,7 @@ const float RollButtonRepeatInterval = 0.10;        // Timer value for roll butt
     [self.view addSubview:self.smallLeftArrow];
     
     NSString *sraPath = [[NSBundle mainBundle] pathForResource:@"SmallRightArrow" ofType:@"plist"];
-    self.smallRightArrow = [[VGButton alloc] initWithFrame:CGRectMake(950, SmallRollYPos, SmallRollArrowWidth, SmallRollArrowHeight) withPaths:sraPath andRepeat:RollButtonRepeatInterval];
+    self.smallRightArrow = [[VGButton alloc] initWithFrame:CGRectMake(960, SmallRollYPos, SmallRollArrowWidth, SmallRollArrowHeight) withPaths:sraPath andRepeat:RollButtonRepeatInterval];
 	[self.smallRightArrow addTarget:self 
                              action:@selector(rotateLander:) 
                    forControlEvents:UIControlEventValueChanged];
@@ -527,7 +531,7 @@ const float RollButtonRepeatInterval = 0.10;        // Timer value for roll butt
     const float LargeRollArrowHeight = 40;
     const CGFloat LargeRollYPos = (self.landerType == LanderTypeClassic) ? 310: 360;
     NSString *llaPath = [[NSBundle mainBundle] pathForResource:@"LargeLeftArrow" ofType:@"plist"];
-    self.largeLeftArrow = [[VGButton alloc] initWithFrame:CGRectMake(895, LargeRollYPos, LargeRollArrowWidth, LargeRollArrowHeight) withPaths:llaPath andRepeat:RollButtonRepeatInterval];
+    self.largeLeftArrow = [[VGButton alloc] initWithFrame:CGRectMake(905, LargeRollYPos, LargeRollArrowWidth, LargeRollArrowHeight) withPaths:llaPath andRepeat:RollButtonRepeatInterval];
 	[self.largeLeftArrow addTarget:self 
                             action:@selector(rotateLander:) 
                   forControlEvents:UIControlEventValueChanged];
@@ -537,7 +541,7 @@ const float RollButtonRepeatInterval = 0.10;        // Timer value for roll butt
     [self.view addSubview:self.largeLeftArrow];
     
     NSString *lraPath = [[NSBundle mainBundle] pathForResource:@"LargeRightArrow" ofType:@"plist"];
-    self.largeRightArrow = [[VGButton alloc] initWithFrame:CGRectMake(950, LargeRollYPos, LargeRollArrowWidth, LargeRollArrowHeight) withPaths:lraPath andRepeat:RollButtonRepeatInterval];
+    self.largeRightArrow = [[VGButton alloc] initWithFrame:CGRectMake(960, LargeRollYPos, LargeRollArrowWidth, LargeRollArrowHeight) withPaths:lraPath andRepeat:RollButtonRepeatInterval];
 	[self.largeRightArrow addTarget:self 
                              action:@selector(rotateLander:) 
                    forControlEvents:UIControlEventValueChanged];
@@ -549,7 +553,7 @@ const float RollButtonRepeatInterval = 0.10;        // Timer value for roll butt
     // Create the thruster control
     const short ThrusterSliderWidth = 200;
     const short ThrusterSliderHeight = (self.landerType == LanderTypeClassic) ? 252 : 232;
-    const short ThrusterXPos = 816;
+    const short ThrusterXPos = 826;
     const short ThrusterYPos = (self.landerType == LanderTypeClassic) ? 450 : 470;
     self.thrusterSlider = [[VGSlider alloc] initWithFrame:CGRectMake(ThrusterXPos, ThrusterYPos, ThrusterSliderWidth, ThrusterSliderHeight)];
 	[self.thrusterSlider addTarget:self 
@@ -563,7 +567,7 @@ const float RollButtonRepeatInterval = 0.10;        // Timer value for roll butt
 - (void)loadTelemetry
 {
     // Create the telemetry items
-	const CGFloat TelemetryXPos = 900;
+	const CGFloat TelemetryXPos = 910;
     const CGFloat TelemetryXSize = 100;
     const CGFloat TelemetryYSize = 24;
     __weak LanderViewController *weakSelf = self;
@@ -837,7 +841,7 @@ const float RollButtonRepeatInterval = 0.10;        // Timer value for roll butt
     AudioServicesCreateSystemSoundID(explodeFileURL, &_explosionSound);
     
     // Setup initial conditions
-    [self initGame];
+    [self initGame:YES];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation

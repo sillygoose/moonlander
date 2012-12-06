@@ -103,10 +103,10 @@
     self.autoPilotSwitch.enabled = NO;
 }
 
-- (void)initGame
+- (void)initGame:(BOOL)splash
 {
     [self.landerMessages addSystemMessage:@"SplashScreenModern"];
-    [super initGame];
+    [super initGame:splash];
 }
 
 - (void)initGame2

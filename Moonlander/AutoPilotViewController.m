@@ -67,10 +67,10 @@
 	return YES;
 }
 
-- (void)initGame
+- (void)initGame:(BOOL)splash
 {
-    [super initGame];
     self.landerMessages.hidden = YES;
+    [super initGame:NO];
 }
 
 - (void)initGame2

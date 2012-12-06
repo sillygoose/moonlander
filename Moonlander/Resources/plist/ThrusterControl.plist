@@ -9,13 +9,13 @@
 		<array>
 			<dict>
 				<key>intensity</key>
-				<integer>5</integer>
+				<integer>7</integer>
 				<key>name</key>
 				<string>Thruster Control</string>
 				<key>line</key>
 				<dict>
 					<key>width</key>
-					<integer>1</integer>
+					<real>1.5</real>
 				</dict>
 				<key>moveto</key>
 				<dict>
@@ -42,7 +42,7 @@
 				<key>line</key>
 				<dict>
 					<key>width</key>
-					<integer>1</integer>
+					<real>1.5</real>
 				</dict>
 				<key>moveto</key>
 				<dict>
@@ -69,7 +69,7 @@
 				<key>line</key>
 				<dict>
 					<key>width</key>
-					<integer>1</integer>
+					<real>1.5</real>
 				</dict>
 				<key>moveto</key>
 				<dict>

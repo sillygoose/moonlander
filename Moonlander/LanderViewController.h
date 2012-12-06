@@ -224,7 +224,7 @@ typedef enum {
 - (void)setupTimers;
 - (void)cleanupTimers;
 
-- (void)initGame;
+- (void)initGame:(BOOL)splash;
 - (void)initGame2;
 - (void)getStarted;
 

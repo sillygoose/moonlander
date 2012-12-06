@@ -11,6 +11,8 @@ Features wish list
 
 Issues to do list
 =================
+- splash missing
+- add small delay to game start
 - switching screens disrupts autopilot lunar walk
 - disable AUTOPILOT control when on surface
 - missing iTunesArtwork@2x (1024x1024)
