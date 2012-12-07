@@ -35,6 +35,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.backgroundAutoPilot = [[Autopilot alloc] init];
 }
 
 - (void)viewDidUnload
