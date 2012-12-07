@@ -34,7 +34,7 @@
     // Do the heavy lifting
     [super viewDidLoad];
     
-    // Set out lander type
+    // Set the lander model type to be modern
     self.landerType = LanderTypeModern;
     
     // Autopilot and its control switch

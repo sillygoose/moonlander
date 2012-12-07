@@ -6,8 +6,15 @@
 //  Copyright (c) 2012 Paradigm Systems. All rights reserved.
 //
 
-#import "ModernLanderViewController.h"
+#import "LanderViewController.h"
 
-@interface AutoPilotViewController : ModernLanderViewController
+@interface AutoPilotViewController : LanderViewController
+{
+    Autopilot           *_backgroundAutoPilot;
+    NSTimer             *__unsafe_unretained _backgroundAutoPilotTimer;
+}
+
+@property (nonatomic, strong) Autopilot *backgroundAutoPilot;
+@property (nonatomic, unsafe_unretained) NSTimer *backgroundAutoPilotTimer;
 
 @end

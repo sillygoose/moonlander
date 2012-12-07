@@ -75,6 +75,7 @@
 		56CE0535138B5277004FA450 /* Telemetry.m in Sources */ = {isa = PBXBuildFile; fileRef = 56CE0534138B5277004FA450 /* Telemetry.m */; };
 		56CE0538138B6C88004FA450 /* Instrument.m in Sources */ = {isa = PBXBuildFile; fileRef = 56CE0537138B6C88004FA450 /* Instrument.m */; };
 		56D6C7D216435290001C2344 /* libTestFlight.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 56D6C7CE16435290001C2344 /* libTestFlight.a */; };
+		56DB5F7B16716E02000CB72A /* AutoPilotViewController+Autopilot.m in Sources */ = {isa = PBXBuildFile; fileRef = 56DB5F7A16716E01000CB72A /* AutoPilotViewController+Autopilot.m */; };
 		56DFB15B166FC9090076F4DC /* RotateControl.png in Resources */ = {isa = PBXBuildFile; fileRef = 56DFB157166FC9090076F4DC /* RotateControl.png */; };
 		56DFB15C166FC9090076F4DC /* Instruments.png in Resources */ = {isa = PBXBuildFile; fileRef = 56DFB158166FC9090076F4DC /* Instruments.png */; };
 		56DFB15D166FC9090076F4DC /* Lander.png in Resources */ = {isa = PBXBuildFile; fileRef = 56DFB159166FC9090076F4DC /* Lander.png */; };
@@ -233,6 +234,8 @@
 		56D6C7CF16435290001C2344 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
 		56D6C7D016435290001C2344 /* release_notes.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = release_notes.md; sourceTree = "<group>"; };
 		56D6C7D116435290001C2344 /* TestFlight.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestFlight.h; sourceTree = "<group>"; };
+		56DB5F7916716E01000CB72A /* AutoPilotViewController+Autopilot.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "AutoPilotViewController+Autopilot.h"; sourceTree = "<group>"; };
+		56DB5F7A16716E01000CB72A /* AutoPilotViewController+Autopilot.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "AutoPilotViewController+Autopilot.m"; sourceTree = "<group>"; };
 		56DFB157166FC9090076F4DC /* RotateControl.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = RotateControl.png; sourceTree = "<group>"; };
 		56DFB158166FC9090076F4DC /* Instruments.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Instruments.png; sourceTree = "<group>"; };
 		56DFB159166FC9090076F4DC /* Lander.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Lander.png; sourceTree = "<group>"; };
@@ -373,6 +376,8 @@
 				56E837281553026700022A1E /* ModernLander+AutoPilot.m */,
 				564FF25515562842007F5AB5 /* AutoPilotViewController.h */,
 				564FF25615562842007F5AB5 /* AutoPilotViewController.m */,
+				56DB5F7916716E01000CB72A /* AutoPilotViewController+Autopilot.h */,
+				56DB5F7A16716E01000CB72A /* AutoPilotViewController+Autopilot.m */,
 				56EA5BF4154E35D700AB6DF2 /* DocumentViewController.h */,
 				56EA5BF5154E35D700AB6DF2 /* DocumentViewController.m */,
 				567CD473154853D800797BD1 /* Classes */,
@@ -957,6 +962,7 @@
 				564FF2471555C260007F5AB5 /* SplashViewController.m in Sources */,
 				564FF2531556228A007F5AB5 /* ModernLanderViewController.m in Sources */,
 				564FF25715562842007F5AB5 /* AutoPilotViewController.m in Sources */,
+				56DB5F7B16716E02000CB72A /* AutoPilotViewController+Autopilot.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

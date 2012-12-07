@@ -14,6 +14,9 @@
 
 @implementation AutoPilotViewController
 
+@synthesize backgroundAutoPilot=_backgroundAutoPilot;
+@synthesize backgroundAutoPilotTimer=_backgroundAutoPilotTimer;
+
 
 #pragma -
 #pragma mark Delegate
@@ -25,11 +28,6 @@
 {
 }
 
-- (LanderType)landerType
-{
-    return LanderTypeClassic;
-}
-
 
 #pragma -
 #pragma mark - View lifecycle
@@ -37,13 +35,16 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // Set out lander type
-    self.landerType = LanderTypeClassic;
 }
 
 - (void)viewDidUnload
 {
     [super viewDidUnload];
+
+    [self.backgroundAutoPilotTimer invalidate];
+    self.backgroundAutoPilotTimer = nil;
+    
+    self.backgroundAutoPilot = nil;
 }
 
 - (void)viewWillAppear:(BOOL)animated
