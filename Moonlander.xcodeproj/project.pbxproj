@@ -105,6 +105,7 @@
 		56DB82EF167253A400C243A8 /* keytyped.aiff in Resources */ = {isa = PBXBuildFile; fileRef = 56DB82ED167253A400C243A8 /* keytyped.aiff */; };
 		56DB82FB1672683700C243A8 /* GameOptions.plist in Resources */ = {isa = PBXBuildFile; fileRef = 56DB82FA1672683700C243A8 /* GameOptions.plist */; };
 		56DB830116728A2100C243A8 /* SourceCode.plist in Resources */ = {isa = PBXBuildFile; fileRef = 56DB830016728A2100C243A8 /* SourceCode.plist */; };
+		56DB83041672997700C243A8 /* Lunar Lander FAQ.htm in Resources */ = {isa = PBXBuildFile; fileRef = 56DB83031672997700C243A8 /* Lunar Lander FAQ.htm */; };
 		56DFB15B166FC9090076F4DC /* RotateControl.png in Resources */ = {isa = PBXBuildFile; fileRef = 56DFB157166FC9090076F4DC /* RotateControl.png */; };
 		56DFB15C166FC9090076F4DC /* Instruments.png in Resources */ = {isa = PBXBuildFile; fileRef = 56DFB158166FC9090076F4DC /* Instruments.png */; };
 		56DFB15D166FC9090076F4DC /* Lander.png in Resources */ = {isa = PBXBuildFile; fileRef = 56DFB159166FC9090076F4DC /* Lander.png */; };
@@ -301,6 +302,7 @@
 		56DB82F416725CEC00C243A8 /* Keycodes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Keycodes.h; sourceTree = "<group>"; };
 		56DB82FA1672683700C243A8 /* GameOptions.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = GameOptions.plist; sourceTree = "<group>"; };
 		56DB830016728A2100C243A8 /* SourceCode.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = SourceCode.plist; sourceTree = "<group>"; };
+		56DB83031672997700C243A8 /* Lunar Lander FAQ.htm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = "Lunar Lander FAQ.htm"; sourceTree = "<group>"; };
 		56DFB157166FC9090076F4DC /* RotateControl.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = RotateControl.png; sourceTree = "<group>"; };
 		56DFB158166FC9090076F4DC /* Instruments.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Instruments.png; sourceTree = "<group>"; };
 		56DFB159166FC9090076F4DC /* Lander.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Lander.png; sourceTree = "<group>"; };
@@ -529,6 +531,7 @@
 		562D628E154DEC6A00BD4EDD /* html */ = {
 			isa = PBXGroup;
 			children = (
+				56DB83031672997700C243A8 /* Lunar Lander FAQ.htm */,
 				56A71648166FA1310023EADD /* Flight Controls.htm */,
 				56A71641166F12F20023EADD /* Credits.htm */,
 				56A7163F166E94B10023EADD /* FAQ.htm */,
@@ -1052,6 +1055,7 @@
 				56DB82EF167253A400C243A8 /* keytyped.aiff in Resources */,
 				56DB82FB1672683700C243A8 /* GameOptions.plist in Resources */,
 				56DB830116728A2100C243A8 /* SourceCode.plist in Resources */,
+				56DB83041672997700C243A8 /* Lunar Lander FAQ.htm in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
