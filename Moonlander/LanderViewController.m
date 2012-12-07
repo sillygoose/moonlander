@@ -102,7 +102,7 @@ const float PositionUpdateInterval = 0.01;          // How often the lander posi
 const float InstrumentUpdateInterval = 0.2;         // How often the instrument displays are updated
 const float LanderModelUpdateInterval = 0.02;       // How often the lander model is updated (aka PDP11 line clock)
 
-const float RollButtonRepeatInterval = 0.10;        // Timer value for roll button hold down
+const float RollButtonRepeatInterval = 0.20;        // Timer value for roll button hold down
 
 
 
@@ -165,7 +165,7 @@ const float RollButtonRepeatInterval = 0.10;        // Timer value for roll butt
 
 - (CGFloat)gameFontSize
 {
-    return 12;
+    return 15;
 }
 
 - (LanderType)landerType
@@ -1080,8 +1080,8 @@ const float RollButtonRepeatInterval = 0.10;        // Timer value for roll butt
 - (IBAction)rotateLander:(id)sender
 {
     // Roll rates in degrees
-    const float MajorRollRate = 100;
-    const float MinorRollRate = 15;
+    const float MajorRollRate = 5;
+    const float MinorRollRate = 1;
     
     float deltaAngle = 0;
     VGButton *buttonInUse = (VGButton *)sender;
@@ -1103,7 +1103,7 @@ const float RollButtonRepeatInterval = 0.10;        // Timer value for roll butt
     }
     
     // Calculate the change in roll angle
-    deltaAngle = deltaAngle * RollButtonRepeatInterval;
+    deltaAngle = deltaAngle;
     
     // Update the model with the change in roll angle
     self.ANGLED += (short)deltaAngle;

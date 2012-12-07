@@ -220,7 +220,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="48"/>
-                                <state key="normal" title="Game">
+                                <state key="normal" title="Play Game">
                                     <color key="titleColor" red="0.0" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -317,7 +317,7 @@
         </scene>
     </scenes>
     <classes>
-        <class className="AutoPilotViewController" superclassName="ModernLanderViewController">
+        <class className="AutoPilotViewController" superclassName="LanderViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/AutoPilotViewController.h"/>
         </class>
         <class className="DocumentViewController" superclassName="UIViewController">
@@ -342,12 +342,6 @@
             <source key="sourceIdentifier" type="project" relativePath="./Classes/MenuViewController.h"/>
             <relationships>
                 <relationship kind="outlet" name="buildInfo" candidateClass="UILabel"/>
-            </relationships>
-        </class>
-        <class className="ModernLanderViewController" superclassName="LanderViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/ModernLanderViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="autoPilotChange"/>
             </relationships>
         </class>
         <class className="NavigationController" superclassName="UINavigationController">

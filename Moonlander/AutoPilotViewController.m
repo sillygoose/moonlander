@@ -30,6 +30,20 @@
 
 
 #pragma -
+#pragma mark Data source
+
+- (CGFloat)gameFontSize
+{
+    return [super gameFontSize];
+}
+
+- (LanderType)landerType
+{
+    return [super landerType];
+}
+
+
+#pragma -
 #pragma mark - View lifecycle
 
 - (void)viewDidLoad
