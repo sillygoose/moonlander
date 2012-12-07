@@ -217,7 +217,7 @@ const float AutoPilotUpdateInterval = 0.10;         // How often the autopilot c
     
     self.autoPilot.verticalPosition.setPoint = [^{ return [weakSelf vpSetPoint];} copy];
     self.autoPilot.verticalPosition.processValue = [^{ return [weakSelf vpProcessValue];} copy];
-    self.autoPilot.verticalPosition.Kp = -1.0 / 9000.0;
+    self.autoPilot.verticalPosition.Kp = -1.0 / 10000.0;
     self.autoPilot.verticalPosition.Kd = 0;
     
     self.autoPilot.verticalVelocity.setPoint = [^{ return [weakSelf vvSetPoint];} copy];
