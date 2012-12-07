@@ -1357,6 +1357,10 @@ const float RollButtonRepeatInterval = 0.20;        // Timer value for roll butt
             // Tell model we are taking off from the surface
             [self.landerModel landerTakeoff];
             
+            // Enable the bonus content
+            NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+            [defaults setBool:YES forKey:@"optionEnableBonusContent"];
+            
             // Wait a bit before continuing
             [self landerLiftoff];
         };

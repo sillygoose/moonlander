@@ -12,6 +12,8 @@
 
 @interface MenuViewController ()
 
+@property (nonatomic, strong) IBOutlet UIButton *bonusContent;
+
 @end
 
 @implementation MenuViewController
@@ -43,6 +45,9 @@
     UIStoryboard *storyboard = self.storyboard;
     self.menuBackground = [storyboard instantiateViewControllerWithIdentifier:@"AutoPilotSimulation"];
     
+    // Hide the bouns content
+    self.bonusContent.hidden = YES;
+    
     // Add to the view and notify everyone
     [self.view addSubview:self.menuBackground.view];
     [self.view sendSubviewToBack:self.menuBackground.view];
@@ -64,6 +69,10 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+
+    // Unlock the bonus screen
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    self.bonusContent.hidden = ![defaults boolForKey:@"optionEnableBonusContent"];
     
     // Hide the navigation bar in this view
     [[self navigationController] setNavigationBarHidden:YES animated:NO];

@@ -105,7 +105,6 @@
     [self updateViewFrameForOrientation:self.interfaceOrientation withDuration:0];
 }
 
-
 - (void)viewDidAppear:(BOOL)animated 
 {
     [super viewDidAppear:animated];
@@ -117,8 +116,9 @@
         [[NSNotificationCenter defaultCenter] postNotificationName:@"autopilotMode" object:[NSNumber numberWithBool:YES]];
     }
     
-    // Create the input/output loop off the main queue
-    dispatch_async(self.loopQueue, ^{[self lunarLander];});
+    // Now create a dispatch event to make the view visible
+    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, 1 * NSEC_PER_SEC);
+    dispatch_after(popTime, self.loopQueue, ^{[self lunarLander];});
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation

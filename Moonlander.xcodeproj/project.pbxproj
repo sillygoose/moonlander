@@ -101,7 +101,6 @@
 		56DB82E716724EF200C243A8 /* tortoise.png in Resources */ = {isa = PBXBuildFile; fileRef = 56DB82DB16724EF200C243A8 /* tortoise.png */; };
 		56DB82E816724EF200C243A8 /* volume-high.png in Resources */ = {isa = PBXBuildFile; fileRef = 56DB82DC16724EF200C243A8 /* volume-high.png */; };
 		56DB82E916724EF200C243A8 /* volume-low.png in Resources */ = {isa = PBXBuildFile; fileRef = 56DB82DD16724EF200C243A8 /* volume-low.png */; };
-		56DB82EB167251C500C243A8 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 56DB82EA167251C500C243A8 /* SystemConfiguration.framework */; };
 		56DB82EE167253A400C243A8 /* keyboard.aiff in Resources */ = {isa = PBXBuildFile; fileRef = 56DB82EC167253A400C243A8 /* keyboard.aiff */; };
 		56DB82EF167253A400C243A8 /* keytyped.aiff in Resources */ = {isa = PBXBuildFile; fileRef = 56DB82ED167253A400C243A8 /* keytyped.aiff */; };
 		56DB82FB1672683700C243A8 /* GameOptions.plist in Resources */ = {isa = PBXBuildFile; fileRef = 56DB82FA1672683700C243A8 /* GameOptions.plist */; };
@@ -297,7 +296,6 @@
 		56DB82DB16724EF200C243A8 /* tortoise.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tortoise.png; sourceTree = "<group>"; };
 		56DB82DC16724EF200C243A8 /* volume-high.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "volume-high.png"; sourceTree = "<group>"; };
 		56DB82DD16724EF200C243A8 /* volume-low.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "volume-low.png"; sourceTree = "<group>"; };
-		56DB82EA167251C500C243A8 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		56DB82EC167253A400C243A8 /* keyboard.aiff */ = {isa = PBXFileReference; lastKnownFileType = audio.aiff; path = keyboard.aiff; sourceTree = "<group>"; };
 		56DB82ED167253A400C243A8 /* keytyped.aiff */ = {isa = PBXFileReference; lastKnownFileType = audio.aiff; path = keytyped.aiff; sourceTree = "<group>"; };
 		56DB82F416725CEC00C243A8 /* Keycodes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Keycodes.h; sourceTree = "<group>"; };
@@ -379,7 +377,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				56DB82EB167251C500C243A8 /* SystemConfiguration.framework in Frameworks */,
 				56DB82C716724C8C00C243A8 /* AVFoundation.framework in Frameworks */,
 				560FA0D0137991AD0017EE25 /* UIKit.framework in Frameworks */,
 				560FA0D2137991AD0017EE25 /* Foundation.framework in Frameworks */,
@@ -421,7 +418,6 @@
 				560FA0D3137991AD0017EE25 /* CoreGraphics.framework */,
 				56DB82C616724C8C00C243A8 /* AVFoundation.framework */,
 				5675E5D41425004400882CD8 /* AudioToolbox.framework */,
-				56DB82EA167251C500C243A8 /* SystemConfiguration.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -1221,6 +1217,10 @@
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Moonlander/Moonlander-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					DEBUG,
+					USE_TESTFLIGHT,
+				);
 				GCC_THUMB_SUPPORT = NO;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				INFOPLIST_FILE = "Moonlander/Moonlander-Info.plist";
@@ -1249,6 +1249,7 @@
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Moonlander/Moonlander-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = USE_TESTFLIGHT;
 				GCC_THUMB_SUPPORT = NO;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				INFOPLIST_FILE = "Moonlander/Moonlander-Info.plist";

@@ -6,6 +6,8 @@
 	<integer>1</integer>
 	<key>optionStepEnabled</key>
 	<false/>
+	<key>optionEnableBonusContent</key>
+	<false/>
 	<key>optionStepInterval</key>
 	<integer>2</integer>
 </dict>
