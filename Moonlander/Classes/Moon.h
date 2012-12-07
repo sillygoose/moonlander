@@ -57,6 +57,7 @@ typedef enum { TV_Unknown, TV_Normal, TV_Detailed } TerrainView;
 - (void)addFeature:(TerrainFeature)feature atIndex:(short)index;
 - (void)addFeature:(TerrainFeature)feature atIndex:(short)index refresh:(BOOL)action;
 - (void)removeFeature:(TerrainFeature)feature atIndex:(short)index;
+- (void)addFeatureToView:(TerrainFeature)tf atTerrainIndex:(short)ti;
 
 - (void)alterMoon:(short)alterMoon atIndex:(short)index;
 

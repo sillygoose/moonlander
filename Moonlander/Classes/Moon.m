@@ -190,6 +190,15 @@
     return y;
 }
 
+- (void)addFeatureToView:(TerrainFeature)tf atTerrainIndex:(short)ti
+{
+    short RET1 = self.LEFTEDGE;
+    short IN1 = 24 + (ti - RET1) * 48;
+    if (tf > TF_Nothing && tf != TF_McDonaldsEdge) {
+        [self addFeatureToView:tf atTerrainIndex:RET1 atX:IN1];
+    }
+}
+
 - (void)addFeatureToView:(TerrainFeature)tf atTerrainIndex:(short)ti atX:(short)xPos
 {
     const float CrashedLanderSizeWidth = 72;
