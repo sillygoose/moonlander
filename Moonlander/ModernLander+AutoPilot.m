@@ -289,7 +289,7 @@ const float AutoPilotUpdateInterval = 0.10;         // How often the autopilot c
     // Pick a random destination
     self.autoPilot.targetAltitude = 0;
     self.autoPilot.targetRange = 750 - (random() % 1500);
-#ifdef DEBUG
+#ifdef DEBUG_AUTOPILOT
     NSLog(@"target range: %f", self.autoPilot.targetRange);
 #endif
     
