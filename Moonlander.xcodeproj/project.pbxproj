@@ -76,6 +76,35 @@
 		56CE0538138B6C88004FA450 /* Instrument.m in Sources */ = {isa = PBXBuildFile; fileRef = 56CE0537138B6C88004FA450 /* Instrument.m */; };
 		56D6C7D216435290001C2344 /* libTestFlight.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 56D6C7CE16435290001C2344 /* libTestFlight.a */; };
 		56DB5F7B16716E02000CB72A /* AutoPilotViewController+Autopilot.m in Sources */ = {isa = PBXBuildFile; fileRef = 56DB5F7A16716E01000CB72A /* AutoPilotViewController+Autopilot.m */; };
+		56DB82B216724B6800C243A8 /* Teletype.m in Sources */ = {isa = PBXBuildFile; fileRef = 56DB82A516724B6800C243A8 /* Teletype.m */; };
+		56DB82B316724B6800C243A8 /* TeletypeKeyboard.m in Sources */ = {isa = PBXBuildFile; fileRef = 56DB82A716724B6800C243A8 /* TeletypeKeyboard.m */; };
+		56DB82B416724B6800C243A8 /* TeletypeOutputBackground.m in Sources */ = {isa = PBXBuildFile; fileRef = 56DB82A916724B6800C243A8 /* TeletypeOutputBackground.m */; };
+		56DB82B516724B6800C243A8 /* TeletypePaper.m in Sources */ = {isa = PBXBuildFile; fileRef = 56DB82AB16724B6800C243A8 /* TeletypePaper.m */; };
+		56DB82B616724B6800C243A8 /* TeletypePrinter.m in Sources */ = {isa = PBXBuildFile; fileRef = 56DB82AD16724B6800C243A8 /* TeletypePrinter.m */; };
+		56DB82B716724B6800C243A8 /* TeletypePrintOutput.m in Sources */ = {isa = PBXBuildFile; fileRef = 56DB82AF16724B6800C243A8 /* TeletypePrintOutput.m */; };
+		56DB82B816724B6800C243A8 /* TeletypeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 56DB82B116724B6800C243A8 /* TeletypeViewController.m */; };
+		56DB82C216724C2300C243A8 /* Console.m in Sources */ = {isa = PBXBuildFile; fileRef = 56DB82BC16724C2300C243A8 /* Console.m */; };
+		56DB82C316724C2300C243A8 /* Controls.m in Sources */ = {isa = PBXBuildFile; fileRef = 56DB82BE16724C2300C243A8 /* Controls.m */; };
+		56DB82C416724C2300C243A8 /* DebugManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 56DB82C016724C2300C243A8 /* DebugManager.m */; };
+		56DB82C516724C2300C243A8 /* SourceCode.plist in Resources */ = {isa = PBXBuildFile; fileRef = 56DB82C116724C2300C243A8 /* SourceCode.plist */; };
+		56DB82C716724C8C00C243A8 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 56DB82C616724C8C00C243A8 /* AVFoundation.framework */; };
+		56DB82CB16724E6000C243A8 /* teletype.aiff in Resources */ = {isa = PBXBuildFile; fileRef = 56DB82C816724E6000C243A8 /* teletype.aiff */; };
+		56DB82D016724E9A00C243A8 /* Teleprinter-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 56DB82CE16724E9A00C243A8 /* Teleprinter-Bold.ttf */; };
+		56DB82DE16724EF200C243A8 /* keycap.png in Resources */ = {isa = PBXBuildFile; fileRef = 56DB82D216724EF200C243A8 /* keycap.png */; };
+		56DB82DF16724EF200C243A8 /* paper.png in Resources */ = {isa = PBXBuildFile; fileRef = 56DB82D316724EF200C243A8 /* paper.png */; };
+		56DB82E016724EF200C243A8 /* ra_disabled.png in Resources */ = {isa = PBXBuildFile; fileRef = 56DB82D416724EF200C243A8 /* ra_disabled.png */; };
+		56DB82E116724EF200C243A8 /* ra_enabled.png in Resources */ = {isa = PBXBuildFile; fileRef = 56DB82D516724EF200C243A8 /* ra_enabled.png */; };
+		56DB82E216724EF200C243A8 /* ra_selected.png in Resources */ = {isa = PBXBuildFile; fileRef = 56DB82D616724EF200C243A8 /* ra_selected.png */; };
+		56DB82E316724EF200C243A8 /* rabbit.png in Resources */ = {isa = PBXBuildFile; fileRef = 56DB82D716724EF200C243A8 /* rabbit.png */; };
+		56DB82E416724EF200C243A8 /* teletype-logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 56DB82D816724EF200C243A8 /* teletype-logo.png */; };
+		56DB82E516724EF200C243A8 /* teletype.png in Resources */ = {isa = PBXBuildFile; fileRef = 56DB82D916724EF200C243A8 /* teletype.png */; };
+		56DB82E616724EF200C243A8 /* TerminalBezel-iPad.png in Resources */ = {isa = PBXBuildFile; fileRef = 56DB82DA16724EF200C243A8 /* TerminalBezel-iPad.png */; };
+		56DB82E716724EF200C243A8 /* tortoise.png in Resources */ = {isa = PBXBuildFile; fileRef = 56DB82DB16724EF200C243A8 /* tortoise.png */; };
+		56DB82E816724EF200C243A8 /* volume-high.png in Resources */ = {isa = PBXBuildFile; fileRef = 56DB82DC16724EF200C243A8 /* volume-high.png */; };
+		56DB82E916724EF200C243A8 /* volume-low.png in Resources */ = {isa = PBXBuildFile; fileRef = 56DB82DD16724EF200C243A8 /* volume-low.png */; };
+		56DB82EB167251C500C243A8 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 56DB82EA167251C500C243A8 /* SystemConfiguration.framework */; };
+		56DB82EE167253A400C243A8 /* keyboard.aiff in Resources */ = {isa = PBXBuildFile; fileRef = 56DB82EC167253A400C243A8 /* keyboard.aiff */; };
+		56DB82EF167253A400C243A8 /* keytyped.aiff in Resources */ = {isa = PBXBuildFile; fileRef = 56DB82ED167253A400C243A8 /* keytyped.aiff */; };
 		56DFB15B166FC9090076F4DC /* RotateControl.png in Resources */ = {isa = PBXBuildFile; fileRef = 56DFB157166FC9090076F4DC /* RotateControl.png */; };
 		56DFB15C166FC9090076F4DC /* Instruments.png in Resources */ = {isa = PBXBuildFile; fileRef = 56DFB158166FC9090076F4DC /* Instruments.png */; };
 		56DFB15D166FC9090076F4DC /* Lander.png in Resources */ = {isa = PBXBuildFile; fileRef = 56DFB159166FC9090076F4DC /* Lander.png */; };
@@ -195,7 +224,6 @@
 		565D23671540F0230074D3AD /* rocket.bas */ = {isa = PBXFileReference; lastKnownFileType = text; path = rocket.bas; sourceTree = "<group>"; };
 		565D237615411DB30074D3AD /* LanderDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LanderDelegate.h; sourceTree = "<group>"; };
 		56678FCB139A7D4D00026588 /* OldLander.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = OldLander.plist; sourceTree = "<group>"; };
-		5670E7D715577C27003B49ED /* TELETYPE1945-1985.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "TELETYPE1945-1985.ttf"; sourceTree = "<group>"; };
 		56755FD8138C0B8200455B52 /* Lander.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Lander.h; sourceTree = "<group>"; };
 		56755FD9138C0B8200455B52 /* Lander.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Lander.m; sourceTree = "<group>"; };
 		5675E5D41425004400882CD8 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
@@ -221,9 +249,6 @@
 		56BC68631388BDE200403643 /* Labels.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Labels.plist; sourceTree = "<group>"; };
 		56C94AA713A7A7AE001B7EF9 /* Dust.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Dust.h; sourceTree = "<group>"; };
 		56C94AA813A7A7AE001B7EF9 /* Dust.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Dust.m; sourceTree = "<group>"; };
-		56CB094C1548E6A700973CBE /* DotMatrix.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = DotMatrix.ttf; sourceTree = "<group>"; };
-		56CB094D1548E6A700973CBE /* DotMatrixBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = DotMatrixBold.ttf; sourceTree = "<group>"; };
-		56CB094E1548E6A700973CBE /* readme.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = readme.txt; sourceTree = "<group>"; };
 		56CE052D138B12A7004FA450 /* LanderMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LanderMessage.h; sourceTree = "<group>"; };
 		56CE052E138B12A7004FA450 /* LanderMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LanderMessage.m; sourceTree = "<group>"; };
 		56CE0533138B5277004FA450 /* Telemetry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Telemetry.h; sourceTree = "<group>"; };
@@ -236,6 +261,46 @@
 		56D6C7D116435290001C2344 /* TestFlight.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestFlight.h; sourceTree = "<group>"; };
 		56DB5F7916716E01000CB72A /* AutoPilotViewController+Autopilot.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "AutoPilotViewController+Autopilot.h"; sourceTree = "<group>"; };
 		56DB5F7A16716E01000CB72A /* AutoPilotViewController+Autopilot.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "AutoPilotViewController+Autopilot.m"; sourceTree = "<group>"; };
+		56DB82A416724B6800C243A8 /* Teletype.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Teletype.h; sourceTree = "<group>"; };
+		56DB82A516724B6800C243A8 /* Teletype.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Teletype.m; sourceTree = "<group>"; };
+		56DB82A616724B6800C243A8 /* TeletypeKeyboard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TeletypeKeyboard.h; sourceTree = "<group>"; };
+		56DB82A716724B6800C243A8 /* TeletypeKeyboard.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TeletypeKeyboard.m; sourceTree = "<group>"; };
+		56DB82A816724B6800C243A8 /* TeletypeOutputBackground.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TeletypeOutputBackground.h; sourceTree = "<group>"; };
+		56DB82A916724B6800C243A8 /* TeletypeOutputBackground.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TeletypeOutputBackground.m; sourceTree = "<group>"; };
+		56DB82AA16724B6800C243A8 /* TeletypePaper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TeletypePaper.h; sourceTree = "<group>"; };
+		56DB82AB16724B6800C243A8 /* TeletypePaper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TeletypePaper.m; sourceTree = "<group>"; };
+		56DB82AC16724B6800C243A8 /* TeletypePrinter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TeletypePrinter.h; sourceTree = "<group>"; };
+		56DB82AD16724B6800C243A8 /* TeletypePrinter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TeletypePrinter.m; sourceTree = "<group>"; };
+		56DB82AE16724B6800C243A8 /* TeletypePrintOutput.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TeletypePrintOutput.h; sourceTree = "<group>"; };
+		56DB82AF16724B6800C243A8 /* TeletypePrintOutput.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TeletypePrintOutput.m; sourceTree = "<group>"; };
+		56DB82B016724B6800C243A8 /* TeletypeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TeletypeViewController.h; sourceTree = "<group>"; };
+		56DB82B116724B6800C243A8 /* TeletypeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TeletypeViewController.m; sourceTree = "<group>"; };
+		56DB82B916724BDA00C243A8 /* Keycodes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Keycodes.h; sourceTree = "<group>"; };
+		56DB82BB16724C2300C243A8 /* Console.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Console.h; sourceTree = "<group>"; };
+		56DB82BC16724C2300C243A8 /* Console.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Console.m; sourceTree = "<group>"; };
+		56DB82BD16724C2300C243A8 /* Controls.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Controls.h; sourceTree = "<group>"; };
+		56DB82BE16724C2300C243A8 /* Controls.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Controls.m; sourceTree = "<group>"; };
+		56DB82BF16724C2300C243A8 /* DebugManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DebugManager.h; sourceTree = "<group>"; };
+		56DB82C016724C2300C243A8 /* DebugManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DebugManager.m; sourceTree = "<group>"; };
+		56DB82C116724C2300C243A8 /* SourceCode.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = SourceCode.plist; sourceTree = "<group>"; };
+		56DB82C616724C8C00C243A8 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		56DB82C816724E6000C243A8 /* teletype.aiff */ = {isa = PBXFileReference; lastKnownFileType = audio.aiff; path = teletype.aiff; sourceTree = "<group>"; };
+		56DB82CE16724E9A00C243A8 /* Teleprinter-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Teleprinter-Bold.ttf"; sourceTree = "<group>"; };
+		56DB82D216724EF200C243A8 /* keycap.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = keycap.png; sourceTree = "<group>"; };
+		56DB82D316724EF200C243A8 /* paper.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = paper.png; sourceTree = "<group>"; };
+		56DB82D416724EF200C243A8 /* ra_disabled.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ra_disabled.png; sourceTree = "<group>"; };
+		56DB82D516724EF200C243A8 /* ra_enabled.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ra_enabled.png; sourceTree = "<group>"; };
+		56DB82D616724EF200C243A8 /* ra_selected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ra_selected.png; sourceTree = "<group>"; };
+		56DB82D716724EF200C243A8 /* rabbit.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = rabbit.png; sourceTree = "<group>"; };
+		56DB82D816724EF200C243A8 /* teletype-logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "teletype-logo.png"; sourceTree = "<group>"; };
+		56DB82D916724EF200C243A8 /* teletype.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = teletype.png; sourceTree = "<group>"; };
+		56DB82DA16724EF200C243A8 /* TerminalBezel-iPad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "TerminalBezel-iPad.png"; sourceTree = "<group>"; };
+		56DB82DB16724EF200C243A8 /* tortoise.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tortoise.png; sourceTree = "<group>"; };
+		56DB82DC16724EF200C243A8 /* volume-high.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "volume-high.png"; sourceTree = "<group>"; };
+		56DB82DD16724EF200C243A8 /* volume-low.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "volume-low.png"; sourceTree = "<group>"; };
+		56DB82EA167251C500C243A8 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		56DB82EC167253A400C243A8 /* keyboard.aiff */ = {isa = PBXFileReference; lastKnownFileType = audio.aiff; path = keyboard.aiff; sourceTree = "<group>"; };
+		56DB82ED167253A400C243A8 /* keytyped.aiff */ = {isa = PBXFileReference; lastKnownFileType = audio.aiff; path = keytyped.aiff; sourceTree = "<group>"; };
 		56DFB157166FC9090076F4DC /* RotateControl.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = RotateControl.png; sourceTree = "<group>"; };
 		56DFB158166FC9090076F4DC /* Instruments.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Instruments.png; sourceTree = "<group>"; };
 		56DFB159166FC9090076F4DC /* Lander.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Lander.png; sourceTree = "<group>"; };
@@ -312,6 +377,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				56DB82EB167251C500C243A8 /* SystemConfiguration.framework in Frameworks */,
+				56DB82C716724C8C00C243A8 /* AVFoundation.framework in Frameworks */,
 				560FA0D0137991AD0017EE25 /* UIKit.framework in Frameworks */,
 				560FA0D2137991AD0017EE25 /* Foundation.framework in Frameworks */,
 				560FA0D4137991AD0017EE25 /* CoreGraphics.framework in Frameworks */,
@@ -329,6 +396,7 @@
 			children = (
 				560D212814115314000F3A22 /* README */,
 				560FA0D5137991AE0017EE25 /* Moonlander */,
+				56DB82A116724B2C00C243A8 /* ROCKET Classic */,
 				56ECD8ED1540703500565615 /* Moonlander Classic */,
 				560FA0FA137991AE0017EE25 /* MoonlanderTests */,
 				560FA0CE137991AD0017EE25 /* Frameworks */,
@@ -350,7 +418,9 @@
 				560FA0CF137991AD0017EE25 /* UIKit.framework */,
 				560FA0D1137991AD0017EE25 /* Foundation.framework */,
 				560FA0D3137991AD0017EE25 /* CoreGraphics.framework */,
+				56DB82C616724C8C00C243A8 /* AVFoundation.framework */,
 				5675E5D41425004400882CD8 /* AudioToolbox.framework */,
+				56DB82EA167251C500C243A8 /* SystemConfiguration.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -565,6 +635,18 @@
 		5667CA27154F8D050031415B /* png */ = {
 			isa = PBXGroup;
 			children = (
+				56DB82D216724EF200C243A8 /* keycap.png */,
+				56DB82D316724EF200C243A8 /* paper.png */,
+				56DB82D416724EF200C243A8 /* ra_disabled.png */,
+				56DB82D516724EF200C243A8 /* ra_enabled.png */,
+				56DB82D616724EF200C243A8 /* ra_selected.png */,
+				56DB82D716724EF200C243A8 /* rabbit.png */,
+				56DB82D816724EF200C243A8 /* teletype-logo.png */,
+				56DB82D916724EF200C243A8 /* teletype.png */,
+				56DB82DA16724EF200C243A8 /* TerminalBezel-iPad.png */,
+				56DB82DB16724EF200C243A8 /* tortoise.png */,
+				56DB82DC16724EF200C243A8 /* volume-high.png */,
+				56DB82DD16724EF200C243A8 /* volume-low.png */,
 				56DFB157166FC9090076F4DC /* RotateControl.png */,
 				56DFB158166FC9090076F4DC /* Instruments.png */,
 				56DFB159166FC9090076F4DC /* Lander.png */,
@@ -632,10 +714,7 @@
 		56CB094A1548E63000973CBE /* fonts */ = {
 			isa = PBXGroup;
 			children = (
-				5670E7D715577C27003B49ED /* TELETYPE1945-1985.ttf */,
-				56CB094C1548E6A700973CBE /* DotMatrix.ttf */,
-				56CB094D1548E6A700973CBE /* DotMatrixBold.ttf */,
-				56CB094E1548E6A700973CBE /* readme.txt */,
+				56DB82CE16724E9A00C243A8 /* Teleprinter-Bold.ttf */,
 			);
 			path = fonts;
 			sourceTree = "<group>";
@@ -651,9 +730,90 @@
 			path = TestFlightSDK1.1;
 			sourceTree = "<group>";
 		};
+		56DB82A116724B2C00C243A8 /* ROCKET Classic */ = {
+			isa = PBXGroup;
+			children = (
+				56DB82B916724BDA00C243A8 /* Keycodes.h */,
+				56DB82B016724B6800C243A8 /* TeletypeViewController.h */,
+				56DB82B116724B6800C243A8 /* TeletypeViewController.m */,
+				56DB82BA16724C2300C243A8 /* Debug Console */,
+				56DB82A316724B6800C243A8 /* Teletype */,
+				56DB82F01672556200C243A8 /* Resources */,
+			);
+			name = "ROCKET Classic";
+			sourceTree = "<group>";
+		};
+		56DB82A316724B6800C243A8 /* Teletype */ = {
+			isa = PBXGroup;
+			children = (
+				56DB82A416724B6800C243A8 /* Teletype.h */,
+				56DB82A516724B6800C243A8 /* Teletype.m */,
+				56DB82A616724B6800C243A8 /* TeletypeKeyboard.h */,
+				56DB82A716724B6800C243A8 /* TeletypeKeyboard.m */,
+				56DB82A816724B6800C243A8 /* TeletypeOutputBackground.h */,
+				56DB82A916724B6800C243A8 /* TeletypeOutputBackground.m */,
+				56DB82AA16724B6800C243A8 /* TeletypePaper.h */,
+				56DB82AB16724B6800C243A8 /* TeletypePaper.m */,
+				56DB82AC16724B6800C243A8 /* TeletypePrinter.h */,
+				56DB82AD16724B6800C243A8 /* TeletypePrinter.m */,
+				56DB82AE16724B6800C243A8 /* TeletypePrintOutput.h */,
+				56DB82AF16724B6800C243A8 /* TeletypePrintOutput.m */,
+			);
+			path = Teletype;
+			sourceTree = "<group>";
+		};
+		56DB82BA16724C2300C243A8 /* Debug Console */ = {
+			isa = PBXGroup;
+			children = (
+				56DB82BB16724C2300C243A8 /* Console.h */,
+				56DB82BC16724C2300C243A8 /* Console.m */,
+				56DB82BD16724C2300C243A8 /* Controls.h */,
+				56DB82BE16724C2300C243A8 /* Controls.m */,
+				56DB82BF16724C2300C243A8 /* DebugManager.h */,
+				56DB82C016724C2300C243A8 /* DebugManager.m */,
+				56DB82C116724C2300C243A8 /* SourceCode.plist */,
+			);
+			path = "Debug Console";
+			sourceTree = "<group>";
+		};
+		56DB82F01672556200C243A8 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				56DB82F31672558500C243A8 /* sounds */,
+				56DB82F21672557D00C243A8 /* png */,
+				56DB82F11672557000C243A8 /* fonts */,
+			);
+			name = Resources;
+			path = Moonlander/Resources;
+			sourceTree = "<group>";
+		};
+		56DB82F11672557000C243A8 /* fonts */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = fonts;
+			sourceTree = "<group>";
+		};
+		56DB82F21672557D00C243A8 /* png */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = png;
+			sourceTree = "<group>";
+		};
+		56DB82F31672558500C243A8 /* sounds */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = sounds;
+			sourceTree = "<group>";
+		};
 		56DFB16F166FF2610076F4DC /* sounds */ = {
 			isa = PBXGroup;
 			children = (
+				56DB82EC167253A400C243A8 /* keyboard.aiff */,
+				56DB82ED167253A400C243A8 /* keytyped.aiff */,
+				56DB82C816724E6000C243A8 /* teletype.aiff */,
 				56DFB170166FF2610076F4DC /* beep-high.caf */,
 				56DFB171166FF2610076F4DC /* beep-low.caf */,
 				56DFB172166FF2610076F4DC /* beep-med.caf */,
@@ -907,6 +1067,23 @@
 				56DFB17E166FF2610076F4DC /* explosion-high.caf in Resources */,
 				56DFB17F166FF2610076F4DC /* explosion-low.caf in Resources */,
 				56DFB180166FF2610076F4DC /* explosion-med.caf in Resources */,
+				56DB82C516724C2300C243A8 /* SourceCode.plist in Resources */,
+				56DB82CB16724E6000C243A8 /* teletype.aiff in Resources */,
+				56DB82D016724E9A00C243A8 /* Teleprinter-Bold.ttf in Resources */,
+				56DB82DE16724EF200C243A8 /* keycap.png in Resources */,
+				56DB82DF16724EF200C243A8 /* paper.png in Resources */,
+				56DB82E016724EF200C243A8 /* ra_disabled.png in Resources */,
+				56DB82E116724EF200C243A8 /* ra_enabled.png in Resources */,
+				56DB82E216724EF200C243A8 /* ra_selected.png in Resources */,
+				56DB82E316724EF200C243A8 /* rabbit.png in Resources */,
+				56DB82E416724EF200C243A8 /* teletype-logo.png in Resources */,
+				56DB82E516724EF200C243A8 /* teletype.png in Resources */,
+				56DB82E616724EF200C243A8 /* TerminalBezel-iPad.png in Resources */,
+				56DB82E716724EF200C243A8 /* tortoise.png in Resources */,
+				56DB82E816724EF200C243A8 /* volume-high.png in Resources */,
+				56DB82E916724EF200C243A8 /* volume-low.png in Resources */,
+				56DB82EE167253A400C243A8 /* keyboard.aiff in Resources */,
+				56DB82EF167253A400C243A8 /* keytyped.aiff in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -963,6 +1140,16 @@
 				564FF2531556228A007F5AB5 /* ModernLanderViewController.m in Sources */,
 				564FF25715562842007F5AB5 /* AutoPilotViewController.m in Sources */,
 				56DB5F7B16716E02000CB72A /* AutoPilotViewController+Autopilot.m in Sources */,
+				56DB82B216724B6800C243A8 /* Teletype.m in Sources */,
+				56DB82B316724B6800C243A8 /* TeletypeKeyboard.m in Sources */,
+				56DB82B416724B6800C243A8 /* TeletypeOutputBackground.m in Sources */,
+				56DB82B516724B6800C243A8 /* TeletypePaper.m in Sources */,
+				56DB82B616724B6800C243A8 /* TeletypePrinter.m in Sources */,
+				56DB82B716724B6800C243A8 /* TeletypePrintOutput.m in Sources */,
+				56DB82B816724B6800C243A8 /* TeletypeViewController.m in Sources */,
+				56DB82C216724C2300C243A8 /* Console.m in Sources */,
+				56DB82C316724C2300C243A8 /* Controls.m in Sources */,
+				56DB82C416724C2300C243A8 /* DebugManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -8,8 +8,20 @@
 
 #import "SplashViewController.h"
 
+#import <AVFoundation/AVFoundation.h>
+
+
+@interface SplashViewController ()
+
+@property (nonatomic, strong) AVAudioPlayer *audioPlayer;
+@property (nonatomic) dispatch_queue_t sceneQueue;
+
+@end
+
 
 @implementation SplashViewController
+
+@synthesize sceneQueue, audioPlayer;
 
 @synthesize firstPart=_firstPart;
 @synthesize secondfPart=_secondPart;
@@ -25,6 +37,18 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    // Initialize the audio by playing a short clip at zero volume
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        // Initialize the audio by playing a short clip at zero volume
+        NSString *soundFilePath = [[NSBundle mainBundle] pathForResource:@"keyboard" ofType:@"aiff"];
+        NSURL *audioURL = [[NSURL alloc] initFileURLWithPath: soundFilePath];
+        self.audioPlayer = [[AVAudioPlayer alloc] initWithContentsOfURL:audioURL error:NULL];
+        self.audioPlayer.numberOfLoops = 0;
+        [self.audioPlayer prepareToPlay];
+        self.audioPlayer.volume = 0;
+        [self.audioPlayer play];
+    });
 
     self.firstPart.alpha = self.secondfPart.alpha = self.moonLander.alpha = 0;
 }

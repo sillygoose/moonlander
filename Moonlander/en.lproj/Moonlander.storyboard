@@ -50,12 +50,12 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZRa-hl-yoZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="558" y="1521"/>
+            <point key="canvasLocation" x="558" y="2489"/>
         </scene>
         <!--Flight Controls-->
         <scene sceneID="lt9-O1-TfR">
             <objects>
-                <viewController storyboardIdentifier="Flight Controls" title="Controls" id="xF7-jM-Mtf" userLabel="Flight Controls" customClass="DocumentViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="Controls" title="Controls" id="xF7-jM-Mtf" userLabel="Flight Controls" customClass="DocumentViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="qnE-GB-Fzx">
                         <rect key="frame" x="0.0" y="20" width="1024" height="748"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -76,7 +76,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="p8N-L6-CJp" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="558" y="-315"/>
+            <point key="canvasLocation" x="558" y="653"/>
         </scene>
         <!--FAQ-->
         <scene sceneID="5ld-uG-bXf">
@@ -108,7 +108,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bvq-Ng-3LZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="558" y="560"/>
+            <point key="canvasLocation" x="558" y="1528"/>
         </scene>
         <!--HREF-->
         <scene sceneID="ftf-m4-uAv">
@@ -134,7 +134,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tNT-bg-YGd" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2151" y="554"/>
+            <point key="canvasLocation" x="2151" y="1522"/>
         </scene>
         <!--Splash View Controller - Splash-->
         <scene sceneID="q71-Lg-nUB">
@@ -286,6 +286,22 @@
                                 <color key="textColor" red="0.0" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="qxj-QQ-fmm" userLabel="FAQ">
+                                <rect key="frame" x="604" y="394" width="400" height="60"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="48"/>
+                                <state key="normal" title="Bonus">
+                                    <color key="titleColor" red="0.0" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="bdA-dI-yp9" kind="push" id="b3P-22-h7j"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
@@ -315,66 +331,383 @@
             </objects>
             <point key="canvasLocation" x="558" y="-1211"/>
         </scene>
+        <!--TeletypeGame-->
+        <scene sceneID="37Q-KF-5dJ">
+            <objects>
+                <viewController storyboardIdentifier="TeletypeVC" title="Teletype" wantsFullScreenLayout="YES" id="bdA-dI-yp9" userLabel="TeletypeGame" customClass="TeletypeViewController" sceneMemberID="viewController">
+                    <view key="view" clipsSubviews="YES" contentMode="scaleToFill" id="7Ui-nz-ix9">
+                        <rect key="frame" x="0.0" y="20" width="1024" height="748"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <view clipsSubviews="YES" contentMode="scaleToFill" id="dqS-wD-goD" userLabel="Debugger" customClass="DebugManager">
+                                <rect key="frame" x="0.0" y="0.0" width="1024" height="50"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" id="X8w-IS-qmV" userLabel="Debug Controls" customClass="Controls">
+                                        <rect key="frame" x="0.0" y="0.0" width="1024" height="50"/>
+                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                        <subviews>
+                                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Trace" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Lgv-EF-NgK">
+                                                <rect key="frame" x="0.0" y="11" width="75" height="27"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <switch opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="p6S-J6-f0x" userLabel="Step Enable">
+                                                <rect key="frame" x="83" y="11" width="79" height="27"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <connections>
+                                                    <action selector="traceEnabledChanged:" destination="X8w-IS-qmV" eventType="valueChanged" id="ZHz-7m-zkv"/>
+                                                </connections>
+                                            </switch>
+                                            <slider opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="1" minValue="0.5" maxValue="10" minimumValueImage="tortoise.png" maximumValueImage="rabbit.png" id="R2w-rG-8u7" userLabel="Step Speed">
+                                                <rect key="frame" x="706" y="14" width="300" height="23"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
+                                                <connections>
+                                                    <action selector="traceStepIntervalChanged:" destination="X8w-IS-qmV" eventType="valueChanged" id="ke1-LH-ZwY"/>
+                                                </connections>
+                                            </slider>
+                                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Trace Speed" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="KOl-Kb-HPD">
+                                                <rect key="frame" x="602" y="11" width="98" height="27"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                        <color key="backgroundColor" red="0.7843137255" green="0.70588235290000001" blue="0.49019607840000001" alpha="1" colorSpace="calibratedRGB"/>
+                                        <connections>
+                                            <outlet property="stepEnabled" destination="p6S-J6-f0x" id="uBl-np-SYh"/>
+                                            <outlet property="stepInterval" destination="R2w-rG-8u7" id="O1f-Tb-h6V"/>
+                                        </connections>
+                                    </view>
+                                    <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="redraw" bounces="NO" bouncesZoom="NO" id="deK-2a-hEf" userLabel="Debug Console" customClass="Console">
+                                        <rect key="frame" x="0.0" y="0.0" width="256" height="0.0"/>
+                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" heightSizable="YES"/>
+                                        <inset key="contentInset" minX="6" minY="20" maxX="6" maxY="20"/>
+                                    </scrollView>
+                                </subviews>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <outlet property="debugConsole" destination="deK-2a-hEf" id="myQ-tL-lPk"/>
+                                    <outlet property="debugControls" destination="X8w-IS-qmV" id="dDZ-45-gGe"/>
+                                </connections>
+                            </view>
+                            <view clipsSubviews="YES" tag="1" contentMode="scaleToFill" id="j6T-sw-vSm" customClass="Teletype">
+                                <rect key="frame" x="0.0" y="50" width="1024" height="698"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" image="paper.png" id="6ql-HP-7dS">
+                                        <rect key="frame" x="0.0" y="0.0" width="1024" height="698"/>
+                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    </imageView>
+                                    <view clipsSubviews="YES" contentMode="scaleToFill" id="cQ7-rN-VWJ" customClass="TeletypePrinter">
+                                        <rect key="frame" x="0.0" y="0.0" width="1024" height="574"/>
+                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                        <subviews>
+                                            <scrollView clipsSubviews="YES" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" delaysContentTouches="NO" canCancelContentTouches="NO" bouncesZoom="NO" id="S8Y-3c-7Wz" customClass="TeletypeOutputBackground">
+                                                <rect key="frame" x="0.0" y="0.0" width="1024" height="574"/>
+                                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                            </scrollView>
+                                            <scrollView opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" bounces="NO" bouncesZoom="NO" id="LFz-yp-JRU" customClass="TeletypePaper">
+                                                <rect key="frame" x="0.0" y="0.0" width="1024" height="574"/>
+                                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                <subviews>
+                                                    <view opaque="NO" clipsSubviews="YES" contentMode="redraw" id="Brx-Qf-pzR" customClass="TeletypePrintOutput">
+                                                        <rect key="frame" x="0.0" y="0.0" width="1024" height="574"/>
+                                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                        <connections>
+                                                            <outlet property="delegate" destination="cQ7-rN-VWJ" id="ywz-Cm-cxi"/>
+                                                        </connections>
+                                                    </view>
+                                                </subviews>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                <inset key="contentInset" minX="10" minY="40" maxX="10" maxY="20"/>
+                                                <connections>
+                                                    <outlet property="printerOutput" destination="Brx-Qf-pzR" id="hKI-eb-bdo"/>
+                                                </connections>
+                                            </scrollView>
+                                        </subviews>
+                                        <connections>
+                                            <outlet property="backgroundScrollView" destination="S8Y-3c-7Wz" id="YwV-Tf-KHd"/>
+                                            <outlet property="scrollView" destination="LFz-yp-JRU" id="pnn-T0-dZ5"/>
+                                        </connections>
+                                    </view>
+                                    <view contentMode="scaleToFill" id="FaB-Ij-cse" customClass="TeletypeKeyboard">
+                                        <rect key="frame" x="0.0" y="574" width="1024" height="124"/>
+                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="lgH-U8-dbC">
+                                                <rect key="frame" x="22" y="9" width="45" height="45"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                                <state key="normal" title="1" backgroundImage="keycap.png">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                                <state key="highlighted">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="keyboardNumeric:" destination="FaB-Ij-cse" eventType="touchUpInside" id="l2A-PK-Evz"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="tJi-ed-sPk">
+                                                <rect key="frame" x="136" y="9" width="45" height="45"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                                <state key="normal" title="2" backgroundImage="keycap.png">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                                <state key="highlighted">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="keyboardNumeric:" destination="FaB-Ij-cse" eventType="touchUpInside" id="pQu-jT-gtW"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="yai-TH-42c">
+                                                <rect key="frame" x="238" y="9" width="45" height="45"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                                <state key="normal" title="3" backgroundImage="keycap.png">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                                <state key="highlighted">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="keyboardNumeric:" destination="FaB-Ij-cse" eventType="touchUpInside" id="D4O-GO-4mF"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="pT2-aP-vXz">
+                                                <rect key="frame" x="339" y="9" width="45" height="45"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                                <state key="normal" title="4" backgroundImage="keycap.png">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                                <state key="highlighted">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="keyboardNumeric:" destination="FaB-Ij-cse" eventType="touchUpInside" id="uAa-Q5-vEY"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="gpK-Fd-b5S">
+                                                <rect key="frame" x="441" y="9" width="45" height="45"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                                <state key="normal" title="5" backgroundImage="keycap.png">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                                <state key="highlighted">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="keyboardNumeric:" destination="FaB-Ij-cse" eventType="touchUpInside" id="q9r-He-a82"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Ozd-6M-Qut">
+                                                <rect key="frame" x="543" y="9" width="45" height="45"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                                <state key="normal" title="6" backgroundImage="keycap.png">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                                <state key="highlighted">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="keyboardNumeric:" destination="FaB-Ij-cse" eventType="touchUpInside" id="PqK-B8-yRg"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="0nM-tT-VkI">
+                                                <rect key="frame" x="644" y="9" width="45" height="45"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                                <state key="normal" title="7" backgroundImage="keycap.png">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                                <state key="highlighted">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="keyboardNumeric:" destination="FaB-Ij-cse" eventType="touchUpInside" id="3xg-u1-eSk"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="9U7-hK-4f8">
+                                                <rect key="frame" x="746" y="9" width="45" height="45"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                                <state key="normal" title="8" backgroundImage="keycap.png">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                                <state key="highlighted">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="keyboardNumeric:" destination="FaB-Ij-cse" eventType="touchUpInside" id="imF-Nd-ZOI"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="atu-8l-hhK">
+                                                <rect key="frame" x="847" y="9" width="45" height="45"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                                <state key="normal" title="9" backgroundImage="keycap.png">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                                <state key="highlighted">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="keyboardNumeric:" destination="FaB-Ij-cse" eventType="touchUpInside" id="Cbd-Hn-GmF"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="1zP-ot-PEH">
+                                                <rect key="frame" x="957" y="9" width="45" height="45"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
+                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                                <state key="normal" title="0" backgroundImage="keycap.png">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                                <state key="highlighted">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="keyboardNumeric:" destination="FaB-Ij-cse" eventType="touchUpInside" id="upn-k6-1f7"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="wordWrap" id="wqw-4m-47E">
+                                                <rect key="frame" x="441" y="70" width="45" height="45"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
+                                                <state key="normal" title="YES" backgroundImage="keycap.png">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                                <state key="highlighted">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="keyboardYesNo:" destination="FaB-Ij-cse" eventType="touchUpInside" id="E46-xO-Ili"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="wordWrap" id="ibB-QR-PmF">
+                                                <rect key="frame" x="543" y="70" width="45" height="45"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
+                                                <state key="normal" title="NO" backgroundImage="keycap.png">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                                <state key="highlighted">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="keyboardYesNo:" destination="FaB-Ij-cse" eventType="touchUpInside" id="b5t-N6-Ncq"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="wordWrap" id="3uh-Uu-IvH">
+                                                <rect key="frame" x="746" y="70" width="45" height="45"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
+                                                <state key="normal" backgroundImage="keycap.png">
+                                                    <string key="title">  RE-
+TURN</string>
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                                <state key="highlighted">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="keyboardReturn:" destination="FaB-Ij-cse" eventType="touchUpInside" id="ZKT-hV-wNp"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="wordWrap" id="JLR-VV-Iiy">
+                                                <rect key="frame" x="847" y="70" width="45" height="45"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
+                                                <state key="normal" backgroundImage="keycap.png">
+                                                    <string key="title">RUB
+OUT</string>
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                                <state key="highlighted">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="keyboardRubout:" destination="FaB-Ij-cse" eventType="touchUpInside" id="J1e-wv-fHQ"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="wordWrap" id="spI-Nj-yvw">
+                                                <rect key="frame" x="957" y="70" width="45" height="45"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
+                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
+                                                <state key="normal" title="QUIT" backgroundImage="keycap.png">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                                <state key="highlighted">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="keyboardQuit:" destination="FaB-Ij-cse" eventType="touchUpInside" id="6td-Ke-hgv"/>
+                                                </connections>
+                                            </button>
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="teletype-logo.png" id="U3y-s6-9U7">
+                                                <rect key="frame" x="7" y="64" width="138" height="55"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                            </imageView>
+                                        </subviews>
+                                        <color key="backgroundColor" red="0.7843137255" green="0.70588235290000001" blue="0.49019607840000001" alpha="1" colorSpace="calibratedRGB"/>
+                                    </view>
+                                </subviews>
+                                <connections>
+                                    <outlet property="keyboard" destination="FaB-Ij-cse" id="mTU-2k-a47"/>
+                                    <outlet property="printer" destination="cQ7-rN-VWJ" id="0Wj-hY-WX4"/>
+                                </connections>
+                            </view>
+                        </subviews>
+                        <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="AIz-LN-i3r"/>
+                    <connections>
+                        <outlet property="debugger" destination="dqS-wD-goD" id="DE1-gI-B6J"/>
+                        <outlet property="teletype" destination="j6T-sw-vSm" id="3ba-xn-JXn"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="978-o1-mlT" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="558" y="-311"/>
+        </scene>
     </scenes>
-    <classes>
-        <class className="AutoPilotViewController" superclassName="LanderViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/AutoPilotViewController.h"/>
-        </class>
-        <class className="DocumentViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/DocumentViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="_documentContent" candidateClass="UIWebView"/>
-            </relationships>
-        </class>
-        <class className="Instrument" superclassName="VGButton">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/Instrument.h"/>
-        </class>
-        <class className="LanderViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/LanderViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="instrumentSelected:" candidateClass="Instrument"/>
-                <relationship kind="action" name="rotateLander:"/>
-                <relationship kind="action" name="telemetrySelected:" candidateClass="Telemetry"/>
-                <relationship kind="action" name="thrusterChanged:" candidateClass="VGSlider"/>
-            </relationships>
-        </class>
-        <class className="MenuViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/MenuViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="buildInfo" candidateClass="UILabel"/>
-            </relationships>
-        </class>
-        <class className="NavigationController" superclassName="UINavigationController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/NavigationController.h"/>
-        </class>
-        <class className="SplashViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/SplashViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="firstPart" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="moonLander" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="secondfPart" candidateClass="UILabel"/>
-            </relationships>
-        </class>
-        <class className="Telemetry" superclassName="VGButton">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/Telemetry.h"/>
-        </class>
-        <class className="VGButton" superclassName="UIControl">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/VGButton.h"/>
-            <relationships>
-                <relationship kind="action" name="buttonDown:"/>
-                <relationship kind="action" name="buttonUp:"/>
-            </relationships>
-        </class>
-        <class className="VGSlider" superclassName="UIControl">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/VGSlider.h"/>
-        </class>
-    </classes>
+    <resources>
+        <image name="keycap.png" width="256" height="256"/>
+        <image name="paper.png" width="2048" height="250"/>
+        <image name="rabbit.png" width="29" height="29"/>
+        <image name="teletype-logo.png" width="141" height="55"/>
+        <image name="tortoise.png" width="29" height="29"/>
+    </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar" statusBarStyle="blackTranslucent"/>
         <simulatedOrientationMetrics key="orientation" orientation="landscapeRight"/>
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="6oj-Vl-sly"/>
+        <segue reference="XrD-sI-twU"/>
     </inferredMetricsTieBreakers>
 </document>

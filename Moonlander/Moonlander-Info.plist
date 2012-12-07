@@ -39,6 +39,10 @@
 	<true/>
 	<key>NSMainNibFile</key>
 	<string></string>
+	<key>UIAppFonts</key>
+	<array>
+		<string>Teleprinter-Bold.ttf</string>
+	</array>
 	<key>UIMainStoryboardFile~ipad</key>
 	<string>Moonlander</string>
 	<key>UISupportedInterfaceOrientations</key>
