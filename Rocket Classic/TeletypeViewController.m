@@ -14,6 +14,7 @@
 @property (nonatomic) dispatch_queue_t loopQueue;
 
 @property (nonatomic) BOOL traceEnabled;
+
 @property (nonatomic) BOOL onSurface;
 @property (nonatomic) BOOL autopilotEnabled;
 
@@ -92,6 +93,13 @@
     if (self.autopilotEnabled) {
         self.view.alpha = 0.25;
     }
+    
+    // Set debug control options from settinbgs
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    self.traceEnabled = self.debugger.debugControls.stepEnabled.on = [defaults floatForKey:@"optionStepEnabled"];
+    self.debugger.debugControls.stepInterval.value = [defaults floatForKey:@"optionStepInterval"];
+    self.debugger.debugControls.stepInterval.enabled = self.debugger.debugControls.stepEnabled.on;
+    self.debugger.debugControls.teletypeVolume.value = [defaults floatForKey:@"optionAudioVolume"];
     
     // Make sure the frame sizes are correct
     [self updateViewFrameForOrientation:self.interfaceOrientation withDuration:0];
@@ -203,11 +211,11 @@
         // Save control state and disable during animations
         BOOL traceControlsState = self.debugger.userInteractionEnabled;
         self.debugger.userInteractionEnabled = NO;
-
+        
         // Reset content sizes
         self.debugger.debugConsole.contentSize = CGSizeZero;
         self.teletype.printer.scrollView.contentSize = CGSizeZero;
-
+        
         // View animation blocks
         void (^completionBlock)(BOOL) = ^(BOOL f) {
             self.debugger.frame = debuggerFrame;
@@ -223,7 +231,7 @@
             self.teletype.printer.frame = printerFrame;
             self.teletype.keyboard.frame = keyboardFrame;
         };
-
+        
         // Animation option selection
         UIViewAnimationOptions curlDown = UIViewAnimationCurveLinear | UIViewAnimationOptionTransitionCurlDown;
         UIViewAnimationOptions curlUp = UIViewAnimationCurveLinear | UIViewAnimationOptionTransitionCurlUp;
@@ -242,8 +250,7 @@
             // Animate the teletype move
             [UIView animateWithDuration:duration delay:0.0 options:curlUp animations:teletypeBlock completion:completionBlock];
         }
-    }
-}
+    }}
 
 
 #pragma mark -

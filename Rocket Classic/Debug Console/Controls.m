@@ -11,39 +11,73 @@
 
 @interface Controls ()
 
-@property (nonatomic) IBOutlet UISwitch *stepEnabled;
-@property (nonatomic) IBOutlet UISlider *stepInterval;
 @property (nonatomic) BOOL autopilotMode;
 
-- (IBAction)traceEnabledChanged:(id)sender;
-- (IBAction)traceStepIntervalChanged:(id)sender;
+- (IBAction)traceEnabledUpdated:(id)sender;
+
+- (IBAction)traceStepIntervalChange:(id)sender;
+- (IBAction)traceStepIntervalUpdated:(id)sender;
+
+- (IBAction)teletypeAudioVolumeChange;
+- (IBAction)teletypeAudioVolumeUpdated;
 
 @end
 
 
 @implementation Controls
 
-@synthesize stepEnabled, stepInterval;
+@synthesize stepEnabled=_stepEnabled, stepInterval=_stepInterval;
+@synthesize teletypeVolume=_teletypeVolume;
 @synthesize autopilotMode;
 
 
 #pragma mark -
 #pragma mark Control interfaces
 
-- (IBAction)traceEnabledChanged:(id)sender
+- (IBAction)traceEnabledUpdated:(id)sender
 {
-    // Enable/disable the slider
+    // Enable/disable the interval slider
     self.stepInterval.enabled = self.stepEnabled.on;
+    
+    // Save the new value
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    [defaults setBool:self.stepEnabled.on forKey:@"optionStepEnabled"];
     
     // Pass along the notifications
     [[NSNotificationCenter defaultCenter] postNotificationName:@"debugTraceSwitchChange" object:[NSNumber numberWithBool:self.stepEnabled.on]];
     [[NSNotificationCenter defaultCenter] postNotificationName:@"debugTraceStepIntervalChange" object:[NSNumber numberWithFloat:self.stepInterval.value]];
 }
 
-- (IBAction)traceStepIntervalChanged:(id)sender
+- (IBAction)traceStepIntervalUpdated:(id)sender
 {
-    // Pass along the notifications
+    // Save the new value
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    [defaults setFloat:self.stepInterval.value forKey:@"optionStepInterval"];
+
+    // Pass along the notification
     [[NSNotificationCenter defaultCenter] postNotificationName:@"debugTraceStepIntervalChange" object:[NSNumber numberWithFloat:self.stepInterval.value]];
+}
+
+- (IBAction)traceStepIntervalChange:(id)sender
+{
+    // Pass along the notification
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"debugTraceStepIntervalChange" object:[NSNumber numberWithFloat:self.stepInterval.value]];
+}
+
+- (IBAction)teletypeAudioVolumeUpdated
+{
+    // Save the new value
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    [defaults setFloat:self.teletypeVolume.value forKey:@"optionAudioVolume"];
+    
+    // Pass along the notifications
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"teletypeVolumeChanged" object:[NSNumber numberWithFloat:self.teletypeVolume.value]];
+}
+
+- (IBAction)teletypeAudioVolumeChange
+{
+    // Pass along the notification
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"teletypeVolumeChanged" object:[NSNumber numberWithFloat:self.teletypeVolume.value]];
 }
 
 

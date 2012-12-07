@@ -231,12 +231,13 @@
         self.teletypeAudioPlayer.numberOfLoops = -1;
         [self.teletypeAudioPlayer prepareToPlay];
         
-        //### Sound volume based on settings bundle
+        // Sound volume based on settings bundle
         NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-        self.teletypeAudioPlayer.volume = 1.0;//###[defaults floatForKey:@"optionAudioVolume"];
+        self.teletypeAudioPlayer.volume = [defaults floatForKey:@"optionAudioVolume"];
         
         // Notification setup
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(flushPrintBufferReceived:) name:@"flushPrintBuffer" object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(teletypeVolumeChanged:) name:@"teletypeVolumeChanged" object:nil];
     }
     return self;
 }
@@ -288,6 +289,13 @@
 {
     self.doFlushPrintBuffer = YES;
 }
+
+- (void)teletypeVolumeChanged:(NSNotification *)notification
+{
+    NSNumber *volume = notification.object;
+    self.teletypeAudioPlayer.volume = [volume floatValue];
+}
+
 
 
 #pragma mark -

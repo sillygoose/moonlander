@@ -152,6 +152,10 @@
         self.contentSize = CGSizeZero;
         self.bounces = NO;
         
+        //#### too many of these!!!! Set debug control options from settinbgs
+        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+        self.traceEnabled = [defaults floatForKey:@"optionStepEnabled"];
+                
         // Sign up to get changed in debug controls
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(debugTraceSwitchChanged:) name:@"debugTraceSwitchChange" object:nil];
     }

@@ -30,6 +30,11 @@
 {
     self = [super initWithCoder:aDecoder];
     if (self) {
+        //### too many Set debug control options from settinbgs
+        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+        self.traceEnabled = [defaults floatForKey:@"optionStepEnabled"];
+        self.traceStepInterval = [defaults floatForKey:@"optionStepInterval"];
+
         // Sign up to get changes in debug controls
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(debugTraceSwitchChange:) name:@"debugTraceSwitchChange" object:nil];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(debugTraceStepIntervalChange:) name:@"debugTraceStepIntervalChange" object:nil];
