@@ -104,8 +104,8 @@
 		56DB82EB167251C500C243A8 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 56DB82EA167251C500C243A8 /* SystemConfiguration.framework */; };
 		56DB82EE167253A400C243A8 /* keyboard.aiff in Resources */ = {isa = PBXBuildFile; fileRef = 56DB82EC167253A400C243A8 /* keyboard.aiff */; };
 		56DB82EF167253A400C243A8 /* keytyped.aiff in Resources */ = {isa = PBXBuildFile; fileRef = 56DB82ED167253A400C243A8 /* keytyped.aiff */; };
-		56DB82F9167260AD00C243A8 /* SourceCode.plist in Resources */ = {isa = PBXBuildFile; fileRef = 56DB82F8167260AD00C243A8 /* SourceCode.plist */; };
 		56DB82FB1672683700C243A8 /* GameOptions.plist in Resources */ = {isa = PBXBuildFile; fileRef = 56DB82FA1672683700C243A8 /* GameOptions.plist */; };
+		56DB830116728A2100C243A8 /* SourceCode.plist in Resources */ = {isa = PBXBuildFile; fileRef = 56DB830016728A2100C243A8 /* SourceCode.plist */; };
 		56DFB15B166FC9090076F4DC /* RotateControl.png in Resources */ = {isa = PBXBuildFile; fileRef = 56DFB157166FC9090076F4DC /* RotateControl.png */; };
 		56DFB15C166FC9090076F4DC /* Instruments.png in Resources */ = {isa = PBXBuildFile; fileRef = 56DFB158166FC9090076F4DC /* Instruments.png */; };
 		56DFB15D166FC9090076F4DC /* Lander.png in Resources */ = {isa = PBXBuildFile; fileRef = 56DFB159166FC9090076F4DC /* Lander.png */; };
@@ -301,8 +301,8 @@
 		56DB82EC167253A400C243A8 /* keyboard.aiff */ = {isa = PBXFileReference; lastKnownFileType = audio.aiff; path = keyboard.aiff; sourceTree = "<group>"; };
 		56DB82ED167253A400C243A8 /* keytyped.aiff */ = {isa = PBXFileReference; lastKnownFileType = audio.aiff; path = keytyped.aiff; sourceTree = "<group>"; };
 		56DB82F416725CEC00C243A8 /* Keycodes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Keycodes.h; sourceTree = "<group>"; };
-		56DB82F8167260AD00C243A8 /* SourceCode.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = SourceCode.plist; sourceTree = SOURCE_ROOT; };
 		56DB82FA1672683700C243A8 /* GameOptions.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = GameOptions.plist; sourceTree = "<group>"; };
+		56DB830016728A2100C243A8 /* SourceCode.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = SourceCode.plist; sourceTree = "<group>"; };
 		56DFB157166FC9090076F4DC /* RotateControl.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = RotateControl.png; sourceTree = "<group>"; };
 		56DFB158166FC9090076F4DC /* Instruments.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Instruments.png; sourceTree = "<group>"; };
 		56DFB159166FC9090076F4DC /* Lander.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Lander.png; sourceTree = "<group>"; };
@@ -398,7 +398,6 @@
 			children = (
 				560D212814115314000F3A22 /* README */,
 				560FA0D5137991AE0017EE25 /* Moonlander */,
-				56DB82A116724B2C00C243A8 /* ROCKET Classic */,
 				56ECD8ED1540703500565615 /* Moonlander Classic */,
 				560FA0FA137991AE0017EE25 /* MoonlanderTests */,
 				560FA0CE137991AD0017EE25 /* Frameworks */,
@@ -453,6 +452,7 @@
 				56EA5BF4154E35D700AB6DF2 /* DocumentViewController.h */,
 				56EA5BF5154E35D700AB6DF2 /* DocumentViewController.m */,
 				567CD473154853D800797BD1 /* Classes */,
+				56DB82A116724B2C00C243A8 /* ROCKET Classic */,
 				560FA10D1379923D0017EE25 /* Lander Model */,
 				5695F1A9137F52B50075CD26 /* Vector Graphics */,
 				56D6C7CD16435290001C2344 /* TestFlightSDK1.1 */,
@@ -544,6 +544,7 @@
 		562D62A3154DF5C800BD4EDD /* plist */ = {
 			isa = PBXGroup;
 			children = (
+				56DB830016728A2100C243A8 /* SourceCode.plist */,
 				56DB82FA1672683700C243A8 /* GameOptions.plist */,
 				569CC2A913809BED00E6D82A /* Moon.plist */,
 				56678FCB139A7D4D00026588 /* OldLander.plist */,
@@ -740,10 +741,9 @@
 				56DB82B116724B6800C243A8 /* TeletypeViewController.m */,
 				56DB82BA16724C2300C243A8 /* Debug Console */,
 				56DB82A316724B6800C243A8 /* Teletype */,
-				56DB82F01672556200C243A8 /* Resources */,
 			);
 			name = "ROCKET Classic";
-			path = "Rocket Classic";
+			path = "../Rocket Classic";
 			sourceTree = "<group>";
 		};
 		56DB82A316724B6800C243A8 /* Teletype */ = {
@@ -777,47 +777,6 @@
 				56DB82C016724C2300C243A8 /* DebugManager.m */,
 			);
 			path = "Debug Console";
-			sourceTree = "<group>";
-		};
-		56DB82F01672556200C243A8 /* Resources */ = {
-			isa = PBXGroup;
-			children = (
-				56DB82F516725DE600C243A8 /* plist */,
-				56DB82F31672558500C243A8 /* sounds */,
-				56DB82F21672557D00C243A8 /* png */,
-				56DB82F11672557000C243A8 /* fonts */,
-			);
-			name = Resources;
-			path = "Rocket Classic/Moonlander/Resources";
-			sourceTree = SOURCE_ROOT;
-		};
-		56DB82F11672557000C243A8 /* fonts */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = fonts;
-			sourceTree = "<group>";
-		};
-		56DB82F21672557D00C243A8 /* png */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = png;
-			sourceTree = "<group>";
-		};
-		56DB82F31672558500C243A8 /* sounds */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = sounds;
-			sourceTree = "<group>";
-		};
-		56DB82F516725DE600C243A8 /* plist */ = {
-			isa = PBXGroup;
-			children = (
-				56DB82F8167260AD00C243A8 /* SourceCode.plist */,
-			);
-			name = plist;
 			sourceTree = "<group>";
 		};
 		56DFB16F166FF2610076F4DC /* sounds */ = {
@@ -1095,8 +1054,8 @@
 				56DB82E916724EF200C243A8 /* volume-low.png in Resources */,
 				56DB82EE167253A400C243A8 /* keyboard.aiff in Resources */,
 				56DB82EF167253A400C243A8 /* keytyped.aiff in Resources */,
-				56DB82F9167260AD00C243A8 /* SourceCode.plist in Resources */,
 				56DB82FB1672683700C243A8 /* GameOptions.plist in Resources */,
+				56DB830116728A2100C243A8 /* SourceCode.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
