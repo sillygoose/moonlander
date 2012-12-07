@@ -202,7 +202,7 @@ const float MenuAutoPilotUpdateInterval = 0.10;         // How often the autopil
     __weak AutoPilotViewController *weakSelf = self;
     self.backgroundAutoPilot.verticalPosition.setPoint = [^{ return [weakSelf vpSetPoint];} copy];
     self.backgroundAutoPilot.verticalPosition.processValue = [^{ return [weakSelf vpProcessValue];} copy];
-    self.backgroundAutoPilot.verticalPosition.Kp = -1.0 / 20000.0;
+    self.backgroundAutoPilot.verticalPosition.Kp = -1.0 / 18000.0;
     self.backgroundAutoPilot.verticalPosition.Kd = 0;
     [self.backgroundAutoPilot setup];
 }
@@ -213,7 +213,7 @@ const float MenuAutoPilotUpdateInterval = 0.10;         // How often the autopil
     
     self.backgroundAutoPilot.verticalPosition.setPoint = [^{ return [weakSelf vpSetPoint];} copy];
     self.backgroundAutoPilot.verticalPosition.processValue = [^{ return [weakSelf vpProcessValue];} copy];
-    self.backgroundAutoPilot.verticalPosition.Kp = -1.0 / 9000.0;
+    self.backgroundAutoPilot.verticalPosition.Kp = -1.0 / 10000.0;
     self.backgroundAutoPilot.verticalPosition.Kd = 0;
     
     self.backgroundAutoPilot.verticalVelocity.setPoint = [^{ return [weakSelf vvSetPoint];} copy];
@@ -223,7 +223,7 @@ const float MenuAutoPilotUpdateInterval = 0.10;         // How often the autopil
     
     self.backgroundAutoPilot.horizontalPosition.setPoint = [^{ return [weakSelf hpSetPoint];} copy];
     self.backgroundAutoPilot.horizontalPosition.processValue = [^{ return [weakSelf hpProcessValue];} copy];
-    self.backgroundAutoPilot.horizontalPosition.Kp =  -1.0 / 18000.0;
+    self.backgroundAutoPilot.horizontalPosition.Kp =  -1.0 / 16000.0;
     self.backgroundAutoPilot.horizontalPosition.Kd = 0;
     
     self.backgroundAutoPilot.horizontalVelocity.setPoint = [^{ return [weakSelf hvSetPoint];} copy];
