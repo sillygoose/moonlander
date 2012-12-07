@@ -1434,7 +1434,8 @@ const float RollButtonRepeatInterval = 0.10;        // Timer value for roll butt
         void (^plantFlag)(BOOL) = ^(BOOL f) {
             // Add the flag to the terrain and display our message
             short flagIndex = self.INDEXL - 2 * direction;
-            [self.moonView addFeature:TF_OldFlag atIndex:flagIndex refresh:YES];
+            [self.moonView addFeatureToView:TF_OldFlag atTerrainIndex:flagIndex];
+            [self.moonView addFeature:TF_OldFlag atIndex:flagIndex refresh:NO];
             [self.landerMessages addSystemMessage:@"OneSmallStep"];
             
             // Delay a bit before finishing the game
