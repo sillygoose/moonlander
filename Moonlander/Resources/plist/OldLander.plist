@@ -9,11 +9,13 @@
 		<array>
 			<dict>
 				<key>intensity</key>
-				<integer>55</integer>
+				<integer>7</integer>
 				<key>name</key>
 				<string>OldLander</string>
 				<key>line</key>
 				<dict>
+					<key>type</key>
+					<integer>0</integer>
 					<key>width</key>
 					<real>1.5</real>
 				</dict>

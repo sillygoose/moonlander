@@ -474,6 +474,11 @@
 - (void)refreshCloseUpView
 {
     if (self.currentView == TV_Detailed) {
+        // Remove the subviews whenever we update the view
+        for (UIView *subView in [self subviews]) {
+            [subView removeFromSuperview];
+        }
+
         self.drawPaths = [self buildDetailedLunarSurface];
         self.dirtySurface = NO;
         [self setNeedsDisplay];
@@ -483,7 +488,7 @@
 - (void)useCloseUpView:(short)xCoordinate
 {
     if ((self.currentView != TV_Detailed) || (self.LEFTEDGE != xCoordinate) || self.dirtySurface) {
-        // Remove the subviews whenever we change
+        // Remove the subviews whenever we change views
         for (UIView *subView in [self subviews]) {
             [subView removeFromSuperview];
         }

@@ -11,6 +11,8 @@ Features wish list
 
 Issues to do list
 =================
+- fix autopilot code so it goes in autopilot VC
+- plant flag but don't replace rock until next game
 - splash missing
 - add small delay to game start
 - switching screens disrupts autopilot lunar walk

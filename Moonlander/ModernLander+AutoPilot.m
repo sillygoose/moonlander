@@ -216,7 +216,7 @@ const float AutoPilotUpdateInterval = 0.10;         // How often the autopilot c
     
     self.autoPilot.verticalPosition.setPoint = [^{ return [weakSelf vpSetPoint];} copy];
     self.autoPilot.verticalPosition.processValue = [^{ return [weakSelf vpProcessValue];} copy];
-    self.autoPilot.verticalPosition.Kp = -1.0 / 10000.0;
+    self.autoPilot.verticalPosition.Kp = -1.0 / 9000.0;
     self.autoPilot.verticalPosition.Kd = 0;
     
     self.autoPilot.verticalVelocity.setPoint = [^{ return [weakSelf vvSetPoint];} copy];
@@ -226,7 +226,7 @@ const float AutoPilotUpdateInterval = 0.10;         // How often the autopilot c
     
     self.autoPilot.horizontalPosition.setPoint = [^{ return [weakSelf hpSetPoint];} copy];
     self.autoPilot.horizontalPosition.processValue = [^{ return [weakSelf hpProcessValue];} copy];
-    self.autoPilot.horizontalPosition.Kp =  -1.0 / 20000.0;
+    self.autoPilot.horizontalPosition.Kp =  -1.0 / 18000.0;
     self.autoPilot.horizontalPosition.Kd = 0;
     
     self.autoPilot.horizontalVelocity.setPoint = [^{ return [weakSelf hvSetPoint];} copy];
@@ -289,6 +289,9 @@ const float AutoPilotUpdateInterval = 0.10;         // How often the autopilot c
     // Pick a random destination
     self.autoPilot.targetAltitude = 0;
     self.autoPilot.targetRange = 750 - (random() % 1500);
+#ifdef DEBUG
+    NSLog(@"target range: %f", self.autoPilot.targetRange);
+#endif
     
     // Initialize PID controllers
     [self initializePIDControllers];

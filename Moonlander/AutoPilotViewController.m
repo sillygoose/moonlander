@@ -25,6 +25,11 @@
 {
 }
 
+- (LanderType)landerType
+{
+    return LanderTypeClassic;
+}
+
 
 #pragma -
 #pragma mark - View lifecycle
@@ -32,6 +37,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    // Set out lander type
+    self.landerType = LanderTypeClassic;
 }
 
 - (void)viewDidUnload
