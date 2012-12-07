@@ -5,6 +5,9 @@ Features wish list
 - generate 6x8 dot matrix fonts
 - throttle dust/thrust updates or at least phosphor age them (modern game)
 - add focal lander game from 1969
+- lunar rover upgrade
+- lunar golf mini game
+- add scoring/Game Center to modern game
 
 
 Issues to do list
@@ -12,10 +15,7 @@ Issues to do list
 - switching screens disrupts autopilot lunar walk
 - disable AUTOPILOT control when on surface
 - missing iTunesArtwork@2x (1024x1024)
-- add scoring/Game Center to modern game
-- lunar rover upgrade
-- lunar golf mini game
-- tone down the dust so it is less bright and add Retina support
+- new app icons
 
 
 Completed
