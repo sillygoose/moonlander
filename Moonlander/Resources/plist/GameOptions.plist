@@ -5,8 +5,8 @@
 	<key>optionAudioVolume</key>
 	<integer>1</integer>
 	<key>optionStepEnabled</key>
-	<true/>
+	<false/>
 	<key>optionStepInterval</key>
-	<real>0.2</real>
+	<integer>1</integer>
 </dict>
 </plist>
