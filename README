@@ -4,8 +4,6 @@ Features wish list
 ===================
 - generate 6x8 dot matrix fonts
 - throttle dust/thrust updates or at least phosphor age them (modern game)
-- add 'ID' to the existing autopilot 'P' controller
-- add intellignce to autopilot to avoid rocks
 - add focal lander game from 1969
 
 
@@ -22,6 +20,7 @@ Issues to do list
 
 Completed
 =========
+- add 'ID' to the existing autopilot 'P' controller (not done but good enough)
 - plant flag but don't replace rock until next game
 - fix autopilot code so it goes in autopilot VC
 - splash missing
