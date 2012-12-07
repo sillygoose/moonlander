@@ -13,8 +13,6 @@ Issues to do list
 =================
 - fix autopilot code so it goes in autopilot VC
 - plant flag but don't replace rock until next game
-- splash missing
-- add small delay to game start
 - switching screens disrupts autopilot lunar walk
 - disable AUTOPILOT control when on surface
 - missing iTunesArtwork@2x (1024x1024)
@@ -26,6 +24,7 @@ Issues to do list
 
 Completed
 =========
+- splash missing
 - rate limit flight controls in autopilot mode
 - complete content for software/hardware/faq/credits/history/controls
 - fix screen sleep
