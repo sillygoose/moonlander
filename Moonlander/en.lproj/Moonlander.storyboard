@@ -315,7 +315,7 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="xF7-jM-Mtf" kind="push" identifier="Flight Controls.htm" id="ZNK-LF-ob9"/>
+                                    <segue destination="xF7-jM-Mtf" kind="push" identifier="Moonlander Flight Controls.htm" id="ZNK-LF-ob9"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="fAr-Om-uPQ" userLabel="FAQ">
@@ -331,7 +331,7 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="1bG-Yx-9C2" kind="push" identifier="FAQ.htm" id="C5U-MX-jjw"/>
+                                    <segue destination="1bG-Yx-9C2" kind="push" identifier="Moonlander FAQ.htm" id="C5U-MX-jjw"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="iZL-7G-cl7" userLabel="Credits">
@@ -347,7 +347,7 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="p0M-gl-NyC" kind="push" identifier="Credits.htm" id="h8M-BI-WsP"/>
+                                    <segue destination="p0M-gl-NyC" kind="push" identifier="Moonlander Credits.htm" id="h8M-BI-WsP"/>
                                 </connections>
                             </button>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Build placeholder" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="E6z-nC-nYr" userLabel="Build">

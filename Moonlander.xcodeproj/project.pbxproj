@@ -66,9 +66,9 @@
 		569CC2AA13809BED00E6D82A /* Moon.plist in Resources */ = {isa = PBXBuildFile; fileRef = 569CC2A913809BED00E6D82A /* Moon.plist */; };
 		569CC2B31380CC3300E6D82A /* Rock.plist in Resources */ = {isa = PBXBuildFile; fileRef = 569CC2B21380CC3300E6D82A /* Rock.plist */; };
 		56A480C3137C6C5500742877 /* LanderPhysicsConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 56A480C2137C6C5500742877 /* LanderPhysicsConstants.m */; };
-		56A71640166E94B10023EADD /* FAQ.htm in Resources */ = {isa = PBXBuildFile; fileRef = 56A7163F166E94B10023EADD /* FAQ.htm */; };
-		56A71642166F12F20023EADD /* Credits.htm in Resources */ = {isa = PBXBuildFile; fileRef = 56A71641166F12F20023EADD /* Credits.htm */; };
-		56A71649166FA1310023EADD /* Flight Controls.htm in Resources */ = {isa = PBXBuildFile; fileRef = 56A71648166FA1310023EADD /* Flight Controls.htm */; };
+		56A71640166E94B10023EADD /* Moonlander FAQ.htm in Resources */ = {isa = PBXBuildFile; fileRef = 56A7163F166E94B10023EADD /* Moonlander FAQ.htm */; };
+		56A71642166F12F20023EADD /* Moonlander Credits.htm in Resources */ = {isa = PBXBuildFile; fileRef = 56A71641166F12F20023EADD /* Moonlander Credits.htm */; };
+		56A71649166FA1310023EADD /* Moonlander Flight Controls.htm in Resources */ = {isa = PBXBuildFile; fileRef = 56A71648166FA1310023EADD /* Moonlander Flight Controls.htm */; };
 		56B4D62D1417D9AF00029FC8 /* Flag.m in Sources */ = {isa = PBXBuildFile; fileRef = 56B4D62C1417D9AF00029FC8 /* Flag.m */; };
 		56BC68641388BDE200403643 /* Labels.plist in Resources */ = {isa = PBXBuildFile; fileRef = 56BC68631388BDE200403643 /* Labels.plist */; };
 		56C94AA913A7A7AE001B7EF9 /* Dust.m in Sources */ = {isa = PBXBuildFile; fileRef = 56C94AA813A7A7AE001B7EF9 /* Dust.m */; };
@@ -245,9 +245,9 @@
 		56A480B3137C5E3D00742877 /* LanderPhysicsDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LanderPhysicsDelegate.h; sourceTree = "<group>"; };
 		56A480C1137C6C5500742877 /* LanderPhysicsConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LanderPhysicsConstants.h; sourceTree = "<group>"; };
 		56A480C2137C6C5500742877 /* LanderPhysicsConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LanderPhysicsConstants.m; sourceTree = "<group>"; };
-		56A7163F166E94B10023EADD /* FAQ.htm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = FAQ.htm; sourceTree = "<group>"; };
-		56A71641166F12F20023EADD /* Credits.htm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = Credits.htm; sourceTree = "<group>"; };
-		56A71648166FA1310023EADD /* Flight Controls.htm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = "Flight Controls.htm"; sourceTree = "<group>"; };
+		56A7163F166E94B10023EADD /* Moonlander FAQ.htm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = "Moonlander FAQ.htm"; sourceTree = "<group>"; };
+		56A71641166F12F20023EADD /* Moonlander Credits.htm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = "Moonlander Credits.htm"; sourceTree = "<group>"; };
+		56A71648166FA1310023EADD /* Moonlander Flight Controls.htm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = "Moonlander Flight Controls.htm"; sourceTree = "<group>"; };
 		56AF86591552160600C45FD1 /* lunar.fcl */ = {isa = PBXFileReference; lastKnownFileType = text; path = lunar.fcl; sourceTree = "<group>"; };
 		56B4D62B1417D9AF00029FC8 /* Flag.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Flag.h; sourceTree = "<group>"; };
 		56B4D62C1417D9AF00029FC8 /* Flag.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Flag.m; sourceTree = "<group>"; };
@@ -544,9 +544,9 @@
 			isa = PBXGroup;
 			children = (
 				56DB83031672997700C243A8 /* Lunar Lander FAQ.htm */,
-				56A71648166FA1310023EADD /* Flight Controls.htm */,
-				56A71641166F12F20023EADD /* Credits.htm */,
-				56A7163F166E94B10023EADD /* FAQ.htm */,
+				56A71648166FA1310023EADD /* Moonlander Flight Controls.htm */,
+				56A71641166F12F20023EADD /* Moonlander Credits.htm */,
+				56A7163F166E94B10023EADD /* Moonlander FAQ.htm */,
 				56903D28154EDCC300DE54BD /* Moonlander Source Code.htm */,
 			);
 			path = html;
@@ -1036,9 +1036,9 @@
 				56EF5137154E59A3001E7B77 /* Default-Landscape~ipad.png in Resources */,
 				56EF5138154E59AC001E7B77 /* Default-Landscape@2x~ipad.png in Resources */,
 				56903D29154EDCC300DE54BD /* Moonlander Source Code.htm in Resources */,
-				56A71640166E94B10023EADD /* FAQ.htm in Resources */,
-				56A71642166F12F20023EADD /* Credits.htm in Resources */,
-				56A71649166FA1310023EADD /* Flight Controls.htm in Resources */,
+				56A71640166E94B10023EADD /* Moonlander FAQ.htm in Resources */,
+				56A71642166F12F20023EADD /* Moonlander Credits.htm in Resources */,
+				56A71649166FA1310023EADD /* Moonlander Flight Controls.htm in Resources */,
 				56DFB15B166FC9090076F4DC /* RotateControl.png in Resources */,
 				56DFB15C166FC9090076F4DC /* Instruments.png in Resources */,
 				56DFB15D166FC9090076F4DC /* Lander.png in Resources */,
