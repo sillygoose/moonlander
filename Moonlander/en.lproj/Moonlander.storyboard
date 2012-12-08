@@ -52,6 +52,77 @@
             </objects>
             <point key="canvasLocation" x="558" y="2489"/>
         </scene>
+        <!--Lunar Lander Menu VC-->
+        <scene sceneID="Hkn-h4-nwh">
+            <objects>
+                <viewController storyboardIdentifier="Lunar Lander Menu" title="Lunar Lander Menu" wantsFullScreenLayout="YES" id="Tjz-Ah-CSq" userLabel="Lunar Lander Menu VC" customClass="LunarLanderMenuViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="2m3-qb-6Af">
+                        <rect key="frame" x="0.0" y="20" width="1024" height="748"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="paper.png" id="Kde-AV-6k1">
+                                <rect key="frame" x="-70" y="-65" width="1124" height="848"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Q1d-9N-0b1" userLabel="FAQ">
+                                <rect key="frame" x="599" y="247" width="400" height="60"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="48"/>
+                                <state key="normal" title="FAQ">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="PDp-9n-CHW" kind="push" identifier="FAQ.htm" id="kYc-ab-gzV"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Rb4-bd-yvg" userLabel="Play">
+                                <rect key="frame" x="289" y="111" width="710" height="60"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="48"/>
+                                <state key="normal" title="Lunar Lander">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="bdA-dI-yp9" kind="push" id="V9j-eu-i6S"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="J9k-ZH-AwS" userLabel="FlightControls">
+                                <rect key="frame" x="599" y="179" width="400" height="60"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="48"/>
+                                <state key="normal" title="Controls">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="X4w-r2-gEq" kind="push" identifier="Flight Controls.htm" id="0dT-OO-Jo6"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="OCS-hc-bhA"/>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="blackTranslucent" prompted="NO"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="5dg-C3-jKN" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="558" y="-311"/>
+        </scene>
         <!--Flight Controls-->
         <scene sceneID="lt9-O1-TfR">
             <objects>
@@ -108,7 +179,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bvq-Ng-3LZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="558" y="1528"/>
+            <point key="canvasLocation" x="558" y="1562"/>
         </scene>
         <!--HREF-->
         <scene sceneID="ftf-m4-uAv">
@@ -134,7 +205,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tNT-bg-YGd" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2151" y="1522"/>
+            <point key="canvasLocation" x="2078" y="1562"/>
         </scene>
         <!--Splash View Controller - Splash-->
         <scene sceneID="q71-Lg-nUB">
@@ -207,20 +278,20 @@
             </objects>
             <point key="canvasLocation" x="-716" y="-1211"/>
         </scene>
-        <!--Menu View Controller - Menu-->
+        <!--MoonlanderMenuVC-->
         <scene sceneID="YMf-cD-nJb">
             <objects>
-                <viewController storyboardIdentifier="MenuVC" autoresizesArchivedViewToFullSize="NO" title="Menu" id="6C4-ba-SyT" customClass="MenuViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MoonlanderMenuVC" autoresizesArchivedViewToFullSize="NO" title="Moonlander Menu" id="6C4-ba-SyT" userLabel="MoonlanderMenuVC" customClass="MoonlanderMenuViewController" sceneMemberID="viewController">
                     <view key="view" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="8uC-Aj-fss">
                         <rect key="frame" x="0.0" y="20" width="1024" height="748"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Cne-ZE-E0a" userLabel="Play">
-                                <rect key="frame" x="294" y="113" width="710" height="60"/>
+                                <rect key="frame" x="294" y="169" width="710" height="60"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="48"/>
-                                <state key="normal" title="Play Game">
+                                <state key="normal" title="Moonlander">
                                     <color key="titleColor" red="0.0" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -232,7 +303,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="QD4-7c-czr" userLabel="FlightControls">
-                                <rect key="frame" x="604" y="181" width="400" height="60"/>
+                                <rect key="frame" x="604" y="237" width="400" height="60"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="48"/>
@@ -248,7 +319,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="fAr-Om-uPQ" userLabel="FAQ">
-                                <rect key="frame" x="604" y="249" width="400" height="60"/>
+                                <rect key="frame" x="604" y="305" width="400" height="60"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="48"/>
@@ -264,7 +335,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="iZL-7G-cl7" userLabel="Credits">
-                                <rect key="frame" x="604" y="317" width="400" height="60"/>
+                                <rect key="frame" x="604" y="373" width="400" height="60"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="48"/>
@@ -287,11 +358,11 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="qxj-QQ-fmm" userLabel="FAQ">
-                                <rect key="frame" x="604" y="385" width="400" height="60"/>
+                                <rect key="frame" x="604" y="101" width="400" height="60"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="48"/>
-                                <state key="normal" title="Bonus">
+                                <state key="normal" title="Bonus Content">
                                     <color key="titleColor" red="0.0" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -299,7 +370,7 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="bdA-dI-yp9" kind="push" id="b3P-22-h7j"/>
+                                    <segue destination="Tjz-Ah-CSq" kind="push" id="z7M-FF-2qY"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -337,7 +408,7 @@
             <objects>
                 <viewController storyboardIdentifier="TeletypeVC" title="Teletype" wantsFullScreenLayout="YES" id="bdA-dI-yp9" userLabel="TeletypeGame" customClass="TeletypeViewController" sceneMemberID="viewController">
                     <view key="view" clipsSubviews="YES" contentMode="scaleToFill" id="7Ui-nz-ix9">
-                        <rect key="frame" x="0.0" y="20" width="1024" height="748"/>
+                        <rect key="frame" x="0.0" y="94" width="1024" height="674"/>
                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <view clipsSubviews="YES" contentMode="scaleToFill" id="dqS-wD-goD" userLabel="Debugger" customClass="DebugManager">
@@ -414,27 +485,27 @@
                                 </connections>
                             </view>
                             <view clipsSubviews="YES" tag="1" contentMode="scaleToFill" id="j6T-sw-vSm" customClass="Teletype">
-                                <rect key="frame" x="0.0" y="50" width="1024" height="698"/>
+                                <rect key="frame" x="0.0" y="50" width="1024" height="624"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" image="paper.png" id="6ql-HP-7dS">
-                                        <rect key="frame" x="0.0" y="0.0" width="1024" height="698"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="1024" height="624"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     </imageView>
                                     <view clipsSubviews="YES" contentMode="scaleToFill" id="cQ7-rN-VWJ" customClass="TeletypePrinter">
-                                        <rect key="frame" x="0.0" y="0.0" width="1024" height="574"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="1024" height="500"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                         <subviews>
                                             <scrollView clipsSubviews="YES" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" delaysContentTouches="NO" canCancelContentTouches="NO" bouncesZoom="NO" id="S8Y-3c-7Wz" customClass="TeletypeOutputBackground">
-                                                <rect key="frame" x="0.0" y="0.0" width="1024" height="574"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="1024" height="500"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             </scrollView>
                                             <scrollView opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" bounces="NO" bouncesZoom="NO" id="LFz-yp-JRU" customClass="TeletypePaper">
-                                                <rect key="frame" x="0.0" y="0.0" width="1024" height="574"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="1024" height="500"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 <subviews>
                                                     <view opaque="NO" clipsSubviews="YES" contentMode="redraw" id="Brx-Qf-pzR" customClass="TeletypePrintOutput">
-                                                        <rect key="frame" x="0.0" y="0.0" width="1024" height="574"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="1024" height="500"/>
                                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                         <connections>
@@ -455,7 +526,7 @@
                                         </connections>
                                     </view>
                                     <view contentMode="scaleToFill" id="FaB-Ij-cse" customClass="TeletypeKeyboard">
-                                        <rect key="frame" x="0.0" y="574" width="1024" height="124"/>
+                                        <rect key="frame" x="0.0" y="500" width="1024" height="124"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="lgH-U8-dbC">
@@ -704,6 +775,7 @@ OUT</string>
                         <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     </view>
                     <navigationItem key="navigationItem" id="AIz-LN-i3r"/>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics"/>
                     <connections>
                         <outlet property="debugger" destination="dqS-wD-goD" id="DE1-gI-B6J"/>
                         <outlet property="teletype" destination="j6T-sw-vSm" id="3ba-xn-JXn"/>
@@ -711,7 +783,59 @@ OUT</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="978-o1-mlT" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="558" y="-311"/>
+            <point key="canvasLocation" x="2078" y="-1211"/>
+        </scene>
+        <!--Lunar Lander Flight Controls-->
+        <scene sceneID="pMf-7R-E3v">
+            <objects>
+                <viewController storyboardIdentifier="Lunar Lander Controls" title="Lunar Lander Controls" id="X4w-r2-gEq" userLabel="Lunar Lander Flight Controls" customClass="DocumentViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="uC8-2i-WBB">
+                        <rect key="frame" x="0.0" y="20" width="1024" height="748"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <webView contentMode="scaleToFill" id="0aF-dR-cqr">
+                                <rect key="frame" x="0.0" y="0.0" width="1024" height="748"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            </webView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="qdC-Pa-hOW"/>
+                    <connections>
+                        <outlet property="_documentContent" destination="0aF-dR-cqr" id="9x0-Uf-kUB"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="rrc-Sz-yqU" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2078" y="-311"/>
+        </scene>
+        <!--Lunar Lander FAQ-->
+        <scene sceneID="xQT-qF-NRl">
+            <objects>
+                <viewController storyboardIdentifier="Lunar Lander FAQ" title="Lunar Lander FAQ" id="PDp-9n-CHW" userLabel="Lunar Lander FAQ" customClass="DocumentViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="aL2-By-dvW">
+                        <rect key="frame" x="0.0" y="20" width="1024" height="748"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <webView contentMode="scaleToFill" id="7pH-zP-sLk">
+                                <rect key="frame" x="0.0" y="0.0" width="1024" height="748"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <dataDetectorType key="dataDetectorTypes"/>
+                            </webView>
+                        </subviews>
+                        <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="6cW-pq-pZ1"/>
+                    <connections>
+                        <outlet property="_documentContent" destination="7pH-zP-sLk" id="mEa-ZW-iQg"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="bfH-Kc-202" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2078" y="653"/>
         </scene>
     </scenes>
     <resources>
@@ -723,132 +847,6 @@ OUT</string>
         <image name="volume-high.png" width="29" height="29"/>
         <image name="volume-low.png" width="29" height="29"/>
     </resources>
-    <classes>
-        <class className="AutoPilotViewController" superclassName="LanderViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/AutoPilotViewController.h"/>
-        </class>
-        <class className="Console" superclassName="UIScrollView">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/Console.h"/>
-        </class>
-        <class className="Controls" superclassName="UIView">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/Controls.h"/>
-            <relationships>
-                <relationship kind="action" name="teletypeAudioVolumeChange"/>
-                <relationship kind="action" name="teletypeAudioVolumeUpdated"/>
-                <relationship kind="action" name="traceEnabledUpdated:"/>
-                <relationship kind="action" name="traceStepIntervalChange:"/>
-                <relationship kind="action" name="traceStepIntervalUpdated:"/>
-                <relationship kind="outlet" name="_stepEnabled" candidateClass="UISwitch"/>
-                <relationship kind="outlet" name="_stepInterval" candidateClass="UISlider"/>
-                <relationship kind="outlet" name="_teletypeVolume" candidateClass="UISlider"/>
-                <relationship kind="outlet" name="stepEnabled" candidateClass="UISwitch"/>
-                <relationship kind="outlet" name="stepInterval" candidateClass="UISlider"/>
-                <relationship kind="outlet" name="teletypeVolume" candidateClass="UISlider"/>
-            </relationships>
-        </class>
-        <class className="DebugManager" superclassName="UIView">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/DebugManager.h"/>
-            <relationships>
-                <relationship kind="outlet" name="debugConsole" candidateClass="Console"/>
-                <relationship kind="outlet" name="debugControls" candidateClass="Controls"/>
-            </relationships>
-        </class>
-        <class className="DocumentViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/DocumentViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="_documentContent" candidateClass="UIWebView"/>
-            </relationships>
-        </class>
-        <class className="Instrument" superclassName="VGButton">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/Instrument.h"/>
-        </class>
-        <class className="LanderViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/LanderViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="instrumentSelected:" candidateClass="Instrument"/>
-                <relationship kind="action" name="rotateLander:"/>
-                <relationship kind="action" name="telemetrySelected:" candidateClass="Telemetry"/>
-                <relationship kind="action" name="thrusterChanged:" candidateClass="VGSlider"/>
-            </relationships>
-        </class>
-        <class className="MenuViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/MenuViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="bonusContent" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="buildInfo" candidateClass="UILabel"/>
-            </relationships>
-        </class>
-        <class className="NavigationController" superclassName="UINavigationController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/NavigationController.h"/>
-        </class>
-        <class className="SplashViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/SplashViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="firstPart" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="moonLander" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="secondfPart" candidateClass="UILabel"/>
-            </relationships>
-        </class>
-        <class className="Telemetry" superclassName="VGButton">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/Telemetry.h"/>
-        </class>
-        <class className="Teletype" superclassName="UIView">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/Teletype.h"/>
-            <relationships>
-                <relationship kind="outlet" name="keyboard" candidateClass="TeletypeKeyboard"/>
-                <relationship kind="outlet" name="printer" candidateClass="TeletypePrinter"/>
-            </relationships>
-        </class>
-        <class className="TeletypeKeyboard" superclassName="UIView">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/TeletypeKeyboard.h"/>
-            <relationships>
-                <relationship kind="action" name="keyboardNumeric:"/>
-                <relationship kind="action" name="keyboardQuit:"/>
-                <relationship kind="action" name="keyboardReturn:"/>
-                <relationship kind="action" name="keyboardRubout:"/>
-                <relationship kind="action" name="keyboardYesNo:"/>
-            </relationships>
-        </class>
-        <class className="TeletypeOutputBackground" superclassName="UIScrollView">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/TeletypeOutputBackground.h"/>
-        </class>
-        <class className="TeletypePaper" superclassName="UIScrollView">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/TeletypePaper.h"/>
-            <relationships>
-                <relationship kind="outlet" name="printerOutput" candidateClass="TeletypePrintOutput"/>
-            </relationships>
-        </class>
-        <class className="TeletypePrintOutput" superclassName="UIView">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/TeletypePrintOutput.h"/>
-            <relationships>
-                <relationship kind="outlet" name="delegate"/>
-            </relationships>
-        </class>
-        <class className="TeletypePrinter" superclassName="UIView">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/TeletypePrinter.h"/>
-            <relationships>
-                <relationship kind="outlet" name="backgroundScrollView" candidateClass="TeletypeOutputBackground"/>
-                <relationship kind="outlet" name="scrollView" candidateClass="TeletypePaper"/>
-            </relationships>
-        </class>
-        <class className="TeletypeViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/TeletypeViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="debugger" candidateClass="DebugManager"/>
-                <relationship kind="outlet" name="teletype" candidateClass="Teletype"/>
-            </relationships>
-        </class>
-        <class className="VGButton" superclassName="UIControl">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/VGButton.h"/>
-            <relationships>
-                <relationship kind="action" name="buttonDown:"/>
-                <relationship kind="action" name="buttonUp:"/>
-            </relationships>
-        </class>
-        <class className="VGSlider" superclassName="UIControl">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/VGSlider.h"/>
-        </class>
-    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar" statusBarStyle="blackTranslucent"/>
         <simulatedOrientationMetrics key="orientation" orientation="landscapeRight"/>

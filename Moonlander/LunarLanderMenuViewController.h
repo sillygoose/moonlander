@@ -1,5 +1,5 @@
 //
-//  MenuViewController.h
+//  LunarLanderMenuViewController.h
 //  Moonlander
 //
 //  Created by Rick Naro on 4/29/12.
@@ -8,8 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
+#import "MenuViewController.h"
 
-@interface MenuViewController : UIViewController
+
+@interface LunarLanderMenuViewController : MenuViewController
 {
 }
 

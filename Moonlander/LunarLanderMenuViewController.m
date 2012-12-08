@@ -1,33 +1,20 @@
 //
-//  MenuViewController.m
+//  LunarLanderMenuViewController.m
 //  Moonlander
 //
 //  Created by Rick Naro on 4/29/12.
 //  Copyright (c) 2012 Paradigm Systemse. All rights reserved.
 //
 
-#import "MenuViewController.h"
+#import "LunarLanderMenuViewController.h"
 #import "DocumentViewController.h"
 
 
-@interface MenuViewController ()
+@interface LunarLanderMenuViewController ()
 
 @end
 
-@implementation MenuViewController
-
-
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    // If the destination view is the name pass the segue name as the content to display
-    if ([segue.destinationViewController isKindOfClass:[DocumentViewController class]]) {
-        NSURL *url = [NSURL fileURLWithPath:segue.identifier];
-        NSURL *urlSansExtension = [url URLByDeletingPathExtension];
-        DocumentViewController *dvc = segue.destinationViewController;
-        dvc.documentType = [url pathExtension];
-        dvc.documentName = [urlSansExtension relativePath];
-    }
-}
+@implementation LunarLanderMenuViewController
 
 
 #pragma -
@@ -46,6 +33,10 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    
+    // Show the navagation bar in this view so we can get back
+    self.navigationController.navigationBar.barStyle = UIBarStyleBlack;
+    [[self navigationController] setNavigationBarHidden:NO animated:NO];
 }
 
 - (void)viewDidAppear:(BOOL)animated

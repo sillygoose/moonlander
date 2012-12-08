@@ -67,9 +67,6 @@
 {
     self = [super initWithCoder:aDecoder];
     if (self) {
-        // Sign up to get changes in debug controls
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(debugTraceSwitchChange:) name:@"debugTraceSwitchChange" object:nil];
-        
         // Enable autopilot mode
         //self.autopilotEnabled = YES;
     }
@@ -80,15 +77,18 @@
 {
     // Load the other views
     [super viewDidLoad];
-
-    // Create queue to run the loop so not to block the main queue
-    self.loopQueue = dispatch_queue_create("com.devtools.teletype.queue", NULL);
 }
 
 - (void)viewWillAppear:(BOOL)animated 
 {
     [super viewWillAppear:animated];
     
+    // Sign up to get changes in debug controls
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(debugTraceSwitchChange:) name:@"debugTraceSwitchChange" object:nil];
+
+    // Create queue to run the loop so not to block the main queue
+    self.loopQueue = dispatch_queue_create("com.devtools.teletype.queue", NULL);
+
     // Dim the background in autopilot mode
     if (self.autopilotEnabled) {
         self.view.alpha = 0.25;
@@ -119,6 +119,27 @@
     // Now create a dispatch event to make the view visible
     dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, 1 * NSEC_PER_SEC);
     dispatch_after(popTime, self.loopQueue, ^{[self lunarLander];});
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    //###
+    
+    // Release notifications
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+    
+    // Release the dispatch queue
+    dispatch_release(self.loopQueue);
+    
+    // Release the class objects
+    self.teletype = nil;
+    self.debugger = nil;
+}
+
+- (void)viewDidDisappear:(BOOL)animated
+{
+    [super viewDidDisappear:animated];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation

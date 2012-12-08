@@ -106,6 +106,8 @@
 		56DB82FB1672683700C243A8 /* GameOptions.plist in Resources */ = {isa = PBXBuildFile; fileRef = 56DB82FA1672683700C243A8 /* GameOptions.plist */; };
 		56DB830116728A2100C243A8 /* SourceCode.plist in Resources */ = {isa = PBXBuildFile; fileRef = 56DB830016728A2100C243A8 /* SourceCode.plist */; };
 		56DB83041672997700C243A8 /* Lunar Lander FAQ.htm in Resources */ = {isa = PBXBuildFile; fileRef = 56DB83031672997700C243A8 /* Lunar Lander FAQ.htm */; };
+		56DB830B1672B64C00C243A8 /* MoonlanderMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 56DB830A1672B64C00C243A8 /* MoonlanderMenuViewController.m */; };
+		56DB83121672B97400C243A8 /* LunarLanderMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 56DB83111672B97400C243A8 /* LunarLanderMenuViewController.m */; };
 		56DFB15B166FC9090076F4DC /* RotateControl.png in Resources */ = {isa = PBXBuildFile; fileRef = 56DFB157166FC9090076F4DC /* RotateControl.png */; };
 		56DFB15C166FC9090076F4DC /* Instruments.png in Resources */ = {isa = PBXBuildFile; fileRef = 56DFB158166FC9090076F4DC /* Instruments.png */; };
 		56DFB15D166FC9090076F4DC /* Lander.png in Resources */ = {isa = PBXBuildFile; fileRef = 56DFB159166FC9090076F4DC /* Lander.png */; };
@@ -303,6 +305,10 @@
 		56DB82FA1672683700C243A8 /* GameOptions.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = GameOptions.plist; sourceTree = "<group>"; };
 		56DB830016728A2100C243A8 /* SourceCode.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = SourceCode.plist; sourceTree = "<group>"; };
 		56DB83031672997700C243A8 /* Lunar Lander FAQ.htm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = "Lunar Lander FAQ.htm"; sourceTree = "<group>"; };
+		56DB83091672B64C00C243A8 /* MoonlanderMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MoonlanderMenuViewController.h; sourceTree = "<group>"; };
+		56DB830A1672B64C00C243A8 /* MoonlanderMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MoonlanderMenuViewController.m; sourceTree = "<group>"; };
+		56DB83101672B97400C243A8 /* LunarLanderMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LunarLanderMenuViewController.h; sourceTree = "<group>"; };
+		56DB83111672B97400C243A8 /* LunarLanderMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LunarLanderMenuViewController.m; sourceTree = "<group>"; };
 		56DFB157166FC9090076F4DC /* RotateControl.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = RotateControl.png; sourceTree = "<group>"; };
 		56DFB158166FC9090076F4DC /* Instruments.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Instruments.png; sourceTree = "<group>"; };
 		56DFB159166FC9090076F4DC /* Lander.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Lander.png; sourceTree = "<group>"; };
@@ -437,6 +443,10 @@
 				564FF2461555C260007F5AB5 /* SplashViewController.m */,
 				562D6245154DAD1900BD4EDD /* MenuViewController.h */,
 				562D6246154DAD1900BD4EDD /* MenuViewController.m */,
+				56DB83091672B64C00C243A8 /* MoonlanderMenuViewController.h */,
+				56DB830A1672B64C00C243A8 /* MoonlanderMenuViewController.m */,
+				56DB83101672B97400C243A8 /* LunarLanderMenuViewController.h */,
+				56DB83111672B97400C243A8 /* LunarLanderMenuViewController.m */,
 				560FA1341379BEAA0017EE25 /* LanderViewController.h */,
 				560FA1351379BEAA0017EE25 /* LanderViewController.m */,
 				564FF2511556228A007F5AB5 /* ModernLanderViewController.h */,
@@ -1122,6 +1132,8 @@
 				56DB82C216724C2300C243A8 /* Console.m in Sources */,
 				56DB82C316724C2300C243A8 /* Controls.m in Sources */,
 				56DB82C416724C2300C243A8 /* DebugManager.m in Sources */,
+				56DB830B1672B64C00C243A8 /* MoonlanderMenuViewController.m in Sources */,
+				56DB83121672B97400C243A8 /* LunarLanderMenuViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
