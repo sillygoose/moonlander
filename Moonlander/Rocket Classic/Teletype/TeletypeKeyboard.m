@@ -18,7 +18,6 @@
 - (IBAction)keyboardYesNo:(id)sender;
 - (IBAction)keyboardRubout:(id)sender;
 - (IBAction)keyboardReturn:(id)sender;
-- (IBAction)keyboardQuit:(id)sender;
 
 @end
 
@@ -40,7 +39,7 @@
         self.doFlushPrintQueue = NO;
         
         // Notification setup
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(flushInputQueueReceived:) name:@"flushPrintQueues" object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(flushKeyboardEvent:) name:@"ttyQuit" object:nil];
     }
     return self;
 }
@@ -59,10 +58,10 @@
 #pragma mark -
 #pragma mark Notifications
 
-- (void)flushInputQueueReceived:(NSNotification *)notification
+- (void)flushKeyboardEvent:(NSNotification *)notification
 {
     self.doFlushPrintQueue = YES;
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
+//    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 
@@ -72,11 +71,6 @@
 - (IBAction)keyboardReturn:(id)sender
 {
     self.keyCode = K_RETURN;
-}
-
-- (IBAction)keyboardQuit:(id)sender
-{
-    self.keyCode = K_QUIT;
 }
 
 - (IBAction)keyboardRubout:(id)sender

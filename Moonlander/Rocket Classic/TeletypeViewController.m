@@ -89,6 +89,9 @@
     
     // Sign up to get changes in debug controls
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(debugTraceSwitchChange:) name:@"debugTraceSwitchChange" object:nil];
+    
+    // Notification setup
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(userQuitEvent:) name:@"ttyQuit" object:nil];
 
     // Create queue to run the loop so not to block the main queue
     self.loopQueue = dispatch_queue_create("com.devtools.teletype.queue", NULL);
@@ -109,7 +112,7 @@
     [self updateViewFrameForOrientation:self.interfaceOrientation withDuration:0];
 }
 
-- (void)viewDidAppear:(BOOL)animated 
+- (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
     
@@ -131,11 +134,6 @@
     
     NSLog(@"TeletypeViewController::viewWillDisappear");
 
-    // Mark the block as being killed
-    self.traceEnabled = NO;
-    self.killBlock = YES;
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"flushPrintQueues" object:[NSNumber numberWithFloat:2.0]];
-    
     // Release notifications
     [[NSNotificationCenter defaultCenter] removeObserver:self];
     
@@ -168,11 +166,6 @@
 {
     NSLog(@"TeletypeViewController::dealloc");
     
-    // Mark the block as being killed
-    self.traceEnabled = NO;
-    self.killBlock = YES;
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"flushPrintQueues" object:[NSNumber numberWithFloat:2.0]];
-
     // Release notifications
     [[NSNotificationCenter defaultCenter] removeObserver:self];
   
@@ -192,6 +185,13 @@
 
 #pragma mark -
 #pragma mark Notifications
+
+- (void)userQuitEvent:(NSNotification *)notification
+{
+    self.killBlock = YES;
+    //    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
 
 - (void)debugTraceSwitchChange:(NSNotification *)notification
 {
@@ -217,18 +217,18 @@
     if (self.traceEnabled) {
         debuggerFrame = CGRectMake(0, 0, 1024, 300);
         debuggerControls = CGRectMake(0, 0, 1024, 50);
-        debuggerConsole = CGRectMake(0, 50, 1024, 150);
-        teletypeFrame = CGRectMake(0, 200, 1024, 518);
+        debuggerConsole = CGRectMake(0, 50, 1024, 250);
+        teletypeFrame = CGRectMake(0, 300, 1024, 468);
         printerFrame = CGRectMake(0, 0, 1024, 344);
-        keyboardFrame = CGRectMake(0, 394, 1024, 124);
+        keyboardFrame = CGRectMake(0, 344, 1024, 124);
     }
     else {
         debuggerFrame = CGRectMake(0, 0, 1024, 50);
         debuggerControls = CGRectMake(0, 0, 1024, 50);
         debuggerConsole = CGRectMake(0, 50, 1024, 0);
-        teletypeFrame = CGRectMake(0, 50, 1024, 668);
-        printerFrame = CGRectMake(0, 0, 1024, 544);
-        keyboardFrame = CGRectMake(0, 544, 1024, 124);
+        teletypeFrame = CGRectMake(0, 50, 1024, 718);
+        printerFrame = CGRectMake(0, 0, 1024, 594);
+        keyboardFrame = CGRectMake(0, 594, 1024, 124);
     }
     
     // Save control state and disable during animations
@@ -488,7 +488,10 @@ _01_50:
 _02_10:
     // Check if we have been killed
     if (self.killBlock)   {
-        NSLog(@"KILLED!");
+        dispatch_sync(dispatch_get_main_queue(), ^{
+            [self.navigationController popViewControllerAnimated:YES];
+        });
+        NSLog(@"QUIT!");
         return;
     }
     
@@ -526,7 +529,10 @@ _02_10:
         NSString *stringK = [self ask];
         // Check if we have been killed
         if (self.killBlock)   {
-            NSLog(@"KILLED!");
+            dispatch_sync(dispatch_get_main_queue(), ^{
+                [self.navigationController popViewControllerAnimated:YES];
+            });
+            NSLog(@"QUIT!");
             return;
         }
 
@@ -603,7 +609,10 @@ _02_73:
     {
         // Check if we have been killed
         if (self.killBlock)   {
-            NSLog(@"KILLED!");
+            dispatch_sync(dispatch_get_main_queue(), ^{
+                [self.navigationController popViewControllerAnimated:YES];
+            });
+            NSLog(@"QUIT!");
             return;
         }
         [self.debugger step:@"02.73.01"];
@@ -613,7 +622,10 @@ _02_73:
         NSString *stringK = [self ask];
         // Check if we have been killed
         if (self.killBlock)   {
-            NSLog(@"KILLED!");
+            dispatch_sync(dispatch_get_main_queue(), ^{
+                [self.navigationController popViewControllerAnimated:YES];
+            });
+            NSLog(@"QUIT!");
             return;
         }
         
@@ -913,7 +925,10 @@ _05_92:
         NSString *stringP = [self ask];
         // Check if we have been killed
         if (self.killBlock)   {
-            NSLog(@"KILLED!");
+            dispatch_sync(dispatch_get_main_queue(), ^{
+                [self.navigationController popViewControllerAnimated:YES];
+            });
+            NSLog(@"QUIT!");
             return;
         }
 

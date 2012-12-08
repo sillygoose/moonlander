@@ -10,6 +10,9 @@
 
 
 @interface Teletype ()
+
+- (IBAction)keyboardQuit:(id)sender;
+
 @end
 
 
@@ -33,6 +36,16 @@
 {
     // Prevent this so the copy/paste doesn't work
     return NO;
+}
+
+
+#pragma mark -
+#pragma mark Teletype control
+
+- (IBAction)keyboardQuit:(id)sender
+{
+    // Send a notifcsation to shut down
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"ttyQuit" object:nil];
 }
 
 
