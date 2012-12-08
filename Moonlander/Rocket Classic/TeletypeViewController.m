@@ -1,6 +1,6 @@
 //
 //  ROCKETViewController.m
-//  ROCKET Classic
+//  Moonlqander
 //
 //  Created by Rick Naro on 5/10/12.
 //  Copyright (c) 2012 Paradigm Systems. All rights reserved.
@@ -15,6 +15,7 @@
 
 @property (nonatomic) BOOL traceEnabled;
 
+@property (nonatomic) BOOL killBlock;
 @property (nonatomic) BOOL onSurface;
 @property (nonatomic) BOOL autopilotEnabled;
 
@@ -39,7 +40,7 @@
 @implementation TeletypeViewController
 
 @synthesize teletype, debugger;
-@synthesize traceEnabled, onSurface, autopilotEnabled;
+@synthesize traceEnabled, killBlock, onSurface, autopilotEnabled;
 
 @synthesize loopQueue;
 
@@ -117,7 +118,7 @@
     }
     
     // Now create a dispatch event to make the view visible
-    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, 1 * NSEC_PER_SEC);
+    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, 0.5 * NSEC_PER_SEC);
     dispatch_after(popTime, self.loopQueue, ^{[self lunarLander];});
 }
 
@@ -129,12 +130,16 @@
     // Release notifications
     [[NSNotificationCenter defaultCenter] removeObserver:self];
     
+    // Mark the block as being killed
+    self.traceEnabled = NO;
+    self.killBlock = YES;
+    
     // Release the dispatch queue
-    dispatch_release(self.loopQueue);
+//    dispatch_release(self.loopQueue);
     
     // Release the class objects
-    self.teletype = nil;
-    self.debugger = nil;
+//    self.teletype = nil;
+//    self.debugger = nil;
 }
 
 - (void)viewDidDisappear:(BOOL)animated
@@ -188,90 +193,67 @@
 
 - (void)updateViewFrameForOrientation:(UIInterfaceOrientation)newInterfaceOrientation withDuration:(float)duration
 {
-    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
-        BOOL landscapeOrientation = (newInterfaceOrientation == UIInterfaceOrientationLandscapeLeft || newInterfaceOrientation == UIInterfaceOrientationLandscapeRight);
+    CGRect debuggerFrame, debuggerControls, debuggerConsole, teletypeFrame, printerFrame, keyboardFrame;
+    if (self.traceEnabled) {
+        debuggerFrame = CGRectMake(0, 0, 1024, 300);
+        debuggerControls = CGRectMake(0, 0, 1024, 50);
+        debuggerConsole = CGRectMake(0, 50, 1024, 150);
+        teletypeFrame = CGRectMake(0, 200, 1024, 518);
+        printerFrame = CGRectMake(0, 0, 1024, 344);
+        keyboardFrame = CGRectMake(0, 394, 1024, 124);
+    }
+    else {
+        debuggerFrame = CGRectMake(0, 0, 1024, 50);
+        debuggerControls = CGRectMake(0, 0, 1024, 50);
+        debuggerConsole = CGRectMake(0, 50, 1024, 0);
+        teletypeFrame = CGRectMake(0, 50, 1024, 668);
+        printerFrame = CGRectMake(0, 0, 1024, 544);
+        keyboardFrame = CGRectMake(0, 544, 1024, 124);
+    }
+    
+    // Save control state and disable during animations
+    BOOL traceControlsState = self.debugger.userInteractionEnabled;
+    self.debugger.userInteractionEnabled = NO;
+    
+    // Reset content sizes
+    self.debugger.debugConsole.contentSize = CGSizeZero;
+    self.teletype.printer.scrollView.contentSize = CGSizeZero;
+    
+    // View animation blocks
+    void (^completionBlock)(BOOL) = ^(BOOL f) {
+        self.debugger.frame = debuggerFrame;
+        self.debugger.debugControls.frame = debuggerControls;
+        self.debugger.debugConsole.frame = debuggerConsole;
+        self.debugger.userInteractionEnabled = traceControlsState;
         
-        CGRect debuggerFrame, debuggerControls, debuggerConsole, teletypeFrame, printerFrame, keyboardFrame;
-        if (self.traceEnabled) {
-            if (landscapeOrientation) {
-                debuggerFrame = CGRectMake(0, 0, 1024, 300);
-                debuggerControls = CGRectMake(0, 0, 1024, 50);
-                debuggerConsole = CGRectMake(0, 50, 1024, 250);
-                teletypeFrame = CGRectMake(0, 300, 1024, 468);
-                printerFrame = CGRectMake(0, 0, 1024, 344);
-                keyboardFrame = CGRectMake(0, 344, 1024, 124);
-            }
-            else {
-                debuggerFrame = CGRectMake(0, 0, 768, 400);
-                debuggerControls = CGRectMake(0, 0, 768, 50);
-                debuggerConsole = CGRectMake(0, 50, 768, 350);
-                teletypeFrame = CGRectMake(0, 400, 768, 624);
-                printerFrame = CGRectMake(0, 0, 768, 500);
-                keyboardFrame = CGRectMake(0, 500, 768, 124);
-            }
-        }
-        else {
-            if (landscapeOrientation) {
-                debuggerFrame = CGRectMake(0, 0, 1024, 50);
-                debuggerControls = CGRectMake(0, 0, 1024, 50);
-                debuggerConsole = CGRectMake(0, 50, 1024, 0);
-                teletypeFrame = CGRectMake(0, 50, 1024, 718);
-                printerFrame = CGRectMake(0, 0, 1024, 594);
-                keyboardFrame = CGRectMake(0, 594, 1024, 124);
-            }
-            else {
-                debuggerFrame = CGRectMake(0, 0, 768, 50);
-                debuggerControls = CGRectMake(0, 0, 768, 50);
-                debuggerConsole = CGRectMake(0, 50, 768, 0);
-                teletypeFrame = CGRectMake(0, 50, 768, 974);
-                printerFrame = CGRectMake(0, 0, 768, 850);
-                keyboardFrame = CGRectMake(0, 850, 768, 124);
-            }
-        }
+        // Resets content offset and size
+        [self.teletype printBuffer:[self.teletype printBuffer]];
+    };
+    void (^teletypeBlock)(void) = ^{
+        self.teletype.frame = teletypeFrame;
+        self.teletype.printer.frame = printerFrame;
+        self.teletype.keyboard.frame = keyboardFrame;
+    };
+    
+    // Animation option selection
+    UIViewAnimationOptions curlDown = UIViewAnimationCurveLinear | UIViewAnimationOptionTransitionCurlDown;
+    UIViewAnimationOptions curlUp = UIViewAnimationCurveLinear | UIViewAnimationOptionTransitionCurlUp;
+    
+    // Animate the trace view open/close
+    if (self.traceEnabled) {
+        // Update the view frames for the debugger
+        self.debugger.frame = debuggerFrame;
+        self.debugger.debugControls.frame = debuggerControls;
+        self.debugger.debugConsole.frame = debuggerConsole;
         
-        // Save control state and disable during animations
-        BOOL traceControlsState = self.debugger.userInteractionEnabled;
-        self.debugger.userInteractionEnabled = NO;
-        
-        // Reset content sizes
-        self.debugger.debugConsole.contentSize = CGSizeZero;
-        self.teletype.printer.scrollView.contentSize = CGSizeZero;
-        
-        // View animation blocks
-        void (^completionBlock)(BOOL) = ^(BOOL f) {
-            self.debugger.frame = debuggerFrame;
-            self.debugger.debugControls.frame = debuggerControls;
-            self.debugger.debugConsole.frame = debuggerConsole;
-            self.debugger.userInteractionEnabled = traceControlsState;
-            
-            // Resets content offset and size
-            [self.teletype printBuffer:[self.teletype printBuffer]];
-        };
-        void (^teletypeBlock)(void) = ^{
-            self.teletype.frame = teletypeFrame;
-            self.teletype.printer.frame = printerFrame;
-            self.teletype.keyboard.frame = keyboardFrame;
-        };
-        
-        // Animation option selection
-        UIViewAnimationOptions curlDown = UIViewAnimationCurveLinear | UIViewAnimationOptionTransitionCurlDown;
-        UIViewAnimationOptions curlUp = UIViewAnimationCurveLinear | UIViewAnimationOptionTransitionCurlUp;
-        
-        // Animate the trace view open/close
-        if (self.traceEnabled) {
-            // Update the view frames for the debugger
-            self.debugger.frame = debuggerFrame;
-            self.debugger.debugControls.frame = debuggerControls;
-            self.debugger.debugConsole.frame = debuggerConsole;
-            
-            // Animate the teletype move
-            [UIView animateWithDuration:duration delay:0.0 options:curlDown animations:teletypeBlock completion:completionBlock];
-        }
-        else {
-            // Animate the teletype move
-            [UIView animateWithDuration:duration delay:0.0 options:curlUp animations:teletypeBlock completion:completionBlock];
-        }
-    }}
+        // Animate the teletype move
+        [UIView animateWithDuration:duration delay:0.0 options:curlDown animations:teletypeBlock completion:completionBlock];
+    }
+    else {
+        // Animate the teletype move
+        [UIView animateWithDuration:duration delay:0.0 options:curlUp animations:teletypeBlock completion:completionBlock];
+    }
+}
 
 
 #pragma mark -
@@ -279,6 +261,12 @@
 
 - (void)print:(NSString *)text
 {
+    // Check if we have been killed
+    if (self.killBlock)   {
+        NSLog(@"KILLED!");
+        return;
+    }
+
     [self.teletype printString:text];
 }
 
@@ -393,6 +381,7 @@ _09_40:
 
 - (void)lunarLander
 {
+    self.killBlock = NO;
 #ifdef DEBUG_LOG
     NSLog(@"lunarLander");
 #endif
@@ -480,6 +469,12 @@ _01_50:
     L = 0;
     
 _02_10:
+    // Check if we have been killed
+    if (self.killBlock)   {
+        NSLog(@"KILLED!");
+        return;
+    }
+    
     //02.10 T "    ",%3,L,"           "FITR(A),"  "%4,5280*(A-FITR(A))
     //02.20 T %6.02,"       "3600*V,"    "%6.01,M-N,"      K=";A K;S T=10
 #ifdef DEBUG_LOG
@@ -582,6 +577,11 @@ _02_72:
 _02_73:
     //02.73 T "K=";A K;G 2.7
     {
+        // Check if we have been killed
+        if (self.killBlock)   {
+            NSLog(@"KILLED!");
+            return;
+        }
         [self.debugger step:@"02.73.01"];
         [self print:@"K=:"];
         

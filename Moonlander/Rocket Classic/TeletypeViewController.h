@@ -1,6 +1,6 @@
 //
-//  ROCKETViewController.h
-//  ROCKET Classic
+//  TeletypeViewControllerViewController.h
+//  Moonlander
 //
 //  Created by Rick Naro on 5/10/12.
 //  Copyright (c) 2012 Paradigm Systems. All rights reserved.
