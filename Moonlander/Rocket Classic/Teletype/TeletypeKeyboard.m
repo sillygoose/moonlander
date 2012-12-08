@@ -12,6 +12,7 @@
 @interface TeletypeKeyboard ()
 
 @property (nonatomic) keycode_t keyCode;
+@property (atomic) BOOL doFlushPrintQueue;
 
 - (IBAction)keyboardNumeric:(id)sender;
 - (IBAction)keyboardYesNo:(id)sender;
@@ -24,7 +25,7 @@
 
 @implementation TeletypeKeyboard
 
-@synthesize keyCode;
+@synthesize keyCode, doFlushPrintQueue;
 
 
 #pragma mark -
@@ -36,6 +37,10 @@
     if (self) {
         // Disable the keyvoard to start
         self.userInteractionEnabled = NO;
+        self.doFlushPrintQueue = NO;
+        
+        // Notification setup
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(flushInputQueueReceived:) name:@"flushPrintQueues" object:nil];
     }
     return self;
 }
@@ -46,6 +51,18 @@
 
 - (void)dealloc
 {
+    // Release notifications
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
+
+#pragma mark -
+#pragma mark Notifications
+
+- (void)flushInputQueueReceived:(NSNotification *)notification
+{
+    self.doFlushPrintQueue = YES;
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 
@@ -105,8 +122,13 @@
     // Block to wait for the text field to close
     void (^getKeycode)(void) = ^{
         do {
+            // Wait some more
             [NSThread sleepForTimeInterval:0.05];
-        } while (self.keyCode == K_NONE);
+        } while (self.keyCode == K_NONE && self.doFlushPrintQueue == NO);
+        
+        if (self.doFlushPrintQueue) {
+            self.keyCode = K_KILLED;
+        }
     };
     
     // Setup our keycode state

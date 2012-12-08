@@ -1,5 +1,5 @@
 //
-//  ROCKETViewController.m
+//  TeletypeViewControllerViewController.m
 //  Moonlqander
 //
 //  Created by Rick Naro on 5/10/12.
@@ -125,17 +125,22 @@
 - (void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
-    //###
+    
+    NSLog(@"TeletypeViewController::viewWillDisappear");
+
+    // Mark the block as being killed
+    self.traceEnabled = NO;
+    self.killBlock = YES;
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"flushPrintQueues" object:[NSNumber numberWithFloat:2.0]];
     
     // Release notifications
     [[NSNotificationCenter defaultCenter] removeObserver:self];
     
-    // Mark the block as being killed
-    self.traceEnabled = NO;
-    self.killBlock = YES;
-    
     // Release the dispatch queue
-//    dispatch_release(self.loopQueue);
+    if (self.loopQueue) {
+        dispatch_release(self.loopQueue);
+        self.loopQueue = nil;
+    }
     
     // Release the class objects
 //    self.teletype = nil;
@@ -158,15 +163,27 @@
 
 - (void)dealloc
 {
+    NSLog(@"TeletypeViewController::dealloc");
+    
+    // Mark the block as being killed
+    self.traceEnabled = NO;
+    self.killBlock = YES;
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"flushPrintQueues" object:[NSNumber numberWithFloat:2.0]];
+
     // Release notifications
     [[NSNotificationCenter defaultCenter] removeObserver:self];
-    
+  
+#if 0 //###
     // Release the dispatch queue
-    dispatch_release(self.loopQueue);
+    if (self.loopQueue) {
+        dispatch_release(self.loopQueue);
+        self.loopQueue = nil;
+    }
     
     // Release the class objects
     self.teletype = nil;
     self.debugger = nil;
+#endif
 }
 
 
@@ -262,11 +279,9 @@
 - (void)print:(NSString *)text
 {
     // Check if we have been killed
-    if (self.killBlock)   {
-        NSLog(@"KILLED!");
+    if (self.killBlock == YES)   {
         return;
     }
-
     [self.teletype printString:text];
 }
 
@@ -311,7 +326,7 @@
             
             // Echo the keyboard input
             [self print:echoKeys];
-        } while (code != K_RETURN);
+        } while (code != K_RETURN && code != K_KILLED);
     }
     else {
         if (self.onSurface) {
@@ -330,7 +345,6 @@
     // Return the string
     return askKeys;
 }
-
 
 
 
@@ -507,6 +521,12 @@ _02_10:
         // ASK K
         [self.debugger step:@"02.20.02"];
         NSString *stringK = [self ask];
+        // Check if we have been killed
+        if (self.killBlock)   {
+            NSLog(@"KILLED!");
+            return;
+        }
+
         NSNumberFormatter *numberFormat = [[NSNumberFormatter alloc] init];
         [numberFormat setNumberStyle:NSNumberFormatterDecimalStyle];
         NSNumber *burnRate = [numberFormat numberFromString:stringK];
@@ -516,6 +536,7 @@ _02_10:
                 dispatch_sync(dispatch_get_main_queue(), ^{
                     [self.navigationController popViewControllerAnimated:YES];
                 });
+                NSLog(@"QUIT!");
                 return;
             }
 
@@ -587,6 +608,12 @@ _02_73:
         
         [self.debugger stepWait:@"02.73.02"];
         NSString *stringK = [self ask];
+        // Check if we have been killed
+        if (self.killBlock)   {
+            NSLog(@"KILLED!");
+            return;
+        }
+        
         NSNumberFormatter *numberFormat = [[NSNumberFormatter alloc] init];
         [numberFormat setNumberStyle:NSNumberFormatterDecimalStyle];
         NSNumber *burnRate = [numberFormat numberFromString:stringK];
@@ -597,6 +624,7 @@ _02_73:
                 dispatch_sync(dispatch_get_main_queue(), ^{
                     [self.navigationController popViewControllerAnimated:YES];
                 });
+                NSLog(@"QUIT!");
                 return;
             }
 
@@ -880,12 +908,18 @@ _05_92:
         [self.debugger step:@"05.92.01"];
         [self print:@"(ANS. YES OR NO):"];
         NSString *stringP = [self ask];
+        // Check if we have been killed
+        if (self.killBlock)   {
+            NSLog(@"KILLED!");
+            return;
+        }
 
         // Check for the QUIT key
         if ([stringP isEqualToString:@"QUIT"]) {
             dispatch_sync(dispatch_get_main_queue(), ^{
                 [self.navigationController popViewControllerAnimated:YES];
             });
+            NSLog(@"QUIT!");
             return;
         }
 
@@ -921,6 +955,7 @@ _05_98:
         dispatch_sync(dispatch_get_main_queue(), ^{
             [self.navigationController popViewControllerAnimated:YES];
         });
+        NSLog(@"COUT!");
         return;
     }
     
@@ -1012,6 +1047,8 @@ _08_30:
         [self.debugger stepWait:@"08.30.11"];
         goto _08_10;
     }
+    
+    NSLog(@"FELL OFF!");
 }
 
 @end

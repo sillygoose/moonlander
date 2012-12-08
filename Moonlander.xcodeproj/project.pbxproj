@@ -54,6 +54,7 @@
 		564FF25715562842007F5AB5 /* AutoPilotViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 564FF25615562842007F5AB5 /* AutoPilotViewController.m */; };
 		5650B9EA153CB76900AEF4F2 /* ExplosionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5650B9E9153CB76800AEF4F2 /* ExplosionManager.m */; };
 		56678FCC139A7D4D00026588 /* OldLander.plist in Resources */ = {isa = PBXBuildFile; fileRef = 56678FCB139A7D4D00026588 /* OldLander.plist */; };
+		567386841672D86F0069C1EA /* Vectorb.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 567386831672D86F0069C1EA /* Vectorb.ttf */; };
 		56755FDA138C0B8200455B52 /* Lander.m in Sources */ = {isa = PBXBuildFile; fileRef = 56755FD9138C0B8200455B52 /* Lander.m */; };
 		5675E5D51425004400882CD8 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5675E5D41425004400882CD8 /* AudioToolbox.framework */; };
 		56903D29154EDCC300DE54BD /* Moonlander Source Code.htm in Resources */ = {isa = PBXBuildFile; fileRef = 56903D28154EDCC300DE54BD /* Moonlander Source Code.htm */; };
@@ -227,6 +228,7 @@
 		565D23671540F0230074D3AD /* rocket.bas */ = {isa = PBXFileReference; lastKnownFileType = text; path = rocket.bas; sourceTree = "<group>"; };
 		565D237615411DB30074D3AD /* LanderDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LanderDelegate.h; sourceTree = "<group>"; };
 		56678FCB139A7D4D00026588 /* OldLander.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = OldLander.plist; sourceTree = "<group>"; };
+		567386831672D86F0069C1EA /* Vectorb.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Vectorb.ttf; sourceTree = "<group>"; };
 		56755FD8138C0B8200455B52 /* Lander.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Lander.h; sourceTree = "<group>"; };
 		56755FD9138C0B8200455B52 /* Lander.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Lander.m; sourceTree = "<group>"; };
 		5675E5D41425004400882CD8 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
@@ -727,6 +729,7 @@
 		56CB094A1548E63000973CBE /* fonts */ = {
 			isa = PBXGroup;
 			children = (
+				567386831672D86F0069C1EA /* Vectorb.ttf */,
 				56DB82CE16724E9A00C243A8 /* Teleprinter-Bold.ttf */,
 			);
 			path = fonts;
@@ -1066,6 +1069,7 @@
 				56DB82FB1672683700C243A8 /* GameOptions.plist in Resources */,
 				56DB830116728A2100C243A8 /* SourceCode.plist in Resources */,
 				56DB83041672997700C243A8 /* Lunar Lander FAQ.htm in Resources */,
+				567386841672D86F0069C1EA /* Vectorb.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

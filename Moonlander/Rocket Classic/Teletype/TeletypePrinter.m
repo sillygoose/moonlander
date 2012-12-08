@@ -236,7 +236,7 @@
         self.teletypeAudioPlayer.volume = [defaults floatForKey:@"optionAudioVolume"];
         
         // Notification setup
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(flushPrintBufferReceived:) name:@"flushPrintBuffer" object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(flushPrintQueueReceived:) name:@"flushPrintQueues" object:nil];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(teletypeVolumeChanged:) name:@"teletypeVolumeChanged" object:nil];
     }
     return self;
@@ -285,9 +285,10 @@
 #pragma mark -
 #pragma mark Notifications
 
-- (void)flushPrintBufferReceived:(NSNotification *)notification
+- (void)flushPrintQueueReceived:(NSNotification *)notification
 {
     self.doFlushPrintBuffer = YES;
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 - (void)teletypeVolumeChanged:(NSNotification *)notification
