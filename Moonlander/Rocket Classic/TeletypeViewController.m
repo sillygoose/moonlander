@@ -78,6 +78,9 @@
 {
     // Load the other views
     [super viewDidLoad];
+
+    // Hide the navigation bar
+    [[self navigationController] setNavigationBarHidden:YES animated:NO];
 }
 
 - (void)viewWillAppear:(BOOL)animated 
@@ -143,8 +146,8 @@
     }
     
     // Release the class objects
-//    self.teletype = nil;
-//    self.debugger = nil;
+    self.teletype = nil;
+    self.debugger = nil;
 }
 
 - (void)viewDidDisappear:(BOOL)animated

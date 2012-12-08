@@ -170,15 +170,6 @@
 {
     // Release notifications
     [[NSNotificationCenter defaultCenter] removeObserver:self];
-
-    // Release objects
-    self.stepStatement = nil;
-    
-    self.textLines = nil;
-    self.sourceCode = nil;
-    self.displayFont = nil;
-    self.displayFontColor = nil;
-    self.stepFontColor = nil;
 }
 
 

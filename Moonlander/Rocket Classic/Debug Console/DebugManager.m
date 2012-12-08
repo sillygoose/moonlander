@@ -66,10 +66,6 @@
 {
     // Release notifications
     [[NSNotificationCenter defaultCenter] removeObserver:self];
-
-    // Release objects
-    self.debugControls = nil;
-    self.debugConsole = nil;
 }
 
 

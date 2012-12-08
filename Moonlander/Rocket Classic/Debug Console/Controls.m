@@ -129,10 +129,6 @@
 {
     // Release notifications
     [[NSNotificationCenter defaultCenter] removeObserver:self];
-
-    // Release objects
-    self.stepEnabled = nil;
-    self.stepInterval = nil;
 }
 
 @end

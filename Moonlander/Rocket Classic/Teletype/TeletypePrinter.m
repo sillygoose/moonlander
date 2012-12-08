@@ -270,15 +270,6 @@
 {
     // Release notifications
     [[NSNotificationCenter defaultCenter] removeObserver:self];
-
-    // And objects
-    self.scrollView = nil;
-    self.teletypeAudioPlayer = nil;
-
-    self.text = nil;
-    self.textLines = nil;
-    self.displayFont = nil;
-    self.displayFontColor = nil;
 }
 
 

@@ -37,7 +37,6 @@
 
 - (void)dealloc
 {
-    self.printerOutput = nil;
 }
 
 @end

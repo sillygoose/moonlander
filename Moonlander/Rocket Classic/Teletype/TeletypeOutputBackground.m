@@ -38,7 +38,6 @@
 
 - (void)dealloc
 {
-    self.background = nil;
 }
 
 @end

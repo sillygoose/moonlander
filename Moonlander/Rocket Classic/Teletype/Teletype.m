@@ -100,9 +100,6 @@
 
 - (void)dealloc
 {
-    // Teletype objects
-    self.printer = nil;
-    self.keyboard = nil;
 }
 
 @end
