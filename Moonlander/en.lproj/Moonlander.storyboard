@@ -822,6 +822,7 @@ OUT</string>
                         <segue destination="VJa-TI-oDF" kind="push" identifier="http://en.wikipedia.org/wiki/Teletype_Model_33" id="ooi-o3-doI"/>
                         <segue destination="VJa-TI-oDF" kind="push" identifier="http://simh.trailing-edge.com/" id="8dt-LJ-b2A"/>
                         <segue destination="VJa-TI-oDF" kind="push" identifier="http://bitsavers.trailing-edge.com/" id="G1N-ER-YyM"/>
+                        <segue destination="VJa-TI-oDF" kind="push" identifier="http://en.wikipedia.org/wiki/FOCAL_%28programming_language%29" id="viP-Vb-Zgy"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eI8-xl-GNw" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -874,10 +875,15 @@ OUT</string>
                 <relationship kind="outlet" name="_documentContent" candidateClass="UIWebView"/>
             </relationships>
         </class>
+        <class className="Instrument" superclassName="VGButton">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/Instrument.h"/>
+        </class>
         <class className="LanderViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/LanderViewController.h"/>
             <relationships>
+                <relationship kind="action" name="instrumentSelected:" candidateClass="Instrument"/>
                 <relationship kind="action" name="rotateLander:"/>
+                <relationship kind="action" name="telemetrySelected:" candidateClass="Telemetry"/>
                 <relationship kind="action" name="thrusterChanged:" candidateClass="VGSlider"/>
             </relationships>
         </class>
@@ -904,6 +910,9 @@ OUT</string>
                 <relationship kind="outlet" name="moonLander" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="secondfPart" candidateClass="UILabel"/>
             </relationships>
+        </class>
+        <class className="Telemetry" superclassName="VGButton">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/Telemetry.h"/>
         </class>
         <class className="Teletype" superclassName="UIView">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/Teletype.h"/>
@@ -951,6 +960,13 @@ OUT</string>
                 <relationship kind="outlet" name="teletype" candidateClass="Teletype"/>
             </relationships>
         </class>
+        <class className="VGButton" superclassName="UIControl">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/VGButton.h"/>
+            <relationships>
+                <relationship kind="action" name="buttonDown:"/>
+                <relationship kind="action" name="buttonUp:"/>
+            </relationships>
+        </class>
         <class className="VGSlider" superclassName="UIControl">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/VGSlider.h"/>
         </class>
@@ -961,6 +977,6 @@ OUT</string>
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="QTb-qD-3xv"/>
+        <segue reference="viP-Vb-Zgy"/>
     </inferredMetricsTieBreakers>
 </document>
