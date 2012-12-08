@@ -358,11 +358,11 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="qxj-QQ-fmm" userLabel="FAQ">
-                                <rect key="frame" x="604" y="101" width="400" height="60"/>
+                                <rect key="frame" x="560" y="101" width="444" height="60"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="48"/>
-                                <state key="normal" title="Bonus Content">
+                                <state key="normal" title="Lunar Lander">
                                     <color key="titleColor" red="0.0" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -419,36 +419,22 @@
                                         <rect key="frame" x="0.0" y="0.0" width="1024" height="50"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                         <subviews>
-                                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Trace" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Lgv-EF-NgK">
-                                                <rect key="frame" x="0.0" y="11" width="75" height="27"/>
+                                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Statement Trace" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Lgv-EF-NgK">
+                                                <rect key="frame" x="120" y="10" width="140" height="27"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <switch opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="p6S-J6-f0x" userLabel="Step Enable">
-                                                <rect key="frame" x="83" y="11" width="79" height="27"/>
+                                                <rect key="frame" x="277" y="10" width="79" height="27"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <connections>
                                                     <action selector="traceEnabledUpdated:" destination="X8w-IS-qmV" eventType="valueChanged" id="PSu-Mf-Mdj"/>
                                                 </connections>
                                             </switch>
-                                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Trace Speed" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="KOl-Kb-HPD">
-                                                <rect key="frame" x="194" y="11" width="98" height="27"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Volume" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="g4m-9z-UbE">
-                                                <rect key="frame" x="692" y="13" width="98" height="27"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
                                             <slider opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="1" minValue="0.5" maxValue="10" minimumValueImage="tortoise.png" maximumValueImage="rabbit.png" id="R2w-rG-8u7" userLabel="Step Speed">
-                                                <rect key="frame" x="303" y="14" width="300" height="23"/>
+                                                <rect key="frame" x="382" y="13" width="285" height="23"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
                                                 <connections>
                                                     <action selector="traceStepIntervalChange:" destination="X8w-IS-qmV" eventType="valueChanged" id="LBS-PC-rRa"/>
@@ -456,7 +442,7 @@
                                                 </connections>
                                             </slider>
                                             <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" minimumValueImage="volume-low.png" maximumValueImage="volume-high.png" id="RRj-lx-xCm" userLabel="Audio Volume">
-                                                <rect key="frame" x="796" y="16" width="210" height="23"/>
+                                                <rect key="frame" x="782" y="15" width="224" height="23"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                 <connections>
@@ -464,6 +450,21 @@
                                                     <action selector="teletypeAudioVolumeUpdated" destination="X8w-IS-qmV" eventType="touchUpInside" id="xpj-66-nPM"/>
                                                 </connections>
                                             </slider>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="wordWrap" id="spI-Nj-yvw">
+                                                <rect key="frame" x="20" y="3" width="45" height="45"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
+                                                <state key="normal" title="QUIT" backgroundImage="keycap.png">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                                <state key="highlighted">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="keyboardQuit:" destination="j6T-sw-vSm" eventType="touchUpInside" id="5iV-Ts-7v8"/>
+                                                </connections>
+                                            </button>
                                         </subviews>
                                         <color key="backgroundColor" red="0.7843137255" green="0.70588235290000001" blue="0.49019607840000001" alpha="1" colorSpace="calibratedRGB"/>
                                         <connections>
@@ -756,21 +757,6 @@ OUT</string>
                                     <outlet property="printer" destination="cQ7-rN-VWJ" id="0Wj-hY-WX4"/>
                                 </connections>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="wordWrap" id="spI-Nj-yvw">
-                                <rect key="frame" x="957" y="692" width="45" height="45"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
-                                <state key="normal" title="QUIT" backgroundImage="keycap.png">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <state key="highlighted">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="keyboardQuit:" destination="j6T-sw-vSm" eventType="touchUpInside" id="5iV-Ts-7v8"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     </view>
@@ -847,123 +833,6 @@ OUT</string>
         <image name="volume-high.png" width="29" height="29"/>
         <image name="volume-low.png" width="29" height="29"/>
     </resources>
-    <classes>
-        <class className="AutoPilotViewController" superclassName="LanderViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/AutoPilotViewController.h"/>
-        </class>
-        <class className="Console" superclassName="UIScrollView">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/Console.h"/>
-        </class>
-        <class className="Controls" superclassName="UIView">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/Controls.h"/>
-            <relationships>
-                <relationship kind="action" name="teletypeAudioVolumeChange"/>
-                <relationship kind="action" name="teletypeAudioVolumeUpdated"/>
-                <relationship kind="action" name="traceEnabledUpdated:"/>
-                <relationship kind="action" name="traceStepIntervalChange:"/>
-                <relationship kind="action" name="traceStepIntervalUpdated:"/>
-                <relationship kind="outlet" name="_stepEnabled" candidateClass="UISwitch"/>
-                <relationship kind="outlet" name="_stepInterval" candidateClass="UISlider"/>
-                <relationship kind="outlet" name="_teletypeVolume" candidateClass="UISlider"/>
-                <relationship kind="outlet" name="stepEnabled" candidateClass="UISwitch"/>
-                <relationship kind="outlet" name="stepInterval" candidateClass="UISlider"/>
-                <relationship kind="outlet" name="teletypeVolume" candidateClass="UISlider"/>
-            </relationships>
-        </class>
-        <class className="DebugManager" superclassName="UIView">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/DebugManager.h"/>
-            <relationships>
-                <relationship kind="outlet" name="debugConsole" candidateClass="Console"/>
-                <relationship kind="outlet" name="debugControls" candidateClass="Controls"/>
-            </relationships>
-        </class>
-        <class className="DocumentViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/DocumentViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="_documentContent" candidateClass="UIWebView"/>
-            </relationships>
-        </class>
-        <class className="LanderViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/LanderViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="rotateLander:"/>
-                <relationship kind="action" name="thrusterChanged:" candidateClass="VGSlider"/>
-            </relationships>
-        </class>
-        <class className="LunarLanderMenuViewController" superclassName="MenuViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/LunarLanderMenuViewController.h"/>
-        </class>
-        <class className="MenuViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/MenuViewController.h"/>
-        </class>
-        <class className="MoonlanderMenuViewController" superclassName="MenuViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/MoonlanderMenuViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="bonusContent" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="buildInfo" candidateClass="UILabel"/>
-            </relationships>
-        </class>
-        <class className="NavigationController" superclassName="UINavigationController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/NavigationController.h"/>
-        </class>
-        <class className="SplashViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/SplashViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="firstPart" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="moonLander" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="secondfPart" candidateClass="UILabel"/>
-            </relationships>
-        </class>
-        <class className="Teletype" superclassName="UIView">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/Teletype.h"/>
-            <relationships>
-                <relationship kind="action" name="keyboardQuit:"/>
-                <relationship kind="outlet" name="keyboard" candidateClass="TeletypeKeyboard"/>
-                <relationship kind="outlet" name="printer" candidateClass="TeletypePrinter"/>
-            </relationships>
-        </class>
-        <class className="TeletypeKeyboard" superclassName="UIView">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/TeletypeKeyboard.h"/>
-            <relationships>
-                <relationship kind="action" name="keyboardNumeric:"/>
-                <relationship kind="action" name="keyboardReturn:"/>
-                <relationship kind="action" name="keyboardRubout:"/>
-                <relationship kind="action" name="keyboardYesNo:"/>
-            </relationships>
-        </class>
-        <class className="TeletypeOutputBackground" superclassName="UIScrollView">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/TeletypeOutputBackground.h"/>
-        </class>
-        <class className="TeletypePaper" superclassName="UIScrollView">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/TeletypePaper.h"/>
-            <relationships>
-                <relationship kind="outlet" name="printerOutput" candidateClass="TeletypePrintOutput"/>
-            </relationships>
-        </class>
-        <class className="TeletypePrintOutput" superclassName="UIView">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/TeletypePrintOutput.h"/>
-            <relationships>
-                <relationship kind="outlet" name="delegate"/>
-            </relationships>
-        </class>
-        <class className="TeletypePrinter" superclassName="UIView">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/TeletypePrinter.h"/>
-            <relationships>
-                <relationship kind="outlet" name="backgroundScrollView" candidateClass="TeletypeOutputBackground"/>
-                <relationship kind="outlet" name="scrollView" candidateClass="TeletypePaper"/>
-            </relationships>
-        </class>
-        <class className="TeletypeViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/TeletypeViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="debugger" candidateClass="DebugManager"/>
-                <relationship kind="outlet" name="teletype" candidateClass="Teletype"/>
-            </relationships>
-        </class>
-        <class className="VGSlider" superclassName="UIControl">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/VGSlider.h"/>
-        </class>
-    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar" statusBarStyle="blackTranslucent"/>
         <simulatedOrientationMetrics key="orientation" orientation="landscapeRight"/>

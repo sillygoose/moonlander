@@ -67,7 +67,6 @@
     self.documentURL = (path == nil) ? [NSURL URLWithString:self.documentName] : [NSURL fileURLWithPath:path];
     NSURLRequest *request = [NSURLRequest requestWithURL:self.documentURL];
     [self.documentContent loadRequest:request];
-    NSLog(@"Document: %@", path);//###
 }
 
 - (void)viewDidUnload

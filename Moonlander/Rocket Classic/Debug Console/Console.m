@@ -152,7 +152,7 @@
         self.contentSize = CGSizeZero;
         self.bounces = NO;
         
-        //#### too many of these!!!! Set debug control options from settinbgs
+        // Set debug control options from settings
         NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
         self.traceEnabled = [defaults floatForKey:@"optionStepEnabled"];
                 

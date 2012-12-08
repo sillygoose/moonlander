@@ -87,10 +87,8 @@
 {
     [super viewWillAppear:animated];
     
-    // Sign up to get changes in debug controls
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(debugTraceSwitchChange:) name:@"debugTraceSwitchChange" object:nil];
-    
     // Notification setup
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(debugTraceSwitchChange:) name:@"debugTraceSwitchChange" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(userQuitEvent:) name:@"ttyQuit" object:nil];
 
     // Create queue to run the loop so not to block the main queue
@@ -101,7 +99,7 @@
         self.view.alpha = 0.25;
     }
     
-    // Set debug control options from settinbgs
+    // Set trace control options from settinbgs
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     self.traceEnabled = self.debugger.debugControls.stepEnabled.on = [defaults floatForKey:@"optionStepEnabled"];
     self.debugger.debugControls.stepInterval.value = [defaults floatForKey:@"optionStepInterval"];
@@ -132,8 +130,6 @@
 {
     [super viewWillDisappear:animated];
     
-    NSLog(@"TeletypeViewController::viewWillDisappear");
-
     // Release notifications
     [[NSNotificationCenter defaultCenter] removeObserver:self];
     
@@ -160,36 +156,12 @@
 
 
 #pragma mark -
-#pragma mark Memory management
-
-- (void)dealloc
-{
-    NSLog(@"TeletypeViewController::dealloc");
-    
-    // Release notifications
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
-  
-#if 0 //###
-    // Release the dispatch queue
-    if (self.loopQueue) {
-        dispatch_release(self.loopQueue);
-        self.loopQueue = nil;
-    }
-    
-    // Release the class objects
-    self.teletype = nil;
-    self.debugger = nil;
-#endif
-}
-
-
-#pragma mark -
 #pragma mark Notifications
 
 - (void)userQuitEvent:(NSNotification *)notification
 {
     self.killBlock = YES;
-    //    [[NSNotificationCenter defaultCenter] removeObserver:self];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"debugTraceSwitchChange" object:[NSNumber numberWithBool:NO]];
 }
 
 
@@ -491,7 +463,6 @@ _02_10:
         dispatch_sync(dispatch_get_main_queue(), ^{
             [self.navigationController popViewControllerAnimated:YES];
         });
-        NSLog(@"QUIT!");
         return;
     }
     
@@ -532,7 +503,6 @@ _02_10:
             dispatch_sync(dispatch_get_main_queue(), ^{
                 [self.navigationController popViewControllerAnimated:YES];
             });
-            NSLog(@"QUIT!");
             return;
         }
 
@@ -545,7 +515,6 @@ _02_10:
                 dispatch_sync(dispatch_get_main_queue(), ^{
                     [self.navigationController popViewControllerAnimated:YES];
                 });
-                NSLog(@"QUIT!");
                 return;
             }
 
@@ -612,7 +581,6 @@ _02_73:
             dispatch_sync(dispatch_get_main_queue(), ^{
                 [self.navigationController popViewControllerAnimated:YES];
             });
-            NSLog(@"QUIT!");
             return;
         }
         [self.debugger step:@"02.73.01"];
@@ -625,7 +593,6 @@ _02_73:
             dispatch_sync(dispatch_get_main_queue(), ^{
                 [self.navigationController popViewControllerAnimated:YES];
             });
-            NSLog(@"QUIT!");
             return;
         }
         
@@ -639,7 +606,6 @@ _02_73:
                 dispatch_sync(dispatch_get_main_queue(), ^{
                     [self.navigationController popViewControllerAnimated:YES];
                 });
-                NSLog(@"QUIT!");
                 return;
             }
 
@@ -928,7 +894,6 @@ _05_92:
             dispatch_sync(dispatch_get_main_queue(), ^{
                 [self.navigationController popViewControllerAnimated:YES];
             });
-            NSLog(@"QUIT!");
             return;
         }
 
@@ -937,7 +902,6 @@ _05_92:
             dispatch_sync(dispatch_get_main_queue(), ^{
                 [self.navigationController popViewControllerAnimated:YES];
             });
-            NSLog(@"QUIT!");
             return;
         }
 
@@ -973,7 +937,6 @@ _05_98:
         dispatch_sync(dispatch_get_main_queue(), ^{
             [self.navigationController popViewControllerAnimated:YES];
         });
-        NSLog(@"COUT!");
         return;
     }
     
@@ -1065,8 +1028,11 @@ _08_30:
         [self.debugger stepWait:@"08.30.11"];
         goto _08_10;
     }
-    
-    NSLog(@"FELL OFF!");
+
+    // In case we fall off
+    dispatch_sync(dispatch_get_main_queue(), ^{
+        [self.navigationController popViewControllerAnimated:YES];
+    });
 }
 
 @end
