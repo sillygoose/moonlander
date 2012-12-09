@@ -12,6 +12,11 @@
 
 @interface LunarLanderMenuViewController ()
 
+@property (nonatomic, strong) IBOutlet UIButton *lunarlanderButton;
+@property (nonatomic, strong) IBOutlet UIButton *controlsButton;
+@property (nonatomic, strong) IBOutlet UIButton *faqButton;
+@property (nonatomic, strong) IBOutlet UILabel *backgroundSource;
+
 @end
 
 @implementation LunarLanderMenuViewController
@@ -23,6 +28,15 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    // Use the custom fonts
+    UIFont *displayFont = [UIFont fontWithName:@"Teleprinter-Bold" size:48];
+    self.lunarlanderButton.titleLabel.font = displayFont;
+    self.controlsButton.titleLabel.font = displayFont;
+    self.faqButton.titleLabel.font = displayFont;
+
+    UIFont *sourceFont = [UIFont fontWithName:@"Teleprinter-Bold" size:14];
+    self.backgroundSource.font = sourceFont;
 }
 
 - (void)viewDidUnload
