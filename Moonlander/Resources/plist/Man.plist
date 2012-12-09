@@ -18,13 +18,13 @@
 			</dict>
 			<dict>
 				<key>intensity</key>
-				<integer>7</integer>
+				<integer>6</integer>
 				<key>line</key>
 				<dict>
 					<key>type</key>
 					<integer>0</integer>
 					<key>width</key>
-					<integer>1</integer>
+					<real>1.5</real>
 				</dict>
 			</dict>
 			<dict>

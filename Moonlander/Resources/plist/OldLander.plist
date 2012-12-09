@@ -93,6 +93,8 @@
 		</array>
 		<array>
 			<dict>
+				<key>intensity</key>
+				<integer>5</integer>
 				<key>moveto</key>
 				<dict>
 					<key>x</key>
@@ -137,6 +139,8 @@
 		</array>
 		<array>
 			<dict>
+				<key>intensity</key>
+				<integer>7</integer>
 				<key>moveto</key>
 				<dict>
 					<key>x</key>

@@ -91,6 +91,8 @@
 		</array>
 		<array>
 			<dict>
+				<key>intensity</key>
+				<integer>5</integer>
 				<key>name</key>
 				<string>Descent Module</string>
 				<key>moveto</key>
@@ -133,6 +135,8 @@
 		</array>
 		<array>
 			<dict>
+				<key>intensity</key>
+				<integer>7</integer>
 				<key>name</key>
 				<string>Lander Legs</string>
 				<key>moveto</key>

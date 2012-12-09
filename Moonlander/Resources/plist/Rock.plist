@@ -24,13 +24,13 @@
 		</dict>
 		<dict>
 			<key>intensity</key>
-			<integer>7</integer>
+			<integer>3</integer>
 			<key>line</key>
 			<dict>
 				<key>type</key>
 				<integer>3</integer>
 				<key>width</key>
-				<integer>1</integer>
+				<real>1.5</real>
 			</dict>
 			<key>moverel</key>
 			<dict>
