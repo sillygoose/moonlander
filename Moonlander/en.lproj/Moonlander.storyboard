@@ -962,10 +962,6 @@ OUT</string>
         </class>
         <class className="VGButton" superclassName="UIControl">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/VGButton.h"/>
-            <relationships>
-                <relationship kind="action" name="buttonDown:"/>
-                <relationship kind="action" name="buttonUp:"/>
-            </relationships>
         </class>
         <class className="VGSlider" superclassName="UIControl">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/VGSlider.h"/>
