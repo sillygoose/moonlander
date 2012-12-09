@@ -53,9 +53,7 @@
     
     // Add the software build info to the menu scene
     NSDictionary* infoDict = [[NSBundle mainBundle] infoDictionary];
-    UIFont *buildFont = [UIFont fontWithName:@"Vector Battle" size:16];
     self.buildInfo.text = [NSString stringWithFormat:@"Build %@", [infoDict objectForKey:@"CFBundleVersion"]];
-    self.buildInfo.font = buildFont;
 
     // Add to the view and notify everyone
     [self.view addSubview:self.menuBackground.view];
