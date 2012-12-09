@@ -3458,7 +3458,7 @@ MACY:
 ;		SECOND ARCH. CLEVER, CLEVER.
 ;
 ARCH:
-    .WORD	107724          ;short vector mode, intensity 7, LP off, blink off, solid line
+    .WORD	107724              ;short vector mode, intensity 7, LP off, blink off, solid line
 	.WORD	17.+OTHER*200+OTHER+3.;X left 17, Y down 3, (moveto)
 	.WORD	1*200+10.+INT       ;X right 1, Y up 10, (draw)
 	.WORD	1*200+9.+INT        ;X right 1, Y up 9, (draw)
@@ -3494,7 +3494,7 @@ ARCH:
 ;		THIS LIST EXPLAINS HOW TO DRAW A MAN.
 ;
 MAN:
-    .WORD	116720              ;DON'T MAKE HIM TOO BRIGHT.
+    .WORD	116720              ;point mode, intensity 5, LPINT off, blink off  DON'T MAKE HIM TOO BRIGHT.
 MANX:
     .WORD	0
 MANY:
