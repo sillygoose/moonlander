@@ -215,7 +215,7 @@
                         <rect key="frame" x="0.0" y="20" width="1024" height="748"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="1" contentMode="left" text="... but only a select few ever noticed.  Experience now what so few others did." lineBreakMode="wordWrap" numberOfLines="5" baselineAdjustment="alignBaselines" minimumFontSize="44" adjustsFontSizeToFit="NO" id="bnY-h4-MQX">
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="1" contentMode="left" text="... but this time it was a giant leap for computer gaming." lineBreakMode="wordWrap" numberOfLines="5" baselineAdjustment="alignBaselines" minimumFontSize="44" adjustsFontSizeToFit="NO" id="bnY-h4-MQX">
                                 <rect key="frame" x="154" y="508" width="850" height="220"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -226,7 +226,7 @@
                                 <color key="textColor" red="0.0" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="In 1973 computer gaming changed forever..." lineBreakMode="wordWrap" numberOfLines="4" baselineAdjustment="alignBaselines" minimumFontSize="44" adjustsFontSizeToFit="NO" id="v0r-ch-1KH">
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="In 1973 a small step for man was repeated..." lineBreakMode="wordWrap" numberOfLines="4" baselineAdjustment="alignBaselines" minimumFontSize="44" adjustsFontSizeToFit="NO" id="v0r-ch-1KH">
                                 <rect key="frame" x="20" y="0.0" width="937" height="163"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -839,6 +839,134 @@ OUT</string>
         <image name="volume-high.png" width="29" height="29"/>
         <image name="volume-low.png" width="29" height="29"/>
     </resources>
+    <classes>
+        <class className="AutoPilotViewController" superclassName="LanderViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/AutoPilotViewController.h"/>
+        </class>
+        <class className="Console" superclassName="UIScrollView">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/Console.h"/>
+        </class>
+        <class className="Controls" superclassName="UIView">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/Controls.h"/>
+            <relationships>
+                <relationship kind="action" name="teletypeAudioVolumeChange"/>
+                <relationship kind="action" name="teletypeAudioVolumeUpdated"/>
+                <relationship kind="action" name="traceEnabledUpdated:"/>
+                <relationship kind="action" name="traceStepIntervalChange:"/>
+                <relationship kind="action" name="traceStepIntervalUpdated:"/>
+                <relationship kind="outlet" name="_stepEnabled" candidateClass="UISwitch"/>
+                <relationship kind="outlet" name="_stepInterval" candidateClass="UISlider"/>
+                <relationship kind="outlet" name="_teletypeVolume" candidateClass="UISlider"/>
+                <relationship kind="outlet" name="stepEnabled" candidateClass="UISwitch"/>
+                <relationship kind="outlet" name="stepInterval" candidateClass="UISlider"/>
+                <relationship kind="outlet" name="teletypeVolume" candidateClass="UISlider"/>
+            </relationships>
+        </class>
+        <class className="DebugManager" superclassName="UIView">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/DebugManager.h"/>
+            <relationships>
+                <relationship kind="outlet" name="debugConsole" candidateClass="Console"/>
+                <relationship kind="outlet" name="debugControls" candidateClass="Controls"/>
+            </relationships>
+        </class>
+        <class className="DocumentViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/DocumentViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="_documentContent" candidateClass="UIWebView"/>
+            </relationships>
+        </class>
+        <class className="Instrument" superclassName="VGButton">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/Instrument.h"/>
+        </class>
+        <class className="LanderViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/LanderViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="instrumentSelected:" candidateClass="Instrument"/>
+                <relationship kind="action" name="rotateLander:"/>
+                <relationship kind="action" name="telemetrySelected:" candidateClass="Telemetry"/>
+                <relationship kind="action" name="thrusterChanged:" candidateClass="VGSlider"/>
+            </relationships>
+        </class>
+        <class className="LunarLanderMenuViewController" superclassName="MenuViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/LunarLanderMenuViewController.h"/>
+        </class>
+        <class className="MenuViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/MenuViewController.h"/>
+        </class>
+        <class className="MoonlanderMenuViewController" superclassName="MenuViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/MoonlanderMenuViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="bonusContent" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="buildInfo" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+        <class className="NavigationController" superclassName="UINavigationController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/NavigationController.h"/>
+        </class>
+        <class className="SplashViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/SplashViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="firstPart" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="moonLander" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="secondfPart" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+        <class className="Telemetry" superclassName="VGButton">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/Telemetry.h"/>
+        </class>
+        <class className="Teletype" superclassName="UIView">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/Teletype.h"/>
+            <relationships>
+                <relationship kind="action" name="keyboardQuit:"/>
+                <relationship kind="outlet" name="keyboard" candidateClass="TeletypeKeyboard"/>
+                <relationship kind="outlet" name="printer" candidateClass="TeletypePrinter"/>
+            </relationships>
+        </class>
+        <class className="TeletypeKeyboard" superclassName="UIView">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/TeletypeKeyboard.h"/>
+            <relationships>
+                <relationship kind="action" name="keyboardNumeric:"/>
+                <relationship kind="action" name="keyboardReturn:"/>
+                <relationship kind="action" name="keyboardRubout:"/>
+                <relationship kind="action" name="keyboardYesNo:"/>
+            </relationships>
+        </class>
+        <class className="TeletypeOutputBackground" superclassName="UIScrollView">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/TeletypeOutputBackground.h"/>
+        </class>
+        <class className="TeletypePaper" superclassName="UIScrollView">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/TeletypePaper.h"/>
+            <relationships>
+                <relationship kind="outlet" name="printerOutput" candidateClass="TeletypePrintOutput"/>
+            </relationships>
+        </class>
+        <class className="TeletypePrintOutput" superclassName="UIView">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/TeletypePrintOutput.h"/>
+            <relationships>
+                <relationship kind="outlet" name="delegate"/>
+            </relationships>
+        </class>
+        <class className="TeletypePrinter" superclassName="UIView">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/TeletypePrinter.h"/>
+            <relationships>
+                <relationship kind="outlet" name="backgroundScrollView" candidateClass="TeletypeOutputBackground"/>
+                <relationship kind="outlet" name="scrollView" candidateClass="TeletypePaper"/>
+            </relationships>
+        </class>
+        <class className="TeletypeViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/TeletypeViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="debugger" candidateClass="DebugManager"/>
+                <relationship kind="outlet" name="teletype" candidateClass="Teletype"/>
+            </relationships>
+        </class>
+        <class className="VGButton" superclassName="UIControl">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/VGButton.h"/>
+        </class>
+        <class className="VGSlider" superclassName="UIControl">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/VGSlider.h"/>
+        </class>
+    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar" statusBarStyle="blackTranslucent"/>
         <simulatedOrientationMetrics key="orientation" orientation="landscapeRight"/>

@@ -55,7 +55,7 @@
 
 - (void)viewWillAppear:(BOOL)animated
 {
-#ifdef DEBUG
+#ifdef DEBUG1
     [self performSelector:@selector(dismissSplashScreen) withObject:nil afterDelay:0];
 #else
     [super viewWillAppear:animated];
@@ -74,7 +74,7 @@
     };
     void (^fadeInComplete)(BOOL) = ^(BOOL f) {
         self.moonLander.alpha = 1.0;
-        self.moonLander.transform = CGAffineTransformMakeScale(0.05, 0.05);
+        self.moonLander.transform = CGAffineTransformMakeScale(0.05, 0.01);
         [UILabel animateWithDuration:textFadeOutTime delay:0.5 options:0 animations:fadeOut completion:splashComplete];
     };
     void (^fadeInFirst)(void) = ^{
