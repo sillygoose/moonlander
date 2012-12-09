@@ -230,5 +230,6 @@ typedef enum {
 
 - (float)getDelay:(MoonlanderDelay)item;
 
+- (BOOL)WallpaperController;
 
 @end

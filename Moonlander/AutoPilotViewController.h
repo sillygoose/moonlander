@@ -17,4 +17,6 @@
 @property (nonatomic, strong) Autopilot *backgroundAutoPilot;
 @property (nonatomic, unsafe_unretained) NSTimer *backgroundAutoPilotTimer;
 
+- (BOOL)WallpaperController;
+
 @end

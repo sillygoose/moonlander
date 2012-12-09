@@ -29,6 +29,11 @@
     return LanderTypeModern;
 }
 
+- (BOOL)WallpaperController
+{
+    return NO;
+}
+
 - (void)viewDidLoad
 {
     // Do the heavy lifting

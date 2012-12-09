@@ -159,6 +159,11 @@ const float RollButtonRepeatInterval = 0.20;        // Timer value for roll butt
     AudioServicesPlayAlertSound(self.explosionSound);
 }
 
+- (BOOL)WallpaperController
+{
+    return NO;
+}
+
 
 #pragma -
 #pragma mark Data source
@@ -1357,9 +1362,11 @@ const float RollButtonRepeatInterval = 0.20;        // Timer value for roll butt
             // Tell model we are taking off from the surface
             [self.landerModel landerTakeoff];
             
-            // Enable the bonus content
-            NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-            [defaults setBool:YES forKey:@"optionEnableBonusContent"];
+            if ([self WallpaperController] == NO) {
+                // Enable the bonus content
+                NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+                [defaults setBool:YES forKey:@"optionEnableBonusContent"];
+            }
             
             // Wait a bit before continuing
             [self landerLiftoff];

@@ -19,4 +19,6 @@
 @property (nonatomic, strong) VGButton *autoPilotSwitch;
 @property (nonatomic, unsafe_unretained) NSTimer *autoPilotTimer;
 
+- (BOOL)WallpaperController;
+
 @end

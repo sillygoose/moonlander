@@ -28,6 +28,11 @@
 {
 }
 
+- (BOOL)WallpaperController
+{
+    return YES;
+}
+
 
 #pragma -
 #pragma mark Data source
