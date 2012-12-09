@@ -847,6 +847,12 @@ const float RollButtonRepeatInterval = 0.20;        // Timer value for roll butt
     
     // Setup initial conditions
     [self initGame:YES];
+    
+#if defined(TESTFLIGHT_SDK_VERSION) && defined(USE_TESTFLIGHT)
+    if ([self WallpaperController] == NO) {
+        [TestFlight passCheckpoint:[NSString stringWithFormat:@"%@:%@", NSStringFromClass([self class]), @""]];
+    }
+#endif
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -867,10 +873,6 @@ const float RollButtonRepeatInterval = 0.20;        // Timer value for roll butt
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-
-#if defined(TESTFLIGHT_SDK_VERSION) && defined(USE_TESTFLIGHT)
-    [TestFlight passCheckpoint:[NSString stringWithFormat:@"%@:%@", NSStringFromClass([self class]), @""]];
-#endif
 }
 
 - (void)viewDidAppear:(BOOL)animated

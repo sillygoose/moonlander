@@ -67,6 +67,10 @@
     self.documentURL = (path == nil) ? [NSURL URLWithString:self.documentName] : [NSURL fileURLWithPath:path];
     NSURLRequest *request = [NSURLRequest requestWithURL:self.documentURL];
     [self.documentContent loadRequest:request];
+
+#if defined(TESTFLIGHT_SDK_VERSION) && defined(USE_TESTFLIGHT)
+    [TestFlight passCheckpoint:[NSString stringWithFormat:@"%@:%@", NSStringFromClass([self class]), self.documentName]];
+#endif
 }
 
 - (void)viewDidUnload

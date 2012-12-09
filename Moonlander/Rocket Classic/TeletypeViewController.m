@@ -81,6 +81,10 @@
 
     // Hide the navigation bar
     [[self navigationController] setNavigationBarHidden:YES animated:NO];
+    
+#if defined(TESTFLIGHT_SDK_VERSION) && defined(USE_TESTFLIGHT)
+    [TestFlight passCheckpoint:[NSString stringWithFormat:@"%@:%@", NSStringFromClass([self class]), @""]];
+#endif
 }
 
 - (void)viewWillAppear:(BOOL)animated 
@@ -375,10 +379,6 @@ _09_40:
     NSLog(@"lunarLander");
 #endif
     
-#if defined(TESTFLIGHT_SDK_VERSION) && defined(USE_TESTFLIGHT)
-    [TestFlight passCheckpoint:[NSString stringWithFormat:@"%@:%@", NSStringFromClass([self class]), @""]];
-#endif
-
 _01_04:
     //01.04 T "CONTROL CALLING LUNAR MODULE. MANUAL CONTROL IS NECESSARY"!
     [self.debugger step:@"01.04.01"];

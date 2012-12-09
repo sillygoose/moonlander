@@ -12,7 +12,11 @@
 
 @interface MoonlanderMenuViewController ()
 
-@property (nonatomic, strong) IBOutlet UIButton *bonusContent;
+@property (nonatomic, strong) IBOutlet UIButton *bonusContentButton;
+@property (nonatomic, strong) IBOutlet UIButton *moonlanderButton;
+@property (nonatomic, strong) IBOutlet UIButton *controlsButton;
+@property (nonatomic, strong) IBOutlet UIButton *faqButton;
+@property (nonatomic, strong) IBOutlet UIButton *creditsButton;
 
 @end
 
@@ -37,17 +41,27 @@
     self.menuBackground = [storyboard instantiateViewControllerWithIdentifier:@"AutoPilotSimulation"];
     
     // Hide the bouns content
-    self.bonusContent.hidden = YES;
+    self.bonusContentButton.hidden = YES;
+
+    // Use the custom fonts
+    UIFont *displayFont = [UIFont fontWithName:@"Vector Battle" size:66];
+    self.bonusContentButton.titleLabel.font = displayFont;
+    self.moonlanderButton.titleLabel.font = displayFont;
+    self.controlsButton.titleLabel.font = displayFont;
+    self.faqButton.titleLabel.font = displayFont;
+    self.creditsButton.titleLabel.font = displayFont;
     
+    // Add the software build info to the menu scene
+    NSDictionary* infoDict = [[NSBundle mainBundle] infoDictionary];
+    UIFont *buildFont = [UIFont fontWithName:@"Vector Battle" size:16];
+    self.buildInfo.text = [NSString stringWithFormat:@"Build %@", [infoDict objectForKey:@"CFBundleVersion"]];
+    self.buildInfo.font = buildFont;
+
     // Add to the view and notify everyone
     [self.view addSubview:self.menuBackground.view];
     [self.view sendSubviewToBack:self.menuBackground.view];
     [self addChildViewController:self.menuBackground];
     [self.menuBackground didMoveToParentViewController:self];
-    
-    // Add the software build info to the menu scene
-    NSDictionary* infoDict = [[NSBundle mainBundle] infoDictionary];
-    self.buildInfo.text = [NSString stringWithFormat:@"Build %@", [infoDict objectForKey:@"CFBundleVersion"]];
 }
 
 - (void)viewDidUnload
@@ -63,7 +77,7 @@
 
     // Unlock the bonus screen
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    self.bonusContent.hidden = ![defaults boolForKey:@"optionEnableBonusContent"];
+    self.bonusContentButton.hidden = ![defaults boolForKey:@"optionEnableBonusContent"];
     
     // Hide the navigation bar in this view
     [[self navigationController] setNavigationBarHidden:YES animated:NO];

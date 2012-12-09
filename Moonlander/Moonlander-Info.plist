@@ -41,6 +41,7 @@
 	<string></string>
 	<key>UIAppFonts</key>
 	<array>
+		<string>Vectorb.ttf</string>
 		<string>Teleprinter-Bold.ttf</string>
 	</array>
 	<key>UIMainStoryboardFile~ipad</key>

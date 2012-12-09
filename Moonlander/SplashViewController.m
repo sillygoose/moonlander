@@ -50,12 +50,17 @@
         [self.audioPlayer play];
     });
 
+    UIFont *displayFont = [UIFont fontWithName:@"Vector Battle" size:72];
+    UIFont *moonlanderFont = [UIFont fontWithName:@"Vector Battle" size:144];
+    self.firstPart.font = displayFont;
+    self.secondfPart.font = displayFont;
+    self.moonLander.font = moonlanderFont;
     self.firstPart.alpha = self.secondfPart.alpha = self.moonLander.alpha = 0;
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
-#ifdef DEBUG1
+#ifdef DEBUG
     [self performSelector:@selector(dismissSplashScreen) withObject:nil afterDelay:0];
 #else
     [super viewWillAppear:animated];
