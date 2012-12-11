@@ -195,7 +195,7 @@
     short RET1 = self.LEFTEDGE;
     short IN1 = 24 + (ti - RET1) * 48;
     if (tf > TF_Nothing && tf != TF_McDonaldsEdge) {
-        [self addFeatureToView:tf atTerrainIndex:RET1 atX:IN1];
+        [self addFeatureToView:tf atTerrainIndex:ti atX:IN1];
     }
 }
 
@@ -215,7 +215,7 @@
     
     const char *FeatureFiles[] = { NULL, "OldLander", "Flag", "OldLander", "OldLander", "Rock", NULL, "McDonalds" };
     const CGSize FeatureSizes[] = { CGSizeMake(0, 0), CGSizeMake(72, 64), CGSizeMake(22, 22), CGSizeMake(CrashedLanderSizeWidth, CrashedLanderSizeHeight), CGSizeMake(CrashedLanderSizeWidth, CrashedLanderSizeHeight), CGSizeMake(42, 42), CGSizeMake(0, 0), CGSizeMake(160, 72) };
-    CGFloat verticalAdjust[] = { 0, LanderVertAdj, FeatureSizes[TF_OldFlag].height, CrashedLanderVertAdj, CrashedLanderVertAdj, 33, 0, FeatureSizes[TF_McDonalds].height - 10 };
+    CGFloat verticalAdjust[] = { 0, LanderVertAdj, FeatureSizes[TF_OldFlag].height + 10, CrashedLanderVertAdj, CrashedLanderVertAdj, 33, 0, FeatureSizes[TF_McDonalds].height - 10 };
     CGFloat horizontalAdjust[] = { 0, LanderHorizAdj, FlagHorizAdj, LeftCrashedLanderHorizAdj, RightCrashedLanderHorizAdj, -20, -24, -76 };
     CGFloat verticalClip[] = { 0, 0, 0, CrashedLanderVertClip, -CrashedLanderVertClip, 0, 0, 0 };
 
