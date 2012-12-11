@@ -113,8 +113,8 @@ const float RollButtonRepeatInterval = 0.20;        // Timer value for roll butt
         {  0.0,  0.0 },   // DelayZero
         {  2.0,  2.0 },   // DelaySplashScreen
         {  0.5,  0.5 },   // DelayLanding
-        {  0.05, 0.05 },  // DelayMoveMan
-        {  1.0,  1.0 },   // DelayOrderFood
+        {  0.01, 0.01 },  // DelayMoveMan
+        {  0.5,  0.5 },   // DelayOrderFood
         {  0.5,  0.5 },   // DelayPickupFood
         {  0.5,  0.5 },   // DelayTakeoff
         {  1.0,  1.0 },   // DelayGameover
@@ -449,7 +449,6 @@ const float RollButtonRepeatInterval = 0.20;        // Timer value for roll butt
 
 - (void)initGame:(BOOL)splash
 {
-    float delayInterval = (splash) ? [self getDelay:DelaySplashScreen] : [self getDelay:DelayZero];
     if (splash) {
         // Splash screen
 #if defined(DEBUG_NO_SPLASH) || defined(DEBUG_MESSAGES)
@@ -460,11 +459,18 @@ const float RollButtonRepeatInterval = 0.20;        // Timer value for roll butt
         [self performSelector:@selector(initGame2) withObject:nil afterDelay:0];
 #else
         if ([self.landerMessages hasSystemMessage] == NO) {
+#if !defined(DEBUG)
             [self.landerMessages addSystemMessage:@"SplashScreen"];
+#endif
         }
         
         self.landerMessages.hidden = NO;
     }
+#if defined(DEBUG)
+    float delayInterval = 0;
+#else
+    float delayInterval = (splash) ? [self getDelay:DelaySplashScreen] : [self getDelay:DelayZero];
+#endif
     [self performSelector:@selector(initGame2) withObject:nil afterDelay:delayInterval];
 #endif
 }
@@ -981,12 +987,6 @@ const float RollButtonRepeatInterval = 0.20;        // Timer value for roll butt
     AudioServicesDisposeSystemSoundID(self.explosionSound);
 }
 
-- (void)viewDidUnload
-{
-    [super viewDidUnload];
-    [self cleanupTimers];
-}
-
 - (void)setupTimers
 {
     if (self.landerModelTimer == nil) {
@@ -1291,7 +1291,7 @@ const float RollButtonRepeatInterval = 0.20;        // Timer value for roll butt
     }
     else {
         // Keep waiting for screen change
-        const float PollLiftoffInterval = 0.1;
+        const float PollLiftoffInterval = 0.4;
         [self performSelector:@selector(landerLiftoff) withObject:nil afterDelay:PollLiftoffInterval];
     }
 }
@@ -1376,7 +1376,7 @@ const float RollButtonRepeatInterval = 0.20;        // Timer value for roll butt
         
         void (^moveComplete)(BOOL) = ^(BOOL f) {
             // Slight delay before taking off again
-            dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, [self getDelay: DelayTakeoff] * NSEC_PER_SEC);
+            dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, [self getDelay:DelayTakeoff] * NSEC_PER_SEC);
             dispatch_after(popTime, dispatch_get_main_queue(), prepareForLiftoff);
         };
         
