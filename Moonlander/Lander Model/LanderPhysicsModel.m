@@ -278,12 +278,12 @@ static float RadiansToDegrees(float radians)
     // Custom lander start point
     self.fuelRemaining = self.lemInitalFuel;
     self.turnAngle = -0.0f;
-    self.horizontalVelocity = 0.0f;
-    self.verticalVelocity = -410.0f;
-    self.horizontalDistance = -1500.0;
-    self.verticalDistance = 2500.0f;
-    self.percentThrustRequested = 12.0f;
-    self.clockTicks = 0.0f;
+    self.horizontalVelocity = 0;
+    self.verticalVelocity = -10;
+    self.horizontalDistance = 1572;
+    self.verticalDistance = 50;
+    self.percentThrustRequested = 12;
+    self.clockTicks = 0;
 #else
     // Default game start point
     self.fuelRemaining = self.lemInitalFuel;
