@@ -30,7 +30,7 @@
     [super viewDidLoad];
     
     // Use the custom fonts
-    UIFont *displayFont = [UIFont fontWithName:@"Teleprinter-Bold" size:56];
+    UIFont *displayFont = [UIFont fontWithName:@"Teleprinter-Bold" size:60];
     self.lunarlanderButton.titleLabel.font = displayFont;
     self.controlsButton.titleLabel.font = displayFont;
     self.faqButton.titleLabel.font = displayFont;
