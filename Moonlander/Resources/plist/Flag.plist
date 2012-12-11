@@ -25,7 +25,7 @@
 				<key>type</key>
 				<integer>0</integer>
 				<key>width</key>
-				<integer>1</integer>
+				<real>1.5</real>
 			</dict>
 			<key>moverel</key>
 			<dict>
@@ -68,7 +68,7 @@
 		</dict>
 		<dict>
 			<key>intensity</key>
-			<integer>5</integer>
+			<integer>4</integer>
 			<key>line</key>
 			<dict>
 				<key>type</key>
