@@ -578,13 +578,13 @@ const float RollButtonRepeatInterval = 0.20;        // Timer value for roll butt
 - (void)loadTelemetry
 {
     // Create the telemetry items
-	const CGFloat TelemetryXPos = 910;
+	const CGFloat TelemetryXPos = 920;
     const CGFloat TelemetryXSize = 100;
     const CGFloat TelemetryYSize = 24;
     __weak LanderViewController *weakSelf = self;
 
     short instrumentID = (self.landerType == LanderTypeModern) ? 1 : 0;
-    short instrumentY = (self.landerType == LanderTypeModern) ? 320 : 235;
+    short instrumentY = (self.landerType == LanderTypeModern) ? 320 : 250;
     short instrumentYDelta = (self.landerType == LanderTypeModern) ? 27 : 22;;
 
     self.heightData = [[Telemetry alloc] initWithFrame:CGRectMake(TelemetryXPos, (instrumentY - instrumentYDelta * instrumentID++), TelemetryXSize, TelemetryYSize)];
