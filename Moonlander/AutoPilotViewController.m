@@ -124,7 +124,7 @@
     
     // Initial instrument displays in autopilot mode
     self.instrument1.instrument = self.heightData;
-    self.instrument2.instrument = self.distanceData;
+    self.instrument2.instrument = self.verticalVelocityData;
     self.instrument3.instrument = self.thrustData;
     self.instrument4.instrument = self.thrustAngleData;
     [self.instrument1 display];
