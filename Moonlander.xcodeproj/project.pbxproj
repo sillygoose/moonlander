@@ -339,7 +339,7 @@
 		56E07CBD1673FB61009C847B /* StatementTrace.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = StatementTrace.png; sourceTree = "<group>"; };
 		56E07CBE1673FB61009C847B /* VolumeSlider.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = VolumeSlider.png; sourceTree = "<group>"; };
 		56E07CF31674F9CA009C847B /* Vectorb.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Vectorb.ttf; sourceTree = "<group>"; };
-		56E16EC7167EB2D30094C638 /* LargeIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LargeIcon.png; sourceTree = "<group>"; };
+		56E16EC7167EB2D30094C638 /* LargeAppIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LargeAppIcon.png; sourceTree = "<group>"; };
 		56E16EC9167EB32B0094C638 /* Cheeseburgers.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Cheeseburgers.png; sourceTree = "<group>"; };
 		56E16ECA167EB32B0094C638 /* LunarLander.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LunarLander.png; sourceTree = "<group>"; };
 		56E16ECB167EB32B0094C638 /* Menu.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Menu.png; sourceTree = "<group>"; };
@@ -836,7 +836,7 @@
 				56E16EC9167EB32B0094C638 /* Cheeseburgers.png */,
 				56E16ECA167EB32B0094C638 /* LunarLander.png */,
 				56E16ECB167EB32B0094C638 /* Menu.png */,
-				56E16EC7167EB2D30094C638 /* LargeIcon.png */,
+				56E16EC7167EB2D30094C638 /* LargeAppIcon.png */,
 			);
 			path = iTunes;
 			sourceTree = "<group>";
