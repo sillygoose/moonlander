@@ -1247,8 +1247,8 @@ const float RollButtonRepeatInterval = 0.20;        // Timer value for roll butt
     [self cleanupTimers];
 
     // Setup our yes/no dialog for a new game
-    const CGFloat DialogWidth = 125;
-    const CGFloat DialogHeight = 125;
+    const CGFloat DialogWidth = 250;
+    const CGFloat DialogHeight = 250;
     const CGFloat DialogX = self.view.bounds.size.width / 2 - DialogWidth / 2;
     const CGFloat DialogY = self.view.bounds.size.height / 2 - DialogHeight / 2;
     CGRect dialogRect = CGRectMake(DialogX, DialogY, DialogWidth, DialogHeight);
@@ -1267,7 +1267,7 @@ const float RollButtonRepeatInterval = 0.20;        // Timer value for roll butt
     [self.landerMessages removeAllLanderMessages];
     
     // Short they and then restart
-    [self performSelector:@selector(waitNewGame) withObject:nil afterDelay:[self getDelay: DelayNewGame]];
+    [self performSelector:@selector(waitNewGame) withObject:nil afterDelay:[self getDelay:DelayNewGame]];
 }
 
 - (void)landerLiftoff
