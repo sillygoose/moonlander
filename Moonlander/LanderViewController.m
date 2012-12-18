@@ -1266,7 +1266,7 @@ const float RollButtonRepeatInterval = 0.20;        // Timer value for roll butt
     // Remove any messages that might be left over
     [self.landerMessages removeAllLanderMessages];
     
-    // Short they and then restart
+    // Short delay and then restart
     [self performSelector:@selector(waitNewGame) withObject:nil afterDelay:[self getDelay:DelayNewGame]];
 }
 
