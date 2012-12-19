@@ -376,6 +376,7 @@
 		56ECD92B1540703500565615 /* putr.com */ = {isa = PBXFileReference; lastKnownFileType = file; path = putr.com; sourceTree = "<group>"; };
 		56ECD92C1540703500565615 /* putr.ini */ = {isa = PBXFileReference; lastKnownFileType = text; path = putr.ini; sourceTree = "<group>"; };
 		56ECD92D1540703500565615 /* putr.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = putr.txt; sourceTree = "<group>"; };
+		56EE12161682063F00C051B2 /* Description */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 0; lastKnownFileType = text; path = Description; sourceTree = "<group>"; tabWidth = 1; usesTabs = 0; wrapsLines = 1; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -813,6 +814,7 @@
 				56E16ECA167EB32B0094C638 /* LunarLander.png */,
 				56E16ECB167EB32B0094C638 /* Menu.png */,
 				56E16EC7167EB2D30094C638 /* LargeAppIcon.png */,
+				56EE12161682063F00C051B2 /* Description */,
 			);
 			path = iTunes;
 			sourceTree = "<group>";
