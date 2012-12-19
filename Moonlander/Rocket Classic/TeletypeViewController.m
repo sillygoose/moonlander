@@ -933,7 +933,7 @@ _05_98:
         // Q
         [self.debugger stepWait:@"05.98.02"];
 
-        // Exit the game
+        // Exit the game ### could use small delay
         dispatch_sync(dispatch_get_main_queue(), ^{
             [self.navigationController popViewControllerAnimated:YES];
         });
