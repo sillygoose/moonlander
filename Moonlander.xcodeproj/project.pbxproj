@@ -6,20 +6,6 @@
 	objectVersion = 46;
 	objects = {
 
-/* Begin PBXAggregateTarget section */
-		56C072901643594D0079830D /* Versioning */ = {
-			isa = PBXAggregateTarget;
-			buildConfigurationList = 56C072911643594D0079830D /* Build configuration list for PBXAggregateTarget "Versioning" */;
-			buildPhases = (
-				56C07294164359600079830D /* ShellScript */,
-			);
-			dependencies = (
-			);
-			name = Versioning;
-			productName = Versioning;
-		};
-/* End PBXAggregateTarget section */
-
 /* Begin PBXBuildFile section */
 		1D1512C61546E6ED008C2B80 /* Icon-Small-50@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1D1512C51546E6ED008C2B80 /* Icon-Small-50@2x.png */; };
 		1DBF44271573D1E7002BF8E7 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DBF44261573D1E7002BF8E7 /* libz.dylib */; };
@@ -138,16 +124,6 @@
 		56EF5137154E59A3001E7B77 /* Default-Landscape~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 56173A0C154661BB00380AB4 /* Default-Landscape~ipad.png */; };
 		56EF5138154E59AC001E7B77 /* Default-Landscape@2x~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 56173A0B154661BB00380AB4 /* Default-Landscape@2x~ipad.png */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXContainerItemProxy section */
-		56C0729516435A3E0079830D /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 560FA0C2137991AD0017EE25 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 56C072901643594D0079830D;
-			remoteInfo = Versioning;
-		};
-/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		1D1512C51546E6ED008C2B80 /* Icon-Small-50@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-Small-50@2x.png"; sourceTree = "<group>"; };
@@ -998,6 +974,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 560FA107137991AE0017EE25 /* Build configuration list for PBXNativeTarget "Moonlander" */;
 			buildPhases = (
+				56EE120D168193D500C051B2 /* ShellScript */,
 				560FA0C7137991AD0017EE25 /* Sources */,
 				560FA0C8137991AD0017EE25 /* Frameworks */,
 				560FA0C9137991AD0017EE25 /* Resources */,
@@ -1005,7 +982,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				56C0729616435A3E0079830D /* PBXTargetDependency */,
 			);
 			name = Moonlander;
 			productName = Moonlander;
@@ -1034,7 +1010,6 @@
 			projectRoot = "";
 			targets = (
 				560FA0CA137991AD0017EE25 /* Moonlander */,
-				56C072901643594D0079830D /* Versioning */,
 			);
 		};
 /* End PBXProject section */
@@ -1115,7 +1090,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		56C07294164359600079830D /* ShellScript */ = {
+		56EE120D168193D500C051B2 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -1126,7 +1101,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "cd \"$PROJECT_DIR\"\nVERSION=`/usr/local/git/bin/git rev-parse --short HEAD`\n\ncd \"$PROJECT_TEMP_DIR\"\necho \"#define GIT_VERSION $VERSION\" > revision.prefix\n\ncd \"$PROJECT_DIR\"\ntouch \"Moonlander-Info.plist\"";
+			shellScript = "#!/bin/bash\n\n# This script automatically sets the version and short version string of\n# an Xcode project from the Git repository containing the project.\n#\n# To use this script in Xcode 4, add the contents to a \"Run Script\" build\n# phase for your application target.\n\nset -o errexit\nset -o nounset\n\nINFO_PLIST=\"${BUILT_PRODUCTS_DIR}/${WRAPPER_NAME}/Info\"\n\n# Get git tag and hash in the FulLVersion\nFULL_VERSION=$(git --git-dir=\"${PROJECT_DIR}/.git\" --work-tree=\"${PROJECT_DIR}/\" describe --dirty | sed -e 's/^v//' -e 's/g//')\n\n# Use the latest tag for short version (You'll have to make sure that all your tags are of the format 0.0.0,\n# this is to satisfy Apple's rule that short version be three integers separated by dots)\nSHORT_VERSION=$(git --git-dir=\"${PROJECT_DIR}/.git\" --work-tree=\"${PROJECT_DIR}/\" describe --abbrev=0)\n\n# I'd like to use the Git commit hash for CFBundleVersion.\n# VERSION=$(git --git-dir=\"${PROJECT_DIR}/.git\" --work-tree=\"${PROJECT_DIR}\" rev-parse --short HEAD)\n\n# But Apple wants this value to be a monotonically increasing integer, so\n# instead use the number of commits on the master branch. If you like to\n# play fast and loose with your Git history, this may cause you problems.\n# Thanks to @amrox for pointing out the issue and fix.\nVERSION=$(git --git-dir=\"${PROJECT_DIR}/.git\" --work-tree=\"${PROJECT_DIR}/\" rev-list master | wc -l)\n\ndefaults write $INFO_PLIST CFBundleShortVersionString $SHORT_VERSION\ndefaults write $INFO_PLIST CFBundleVersion $VERSION\ndefaults write $INFO_PLIST FullVersion $FULL_VERSION\n\necho \"VERSION: ${VERSION}\"\necho \"SHORT VERSION: ${SHORT_VERSION}\"\necho \"FULL VERSION: ${FULL_VERSION}\"";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -1183,14 +1158,6 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
-/* Begin PBXTargetDependency section */
-		56C0729616435A3E0079830D /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 56C072901643594D0079830D /* Versioning */;
-			targetProxy = 56C0729516435A3E0079830D /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
-
 /* Begin PBXVariantGroup section */
 		560FA0D8137991AE0017EE25 /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
@@ -1234,7 +1201,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				INFOPLIST_PREFIX_HEADER = $PROJECT_TEMP_DIR/revision.prefix;
-				INFOPLIST_PREPROCESS = YES;
+				INFOPLIST_PREPROCESS = NO;
 				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
 				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
@@ -1254,7 +1221,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				INFOPLIST_PREFIX_HEADER = $PROJECT_TEMP_DIR/revision.prefix;
-				INFOPLIST_PREPROCESS = YES;
+				INFOPLIST_PREPROCESS = NO;
 				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				PROVISIONING_PROFILE = "";
@@ -1327,22 +1294,6 @@
 			};
 			name = Release;
 		};
-		56C072921643594D0079830D /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-			};
-			name = Debug;
-		};
-		56C072931643594D0079830D /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -1360,15 +1311,6 @@
 			buildConfigurations = (
 				560FA108137991AE0017EE25 /* Debug */,
 				560FA109137991AE0017EE25 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		56C072911643594D0079830D /* Build configuration list for PBXAggregateTarget "Versioning" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				56C072921643594D0079830D /* Debug */,
-				56C072931643594D0079830D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
