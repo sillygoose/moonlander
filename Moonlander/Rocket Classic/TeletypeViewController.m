@@ -933,7 +933,7 @@ _05_98:
         // Q
         [self.debugger stepWait:@"05.98.02"];
 
-        // Exit the game ### could use small delay
+        // Exit the game
         int64_t delayInSeconds = 2.0;
         dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * NSEC_PER_SEC);
         dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
