@@ -28,7 +28,7 @@
 @property (nonatomic, readonly) float lemEmptyMass;     // lbs
 @property (nonatomic, readonly) float lemEmptyMassLEM;  // lbs
 
-@property (nonatomic, readonly) float lemInitalFuel;    // lbs
+@property (nonatomic, readonly) float lemInitialFuel;    // lbs
 @property (nonatomic, readonly) float lowFuelLimit;     // lbs
 
 @end

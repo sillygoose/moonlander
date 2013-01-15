@@ -170,6 +170,11 @@ static float RadiansToDegrees(float radians)
     return (short)self.fuelRemaining;
 }
 
+- (short)initialFuel
+{
+    return (short)self.lemInitialFuel;
+}
+
 - (void)setFuel:(short)fuel
 {
     self.fuelRemaining = fuel;
@@ -286,7 +291,7 @@ static float RadiansToDegrees(float radians)
     self.clockTicks = 0;
 #else
     // Default game start point
-    self.fuelRemaining = self.lemInitalFuel;
+    self.fuelRemaining = self.lemInitialFuel;
     self.turnAngle = -70.0f;
     self.horizontalVelocity = 1000.0f;
     self.verticalVelocity = -500.0f;

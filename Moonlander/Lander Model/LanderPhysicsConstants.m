@@ -52,7 +52,7 @@
     return 8650.0f + 1000.0;
 }
 
-- (float)lemInitalFuel
+- (float)lemInitialFuel
 {
     return 3000.0f;
 }

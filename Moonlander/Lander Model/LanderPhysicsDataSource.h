@@ -32,6 +32,7 @@
 
 - (short)fuel;
 - (void)setFuel:(short)value;
+- (short)initialFuel;
 
 - (short)horizVel;
 - (void)setHorizVel:(short)newVel;
