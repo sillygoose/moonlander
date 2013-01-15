@@ -83,7 +83,7 @@
     [[self navigationController] setNavigationBarHidden:YES animated:NO];
     
 #if defined(TESTFLIGHT_SDK_VERSION) && defined(USE_TESTFLIGHT)
-    [TestFlight passCheckpoint:[NSString stringWithFormat:@"%@:%@", NSStringFromClass([self class]), @""]];
+    [TestFlight passCheckpoint:[NSString stringWithFormat:@"%@:%@", @"Moonlander", @"Lunar Lander played"]];
 #endif
 }
 
