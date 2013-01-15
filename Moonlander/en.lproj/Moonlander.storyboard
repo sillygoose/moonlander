@@ -415,8 +415,8 @@ C-FOCAL,1969
                                     <segue destination="p0M-gl-NyC" kind="push" identifier="Moonlander Credits.htm" id="h8M-BI-WsP"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Build placeholder" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="E6z-nC-nYr" userLabel="Build">
-                                <rect key="frame" x="841" y="713" width="163" height="27"/>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Build placeholder" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="E6z-nC-nYr" userLabel="Build">
+                                <rect key="frame" x="20" y="713" width="163" height="27"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="12"/>
                                 <color key="textColor" red="0.0" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>

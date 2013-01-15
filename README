@@ -1,22 +1,10 @@
-Moonlander, the classic video game
+Moonlander, the classic 1973 video game for the DEC GT40
 
-AppStore to do list
-===================
-App Name:                                   Moonlander Classic
-App Description:                            Done
-Primary and Secondary Category:             Games
-Subcategories:                              Simulation
-Copyright:                                  2013 Paradigm Systems
-App Rating:                                 4+
-Keywords:                                   Lunar Lander, Moonlander, DEC, 1973
-SKU Number:                                 PCG0001
-Application URL:                            http://gaming.devtools.com/moonlander
-Screenshots:                                Resources/iTunes
-Support URL:                                http://gaming.devtools.com
-Support Email Address:                      rick@devtools.com
-End User License Agreement:                 None
-Pricing, Available Date, Territories:       Free
-Large App Icon 1024 x 1024:                 Resources/iTunes
+
+History
+=======
+1.01.0              Updated with iTunes link to Lunar Lander
+1.0.0               Initial release
 
 
 Features wish list
@@ -33,32 +21,6 @@ Issues to do list
 =================
 - switching screens disrupts autopilot lunar walk
 - disable AUTOPILOT control when on surface
-- missing iTunesArtwork@2x (1024x1024)
-- new app icons
-
-
-Completed
-=========
-- add 'ID' to the existing autopilot 'P' controller (not done but good enough)
-- plant flag but don't replace rock until next game
-- fix autopilot code so it goes in autopilot VC
-- splash missing
-- rate limit flight controls in autopilot mode
-- complete content for software/hardware/faq/credits/history/controls
-- fix screen sleep
-- update modern splash screen to mention the autopilot
-- autopilot
-- found bug in original lander that causes the flight dynamics to vary in the various builds
-  added to the classic build and fixed in the modern version
-- looks like a possible drawing glitch in the thrust view - don't see it
-- fix roll rate updates from flight controls
-- cleanup game logic so there is a single start/end selector
-- broke out model timer so it can be updated separately from controls
-- update delays in modern so speed things up
-- increase font size and space out controls for easier access (in classic/modern)
-- added intensity control to labels
-- Basic UI design implemented
-- Added shake gesture to quit a game early
 
 
 Credits
