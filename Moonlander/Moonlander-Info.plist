@@ -46,6 +46,8 @@
 	</array>
 	<key>UIMainStoryboardFile~ipad</key>
 	<string>Moonlander</string>
+	<key>UIStatusBarHidden~ipad</key>
+	<true/>
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
 		<string>UIInterfaceOrientationLandscapeLeft</string>

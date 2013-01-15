@@ -17,6 +17,7 @@
 @property (nonatomic, strong) IBOutlet UIButton *controlsButton;
 @property (nonatomic, strong) IBOutlet UIButton *faqButton;
 @property (nonatomic, strong) IBOutlet UIButton *creditsButton;
+@property (nonatomic, strong) IBOutlet UIButton *moreClassicsButton;
 
 @end
 
@@ -50,6 +51,7 @@
     self.controlsButton.titleLabel.font = displayFont;
     self.faqButton.titleLabel.font = displayFont;
     self.creditsButton.titleLabel.font = displayFont;
+    self.moreClassicsButton.titleLabel.font = displayFont;
     
     // Write the version info in menu view
     NSDictionary* infoDict = [[NSBundle mainBundle] infoDictionary];
@@ -114,6 +116,15 @@
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
 	return (interfaceOrientation == UIInterfaceOrientationLandscapeLeft || interfaceOrientation == UIInterfaceOrientationLandscapeRight);
+}
+
+#pragma mark -
+#pragma mark Button events
+
+- (IBAction)moreClassicsButtonSelected:(id)sender
+{
+    NSString *iTunesLink = @"itms-apps://itunes.com/apps/paradigmsystems";
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:iTunesLink]];
 }
 
 @end
