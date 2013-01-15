@@ -1369,10 +1369,6 @@ const float RollButtonRepeatInterval = 0.20;        // Timer value for roll butt
 
             // Don't allow the menu background to submit scores
             if ([self WallpaperController] == NO) {
-                // Enable the bonus content
-                NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-                [defaults setBool:YES forKey:@"optionEnableBonusContent"];
-                
                 // Post the score for Game Center
                 [[NSNotificationCenter defaultCenter] postNotificationName:@"mcdonaldsScorePosted" object:[NSNumber numberWithInt:landingScore]];
             }

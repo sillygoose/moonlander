@@ -36,7 +36,6 @@
 		563F402816A5F7CD004F7FB6 /* gamecenter.png in Resources */ = {isa = PBXBuildFile; fileRef = 563F402716A5F7CD004F7FB6 /* gamecenter.png */; };
 		563F402D16A5FAB6004F7FB6 /* controls.png in Resources */ = {isa = PBXBuildFile; fileRef = 563F402916A5FAB6004F7FB6 /* controls.png */; };
 		563F402E16A5FAB6004F7FB6 /* faq.png in Resources */ = {isa = PBXBuildFile; fileRef = 563F402A16A5FAB6004F7FB6 /* faq.png */; };
-		563F402F16A5FAB6004F7FB6 /* lunarlander.png in Resources */ = {isa = PBXBuildFile; fileRef = 563F402B16A5FAB6004F7FB6 /* lunarlander.png */; };
 		563F403016A5FAB6004F7FB6 /* moreclassics.png in Resources */ = {isa = PBXBuildFile; fileRef = 563F402C16A5FAB6004F7FB6 /* moreclassics.png */; };
 		563F403216A5FB31004F7FB6 /* credits.png in Resources */ = {isa = PBXBuildFile; fileRef = 563F403116A5FB31004F7FB6 /* credits.png */; };
 		564BE59E13800F3400D790D9 /* VGButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 564BE59D13800F3400D790D9 /* VGButton.m */; };
@@ -50,8 +49,6 @@
 		564FF25715562842007F5AB5 /* AutoPilotViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 564FF25615562842007F5AB5 /* AutoPilotViewController.m */; };
 		5650B9EA153CB76900AEF4F2 /* ExplosionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5650B9E9153CB76800AEF4F2 /* ExplosionManager.m */; };
 		56678FCC139A7D4D00026588 /* OldLander.plist in Resources */ = {isa = PBXBuildFile; fileRef = 56678FCB139A7D4D00026588 /* OldLander.plist */; };
-		5673868E1673B17B0069C1EA /* Lunar Lander Flight Controls.htm in Resources */ = {isa = PBXBuildFile; fileRef = 5673868B1673B17B0069C1EA /* Lunar Lander Flight Controls.htm */; };
-		5673868F1673B17B0069C1EA /* Lunar Lander Source Code.htm in Resources */ = {isa = PBXBuildFile; fileRef = 5673868C1673B17B0069C1EA /* Lunar Lander Source Code.htm */; };
 		567386A41673B3C10069C1EA /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 567386A31673B3C10069C1EA /* Reachability.m */; };
 		567386A61673B44C0069C1EA /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 567386A51673B44C0069C1EA /* SystemConfiguration.framework */; };
 		56755FDA138C0B8200455B52 /* Lander.m in Sources */ = {isa = PBXBuildFile; fileRef = 56755FD9138C0B8200455B52 /* Lander.m */; };
@@ -77,32 +74,9 @@
 		56D6C7D216435290001C2344 /* libTestFlight.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 56D6C7CE16435290001C2344 /* libTestFlight.a */; };
 		56DB5F7B16716E02000CB72A /* AutoPilotViewController+Autopilot.m in Sources */ = {isa = PBXBuildFile; fileRef = 56DB5F7A16716E01000CB72A /* AutoPilotViewController+Autopilot.m */; };
 		56DB82C716724C8C00C243A8 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 56DB82C616724C8C00C243A8 /* AVFoundation.framework */; };
-		56DB82CB16724E6000C243A8 /* teletype.aiff in Resources */ = {isa = PBXBuildFile; fileRef = 56DB82C816724E6000C243A8 /* teletype.aiff */; };
 		56DB82D016724E9A00C243A8 /* Teleprinter-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 56DB82CE16724E9A00C243A8 /* Teleprinter-Bold.ttf */; };
-		56DB82DE16724EF200C243A8 /* keycap.png in Resources */ = {isa = PBXBuildFile; fileRef = 56DB82D216724EF200C243A8 /* keycap.png */; };
-		56DB82DF16724EF200C243A8 /* paper.png in Resources */ = {isa = PBXBuildFile; fileRef = 56DB82D316724EF200C243A8 /* paper.png */; };
-		56DB82E316724EF200C243A8 /* rabbit.png in Resources */ = {isa = PBXBuildFile; fileRef = 56DB82D716724EF200C243A8 /* rabbit.png */; };
-		56DB82E416724EF200C243A8 /* teletype-logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 56DB82D816724EF200C243A8 /* teletype-logo.png */; };
-		56DB82E716724EF200C243A8 /* tortoise.png in Resources */ = {isa = PBXBuildFile; fileRef = 56DB82DB16724EF200C243A8 /* tortoise.png */; };
-		56DB82E816724EF200C243A8 /* volume-high.png in Resources */ = {isa = PBXBuildFile; fileRef = 56DB82DC16724EF200C243A8 /* volume-high.png */; };
-		56DB82E916724EF200C243A8 /* volume-low.png in Resources */ = {isa = PBXBuildFile; fileRef = 56DB82DD16724EF200C243A8 /* volume-low.png */; };
-		56DB82EE167253A400C243A8 /* keyboard.aiff in Resources */ = {isa = PBXBuildFile; fileRef = 56DB82EC167253A400C243A8 /* keyboard.aiff */; };
-		56DB82EF167253A400C243A8 /* keytyped.aiff in Resources */ = {isa = PBXBuildFile; fileRef = 56DB82ED167253A400C243A8 /* keytyped.aiff */; };
 		56DB82FB1672683700C243A8 /* GameOptions.plist in Resources */ = {isa = PBXBuildFile; fileRef = 56DB82FA1672683700C243A8 /* GameOptions.plist */; };
-		56DB830116728A2100C243A8 /* SourceCode.plist in Resources */ = {isa = PBXBuildFile; fileRef = 56DB830016728A2100C243A8 /* SourceCode.plist */; };
-		56DB83041672997700C243A8 /* Lunar Lander FAQ.htm in Resources */ = {isa = PBXBuildFile; fileRef = 56DB83031672997700C243A8 /* Lunar Lander FAQ.htm */; };
 		56DB830B1672B64C00C243A8 /* MoonlanderMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 56DB830A1672B64C00C243A8 /* MoonlanderMenuViewController.m */; };
-		56DB83121672B97400C243A8 /* LunarLanderMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 56DB83111672B97400C243A8 /* LunarLanderMenuViewController.m */; };
-		56DB83151672C10200C243A8 /* TeletypeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 56DB83141672C10200C243A8 /* TeletypeViewController.m */; };
-		56DB83231672C11200C243A8 /* Teletype.m in Sources */ = {isa = PBXBuildFile; fileRef = 56DB83181672C11200C243A8 /* Teletype.m */; };
-		56DB83241672C11200C243A8 /* TeletypeKeyboard.m in Sources */ = {isa = PBXBuildFile; fileRef = 56DB831A1672C11200C243A8 /* TeletypeKeyboard.m */; };
-		56DB83251672C11200C243A8 /* TeletypeOutputBackground.m in Sources */ = {isa = PBXBuildFile; fileRef = 56DB831C1672C11200C243A8 /* TeletypeOutputBackground.m */; };
-		56DB83261672C11200C243A8 /* TeletypePaper.m in Sources */ = {isa = PBXBuildFile; fileRef = 56DB831E1672C11200C243A8 /* TeletypePaper.m */; };
-		56DB83271672C11200C243A8 /* TeletypePrinter.m in Sources */ = {isa = PBXBuildFile; fileRef = 56DB83201672C11200C243A8 /* TeletypePrinter.m */; };
-		56DB83281672C11200C243A8 /* TeletypePrintOutput.m in Sources */ = {isa = PBXBuildFile; fileRef = 56DB83221672C11200C243A8 /* TeletypePrintOutput.m */; };
-		56DB832F1672C12700C243A8 /* Console.m in Sources */ = {isa = PBXBuildFile; fileRef = 56DB832A1672C12700C243A8 /* Console.m */; };
-		56DB83301672C12700C243A8 /* Controls.m in Sources */ = {isa = PBXBuildFile; fileRef = 56DB832C1672C12700C243A8 /* Controls.m */; };
-		56DB83311672C12700C243A8 /* DebugManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 56DB832E1672C12700C243A8 /* DebugManager.m */; };
 		56DFB15B166FC9090076F4DC /* RotateControl.png in Resources */ = {isa = PBXBuildFile; fileRef = 56DFB157166FC9090076F4DC /* RotateControl.png */; };
 		56DFB15C166FC9090076F4DC /* Instruments.png in Resources */ = {isa = PBXBuildFile; fileRef = 56DFB158166FC9090076F4DC /* Instruments.png */; };
 		56DFB15D166FC9090076F4DC /* Lander.png in Resources */ = {isa = PBXBuildFile; fileRef = 56DFB159166FC9090076F4DC /* Lander.png */; };
@@ -114,15 +88,6 @@
 		56DFB17E166FF2610076F4DC /* explosion-high.caf in Resources */ = {isa = PBXBuildFile; fileRef = 56DFB174166FF2610076F4DC /* explosion-high.caf */; };
 		56DFB17F166FF2610076F4DC /* explosion-low.caf in Resources */ = {isa = PBXBuildFile; fileRef = 56DFB175166FF2610076F4DC /* explosion-low.caf */; };
 		56DFB180166FF2610076F4DC /* explosion-med.caf in Resources */ = {isa = PBXBuildFile; fileRef = 56DFB176166FF2610076F4DC /* explosion-med.caf */; };
-		56E07CB61673FB3E009C847B /* NO.png in Resources */ = {isa = PBXBuildFile; fileRef = 56E07CB01673FB3D009C847B /* NO.png */; };
-		56E07CB71673FB3E009C847B /* NUMERIC.png in Resources */ = {isa = PBXBuildFile; fileRef = 56E07CB11673FB3D009C847B /* NUMERIC.png */; };
-		56E07CB81673FB3E009C847B /* QUIT.png in Resources */ = {isa = PBXBuildFile; fileRef = 56E07CB21673FB3D009C847B /* QUIT.png */; };
-		56E07CB91673FB3E009C847B /* RETURN.png in Resources */ = {isa = PBXBuildFile; fileRef = 56E07CB31673FB3E009C847B /* RETURN.png */; };
-		56E07CBA1673FB3E009C847B /* RUBOUT.png in Resources */ = {isa = PBXBuildFile; fileRef = 56E07CB41673FB3E009C847B /* RUBOUT.png */; };
-		56E07CBB1673FB3E009C847B /* YES.png in Resources */ = {isa = PBXBuildFile; fileRef = 56E07CB51673FB3E009C847B /* YES.png */; };
-		56E07CBF1673FB61009C847B /* SpeedSlider.png in Resources */ = {isa = PBXBuildFile; fileRef = 56E07CBC1673FB61009C847B /* SpeedSlider.png */; };
-		56E07CC01673FB61009C847B /* StatementTrace.png in Resources */ = {isa = PBXBuildFile; fileRef = 56E07CBD1673FB61009C847B /* StatementTrace.png */; };
-		56E07CC11673FB61009C847B /* VolumeSlider.png in Resources */ = {isa = PBXBuildFile; fileRef = 56E07CBE1673FB61009C847B /* VolumeSlider.png */; };
 		56E07CF41674F9CA009C847B /* Vectorb.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 56E07CF31674F9CA009C847B /* Vectorb.ttf */; };
 		56E80E4C137E4CC3009E7F15 /* Lander.plist in Resources */ = {isa = PBXBuildFile; fileRef = 56E80E4B137E4CC3009E7F15 /* Lander.plist */; };
 		56E80E60137E599E009E7F15 /* VGView.m in Sources */ = {isa = PBXBuildFile; fileRef = 56E80E5F137E599E009E7F15 /* VGView.m */; };
@@ -190,7 +155,6 @@
 		563F402716A5F7CD004F7FB6 /* gamecenter.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = gamecenter.png; sourceTree = "<group>"; };
 		563F402916A5FAB6004F7FB6 /* controls.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = controls.png; sourceTree = "<group>"; };
 		563F402A16A5FAB6004F7FB6 /* faq.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = faq.png; sourceTree = "<group>"; };
-		563F402B16A5FAB6004F7FB6 /* lunarlander.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = lunarlander.png; sourceTree = "<group>"; };
 		563F402C16A5FAB6004F7FB6 /* moreclassics.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = moreclassics.png; sourceTree = "<group>"; };
 		563F403116A5FB31004F7FB6 /* credits.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = credits.png; sourceTree = "<group>"; };
 		563F403416A5FB40004F7FB6 /* controls.acorn */ = {isa = PBXFileReference; lastKnownFileType = file; path = controls.acorn; sourceTree = "<group>"; };
@@ -239,8 +203,6 @@
 		565D23671540F0230074D3AD /* rocket.bas */ = {isa = PBXFileReference; lastKnownFileType = text; path = rocket.bas; sourceTree = "<group>"; };
 		565D237615411DB30074D3AD /* LanderDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LanderDelegate.h; sourceTree = "<group>"; };
 		56678FCB139A7D4D00026588 /* OldLander.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = OldLander.plist; sourceTree = "<group>"; };
-		5673868B1673B17B0069C1EA /* Lunar Lander Flight Controls.htm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = "Lunar Lander Flight Controls.htm"; sourceTree = "<group>"; };
-		5673868C1673B17B0069C1EA /* Lunar Lander Source Code.htm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = "Lunar Lander Source Code.htm"; sourceTree = "<group>"; };
 		567386A21673B3C10069C1EA /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
 		567386A31673B3C10069C1EA /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
 		567386A51673B44C0069C1EA /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
@@ -282,45 +244,10 @@
 		56DB5F7916716E01000CB72A /* AutoPilotViewController+Autopilot.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "AutoPilotViewController+Autopilot.h"; sourceTree = "<group>"; };
 		56DB5F7A16716E01000CB72A /* AutoPilotViewController+Autopilot.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "AutoPilotViewController+Autopilot.m"; sourceTree = "<group>"; };
 		56DB82C616724C8C00C243A8 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
-		56DB82C816724E6000C243A8 /* teletype.aiff */ = {isa = PBXFileReference; lastKnownFileType = audio.aiff; path = teletype.aiff; sourceTree = "<group>"; };
 		56DB82CE16724E9A00C243A8 /* Teleprinter-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Teleprinter-Bold.ttf"; sourceTree = "<group>"; };
-		56DB82D216724EF200C243A8 /* keycap.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = keycap.png; sourceTree = "<group>"; };
-		56DB82D316724EF200C243A8 /* paper.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = paper.png; sourceTree = "<group>"; };
-		56DB82D716724EF200C243A8 /* rabbit.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = rabbit.png; sourceTree = "<group>"; };
-		56DB82D816724EF200C243A8 /* teletype-logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "teletype-logo.png"; sourceTree = "<group>"; };
-		56DB82DB16724EF200C243A8 /* tortoise.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tortoise.png; sourceTree = "<group>"; };
-		56DB82DC16724EF200C243A8 /* volume-high.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "volume-high.png"; sourceTree = "<group>"; };
-		56DB82DD16724EF200C243A8 /* volume-low.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "volume-low.png"; sourceTree = "<group>"; };
-		56DB82EC167253A400C243A8 /* keyboard.aiff */ = {isa = PBXFileReference; lastKnownFileType = audio.aiff; path = keyboard.aiff; sourceTree = "<group>"; };
-		56DB82ED167253A400C243A8 /* keytyped.aiff */ = {isa = PBXFileReference; lastKnownFileType = audio.aiff; path = keytyped.aiff; sourceTree = "<group>"; };
 		56DB82FA1672683700C243A8 /* GameOptions.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = GameOptions.plist; sourceTree = "<group>"; };
-		56DB830016728A2100C243A8 /* SourceCode.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = SourceCode.plist; sourceTree = "<group>"; };
-		56DB83031672997700C243A8 /* Lunar Lander FAQ.htm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = "Lunar Lander FAQ.htm"; sourceTree = "<group>"; };
 		56DB83091672B64C00C243A8 /* MoonlanderMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MoonlanderMenuViewController.h; sourceTree = "<group>"; };
 		56DB830A1672B64C00C243A8 /* MoonlanderMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MoonlanderMenuViewController.m; sourceTree = "<group>"; };
-		56DB83101672B97400C243A8 /* LunarLanderMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LunarLanderMenuViewController.h; sourceTree = "<group>"; };
-		56DB83111672B97400C243A8 /* LunarLanderMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LunarLanderMenuViewController.m; sourceTree = "<group>"; };
-		56DB83131672C10200C243A8 /* TeletypeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TeletypeViewController.h; sourceTree = "<group>"; };
-		56DB83141672C10200C243A8 /* TeletypeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TeletypeViewController.m; sourceTree = "<group>"; };
-		56DB83161672C11200C243A8 /* Keycodes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Keycodes.h; sourceTree = "<group>"; };
-		56DB83171672C11200C243A8 /* Teletype.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Teletype.h; sourceTree = "<group>"; };
-		56DB83181672C11200C243A8 /* Teletype.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Teletype.m; sourceTree = "<group>"; };
-		56DB83191672C11200C243A8 /* TeletypeKeyboard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TeletypeKeyboard.h; sourceTree = "<group>"; };
-		56DB831A1672C11200C243A8 /* TeletypeKeyboard.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TeletypeKeyboard.m; sourceTree = "<group>"; };
-		56DB831B1672C11200C243A8 /* TeletypeOutputBackground.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TeletypeOutputBackground.h; sourceTree = "<group>"; };
-		56DB831C1672C11200C243A8 /* TeletypeOutputBackground.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TeletypeOutputBackground.m; sourceTree = "<group>"; };
-		56DB831D1672C11200C243A8 /* TeletypePaper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TeletypePaper.h; sourceTree = "<group>"; };
-		56DB831E1672C11200C243A8 /* TeletypePaper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TeletypePaper.m; sourceTree = "<group>"; };
-		56DB831F1672C11200C243A8 /* TeletypePrinter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TeletypePrinter.h; sourceTree = "<group>"; };
-		56DB83201672C11200C243A8 /* TeletypePrinter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TeletypePrinter.m; sourceTree = "<group>"; };
-		56DB83211672C11200C243A8 /* TeletypePrintOutput.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TeletypePrintOutput.h; sourceTree = "<group>"; };
-		56DB83221672C11200C243A8 /* TeletypePrintOutput.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TeletypePrintOutput.m; sourceTree = "<group>"; };
-		56DB83291672C12700C243A8 /* Console.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Console.h; sourceTree = "<group>"; };
-		56DB832A1672C12700C243A8 /* Console.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Console.m; sourceTree = "<group>"; };
-		56DB832B1672C12700C243A8 /* Controls.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Controls.h; sourceTree = "<group>"; };
-		56DB832C1672C12700C243A8 /* Controls.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Controls.m; sourceTree = "<group>"; };
-		56DB832D1672C12700C243A8 /* DebugManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DebugManager.h; sourceTree = "<group>"; };
-		56DB832E1672C12700C243A8 /* DebugManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DebugManager.m; sourceTree = "<group>"; };
 		56DFB157166FC9090076F4DC /* RotateControl.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = RotateControl.png; sourceTree = "<group>"; };
 		56DFB158166FC9090076F4DC /* Instruments.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Instruments.png; sourceTree = "<group>"; };
 		56DFB159166FC9090076F4DC /* Lander.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Lander.png; sourceTree = "<group>"; };
@@ -333,15 +260,6 @@
 		56DFB175166FF2610076F4DC /* explosion-low.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "explosion-low.caf"; sourceTree = "<group>"; };
 		56DFB176166FF2610076F4DC /* explosion-med.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "explosion-med.caf"; sourceTree = "<group>"; };
 		56DFB6B0155AE76A00149D1E /* macro.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = macro.pdf; sourceTree = "<group>"; };
-		56E07CB01673FB3D009C847B /* NO.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = NO.png; sourceTree = "<group>"; };
-		56E07CB11673FB3D009C847B /* NUMERIC.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = NUMERIC.png; sourceTree = "<group>"; };
-		56E07CB21673FB3D009C847B /* QUIT.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = QUIT.png; sourceTree = "<group>"; };
-		56E07CB31673FB3E009C847B /* RETURN.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = RETURN.png; sourceTree = "<group>"; };
-		56E07CB41673FB3E009C847B /* RUBOUT.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = RUBOUT.png; sourceTree = "<group>"; };
-		56E07CB51673FB3E009C847B /* YES.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = YES.png; sourceTree = "<group>"; };
-		56E07CBC1673FB61009C847B /* SpeedSlider.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SpeedSlider.png; sourceTree = "<group>"; };
-		56E07CBD1673FB61009C847B /* StatementTrace.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = StatementTrace.png; sourceTree = "<group>"; };
-		56E07CBE1673FB61009C847B /* VolumeSlider.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = VolumeSlider.png; sourceTree = "<group>"; };
 		56E07CF31674F9CA009C847B /* Vectorb.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Vectorb.ttf; sourceTree = "<group>"; };
 		56E16EC7167EB2D30094C638 /* LargeAppIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LargeAppIcon.png; sourceTree = "<group>"; };
 		56E16EC9167EB32B0094C638 /* Cheeseburgers.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Cheeseburgers.png; sourceTree = "<group>"; };
@@ -476,8 +394,6 @@
 				562D6246154DAD1900BD4EDD /* MenuViewController.m */,
 				56DB83091672B64C00C243A8 /* MoonlanderMenuViewController.h */,
 				56DB830A1672B64C00C243A8 /* MoonlanderMenuViewController.m */,
-				56DB83101672B97400C243A8 /* LunarLanderMenuViewController.h */,
-				56DB83111672B97400C243A8 /* LunarLanderMenuViewController.m */,
 				560FA1341379BEAA0017EE25 /* LanderViewController.h */,
 				560FA1351379BEAA0017EE25 /* LanderViewController.m */,
 				564FF2511556228A007F5AB5 /* ModernLanderViewController.h */,
@@ -491,7 +407,6 @@
 				56EA5BF4154E35D700AB6DF2 /* DocumentViewController.h */,
 				56EA5BF5154E35D700AB6DF2 /* DocumentViewController.m */,
 				567CD473154853D800797BD1 /* Classes */,
-				56DB82A116724B2C00C243A8 /* ROCKET Classic */,
 				560FA10D1379923D0017EE25 /* Lander Model */,
 				5695F1A9137F52B50075CD26 /* Vector Graphics */,
 				563F401616A5C05D004F7FB6 /* Game Center */,
@@ -576,9 +491,6 @@
 		562D628E154DEC6A00BD4EDD /* html */ = {
 			isa = PBXGroup;
 			children = (
-				5673868B1673B17B0069C1EA /* Lunar Lander Flight Controls.htm */,
-				5673868C1673B17B0069C1EA /* Lunar Lander Source Code.htm */,
-				56DB83031672997700C243A8 /* Lunar Lander FAQ.htm */,
 				56A71648166FA1310023EADD /* Moonlander Flight Controls.htm */,
 				56A71641166F12F20023EADD /* Moonlander Credits.htm */,
 				56A7163F166E94B10023EADD /* Moonlander FAQ.htm */,
@@ -590,7 +502,6 @@
 		562D62A3154DF5C800BD4EDD /* plist */ = {
 			isa = PBXGroup;
 			children = (
-				56DB830016728A2100C243A8 /* SourceCode.plist */,
 				56DB82FA1672683700C243A8 /* GameOptions.plist */,
 				569CC2A913809BED00E6D82A /* Moon.plist */,
 				56678FCB139A7D4D00026588 /* OldLander.plist */,
@@ -703,26 +614,9 @@
 				563F403116A5FB31004F7FB6 /* credits.png */,
 				563F402916A5FAB6004F7FB6 /* controls.png */,
 				563F402A16A5FAB6004F7FB6 /* faq.png */,
-				563F402B16A5FAB6004F7FB6 /* lunarlander.png */,
 				563F402C16A5FAB6004F7FB6 /* moreclassics.png */,
 				563F402716A5F7CD004F7FB6 /* gamecenter.png */,
 				563F402516A5F3E8004F7FB6 /* moonlander.png */,
-				56E07CBC1673FB61009C847B /* SpeedSlider.png */,
-				56E07CBD1673FB61009C847B /* StatementTrace.png */,
-				56E07CBE1673FB61009C847B /* VolumeSlider.png */,
-				56E07CB01673FB3D009C847B /* NO.png */,
-				56E07CB11673FB3D009C847B /* NUMERIC.png */,
-				56E07CB21673FB3D009C847B /* QUIT.png */,
-				56E07CB31673FB3E009C847B /* RETURN.png */,
-				56E07CB41673FB3E009C847B /* RUBOUT.png */,
-				56E07CB51673FB3E009C847B /* YES.png */,
-				56DB82D216724EF200C243A8 /* keycap.png */,
-				56DB82D316724EF200C243A8 /* paper.png */,
-				56DB82D716724EF200C243A8 /* rabbit.png */,
-				56DB82D816724EF200C243A8 /* teletype-logo.png */,
-				56DB82DB16724EF200C243A8 /* tortoise.png */,
-				56DB82DC16724EF200C243A8 /* volume-high.png */,
-				56DB82DD16724EF200C243A8 /* volume-low.png */,
 				56DFB157166FC9090076F4DC /* RotateControl.png */,
 				56DFB158166FC9090076F4DC /* Instruments.png */,
 				56DFB159166FC9090076F4DC /* Lander.png */,
@@ -807,57 +701,9 @@
 			path = TestFlightSDK1.1;
 			sourceTree = "<group>";
 		};
-		56DB82A116724B2C00C243A8 /* ROCKET Classic */ = {
-			isa = PBXGroup;
-			children = (
-				56DB83131672C10200C243A8 /* TeletypeViewController.h */,
-				56DB83141672C10200C243A8 /* TeletypeViewController.m */,
-				56DB82BA16724C2300C243A8 /* Debug Console */,
-				56DB82A316724B6800C243A8 /* Teletype */,
-			);
-			name = "ROCKET Classic";
-			path = "Rocket Classic";
-			sourceTree = "<group>";
-		};
-		56DB82A316724B6800C243A8 /* Teletype */ = {
-			isa = PBXGroup;
-			children = (
-				56DB83161672C11200C243A8 /* Keycodes.h */,
-				56DB83171672C11200C243A8 /* Teletype.h */,
-				56DB83181672C11200C243A8 /* Teletype.m */,
-				56DB83191672C11200C243A8 /* TeletypeKeyboard.h */,
-				56DB831A1672C11200C243A8 /* TeletypeKeyboard.m */,
-				56DB831B1672C11200C243A8 /* TeletypeOutputBackground.h */,
-				56DB831C1672C11200C243A8 /* TeletypeOutputBackground.m */,
-				56DB831D1672C11200C243A8 /* TeletypePaper.h */,
-				56DB831E1672C11200C243A8 /* TeletypePaper.m */,
-				56DB831F1672C11200C243A8 /* TeletypePrinter.h */,
-				56DB83201672C11200C243A8 /* TeletypePrinter.m */,
-				56DB83211672C11200C243A8 /* TeletypePrintOutput.h */,
-				56DB83221672C11200C243A8 /* TeletypePrintOutput.m */,
-			);
-			path = Teletype;
-			sourceTree = "<group>";
-		};
-		56DB82BA16724C2300C243A8 /* Debug Console */ = {
-			isa = PBXGroup;
-			children = (
-				56DB83291672C12700C243A8 /* Console.h */,
-				56DB832A1672C12700C243A8 /* Console.m */,
-				56DB832B1672C12700C243A8 /* Controls.h */,
-				56DB832C1672C12700C243A8 /* Controls.m */,
-				56DB832D1672C12700C243A8 /* DebugManager.h */,
-				56DB832E1672C12700C243A8 /* DebugManager.m */,
-			);
-			path = "Debug Console";
-			sourceTree = "<group>";
-		};
 		56DFB16F166FF2610076F4DC /* sounds */ = {
 			isa = PBXGroup;
 			children = (
-				56DB82EC167253A400C243A8 /* keyboard.aiff */,
-				56DB82ED167253A400C243A8 /* keytyped.aiff */,
-				56DB82C816724E6000C243A8 /* teletype.aiff */,
 				56DFB170166FF2610076F4DC /* beep-high.caf */,
 				56DFB171166FF2610076F4DC /* beep-low.caf */,
 				56DFB172166FF2610076F4DC /* beep-med.caf */,
@@ -1123,38 +969,14 @@
 				56DFB17E166FF2610076F4DC /* explosion-high.caf in Resources */,
 				56DFB17F166FF2610076F4DC /* explosion-low.caf in Resources */,
 				56DFB180166FF2610076F4DC /* explosion-med.caf in Resources */,
-				56DB82CB16724E6000C243A8 /* teletype.aiff in Resources */,
 				56DB82D016724E9A00C243A8 /* Teleprinter-Bold.ttf in Resources */,
-				56DB82DE16724EF200C243A8 /* keycap.png in Resources */,
-				56DB82DF16724EF200C243A8 /* paper.png in Resources */,
-				56DB82E316724EF200C243A8 /* rabbit.png in Resources */,
-				56DB82E416724EF200C243A8 /* teletype-logo.png in Resources */,
-				56DB82E716724EF200C243A8 /* tortoise.png in Resources */,
-				56DB82E816724EF200C243A8 /* volume-high.png in Resources */,
-				56DB82E916724EF200C243A8 /* volume-low.png in Resources */,
-				56DB82EE167253A400C243A8 /* keyboard.aiff in Resources */,
-				56DB82EF167253A400C243A8 /* keytyped.aiff in Resources */,
 				56DB82FB1672683700C243A8 /* GameOptions.plist in Resources */,
-				56DB830116728A2100C243A8 /* SourceCode.plist in Resources */,
-				56DB83041672997700C243A8 /* Lunar Lander FAQ.htm in Resources */,
-				5673868E1673B17B0069C1EA /* Lunar Lander Flight Controls.htm in Resources */,
-				5673868F1673B17B0069C1EA /* Lunar Lander Source Code.htm in Resources */,
-				56E07CB61673FB3E009C847B /* NO.png in Resources */,
-				56E07CB71673FB3E009C847B /* NUMERIC.png in Resources */,
-				56E07CB81673FB3E009C847B /* QUIT.png in Resources */,
-				56E07CB91673FB3E009C847B /* RETURN.png in Resources */,
-				56E07CBA1673FB3E009C847B /* RUBOUT.png in Resources */,
-				56E07CBB1673FB3E009C847B /* YES.png in Resources */,
-				56E07CBF1673FB61009C847B /* SpeedSlider.png in Resources */,
-				56E07CC01673FB61009C847B /* StatementTrace.png in Resources */,
-				56E07CC11673FB61009C847B /* VolumeSlider.png in Resources */,
 				56E07CF41674F9CA009C847B /* Vectorb.ttf in Resources */,
 				563F402016A5C116004F7FB6 /* Game Center Metadata in Resources */,
 				563F402616A5F3E8004F7FB6 /* moonlander.png in Resources */,
 				563F402816A5F7CD004F7FB6 /* gamecenter.png in Resources */,
 				563F402D16A5FAB6004F7FB6 /* controls.png in Resources */,
 				563F402E16A5FAB6004F7FB6 /* faq.png in Resources */,
-				563F402F16A5FAB6004F7FB6 /* lunarlander.png in Resources */,
 				563F403016A5FAB6004F7FB6 /* moreclassics.png in Resources */,
 				563F403216A5FB31004F7FB6 /* credits.png in Resources */,
 			);
@@ -1214,17 +1036,6 @@
 				564FF25715562842007F5AB5 /* AutoPilotViewController.m in Sources */,
 				56DB5F7B16716E02000CB72A /* AutoPilotViewController+Autopilot.m in Sources */,
 				56DB830B1672B64C00C243A8 /* MoonlanderMenuViewController.m in Sources */,
-				56DB83121672B97400C243A8 /* LunarLanderMenuViewController.m in Sources */,
-				56DB83151672C10200C243A8 /* TeletypeViewController.m in Sources */,
-				56DB83231672C11200C243A8 /* Teletype.m in Sources */,
-				56DB83241672C11200C243A8 /* TeletypeKeyboard.m in Sources */,
-				56DB83251672C11200C243A8 /* TeletypeOutputBackground.m in Sources */,
-				56DB83261672C11200C243A8 /* TeletypePaper.m in Sources */,
-				56DB83271672C11200C243A8 /* TeletypePrinter.m in Sources */,
-				56DB83281672C11200C243A8 /* TeletypePrintOutput.m in Sources */,
-				56DB832F1672C12700C243A8 /* Console.m in Sources */,
-				56DB83301672C12700C243A8 /* Controls.m in Sources */,
-				56DB83311672C12700C243A8 /* DebugManager.m in Sources */,
 				567386A41673B3C10069C1EA /* Reachability.m in Sources */,
 				563F401B16A5C05D004F7FB6 /* GameCenterManager.m in Sources */,
 			);

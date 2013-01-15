@@ -54,140 +54,6 @@
             </objects>
             <point key="canvasLocation" x="558" y="2489"/>
         </scene>
-        <!--Lunar Lander Menu VC-->
-        <scene sceneID="Hkn-h4-nwh">
-            <objects>
-                <viewController storyboardIdentifier="Lunar Lander Menu" title="Lunar Lander Menu" wantsFullScreenLayout="YES" id="Tjz-Ah-CSq" userLabel="Lunar Lander Menu VC" customClass="LunarLanderMenuViewController" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="2m3-qb-6Af">
-                        <rect key="frame" x="0.0" y="20" width="1024" height="748"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="paper.png" id="Kde-AV-6k1">
-                                <rect key="frame" x="-70" y="-65" width="1124" height="848"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Q1d-9N-0b1" userLabel="FAQ">
-                                <rect key="frame" x="854" y="320" width="150" height="60"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="60"/>
-                                <state key="normal" title="FAQ">
-                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <state key="highlighted">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <segue destination="3yj-Dv-A59" kind="push" identifier="Lunar Lander FAQ.htm" id="5HL-sW-AFq"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Rb4-bd-yvg" userLabel="Play">
-                                <rect key="frame" x="519" y="120" width="485" height="60"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="60"/>
-                                <state key="normal" title="Lunar Lander">
-                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <state key="highlighted">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <segue destination="bdA-dI-yp9" kind="push" id="V9j-eu-i6S"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="J9k-ZH-AwS" userLabel="FlightControls">
-                                <rect key="frame" x="676" y="220" width="328" height="60"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="60"/>
-                                <state key="normal" title="Controls">
-                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <state key="highlighted">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <segue destination="9la-TG-XLd" kind="push" identifier="Lunar Lander Flight Controls.htm" id="gS3-YP-8vC"/>
-                                </connections>
-                            </button>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" lineBreakMode="tailTruncation" numberOfLines="300" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="xfp-jF-aLA">
-                                <rect key="frame" x="10" y="10" width="723" height="727"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <string key="text">W A
-C-FOCAL,1969
-
-01.04 T "CONTROL CALLING LUNAR MODULE.MANUAL CONTROL IS NECESSARY"!
-01.06 T "YOU MAY RESET FUEL RATE K EACH 10 SECS TO 0 OR ANY VALUE"!
-01.08 T "BETWEEN 8&amp;200 LBS/SEC.YOU'VE 16000 LBS FUEL.ESTIMATED"!
-01.11 T "FREE FALL IMPACT TIME-120 SECS.CAPSULE WEIGHT-32500 LBS"!
-01.20 T "FIRST RADAR CHECK COMING UP"!!!
-01.30 T "COMMENCE LANDING PROCEDURE"!"TIME,SECS   ALTITUDE,"
-01.40 T "MILES+FEET   VELOCITY,MPH   FUEL,LBS   FUEL RATE"!
-
-02.05 S L=0;S A=120;S V=1;S M=33000;S N=16500;S G=.001;S Z=1.8
-02.10 T "    ",%3,L,"       ",FITR(A),"  ",%4,5280*(A-FITR(A))
-02.20 T %6.02,"       ",3600*V,"    ",%6.01,M-N,"      K=";A K;S T=10
-02.70 T %7.02;I (K)2.72;I (200-K)2.72;I (K-8)2.71,3.1,3.1
-02.71 I (K-0)2.72,3.1,2.72
-02.72 T "NOT POSSIBLE";F X=1,51;T "."
-02.73 T "K=";A K;G 2.7
-
-03.10 I ((M-N)-.001)4.1;I (T-.001)2.1;S S=T
-03.40 I ((N+S*K)-M)3.5,3.5;S S=(M-N)/K
-03.50 D 9;I (I)7.1,7.1;I (V)3.8,3.8;I (J)8.1
-03.80 D 6;G 3.1
-
-04.10 T "FUEL OUT AT",L," SECS"!
-04.40 S S=(-V+FSQT(V*V+2*A*G))/G;S V=V+G*S;S L=L+S
-
-05.10 T "ON THE MOON AT",L," SECS"!;S W=3600*V
-05.20 T "IMPACT VELOCITY OF",W,"M.P.H."!,"FUEL LEFT:"
-05.30 T M-N," LBS."!;I (-W+1)5.5,5.5
-05.40 T "PERFECT LANDING !-(LUCKY)"!;G 5.9
-05.50 I (-W+10)5.6,5.6;T "GOOD LANDING-(COULD BE BETTER)"!;G 5.90
-05.60 I (-W+25)5.7,5.7;T "CONGRATULATIONS ON A POOR LANDING"!;G 5.9
-05.70 I (-W+60)5.8,5.8;T "CRAFT DAMAGE.GOOD LUCK"!;G 5.9
-05.80 T "SORRY,BUT THERE WERE NO SURVIVORS-YOU BLEW IT!"!"IN"
-05.81 T "FACT YOU BLASTED A NEW LUNAR CRATER",W*.277777,"FT.DEEP.
-05.90 T "CONTROL OUT";QUIT
-
-06.10 S L=L+S;S T=T-S;S M=M-S*K;S A=I;S V=J
-
-07.10 I (S-.005)5.1;S S=2*A/(V+FSQT(V*V+2*A*(G-Z*K/M)))
-07.30 D 9;D 6;G 7.1
-
-08.10 S W=(1-M*G/(Z*K))/2;S S=M*V/(Z*K*(W+FSQT(W*W+V/Z)))+.05;D 9
-08.30 I (I)7.1,7.1;D 6;I (-J)3.1,3.1;I (V)3.1,3.1,8.1
-
-09.10 S Q=S*K/M;S J=V+G*S+Z*(-Q-Q^2/2-Q^3/3-Q^4/4-Q^5/5)
-09.40 S I=A-G*S*S/2-V*S+Z*S*(Q/2+Q^2/6+Q^3/12+Q^4/20+Q^5/30)
-*
-</string>
-                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                        <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
-                    </view>
-                    <navigationItem key="navigationItem" id="OCS-hc-bhA"/>
-                    <nil key="simulatedTopBarMetrics"/>
-                    <connections>
-                        <outlet property="backgroundSource" destination="xfp-jF-aLA" id="14u-Fk-Fe2"/>
-                        <outlet property="controlsButton" destination="J9k-ZH-AwS" id="Rqo-w2-Y6U"/>
-                        <outlet property="faqButton" destination="Q1d-9N-0b1" id="If3-GM-yWu"/>
-                        <outlet property="lunarlanderButton" destination="Rb4-bd-yvg" id="uYj-wf-OTE"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="5dg-C3-jKN" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="558" y="-311"/>
-        </scene>
         <!--Flight Controls-->
         <scene sceneID="lt9-O1-TfR">
             <objects>
@@ -352,8 +218,8 @@ C-FOCAL,1969
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <button opaque="NO" alpha="0.80000000000000004" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Cne-ZE-E0a" userLabel="Play">
-                                <rect key="frame" x="508" y="140" width="496" height="80"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <rect key="frame" x="508" y="104" width="496" height="80"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="48"/>
                                 <state key="normal" image="moonlander.png">
@@ -368,8 +234,8 @@ C-FOCAL,1969
                                 </connections>
                             </button>
                             <button opaque="NO" alpha="0.80000000000000004" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="QD4-7c-czr" userLabel="FlightControls">
-                                <rect key="frame" x="601" y="411" width="403" height="79"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <rect key="frame" x="601" y="373" width="403" height="79"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="48"/>
                                 <state key="normal" image="controls.png">
@@ -384,8 +250,8 @@ C-FOCAL,1969
                                 </connections>
                             </button>
                             <button opaque="NO" alpha="0.80000000000000004" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="fAr-Om-uPQ" userLabel="FAQ">
-                                <rect key="frame" x="825" y="590" width="179" height="80"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <rect key="frame" x="825" y="552" width="179" height="80"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="48"/>
                                 <state key="normal" image="faq.png">
@@ -400,8 +266,8 @@ C-FOCAL,1969
                                 </connections>
                             </button>
                             <button opaque="NO" alpha="0.80000000000000004" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="iZL-7G-cl7" userLabel="Credits">
-                                <rect key="frame" x="640" y="502" width="364" height="80"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <rect key="frame" x="640" y="464" width="364" height="80"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="48"/>
                                 <state key="normal" image="credits.png">
@@ -416,8 +282,8 @@ C-FOCAL,1969
                                 </connections>
                             </button>
                             <button opaque="NO" alpha="0.80000000000000004" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="j0x-sa-FSS" userLabel="Credits">
-                                <rect key="frame" x="369" y="230" width="635" height="80"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <rect key="frame" x="369" y="192" width="635" height="80"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="48"/>
                                 <state key="normal" image="moreclassics.png">
@@ -432,8 +298,8 @@ C-FOCAL,1969
                                 </connections>
                             </button>
                             <button opaque="NO" alpha="0.80000000000000004" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Nfu-Nl-nG3" userLabel="Credits">
-                                <rect key="frame" x="462" y="318" width="542" height="80"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <rect key="frame" x="462" y="280" width="542" height="80"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="48"/>
                                 <state key="normal" image="gamecenter.png">
@@ -454,29 +320,12 @@ C-FOCAL,1969
                                 <color key="textColor" red="0.0" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" alpha="0.80000000000000004" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="qxj-QQ-fmm" userLabel="FAQ">
-                                <rect key="frame" x="428" y="50" width="576" height="80"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="48"/>
-                                <state key="normal" image="lunarlander.png">
-                                    <color key="titleColor" red="0.0" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <state key="highlighted">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <segue destination="Tjz-Ah-CSq" kind="push" id="z7M-FF-2qY"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     </view>
                     <navigationItem key="navigationItem" id="FOS-Wy-hDC"/>
                     <connections>
-                        <outlet property="bonusContentButton" destination="qxj-QQ-fmm" id="2NE-9u-n0E"/>
                         <outlet property="buildInfo" destination="E6z-nC-nYr" id="3aV-SS-qbe"/>
                         <outlet property="controlsButton" destination="QD4-7c-czr" id="Naw-fu-Ix5"/>
                         <outlet property="creditsButton" destination="iZL-7G-cl7" id="iSv-M8-2Fn"/>
@@ -506,478 +355,18 @@ C-FOCAL,1969
             </objects>
             <point key="canvasLocation" x="558" y="-1211"/>
         </scene>
-        <!--TeletypeGame-->
-        <scene sceneID="37Q-KF-5dJ">
-            <objects>
-                <viewController storyboardIdentifier="TeletypeVC" title="Teletype" wantsFullScreenLayout="YES" id="bdA-dI-yp9" userLabel="TeletypeGame" customClass="TeletypeViewController" sceneMemberID="viewController">
-                    <view key="view" clipsSubviews="YES" contentMode="scaleToFill" id="7Ui-nz-ix9">
-                        <rect key="frame" x="0.0" y="20" width="1024" height="748"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
-                        <subviews>
-                            <view clipsSubviews="YES" contentMode="scaleToFill" id="dqS-wD-goD" userLabel="Debugger" customClass="DebugManager">
-                                <rect key="frame" x="0.0" y="0.0" width="1024" height="50"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                                <subviews>
-                                    <view contentMode="scaleToFill" id="X8w-IS-qmV" userLabel="Debug Controls" customClass="Controls">
-                                        <rect key="frame" x="0.0" y="0.0" width="1024" height="50"/>
-                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                                        <subviews>
-                                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Statement Trace" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Lgv-EF-NgK">
-                                                <rect key="frame" x="120" y="10" width="140" height="27"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <switch opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="p6S-J6-f0x" userLabel="Step Enable">
-                                                <rect key="frame" x="277" y="10" width="79" height="27"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <connections>
-                                                    <action selector="traceEnabledUpdated:" destination="X8w-IS-qmV" eventType="valueChanged" id="PSu-Mf-Mdj"/>
-                                                </connections>
-                                            </switch>
-                                            <slider opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="1" minValue="0.5" maxValue="10" minimumValueImage="tortoise.png" maximumValueImage="rabbit.png" id="R2w-rG-8u7" userLabel="Step Speed">
-                                                <rect key="frame" x="382" y="13" width="285" height="23"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
-                                                <connections>
-                                                    <action selector="traceStepIntervalChange:" destination="X8w-IS-qmV" eventType="valueChanged" id="LBS-PC-rRa"/>
-                                                    <action selector="traceStepIntervalUpdated:" destination="X8w-IS-qmV" eventType="touchUpInside" id="hC9-lX-gJh"/>
-                                                </connections>
-                                            </slider>
-                                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" minimumValueImage="volume-low.png" maximumValueImage="volume-high.png" id="RRj-lx-xCm" userLabel="Audio Volume">
-                                                <rect key="frame" x="782" y="15" width="224" height="23"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
-                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                                <connections>
-                                                    <action selector="teletypeAudioVolumeChange" destination="X8w-IS-qmV" eventType="valueChanged" id="rMB-ke-S15"/>
-                                                    <action selector="teletypeAudioVolumeUpdated" destination="X8w-IS-qmV" eventType="touchUpInside" id="xpj-66-nPM"/>
-                                                </connections>
-                                            </slider>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="wordWrap" id="spI-Nj-yvw">
-                                                <rect key="frame" x="20" y="3" width="45" height="45"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
-                                                <state key="normal" title="QUIT" backgroundImage="keycap.png">
-                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                                </state>
-                                                <state key="highlighted">
-                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                </state>
-                                                <connections>
-                                                    <action selector="keyboardQuit:" destination="j6T-sw-vSm" eventType="touchUpInside" id="5iV-Ts-7v8"/>
-                                                </connections>
-                                            </button>
-                                        </subviews>
-                                        <color key="backgroundColor" red="0.7843137255" green="0.70588235290000001" blue="0.49019607840000001" alpha="1" colorSpace="calibratedRGB"/>
-                                        <connections>
-                                            <outlet property="stepEnabled" destination="p6S-J6-f0x" id="uBl-np-SYh"/>
-                                            <outlet property="stepInterval" destination="R2w-rG-8u7" id="O1f-Tb-h6V"/>
-                                            <outlet property="teletypeVolume" destination="RRj-lx-xCm" id="cPn-Lb-Xga"/>
-                                        </connections>
-                                    </view>
-                                    <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="redraw" bounces="NO" bouncesZoom="NO" id="deK-2a-hEf" userLabel="Debug Console" customClass="Console">
-                                        <rect key="frame" x="0.0" y="0.0" width="256" height="0.0"/>
-                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" heightSizable="YES"/>
-                                        <inset key="contentInset" minX="6" minY="20" maxX="6" maxY="20"/>
-                                    </scrollView>
-                                </subviews>
-                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                <connections>
-                                    <outlet property="debugConsole" destination="deK-2a-hEf" id="myQ-tL-lPk"/>
-                                    <outlet property="debugControls" destination="X8w-IS-qmV" id="dDZ-45-gGe"/>
-                                </connections>
-                            </view>
-                            <view clipsSubviews="YES" tag="1" contentMode="scaleToFill" id="j6T-sw-vSm" customClass="Teletype">
-                                <rect key="frame" x="0.0" y="50" width="1024" height="698"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                <subviews>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" image="paper.png" id="6ql-HP-7dS">
-                                        <rect key="frame" x="0.0" y="0.0" width="1024" height="698"/>
-                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                    </imageView>
-                                    <view clipsSubviews="YES" contentMode="scaleToFill" id="cQ7-rN-VWJ" customClass="TeletypePrinter">
-                                        <rect key="frame" x="0.0" y="0.0" width="1024" height="574"/>
-                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                        <subviews>
-                                            <scrollView clipsSubviews="YES" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" delaysContentTouches="NO" canCancelContentTouches="NO" bouncesZoom="NO" id="S8Y-3c-7Wz" customClass="TeletypeOutputBackground">
-                                                <rect key="frame" x="0.0" y="0.0" width="1024" height="574"/>
-                                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                            </scrollView>
-                                            <scrollView opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" bounces="NO" bouncesZoom="NO" id="LFz-yp-JRU" customClass="TeletypePaper">
-                                                <rect key="frame" x="0.0" y="0.0" width="1024" height="574"/>
-                                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                                <subviews>
-                                                    <view opaque="NO" clipsSubviews="YES" contentMode="redraw" id="Brx-Qf-pzR" customClass="TeletypePrintOutput">
-                                                        <rect key="frame" x="0.0" y="0.0" width="1024" height="574"/>
-                                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                                        <connections>
-                                                            <outlet property="delegate" destination="cQ7-rN-VWJ" id="ywz-Cm-cxi"/>
-                                                        </connections>
-                                                    </view>
-                                                </subviews>
-                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                                <inset key="contentInset" minX="10" minY="40" maxX="10" maxY="20"/>
-                                                <connections>
-                                                    <outlet property="printerOutput" destination="Brx-Qf-pzR" id="hKI-eb-bdo"/>
-                                                </connections>
-                                            </scrollView>
-                                        </subviews>
-                                        <connections>
-                                            <outlet property="backgroundScrollView" destination="S8Y-3c-7Wz" id="YwV-Tf-KHd"/>
-                                            <outlet property="scrollView" destination="LFz-yp-JRU" id="pnn-T0-dZ5"/>
-                                        </connections>
-                                    </view>
-                                    <view contentMode="scaleToFill" id="FaB-Ij-cse" customClass="TeletypeKeyboard">
-                                        <rect key="frame" x="0.0" y="574" width="1024" height="124"/>
-                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-                                        <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="lgH-U8-dbC">
-                                                <rect key="frame" x="22" y="9" width="45" height="45"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
-                                                <state key="normal" title="1" backgroundImage="keycap.png">
-                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                                </state>
-                                                <state key="highlighted">
-                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                </state>
-                                                <connections>
-                                                    <action selector="keyboardNumeric:" destination="FaB-Ij-cse" eventType="touchUpInside" id="l2A-PK-Evz"/>
-                                                </connections>
-                                            </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="tJi-ed-sPk">
-                                                <rect key="frame" x="136" y="9" width="45" height="45"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
-                                                <state key="normal" title="2" backgroundImage="keycap.png">
-                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                                </state>
-                                                <state key="highlighted">
-                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                </state>
-                                                <connections>
-                                                    <action selector="keyboardNumeric:" destination="FaB-Ij-cse" eventType="touchUpInside" id="pQu-jT-gtW"/>
-                                                </connections>
-                                            </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="yai-TH-42c">
-                                                <rect key="frame" x="238" y="9" width="45" height="45"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
-                                                <state key="normal" title="3" backgroundImage="keycap.png">
-                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                                </state>
-                                                <state key="highlighted">
-                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                </state>
-                                                <connections>
-                                                    <action selector="keyboardNumeric:" destination="FaB-Ij-cse" eventType="touchUpInside" id="D4O-GO-4mF"/>
-                                                </connections>
-                                            </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="pT2-aP-vXz">
-                                                <rect key="frame" x="339" y="9" width="45" height="45"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
-                                                <state key="normal" title="4" backgroundImage="keycap.png">
-                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                                </state>
-                                                <state key="highlighted">
-                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                </state>
-                                                <connections>
-                                                    <action selector="keyboardNumeric:" destination="FaB-Ij-cse" eventType="touchUpInside" id="uAa-Q5-vEY"/>
-                                                </connections>
-                                            </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="gpK-Fd-b5S">
-                                                <rect key="frame" x="441" y="9" width="45" height="45"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
-                                                <state key="normal" title="5" backgroundImage="keycap.png">
-                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                                </state>
-                                                <state key="highlighted">
-                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                </state>
-                                                <connections>
-                                                    <action selector="keyboardNumeric:" destination="FaB-Ij-cse" eventType="touchUpInside" id="q9r-He-a82"/>
-                                                </connections>
-                                            </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Ozd-6M-Qut">
-                                                <rect key="frame" x="543" y="9" width="45" height="45"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
-                                                <state key="normal" title="6" backgroundImage="keycap.png">
-                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                                </state>
-                                                <state key="highlighted">
-                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                </state>
-                                                <connections>
-                                                    <action selector="keyboardNumeric:" destination="FaB-Ij-cse" eventType="touchUpInside" id="PqK-B8-yRg"/>
-                                                </connections>
-                                            </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="0nM-tT-VkI">
-                                                <rect key="frame" x="644" y="9" width="45" height="45"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
-                                                <state key="normal" title="7" backgroundImage="keycap.png">
-                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                                </state>
-                                                <state key="highlighted">
-                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                </state>
-                                                <connections>
-                                                    <action selector="keyboardNumeric:" destination="FaB-Ij-cse" eventType="touchUpInside" id="3xg-u1-eSk"/>
-                                                </connections>
-                                            </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="9U7-hK-4f8">
-                                                <rect key="frame" x="746" y="9" width="45" height="45"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
-                                                <state key="normal" title="8" backgroundImage="keycap.png">
-                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                                </state>
-                                                <state key="highlighted">
-                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                </state>
-                                                <connections>
-                                                    <action selector="keyboardNumeric:" destination="FaB-Ij-cse" eventType="touchUpInside" id="imF-Nd-ZOI"/>
-                                                </connections>
-                                            </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="atu-8l-hhK">
-                                                <rect key="frame" x="847" y="9" width="45" height="45"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
-                                                <state key="normal" title="9" backgroundImage="keycap.png">
-                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                                </state>
-                                                <state key="highlighted">
-                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                </state>
-                                                <connections>
-                                                    <action selector="keyboardNumeric:" destination="FaB-Ij-cse" eventType="touchUpInside" id="Cbd-Hn-GmF"/>
-                                                </connections>
-                                            </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="1zP-ot-PEH">
-                                                <rect key="frame" x="957" y="9" width="45" height="45"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
-                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
-                                                <state key="normal" title="0" backgroundImage="keycap.png">
-                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                                </state>
-                                                <state key="highlighted">
-                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                </state>
-                                                <connections>
-                                                    <action selector="keyboardNumeric:" destination="FaB-Ij-cse" eventType="touchUpInside" id="upn-k6-1f7"/>
-                                                </connections>
-                                            </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="wordWrap" id="wqw-4m-47E">
-                                                <rect key="frame" x="441" y="70" width="45" height="45"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
-                                                <state key="normal" title="YES" backgroundImage="keycap.png">
-                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                                </state>
-                                                <state key="highlighted">
-                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                </state>
-                                                <connections>
-                                                    <action selector="keyboardYesNo:" destination="FaB-Ij-cse" eventType="touchUpInside" id="E46-xO-Ili"/>
-                                                </connections>
-                                            </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="wordWrap" id="ibB-QR-PmF">
-                                                <rect key="frame" x="543" y="70" width="45" height="45"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
-                                                <state key="normal" title="NO" backgroundImage="keycap.png">
-                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                                </state>
-                                                <state key="highlighted">
-                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                </state>
-                                                <connections>
-                                                    <action selector="keyboardYesNo:" destination="FaB-Ij-cse" eventType="touchUpInside" id="b5t-N6-Ncq"/>
-                                                </connections>
-                                            </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="wordWrap" id="3uh-Uu-IvH">
-                                                <rect key="frame" x="746" y="70" width="45" height="45"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
-                                                <state key="normal" backgroundImage="keycap.png">
-                                                    <string key="title">  RE-
-TURN</string>
-                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                                </state>
-                                                <state key="highlighted">
-                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                </state>
-                                                <connections>
-                                                    <action selector="keyboardReturn:" destination="FaB-Ij-cse" eventType="touchUpInside" id="ZKT-hV-wNp"/>
-                                                </connections>
-                                            </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="wordWrap" id="JLR-VV-Iiy">
-                                                <rect key="frame" x="847" y="70" width="45" height="45"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
-                                                <state key="normal" backgroundImage="keycap.png">
-                                                    <string key="title">RUB
-OUT</string>
-                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                                </state>
-                                                <state key="highlighted">
-                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                </state>
-                                                <connections>
-                                                    <action selector="keyboardRubout:" destination="FaB-Ij-cse" eventType="touchUpInside" id="J1e-wv-fHQ"/>
-                                                </connections>
-                                            </button>
-                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="teletype-logo.png" id="U3y-s6-9U7">
-                                                <rect key="frame" x="7" y="64" width="138" height="55"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                            </imageView>
-                                        </subviews>
-                                        <color key="backgroundColor" red="0.7843137255" green="0.70588235290000001" blue="0.49019607840000001" alpha="1" colorSpace="calibratedRGB"/>
-                                    </view>
-                                </subviews>
-                                <connections>
-                                    <outlet property="keyboard" destination="FaB-Ij-cse" id="mTU-2k-a47"/>
-                                    <outlet property="printer" destination="cQ7-rN-VWJ" id="0Wj-hY-WX4"/>
-                                </connections>
-                            </view>
-                        </subviews>
-                        <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
-                    </view>
-                    <navigationItem key="navigationItem" id="AIz-LN-i3r"/>
-                    <nil key="simulatedTopBarMetrics"/>
-                    <connections>
-                        <outlet property="debugger" destination="dqS-wD-goD" id="DE1-gI-B6J"/>
-                        <outlet property="teletype" destination="j6T-sw-vSm" id="3ba-xn-JXn"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="978-o1-mlT" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2078" y="-1211"/>
-        </scene>
-        <!--Flight Controls-->
-        <scene sceneID="D5M-hK-R2i">
-            <objects>
-                <viewController storyboardIdentifier="Lunar Lander Flight Controls" title="Lunar Lander Flight Controls" id="9la-TG-XLd" userLabel="Flight Controls" customClass="DocumentViewController" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="Pwh-d6-DgA">
-                        <rect key="frame" x="0.0" y="20" width="1024" height="748"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <subviews>
-                            <webView contentMode="scaleToFill" id="Kqh-y5-DHk">
-                                <rect key="frame" x="0.0" y="0.0" width="1024" height="748"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                            </webView>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                        <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
-                    </view>
-                    <navigationItem key="navigationItem" id="bk4-jm-Vpi"/>
-                    <connections>
-                        <outlet property="_documentContent" destination="Kqh-y5-DHk" id="XSc-eD-jyY"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Jjv-92-C2b" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2078" y="-315"/>
-        </scene>
-        <!--FAQ-->
-        <scene sceneID="yvG-md-Tut">
-            <objects>
-                <viewController storyboardIdentifier="Lunar Lander FAQ" title="Lunar Lander FAQ" id="3yj-Dv-A59" userLabel="FAQ" customClass="DocumentViewController" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="Q5l-ev-f4l">
-                        <rect key="frame" x="0.0" y="20" width="1024" height="748"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <subviews>
-                            <webView contentMode="scaleToFill" id="nNa-hX-IBa">
-                                <rect key="frame" x="0.0" y="0.0" width="1024" height="748"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <dataDetectorType key="dataDetectorTypes"/>
-                            </webView>
-                        </subviews>
-                        <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
-                    </view>
-                    <navigationItem key="navigationItem" id="wyg-Sj-5pX"/>
-                    <connections>
-                        <outlet property="_documentContent" destination="nNa-hX-IBa" id="sA2-mg-0eV"/>
-                        <segue destination="VJa-TI-oDF" kind="push" identifier="Lunar%20Lander%20Source%20Code.htm" id="cNF-VI-wvl"/>
-                        <segue destination="VJa-TI-oDF" kind="push" identifier="http://en.wikipedia.org/wiki/PDP%2D8" id="XMk-Y9-Pba"/>
-                        <segue destination="VJa-TI-oDF" kind="push" identifier="http://en.wikipedia.org/wiki/Teletype_Model_33" id="ooi-o3-doI"/>
-                        <segue destination="VJa-TI-oDF" kind="push" identifier="http://simh.trailing-edge.com/" id="8dt-LJ-b2A"/>
-                        <segue destination="VJa-TI-oDF" kind="push" identifier="http://bitsavers.trailing-edge.com/" id="G1N-ER-YyM"/>
-                        <segue destination="VJa-TI-oDF" kind="push" identifier="http://en.wikipedia.org/wiki/FOCAL_%28programming_language%29" id="viP-Vb-Zgy"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="eI8-xl-GNw" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2078" y="638"/>
-        </scene>
     </scenes>
     <resources>
         <image name="controls.png" width="387" height="79"/>
         <image name="credits.png" width="342" height="79"/>
         <image name="faq.png" width="161" height="79"/>
         <image name="gamecenter.png" width="525" height="79"/>
-        <image name="keycap.png" width="256" height="256"/>
-        <image name="lunarlander.png" width="573" height="79"/>
         <image name="moonlander.png" width="475" height="80"/>
         <image name="moreclassics.png" width="621" height="79"/>
-        <image name="paper.png" width="2048" height="250"/>
-        <image name="rabbit.png" width="29" height="29"/>
-        <image name="teletype-logo.png" width="141" height="55"/>
-        <image name="tortoise.png" width="29" height="29"/>
-        <image name="volume-high.png" width="29" height="29"/>
-        <image name="volume-low.png" width="29" height="29"/>
     </resources>
     <classes>
         <class className="AutoPilotViewController" superclassName="LanderViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/AutoPilotViewController.h"/>
-        </class>
-        <class className="Console" superclassName="UIScrollView">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/Console.h"/>
-        </class>
-        <class className="Controls" superclassName="UIView">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/Controls.h"/>
-            <relationships>
-                <relationship kind="action" name="teletypeAudioVolumeChange"/>
-                <relationship kind="action" name="teletypeAudioVolumeUpdated"/>
-                <relationship kind="action" name="traceEnabledUpdated:"/>
-                <relationship kind="action" name="traceStepIntervalChange:"/>
-                <relationship kind="action" name="traceStepIntervalUpdated:"/>
-                <relationship kind="outlet" name="_stepEnabled" candidateClass="UISwitch"/>
-                <relationship kind="outlet" name="_stepInterval" candidateClass="UISlider"/>
-                <relationship kind="outlet" name="_teletypeVolume" candidateClass="UISlider"/>
-                <relationship kind="outlet" name="stepEnabled" candidateClass="UISwitch"/>
-                <relationship kind="outlet" name="stepInterval" candidateClass="UISlider"/>
-                <relationship kind="outlet" name="teletypeVolume" candidateClass="UISlider"/>
-            </relationships>
-        </class>
-        <class className="DebugManager" superclassName="UIView">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/DebugManager.h"/>
-            <relationships>
-                <relationship kind="outlet" name="debugConsole" candidateClass="Console"/>
-                <relationship kind="outlet" name="debugControls" candidateClass="Controls"/>
-            </relationships>
         </class>
         <class className="DocumentViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/DocumentViewController.h"/>
@@ -997,22 +386,14 @@ OUT</string>
                 <relationship kind="action" name="thrusterChanged:" candidateClass="VGSlider"/>
             </relationships>
         </class>
-        <class className="LunarLanderMenuViewController" superclassName="MenuViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/LunarLanderMenuViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="backgroundSource" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="controlsButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="faqButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="lunarlanderButton" candidateClass="UIButton"/>
-            </relationships>
-        </class>
         <class className="MenuViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/MenuViewController.h"/>
         </class>
         <class className="MoonlanderMenuViewController" superclassName="MenuViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/MoonlanderMenuViewController.h"/>
             <relationships>
-                <relationship kind="outlet" name="bonusContentButton" candidateClass="UIButton"/>
+                <relationship kind="action" name="moreClassicsButtonSelected:"/>
+                <relationship kind="action" name="showGameCenterButtonAction:"/>
                 <relationship kind="outlet" name="buildInfo" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="controlsButton" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="creditsButton" candidateClass="UIButton"/>
@@ -1035,52 +416,6 @@ OUT</string>
         </class>
         <class className="Telemetry" superclassName="VGButton">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/Telemetry.h"/>
-        </class>
-        <class className="Teletype" superclassName="UIView">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/Teletype.h"/>
-            <relationships>
-                <relationship kind="action" name="keyboardQuit:"/>
-                <relationship kind="outlet" name="keyboard" candidateClass="TeletypeKeyboard"/>
-                <relationship kind="outlet" name="printer" candidateClass="TeletypePrinter"/>
-            </relationships>
-        </class>
-        <class className="TeletypeKeyboard" superclassName="UIView">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/TeletypeKeyboard.h"/>
-            <relationships>
-                <relationship kind="action" name="keyboardNumeric:"/>
-                <relationship kind="action" name="keyboardReturn:"/>
-                <relationship kind="action" name="keyboardRubout:"/>
-                <relationship kind="action" name="keyboardYesNo:"/>
-            </relationships>
-        </class>
-        <class className="TeletypeOutputBackground" superclassName="UIScrollView">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/TeletypeOutputBackground.h"/>
-        </class>
-        <class className="TeletypePaper" superclassName="UIScrollView">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/TeletypePaper.h"/>
-            <relationships>
-                <relationship kind="outlet" name="printerOutput" candidateClass="TeletypePrintOutput"/>
-            </relationships>
-        </class>
-        <class className="TeletypePrintOutput" superclassName="UIView">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/TeletypePrintOutput.h"/>
-            <relationships>
-                <relationship kind="outlet" name="delegate"/>
-            </relationships>
-        </class>
-        <class className="TeletypePrinter" superclassName="UIView">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/TeletypePrinter.h"/>
-            <relationships>
-                <relationship kind="outlet" name="backgroundScrollView" candidateClass="TeletypeOutputBackground"/>
-                <relationship kind="outlet" name="scrollView" candidateClass="TeletypePaper"/>
-            </relationships>
-        </class>
-        <class className="TeletypeViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/TeletypeViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="debugger" candidateClass="DebugManager"/>
-                <relationship kind="outlet" name="teletype" candidateClass="Teletype"/>
-            </relationships>
         </class>
         <class className="VGButton" superclassName="UIControl">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/VGButton.h"/>

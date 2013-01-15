@@ -12,7 +12,6 @@
 
 @interface MoonlanderMenuViewController ()
 
-@property (nonatomic, strong) IBOutlet UIButton *bonusContentButton;
 @property (nonatomic, strong) IBOutlet UIButton *moonlanderButton;
 @property (nonatomic, strong) IBOutlet UIButton *controlsButton;
 @property (nonatomic, strong) IBOutlet UIButton *highScoresButton;
@@ -189,19 +188,6 @@
     UIStoryboard *storyboard = self.storyboard;
     self.menuBackground = [storyboard instantiateViewControllerWithIdentifier:@"AutoPilotSimulation"];
     
-    // Hide the bouns content
-    self.bonusContentButton.hidden = YES;
-
-    // Use the custom fonts
-    UIFont *displayFont = [UIFont fontWithName:@"Vector Battle" size:66];
-    self.bonusContentButton.titleLabel.font = displayFont;
-    self.moonlanderButton.titleLabel.font = displayFont;
-    self.highScoresButton.titleLabel.font = displayFont;
-    self.controlsButton.titleLabel.font = displayFont;
-    self.faqButton.titleLabel.font = displayFont;
-    self.creditsButton.titleLabel.font = displayFont;
-    self.moreClassicsButton.titleLabel.font = displayFont;
-    
     // Write the version info in menu view
     NSDictionary* infoDict = [[NSBundle mainBundle] infoDictionary];
     NSString *buildString = [infoDict objectForKey:@"CFBundleVersion"];
@@ -260,10 +246,6 @@
 {
     [super viewWillAppear:animated];
 
-    // Unlock the bonus screen
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    self.bonusContentButton.hidden = ![defaults boolForKey:@"optionEnableBonusContent"];
-    
     // Hide the navigation bar in this view
     [[self navigationController] setNavigationBarHidden:YES animated:NO];
 }
