@@ -118,11 +118,16 @@
 	return (interfaceOrientation == UIInterfaceOrientationLandscapeLeft || interfaceOrientation == UIInterfaceOrientationLandscapeRight);
 }
 
+
 #pragma mark -
 #pragma mark Button events
 
 - (IBAction)moreClassicsButtonSelected:(id)sender
 {
+#if defined(TESTFLIGHT_SDK_VERSION) && defined(USE_TESTFLIGHT)
+    [TestFlight passCheckpoint:[NSString stringWithFormat:@"%@:%@", NSStringFromClass([self class]), @"More Classics"]];
+#endif
+
     NSString *iTunesLink = @"itms-apps://itunes.com/apps/paradigmsystems";
     [[UIApplication sharedApplication] openURL:[NSURL URLWithString:iTunesLink]];
 }

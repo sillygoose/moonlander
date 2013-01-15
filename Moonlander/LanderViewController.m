@@ -1474,6 +1474,13 @@ const float RollButtonRepeatInterval = 0.20;        // Timer value for roll butt
 
 - (void)PALSY
 {
+#if defined(TESTFLIGHT_SDK_VERSION) && defined(USE_TESTFLIGHT)
+    // This is a successful landing 
+    if ([self WallpaperController] == NO) {
+        [TestFlight passCheckpoint:[NSString stringWithFormat:@"Landed at %d, distance (%d), vervel (%d), horvel (%d), fuel (%d)", (short)self.TIME, self.HORDIS, self.VERVEL, self.HORVEL, self.FUEL]];
+    }
+#endif
+    
     // Start with a delay of 4 seconds
     [self performSelector:@selector(moveMan) withObject:nil afterDelay:[self getDelay: DelayLanding]];
 }
