@@ -11,14 +11,20 @@
 #import "MenuViewController.h"
 #import "AutoPilotViewController.h"
 
+#import "GameCenterManager.h"
 
-@interface MoonlanderMenuViewController : MenuViewController
+
+@interface MoonlanderMenuViewController : MenuViewController <GKLeaderboardViewControllerDelegate, GameCenterManagerDelegate>
 {
     AutoPilotViewController                *_menuBackground;
     UILabel                                *_buildInfo;
+
+    GameCenterManager       *gameCenterManager;
 }
 
 @property (nonatomic, strong) AutoPilotViewController *menuBackground;
 @property (nonatomic, strong) IBOutlet UILabel *buildInfo;
+
+@property (nonatomic, strong) GameCenterManager *gameCenterManager;
 
 @end

@@ -8,14 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
-#import "GameCenterManager.h"
 
-
-@interface MenuViewController : UIViewController <GKLeaderboardViewControllerDelegate, GameCenterManagerDelegate>
+@interface MenuViewController : UIViewController
 {
-    GameCenterManager       *gameCenterManager;
 }
-
-@property (nonatomic, strong) GameCenterManager *gameCenterManager;
 
 @end

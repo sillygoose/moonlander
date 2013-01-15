@@ -444,7 +444,7 @@ C-FOCAL,1969
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="showGameCenterButtonAction:" destination="6C4-ba-SyT" eventType="touchUpInside" id="Fdc-EG-3Lf"/>
+                                    <action selector="showGameCenterButtonAction:" destination="6C4-ba-SyT" eventType="touchUpInside" id="Cli-76-9aK"/>
                                 </connections>
                             </button>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Build placeholder" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="E6z-nC-nYr" userLabel="Build">
@@ -1000,6 +1000,8 @@ OUT</string>
         <class className="MoonlanderMenuViewController" superclassName="MenuViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/MoonlanderMenuViewController.h"/>
             <relationships>
+                <relationship kind="action" name="moreClassicsButtonSelected:"/>
+                <relationship kind="action" name="showGameCenterButtonAction:"/>
                 <relationship kind="outlet" name="bonusContentButton" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="buildInfo" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="controlsButton" candidateClass="UIButton"/>

@@ -69,7 +69,7 @@
     [self.documentContent loadRequest:request];
 
 #if defined(TESTFLIGHT_SDK_VERSION) && defined(USE_TESTFLIGHT)
-    [TestFlight passCheckpoint:[NSString stringWithFormat:@"%@:%@", NSStringFromClass([self class]), self.documentName]];
+    [TestFlight passCheckpoint:[NSString stringWithFormat:@"%@:%@", @"DocumentView", self.documentName]];
 #endif
 }
 

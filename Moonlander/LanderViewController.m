@@ -299,6 +299,11 @@ const float RollButtonRepeatInterval = 0.20;        // Timer value for roll butt
     [self.landerModel.dataSource setFuel:value];
 }
 
+- (short)INITIALFUEL
+{
+    return [self.landerModel.dataSource initialFuel];
+}
+
 
 #pragma -
 #pragma mark - View lifecycle
@@ -1349,7 +1354,29 @@ const float RollButtonRepeatInterval = 0.20;        // Timer value for roll butt
             
             // No more messages at this point
             [self.landerMessages removeAllLanderMessages];
-            
+
+            // Calculate the score
+            int landingScore = 1000;
+            float fuelRatio = (self.FUEL / (float)self.INITIALFUEL);
+            int fuelScore = 100 * (0.5 - fuelRatio);
+            if (fuelScore < 0)
+                fuelScore = 0;
+            landingScore -= fuelScore;
+            landingScore -= 2 * abs(self.HORDIS);
+            landingScore -= 10 * abs(self.ANGLED);
+            landingScore -= 10 * abs(self.VERVEL);
+            landingScore -= 10 * abs(self.HORVEL);
+
+            // Don't allow the menu background to submit scores
+            if ([self WallpaperController] == NO) {
+                // Enable the bonus content
+                NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+                [defaults setBool:YES forKey:@"optionEnableBonusContent"];
+                
+                // Post the score for Game Center
+                [[NSNotificationCenter defaultCenter] postNotificationName:@"scorePosted" object:[NSNumber numberWithInt:landingScore]];
+            }
+
             // Now take off with the food and some extra fuel
             self.VERDIS += 4;
             self.FUEL += 200;
@@ -1363,12 +1390,6 @@ const float RollButtonRepeatInterval = 0.20;        // Timer value for roll butt
             
             // Tell model we are taking off from the surface
             [self.landerModel landerTakeoff];
-            
-            if ([self WallpaperController] == NO) {
-                // Enable the bonus content
-                NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-                [defaults setBool:YES forKey:@"optionEnableBonusContent"];
-            }
             
             // Wait a bit before continuing
             [self landerLiftoff];
@@ -1474,12 +1495,12 @@ const float RollButtonRepeatInterval = 0.20;        // Timer value for roll butt
 
 - (void)PALSY
 {
-#if defined(TESTFLIGHT_SDK_VERSION) && defined(USE_TESTFLIGHT)
-    // This is a successful landing 
+    // This is a successful landing
     if ([self WallpaperController] == NO) {
+#if defined(TESTFLIGHT_SDK_VERSION) && defined(USE_TESTFLIGHT)
         [TestFlight passCheckpoint:[NSString stringWithFormat:@"Landed at %d, distance (%d), vervel (%d), horvel (%d), fuel (%d)", (short)self.TIME, self.HORDIS, self.VERVEL, self.HORVEL, self.FUEL]];
-    }
 #endif
+    }
     
     // Start with a delay of 4 seconds
     [self performSelector:@selector(moveMan) withObject:nil afterDelay:[self getDelay: DelayLanding]];

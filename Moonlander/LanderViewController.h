@@ -154,6 +154,7 @@ typedef enum {
 @property (nonatomic, readonly) short THRUST;
 @property (nonatomic, readonly) float TIME;
 @property (nonatomic, readonly) short FUEL;
+@property (nonatomic, readonly) short INITIALFUEL;
 @property (nonatomic, readonly) float GRAVITY;
 
 @property (nonatomic, readonly) CGFloat gameFontSize;
