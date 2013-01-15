@@ -26,17 +26,58 @@ Name                    McDonalds
 ID                      moonlander.mcdonalds.leaderboard
 Format                  Integer
 Sort order              High to Low
+Score range             0 to 1000
+    
+English
+=======
+Name                    Cheeseburger Challenge
+Score Format            Integer (comma)
+Score Format Suffix     ' point(s)'
+Image                   LargeAppIcon.png - ###
+
+
+Name                    RemainingFuel
+ID                      moonlander.remainingfuel.leaderboard
+Format                  Integer
+Sort order              High to Low
 Score range             
     
 English
 =======
-Name                    Cheeseburgers
-Score Format            Fixed point, 0 decimals, period decimal point
-Score Format Suffix     ' points'
+Name                    Remaining Fuel Challenge
+Score Format            Integer (comma)
+Score Format Suffix     ' lb(s)'
 Image                   LargeAppIcon.png - ###
 
-                    
-                    
+
+Name                    Distance
+ID                      moonlander.distance.leaderboard
+Format                  Integer
+Sort order              High to Low
+Score range             
+    
+English
+=======
+Name                    Distance Challenge
+Score Format            Integer (comma)
+Score Format Suffix     ' foot/feet'
+Image                   LargeAppIcon.png - ###
+
+
+Name                    Fastest
+ID                      moonlander.fastest.leaderboard
+Format                  Fixed Point - 1 Decimal
+Sort order              Low to High
+Score range             
+    
+English
+=======
+Name                    Fastest Landing Challenge
+Score Format            Fixed Point (comma)
+Score Format Suffix     ' lb(s)'
+Image                   LargeAppIcon.png - ###
+
+
 Game Center Account Assignments
 ===============================
 Silly Goose (91 simulator)                  fivemilepoint (naroescape@fivemilepoint.com)

@@ -1374,7 +1374,7 @@ const float RollButtonRepeatInterval = 0.20;        // Timer value for roll butt
                 [defaults setBool:YES forKey:@"optionEnableBonusContent"];
                 
                 // Post the score for Game Center
-                [[NSNotificationCenter defaultCenter] postNotificationName:@"scorePosted" object:[NSNumber numberWithInt:landingScore]];
+                [[NSNotificationCenter defaultCenter] postNotificationName:@"mcdonaldsScorePosted" object:[NSNumber numberWithInt:landingScore]];
             }
 
             // Now take off with the food and some extra fuel
@@ -1495,8 +1495,18 @@ const float RollButtonRepeatInterval = 0.20;        // Timer value for roll butt
 
 - (void)PALSY
 {
+    // Post the Game Center leaderboards numbers
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"fuelScorePosted" object:[NSNumber numberWithInt:self.FUEL]];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"distanceScorePosted" object:[NSNumber numberWithInt:abs(self.HORDIS)]];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"fastestScorePosted" object:[NSNumber numberWithFloat:self.TIME]];
+
     // This is a successful landing
     if ([self WallpaperController] == NO) {
+        // Post the Game Center leaderboards numbers
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"fuelScorePosted" object:[NSNumber numberWithInt:self.FUEL]];
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"distanceScorePosted" object:[NSNumber numberWithInt:abs(self.HORDIS)]];
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"fastestScorePosted" object:[NSNumber numberWithFloat:self.TIME]];
+        
 #if defined(TESTFLIGHT_SDK_VERSION) && defined(USE_TESTFLIGHT)
         [TestFlight passCheckpoint:[NSString stringWithFormat:@"Landed at %d, distance (%d), vervel (%d), horvel (%d), fuel (%d)", (short)self.TIME, self.HORDIS, self.VERVEL, self.HORVEL, self.FUEL]];
 #endif

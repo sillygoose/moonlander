@@ -750,9 +750,6 @@ _05_20:
     [self print:[NSString stringWithFormat:@"%9.2f", M - N]];
     [self print:@" LBS\n"];
     
-    // Post the score for all listeners
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"scorePosted" object:[NSNumber numberWithFloat:W]];
-    
     //05.40 I (1-W)5.5,5.5;T "PERFECT LANDING !-(LUCKY)"!;G 5.9
 _05_40:
     // I (1-W)

@@ -32,6 +32,13 @@
 		563F401B16A5C05D004F7FB6 /* GameCenterManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 563F401816A5C05D004F7FB6 /* GameCenterManager.m */; };
 		563F401E16A5C0A7004F7FB6 /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 563F401D16A5C0A7004F7FB6 /* GameKit.framework */; };
 		563F402016A5C116004F7FB6 /* Game Center Metadata in Resources */ = {isa = PBXBuildFile; fileRef = 563F401F16A5C116004F7FB6 /* Game Center Metadata */; };
+		563F402616A5F3E8004F7FB6 /* moonlander.png in Resources */ = {isa = PBXBuildFile; fileRef = 563F402516A5F3E8004F7FB6 /* moonlander.png */; };
+		563F402816A5F7CD004F7FB6 /* gamecenter.png in Resources */ = {isa = PBXBuildFile; fileRef = 563F402716A5F7CD004F7FB6 /* gamecenter.png */; };
+		563F402D16A5FAB6004F7FB6 /* controls.png in Resources */ = {isa = PBXBuildFile; fileRef = 563F402916A5FAB6004F7FB6 /* controls.png */; };
+		563F402E16A5FAB6004F7FB6 /* faq.png in Resources */ = {isa = PBXBuildFile; fileRef = 563F402A16A5FAB6004F7FB6 /* faq.png */; };
+		563F402F16A5FAB6004F7FB6 /* lunarlander.png in Resources */ = {isa = PBXBuildFile; fileRef = 563F402B16A5FAB6004F7FB6 /* lunarlander.png */; };
+		563F403016A5FAB6004F7FB6 /* moreclassics.png in Resources */ = {isa = PBXBuildFile; fileRef = 563F402C16A5FAB6004F7FB6 /* moreclassics.png */; };
+		563F403216A5FB31004F7FB6 /* credits.png in Resources */ = {isa = PBXBuildFile; fileRef = 563F403116A5FB31004F7FB6 /* credits.png */; };
 		564BE59E13800F3400D790D9 /* VGButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 564BE59D13800F3400D790D9 /* VGButton.m */; };
 		564BE5C413801C0F00D790D9 /* VGSlider.m in Sources */ = {isa = PBXBuildFile; fileRef = 564BE5C313801C0F00D790D9 /* VGSlider.m */; };
 		564BE5C613801CAC00D790D9 /* ThrusterControl.plist in Resources */ = {isa = PBXBuildFile; fileRef = 564BE5C513801CAC00D790D9 /* ThrusterControl.plist */; };
@@ -179,6 +186,20 @@
 		563F401816A5C05D004F7FB6 /* GameCenterManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameCenterManager.m; sourceTree = "<group>"; };
 		563F401D16A5C0A7004F7FB6 /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
 		563F401F16A5C116004F7FB6 /* Game Center Metadata */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "Game Center Metadata"; sourceTree = "<group>"; };
+		563F402516A5F3E8004F7FB6 /* moonlander.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = moonlander.png; sourceTree = "<group>"; };
+		563F402716A5F7CD004F7FB6 /* gamecenter.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = gamecenter.png; sourceTree = "<group>"; };
+		563F402916A5FAB6004F7FB6 /* controls.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = controls.png; sourceTree = "<group>"; };
+		563F402A16A5FAB6004F7FB6 /* faq.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = faq.png; sourceTree = "<group>"; };
+		563F402B16A5FAB6004F7FB6 /* lunarlander.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = lunarlander.png; sourceTree = "<group>"; };
+		563F402C16A5FAB6004F7FB6 /* moreclassics.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = moreclassics.png; sourceTree = "<group>"; };
+		563F403116A5FB31004F7FB6 /* credits.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = credits.png; sourceTree = "<group>"; };
+		563F403416A5FB40004F7FB6 /* controls.acorn */ = {isa = PBXFileReference; lastKnownFileType = file; path = controls.acorn; sourceTree = "<group>"; };
+		563F403516A5FB40004F7FB6 /* credits.acorn */ = {isa = PBXFileReference; lastKnownFileType = file; path = credits.acorn; sourceTree = "<group>"; };
+		563F403616A5FB40004F7FB6 /* faq.acorn */ = {isa = PBXFileReference; lastKnownFileType = file; path = faq.acorn; sourceTree = "<group>"; };
+		563F403716A5FB40004F7FB6 /* gamecenter.acorn */ = {isa = PBXFileReference; lastKnownFileType = file; path = gamecenter.acorn; sourceTree = "<group>"; };
+		563F403816A5FB40004F7FB6 /* lunarlander.acorn */ = {isa = PBXFileReference; lastKnownFileType = file; path = lunarlander.acorn; sourceTree = "<group>"; };
+		563F403916A5FB40004F7FB6 /* moonlander.acorn */ = {isa = PBXFileReference; lastKnownFileType = file; path = moonlander.acorn; sourceTree = "<group>"; };
+		563F403A16A5FB40004F7FB6 /* moreclassics.acorn */ = {isa = PBXFileReference; lastKnownFileType = file; path = moreclassics.acorn; sourceTree = "<group>"; };
 		564BE59C13800F3400D790D9 /* VGButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VGButton.h; sourceTree = "<group>"; };
 		564BE59D13800F3400D790D9 /* VGButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VGButton.m; sourceTree = "<group>"; };
 		564BE5C213801C0F00D790D9 /* VGSlider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VGSlider.h; sourceTree = "<group>"; };
@@ -531,6 +552,7 @@
 		560FA13B1379C3900017EE25 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				563F403316A5FB40004F7FB6 /* acorn */,
 				56E16EC6167EB2D30094C638 /* iTunes */,
 				56DFB16F166FF2610076F4DC /* sounds */,
 				5667CA27154F8D050031415B /* png */,
@@ -596,6 +618,20 @@
 				563F401816A5C05D004F7FB6 /* GameCenterManager.m */,
 			);
 			path = "Game Center";
+			sourceTree = "<group>";
+		};
+		563F403316A5FB40004F7FB6 /* acorn */ = {
+			isa = PBXGroup;
+			children = (
+				563F403416A5FB40004F7FB6 /* controls.acorn */,
+				563F403516A5FB40004F7FB6 /* credits.acorn */,
+				563F403616A5FB40004F7FB6 /* faq.acorn */,
+				563F403716A5FB40004F7FB6 /* gamecenter.acorn */,
+				563F403816A5FB40004F7FB6 /* lunarlander.acorn */,
+				563F403916A5FB40004F7FB6 /* moonlander.acorn */,
+				563F403A16A5FB40004F7FB6 /* moreclassics.acorn */,
+			);
+			path = acorn;
 			sourceTree = "<group>";
 		};
 		5652574C154CBA8C0022EF77 /* Disassembler */ = {
@@ -664,6 +700,13 @@
 		5667CA27154F8D050031415B /* png */ = {
 			isa = PBXGroup;
 			children = (
+				563F403116A5FB31004F7FB6 /* credits.png */,
+				563F402916A5FAB6004F7FB6 /* controls.png */,
+				563F402A16A5FAB6004F7FB6 /* faq.png */,
+				563F402B16A5FAB6004F7FB6 /* lunarlander.png */,
+				563F402C16A5FAB6004F7FB6 /* moreclassics.png */,
+				563F402716A5F7CD004F7FB6 /* gamecenter.png */,
+				563F402516A5F3E8004F7FB6 /* moonlander.png */,
 				56E07CBC1673FB61009C847B /* SpeedSlider.png */,
 				56E07CBD1673FB61009C847B /* StatementTrace.png */,
 				56E07CBE1673FB61009C847B /* VolumeSlider.png */,
@@ -1107,6 +1150,13 @@
 				56E07CC11673FB61009C847B /* VolumeSlider.png in Resources */,
 				56E07CF41674F9CA009C847B /* Vectorb.ttf in Resources */,
 				563F402016A5C116004F7FB6 /* Game Center Metadata in Resources */,
+				563F402616A5F3E8004F7FB6 /* moonlander.png in Resources */,
+				563F402816A5F7CD004F7FB6 /* gamecenter.png in Resources */,
+				563F402D16A5FAB6004F7FB6 /* controls.png in Resources */,
+				563F402E16A5FAB6004F7FB6 /* faq.png in Resources */,
+				563F402F16A5FAB6004F7FB6 /* lunarlander.png in Resources */,
+				563F403016A5FAB6004F7FB6 /* moreclassics.png in Resources */,
+				563F403216A5FB31004F7FB6 /* credits.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
