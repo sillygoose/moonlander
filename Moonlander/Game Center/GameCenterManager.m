@@ -255,10 +255,6 @@
 
 - (void)submitAchievement:(NSString *)identifier percentComplete:(double)percentComplete
 {
-#if defined(TESTFLIGHT_SDK_VERSION) && defined(USE_TESTFLIGHT)
-    [TestFlight passCheckpoint:[NSString stringWithFormat:@"%@:%@", NSStringFromClass([self class]), [NSString stringWithFormat:@"submitAchievement: %f", percentComplete]]];
-#endif
-
 	// GameCenter check for duplicate achievements when the achievement is submitted, but if you only want to report 
 	// new achievements to the user, then you need to check if it's been earned 
 	// before you submit.  Otherwise you'll end up with a race condition between loadAchievementsWithCompletionHandler
@@ -311,9 +307,6 @@
 
 - (void)resetAchievements
 {
-#if defined(TESTFLIGHT_SDK_VERSION) && defined(USE_TESTFLIGHT)
-    [TestFlight passCheckpoint:[NSString stringWithFormat:@"%@:%@", NSStringFromClass([self class]), @"resetAchievements"]];
-#endif
 	self.earnedAchievementCache = nil;
 	[GKAchievement resetAchievementsWithCompletionHandler: ^(NSError *error) {
 		 [self callDelegateOnMainThread:@selector(achievementResetResult:) withArg:nil error:error];
