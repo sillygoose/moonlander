@@ -41,7 +41,7 @@
     // Initialize the audio by playing a short clip at zero volume
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         // Initialize the audio by playing a short clip at zero volume
-        NSString *soundFilePath = [[NSBundle mainBundle] pathForResource:@"keyboard" ofType:@"aiff"];
+        NSString *soundFilePath = [[NSBundle mainBundle] pathForResource:@"beep-low" ofType:@"caf"];
         NSURL *audioURL = [[NSURL alloc] initFileURLWithPath: soundFilePath];
         self.audioPlayer = [[AVAudioPlayer alloc] initWithContentsOfURL:audioURL error:NULL];
         self.audioPlayer.numberOfLoops = 0;
