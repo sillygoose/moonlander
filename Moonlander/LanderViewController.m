@@ -1495,11 +1495,6 @@ const float RollButtonRepeatInterval = 0.20;        // Timer value for roll butt
 
 - (void)PALSY
 {
-    // Post the Game Center leaderboards numbers
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"fuelScorePosted" object:[NSNumber numberWithInt:self.FUEL]];
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"distanceScorePosted" object:[NSNumber numberWithInt:abs(self.HORDIS)]];
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"fastestScorePosted" object:[NSNumber numberWithFloat:self.TIME]];
-
     // This is a successful landing
     if ([self WallpaperController] == NO) {
         // Post the Game Center leaderboards numbers
