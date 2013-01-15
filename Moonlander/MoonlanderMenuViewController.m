@@ -51,9 +51,19 @@
     self.faqButton.titleLabel.font = displayFont;
     self.creditsButton.titleLabel.font = displayFont;
     
-    // Add the software build info to the menu scene
+    // Write the version info in menu view
     NSDictionary* infoDict = [[NSBundle mainBundle] infoDictionary];
-    self.buildInfo.text = [NSString stringWithFormat:@"Build %@", [infoDict objectForKey:@"CFBundleVersion"]];
+    NSString *buildString = [infoDict objectForKey:@"CFBundleVersion"];
+    NSString *versionString = [infoDict objectForKey:@"CFBundleShortVersionString"];
+    int major, minor, build;
+    if (3 == sscanf([versionString UTF8String], "%d.%d.%d", &major, &minor, &build)) {
+        // Preferred output
+        self.buildInfo.text = [NSString stringWithFormat:@"Version %d.%02d (%@)", major, minor, buildString];
+    }
+    else {
+        // Punt, something unexpected happened
+        self.buildInfo.text = [NSString stringWithFormat:@"Version %@ (%@)", versionString, buildString];
+    }
 
     // Add to the view and notify everyone
     [self.view addSubview:self.menuBackground.view];
