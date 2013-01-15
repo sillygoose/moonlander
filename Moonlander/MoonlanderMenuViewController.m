@@ -15,6 +15,7 @@
 @property (nonatomic, strong) IBOutlet UIButton *bonusContentButton;
 @property (nonatomic, strong) IBOutlet UIButton *moonlanderButton;
 @property (nonatomic, strong) IBOutlet UIButton *controlsButton;
+@property (nonatomic, strong) IBOutlet UIButton *highScoresButton;
 @property (nonatomic, strong) IBOutlet UIButton *faqButton;
 @property (nonatomic, strong) IBOutlet UIButton *creditsButton;
 @property (nonatomic, strong) IBOutlet UIButton *moreClassicsButton;
@@ -48,6 +49,7 @@
     UIFont *displayFont = [UIFont fontWithName:@"Vector Battle" size:66];
     self.bonusContentButton.titleLabel.font = displayFont;
     self.moonlanderButton.titleLabel.font = displayFont;
+    self.highScoresButton.titleLabel.font = displayFont;
     self.controlsButton.titleLabel.font = displayFont;
     self.faqButton.titleLabel.font = displayFont;
     self.creditsButton.titleLabel.font = displayFont;

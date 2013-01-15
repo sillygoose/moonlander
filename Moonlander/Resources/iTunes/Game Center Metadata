@@ -1,0 +1,51 @@
+Bundle ID: com.devtools.moonlander
+==================================
+
+
+Leaderboards        Name                                ID
+============        ==========================          =======================================
+                    moonlander.mcdonalds                com.devtools.moonlander.mcdonalds.leaderboard
+                    
+
+
+McDonalds Scoring
+=================
+Score is 
+
+500 - abs(distance)
+    - time
+    + fuel
+    - 10 * abs(angle)
+    - 10 * abs(vervel)
+    - 10 * abs(horvel)
+
+
+iTunes Connect Leaderboard strings/values
+=========================================
+Name                    McDonalds
+ID                      moonlander.mcdonalds.leaderboard
+Format                  Integer
+Sort order              High to Low
+Score range             
+    
+English
+=======
+Name                    Cheeseburgers
+Score Format            Fixed point, 0 decimals, period decimal point
+Score Format Suffix     ' points'
+Image                   LargeAppIcon.png - ###
+
+                    
+                    
+Game Center Account Assignments
+===============================
+Silly Goose (91 simulator)                  fivemilepoint (naroescape@fivemilepoint.com)
+t-mobile.iphones.rick.devtools.com          rnaro@yahoo.com
+sillygoose.iphone4s.rick.devtools.com       rick@devtools.com
+mayumi.ipad3.rick.devtools.com              unchan@me.com
+duncan.ipad2.rick.devtools.com              rick@fivemilepoint.com
+Sebastopol (183 simulator)                  sillygoose@me.com
+(unused)                                    rwnaro@syr.edu
+
+
+

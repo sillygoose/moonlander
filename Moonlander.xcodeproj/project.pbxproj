@@ -29,6 +29,9 @@
 		562D6247154DAD1900BD4EDD /* MenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 562D6246154DAD1900BD4EDD /* MenuViewController.m */; };
 		562D6250154DC3CE00BD4EDD /* NavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 562D624F154DC3CE00BD4EDD /* NavigationController.m */; };
 		562F26A81417A22E0069169B /* Man.m in Sources */ = {isa = PBXBuildFile; fileRef = 562F26A71417A22E0069169B /* Man.m */; };
+		563F401B16A5C05D004F7FB6 /* GameCenterManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 563F401816A5C05D004F7FB6 /* GameCenterManager.m */; };
+		563F401E16A5C0A7004F7FB6 /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 563F401D16A5C0A7004F7FB6 /* GameKit.framework */; };
+		563F402016A5C116004F7FB6 /* Game Center Metadata in Resources */ = {isa = PBXBuildFile; fileRef = 563F401F16A5C116004F7FB6 /* Game Center Metadata */; };
 		564BE59E13800F3400D790D9 /* VGButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 564BE59D13800F3400D790D9 /* VGButton.m */; };
 		564BE5C413801C0F00D790D9 /* VGSlider.m in Sources */ = {isa = PBXBuildFile; fileRef = 564BE5C313801C0F00D790D9 /* VGSlider.m */; };
 		564BE5C613801CAC00D790D9 /* ThrusterControl.plist in Resources */ = {isa = PBXBuildFile; fileRef = 564BE5C513801CAC00D790D9 /* ThrusterControl.plist */; };
@@ -172,6 +175,10 @@
 		562D624F154DC3CE00BD4EDD /* NavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NavigationController.m; sourceTree = "<group>"; };
 		562F26A61417A22E0069169B /* Man.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Man.h; sourceTree = "<group>"; };
 		562F26A71417A22E0069169B /* Man.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Man.m; sourceTree = "<group>"; };
+		563F401716A5C05D004F7FB6 /* GameCenterManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameCenterManager.h; sourceTree = "<group>"; };
+		563F401816A5C05D004F7FB6 /* GameCenterManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameCenterManager.m; sourceTree = "<group>"; };
+		563F401D16A5C0A7004F7FB6 /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
+		563F401F16A5C116004F7FB6 /* Game Center Metadata */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "Game Center Metadata"; sourceTree = "<group>"; };
 		564BE59C13800F3400D790D9 /* VGButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VGButton.h; sourceTree = "<group>"; };
 		564BE59D13800F3400D790D9 /* VGButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VGButton.m; sourceTree = "<group>"; };
 		564BE5C213801C0F00D790D9 /* VGSlider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VGSlider.h; sourceTree = "<group>"; };
@@ -384,6 +391,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				563F401E16A5C0A7004F7FB6 /* GameKit.framework in Frameworks */,
 				567386A61673B44C0069C1EA /* SystemConfiguration.framework in Frameworks */,
 				56DB82C716724C8C00C243A8 /* AVFoundation.framework in Frameworks */,
 				560FA0D0137991AD0017EE25 /* UIKit.framework in Frameworks */,
@@ -423,6 +431,7 @@
 			children = (
 				567386A51673B44C0069C1EA /* SystemConfiguration.framework */,
 				560FA0CF137991AD0017EE25 /* UIKit.framework */,
+				563F401D16A5C0A7004F7FB6 /* GameKit.framework */,
 				560FA0D1137991AD0017EE25 /* Foundation.framework */,
 				560FA0D3137991AD0017EE25 /* CoreGraphics.framework */,
 				56DB82C616724C8C00C243A8 /* AVFoundation.framework */,
@@ -464,6 +473,7 @@
 				56DB82A116724B2C00C243A8 /* ROCKET Classic */,
 				560FA10D1379923D0017EE25 /* Lander Model */,
 				5695F1A9137F52B50075CD26 /* Vector Graphics */,
+				563F401616A5C05D004F7FB6 /* Game Center */,
 				56D6C7CD16435290001C2344 /* TestFlightSDK1.1 */,
 				560FA13B1379C3900017EE25 /* Resources */,
 				560FA0D6137991AE0017EE25 /* Supporting Files */,
@@ -577,6 +587,15 @@
 				562B108C13841D5A00CC5C97 /* LanderMessages.plist */,
 			);
 			path = plist;
+			sourceTree = "<group>";
+		};
+		563F401616A5C05D004F7FB6 /* Game Center */ = {
+			isa = PBXGroup;
+			children = (
+				563F401716A5C05D004F7FB6 /* GameCenterManager.h */,
+				563F401816A5C05D004F7FB6 /* GameCenterManager.m */,
+			);
+			path = "Game Center";
 			sourceTree = "<group>";
 		};
 		5652574C154CBA8C0022EF77 /* Disassembler */ = {
@@ -810,6 +829,7 @@
 		56E16EC6167EB2D30094C638 /* iTunes */ = {
 			isa = PBXGroup;
 			children = (
+				563F401F16A5C116004F7FB6 /* Game Center Metadata */,
 				56E16EC9167EB32B0094C638 /* Cheeseburgers.png */,
 				56E16ECA167EB32B0094C638 /* LunarLander.png */,
 				56E16ECB167EB32B0094C638 /* Menu.png */,
@@ -1086,6 +1106,7 @@
 				56E07CC01673FB61009C847B /* StatementTrace.png in Resources */,
 				56E07CC11673FB61009C847B /* VolumeSlider.png in Resources */,
 				56E07CF41674F9CA009C847B /* Vectorb.ttf in Resources */,
+				563F402016A5C116004F7FB6 /* Game Center Metadata in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1155,6 +1176,7 @@
 				56DB83301672C12700C243A8 /* Controls.m in Sources */,
 				56DB83311672C12700C243A8 /* DebugManager.m in Sources */,
 				567386A41673B3C10069C1EA /* Reachability.m in Sources */,
+				563F401B16A5C05D004F7FB6 /* GameCenterManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
