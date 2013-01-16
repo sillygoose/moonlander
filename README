@@ -6,7 +6,8 @@ History
 1.01.0              Updated with iTunes link to Lunar Lander
                     Added checkpoint to collect landing stats
                     Added GameCenter leaderboards
-                    Removed Lunar Lander (available in App Store0
+                    Removed Lunar Lander (available in App Store
+                    Changed to use new delyas to speed things up
                     
 1.0.0               Initial release
 

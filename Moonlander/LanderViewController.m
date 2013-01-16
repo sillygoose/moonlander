@@ -141,8 +141,8 @@ const float RollButtonRepeatInterval = 0.20;        // Timer value for roll butt
 #endif
     assert(sizeof(Delays)/sizeof(Delays[0]) == DelayLast);
     
-    LanderType modernGame = self.landerType;
-    float delay = Delays[delayItem][modernGame];
+    // This will give us more modern delays and speed things up
+    float delay = Delays[delayItem][LanderTypeModern];
     return delay;
 }
 
