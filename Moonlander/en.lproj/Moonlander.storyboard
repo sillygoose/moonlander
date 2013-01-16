@@ -218,7 +218,7 @@
                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <button opaque="NO" alpha="0.80000000000000004" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Cne-ZE-E0a" userLabel="Play">
-                                <rect key="frame" x="508" y="100" width="496" height="80"/>
+                                <rect key="frame" x="508" y="200" width="496" height="80"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="48"/>
@@ -282,7 +282,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" alpha="0.80000000000000004" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="j0x-sa-FSS" userLabel="Credits">
-                                <rect key="frame" x="369" y="200" width="635" height="80"/>
+                                <rect key="frame" x="369" y="100" width="635" height="80"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="48"/>
@@ -363,55 +363,6 @@
         <image name="moonlander.png" width="475" height="80"/>
         <image name="moreclassics.png" width="621" height="79"/>
     </resources>
-    <classes>
-        <class className="AutoPilotViewController" superclassName="LanderViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/AutoPilotViewController.h"/>
-        </class>
-        <class className="DocumentViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/DocumentViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="_documentContent" candidateClass="UIWebView"/>
-            </relationships>
-        </class>
-        <class className="LanderViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/LanderViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="rotateLander:"/>
-                <relationship kind="action" name="thrusterChanged:" candidateClass="VGSlider"/>
-            </relationships>
-        </class>
-        <class className="MenuViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/MenuViewController.h"/>
-        </class>
-        <class className="MoonlanderMenuViewController" superclassName="MenuViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/MoonlanderMenuViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="moreClassicsButtonSelected:"/>
-                <relationship kind="action" name="showGameCenterButtonAction:"/>
-                <relationship kind="outlet" name="buildInfo" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="controlsButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="creditsButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="faqButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="highScoresButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="moonlanderButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="moreClassicsButton" candidateClass="UIButton"/>
-            </relationships>
-        </class>
-        <class className="NavigationController" superclassName="UINavigationController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/NavigationController.h"/>
-        </class>
-        <class className="SplashViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/SplashViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="firstPart" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="moonLander" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="secondfPart" candidateClass="UILabel"/>
-            </relationships>
-        </class>
-        <class className="VGSlider" superclassName="UIControl">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/VGSlider.h"/>
-        </class>
-    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar" statusBarStyle="blackTranslucent"/>
         <simulatedOrientationMetrics key="orientation" orientation="landscapeRight"/>
