@@ -157,13 +157,19 @@
 		563F402A16A5FAB6004F7FB6 /* faq.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = faq.png; sourceTree = "<group>"; };
 		563F402C16A5FAB6004F7FB6 /* moreclassics.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = moreclassics.png; sourceTree = "<group>"; };
 		563F403116A5FB31004F7FB6 /* credits.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = credits.png; sourceTree = "<group>"; };
-		563F403416A5FB40004F7FB6 /* controls.acorn */ = {isa = PBXFileReference; lastKnownFileType = file; path = controls.acorn; sourceTree = "<group>"; };
-		563F403516A5FB40004F7FB6 /* credits.acorn */ = {isa = PBXFileReference; lastKnownFileType = file; path = credits.acorn; sourceTree = "<group>"; };
-		563F403616A5FB40004F7FB6 /* faq.acorn */ = {isa = PBXFileReference; lastKnownFileType = file; path = faq.acorn; sourceTree = "<group>"; };
-		563F403716A5FB40004F7FB6 /* gamecenter.acorn */ = {isa = PBXFileReference; lastKnownFileType = file; path = gamecenter.acorn; sourceTree = "<group>"; };
-		563F403816A5FB40004F7FB6 /* lunarlander.acorn */ = {isa = PBXFileReference; lastKnownFileType = file; path = lunarlander.acorn; sourceTree = "<group>"; };
-		563F403916A5FB40004F7FB6 /* moonlander.acorn */ = {isa = PBXFileReference; lastKnownFileType = file; path = moonlander.acorn; sourceTree = "<group>"; };
-		563F403A16A5FB40004F7FB6 /* moreclassics.acorn */ = {isa = PBXFileReference; lastKnownFileType = file; path = moreclassics.acorn; sourceTree = "<group>"; };
+		563F403416A5FB40004F7FB6 /* Controls.acorn */ = {isa = PBXFileReference; lastKnownFileType = file; path = Controls.acorn; sourceTree = "<group>"; };
+		563F403916A5FB40004F7FB6 /* Moonlander.acorn */ = {isa = PBXFileReference; lastKnownFileType = file; path = Moonlander.acorn; sourceTree = "<group>"; };
+		564A071616A7195A00A584CA /* Trophy.acorn */ = {isa = PBXFileReference; lastKnownFileType = file; path = Trophy.acorn; sourceTree = "<group>"; };
+		564A071816A719E600A584CA /* Credits.acorn */ = {isa = PBXFileReference; lastKnownFileType = file; path = Credits.acorn; sourceTree = "<group>"; };
+		564A071916A719E600A584CA /* FAQ.acorn */ = {isa = PBXFileReference; lastKnownFileType = file; path = FAQ.acorn; sourceTree = "<group>"; };
+		564A071A16A719E600A584CA /* GameCenter.acorn */ = {isa = PBXFileReference; lastKnownFileType = file; path = GameCenter.acorn; sourceTree = "<group>"; };
+		564A071B16A719E600A584CA /* LunarLander.acorn */ = {isa = PBXFileReference; lastKnownFileType = file; path = LunarLander.acorn; sourceTree = "<group>"; };
+		564A071C16A719E600A584CA /* MoreClassics.acorn */ = {isa = PBXFileReference; lastKnownFileType = file; path = MoreClassics.acorn; sourceTree = "<group>"; };
+		564A071D16A71A2F00A584CA /* GameCenterIcon.acorn */ = {isa = PBXFileReference; lastKnownFileType = file; path = GameCenterIcon.acorn; sourceTree = "<group>"; };
+		564A071E16A71A4A00A584CA /* CheeseburgerTrophy.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CheeseburgerTrophy.png; sourceTree = "<group>"; };
+		564A071F16A71A4A00A584CA /* DistanceTrophy.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = DistanceTrophy.png; sourceTree = "<group>"; };
+		564A072016A71A4A00A584CA /* FuelTrophy.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = FuelTrophy.png; sourceTree = "<group>"; };
+		564A072116A71A4A00A584CA /* TimeTrophy.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TimeTrophy.png; sourceTree = "<group>"; };
 		564BE59C13800F3400D790D9 /* VGButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VGButton.h; sourceTree = "<group>"; };
 		564BE59D13800F3400D790D9 /* VGButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VGButton.m; sourceTree = "<group>"; };
 		564BE5C213801C0F00D790D9 /* VGSlider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VGSlider.h; sourceTree = "<group>"; };
@@ -533,13 +539,15 @@
 		563F403316A5FB40004F7FB6 /* acorn */ = {
 			isa = PBXGroup;
 			children = (
-				563F403416A5FB40004F7FB6 /* controls.acorn */,
-				563F403516A5FB40004F7FB6 /* credits.acorn */,
-				563F403616A5FB40004F7FB6 /* faq.acorn */,
-				563F403716A5FB40004F7FB6 /* gamecenter.acorn */,
-				563F403816A5FB40004F7FB6 /* lunarlander.acorn */,
-				563F403916A5FB40004F7FB6 /* moonlander.acorn */,
-				563F403A16A5FB40004F7FB6 /* moreclassics.acorn */,
+				564A071D16A71A2F00A584CA /* GameCenterIcon.acorn */,
+				564A071616A7195A00A584CA /* Trophy.acorn */,
+				564A071816A719E600A584CA /* Credits.acorn */,
+				564A071916A719E600A584CA /* FAQ.acorn */,
+				564A071A16A719E600A584CA /* GameCenter.acorn */,
+				564A071B16A719E600A584CA /* LunarLander.acorn */,
+				564A071C16A719E600A584CA /* MoreClassics.acorn */,
+				563F403416A5FB40004F7FB6 /* Controls.acorn */,
+				563F403916A5FB40004F7FB6 /* Moonlander.acorn */,
 			);
 			path = acorn;
 			sourceTree = "<group>";
@@ -720,9 +728,13 @@
 				563F401F16A5C116004F7FB6 /* Game Center Metadata */,
 				56EE12161682063F00C051B2 /* Description */,
 				56E16EC7167EB2D30094C638 /* LargeAppIcon.png */,
+				564A071E16A71A4A00A584CA /* CheeseburgerTrophy.png */,
+				564A071F16A71A4A00A584CA /* DistanceTrophy.png */,
+				564A072016A71A4A00A584CA /* FuelTrophy.png */,
+				564A072116A71A4A00A584CA /* TimeTrophy.png */,
 				56E16ECB167EB32B0094C638 /* Menu.png */,
-				560A661616A64F5100F59B60 /* GameCenter.png */,
 				56E16EC9167EB32B0094C638 /* Cheeseburgers.png */,
+				560A661616A64F5100F59B60 /* GameCenter.png */,
 			);
 			path = iTunes;
 			sourceTree = "<group>";
