@@ -103,7 +103,7 @@
 		1D1512C51546E6ED008C2B80 /* Icon-Small-50@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-Small-50@2x.png"; sourceTree = "<group>"; };
 		1DBF44261573D1E7002BF8E7 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		560A660816A6467C00F59B60 /* gamecentericon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = gamecentericon.png; sourceTree = "<group>"; };
-		560A661616A64F5100F59B60 /* gc.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = gc.png; sourceTree = "<group>"; };
+		560A661616A64F5100F59B60 /* GameCenter.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = GameCenter.png; sourceTree = "<group>"; };
 		560D212814115314000F3A22 /* README */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README; sourceTree = "<group>"; };
 		560FA0CB137991AD0017EE25 /* Moonlander.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Moonlander.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		560FA0CF137991AD0017EE25 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
@@ -721,7 +721,7 @@
 				56EE12161682063F00C051B2 /* Description */,
 				56E16EC7167EB2D30094C638 /* LargeAppIcon.png */,
 				56E16ECB167EB32B0094C638 /* Menu.png */,
-				560A661616A64F5100F59B60 /* gc.png */,
+				560A661616A64F5100F59B60 /* GameCenter.png */,
 				56E16EC9167EB32B0094C638 /* Cheeseburgers.png */,
 			);
 			path = iTunes;
