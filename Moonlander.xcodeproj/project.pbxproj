@@ -215,6 +215,7 @@
 		56755FD8138C0B8200455B52 /* Lander.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Lander.h; sourceTree = "<group>"; };
 		56755FD9138C0B8200455B52 /* Lander.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Lander.m; sourceTree = "<group>"; };
 		5675E5D41425004400882CD8 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		5681E2C516A74581001F9DA5 /* Crash.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Crash.png; sourceTree = "<group>"; };
 		56903D28154EDCC300DE54BD /* Moonlander Source Code.htm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = "Moonlander Source Code.htm"; sourceTree = "<group>"; };
 		56903D2A154EDE1900DE54BD /* GTLEM Source Code.mac */ = {isa = PBXFileReference; lastKnownFileType = text; path = "GTLEM Source Code.mac"; sourceTree = "<group>"; };
 		5694D1D613920A8C00A61F22 /* Moon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Moon.h; sourceTree = "<group>"; };
@@ -735,6 +736,7 @@
 				56E16ECB167EB32B0094C638 /* Menu.png */,
 				56E16EC9167EB32B0094C638 /* Cheeseburgers.png */,
 				560A661616A64F5100F59B60 /* GameCenter.png */,
+				5681E2C516A74581001F9DA5 /* Crash.png */,
 			);
 			path = iTunes;
 			sourceTree = "<group>";
