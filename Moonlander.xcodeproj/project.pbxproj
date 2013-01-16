@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		1D1512C61546E6ED008C2B80 /* Icon-Small-50@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1D1512C51546E6ED008C2B80 /* Icon-Small-50@2x.png */; };
 		1DBF44271573D1E7002BF8E7 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DBF44261573D1E7002BF8E7 /* libz.dylib */; };
+		560A660916A6467C00F59B60 /* gamecentericon.png in Resources */ = {isa = PBXBuildFile; fileRef = 560A660816A6467C00F59B60 /* gamecentericon.png */; };
 		560FA0D0137991AD0017EE25 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 560FA0CF137991AD0017EE25 /* UIKit.framework */; };
 		560FA0D2137991AD0017EE25 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 560FA0D1137991AD0017EE25 /* Foundation.framework */; };
 		560FA0D4137991AD0017EE25 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 560FA0D3137991AD0017EE25 /* CoreGraphics.framework */; };
@@ -103,6 +104,7 @@
 /* Begin PBXFileReference section */
 		1D1512C51546E6ED008C2B80 /* Icon-Small-50@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-Small-50@2x.png"; sourceTree = "<group>"; };
 		1DBF44261573D1E7002BF8E7 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
+		560A660816A6467C00F59B60 /* gamecentericon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = gamecentericon.png; sourceTree = "<group>"; };
 		560D212814115314000F3A22 /* README */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README; sourceTree = "<group>"; };
 		560FA0CB137991AD0017EE25 /* Moonlander.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Moonlander.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		560FA0CF137991AD0017EE25 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
@@ -263,7 +265,6 @@
 		56E07CF31674F9CA009C847B /* Vectorb.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Vectorb.ttf; sourceTree = "<group>"; };
 		56E16EC7167EB2D30094C638 /* LargeAppIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LargeAppIcon.png; sourceTree = "<group>"; };
 		56E16EC9167EB32B0094C638 /* Cheeseburgers.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Cheeseburgers.png; sourceTree = "<group>"; };
-		56E16ECA167EB32B0094C638 /* LunarLander.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LunarLander.png; sourceTree = "<group>"; };
 		56E16ECB167EB32B0094C638 /* Menu.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Menu.png; sourceTree = "<group>"; };
 		56E80E4B137E4CC3009E7F15 /* Lander.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Lander.plist; sourceTree = "<group>"; };
 		56E80E5E137E599D009E7F15 /* VGView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VGView.h; sourceTree = "<group>"; };
@@ -611,6 +612,7 @@
 		5667CA27154F8D050031415B /* png */ = {
 			isa = PBXGroup;
 			children = (
+				560A660816A6467C00F59B60 /* gamecentericon.png */,
 				563F403116A5FB31004F7FB6 /* credits.png */,
 				563F402916A5FAB6004F7FB6 /* controls.png */,
 				563F402A16A5FAB6004F7FB6 /* faq.png */,
@@ -719,11 +721,10 @@
 			isa = PBXGroup;
 			children = (
 				563F401F16A5C116004F7FB6 /* Game Center Metadata */,
-				56E16EC9167EB32B0094C638 /* Cheeseburgers.png */,
-				56E16ECA167EB32B0094C638 /* LunarLander.png */,
-				56E16ECB167EB32B0094C638 /* Menu.png */,
-				56E16EC7167EB2D30094C638 /* LargeAppIcon.png */,
 				56EE12161682063F00C051B2 /* Description */,
+				56E16EC7167EB2D30094C638 /* LargeAppIcon.png */,
+				56E16ECB167EB32B0094C638 /* Menu.png */,
+				56E16EC9167EB32B0094C638 /* Cheeseburgers.png */,
 			);
 			path = iTunes;
 			sourceTree = "<group>";
@@ -979,6 +980,7 @@
 				563F402E16A5FAB6004F7FB6 /* faq.png in Resources */,
 				563F403016A5FAB6004F7FB6 /* moreclassics.png in Resources */,
 				563F403216A5FB31004F7FB6 /* credits.png in Resources */,
+				560A660916A6467C00F59B60 /* gamecentericon.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
