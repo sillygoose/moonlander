@@ -17,8 +17,5 @@ build/*
 *.pbxuser
 *.xcworkspace
 *.xcbkptlist
-<<<<<<< HEAD
-xcuserdata/*
-=======
-xcuserdata/*
->>>>>>> Take out all xcode files
+
+xcuserdata
