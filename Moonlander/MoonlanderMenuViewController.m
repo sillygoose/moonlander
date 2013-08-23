@@ -165,12 +165,12 @@
     GKLeaderboardViewController *leaderboardViewController = [[GKLeaderboardViewController alloc] init];
     [leaderboardViewController setCategory:leaderboard];
     [leaderboardViewController setLeaderboardDelegate:self];
-    [self presentModalViewController:leaderboardViewController animated:YES];
+    [self presentViewController:leaderboardViewController animated:YES completion:NULL];
 }
 
 - (void)leaderboardViewControllerDidFinish:(GKLeaderboardViewController *)viewController
 {
-	[self dismissModalViewControllerAnimated:YES];
+	[self dismissViewControllerAnimated:YES completion:NULL];
 }
 
 
