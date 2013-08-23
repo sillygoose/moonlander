@@ -199,9 +199,6 @@
                     }
                 });
             }
-            else {
-                dispatch_release(removeQueue);
-            }
         };
         
         VGLabel *sysLabel  = [messageItems lastObject];
@@ -236,7 +233,6 @@
         dispatch_after(popTime, messageQueue, createMessage);
         delayTime += showNextMessage * NSEC_PER_SEC;
     }
-    dispatch_release(messageQueue);
 }
 
 @end
