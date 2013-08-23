@@ -63,7 +63,7 @@ const float VGBlinkInterval = 0.75;
 - (void)drawSomethingUsing:(NSArray *)arrayOfVectors
 {
     BOOL logCommand = NO;
-    UITextAlignment textAlignment = UITextAlignmentLeft;
+    UITextAlignment textAlignment = NSTextAlignmentLeft;
 
     // Simple stack for push/pop support
     CGPoint positionStack[4];
@@ -363,10 +363,10 @@ const float VGBlinkInterval = 0.75;
             }
             
             // Need to deal with the requested text alignment
-            if (textAlignment == UITextAlignmentLeft) {
+            if (textAlignment == NSTextAlignmentLeft) {
                 // Do nothing for left alignment
             }
-            else if (textAlignment == UITextAlignmentCenter) {
+            else if (textAlignment == NSTextAlignmentCenter) {
                 // Find the length of the string
                 CGContextSaveGState(context);
                 CGContextGetTextPosition(context);
@@ -381,7 +381,7 @@ const float VGBlinkInterval = 0.75;
                 // Adjust the current position to center the text
                 currentPosition.x = (self.bounds.size.width / 2) - (textLength / 2);
             }
-            else if (textAlignment == UITextAlignmentRight) {
+            else if (textAlignment == NSTextAlignmentRight) {
                 // Find the length of the string
                 CGContextSaveGState(context);
                 CGContextGetTextPosition(context);

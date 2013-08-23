@@ -58,7 +58,7 @@
         self.dialogText.text = @"New game?";
         self.dialogText.font = fontInfo;
         self.dialogText.textColor = labelText;
-        self.dialogText.textAlignment = UITextAlignmentCenter;
+        self.dialogText.textAlignment = NSTextAlignmentCenter;
         self.dialogText.backgroundColor = labelBackground;
         [self addSubview:self.dialogText];
 
@@ -72,7 +72,7 @@
         self.dialogYesButton.titleLabel.textColor = buttonText;
         self.dialogYesButton.backgroundColor = self.buttonBackgroundNormal;
         self.dialogYesButton.titleLabel.backgroundColor = self.buttonBackgroundNormal;
-        self.dialogYesButton.titleLabel.textAlignment = UITextAlignmentCenter;
+        self.dialogYesButton.titleLabel.textAlignment = NSTextAlignmentCenter;
         self.dialogYesButton.titleLabel.baselineAdjustment = UIBaselineAdjustmentAlignCenters;
         [self addSubview:self.dialogYesButton];
 
@@ -85,7 +85,7 @@
         self.dialogNoButton.titleLabel.textColor = buttonText;
         self.dialogNoButton.backgroundColor = self.buttonBackgroundNormal;
         self.dialogNoButton.titleLabel.backgroundColor = self.buttonBackgroundNormal;
-        self.dialogNoButton.titleLabel.textAlignment = UITextAlignmentCenter;
+        self.dialogNoButton.titleLabel.textAlignment = NSTextAlignmentCenter;
         self.dialogNoButton.titleLabel.baselineAdjustment = UIBaselineAdjustmentAlignCenters;
         [self addSubview:self.dialogNoButton];
 

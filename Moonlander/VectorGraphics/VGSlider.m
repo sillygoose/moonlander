@@ -71,7 +71,7 @@
         CGRect valueFrame = CGRectMake(25, frameRect.size.height, 40, 16);
         self.thrusterValue = [[VGLabel alloc] initWithFrame:valueFrame];
         self.thrusterValue.userInteractionEnabled = NO;
-        self.thrusterValue.textAlignment = UITextAlignmentRight;
+        self.thrusterValue.textAlignment = NSTextAlignmentRight;
         self.thrusterValue.vectorName = @"thrusterValue";
         //self.thrusterValue.backgroundColor = [UIColor grayColor];
         [self addSubview:self.thrusterValue];

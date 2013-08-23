@@ -23,7 +23,7 @@
     self = [super initWithFrame:frameRect];
     if (self) {
         // Defaults are full intensity and align text left
-        _textAlignment = UITextAlignmentLeft;
+        _textAlignment = NSTextAlignmentLeft;
         _intensity = 7;
         
         // For debugging purposes
@@ -78,7 +78,7 @@
     [self updateDrawingDictionary];
 }
 
-- (void)setTextAlignment:(UITextAlignment)newAlignment
+- (void)setTextAlignment:(NSTextAlignment)newAlignment
 {                    
     _textAlignment = newAlignment;
     [self updateDrawingDictionary];

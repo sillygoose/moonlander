@@ -14,7 +14,7 @@
     NSString                    *_text;
     UIFont                      *_font;
     UIColor                     *_textColor;
-    UITextAlignment             _textAlignment;
+    NSTextAlignment             _textAlignment;
 
     short                       _intensity;
     BOOL                        _blink;
@@ -23,7 +23,7 @@
 @property (nonatomic, copy) NSString *text;
 @property (nonatomic) UIFont *font;
 @property (nonatomic) UIColor *textColor;
-@property (nonatomic) UITextAlignment textAlignment;
+@property (nonatomic) NSTextAlignment textAlignment;
 
 @property (nonatomic) short intensity;
 @property (nonatomic) BOOL blink;
