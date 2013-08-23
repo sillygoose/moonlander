@@ -384,7 +384,7 @@
             
             xCoordinate = [NSNumber numberWithInt:4];
             yCoordinate = [NSNumber numberWithInt:TEMP];
-            NSMutableDictionary *drawItem = [NSDictionary dictionaryWithObjectsAndKeys:xCoordinate, @"x", yCoordinate, @"y", nil];
+            NSMutableDictionary *drawItem = [NSMutableDictionary dictionaryWithObjectsAndKeys:xCoordinate, @"x", yCoordinate, @"y", nil];
             [path addObject:drawItem];
             
             TEMP = S_TEMP;
@@ -471,7 +471,7 @@
         CGPoint drawToPoint = CGPointMake(x - previousPoint.x, scaledY - previousPoint.y);
         xCoordinate = [NSNumber numberWithInt:drawToPoint.x];
         yCoordinate = [NSNumber numberWithInt:drawToPoint.y];
-        NSMutableDictionary *drawItem = [NSDictionary dictionaryWithObjectsAndKeys:xCoordinate, @"x", yCoordinate, @"y", nil];
+        NSMutableDictionary *drawItem = [NSMutableDictionary dictionaryWithObjectsAndKeys:xCoordinate, @"x", yCoordinate, @"y", nil];
         [path addObject:drawItem];
         
         previousPoint.x = x;
