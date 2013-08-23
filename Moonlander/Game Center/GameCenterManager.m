@@ -61,13 +61,52 @@
 	return (gcClass && osVersionSupported);
 }
 
+
+#pragma mark Property setters
+
+-(void) setLastError:(NSError*)error {
+    _lastError = [error copy];
+    if (_lastError) {
+        NSLog(@"GameKitHelper ERROR: %@", [[_lastError userInfo]
+                                           description]);
+    }
+}
+
+#pragma mark UIViewController stuff
+
+-(UIViewController*) getRootViewController
+{
+    return [UIApplication sharedApplication].keyWindow.rootViewController;
+}
+
+-(void)presentViewController:(UIViewController*)vc
+{
+    UIViewController* rootVC = [self getRootViewController];
+    [rootVC presentViewController:vc animated:YES completion:nil];
+}
+
 - (void)authenticateLocalPlayer
 {
-	if ([GKLocalPlayer localPlayer].authenticated == NO) {
-		[[GKLocalPlayer localPlayer] authenticateWithCompletionHandler:^(NSError *error) {
-			[self callDelegateOnMainThread:@selector(processedAuthorization:error:) withArg:[GKLocalPlayer localPlayer] error:error];
-		}];
-	}
+    __weak GKLocalPlayer* localPlayer = [GKLocalPlayer localPlayer];
+    localPlayer.authenticateHandler = ^(UIViewController *viewController, NSError *error) {
+        [self setLastError:error];
+#if 0 // Resume if paused
+        if ([CCDirector sharedDirector].isPaused)
+            [[CCDirector sharedDirector] resume];
+#endif
+        
+        if (localPlayer.authenticated) {
+            _gameCenterFeaturesEnabled = YES;
+        }
+        else if (viewController) {
+            //[[CCDirector sharedDirector] pause]; pause game for authentication
+            [self presentViewController:viewController];
+        }
+        else {
+            _gameCenterFeaturesEnabled = NO;
+        }
+        [self callDelegateOnMainThread:@selector(processedAuthorization:error:) withArg:[GKLocalPlayer localPlayer] error:error];
+    };
 }
 
 

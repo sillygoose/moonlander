@@ -25,6 +25,7 @@
 {
 	NSMutableDictionary         *earnedAchievementCache;
     NSLock                      *writeLock;
+    BOOL                        _gameCenterFeaturesEnabled;
 
 	id <GameCenterManagerDelegate, NSObject> __unsafe_unretained delegate;
 }
@@ -38,6 +39,8 @@
 
 @property (readonly, nonatomic, strong) NSString *storedAchievementsFilename;
 @property (readonly, nonatomic, strong) NSMutableDictionary *storedAchievements;
+
+@property (nonatomic, readonly) NSError *lastError;
 
 
 + (BOOL)isGameCenterAvailable;

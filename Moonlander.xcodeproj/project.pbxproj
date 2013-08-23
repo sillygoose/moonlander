@@ -97,6 +97,7 @@
 		56EA5BF6154E35D700AB6DF2 /* DocumentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 56EA5BF5154E35D700AB6DF2 /* DocumentViewController.m */; };
 		56EF5137154E59A3001E7B77 /* Default-Landscape~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 56173A0C154661BB00380AB4 /* Default-Landscape~ipad.png */; };
 		56EF5138154E59AC001E7B77 /* Default-Landscape@2x~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 56173A0B154661BB00380AB4 /* Default-Landscape@2x~ipad.png */; };
+		56F369CA17C7F10100A478FB /* Game-Center-iOS-7-256.png in Resources */ = {isa = PBXBuildFile; fileRef = 56F369C917C7F10100A478FB /* Game-Center-iOS-7-256.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -329,6 +330,7 @@
 		56ECD92C1540703500565615 /* putr.ini */ = {isa = PBXFileReference; lastKnownFileType = text; path = putr.ini; sourceTree = "<group>"; };
 		56ECD92D1540703500565615 /* putr.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = putr.txt; sourceTree = "<group>"; };
 		56EE12161682063F00C051B2 /* Description */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 0; lastKnownFileType = text; path = Description; sourceTree = "<group>"; tabWidth = 1; usesTabs = 0; wrapsLines = 1; };
+		56F369C917C7F10100A478FB /* Game-Center-iOS-7-256.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Game-Center-iOS-7-256.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -619,6 +621,7 @@
 		5667CA27154F8D050031415B /* png */ = {
 			isa = PBXGroup;
 			children = (
+				56F369C917C7F10100A478FB /* Game-Center-iOS-7-256.png */,
 				560A660816A6467C00F59B60 /* gamecentericon.png */,
 				563F403116A5FB31004F7FB6 /* credits.png */,
 				563F402916A5FAB6004F7FB6 /* controls.png */,
@@ -969,6 +972,7 @@
 				56173A12154661BB00380AB4 /* Icon-72@2x.png in Resources */,
 				1D1512C61546E6ED008C2B80 /* Icon-Small-50@2x.png in Resources */,
 				56EA5BCC154E14DF00AB6DF2 /* Moonlander.storyboard in Resources */,
+				56F369CA17C7F10100A478FB /* Game-Center-iOS-7-256.png in Resources */,
 				56EF5137154E59A3001E7B77 /* Default-Landscape~ipad.png in Resources */,
 				56EF5138154E59AC001E7B77 /* Default-Landscape@2x~ipad.png in Resources */,
 				56903D29154EDCC300DE54BD /* Moonlander Source Code.htm in Resources */,

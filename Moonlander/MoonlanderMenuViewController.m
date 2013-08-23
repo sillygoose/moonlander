@@ -214,6 +214,12 @@
     self.fastestTimeLeaderboard = @"moonlander.fastest.leaderboard";
     self.distanceLeaderboard = @"moonlander.distance.leaderboard";
     
+    // Update Game Center icon for iOS6
+    if ([[[UIDevice currentDevice] systemVersion] hasPrefix:@"6."]) {
+        UIImage *oldGameCenterIcon = [UIImage imageNamed:@"gamecentericon.png"];
+        [self.highScoresButton setImage:oldGameCenterIcon forState:UIControlStateNormal];
+    }
+    
     // Sign up to get score updates and a move to background  UIApplicationDidBecomeActiveNotification
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(mcdonaldsScorePosted:) name:@"mcdonaldsScorePosted" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(fuelScorePosted:) name:@"fuelScorePosted" object:nil];
