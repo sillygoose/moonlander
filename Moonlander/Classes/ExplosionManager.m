@@ -64,7 +64,6 @@ const short RadiusIncrement2 = -10;
     // Block handler to signal all done
     void (^animateComplete)(void) = ^{
         // Free up the queue we created and call our completion block
-        dispatch_release(animateQueue);
         dispatch_async(dispatch_get_main_queue(), ^{self.completionBlock();});
     };
     
@@ -142,9 +141,6 @@ const short RadiusIncrement2 = -10;
 
     // Mark that the queue is filled
     dispatch_async(explosionQueue, explosionComplete);
-
-    // Free up the queue we created
-    dispatch_release(explosionQueue);
 }
 
 @end
