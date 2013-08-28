@@ -20,7 +20,7 @@
     
 #if defined(TESTFLIGHT_SDK_VERSION) && defined(USE_TESTFLIGHT)
     // TeamFlight registration
-    [TestFlight takeOff:@"93c8cc3f61a45f39e4d60a044f9f5f44_OTQzMTIyMDEyLTA1LTI4IDEwOjI5OjA1LjExMzk3NA"];
+    [TestFlight takeOff:@"29723cce-9e84-4af7-ba15-aa693442a7ac"];
 #endif
     
     return YES;
