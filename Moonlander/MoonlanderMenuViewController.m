@@ -29,10 +29,10 @@
 
 @implementation MoonlanderMenuViewController
 
+@synthesize gameCenterManager=_gameCenterManager;
 @synthesize menuBackground=_menuBackground;
 @synthesize buildInfo=_buildInfo;
 
-@synthesize gameCenterManager;
 @synthesize enableGameCenter, mcdonaldsLeaderboard, remainingFuelLeaderboard, fastestTimeLeaderboard, distanceLeaderboard;
 
 
@@ -61,23 +61,11 @@
         
         // Enable Game Center functionality
         self.enableGameCenter = YES;
-        
-        // Send up any saved scores
-        //###del [self.gameCenterManager loadStoredScores];
     }
     else {
         // No user is logged into Game Center, run without Game Center support or user interface
         self.enableGameCenter = NO;
     }
-}
-
-- (void)scoreReported:(NSError *)error
-{
-}
-
-- (void)reloadScoresComplete:(GKLeaderboard *)leaderBoard error:(NSError *)error
-{
-    assert(0);
 }
 
 
@@ -93,84 +81,117 @@
     self.enableGameCenter = NO;
 }
 
-- (void)resetAchievementsButtonPressed:(NSNotification *)notification
-{
-    [self.gameCenterManager resetAchievements];
-}
-
 - (void)mcdonaldsScorePosted:(NSNotification *)notification
 {
-	if ([GKLocalPlayer localPlayer].authenticated == YES) {
-        // Scale up for the Game Center display
-        NSNumber *mcdonaldsScore = notification.object;
-        int64_t score = [mcdonaldsScore intValue];
-        
-        // Post the score
-        [self.gameCenterManager reportScore:score forCategory:self.mcdonaldsLeaderboard];
-        
+    // Scale up for the Game Center display
+    NSNumber *mcdonaldsScore = notification.object;
+    int64_t score = [mcdonaldsScore intValue];
+    
+    // Post the new score
+    GKScore *newScore = [[GKScore alloc] init];
+    newScore.value = score;
+    newScore.leaderboardIdentifier = self.mcdonaldsLeaderboard;
+    NSArray *scores = [NSArray arrayWithObjects:newScore, nil];
+    [GKScore reportScores:scores withCompletionHandler:^(NSError *error) {
+        if (error != nil) {
+            NSLog(@"Error in reporting score: %@", error);
+        }
+    }];
+    
 #if defined(TESTFLIGHT_SDK_VERSION) && defined(USE_TESTFLIGHT)
-        [TestFlight passCheckpoint:[NSString stringWithFormat:@"%@:%@", NSStringFromClass([self class]), [NSString stringWithFormat:@"mcdonaldsScorePosted: %lld", score]]];
+    [TestFlight passCheckpoint:[NSString stringWithFormat:@"%@:%@", NSStringFromClass([self class]), [NSString stringWithFormat:@"mcdonaldsScorePosted: %lld", score]]];
 #endif
-    }
 }
 
 - (void)fuelScorePosted:(NSNotification *)notification
 {
-	if ([GKLocalPlayer localPlayer].authenticated == YES) {
-        // Scale up for the Game Center display
-        NSNumber *fuelScore = notification.object;
-        int64_t score = [fuelScore intValue];
-        
-        // Post the score
-        [self.gameCenterManager reportScore:score forCategory:self.remainingFuelLeaderboard];
-    }
+    // Scale up for the Game Center display
+    NSNumber *fuelScore = notification.object;
+    int64_t score = [fuelScore intValue];
+    
+    // Post the new score
+    GKScore *newScore = [[GKScore alloc] init];
+    newScore.value = score;
+    newScore.leaderboardIdentifier = self.remainingFuelLeaderboard;
+    NSArray *scores = [NSArray arrayWithObjects:newScore, nil];
+    [GKScore reportScores:scores withCompletionHandler:^(NSError *error) {
+        if (error != nil) {
+            NSLog(@"Error in reporting score: %@", error);
+        }
+    }];
+    
+#if defined(TESTFLIGHT_SDK_VERSION) && defined(USE_TESTFLIGHT)
+    [TestFlight passCheckpoint:[NSString stringWithFormat:@"%@:%@", NSStringFromClass([self class]), [NSString stringWithFormat:@"fuelScorePosted: %lld", score]]];
+#endif
 }
 
 - (void)distanceScorePosted:(NSNotification *)notification
 {
-	if ([GKLocalPlayer localPlayer].authenticated == YES) {
-        // Scale up for the Game Center display
-        NSNumber *distanceScore = notification.object;
-        int64_t score = [distanceScore intValue];
+    // Scale up for the Game Center display
+    NSNumber *distanceScore = notification.object;
+    int64_t score = [distanceScore intValue];
+    
+    // Post the new score
+    GKScore *newScore = [[GKScore alloc] init];
+    newScore.value = score;
+    newScore.leaderboardIdentifier = self.distanceLeaderboard;
+    NSArray *scores = [NSArray arrayWithObjects:newScore, nil];
+    [GKScore reportScores:scores withCompletionHandler:^(NSError *error) {
+        if (error != nil) {
+            NSLog(@"Error in reporting score: %@", error);
+        }
+    }];
         
-        // Post the score
-        [self.gameCenterManager reportScore:score forCategory:self.distanceLeaderboard];
-    }
+#if defined(TESTFLIGHT_SDK_VERSION) && defined(USE_TESTFLIGHT)
+    [TestFlight passCheckpoint:[NSString stringWithFormat:@"%@:%@", NSStringFromClass([self class]), [NSString stringWithFormat:@"distanceScorePosted: %lld", score]]];
+#endif
 }
 
 - (void)fastestScorePosted:(NSNotification *)notification
 {
-	if ([GKLocalPlayer localPlayer].authenticated == YES) {
-        // Scale up for the Game Center display
-        NSNumber *timeScore = notification.object;
-        float elapsedTime = [timeScore floatValue];
-        int64_t score = elapsedTime * 10.0;
-        
-        // Post the score
-        [self.gameCenterManager reportScore:score forCategory:self.fastestTimeLeaderboard];
-    }
+    // Scale up for the Game Center display
+    NSNumber *timeScore = notification.object;
+    float elapsedTime = [timeScore floatValue];
+    int64_t score = elapsedTime * 10.0;
+    
+    // Post the new score
+    GKScore *newScore = [[GKScore alloc] init];
+    newScore.value = score;
+    newScore.leaderboardIdentifier = self.fastestTimeLeaderboard;
+    NSArray *scores = [NSArray arrayWithObjects:newScore, nil];
+    [GKScore reportScores:scores withCompletionHandler:^(NSError *error) {
+        if (error != nil) {
+            NSLog(@"Error in reporting score: %@", error);
+        }
+    }];
+    
+#if defined(TESTFLIGHT_SDK_VERSION) && defined(USE_TESTFLIGHT)
+    [TestFlight passCheckpoint:[NSString stringWithFormat:@"%@:%@", NSStringFromClass([self class]), [NSString stringWithFormat:@"fastestScorePosted: %lld", score]]];
+#endif
 }
 
 
 #pragma mark -
-#pragma mark Leaderboards
+#pragma mark Game Center display
 
 - (IBAction)showGameCenterButtonAction:(id)event
 {
-    [self showLeaderboard:nil];
+#if defined(TESTFLIGHT_SDK_VERSION) && defined(USE_TESTFLIGHT)
+    [TestFlight passCheckpoint:[NSString stringWithFormat:@"%@:%@", NSStringFromClass([self class]), @"showGameCenterButtonAction"]];
+#endif
+    GKGameCenterViewController *gameCenterController = [[GKGameCenterViewController alloc] init];
+    if (gameCenterController != nil) {
+        gameCenterController.gameCenterDelegate = self;
+        gameCenterController.viewState = GKGameCenterViewControllerStateLeaderboards;
+        [self presentViewController:gameCenterController animated:YES completion:nil];
+    }
 }
 
-- (void)showLeaderboard:(NSString *)leaderboard
+- (void)gameCenterViewControllerDidFinish:(GKGameCenterViewController *)viewController
 {
-    GKLeaderboardViewController *leaderboardViewController = [[GKLeaderboardViewController alloc] init];
-    [leaderboardViewController setCategory:leaderboard];
-    [leaderboardViewController setLeaderboardDelegate:self];
-    [self presentViewController:leaderboardViewController animated:YES completion:NULL];
-}
-
-- (void)leaderboardViewControllerDidFinish:(GKLeaderboardViewController *)viewController
-{
-	[self dismissViewControllerAnimated:YES completion:NULL];
+    if ([self presentedViewController]) {
+        [self dismissViewControllerAnimated:YES completion:NULL];
+    }
 }
 
 
@@ -214,11 +235,12 @@
     self.fastestTimeLeaderboard = @"moonlander.fastest.leaderboard";
     self.distanceLeaderboard = @"moonlander.distance.leaderboard";
     
-    // Update Game Center icon for iOS6
+    // Update Game Center icon for iOS6 ### update
     if ([[[UIDevice currentDevice] systemVersion] hasPrefix:@"6."]) {
         UIImage *oldGameCenterIcon = [UIImage imageNamed:@"gamecentericon.png"];
         [self.highScoresButton setImage:oldGameCenterIcon forState:UIControlStateNormal];
     }
+    //###
     
     // Sign up to get score updates and a move to background  UIApplicationDidBecomeActiveNotification
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(mcdonaldsScorePosted:) name:@"mcdonaldsScorePosted" object:nil];

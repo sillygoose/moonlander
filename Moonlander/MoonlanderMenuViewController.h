@@ -14,12 +14,12 @@
 #import "GameCenterManager.h"
 
 
-@interface MoonlanderMenuViewController : MenuViewController <GKLeaderboardViewControllerDelegate, GameCenterManagerDelegate>
+@interface MoonlanderMenuViewController : UIViewController <GKGameCenterControllerDelegate, GameCenterManagerDelegate>
 {
-    AutoPilotViewController                *_menuBackground;
-    UILabel                                *_buildInfo;
+    AutoPilotViewController             *_menuBackground;
+    UILabel                             *_buildInfo;
 
-    GameCenterManager       *gameCenterManager;
+    GameCenterManager                   *_gameCenterManager;
 }
 
 @property (nonatomic, strong) AutoPilotViewController *menuBackground;

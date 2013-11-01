@@ -34,8 +34,6 @@
     
 - (void)authenticateLocalPlayer;
     
-- (void)reportScore:(int64_t)score forCategory:(NSString *)category;
-    
 - (GKAchievement *)getAchievement:(NSString *)identifier;
 - (void)submitAchievement:(NSString *)identifier percentComplete:(double)percentComplete;
     

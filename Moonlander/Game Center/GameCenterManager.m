@@ -93,23 +93,6 @@
     
     
 #pragma mark -
-#pragma mark Leaderboards
-    
-- (void)reportScore:(int64_t)score forCategory:(NSString *)category
-{
-    GKScore *newScore = [[GKScore alloc] init];
-    newScore.value = score;
-    newScore.leaderboardIdentifier = category;
-    NSArray *scores = [NSArray arrayWithObjects:newScore, nil];
-    [GKScore reportScores:scores withCompletionHandler:^(NSError *error) {
-        if (error != nil) {
-            NSLog(@"Error in reporting score: %@", error);
-        }
-    }];
-}
-
-
-#pragma mark -
 #pragma mark Achievements
 
 - (void)loadAchievements
