@@ -95,14 +95,6 @@
 #endif
 }
 
-- (void)viewDidUnload
-{
-    [super viewDidUnload];
-    self.firstPart = nil;
-    self.secondfPart = nil;
-    self.moonLander = nil;
-}
-
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
 	return (interfaceOrientation == UIInterfaceOrientationLandscapeLeft || interfaceOrientation == UIInterfaceOrientationLandscapeRight);

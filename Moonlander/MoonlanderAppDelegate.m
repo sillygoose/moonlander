@@ -18,6 +18,29 @@
     // Hide the status bar
     [[UIApplication sharedApplication] setStatusBarHidden:YES withAnimation:NO];
     
+#if 0
+    // Set default font, size, and color for navigation bar items
+    CGFloat fontSize = 24;
+    const CGFloat DefaultRed = 0.026;
+    const CGFloat DefaultGreen = 1.0;
+    const CGFloat DefaultBlue = 0.00121;
+    const CGFloat DefaultAlpha = 1.0;
+    UIColor *moonlanderColor = [[UIColor alloc] initWithRed:DefaultRed green:DefaultGreen blue:DefaultBlue alpha:DefaultAlpha];
+    UIFont *displayFont = [UIFont fontWithName:@"Vector Battle" size:fontSize];
+    [[UIBarButtonItem appearanceWhenContainedIn:[UINavigationBar class], nil] setTitleTextAttributes:
+     @{
+       NSForegroundColorAttributeName:moonlanderColor,
+       NSFontAttributeName:displayFont
+       } forState:UIControlStateNormal];
+    
+    // Set default font, size, and color for navigation titles
+    [[UINavigationBar appearance] setTitleTextAttributes:
+     @{
+       NSForegroundColorAttributeName:moonlanderColor,
+       NSFontAttributeName:displayFont
+       }];
+#endif
+    
 #if defined(TESTFLIGHT_SDK_VERSION) && defined(USE_TESTFLIGHT)
     // TeamFlight registration
     [TestFlight takeOff:@"93c8cc3f61a45f39e4d60a044f9f5f44_OTQzMTIyMDEyLTA1LTI4IDEwOjI5OjA1LjExMzk3NA"];

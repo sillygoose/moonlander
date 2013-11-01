@@ -63,7 +63,7 @@
         self.enableGameCenter = YES;
         
         // Send up any saved scores
-        [self.gameCenterManager loadStoredScores];
+        //###del [self.gameCenterManager loadStoredScores];
     }
     else {
         // No user is logged into Game Center, run without Game Center support or user interface
@@ -239,13 +239,6 @@
 	else {
         self.gameCenterManager = nil;
 	}
-}
-
-- (void)viewDidUnload
-{
-    [super viewDidUnload];
-    
-    self.menuBackground = nil;
 }
 
 - (void)viewWillAppear:(BOOL)animated

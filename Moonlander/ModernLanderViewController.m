@@ -60,17 +60,6 @@
     [self.view addSubview:self.autoPilotSwitch];
 }
 
-- (void)viewDidUnload
-{
-    [super viewDidUnload];
-    
-    [self.autoPilotTimer invalidate];
-    self.autoPilotTimer = nil;
-
-    self.autoPilot = nil;
-    self.autoPilotSwitch = nil;
-}
-
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];

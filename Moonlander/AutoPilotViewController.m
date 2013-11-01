@@ -57,16 +57,6 @@
     self.backgroundAutoPilot = [[Autopilot alloc] init];
 }
 
-- (void)viewDidUnload
-{
-    [super viewDidUnload];
-
-    [self.backgroundAutoPilotTimer invalidate];
-    self.backgroundAutoPilotTimer = nil;
-    
-    self.backgroundAutoPilot = nil;
-}
-
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
