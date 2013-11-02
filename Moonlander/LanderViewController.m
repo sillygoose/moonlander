@@ -1203,7 +1203,6 @@ const float RollButtonRepeatInterval = 0.20;        // Timer value for roll butt
     else {
         // Return to the main menu
         [self prepareToUnload];
- //###       [self.view removeFromSuperview];
         [self.navigationController popViewControllerAnimated:YES];
     }
 }

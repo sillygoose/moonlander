@@ -22,6 +22,7 @@ typedef struct {
     NSArray                 *_drawPaths;
   
     CGFloat                 _fontSize;
+    UIFont                  *_viewFont;
     UIColor                 *_viewColor;
     NSTimer                 *__weak _blinkTimer;
     BOOL                    _blinkOn;
@@ -33,6 +34,7 @@ typedef struct {
 @property (nonatomic) NSArray *drawPaths;
 @property (nonatomic, copy) NSString *vectorName;
 
+@property (nonatomic) UIFont *viewFont;
 @property (nonatomic) CGFloat fontSize;
 @property (nonatomic, strong) UIColor *viewColor;
 @property (nonatomic, weak) NSTimer *blinkTimer;

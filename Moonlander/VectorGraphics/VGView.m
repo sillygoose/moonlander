@@ -350,28 +350,17 @@ const float VGBlinkInterval = 0.75;
         
         // Process a text command
         if ([currentVector objectForKey:@"text"]) {
-            NSString *msg = [currentVector objectForKey:@"text"];
-            
+            logCommand = NO;
+
             // Prepare characters for printing
+            NSString *msg = [currentVector objectForKey:@"text"];
             NSString *theText = [NSString stringWithString:msg];
-            //int length = [theText length];
-            //unichar chars[length];
-            //CGGlyph glyphs[length];
-            //[theText getCharacters:chars range:NSMakeRange(0, length)];
-            
-            // Loop through the entire length of the text.
-            //int glyphOffset = -29;
-            //for (int i = 0; i < length; ++i) {
-            // Store each letter in a Glyph and subtract the MagicNumber to get appropriate value.
-            //    glyphs[i] = [theText characterAtIndex:i] + glyphOffset;
-            //}
             
             // Need to deal with the requested text alignment
             if (textAlignment == NSTextAlignmentLeft) {
                 // Do nothing for left alignment
             }
             else if (textAlignment == NSTextAlignmentCenter) {
-                //###
                 // Find the length of the string
                 CGContextSaveGState(context);
                 CGContextGetTextPosition(context);
@@ -388,7 +377,6 @@ const float VGBlinkInterval = 0.75;
                 currentPosition.x = (self.bounds.size.width / 2) - (textLength / 2);
             }
             else if (textAlignment == NSTextAlignmentRight) {
-                //###
                 // Find the length of the string
                 CGContextSaveGState(context);
                 CGContextGetTextPosition(context);
@@ -405,31 +393,41 @@ const float VGBlinkInterval = 0.75;
                 currentPosition.x = self.bounds.size.width - textLength;
             }
             
+            // Flip the drawing context to get the text right-side up
+            CGContextSaveGState(context);
+            CGContextTranslateCTM(context, 0,  self.fontSize / 2);
+            CGContextScaleCTM(context, 1.0, -1.0);
+            CGSize size = CGSizeMake(self.bounds.size.width, self.bounds.size.height);
+            CGRect boundingRect = [theText boundingRectWithSize:size options:NSStringDrawingTruncatesLastVisibleLine attributes:textAttributes context:nil];
+
             // We do this only if blinking is requested
-            //###            NSString *theText = [NSString stringWithString:msg];
             if (doBlink) {
                 if (self.blinkOn) {
                     // Draw normally this cycle
-                    [theText drawAtPoint:currentPosition withAttributes:textAttributes];
+                    [theText drawInRect:boundingRect withAttributes:textAttributes];
                     //###CGContextShowGlyphsAtPoint(context, currentPosition.x, currentPosition.y, glyphs, length);
                 }
                 else {
                     // Change alpha to zero for this draw cycle and then restore
                     CGContextSaveGState(context);
                     CGContextSetAlpha(context, 0.0f);
-                    [theText drawAtPoint:currentPosition withAttributes:textAttributes];
-                    //###CGContextShowGlyphsAtPoint(context, currentPosition.x, currentPosition.y, glyphs, length);
+                    [theText drawInRect:boundingRect withAttributes:textAttributes];
                     CGContextRestoreGState(context);
                 }
             }
             else {
-                [theText drawAtPoint:currentPosition withAttributes:textAttributes];
-                //###CGContextShowGlyphsAtPoint(context, currentPosition.x, currentPosition.y, glyphs, length);
+                [theText drawInRect:boundingRect withAttributes:textAttributes];
             }
             //NSLog(@"Drawing text at %@", NSStringFromCGPoint(currentPosition));
+
+            // Get position and restore context
+            CGPoint drawingPosition = CGContextGetTextPosition(context);
+            CGContextRestoreGState(context);
+            //NSLog(@"%@", NSStringFromCGRect(self.bounds));
             
+            // Find out where we are after drawing
+            currentPosition.x = drawingPosition.x;
             // Set our new position for the next text block
-            currentPosition = CGContextGetTextPosition(context);
             self.actualBounds = CGRectMake(MIN(currentPosition.x, self.actualBounds.origin.x), MIN(currentPosition.y, self.actualBounds.origin.y), MAX(currentPosition.x, self.actualBounds.size.width), MAX(currentPosition.y, self.actualBounds.size.height));
         }
         
@@ -450,6 +448,7 @@ const float VGBlinkInterval = 0.75;
 #ifdef DEBUG
     if (logCommand) {
         NSLog(@"Max coordinates for %@: %@", self.vectorName, NSStringFromCGRect(self.actualBounds));
+        logCommand = NO;
     }
 #endif
 }
