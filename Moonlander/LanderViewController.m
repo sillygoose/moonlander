@@ -811,14 +811,8 @@ const float RollButtonRepeatInterval = 0.20;        // Timer value for roll butt
     // Have our super view do its work
     [super viewDidLoad];
 
-    // iOS7 support
- //###   self.edgesForExtendedLayout = UIRectEdgeNone;
-    
     // Set out lander type
     self.landerType = LanderTypeClassic;
-    
-    // Hide the navigation bar so we have the entire screen
-//###    [[self navigationController] setNavigationBarHidden:YES animated:NO];
     
     // Setup the transform we need to match the original
     self.view.transform = CGAffineTransformConcat(self.view.transform, CGAffineTransformMake(1, 0, 0, -1, 0, 0));

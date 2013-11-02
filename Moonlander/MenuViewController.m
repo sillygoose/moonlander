@@ -195,7 +195,7 @@
         self.buildInfo.text = [NSString stringWithFormat:@"Version %@ (%@)", versionString, buildString];
     }
 
-#if 0 //###
+#if 1 //###
     self.view.opaque = NO;
     self.view.backgroundColor = [UIColor clearColor];
     

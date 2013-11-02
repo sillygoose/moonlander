@@ -365,7 +365,6 @@ const float VGBlinkInterval = 0.75;
                 CGContextSaveGState(context);
                 CGContextGetTextPosition(context);
                 CGContextSetTextDrawingMode(context, kCGTextInvisible);
-                //###CGContextShowGlyphsAtPoint(context, currentPosition.x, currentPosition.y, glyphs, length);
                 [theText drawAtPoint:currentPosition withAttributes:textAttributes];
                 CGContextRestoreGState(context);
                 CGPoint endPoint = CGContextGetTextPosition(context);
@@ -382,7 +381,6 @@ const float VGBlinkInterval = 0.75;
                 CGContextGetTextPosition(context);
                 CGContextSetTextDrawingMode(context, kCGTextInvisible);
                 [theText drawAtPoint:currentPosition withAttributes:textAttributes];
-                //###CGContextShowGlyphsAtPoint(context, currentPosition.x, currentPosition.y, glyphs, length);
                 CGContextRestoreGState(context);
                 CGPoint endPoint = CGContextGetTextPosition(context);
                 
@@ -405,7 +403,6 @@ const float VGBlinkInterval = 0.75;
                 if (self.blinkOn) {
                     // Draw normally this cycle
                     [theText drawInRect:boundingRect withAttributes:textAttributes];
-                    //###CGContextShowGlyphsAtPoint(context, currentPosition.x, currentPosition.y, glyphs, length);
                 }
                 else {
                     // Change alpha to zero for this draw cycle and then restore
@@ -423,7 +420,6 @@ const float VGBlinkInterval = 0.75;
             // Get position and restore context
             CGPoint drawingPosition = CGContextGetTextPosition(context);
             CGContextRestoreGState(context);
-            //NSLog(@"%@", NSStringFromCGRect(self.bounds));
             
             // Find out where we are after drawing
             currentPosition.x = drawingPosition.x;

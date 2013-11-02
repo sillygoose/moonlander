@@ -401,6 +401,34 @@
             </objects>
             <point key="canvasLocation" x="2796" y="-1126"/>
         </scene>
+        <!--Auto Pilot View Controller-->
+        <scene sceneID="V9c-nT-1wb">
+            <objects>
+                <viewController storyboardIdentifier="AutoPilotSimulation" wantsFullScreenLayout="YES" id="1Pw-xj-Q7P" customClass="AutoPilotViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="sBQ-vB-Ak3"/>
+                        <viewControllerLayoutGuide type="bottom" id="flp-7I-ZAk"/>
+                    </layoutGuides>
+                    <view key="view" userInteractionEnabled="NO" contentMode="scaleToFill" id="EX3-5p-yGI">
+                        <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                        <accessibility key="accessibilityConfiguration">
+                            <accessibilityTraits key="traits" none="YES" notEnabled="YES"/>
+                        </accessibility>
+                        <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
+                    </view>
+                    <extendedEdge key="edgesForExtendedLayout"/>
+                    <nil key="simulatedStatusBarMetrics"/>
+                    <nil key="simulatedTopBarMetrics"/>
+                    <nil key="simulatedBottomBarMetrics"/>
+                    <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="0O6-Cr-PMU" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3988" y="-1118"/>
+        </scene>
     </scenes>
     <resources>
         <image name="Game-Center-iOS-7-256.png" width="256" height="256"/>
