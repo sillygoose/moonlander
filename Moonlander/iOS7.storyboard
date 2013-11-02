@@ -235,7 +235,7 @@
                                     <outlet property="delegate" destination="Yva-8w-e3Y" id="3MO-OA-zzR"/>
                                 </connections>
                             </webView>
-                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="IoP-wR-u8S">
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="IoP-wR-u8S">
                                 <rect key="frame" x="493" y="366" width="37" height="37"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </activityIndicatorView>
@@ -275,7 +275,7 @@
                                     <outlet property="delegate" destination="z21-tq-uoK" id="mlb-ya-nZR"/>
                                 </connections>
                             </webView>
-                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="sIr-Cp-QOT">
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="sIr-Cp-QOT">
                                 <rect key="frame" x="493" y="366" width="37" height="37"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </activityIndicatorView>
@@ -291,7 +291,6 @@
                         <segue destination="PJ3-PK-k6G" kind="push" identifier="http://simh.trailing-edge.com/contrib.html" id="uMu-QH-uPq"/>
                         <segue destination="PJ3-PK-k6G" kind="push" identifier="http://www.ultimate.com/phil/xy/" id="Hnb-ln-Yd1"/>
                         <segue destination="PJ3-PK-k6G" kind="push" identifier="http://www.brouhaha.com/~eric/retrocomputing/dec/gt40/" id="xNp-nA-x8o"/>
-                        <segue destination="PJ3-PK-k6G" kind="push" identifier="http://www.zanzig.com/download/index.html" id="Drt-Pk-2b5"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8zK-Lg-B4g" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -319,7 +318,7 @@
                                     <outlet property="delegate" destination="byQ-EJ-Rwf" id="F2V-nL-s2o"/>
                                 </connections>
                             </webView>
-                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="whh-As-s8h">
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="whh-As-s8h">
                                 <rect key="frame" x="493" y="366" width="37" height="37"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </activityIndicatorView>
@@ -364,7 +363,7 @@
                                     <outlet property="delegate" destination="PJ3-PK-k6G" id="WDI-OQ-sfm"/>
                                 </connections>
                             </webView>
-                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="35B-x2-zv6">
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="35B-x2-zv6">
                                 <rect key="frame" x="493" y="366" width="37" height="37"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </activityIndicatorView>

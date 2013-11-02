@@ -53,9 +53,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
-    // iOS7 support
-//###    self.edgesForExtendedLayout = UIRectEdgeNone;
+
+    // Start up the activity indicator
     [self.activityIndicator startAnimating];
     
     // Load the document/web page
@@ -79,14 +78,6 @@
     // Show the navagation bar in this view so we can get back
     self.navigationController.navigationBar.barStyle = UIBarStyleDefault;
     [[self navigationController] setNavigationBarHidden:NO animated:NO];
-    
-#if 0 //###
-    // Add the document to the navigation bar
-    if ([self.documentURL isFileURL]) {
-        self.title = self.documentName;
-    }
-#endif
-    
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -96,8 +87,7 @@
 
 - (void)viewWillDisappear:(BOOL)animated
 {
-//    self.documentContent.delegate = nil;
-    // Hide the navagation bar
+    // Hide the navagation bar when leaving the view
     [[self navigationController] setNavigationBarHidden:YES animated:NO];
 }
 
