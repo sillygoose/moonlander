@@ -121,6 +121,9 @@
                                 <state key="highlighted">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <segue destination="pT3-Sh-zkG" kind="push" id="bUd-Ju-G5q"/>
+                                </connections>
                             </button>
                             <button opaque="NO" alpha="0.80000001192092896" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="right" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ncy-za-zbM" userLabel="Controls">
                                 <rect key="frame" x="617" y="300" width="387" height="80"/>
@@ -378,6 +381,26 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="d2N-OH-RLG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="4480" y="1151"/>
+        </scene>
+        <!--Lander View Controller-->
+        <scene sceneID="k4r-o7-yyQ">
+            <objects>
+                <viewController id="pT3-Sh-zkG" customClass="LanderViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Il2-oC-p0p"/>
+                        <viewControllerLayoutGuide type="bottom" id="0Gi-nB-ZqS"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="kv7-mM-lur">
+                        <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                        <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="h16-2i-fgU"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="RJA-k2-Tf2" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2796" y="-1126"/>
         </scene>
     </scenes>
     <resources>
