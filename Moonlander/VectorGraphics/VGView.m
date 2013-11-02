@@ -350,28 +350,30 @@ const float VGBlinkInterval = 0.75;
             
             // Prepare characters for printing
             NSString *theText = [NSString stringWithString:msg];
-            int length = [theText length];
-            unichar chars[length];
-            CGGlyph glyphs[length];
-            [theText getCharacters:chars range:NSMakeRange(0, length)];
+            //int length = [theText length];
+            //unichar chars[length];
+            //CGGlyph glyphs[length];
+            //[theText getCharacters:chars range:NSMakeRange(0, length)];
             
             // Loop through the entire length of the text.
-            int glyphOffset = -29;
-            for (int i = 0; i < length; ++i) {
-                // Store each letter in a Glyph and subtract the MagicNumber to get appropriate value.
-                glyphs[i] = [theText characterAtIndex:i] + glyphOffset;
-            }
+            //int glyphOffset = -29;
+            //for (int i = 0; i < length; ++i) {
+            // Store each letter in a Glyph and subtract the MagicNumber to get appropriate value.
+            //    glyphs[i] = [theText characterAtIndex:i] + glyphOffset;
+            //}
             
             // Need to deal with the requested text alignment
             if (textAlignment == NSTextAlignmentLeft) {
                 // Do nothing for left alignment
             }
             else if (textAlignment == NSTextAlignmentCenter) {
+                //###
                 // Find the length of the string
                 CGContextSaveGState(context);
                 CGContextGetTextPosition(context);
                 CGContextSetTextDrawingMode(context, kCGTextInvisible);
-                CGContextShowGlyphsAtPoint(context, currentPosition.x, currentPosition.y, glyphs, length);
+                //###CGContextShowGlyphsAtPoint(context, currentPosition.x, currentPosition.y, glyphs, length);
+                [theText drawAtPoint:currentPosition withAttributes:textAttributes];
                 CGContextRestoreGState(context);
                 CGPoint endPoint = CGContextGetTextPosition(context);
                 
@@ -382,11 +384,13 @@ const float VGBlinkInterval = 0.75;
                 currentPosition.x = (self.bounds.size.width / 2) - (textLength / 2);
             }
             else if (textAlignment == NSTextAlignmentRight) {
+                //###
                 // Find the length of the string
                 CGContextSaveGState(context);
                 CGContextGetTextPosition(context);
                 CGContextSetTextDrawingMode(context, kCGTextInvisible);
-                CGContextShowGlyphsAtPoint(context, currentPosition.x, currentPosition.y, glyphs, length);
+                [theText drawAtPoint:currentPosition withAttributes:textAttributes];
+                //###CGContextShowGlyphsAtPoint(context, currentPosition.x, currentPosition.y, glyphs, length);
                 CGContextRestoreGState(context);
                 CGPoint endPoint = CGContextGetTextPosition(context);
                 
@@ -398,21 +402,25 @@ const float VGBlinkInterval = 0.75;
             }
             
             // We do this only if blinking is requested
+            //###            NSString *theText = [NSString stringWithString:msg];
             if (doBlink) {
                 if (self.blinkOn) {
                     // Draw normally this cycle
-                    CGContextShowGlyphsAtPoint(context, currentPosition.x, currentPosition.y, glyphs, length);
+                    [theText drawAtPoint:currentPosition withAttributes:textAttributes];
+                    //###CGContextShowGlyphsAtPoint(context, currentPosition.x, currentPosition.y, glyphs, length);
                 }
                 else {
                     // Change alpha to zero for this draw cycle and then restore
                     CGContextSaveGState(context);
                     CGContextSetAlpha(context, 0.0f);
-                    CGContextShowGlyphsAtPoint(context, currentPosition.x, currentPosition.y, glyphs, length);
+                    [theText drawAtPoint:currentPosition withAttributes:textAttributes];
+                    //###CGContextShowGlyphsAtPoint(context, currentPosition.x, currentPosition.y, glyphs, length);
                     CGContextRestoreGState(context);
                 }
             }
             else {
-                CGContextShowGlyphsAtPoint(context, currentPosition.x, currentPosition.y, glyphs, length);
+                [theText drawAtPoint:currentPosition withAttributes:textAttributes];
+                //###CGContextShowGlyphsAtPoint(context, currentPosition.x, currentPosition.y, glyphs, length);
             }
             //NSLog(@"Drawing text at %@", NSStringFromCGPoint(currentPosition));
             
