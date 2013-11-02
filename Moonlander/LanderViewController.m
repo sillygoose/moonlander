@@ -811,6 +811,9 @@ const float RollButtonRepeatInterval = 0.20;        // Timer value for roll butt
     // Have our super view do its work
     [super viewDidLoad];
 
+    // iOS7 support
+    self.edgesForExtendedLayout = UIRectEdgeNone;
+    
     // Set out lander type
     self.landerType = LanderTypeClassic;
     

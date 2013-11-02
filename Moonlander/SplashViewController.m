@@ -38,6 +38,9 @@
 {
     [super viewDidLoad];
     
+    // iOS7 support
+    //###self.edgesForExtendedLayout = UIRectEdgeNone;
+    
     // Initialize the audio by playing a short clip at zero volume
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         // Initialize the audio by playing a short clip at zero volume

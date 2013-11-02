@@ -16,9 +16,9 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Hide the status bar
-    [[UIApplication sharedApplication] setStatusBarHidden:YES withAnimation:NO];
+//###    [[UIApplication sharedApplication] setStatusBarHidden:YES withAnimation:NO];
     
-#if 0
+#if 1
     // Set default font, size, and color for navigation bar items
     CGFloat fontSize = 24;
     const CGFloat DefaultRed = 0.026;
@@ -26,17 +26,17 @@
     const CGFloat DefaultBlue = 0.00121;
     const CGFloat DefaultAlpha = 1.0;
     UIColor *moonlanderColor = [[UIColor alloc] initWithRed:DefaultRed green:DefaultGreen blue:DefaultBlue alpha:DefaultAlpha];
-    UIFont *displayFont = [UIFont fontWithName:@"Vector Battle" size:fontSize];
+    UIFont *displayFont = [UIFont fontWithName:@"Courier-Bold" size:fontSize];
     [[UIBarButtonItem appearanceWhenContainedIn:[UINavigationBar class], nil] setTitleTextAttributes:
      @{
-       NSForegroundColorAttributeName:moonlanderColor,
+       //NSForegroundColorAttributeName:moonlanderColor,
        NSFontAttributeName:displayFont
        } forState:UIControlStateNormal];
     
     // Set default font, size, and color for navigation titles
     [[UINavigationBar appearance] setTitleTextAttributes:
      @{
-       NSForegroundColorAttributeName:moonlanderColor,
+       //NSForegroundColorAttributeName:moonlanderColor,
        NSFontAttributeName:displayFont
        }];
 #endif

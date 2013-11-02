@@ -2,6 +2,8 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>UIViewControllerBasedStatusBarAppearance</key>
+	<false/>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleDisplayName</key>
@@ -45,11 +47,13 @@
 		<string>Teleprinter-Bold.ttf</string>
 	</array>
 	<key>UIMainStoryboardFile~ipad</key>
-	<string>Moonlander</string>
+	<string>iOS7</string>
 	<key>UIRequiredDeviceCapabilities</key>
 	<array>
 		<string>gamekit</string>
 	</array>
+	<key>UIStatusBarHidden</key>
+	<true/>
 	<key>UIStatusBarHidden~ipad</key>
 	<true/>
 	<key>UISupportedInterfaceOrientations</key>

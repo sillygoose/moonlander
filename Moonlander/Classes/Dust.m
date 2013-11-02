@@ -145,7 +145,6 @@ const float DustViewHeight = 64;
                         // Create a dispatch queue to use for background dust processing
                         dispatch_queue_t dustQueue = dispatch_queue_create("com.devtools.moonlander.dust", NULL);
                         dispatch_async(dustQueue, createDustView);
-                        //###dispatch_release(dustQueue);
                     }
                 }
             }

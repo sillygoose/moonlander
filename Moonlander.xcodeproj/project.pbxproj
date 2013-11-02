@@ -23,10 +23,10 @@
 		56173A11154661BB00380AB4 /* Icon-72.png in Resources */ = {isa = PBXBuildFile; fileRef = 56173A0D154661BB00380AB4 /* Icon-72.png */; };
 		56173A12154661BB00380AB4 /* Icon-72@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 56173A0E154661BB00380AB4 /* Icon-72@2x.png */; };
 		5621703515392F1F0094122B /* Explosion.m in Sources */ = {isa = PBXBuildFile; fileRef = 5621703415392F1F0094122B /* Explosion.m */; };
+		5622049318253DC400D5F5BE /* iOS7.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5622049218253DC400D5F5BE /* iOS7.storyboard */; };
 		562B108A13841BAA00CC5C97 /* VGLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 562B108913841BAA00CC5C97 /* VGLabel.m */; };
 		562B108D13841D5A00CC5C97 /* LanderMessages.plist in Resources */ = {isa = PBXBuildFile; fileRef = 562B108C13841D5A00CC5C97 /* LanderMessages.plist */; };
 		562CB7BB137F3AE6003CB9B5 /* LargeLeftArrow.plist in Resources */ = {isa = PBXBuildFile; fileRef = 562CB7BA137F3AE6003CB9B5 /* LargeLeftArrow.plist */; };
-		562D6247154DAD1900BD4EDD /* MenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 562D6246154DAD1900BD4EDD /* MenuViewController.m */; };
 		562D6250154DC3CE00BD4EDD /* NavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 562D624F154DC3CE00BD4EDD /* NavigationController.m */; };
 		562F26A81417A22E0069169B /* Man.m in Sources */ = {isa = PBXBuildFile; fileRef = 562F26A71417A22E0069169B /* Man.m */; };
 		563F401B16A5C05D004F7FB6 /* GameCenterManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 563F401816A5C05D004F7FB6 /* GameCenterManager.m */; };
@@ -137,13 +137,12 @@
 		56205CB91545953800C33417 /* lunar.lda */ = {isa = PBXFileReference; lastKnownFileType = file; path = lunar.lda; sourceTree = "<group>"; };
 		5621703315392F1F0094122B /* Explosion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Explosion.h; sourceTree = "<group>"; };
 		5621703415392F1F0094122B /* Explosion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Explosion.m; sourceTree = "<group>"; };
+		5622049218253DC400D5F5BE /* iOS7.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = iOS7.storyboard; sourceTree = "<group>"; };
 		5622933316701D2C0023E008 /* Moonlander-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Moonlander-Info.plist"; sourceTree = "<group>"; };
 		562B108813841BAA00CC5C97 /* VGLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VGLabel.h; sourceTree = "<group>"; };
 		562B108913841BAA00CC5C97 /* VGLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VGLabel.m; sourceTree = "<group>"; };
 		562B108C13841D5A00CC5C97 /* LanderMessages.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = LanderMessages.plist; sourceTree = "<group>"; };
 		562CB7BA137F3AE6003CB9B5 /* LargeLeftArrow.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = LargeLeftArrow.plist; sourceTree = "<group>"; };
-		562D6245154DAD1900BD4EDD /* MenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuViewController.h; sourceTree = "<group>"; };
-		562D6246154DAD1900BD4EDD /* MenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuViewController.m; sourceTree = "<group>"; };
 		562D624E154DC3CD00BD4EDD /* NavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NavigationController.h; sourceTree = "<group>"; };
 		562D624F154DC3CE00BD4EDD /* NavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NavigationController.m; sourceTree = "<group>"; };
 		562F26A61417A22E0069169B /* Man.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Man.h; sourceTree = "<group>"; };
@@ -390,6 +389,7 @@
 		560FA0D5137991AE0017EE25 /* Moonlander */ = {
 			isa = PBXGroup;
 			children = (
+				5622049218253DC400D5F5BE /* iOS7.storyboard */,
 				56EA5BCA154E14DF00AB6DF2 /* Moonlander.storyboard */,
 				560FA0DE137991AE0017EE25 /* MoonlanderAppDelegate.h */,
 				560FA0DF137991AE0017EE25 /* MoonlanderAppDelegate.m */,
@@ -398,8 +398,6 @@
 				562D624F154DC3CE00BD4EDD /* NavigationController.m */,
 				564FF2451555C260007F5AB5 /* SplashViewController.h */,
 				564FF2461555C260007F5AB5 /* SplashViewController.m */,
-				562D6245154DAD1900BD4EDD /* MenuViewController.h */,
-				562D6246154DAD1900BD4EDD /* MenuViewController.m */,
 				56DB83091672B64C00C243A8 /* MoonlanderMenuViewController.h */,
 				56DB830A1672B64C00C243A8 /* MoonlanderMenuViewController.m */,
 				560FA1341379BEAA0017EE25 /* LanderViewController.h */,
@@ -965,6 +963,7 @@
 				564EBC5113834A17007D477C /* McDonalds.plist in Resources */,
 				569BB49C138398A2005E2C86 /* ThrusterNeedle.plist in Resources */,
 				562B108D13841D5A00CC5C97 /* LanderMessages.plist in Resources */,
+				5622049318253DC400D5F5BE /* iOS7.storyboard in Resources */,
 				56BC68641388BDE200403643 /* Labels.plist in Resources */,
 				56678FCC139A7D4D00026588 /* OldLander.plist in Resources */,
 				561739E8154649DD00380AB4 /* Icon-Small-50.png in Resources */,
@@ -1046,7 +1045,6 @@
 				5613DDE8143A85F80059077A /* VGDialog.m in Sources */,
 				5621703515392F1F0094122B /* Explosion.m in Sources */,
 				5650B9EA153CB76900AEF4F2 /* ExplosionManager.m in Sources */,
-				562D6247154DAD1900BD4EDD /* MenuViewController.m in Sources */,
 				562D6250154DC3CE00BD4EDD /* NavigationController.m in Sources */,
 				56EA5BF6154E35D700AB6DF2 /* DocumentViewController.m in Sources */,
 				56E837291553026700022A1E /* ModernLander+AutoPilot.m in Sources */,

@@ -14,7 +14,7 @@
 
 @property (nonatomic, strong) IBOutlet UIButton *moonlanderButton;
 @property (nonatomic, strong) IBOutlet UIButton *controlsButton;
-@property (nonatomic, strong) IBOutlet UIButton *highScoresButton;
+@property (nonatomic, strong) IBOutlet UIButton *gameCenterButton;
 @property (nonatomic, strong) IBOutlet UIButton *faqButton;
 @property (nonatomic, strong) IBOutlet UIButton *creditsButton;
 @property (nonatomic, strong) IBOutlet UIButton *moreClassicsButton;
@@ -37,15 +37,18 @@
 
 
 #pragma mark -
-#pragma mark Game Center methods
-
-- (void)setEnableGameCenter:(BOOL)newValue
+#pragma mark View lifecycle
+    
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    enableGameCenter = newValue;
-    self.highScoresButton.enabled = newValue;
+    // If the destination view is the name pass the segue name as the content to display
+    if ([segue.destinationViewController isKindOfClass:[DocumentViewController class]]) {
+        DocumentViewController *dvc = segue.destinationViewController;
+        dvc.documentName = segue.identifier;
+    }
 }
 
-
+    
 #pragma mark -
 #pragma mark GameCenterDelegateProtocol methods
 
@@ -171,30 +174,6 @@
 }
 
 
-#pragma mark -
-#pragma mark Game Center display
-
-- (IBAction)showGameCenterButtonAction:(id)event
-{
-#if defined(TESTFLIGHT_SDK_VERSION) && defined(USE_TESTFLIGHT)
-    [TestFlight passCheckpoint:[NSString stringWithFormat:@"%@:%@", NSStringFromClass([self class]), @"showGameCenterButtonAction"]];
-#endif
-    GKGameCenterViewController *gameCenterController = [[GKGameCenterViewController alloc] init];
-    if (gameCenterController != nil) {
-        gameCenterController.gameCenterDelegate = self;
-        gameCenterController.viewState = GKGameCenterViewControllerStateLeaderboards;
-        [self presentViewController:gameCenterController animated:YES completion:nil];
-    }
-}
-
-- (void)gameCenterViewControllerDidFinish:(GKGameCenterViewController *)viewController
-{
-    if ([self presentedViewController]) {
-        [self dismissViewControllerAnimated:YES completion:NULL];
-    }
-}
-
-
 #pragma -
 #pragma mark - View lifecycle
 
@@ -202,13 +181,12 @@
 {
     [super viewDidLoad];
     
+    // iOS7 support
+    self.edgesForExtendedLayout = UIRectEdgeNone;
+    
     self.view.opaque = NO;
     self.view.backgroundColor = [UIColor clearColor];
 
-    // Load the background view controller
-    UIStoryboard *storyboard = self.storyboard;
-    self.menuBackground = [storyboard instantiateViewControllerWithIdentifier:@"AutoPilotSimulation"];
-    
     // Write the version info in menu view
     NSDictionary* infoDict = [[NSBundle mainBundle] infoDictionary];
     NSString *buildString = [infoDict objectForKey:@"CFBundleVersion"];
@@ -223,24 +201,23 @@
         self.buildInfo.text = [NSString stringWithFormat:@"Version %@ (%@)", versionString, buildString];
     }
 
+#if 0 //###
+    // Load the background view controller
+    UIStoryboard *storyboard = self.storyboard;
+    self.menuBackground = [storyboard instantiateViewControllerWithIdentifier:@"AutoPilotSimulation"];
+    
     // Add to the view and notify everyone
     [self.view addSubview:self.menuBackground.view];
     [self.view sendSubviewToBack:self.menuBackground.view];
     [self addChildViewController:self.menuBackground];
     [self.menuBackground didMoveToParentViewController:self];
+#endif
     
     // Access to Game Center elements
     self.mcdonaldsLeaderboard = @"moonlander.mcdonalds.leaderboard";
     self.remainingFuelLeaderboard = @"moonlander.remainingfuel.leaderboard";
     self.fastestTimeLeaderboard = @"moonlander.fastest.leaderboard";
     self.distanceLeaderboard = @"moonlander.distance.leaderboard";
-    
-    // Update Game Center icon for iOS6 ### update
-    if ([[[UIDevice currentDevice] systemVersion] hasPrefix:@"6."]) {
-        UIImage *oldGameCenterIcon = [UIImage imageNamed:@"gamecentericon.png"];
-        [self.highScoresButton setImage:oldGameCenterIcon forState:UIControlStateNormal];
-    }
-    //###
     
     // Sign up to get score updates and a move to background  UIApplicationDidBecomeActiveNotification
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(mcdonaldsScorePosted:) name:@"mcdonaldsScorePosted" object:nil];
@@ -266,9 +243,6 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-
-    // Hide the navigation bar in this view
-    [[self navigationController] setNavigationBarHidden:YES animated:NO];
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -297,6 +271,30 @@
 }
 
 
+#pragma mark -
+#pragma mark Game Center button actions
+    
+- (IBAction)showGameCenterButtonAction:(id)event
+{
+#if defined(TESTFLIGHT_SDK_VERSION) && defined(USE_TESTFLIGHT)
+    [TestFlight passCheckpoint:[NSString stringWithFormat:@"%@:%@", NSStringFromClass([self class]), @"showGameCenterButtonAction"]];
+#endif
+    GKGameCenterViewController *gameCenterController = [[GKGameCenterViewController alloc] init];
+    if (gameCenterController != nil) {
+        gameCenterController.gameCenterDelegate = self;
+        gameCenterController.viewState = GKGameCenterViewControllerStateLeaderboards;
+        [self presentViewController:gameCenterController animated:YES completion:nil];
+    }
+}
+
+- (void)gameCenterViewControllerDidFinish:(GKGameCenterViewController *)viewController
+{
+    if ([self presentedViewController]) {
+        [self dismissViewControllerAnimated:YES completion:NULL];
+    }
+}
+
+    
 #pragma mark -
 #pragma mark Button events
 

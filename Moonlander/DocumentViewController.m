@@ -17,7 +17,7 @@
 @synthesize documentName=_documentName;
 @synthesize documentType=_documentType;
 @synthesize documentURL=_documentURL;
-@synthesize activityIndicator=_activetyIndicator;
+@synthesize activityIndicator=_activityIndicator;
 @synthesize documentContent=_documentContent;
 @synthesize segueActive=_segueActive;
 
@@ -54,13 +54,9 @@
 {
     [super viewDidLoad];
     
-    // Set the background color to black for clean scrolling
-    self.documentContent.backgroundColor = [UIColor blackColor];
-    
-    // Replace the view with the activity indicator
-    self.activityIndicator = [[UIActivityIndicatorView alloc]initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
-    self.activityIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyleWhiteLarge;
-    self.view = self.activityIndicator;
+    // iOS7 support
+//###    self.edgesForExtendedLayout = UIRectEdgeNone;
+    [self.activityIndicator startAnimating];
     
     // Load the document/web page
     NSString *path = [[NSBundle mainBundle] pathForResource:self.documentName ofType:self.documentType];
@@ -77,25 +73,32 @@
 {
     [super viewWillAppear:animated];
     
-    // Set up the delegate
-    self.documentContent.delegate = self;
-
     // Allow scrolling/zooming in a document
     self.documentContent.scalesPageToFit = NO;
+
+    // Show the navagation bar in this view so we can get back
+    self.navigationController.navigationBar.barStyle = UIBarStyleDefault;
+    [[self navigationController] setNavigationBarHidden:NO animated:NO];
     
+#if 0 //###
     // Add the document to the navigation bar
     if ([self.documentURL isFileURL]) {
         self.title = self.documentName;
     }
+#endif
     
-    // Show the navagation bar in this view so we can get back
-    self.navigationController.navigationBar.barStyle = UIBarStyleBlack; 
-    [[self navigationController] setNavigationBarHidden:NO animated:NO];
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
 {
-    self.documentContent.delegate = nil;
+//    self.documentContent.delegate = nil;
+    // Hide the navagation bar
+    [[self navigationController] setNavigationBarHidden:YES animated:NO];
 }
 
 -(BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType
@@ -125,7 +128,6 @@
 - (void)webViewDidFinishLoad:(UIWebView *)webView
 {
     [self.activityIndicator stopAnimating];
-    self.view = self.documentContent;
 }
 
 - (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error

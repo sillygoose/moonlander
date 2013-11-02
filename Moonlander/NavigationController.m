@@ -20,6 +20,9 @@
 {
     // Hide the navigation bar
     [[self navigationController] setNavigationBarHidden:YES animated:NO];
+
+    // iOS7 support
+    self.edgesForExtendedLayout = UIRectEdgeNone;
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation

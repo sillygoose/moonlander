@@ -13,7 +13,7 @@
                 NSString                    *_documentName; 
                 NSString                    *_documentType; 
                 NSURL                       *_documentURL;
-                UIActivityIndicatorView     *_activetyIndicator;
+    IBOutlet    UIActivityIndicatorView     *_activityIndicator;
     IBOutlet    UIWebView                   *_documentContent;
                 BOOL                        _segueActive;
 }
