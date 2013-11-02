@@ -64,13 +64,13 @@
 		56A71640166E94B10023EADD /* Moonlander FAQ.htm in Resources */ = {isa = PBXBuildFile; fileRef = 56A7163F166E94B10023EADD /* Moonlander FAQ.htm */; };
 		56A71642166F12F20023EADD /* Moonlander Credits.htm in Resources */ = {isa = PBXBuildFile; fileRef = 56A71641166F12F20023EADD /* Moonlander Credits.htm */; };
 		56A71649166FA1310023EADD /* Moonlander Flight Controls.htm in Resources */ = {isa = PBXBuildFile; fileRef = 56A71648166FA1310023EADD /* Moonlander Flight Controls.htm */; };
+		56B2BD7618259D4600F43E30 /* libTestFlight.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 56B2BD7218259D4600F43E30 /* libTestFlight.a */; };
 		56B4D62D1417D9AF00029FC8 /* Flag.m in Sources */ = {isa = PBXBuildFile; fileRef = 56B4D62C1417D9AF00029FC8 /* Flag.m */; };
 		56BC68641388BDE200403643 /* Labels.plist in Resources */ = {isa = PBXBuildFile; fileRef = 56BC68631388BDE200403643 /* Labels.plist */; };
 		56C94AA913A7A7AE001B7EF9 /* Dust.m in Sources */ = {isa = PBXBuildFile; fileRef = 56C94AA813A7A7AE001B7EF9 /* Dust.m */; };
 		56CE052F138B12A7004FA450 /* LanderMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 56CE052E138B12A7004FA450 /* LanderMessage.m */; };
 		56CE0535138B5277004FA450 /* Telemetry.m in Sources */ = {isa = PBXBuildFile; fileRef = 56CE0534138B5277004FA450 /* Telemetry.m */; };
 		56CE0538138B6C88004FA450 /* Instrument.m in Sources */ = {isa = PBXBuildFile; fileRef = 56CE0537138B6C88004FA450 /* Instrument.m */; };
-		56D6C7D216435290001C2344 /* libTestFlight.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 56D6C7CE16435290001C2344 /* libTestFlight.a */; };
 		56DB5F7B16716E02000CB72A /* AutoPilotViewController+Autopilot.m in Sources */ = {isa = PBXBuildFile; fileRef = 56DB5F7A16716E01000CB72A /* AutoPilotViewController+Autopilot.m */; };
 		56DB82C716724C8C00C243A8 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 56DB82C616724C8C00C243A8 /* AVFoundation.framework */; };
 		56DB82D016724E9A00C243A8 /* Teleprinter-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 56DB82CE16724E9A00C243A8 /* Teleprinter-Bold.ttf */; };
@@ -233,6 +233,10 @@
 		56A71641166F12F20023EADD /* Moonlander Credits.htm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = "Moonlander Credits.htm"; sourceTree = "<group>"; };
 		56A71648166FA1310023EADD /* Moonlander Flight Controls.htm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = "Moonlander Flight Controls.htm"; sourceTree = "<group>"; };
 		56AF86591552160600C45FD1 /* lunar.fcl */ = {isa = PBXFileReference; lastKnownFileType = text; path = lunar.fcl; sourceTree = "<group>"; };
+		56B2BD7218259D4600F43E30 /* libTestFlight.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libTestFlight.a; sourceTree = "<group>"; };
+		56B2BD7318259D4600F43E30 /* TestFlight.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestFlight.h; sourceTree = "<group>"; };
+		56B2BD7418259D4600F43E30 /* TestFlight+AsyncLogging.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "TestFlight+AsyncLogging.h"; sourceTree = "<group>"; };
+		56B2BD7518259D4600F43E30 /* TestFlight+ManualSessions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "TestFlight+ManualSessions.h"; sourceTree = "<group>"; };
 		56B4D62B1417D9AF00029FC8 /* Flag.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Flag.h; sourceTree = "<group>"; };
 		56B4D62C1417D9AF00029FC8 /* Flag.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Flag.m; sourceTree = "<group>"; };
 		56BC68631388BDE200403643 /* Labels.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Labels.plist; sourceTree = "<group>"; };
@@ -244,10 +248,6 @@
 		56CE0534138B5277004FA450 /* Telemetry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Telemetry.m; sourceTree = "<group>"; };
 		56CE0536138B6C88004FA450 /* Instrument.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Instrument.h; sourceTree = "<group>"; };
 		56CE0537138B6C88004FA450 /* Instrument.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Instrument.m; sourceTree = "<group>"; };
-		56D6C7CE16435290001C2344 /* libTestFlight.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libTestFlight.a; sourceTree = "<group>"; };
-		56D6C7CF16435290001C2344 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
-		56D6C7D016435290001C2344 /* release_notes.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = release_notes.md; sourceTree = "<group>"; };
-		56D6C7D116435290001C2344 /* TestFlight.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestFlight.h; sourceTree = "<group>"; };
 		56DB5F7916716E01000CB72A /* AutoPilotViewController+Autopilot.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "AutoPilotViewController+Autopilot.h"; sourceTree = "<group>"; };
 		56DB5F7A16716E01000CB72A /* AutoPilotViewController+Autopilot.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "AutoPilotViewController+Autopilot.m"; sourceTree = "<group>"; };
 		56DB82C616724C8C00C243A8 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
@@ -337,6 +337,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				56B2BD7618259D4600F43E30 /* libTestFlight.a in Frameworks */,
 				563F401E16A5C0A7004F7FB6 /* GameKit.framework in Frameworks */,
 				567386A61673B44C0069C1EA /* SystemConfiguration.framework in Frameworks */,
 				56DB82C716724C8C00C243A8 /* AVFoundation.framework in Frameworks */,
@@ -345,7 +346,6 @@
 				560FA0D4137991AD0017EE25 /* CoreGraphics.framework in Frameworks */,
 				5675E5D51425004400882CD8 /* AudioToolbox.framework in Frameworks */,
 				1DBF44271573D1E7002BF8E7 /* libz.dylib in Frameworks */,
-				56D6C7D216435290001C2344 /* libTestFlight.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -416,7 +416,7 @@
 				560FA10D1379923D0017EE25 /* Lander Model */,
 				5695F1A9137F52B50075CD26 /* Vector Graphics */,
 				563F401616A5C05D004F7FB6 /* Game Center */,
-				56D6C7CD16435290001C2344 /* TestFlightSDK1.1 */,
+				56D6C7CD16435290001C2344 /* TestFlight */,
 				560FA13B1379C3900017EE25 /* Resources */,
 				560FA0D6137991AE0017EE25 /* Supporting Files */,
 			);
@@ -699,15 +699,15 @@
 			path = fonts;
 			sourceTree = "<group>";
 		};
-		56D6C7CD16435290001C2344 /* TestFlightSDK1.1 */ = {
+		56D6C7CD16435290001C2344 /* TestFlight */ = {
 			isa = PBXGroup;
 			children = (
-				56D6C7CE16435290001C2344 /* libTestFlight.a */,
-				56D6C7CF16435290001C2344 /* README.md */,
-				56D6C7D016435290001C2344 /* release_notes.md */,
-				56D6C7D116435290001C2344 /* TestFlight.h */,
+				56B2BD7218259D4600F43E30 /* libTestFlight.a */,
+				56B2BD7318259D4600F43E30 /* TestFlight.h */,
+				56B2BD7418259D4600F43E30 /* TestFlight+AsyncLogging.h */,
+				56B2BD7518259D4600F43E30 /* TestFlight+ManualSessions.h */,
 			);
-			path = TestFlightSDK1.1;
+			path = TestFlight;
 			sourceTree = "<group>";
 		};
 		56DFB16F166FF2610076F4DC /* sounds */ = {
@@ -1159,7 +1159,8 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)/Moonlander/TestFlightSDK1.1\"",
+					"\\\"$(SRCROOT)/Moonlander/TestFlightSDK1.1\\\"",
+					/Users/sillygoose/Developer/Moonlander/Moonlander/TestFlight,
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "042CEB5F-5783-4C27-8290-28C50B808446";
@@ -1189,7 +1190,8 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)/Moonlander/TestFlightSDK1.1\"",
+					"\\\"$(SRCROOT)/Moonlander/TestFlightSDK1.1\\\"",
+					/Users/sillygoose/Developer/Moonlander/Moonlander/TestFlight,
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "042CEB5F-5783-4C27-8290-28C50B808446";

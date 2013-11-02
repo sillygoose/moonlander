@@ -195,11 +195,7 @@
         self.buildInfo.text = [NSString stringWithFormat:@"Version %@ (%@)", versionString, buildString];
     }
 
-#if 1 //###
-    self.view.opaque = NO;
-    self.view.backgroundColor = [UIColor clearColor];
-    
-    // Load the background view controller
+    // Load the background simulation view controller
     UIStoryboard *storyboard = self.storyboard;
     self.menuBackground = [storyboard instantiateViewControllerWithIdentifier:@"AutoPilotSimulation"];
     
@@ -208,7 +204,6 @@
     [self.view sendSubviewToBack:self.menuBackground.view];
     [self addChildViewController:self.menuBackground];
     [self.menuBackground didMoveToParentViewController:self];
-#endif
     
     // Access to Game Center elements
     self.mcdonaldsLeaderboard = @"moonlander.mcdonalds.leaderboard";
