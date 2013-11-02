@@ -56,7 +56,7 @@
     [super viewDidLoad];
     
     // iOS7 support
-    self.edgesForExtendedLayout = UIRectEdgeNone;
+ //###   self.edgesForExtendedLayout = UIRectEdgeNone;
     
     self.backgroundAutoPilot = [[Autopilot alloc] init];
 }

@@ -1,5 +1,5 @@
 //
-//  MoonlanderMenuViewController.h
+//  MenuViewController.h
 //  Moonlander
 //
 //  Created by Rick Naro on 4/29/12.
@@ -8,13 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
-//#import "MenuViewController.h"
 #import "AutoPilotViewController.h"
-
 #import "GameCenterManager.h"
 
 
-@interface MoonlanderMenuViewController : UIViewController <GKGameCenterControllerDelegate, GameCenterManagerDelegate>
+@interface MenuViewController : UIViewController <GKGameCenterControllerDelegate, GameCenterManagerDelegate>
 {
     AutoPilotViewController             *_menuBackground;
     UILabel                             *_buildInfo;

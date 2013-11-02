@@ -812,13 +812,13 @@ const float RollButtonRepeatInterval = 0.20;        // Timer value for roll butt
     [super viewDidLoad];
 
     // iOS7 support
-    self.edgesForExtendedLayout = UIRectEdgeNone;
+ //###   self.edgesForExtendedLayout = UIRectEdgeNone;
     
     // Set out lander type
     self.landerType = LanderTypeClassic;
     
     // Hide the navigation bar so we have the entire screen
-    [[self navigationController] setNavigationBarHidden:YES animated:NO];
+//###    [[self navigationController] setNavigationBarHidden:YES animated:NO];
     
     // Setup the transform we need to match the original
     self.view.transform = CGAffineTransformConcat(self.view.transform, CGAffineTransformMake(1, 0, 0, -1, 0, 0));
@@ -1203,7 +1203,7 @@ const float RollButtonRepeatInterval = 0.20;        // Timer value for roll butt
     else {
         // Return to the main menu
         [self prepareToUnload];
-        [self.view removeFromSuperview];
+ //###       [self.view removeFromSuperview];
         [self.navigationController popViewControllerAnimated:YES];
     }
 }
@@ -1244,7 +1244,6 @@ const float RollButtonRepeatInterval = 0.20;        // Timer value for roll butt
         
         // Return to the main menu
         [self prepareToUnload];
-        [self.view removeFromSuperview];
         [self.navigationController popViewControllerAnimated:YES];
     }
 }

@@ -84,7 +84,7 @@
         <!--Menu View Controller-->
         <scene sceneID="vOW-4H-a9S">
             <objects>
-                <viewController id="9yb-pd-xrd" userLabel="Menu View Controller" customClass="MoonlanderMenuViewController" sceneMemberID="viewController">
+                <viewController id="9yb-pd-xrd" userLabel="Menu View Controller" customClass="MenuViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="9wi-1U-J9F"/>
                         <viewControllerLayoutGuide type="bottom" id="WFn-Ds-aGN"/>
@@ -196,7 +196,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     </view>
                     <navigationItem key="navigationItem" id="alf-W4-d5v"/>

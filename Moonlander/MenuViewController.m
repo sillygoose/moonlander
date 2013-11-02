@@ -1,16 +1,16 @@
 //
-//  MoonlanderMenuViewController.m
+//  MenuViewController.m
 //  Moonlander
 //
 //  Created by Rick Naro on 4/29/12.
 //  Copyright (c) 2012 Paradigm Systemse. All rights reserved.
 //
 
-#import "MoonlanderMenuViewController.h"
+#import "MenuViewController.h"
 #import "DocumentViewController.h"
 
 
-@interface MoonlanderMenuViewController ()
+@interface MenuViewController ()
 
 @property (nonatomic, strong) IBOutlet UIButton *moonlanderButton;
 @property (nonatomic, strong) IBOutlet UIButton *controlsButton;
@@ -27,7 +27,7 @@
 
 @end
 
-@implementation MoonlanderMenuViewController
+@implementation MenuViewController
 
 @synthesize gameCenterManager=_gameCenterManager;
 @synthesize menuBackground=_menuBackground;
@@ -181,12 +181,6 @@
 {
     [super viewDidLoad];
     
-    // iOS7 support
-    self.edgesForExtendedLayout = UIRectEdgeNone;
-    
-    self.view.opaque = NO;
-    self.view.backgroundColor = [UIColor clearColor];
-
     // Write the version info in menu view
     NSDictionary* infoDict = [[NSBundle mainBundle] infoDictionary];
     NSString *buildString = [infoDict objectForKey:@"CFBundleVersion"];
@@ -202,6 +196,9 @@
     }
 
 #if 0 //###
+    self.view.opaque = NO;
+    self.view.backgroundColor = [UIColor clearColor];
+    
     // Load the background view controller
     UIStoryboard *storyboard = self.storyboard;
     self.menuBackground = [storyboard instantiateViewControllerWithIdentifier:@"AutoPilotSimulation"];

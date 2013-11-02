@@ -75,7 +75,7 @@
 		56DB82C716724C8C00C243A8 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 56DB82C616724C8C00C243A8 /* AVFoundation.framework */; };
 		56DB82D016724E9A00C243A8 /* Teleprinter-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 56DB82CE16724E9A00C243A8 /* Teleprinter-Bold.ttf */; };
 		56DB82FB1672683700C243A8 /* GameOptions.plist in Resources */ = {isa = PBXBuildFile; fileRef = 56DB82FA1672683700C243A8 /* GameOptions.plist */; };
-		56DB830B1672B64C00C243A8 /* MoonlanderMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 56DB830A1672B64C00C243A8 /* MoonlanderMenuViewController.m */; };
+		56DB830B1672B64C00C243A8 /* MenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 56DB830A1672B64C00C243A8 /* MenuViewController.m */; };
 		56DFB15B166FC9090076F4DC /* RotateControl.png in Resources */ = {isa = PBXBuildFile; fileRef = 56DFB157166FC9090076F4DC /* RotateControl.png */; };
 		56DFB15C166FC9090076F4DC /* Instruments.png in Resources */ = {isa = PBXBuildFile; fileRef = 56DFB158166FC9090076F4DC /* Instruments.png */; };
 		56DFB15D166FC9090076F4DC /* Lander.png in Resources */ = {isa = PBXBuildFile; fileRef = 56DFB159166FC9090076F4DC /* Lander.png */; };
@@ -253,8 +253,8 @@
 		56DB82C616724C8C00C243A8 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		56DB82CE16724E9A00C243A8 /* Teleprinter-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Teleprinter-Bold.ttf"; sourceTree = "<group>"; };
 		56DB82FA1672683700C243A8 /* GameOptions.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = GameOptions.plist; sourceTree = "<group>"; };
-		56DB83091672B64C00C243A8 /* MoonlanderMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MoonlanderMenuViewController.h; sourceTree = "<group>"; };
-		56DB830A1672B64C00C243A8 /* MoonlanderMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MoonlanderMenuViewController.m; sourceTree = "<group>"; };
+		56DB83091672B64C00C243A8 /* MenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuViewController.h; sourceTree = "<group>"; };
+		56DB830A1672B64C00C243A8 /* MenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuViewController.m; sourceTree = "<group>"; };
 		56DFB157166FC9090076F4DC /* RotateControl.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = RotateControl.png; sourceTree = "<group>"; };
 		56DFB158166FC9090076F4DC /* Instruments.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Instruments.png; sourceTree = "<group>"; };
 		56DFB159166FC9090076F4DC /* Lander.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Lander.png; sourceTree = "<group>"; };
@@ -398,8 +398,8 @@
 				562D624F154DC3CE00BD4EDD /* NavigationController.m */,
 				564FF2451555C260007F5AB5 /* SplashViewController.h */,
 				564FF2461555C260007F5AB5 /* SplashViewController.m */,
-				56DB83091672B64C00C243A8 /* MoonlanderMenuViewController.h */,
-				56DB830A1672B64C00C243A8 /* MoonlanderMenuViewController.m */,
+				56DB83091672B64C00C243A8 /* MenuViewController.h */,
+				56DB830A1672B64C00C243A8 /* MenuViewController.m */,
 				560FA1341379BEAA0017EE25 /* LanderViewController.h */,
 				560FA1351379BEAA0017EE25 /* LanderViewController.m */,
 				564FF2511556228A007F5AB5 /* ModernLanderViewController.h */,
@@ -1054,7 +1054,7 @@
 				564FF2531556228A007F5AB5 /* ModernLanderViewController.m in Sources */,
 				564FF25715562842007F5AB5 /* AutoPilotViewController.m in Sources */,
 				56DB5F7B16716E02000CB72A /* AutoPilotViewController+Autopilot.m in Sources */,
-				56DB830B1672B64C00C243A8 /* MoonlanderMenuViewController.m in Sources */,
+				56DB830B1672B64C00C243A8 /* MenuViewController.m in Sources */,
 				567386A41673B3C10069C1EA /* Reachability.m in Sources */,
 				563F401B16A5C05D004F7FB6 /* GameCenterManager.m in Sources */,
 			);

@@ -40,7 +40,7 @@
     [super viewDidLoad];
     
     // iOS7 support
-    self.edgesForExtendedLayout = UIRectEdgeNone;
+ //###   self.edgesForExtendedLayout = UIRectEdgeNone;
     
     // Set the lander model type to be modern
     self.landerType = LanderTypeModern;
