@@ -35,6 +35,7 @@ const float VGBlinkInterval = 0.75;
         const CGFloat DefaultAlpha = 1.0;
         self.viewColor = [[UIColor alloc] initWithRed:DefaultRed green:DefaultGreen blue:DefaultBlue alpha:DefaultAlpha];
         self.fontSize = 12;
+        self.viewFont = [UIFont fontWithName:@"Courier-Bold" size:self.fontSize];
         
         self.actualBounds = CGRectMake(FLT_MAX, FLT_MAX, -FLT_MAX, -FLT_MAX);
         self.vectorName = @"[VGView initWithFrame]";
@@ -87,6 +88,9 @@ const float VGBlinkInterval = 0.75;
     CGContextSetTextDrawingMode(context, kCGTextFillStroke);
     CGContextSetShouldSmoothFonts(context, YES);
     
+    // Font setup
+    NSDictionary *textAttributes = [NSDictionary dictionaryWithObjectsAndKeys:self.viewFont, NSFontAttributeName, self.viewColor, NSForegroundColorAttributeName, nil];
+
     NSEnumerator *vectorEnumerator = [arrayOfVectors objectEnumerator];
     NSDictionary *currentVector;
     while ((currentVector = [vectorEnumerator nextObject])) {
