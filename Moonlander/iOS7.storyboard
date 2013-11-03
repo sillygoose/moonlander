@@ -233,7 +233,13 @@
                         <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     </view>
                     <extendedEdge key="edgesForExtendedLayout"/>
-                    <navigationItem key="navigationItem" id="j1h-XN-k8B"/>
+                    <navigationItem key="navigationItem" title="Flight Controls" id="j1h-XN-k8B">
+                        <barButtonItem key="rightBarButtonItem" title="Game Center Challenges" id="Tal-zu-FOE">
+                            <connections>
+                                <segue destination="IZ9-WM-VQn" kind="push" identifier="Challenges.htm" id="J6g-QX-Iud"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="_activityIndicator" destination="IoP-wR-u8S" id="1Lb-Xg-tmW"/>
                         <outlet property="_documentContent" destination="sbp-YL-yv8" id="Byl-Ze-ojG"/>
@@ -270,7 +276,7 @@
                         <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     </view>
                     <extendedEdge key="edgesForExtendedLayout"/>
-                    <navigationItem key="navigationItem" id="bIv-Ya-jxK"/>
+                    <navigationItem key="navigationItem" title="Moonlander Credits" id="bIv-Ya-jxK"/>
                     <connections>
                         <outlet property="_activityIndicator" destination="sIr-Cp-QOT" id="R5O-zO-cFc"/>
                         <outlet property="_documentContent" destination="P6n-cM-0AM" id="XPR-4J-l3m"/>
@@ -310,7 +316,7 @@
                         <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     </view>
                     <extendedEdge key="edgesForExtendedLayout"/>
-                    <navigationItem key="navigationItem" id="SWl-UR-bnF"/>
+                    <navigationItem key="navigationItem" title="Frequently Asked Questions" id="SWl-UR-bnF"/>
                     <connections>
                         <outlet property="_activityIndicator" destination="whh-As-s8h" id="fDB-Iy-YVC"/>
                         <outlet property="_documentContent" destination="O26-rs-RB3" id="Tlg-Vc-XxA"/>
@@ -400,6 +406,39 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0O6-Cr-PMU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3988" y="-1118"/>
+        </scene>
+        <!--Game Center Challenges-->
+        <scene sceneID="LV3-UU-Cyh">
+            <objects>
+                <viewController title="Game Center Challenges" id="IZ9-WM-VQn" userLabel="Game Center Challenges" customClass="DocumentViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="VDg-Dq-foy">
+                        <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <webView opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" allowsInlineMediaPlayback="NO" mediaPlaybackRequiresUserAction="NO" mediaPlaybackAllowsAirPlay="NO" id="Ne8-BN-Ggv">
+                                <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                <dataDetectorType key="dataDetectorTypes"/>
+                                <connections>
+                                    <outlet property="delegate" destination="IZ9-WM-VQn" id="taS-mV-Pm4"/>
+                                </connections>
+                            </webView>
+                        </subviews>
+                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                        <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
+                    </view>
+                    <extendedEdge key="edgesForExtendedLayout"/>
+                    <navigationItem key="navigationItem" title="Game Center Challenges" id="Bnd-Mm-YFf">
+                        <barButtonItem key="backBarButtonItem" title="Back" id="Pbl-ib-l3u"/>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="_documentContent" destination="Ne8-BN-Ggv" id="6oQ-49-Fwb"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="h71-Fz-EdV" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3969" y="-199"/>
         </scene>
     </scenes>
     <resources>

@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		1D1512C61546E6ED008C2B80 /* Icon-Small-50@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1D1512C51546E6ED008C2B80 /* Icon-Small-50@2x.png */; };
 		1DBF44271573D1E7002BF8E7 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DBF44261573D1E7002BF8E7 /* libz.dylib */; };
+		5604B7DC18270D45002ABB0F /* Challenges.htm in Resources */ = {isa = PBXBuildFile; fileRef = 5604B7DB18270D45002ABB0F /* Challenges.htm */; };
 		560FA0D0137991AD0017EE25 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 560FA0CF137991AD0017EE25 /* UIKit.framework */; };
 		560FA0D2137991AD0017EE25 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 560FA0D1137991AD0017EE25 /* Foundation.framework */; };
 		560FA0D4137991AD0017EE25 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 560FA0D3137991AD0017EE25 /* CoreGraphics.framework */; };
@@ -108,6 +109,7 @@
 /* Begin PBXFileReference section */
 		1D1512C51546E6ED008C2B80 /* Icon-Small-50@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-Small-50@2x.png"; sourceTree = "<group>"; };
 		1DBF44261573D1E7002BF8E7 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
+		5604B7DB18270D45002ABB0F /* Challenges.htm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = Challenges.htm; sourceTree = "<group>"; };
 		560A661616A64F5100F59B60 /* GameCenter.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = GameCenter.png; sourceTree = "<group>"; };
 		560D212814115314000F3A22 /* README */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README; sourceTree = "<group>"; };
 		560FA0CB137991AD0017EE25 /* Moonlander.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Moonlander.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -505,6 +507,7 @@
 		562D628E154DEC6A00BD4EDD /* html */ = {
 			isa = PBXGroup;
 			children = (
+				5604B7DB18270D45002ABB0F /* Challenges.htm */,
 				56A71648166FA1310023EADD /* Moonlander Flight Controls.htm */,
 				56A71641166F12F20023EADD /* Moonlander Credits.htm */,
 				56A7163F166E94B10023EADD /* Moonlander FAQ.htm */,
@@ -989,6 +992,7 @@
 				56EF5137154E59A3001E7B77 /* Default-Landscape~ipad.png in Resources */,
 				56EF5138154E59AC001E7B77 /* Default-Landscape@2x~ipad.png in Resources */,
 				56903D29154EDCC300DE54BD /* Moonlander Source Code.htm in Resources */,
+				5604B7DC18270D45002ABB0F /* Challenges.htm in Resources */,
 				56A71640166E94B10023EADD /* Moonlander FAQ.htm in Resources */,
 				56A71642166F12F20023EADD /* Moonlander Credits.htm in Resources */,
 				56A71649166FA1310023EADD /* Moonlander Flight Controls.htm in Resources */,

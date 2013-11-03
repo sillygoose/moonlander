@@ -28,6 +28,7 @@
     if ([segue.destinationViewController isKindOfClass:[DocumentViewController class]]) {
         DocumentViewController *dvc = segue.destinationViewController;
         NSURL *url = [NSURL URLWithString:segue.identifier];
+        NSLog(@"%@", segue.identifier);
         if (url) {
             NSURL *urlSansExtension = [url URLByDeletingPathExtension];
             if ([url.scheme isEqualToString:@"http"]) {
