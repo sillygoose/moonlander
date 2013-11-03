@@ -33,7 +33,7 @@ English
 Name                    Cheeseburger Challenge
 Score Format            Integer (comma)
 Score Format Suffix     ' point(s)'
-Image                   LargeAppIcon.png - ###
+Image                   LargeAppIcon.png
 
 
 Name                    RemainingFuel
@@ -47,7 +47,7 @@ English
 Name                    Remaining Fuel Challenge
 Score Format            Integer (comma)
 Score Format Suffix     ' lb(s)'
-Image                   LargeAppIcon.png - ###
+Image                   LargeAppIcon.png
 
 
 Name                    Distance
@@ -61,7 +61,7 @@ English
 Name                    Distance Challenge
 Score Format            Integer (comma)
 Score Format Suffix     ' foot/feet'
-Image                   LargeAppIcon.png - ###
+Image                   LargeAppIcon.png
 
 
 Name                    Fastest
@@ -75,7 +75,7 @@ English
 Name                    Fastest Landing Challenge
 Score Format            Fixed Point (comma)
 Score Format Suffix     ' lb(s)'
-Image                   LargeAppIcon.png - ###
+Image                   LargeAppIcon.png
 
 
 Game Center Account Assignments
