@@ -135,8 +135,7 @@ const float RollButtonRepeatInterval = 0.20;        // Timer value for roll butt
         {  3.0,  2.0 },   // DelayGameover
         {  3.0,  3.0 },   // DelayNewGame
         { 10.0,  4.0 },   // DelayFlagPlanted
-        {  5.0,  3.0 },   // DelayExplode
-        {  5.0,  3.0 },   // DelayOffcom
+        {  5.0,  5.0 },   // DelayExplode
     };
 #endif
     assert(sizeof(Delays)/sizeof(Delays[0]) == DelayLast);
@@ -1512,7 +1511,7 @@ const float RollButtonRepeatInterval = 0.20;        // Timer value for roll butt
 
     // Completion code for explosion manager
     void (^completionBlock)(void) = ^{
-        [self performSelector:@selector(prepareForNewGame) withObject:nil afterDelay:[self getDelay: DelayExplode]];
+        [self performSelector:@selector(prepareForNewGame) withObject:nil afterDelay:[self getDelay:DelayExplode]];
     };
     
     //(EXPLD1)  Setup the explosion animation manager
@@ -1615,7 +1614,7 @@ const float RollButtonRepeatInterval = 0.20;        // Timer value for roll butt
                     [self landerDown];
 
                     // Let's delay a bit before presenting the new game dialog
-                    [self performSelector:@selector(prepareForNewGame) withObject:nil afterDelay:[self getDelay: DelayExplode]];
+                    [self performSelector:@selector(prepareForNewGame) withObject:nil afterDelay:[self getDelay:DelayExplode]];
                 }
             }
         }
@@ -1637,7 +1636,7 @@ const float RollButtonRepeatInterval = 0.20;        // Timer value for roll butt
                     [self landerDown];
                     
                     // Let's delay a bit before presenting the new game dialog
-                    [self performSelector:@selector(prepareForNewGame) withObject:nil afterDelay:[self getDelay: DelayExplode]];
+                    [self performSelector:@selector(prepareForNewGame) withObject:nil afterDelay:[self getDelay:DelayExplode]];
                 }
             }
         }
@@ -1721,7 +1720,7 @@ const float RollButtonRepeatInterval = 0.20;        // Timer value for roll butt
             }
             
             // Let's delay a bit before presenting the new game dialog
-            [self performSelector:@selector(prepareForNewGame) withObject:nil afterDelay:[self getDelay: DelayExplode]];
+            [self performSelector:@selector(prepareForNewGame) withObject:nil afterDelay:[self getDelay:DelayExplode]];
         }
     }
     

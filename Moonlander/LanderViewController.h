@@ -41,7 +41,6 @@ typedef enum {
     DelayNewGame,
     DelayFlagPlanted,
     DelayExplode,
-    DelayOffcom,
     DelayLast
 } MoonlanderDelay ;
 
