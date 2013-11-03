@@ -52,6 +52,7 @@ const float VGBlinkInterval = 0.75;
         self.vectorName = @"[VGView initWithFrame:withPaths:]";
     }
     self.drawPaths = [viewObject objectForKey:@"paths"];
+    
     return self;
 }
 
@@ -89,7 +90,8 @@ const float VGBlinkInterval = 0.75;
     CGContextSetShouldSmoothFonts(context, YES);
     
     // Font setup
-    NSDictionary *textAttributes = [NSDictionary dictionaryWithObjectsAndKeys:self.viewFont, NSFontAttributeName, self.viewColor, NSForegroundColorAttributeName, nil];
+    NSDictionary *normalTextAttributes = [NSDictionary dictionaryWithObjectsAndKeys:self.viewFont, NSFontAttributeName, self.viewColor, NSForegroundColorAttributeName, nil];
+    NSDictionary *blinkTextAttributes = [NSDictionary dictionaryWithObjectsAndKeys:self.viewFont, NSFontAttributeName, [UIColor clearColor], NSForegroundColorAttributeName, nil];
 
     NSEnumerator *vectorEnumerator = [arrayOfVectors objectEnumerator];
     NSDictionary *currentVector;
@@ -358,9 +360,11 @@ const float VGBlinkInterval = 0.75;
             NSString *msg = [currentVector objectForKey:@"text"];
             NSString *theText = [NSString stringWithString:msg];
             
+#if 0 //###
             if (breakCommand == YES) {
                 NSLog(@"%@", theText);
             }
+#endif
             
             // Need to deal with the requested text alignment
             if (textAlignment == NSTextAlignmentLeft) {
@@ -371,7 +375,7 @@ const float VGBlinkInterval = 0.75;
                 CGContextSaveGState(context);
                 CGContextGetTextPosition(context);
                 CGContextSetTextDrawingMode(context, kCGTextInvisible);
-                [theText drawAtPoint:currentPosition withAttributes:textAttributes];
+                [theText drawAtPoint:currentPosition withAttributes:normalTextAttributes];
                 CGContextRestoreGState(context);
                 CGPoint endPoint = CGContextGetTextPosition(context);
                 
@@ -386,7 +390,7 @@ const float VGBlinkInterval = 0.75;
                 CGContextSaveGState(context);
                 CGContextGetTextPosition(context);
                 CGContextSetTextDrawingMode(context, kCGTextInvisible);
-                [theText drawAtPoint:currentPosition withAttributes:textAttributes];
+                [theText drawAtPoint:currentPosition withAttributes:normalTextAttributes];
                 CGContextRestoreGState(context);
                 CGPoint endPoint = CGContextGetTextPosition(context);
                 
@@ -404,17 +408,17 @@ const float VGBlinkInterval = 0.75;
                 CGContextScaleCTM(context, 1.0, -1.0);
             }
             CGSize size = CGSizeMake(self.bounds.size.width, self.bounds.size.height);
-            CGRect boundingRect = [theText boundingRectWithSize:size options:NSStringDrawingTruncatesLastVisibleLine attributes:textAttributes context:nil];
+            CGRect boundingRect = [theText boundingRectWithSize:size options:NSStringDrawingTruncatesLastVisibleLine attributes:normalTextAttributes context:nil];
 
             // We do this only if blinking is requested
             if (doBlink) {
                 if (self.blinkOn) {
                     // Draw normally this cycle
                     if (breakCommand == YES) {
-                        [theText drawAtPoint:currentPosition withAttributes:textAttributes];
+                        [theText drawAtPoint:currentPosition withAttributes:normalTextAttributes];
                     }
                     else {
-                        [theText drawAtPoint:currentPosition withAttributes:textAttributes];
+                        [theText drawAtPoint:currentPosition withAttributes:normalTextAttributes];
                     }
                     //###[theText drawInRect:boundingRect withAttributes:textAttributes];
                 }
@@ -425,10 +429,10 @@ const float VGBlinkInterval = 0.75;
                     CGContextSetAlpha(context, 0.0f);
                     }
                     if (breakCommand == YES) {
-                        [theText drawAtPoint:currentPosition withAttributes:textAttributes];
+                        [theText drawAtPoint:currentPosition withAttributes:blinkTextAttributes];
                     }
                     else {
-                        [theText drawAtPoint:currentPosition withAttributes:textAttributes];
+                        [theText drawAtPoint:currentPosition withAttributes:blinkTextAttributes];
                     }
                     //###[theText drawInRect:boundingRect withAttributes:textAttributes];
                     if (useFlip == YES) {
@@ -439,10 +443,10 @@ const float VGBlinkInterval = 0.75;
             else {
 //                [theText drawInRect:boundingRect withAttributes:textAttributes];
                 if (breakCommand == YES) {
-                    [theText drawAtPoint:currentPosition withAttributes:textAttributes];
+                    [theText drawAtPoint:currentPosition withAttributes:normalTextAttributes];
                 }
                 else {
-                    [theText drawAtPoint:currentPosition withAttributes:textAttributes];
+                    [theText drawAtPoint:currentPosition withAttributes:normalTextAttributes];
                 }
             }
             //NSLog(@"Drawing text at %@", NSStringFromCGPoint(currentPosition));
