@@ -80,7 +80,6 @@
 		56CE0538138B6C88004FA450 /* Instrument.m in Sources */ = {isa = PBXBuildFile; fileRef = 56CE0537138B6C88004FA450 /* Instrument.m */; };
 		56DB5F7B16716E02000CB72A /* AutoPilotViewController+Autopilot.m in Sources */ = {isa = PBXBuildFile; fileRef = 56DB5F7A16716E01000CB72A /* AutoPilotViewController+Autopilot.m */; };
 		56DB82C716724C8C00C243A8 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 56DB82C616724C8C00C243A8 /* AVFoundation.framework */; };
-		56DB82D016724E9A00C243A8 /* Teleprinter-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 56DB82CE16724E9A00C243A8 /* Teleprinter-Bold.ttf */; };
 		56DB82FB1672683700C243A8 /* GameOptions.plist in Resources */ = {isa = PBXBuildFile; fileRef = 56DB82FA1672683700C243A8 /* GameOptions.plist */; };
 		56DB830B1672B64C00C243A8 /* MenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 56DB830A1672B64C00C243A8 /* MenuViewController.m */; };
 		56DFB15B166FC9090076F4DC /* RotateControl.png in Resources */ = {isa = PBXBuildFile; fileRef = 56DFB157166FC9090076F4DC /* RotateControl.png */; };
@@ -263,7 +262,6 @@
 		56DB5F7916716E01000CB72A /* AutoPilotViewController+Autopilot.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "AutoPilotViewController+Autopilot.h"; sourceTree = "<group>"; };
 		56DB5F7A16716E01000CB72A /* AutoPilotViewController+Autopilot.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "AutoPilotViewController+Autopilot.m"; sourceTree = "<group>"; };
 		56DB82C616724C8C00C243A8 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
-		56DB82CE16724E9A00C243A8 /* Teleprinter-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Teleprinter-Bold.ttf"; sourceTree = "<group>"; };
 		56DB82FA1672683700C243A8 /* GameOptions.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = GameOptions.plist; sourceTree = "<group>"; };
 		56DB83091672B64C00C243A8 /* MenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuViewController.h; sourceTree = "<group>"; };
 		56DB830A1672B64C00C243A8 /* MenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuViewController.m; sourceTree = "<group>"; };
@@ -710,7 +708,6 @@
 			isa = PBXGroup;
 			children = (
 				56E07CF31674F9CA009C847B /* Vectorb.ttf */,
-				56DB82CE16724E9A00C243A8 /* Teleprinter-Bold.ttf */,
 			);
 			path = fonts;
 			sourceTree = "<group>";
@@ -1012,7 +1009,6 @@
 				56DFB17F166FF2610076F4DC /* explosion-low.caf in Resources */,
 				56B2BD7E1825FAEA00F43E30 /* Icon-29@2x.png in Resources */,
 				56DFB180166FF2610076F4DC /* explosion-med.caf in Resources */,
-				56DB82D016724E9A00C243A8 /* Teleprinter-Bold.ttf in Resources */,
 				56DB82FB1672683700C243A8 /* GameOptions.plist in Resources */,
 				56E07CF41674F9CA009C847B /* Vectorb.ttf in Resources */,
 				563F402616A5F3E8004F7FB6 /* moonlander.png in Resources */,
