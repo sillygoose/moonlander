@@ -353,8 +353,6 @@ const float VGBlinkInterval = 0.75;
         
         // Process a text command
         if ([currentVector objectForKey:@"text"]) {
-            logCommand = NO;
-            
             // Prepare characters for printing
             NSString *msg = [currentVector objectForKey:@"text"];
             NSString *theText = [NSString stringWithString:msg];
@@ -444,7 +442,6 @@ const float VGBlinkInterval = 0.75;
 #ifdef DEBUG
     if (logCommand) {
         NSLog(@"Max coordinates for %@: %@", self.vectorName, NSStringFromCGRect(self.actualBounds));
-        logCommand = NO;
     }
 #endif
 }
