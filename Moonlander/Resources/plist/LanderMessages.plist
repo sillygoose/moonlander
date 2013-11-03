@@ -6,6 +6,84 @@
 	<string>Game Messages</string>
 	<key>messages</key>
 	<dict>
+		<key>Test</key>
+		<dict>
+			<key>frame</key>
+			<dict>
+				<key>origin</key>
+				<dict>
+					<key>x</key>
+					<integer>100</integer>
+					<key>y</key>
+					<integer>562</integer>
+				</dict>
+				<key>size</key>
+				<dict>
+					<key>height</key>
+					<integer>40</integer>
+					<key>width</key>
+					<integer>450</integer>
+				</dict>
+			</dict>
+			<key>text</key>
+			<array>
+				<array>
+					<dict>
+						<key>rect</key>
+						<dict>
+							<key>size</key>
+							<dict>
+								<key>height</key>
+								<integer>40</integer>
+								<key>width</key>
+								<integer>450</integer>
+							</dict>
+							<key>origin</key>
+							<dict>
+								<key>x</key>
+								<integer>0</integer>
+								<key>y</key>
+								<integer>0</integer>
+							</dict>
+						</dict>
+					</dict>
+					<dict>
+						<key>intensity</key>
+						<integer>6</integer>
+						<key>text</key>
+						<string>BUT THE TERRAIN IS TOO ROUGH, AND YOU TIPPED OVER</string>
+					</dict>
+				</array>
+				<array>
+					<dict>
+						<key>break</key>
+						<true/>
+						<key>newline</key>
+						<integer>1</integer>
+						<key>text</key>
+						<string>SORRY, BUT THERE WERE </string>
+					</dict>
+					<dict>
+						<key>break</key>
+						<true/>
+						<key>intensity</key>
+						<integer>7</integer>
+						<key>blink</key>
+						<true/>
+						<key>text</key>
+						<string>NO</string>
+					</dict>
+					<dict>
+						<key>break</key>
+						<true/>
+						<key>intensity</key>
+						<integer>6</integer>
+						<key>text</key>
+						<string> SURVIVORS</string>
+					</dict>
+				</array>
+			</array>
+		</dict>
 		<key>SplashScreen</key>
 		<dict>
 			<key>frame</key>
