@@ -1177,8 +1177,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"\\\"$(SRCROOT)/Moonlander/TestFlightSDK1.1\\\"",
-					/Users/sillygoose/Developer/Moonlander/Moonlander/TestFlight,
+					"/\"$(SRCROOT)/Moonlander/TestFlight\"",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "042CEB5F-5783-4C27-8290-28C50B808446";
@@ -1208,8 +1207,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"\\\"$(SRCROOT)/Moonlander/TestFlightSDK1.1\\\"",
-					/Users/sillygoose/Developer/Moonlander/Moonlander/TestFlight,
+					"/\"$(SRCROOT)/Moonlander/TestFlight\"",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "042CEB5F-5783-4C27-8290-28C50B808446";
