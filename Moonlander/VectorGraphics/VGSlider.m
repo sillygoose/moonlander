@@ -100,7 +100,7 @@
     [self.thrusterIndicator setNeedsDisplay];
     
     // Position the thrust value within the view
-    const CGFloat yAdjust = self.thrusterValue.fontSize - 12;
+    const CGFloat yAdjust = 0;//self.thrusterValue.fontSize - 12;
     const CGFloat ThrusterValueX = self.thrusterValue.frame.origin.x;
     const CGFloat ThrusterValueY = (((scaleValue * self.value)) - self.thrusterValue.frame.size.height / 2 + yAdjust);
     CGRect newValueFrame = CGRectMake(ThrusterValueX, ThrusterValueY, self.thrusterValue.frame.size.width, self.thrusterValue.frame.size.height);
