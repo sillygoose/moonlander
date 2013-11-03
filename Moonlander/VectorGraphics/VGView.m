@@ -53,7 +53,23 @@ const float VGBlinkInterval = 0.75;
     }
     self.drawPaths = [viewObject objectForKey:@"paths"];
     
+    // Sign up to get blink notifications
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(blinkUpdated:) name:@"blinkUpdated" object:nil];
+    
     return self;
+}
+
+
+#pragma mark -
+#pragma mark Notifications
+
+- (void)blinkUpdated:(NSNotification *)notification
+{
+#if 0
+    NSNumber *blinkState = notification.object;
+    self.blinkOn = [blinkState boolValue];
+    [self setNeedsDisplay];
+#endif
 }
 
 - (void)blinkIntervalPassed:(NSTimer *)timer
@@ -104,7 +120,7 @@ const float VGBlinkInterval = 0.75;
         if ([currentVector objectForKey:@"break"]) {
             breakCommand = [[currentVector objectForKey:@"break"] boolValue];
             if (breakCommand) {
-                raise(SIGTRAP);
+                //###raise(SIGTRAP);
             }
         }
         
