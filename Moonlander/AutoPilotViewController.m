@@ -103,6 +103,16 @@
     return NO;
 }
 
+- (void)motionBegan:(UIEventSubtype)motion withEvent:(UIEvent *)event
+{
+}
+
+- (void)motionEnded:(UIEventSubtype)motion withEvent:(UIEvent *)event
+{
+    if (event.subtype == UIEventSubtypeMotionShake) {
+        // Ignore this in the menu background
+    }
+}
 - (void)waitNewGame
 {
     [self performSelector:@selector(startGameDelay) withObject:nil afterDelay:[self getDelay:DelayNewGame]];
