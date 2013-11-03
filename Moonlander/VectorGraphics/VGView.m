@@ -66,13 +66,17 @@ const float VGBlinkInterval = 0.75;
 - (void)drawSomethingUsing:(NSArray *)arrayOfVectors
 {
     BOOL logCommand = NO;
+    BOOL useFlip = YES;
+
     UITextAlignment textAlignment = NSTextAlignmentLeft;
 
     // Simple stack for push/pop support
     CGPoint positionStack[4];
     unsigned positionCount = 0;
-    
-    CGPoint currentPosition = CGPointMake(0.0f, self.bounds.size.height - self.fontSize);
+    CGPoint currentPosition = CGPointMake(0, self.bounds.size.height - self.fontSize);
+    if (useFlip) {
+        currentPosition = CGPointMake(0, 0);
+    }
     CGPoint prevPoint = CGPointZero;
     
 	CGContextRef context = UIGraphicsGetCurrentContext();
@@ -349,13 +353,17 @@ const float VGBlinkInterval = 0.75;
         if ([currentVector objectForKey:@"newline"]) {
             CGFloat nLines = [[currentVector objectForKey:@"newline"] floatValue];
             currentPosition.x = 0;
-            currentPosition.y = currentPosition.y - (nLines * (self.fontSize + (self.fontSize * 0.4)));
+            if (useFlip) {
+                currentPosition.y = currentPosition.y + (nLines * (self.fontSize + (self.fontSize * 0.4)));
+            }
+            else {
+                currentPosition.y = currentPosition.y - (nLines * (self.fontSize + (self.fontSize * 0.4)));
+            }
         }
         
         // Process a text command
         if ([currentVector objectForKey:@"text"]) {
             logCommand = NO;
-            BOOL useFlip = NO;
             
             // Prepare characters for printing
             NSString *msg = [currentVector objectForKey:@"text"];
@@ -405,7 +413,7 @@ const float VGBlinkInterval = 0.75;
             // Flip the drawing context to get the text right-side up
             if (useFlip == YES) {
                 CGContextSaveGState(context);
-                CGContextTranslateCTM(context, 0,  self.fontSize / 2);
+                CGContextTranslateCTM(context, 0, self.bounds.size.height);
                 CGContextScaleCTM(context, 1.0, -1.0);
             }
             CGSize size = CGSizeMake(self.bounds.size.width, self.bounds.size.height);
@@ -453,13 +461,13 @@ const float VGBlinkInterval = 0.75;
             //NSLog(@"Drawing text at %@", NSStringFromCGPoint(currentPosition));
 
             // Get position and restore context
-            CGPoint drawingPosition = CGContextGetTextPosition(context);
             if (useFlip == YES) {
                 CGContextRestoreGState(context);
             }
             
             // Find out where we are after drawing
             currentPosition.x += ceil(boundingRect.size.width);
+            
             // Set our new position for the next text block
             self.actualBounds = CGRectMake(MIN(currentPosition.x, self.actualBounds.origin.x), MIN(currentPosition.y, self.actualBounds.origin.y), MAX(currentPosition.x, self.actualBounds.size.width), MAX(currentPosition.y, self.actualBounds.size.height));
         }
