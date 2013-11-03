@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		1D1512C61546E6ED008C2B80 /* Icon-Small-50@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1D1512C51546E6ED008C2B80 /* Icon-Small-50@2x.png */; };
 		1DBF44271573D1E7002BF8E7 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DBF44261573D1E7002BF8E7 /* libz.dylib */; };
-		560A660916A6467C00F59B60 /* gamecentericon.png in Resources */ = {isa = PBXBuildFile; fileRef = 560A660816A6467C00F59B60 /* gamecentericon.png */; };
 		560FA0D0137991AD0017EE25 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 560FA0CF137991AD0017EE25 /* UIKit.framework */; };
 		560FA0D2137991AD0017EE25 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 560FA0D1137991AD0017EE25 /* Foundation.framework */; };
 		560FA0D4137991AD0017EE25 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 560FA0D3137991AD0017EE25 /* CoreGraphics.framework */; };
@@ -65,6 +64,12 @@
 		56A71642166F12F20023EADD /* Moonlander Credits.htm in Resources */ = {isa = PBXBuildFile; fileRef = 56A71641166F12F20023EADD /* Moonlander Credits.htm */; };
 		56A71649166FA1310023EADD /* Moonlander Flight Controls.htm in Resources */ = {isa = PBXBuildFile; fileRef = 56A71648166FA1310023EADD /* Moonlander Flight Controls.htm */; };
 		56B2BD7618259D4600F43E30 /* libTestFlight.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 56B2BD7218259D4600F43E30 /* libTestFlight.a */; };
+		56B2BD7D1825FAEA00F43E30 /* Icon-29.png in Resources */ = {isa = PBXBuildFile; fileRef = 56B2BD771825FAEA00F43E30 /* Icon-29.png */; };
+		56B2BD7E1825FAEA00F43E30 /* Icon-29@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 56B2BD781825FAEA00F43E30 /* Icon-29@2x.png */; };
+		56B2BD7F1825FAEA00F43E30 /* Icon-40.png in Resources */ = {isa = PBXBuildFile; fileRef = 56B2BD791825FAEA00F43E30 /* Icon-40.png */; };
+		56B2BD801825FAEA00F43E30 /* Icon-40@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 56B2BD7A1825FAEA00F43E30 /* Icon-40@2x.png */; };
+		56B2BD811825FAEA00F43E30 /* Icon-76.png in Resources */ = {isa = PBXBuildFile; fileRef = 56B2BD7B1825FAEA00F43E30 /* Icon-76.png */; };
+		56B2BD821825FAEA00F43E30 /* Icon-76@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 56B2BD7C1825FAEA00F43E30 /* Icon-76@2x.png */; };
 		56B4D62D1417D9AF00029FC8 /* Flag.m in Sources */ = {isa = PBXBuildFile; fileRef = 56B4D62C1417D9AF00029FC8 /* Flag.m */; };
 		56BC68641388BDE200403643 /* Labels.plist in Resources */ = {isa = PBXBuildFile; fileRef = 56BC68631388BDE200403643 /* Labels.plist */; };
 		56C94AA913A7A7AE001B7EF9 /* Dust.m in Sources */ = {isa = PBXBuildFile; fileRef = 56C94AA813A7A7AE001B7EF9 /* Dust.m */; };
@@ -103,7 +108,6 @@
 /* Begin PBXFileReference section */
 		1D1512C51546E6ED008C2B80 /* Icon-Small-50@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-Small-50@2x.png"; sourceTree = "<group>"; };
 		1DBF44261573D1E7002BF8E7 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
-		560A660816A6467C00F59B60 /* gamecentericon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = gamecentericon.png; sourceTree = "<group>"; };
 		560A661616A64F5100F59B60 /* GameCenter.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = GameCenter.png; sourceTree = "<group>"; };
 		560D212814115314000F3A22 /* README */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README; sourceTree = "<group>"; };
 		560FA0CB137991AD0017EE25 /* Moonlander.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Moonlander.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -165,7 +169,6 @@
 		564A071A16A719E600A584CA /* GameCenter.acorn */ = {isa = PBXFileReference; lastKnownFileType = file; path = GameCenter.acorn; sourceTree = "<group>"; };
 		564A071B16A719E600A584CA /* LunarLander.acorn */ = {isa = PBXFileReference; lastKnownFileType = file; path = LunarLander.acorn; sourceTree = "<group>"; };
 		564A071C16A719E600A584CA /* MoreClassics.acorn */ = {isa = PBXFileReference; lastKnownFileType = file; path = MoreClassics.acorn; sourceTree = "<group>"; };
-		564A071D16A71A2F00A584CA /* GameCenterIcon.acorn */ = {isa = PBXFileReference; lastKnownFileType = file; path = GameCenterIcon.acorn; sourceTree = "<group>"; };
 		564A071E16A71A4A00A584CA /* CheeseburgerTrophy.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CheeseburgerTrophy.png; sourceTree = "<group>"; };
 		564A071F16A71A4A00A584CA /* DistanceTrophy.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = DistanceTrophy.png; sourceTree = "<group>"; };
 		564A072016A71A4A00A584CA /* FuelTrophy.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = FuelTrophy.png; sourceTree = "<group>"; };
@@ -237,6 +240,12 @@
 		56B2BD7318259D4600F43E30 /* TestFlight.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestFlight.h; sourceTree = "<group>"; };
 		56B2BD7418259D4600F43E30 /* TestFlight+AsyncLogging.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "TestFlight+AsyncLogging.h"; sourceTree = "<group>"; };
 		56B2BD7518259D4600F43E30 /* TestFlight+ManualSessions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "TestFlight+ManualSessions.h"; sourceTree = "<group>"; };
+		56B2BD771825FAEA00F43E30 /* Icon-29.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-29.png"; sourceTree = "<group>"; };
+		56B2BD781825FAEA00F43E30 /* Icon-29@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-29@2x.png"; sourceTree = "<group>"; };
+		56B2BD791825FAEA00F43E30 /* Icon-40.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-40.png"; sourceTree = "<group>"; };
+		56B2BD7A1825FAEA00F43E30 /* Icon-40@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-40@2x.png"; sourceTree = "<group>"; };
+		56B2BD7B1825FAEA00F43E30 /* Icon-76.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-76.png"; sourceTree = "<group>"; };
+		56B2BD7C1825FAEA00F43E30 /* Icon-76@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-76@2x.png"; sourceTree = "<group>"; };
 		56B4D62B1417D9AF00029FC8 /* Flag.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Flag.h; sourceTree = "<group>"; };
 		56B4D62C1417D9AF00029FC8 /* Flag.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Flag.m; sourceTree = "<group>"; };
 		56BC68631388BDE200403643 /* Labels.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Labels.plist; sourceTree = "<group>"; };
@@ -540,7 +549,6 @@
 		563F403316A5FB40004F7FB6 /* acorn */ = {
 			isa = PBXGroup;
 			children = (
-				564A071D16A71A2F00A584CA /* GameCenterIcon.acorn */,
 				564A071616A7195A00A584CA /* Trophy.acorn */,
 				564A071816A719E600A584CA /* Credits.acorn */,
 				564A071916A719E600A584CA /* FAQ.acorn */,
@@ -619,8 +627,13 @@
 		5667CA27154F8D050031415B /* png */ = {
 			isa = PBXGroup;
 			children = (
+				56B2BD771825FAEA00F43E30 /* Icon-29.png */,
+				56B2BD781825FAEA00F43E30 /* Icon-29@2x.png */,
+				56B2BD791825FAEA00F43E30 /* Icon-40.png */,
+				56B2BD7A1825FAEA00F43E30 /* Icon-40@2x.png */,
+				56B2BD7B1825FAEA00F43E30 /* Icon-76.png */,
+				56B2BD7C1825FAEA00F43E30 /* Icon-76@2x.png */,
 				56F369C917C7F10100A478FB /* Game-Center-iOS-7-256.png */,
-				560A660816A6467C00F59B60 /* gamecentericon.png */,
 				563F403116A5FB31004F7FB6 /* credits.png */,
 				563F402916A5FAB6004F7FB6 /* controls.png */,
 				563F402A16A5FAB6004F7FB6 /* faq.png */,
@@ -957,6 +970,7 @@
 				5695F1DC137F753B0075CD26 /* SmallRightArrow.plist in Resources */,
 				564BE5C613801CAC00D790D9 /* ThrusterControl.plist in Resources */,
 				569CC2AA13809BED00E6D82A /* Moon.plist in Resources */,
+				56B2BD7F1825FAEA00F43E30 /* Icon-40.png in Resources */,
 				569CC2B31380CC3300E6D82A /* Rock.plist in Resources */,
 				564EBC4D138349F2007D477C /* Flag.plist in Resources */,
 				564EBC4F13834A07007D477C /* Man.plist in Resources */,
@@ -965,6 +979,7 @@
 				562B108D13841D5A00CC5C97 /* LanderMessages.plist in Resources */,
 				5622049318253DC400D5F5BE /* iOS7.storyboard in Resources */,
 				56BC68641388BDE200403643 /* Labels.plist in Resources */,
+				56B2BD811825FAEA00F43E30 /* Icon-76.png in Resources */,
 				56678FCC139A7D4D00026588 /* OldLander.plist in Resources */,
 				561739E8154649DD00380AB4 /* Icon-Small-50.png in Resources */,
 				56173A11154661BB00380AB4 /* Icon-72.png in Resources */,
@@ -978,16 +993,20 @@
 				56A71640166E94B10023EADD /* Moonlander FAQ.htm in Resources */,
 				56A71642166F12F20023EADD /* Moonlander Credits.htm in Resources */,
 				56A71649166FA1310023EADD /* Moonlander Flight Controls.htm in Resources */,
+				56B2BD7D1825FAEA00F43E30 /* Icon-29.png in Resources */,
 				56DFB15B166FC9090076F4DC /* RotateControl.png in Resources */,
 				56DFB15C166FC9090076F4DC /* Instruments.png in Resources */,
 				56DFB15D166FC9090076F4DC /* Lander.png in Resources */,
 				56DFB15E166FC9090076F4DC /* SliderControl.png in Resources */,
 				56DFB17A166FF2610076F4DC /* beep-high.caf in Resources */,
 				56DFB17B166FF2610076F4DC /* beep-low.caf in Resources */,
+				56B2BD821825FAEA00F43E30 /* Icon-76@2x.png in Resources */,
 				56DFB17C166FF2610076F4DC /* beep-med.caf in Resources */,
 				56DFB17D166FF2610076F4DC /* beep.caf in Resources */,
 				56DFB17E166FF2610076F4DC /* explosion-high.caf in Resources */,
+				56B2BD801825FAEA00F43E30 /* Icon-40@2x.png in Resources */,
 				56DFB17F166FF2610076F4DC /* explosion-low.caf in Resources */,
+				56B2BD7E1825FAEA00F43E30 /* Icon-29@2x.png in Resources */,
 				56DFB180166FF2610076F4DC /* explosion-med.caf in Resources */,
 				56DB82D016724E9A00C243A8 /* Teleprinter-Bold.ttf in Resources */,
 				56DB82FB1672683700C243A8 /* GameOptions.plist in Resources */,
@@ -998,7 +1017,6 @@
 				563F402E16A5FAB6004F7FB6 /* faq.png in Resources */,
 				563F403016A5FAB6004F7FB6 /* moreclassics.png in Resources */,
 				563F403216A5FB31004F7FB6 /* credits.png in Resources */,
-				560A660916A6467C00F59B60 /* gamecentericon.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
