@@ -307,14 +307,6 @@ const float RollButtonRepeatInterval = 0.20;        // Timer value for roll butt
 #pragma -
 #pragma mark - View lifecycle
 
-- (void)didReceiveMemoryWarning
-{
-    // Releases the view if it doesn't have a superview.
-    [super didReceiveMemoryWarning];
-    
-    // Release any cached data, images, etc that aren't in use.
-}
-
 - (void)enableFlightControls
 {
     self.smallLeftArrow.enabled = YES;
@@ -1361,6 +1353,9 @@ const float RollButtonRepeatInterval = 0.20;        // Timer value for roll butt
             landingScore -= 10 * abs(self.VERVEL);
             landingScore -= 10 * abs(self.HORVEL);
 
+#if defined(TESTFLIGHT_SDK_VERSION) && defined(USE_TESTFLIGHT)
+            [TestFlight passCheckpoint:[NSString stringWithFormat:@"CBC: %ds, %dft, %d (vv), %d (hv), %d (fuel)", (short)self.TIME, self.HORDIS, self.VERVEL, self.HORVEL, self.FUEL]];
+#endif
             // Don't allow the menu background to submit scores
             if ([self WallpaperController] == NO) {
                 // Post the score for Game Center
@@ -1487,6 +1482,13 @@ const float RollButtonRepeatInterval = 0.20;        // Timer value for roll butt
 {
     // This is a successful landing
     if ([self WallpaperController] == NO) {
+        // Do some assertions since we have 0 times
+        if ((short)self.TIME < 10) {
+#if defined(TESTFLIGHT_SDK_VERSION) && defined(USE_TESTFLIGHT)
+            [TestFlight passCheckpoint:[NSString stringWithFormat:@"Assertion failed at %d, distance (%d), vervel (%d), horvel (%d), fuel (%d)", (short)self.TIME, self.HORDIS, self.VERVEL, self.HORVEL, self.FUEL]];
+#endif
+        }
+        
         // Post the Game Center leaderboards numbers
         [[NSNotificationCenter defaultCenter] postNotificationName:@"fuelScorePosted" object:[NSNumber numberWithInt:self.FUEL]];
         [[NSNotificationCenter defaultCenter] postNotificationName:@"distanceScorePosted" object:[NSNumber numberWithInt:abs(self.HORDIS)]];
