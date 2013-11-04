@@ -1483,20 +1483,16 @@ const float RollButtonRepeatInterval = 0.20;        // Timer value for roll butt
     // This is a successful landing
     if ([self WallpaperController] == NO) {
         // Do some assertions since we have 0 times
-        if ((short)self.TIME < 10) {
+        if ((short)self.TIME > 10) {
+            // Post the Game Center leaderboards numbers
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"fuelScorePosted" object:[NSNumber numberWithInt:self.FUEL]];
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"distanceScorePosted" object:[NSNumber numberWithInt:abs(self.HORDIS)]];
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"fastestScorePosted" object:[NSNumber numberWithFloat:self.TIME]];
+
 #if defined(TESTFLIGHT_SDK_VERSION) && defined(USE_TESTFLIGHT)
-            [TestFlight passCheckpoint:[NSString stringWithFormat:@"Assertion failed at %d, distance (%d), vervel (%d), horvel (%d), fuel (%d)", (short)self.TIME, self.HORDIS, self.VERVEL, self.HORVEL, self.FUEL]];
+            [TestFlight passCheckpoint:[NSString stringWithFormat:@"Landed at %d, distance (%d), vervel (%d), horvel (%d), fuel (%d)", (short)self.TIME, self.HORDIS, self.VERVEL, self.HORVEL, self.FUEL]];
 #endif
         }
-        
-        // Post the Game Center leaderboards numbers
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"fuelScorePosted" object:[NSNumber numberWithInt:self.FUEL]];
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"distanceScorePosted" object:[NSNumber numberWithInt:abs(self.HORDIS)]];
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"fastestScorePosted" object:[NSNumber numberWithFloat:self.TIME]];
-        
-#if defined(TESTFLIGHT_SDK_VERSION) && defined(USE_TESTFLIGHT)
-        [TestFlight passCheckpoint:[NSString stringWithFormat:@"Landed at %d, distance (%d), vervel (%d), horvel (%d), fuel (%d)", (short)self.TIME, self.HORDIS, self.VERVEL, self.HORVEL, self.FUEL]];
-#endif
     }
     
     // Start with a delay of 4 seconds
