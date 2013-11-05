@@ -1493,6 +1493,11 @@ const float RollButtonRepeatInterval = 0.20;        // Timer value for roll butt
             [TestFlight passCheckpoint:[NSString stringWithFormat:@"Landed at %d, distance (%d), vervel (%d), horvel (%d), fuel (%d)", (short)self.TIME, self.HORDIS, self.VERVEL, self.HORVEL, self.FUEL]];
 #endif
         }
+        else {
+#if defined(TESTFLIGHT_SDK_VERSION) && defined(USE_TESTFLIGHT)
+            [TestFlight passCheckpoint:[NSString stringWithFormat:@"ASSERT(TIME<10): Landed at %d, distance (%d), vervel (%d), horvel (%d), fuel (%d)", (short)self.TIME, self.HORDIS, self.VERVEL, self.HORVEL, self.FUEL]];
+#endif
+        }
     }
     
     // Start with a delay of 4 seconds
