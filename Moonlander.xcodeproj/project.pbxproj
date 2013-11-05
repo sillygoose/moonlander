@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1D1512C61546E6ED008C2B80 /* Icon-Small-50@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1D1512C51546E6ED008C2B80 /* Icon-Small-50@2x.png */; };
 		1DBF44271573D1E7002BF8E7 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DBF44261573D1E7002BF8E7 /* libz.dylib */; };
 		5604B7DC18270D45002ABB0F /* Challenges.htm in Resources */ = {isa = PBXBuildFile; fileRef = 5604B7DB18270D45002ABB0F /* Challenges.htm */; };
 		5604B7E0182857DE002ABB0F /* NewAppIcon.acorn in Resources */ = {isa = PBXBuildFile; fileRef = 5604B7DF182857DE002ABB0F /* NewAppIcon.acorn */; };
@@ -113,7 +112,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		1D1512C51546E6ED008C2B80 /* Icon-Small-50@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-Small-50@2x.png"; sourceTree = "<group>"; };
 		1DBF44261573D1E7002BF8E7 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		5604B7DB18270D45002ABB0F /* Challenges.htm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = Challenges.htm; sourceTree = "<group>"; };
 		5604B7DF182857DE002ABB0F /* NewAppIcon.acorn */ = {isa = PBXFileReference; lastKnownFileType = file; path = NewAppIcon.acorn; sourceTree = "<group>"; };
@@ -666,7 +664,6 @@
 				56173A0D154661BB00380AB4 /* Icon-72.png */,
 				56173A0E154661BB00380AB4 /* Icon-72@2x.png */,
 				561739E6154649DD00380AB4 /* Icon-Small-50.png */,
-				1D1512C51546E6ED008C2B80 /* Icon-Small-50@2x.png */,
 				56173A0C154661BB00380AB4 /* Default-Landscape~ipad.png */,
 				56173A0B154661BB00380AB4 /* Default-Landscape@2x~ipad.png */,
 			);
@@ -1009,7 +1006,6 @@
 				561739E8154649DD00380AB4 /* Icon-Small-50.png in Resources */,
 				56173A11154661BB00380AB4 /* Icon-72.png in Resources */,
 				56173A12154661BB00380AB4 /* Icon-72@2x.png in Resources */,
-				1D1512C61546E6ED008C2B80 /* Icon-Small-50@2x.png in Resources */,
 				5604B7F21828581C002ABB0F /* Icon-Spotlight-iOS7@2x.png in Resources */,
 				56F369CA17C7F10100A478FB /* Game-Center-iOS-7-256.png in Resources */,
 				56EF5137154E59A3001E7B77 /* Default-Landscape~ipad.png in Resources */,
