@@ -99,13 +99,12 @@
     NSArray *scores = [NSArray arrayWithObjects:newScore, nil];
     [GKScore reportScores:scores withCompletionHandler:^(NSError *error) {
         if (error != nil) {
-            NSLog(@"Error in reporting score: %@", error);
+            NSLog(@"Error in reporting McDonalds score: %@", error);
+#if defined(TESTFLIGHT_SDK_VERSION) && defined(USE_TESTFLIGHT)
+            [TestFlight passCheckpoint:[NSString stringWithFormat:@"%@:%@", NSStringFromClass([self class]), [NSString stringWithFormat:@"Error reporting McDonalds score %lld: %@", score, error]]];
+#endif
         }
     }];
-    
-#if defined(TESTFLIGHT_SDK_VERSION) && defined(USE_TESTFLIGHT)
-    [TestFlight passCheckpoint:[NSString stringWithFormat:@"%@:%@", NSStringFromClass([self class]), [NSString stringWithFormat:@"mcdonaldsScorePosted: %lld", score]]];
-#endif
 }
 
 - (void)fuelScorePosted:(NSNotification *)notification
@@ -121,13 +120,12 @@
     NSArray *scores = [NSArray arrayWithObjects:newScore, nil];
     [GKScore reportScores:scores withCompletionHandler:^(NSError *error) {
         if (error != nil) {
-            NSLog(@"Error in reporting score: %@", error);
+            NSLog(@"Error in reporting fuel score: %@", error);
+#if defined(TESTFLIGHT_SDK_VERSION) && defined(USE_TESTFLIGHT)
+            [TestFlight passCheckpoint:[NSString stringWithFormat:@"%@:%@", NSStringFromClass([self class]), [NSString stringWithFormat:@"Error reporting fuel score %lld: %@", score, error]]];
+#endif
         }
     }];
-    
-#if defined(TESTFLIGHT_SDK_VERSION) && defined(USE_TESTFLIGHT)
-    [TestFlight passCheckpoint:[NSString stringWithFormat:@"%@:%@", NSStringFromClass([self class]), [NSString stringWithFormat:@"fuelScorePosted: %lld", score]]];
-#endif
 }
 
 - (void)distanceScorePosted:(NSNotification *)notification
@@ -143,13 +141,12 @@
     NSArray *scores = [NSArray arrayWithObjects:newScore, nil];
     [GKScore reportScores:scores withCompletionHandler:^(NSError *error) {
         if (error != nil) {
-            NSLog(@"Error in reporting score: %@", error);
+            NSLog(@"Error in reporting distance score: %@", error);
+#if defined(TESTFLIGHT_SDK_VERSION) && defined(USE_TESTFLIGHT)
+            [TestFlight passCheckpoint:[NSString stringWithFormat:@"%@:%@", NSStringFromClass([self class]), [NSString stringWithFormat:@"Error reporting distance score %lld: %@", score, error]]];
+#endif
         }
     }];
-        
-#if defined(TESTFLIGHT_SDK_VERSION) && defined(USE_TESTFLIGHT)
-    [TestFlight passCheckpoint:[NSString stringWithFormat:@"%@:%@", NSStringFromClass([self class]), [NSString stringWithFormat:@"distanceScorePosted: %lld", score]]];
-#endif
 }
 
 - (void)fastestScorePosted:(NSNotification *)notification
@@ -166,13 +163,12 @@
     NSArray *scores = [NSArray arrayWithObjects:newScore, nil];
     [GKScore reportScores:scores withCompletionHandler:^(NSError *error) {
         if (error != nil) {
-            NSLog(@"Error in reporting score: %@", error);
+            NSLog(@"Error in reporting time score: %@", error);
+#if defined(TESTFLIGHT_SDK_VERSION) && defined(USE_TESTFLIGHT)
+            [TestFlight passCheckpoint:[NSString stringWithFormat:@"%@:%@", NSStringFromClass([self class]), [NSString stringWithFormat:@"Error reporting time score %lld: %@", score, error]]];
+#endif
         }
     }];
-    
-#if defined(TESTFLIGHT_SDK_VERSION) && defined(USE_TESTFLIGHT)
-    [TestFlight passCheckpoint:[NSString stringWithFormat:@"%@:%@", NSStringFromClass([self class]), [NSString stringWithFormat:@"fastestScorePosted: %lld", score]]];
-#endif
 }
 
 

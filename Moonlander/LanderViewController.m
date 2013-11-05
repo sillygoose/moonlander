@@ -1353,11 +1353,16 @@ const float RollButtonRepeatInterval = 0.20;        // Timer value for roll butt
             landingScore -= 10 * abs(self.VERVEL);
             landingScore -= 10 * abs(self.HORVEL);
 
-#if defined(TESTFLIGHT_SDK_VERSION) && defined(USE_TESTFLIGHT)
-            [TestFlight passCheckpoint:[NSString stringWithFormat:@"CBC: %ds, %dft, %d (vv), %d (hv), %d (fuel)", (short)self.TIME, self.HORDIS, self.VERVEL, self.HORVEL, self.FUEL]];
-#endif
             // Don't allow the menu background to submit scores
             if ([self WallpaperController] == NO) {
+#if defined(TESTFLIGHT_SDK_VERSION) && defined(USE_TESTFLIGHT)
+                if (landingScore >= 999) {
+                    [TestFlight passCheckpoint:[NSString stringWithFormat:@"Exceptionsal CBC score: %ds, %dft, %d (vv), %d (hv), %d (fuel)", (short)self.TIME, self.HORDIS, self.VERVEL, self.HORVEL, self.FUEL]];
+                }
+                else {
+                    [TestFlight passCheckpoint:[NSString stringWithFormat:@"CBC: %ds, %dft, %d (vv), %d (hv), %d (fuel)", (short)self.TIME, self.HORDIS, self.VERVEL, self.HORVEL, self.FUEL]];
+                }
+#endif
                 // Post the score for Game Center
                 [[NSNotificationCenter defaultCenter] postNotificationName:@"mcdonaldsScorePosted" object:[NSNumber numberWithInt:landingScore]];
             }
