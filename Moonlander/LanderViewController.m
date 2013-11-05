@@ -1488,7 +1488,6 @@ const float RollButtonRepeatInterval = 0.20;        // Timer value for roll butt
             [[NSNotificationCenter defaultCenter] postNotificationName:@"fuelScorePosted" object:[NSNumber numberWithInt:self.FUEL]];
             [[NSNotificationCenter defaultCenter] postNotificationName:@"distanceScorePosted" object:[NSNumber numberWithInt:abs(self.HORDIS)]];
             [[NSNotificationCenter defaultCenter] postNotificationName:@"fastestScorePosted" object:[NSNumber numberWithFloat:self.TIME]];
-
 #if defined(TESTFLIGHT_SDK_VERSION) && defined(USE_TESTFLIGHT)
             [TestFlight passCheckpoint:[NSString stringWithFormat:@"Landed at %d, distance (%d), vervel (%d), horvel (%d), fuel (%d)", (short)self.TIME, self.HORDIS, self.VERVEL, self.HORVEL, self.FUEL]];
 #endif

@@ -64,10 +64,12 @@
         
         // Enable Game Center functionality
         self.enableGameCenter = YES;
+        self.gameCenterButton.enabled = YES;
     }
     else {
         // No user is logged into Game Center, run without Game Center support or user interface
         self.enableGameCenter = NO;
+        self.gameCenterButton.enabled = NO;
     }
 }
 
@@ -268,9 +270,6 @@
     
 - (IBAction)showGameCenterButtonAction:(id)event
 {
-#if defined(TESTFLIGHT_SDK_VERSION) && defined(USE_TESTFLIGHT)
-    [TestFlight passCheckpoint:[NSString stringWithFormat:@"%@:%@", NSStringFromClass([self class]), @"showGameCenterButtonAction"]];
-#endif
     GKGameCenterViewController *gameCenterController = [[GKGameCenterViewController alloc] init];
     if (gameCenterController != nil) {
         gameCenterController.gameCenterDelegate = self;

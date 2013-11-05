@@ -20,6 +20,7 @@
 		5604B7F21828581C002ABB0F /* Icon-Spotlight-iOS7@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5604B7EA1828581C002ABB0F /* Icon-Spotlight-iOS7@2x.png */; };
 		5604B7F31828581C002ABB0F /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 5604B7EB1828581C002ABB0F /* Icon.png */; };
 		5604B7F41828581C002ABB0F /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5604B7EC1828581C002ABB0F /* Icon@2x.png */; };
+		5604B7F618288812002ABB0F /* NewAppIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 5604B7F518288812002ABB0F /* NewAppIcon.png */; };
 		560FA0D0137991AD0017EE25 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 560FA0CF137991AD0017EE25 /* UIKit.framework */; };
 		560FA0D2137991AD0017EE25 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 560FA0D1137991AD0017EE25 /* Foundation.framework */; };
 		560FA0D4137991AD0017EE25 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 560FA0D3137991AD0017EE25 /* CoreGraphics.framework */; };
@@ -125,6 +126,7 @@
 		5604B7EA1828581C002ABB0F /* Icon-Spotlight-iOS7@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-Spotlight-iOS7@2x.png"; sourceTree = "<group>"; };
 		5604B7EB1828581C002ABB0F /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
 		5604B7EC1828581C002ABB0F /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon@2x.png"; sourceTree = "<group>"; };
+		5604B7F518288812002ABB0F /* NewAppIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = NewAppIcon.png; sourceTree = "<group>"; };
 		560A661616A64F5100F59B60 /* GameCenter.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = GameCenter.png; sourceTree = "<group>"; };
 		560D212814115314000F3A22 /* README */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README; sourceTree = "<group>"; };
 		560FA0CB137991AD0017EE25 /* Moonlander.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Moonlander.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -756,6 +758,7 @@
 		56E16EC6167EB2D30094C638 /* iTunes */ = {
 			isa = PBXGroup;
 			children = (
+				5604B7F518288812002ABB0F /* NewAppIcon.png */,
 				5604B7E1182857F2002ABB0F /* iTunesArtwork */,
 				5604B7E2182857F2002ABB0F /* iTunesArtwork@2x */,
 				563F401F16A5C116004F7FB6 /* Game Center Metadata */,
@@ -981,6 +984,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				560FA0DA137991AE0017EE25 /* InfoPlist.strings in Resources */,
+				5604B7F618288812002ABB0F /* NewAppIcon.png in Resources */,
 				56E80E4C137E4CC3009E7F15 /* Lander.plist in Resources */,
 				562CB7BB137F3AE6003CB9B5 /* LargeLeftArrow.plist in Resources */,
 				5604B7F01828581C002ABB0F /* Icon-Small@2x.png in Resources */,
