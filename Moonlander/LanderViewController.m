@@ -844,6 +844,10 @@ const float RollButtonRepeatInterval = 0.20;        // Timer value for roll butt
     CFURLRef explodeFileURL = (__bridge CFURLRef) [[NSBundle mainBundle] URLForResource: @"explosion-med" withExtension: @"caf"];
     AudioServicesCreateSystemSoundID(explodeFileURL, &_explosionSound);
     
+    // Register to get background events
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(enteredBackground:) name:UIApplicationDidEnterBackgroundNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(enteredForeground:) name:UIApplicationDidBecomeActiveNotification object:nil];
+    
     // Setup initial conditions
     [self initGame:YES];
     
@@ -852,6 +856,24 @@ const float RollButtonRepeatInterval = 0.20;        // Timer value for roll butt
         [TestFlight passCheckpoint:[NSString stringWithFormat:@"%@:%@", NSStringFromClass([self class]), @""]];
     }
 #endif
+}
+
+- (void)dealloc
+{
+    // Release notifications
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
+- (void)enteredBackground:(NSNotification *)notification
+{
+    // Stop game play while we wait to return to the foreground
+    [self cleanupTimers];
+}
+
+- (void)enteredForeground:(NSNotification *)notification
+{
+    // Restore game play while we wait to return to the foreground
+    [self setupTimers];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
