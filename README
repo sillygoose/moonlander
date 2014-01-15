@@ -37,3 +37,9 @@ Credits
 +https://gist.github.com/4003642 (current)
 -https://gist.github.com/966838
 -http://kswizz.com/post/2686511526/git-xcode-versioning
+
+
+git commands to remember
+========================
+git tag -a 2.0.0 -m "string"
+git tag -d 2.0.0
