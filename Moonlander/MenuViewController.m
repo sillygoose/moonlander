@@ -186,7 +186,7 @@
     int major, minor, build;
     if (3 == sscanf([versionString UTF8String], "%d.%d.%d", &major, &minor, &build)) {
         // Preferred output
-        self.buildInfo.text = [NSString stringWithFormat:@"Version %d.%02d (%@)", major, minor, buildString];
+        self.buildInfo.text = [NSString stringWithFormat:@"Version %d.%d.%d (%@)", major, minor, build, buildString];
     }
     else {
         // Punt, something unexpected happened
