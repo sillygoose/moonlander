@@ -111,6 +111,7 @@ typedef enum {
     VGDialog            *_anotherGameDialog;
     
     BOOL                _didFuelAlert;
+    BOOL                _reportedCheeseburgerChallenge;
     
 	SystemSoundID       _beepSound;
     SystemSoundID       _explosionSound;
@@ -201,6 +202,7 @@ typedef enum {
 @property (nonatomic, strong) VGDialog *anotherGameDialog;
 
 @property (nonatomic) BOOL didFuelAlert;
+@property (nonatomic) BOOL reportedCheeseburgerChallenge;
 
 @property (nonatomic) SystemSoundID beepSound;
 @property (nonatomic) SystemSoundID explosionSound;

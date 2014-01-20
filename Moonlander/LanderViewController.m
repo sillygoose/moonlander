@@ -90,6 +90,7 @@
 @synthesize anotherGameDialog=_anotherGameDialog;
 
 @synthesize didFuelAlert=_didFuelAlert;
+@synthesize reportedCheeseburgerChallenge=_reportedCheeseburgerChallenge;
 
 @synthesize beepSound=_beepSound;
 @synthesize explosionSound=_explosionSound;
@@ -398,6 +399,9 @@ const float RollButtonRepeatInterval = 0.20;        // Timer value for roll butt
     
     // No fuel alert issued
     self.didFuelAlert = NO;
+    
+    // Fix for reporting multiple cheeseburger challenges
+    self.reportedCheeseburgerChallenge = NO;
     
     // Enable all flight controls
     [self enableFlightControls];
@@ -1376,7 +1380,9 @@ const float RollButtonRepeatInterval = 0.20;        // Timer value for roll butt
             landingScore -= 10 * abs(self.HORVEL);
 
             // Don't allow the menu background to submit scores
-            if ([self WallpaperController] == NO) {
+            if ([self WallpaperController] == NO && self.reportedCheeseburgerChallenge == NO) {
+                // Set a flag so we don't report multiple relandings
+                self.reportedCheeseburgerChallenge = YES;
 #if defined(TESTFLIGHT_SDK_VERSION) && defined(USE_TESTFLIGHT)
                 if (landingScore >= 999) {
                     [TestFlight passCheckpoint:[NSString stringWithFormat:@"Exceptionsal CBC score: %ds, %dft, %d (vv), %d (hv), %d (fuel)", (short)self.TIME, self.HORDIS, self.VERVEL, self.HORVEL, self.FUEL]];
@@ -1389,8 +1395,11 @@ const float RollButtonRepeatInterval = 0.20;        // Timer value for roll butt
                 [[NSNotificationCenter defaultCenter] postNotificationName:@"mcdonaldsScorePosted" object:[NSNumber numberWithInt:landingScore]];
             }
 
-            // Now take off with the food and some extra fuel
+            // Set altitude to something interesting (to prevent not taking off)
             self.VERDIS += 4;
+            self.RADARY += 4;
+
+            // Now take off with the food and some extra fuel
             self.FUEL += 200;
             self.ANGLED = 0;
             self.VERVEL = 0;
