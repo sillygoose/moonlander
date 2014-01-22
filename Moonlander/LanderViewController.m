@@ -1577,7 +1577,7 @@ const float RollButtonRepeatInterval = 0.20;        // Timer value for roll butt
         [self.landerMessages addSystemMessage:@"DeadLanding"];
         QUICK = YES;
     }
-    else if (self.RADARY <= 3) {
+    else if (self.RADARY <= 1) {
         //(VERYLO)  We landed or crashed, turn off fuel, flames, and dust
         [self landerDown];
         

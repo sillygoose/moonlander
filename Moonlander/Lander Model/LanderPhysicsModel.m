@@ -281,8 +281,8 @@ static float RadiansToDegrees(float radians)
     self.lemOnSurface = NO;
 #if defined(DEBUG) && (defined(DEBUG_AUTOPILOT) || defined(DEBUG_DUST) || defined(DEBUG_FLAME) || defined(DEBUG_HOLD_HORIZONTAL_POSITION) || defined(DEBUG_HOLD_VERTICAL_POSITION))
     // Custom lander start point
-    self.fuelRemaining = self.lemInitalFuel;
-    self.turnAngle = -0.0f;
+    self.fuelRemaining = self.lemInitialFuel;
+    self.turnAngle = 0;
     self.horizontalVelocity = 0;
     self.verticalVelocity = -10;
     self.horizontalDistance = 1572;
