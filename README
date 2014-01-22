@@ -3,7 +3,7 @@ Moonlander, the classic 1973 video game for the DEC GT40
 
 History
 =======
-2.1.1               Fixed bug which caused Cheeseburger challenge scores to
+2.1.0               Fixed bug which caused Cheeseburger challenge scores to
                     be reported multiple times (relanding issue).
 
 2.01                Fixed issue with game continuing to run in background
