@@ -88,6 +88,8 @@
 
 - (void)viewWillDisappear:(BOOL)animated
 {
+    [super viewWillDisappear:YES];
+
     // Hide the navagation bar when leaving the view
     [[self navigationController] setNavigationBarHidden:YES animated:NO];
 }

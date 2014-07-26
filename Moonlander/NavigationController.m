@@ -18,6 +18,8 @@
 
 - (void)viewDidLoad
 {
+    [super viewDidLoad];
+    
     // Hide the navigation bar
     [[self navigationController] setNavigationBarHidden:YES animated:NO];
 }

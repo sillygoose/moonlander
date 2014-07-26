@@ -80,7 +80,7 @@ const short RadiusIncrement2 = -10;
         
         void (^animateExplosionView)(void) = ^{
             // Use a block animation to fade the alpha to zero
-            int count = [self.explosionViews count];
+            NSUInteger count = [self.explosionViews count];
             if (count) {
                 // Get the view and make visible
                 __block Explosion *theView = [self.explosionViews objectAtIndex:0];

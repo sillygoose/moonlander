@@ -60,11 +60,11 @@
 
 - (void)viewWillAppear:(BOOL)animated
 {
+    [super viewWillAppear:animated];
+
 #ifdef DEBUG
     [self performSelector:@selector(dismissSplashScreen) withObject:nil afterDelay:0];
 #else
-    [super viewWillAppear:animated];
-    
     const float SplashScreenDelay = 3.0;
     const float textFadeInTime = 2.5;
     const float secondFadeInDelay = textFadeInTime + 0.5;
