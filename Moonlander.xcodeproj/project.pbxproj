@@ -33,7 +33,7 @@
 		56173A11154661BB00380AB4 /* Icon-72.png in Resources */ = {isa = PBXBuildFile; fileRef = 56173A0D154661BB00380AB4 /* Icon-72.png */; };
 		56173A12154661BB00380AB4 /* Icon-72@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 56173A0E154661BB00380AB4 /* Icon-72@2x.png */; };
 		5621703515392F1F0094122B /* Explosion.m in Sources */ = {isa = PBXBuildFile; fileRef = 5621703415392F1F0094122B /* Explosion.m */; };
-		5622049318253DC400D5F5BE /* iOS7.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5622049218253DC400D5F5BE /* iOS7.storyboard */; };
+		5622049318253DC400D5F5BE /* Moonlander.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5622049218253DC400D5F5BE /* Moonlander.storyboard */; };
 		562B108A13841BAA00CC5C97 /* VGLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 562B108913841BAA00CC5C97 /* VGLabel.m */; };
 		562B108D13841D5A00CC5C97 /* LanderMessages.plist in Resources */ = {isa = PBXBuildFile; fileRef = 562B108C13841D5A00CC5C97 /* LanderMessages.plist */; };
 		562CB7BB137F3AE6003CB9B5 /* LargeLeftArrow.plist in Resources */ = {isa = PBXBuildFile; fileRef = 562CB7BA137F3AE6003CB9B5 /* LargeLeftArrow.plist */; };
@@ -158,7 +158,7 @@
 		56205CB91545953800C33417 /* lunar.lda */ = {isa = PBXFileReference; lastKnownFileType = file; path = lunar.lda; sourceTree = "<group>"; };
 		5621703315392F1F0094122B /* Explosion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Explosion.h; sourceTree = "<group>"; };
 		5621703415392F1F0094122B /* Explosion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Explosion.m; sourceTree = "<group>"; };
-		5622049218253DC400D5F5BE /* iOS7.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = iOS7.storyboard; sourceTree = "<group>"; };
+		5622049218253DC400D5F5BE /* Moonlander.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Moonlander.storyboard; sourceTree = "<group>"; };
 		5622933316701D2C0023E008 /* Moonlander-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Moonlander-Info.plist"; sourceTree = "<group>"; };
 		562B108813841BAA00CC5C97 /* VGLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VGLabel.h; sourceTree = "<group>"; };
 		562B108913841BAA00CC5C97 /* VGLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VGLabel.m; sourceTree = "<group>"; };
@@ -410,7 +410,7 @@
 		560FA0D5137991AE0017EE25 /* Moonlander */ = {
 			isa = PBXGroup;
 			children = (
-				5622049218253DC400D5F5BE /* iOS7.storyboard */,
+				5622049218253DC400D5F5BE /* Moonlander.storyboard */,
 				560FA0DE137991AE0017EE25 /* MoonlanderAppDelegate.h */,
 				560FA0DF137991AE0017EE25 /* MoonlanderAppDelegate.m */,
 				565D237615411DB30074D3AD /* LanderDelegate.h */,
@@ -999,7 +999,7 @@
 				564EBC5113834A17007D477C /* McDonalds.plist in Resources */,
 				569BB49C138398A2005E2C86 /* ThrusterNeedle.plist in Resources */,
 				562B108D13841D5A00CC5C97 /* LanderMessages.plist in Resources */,
-				5622049318253DC400D5F5BE /* iOS7.storyboard in Resources */,
+				5622049318253DC400D5F5BE /* Moonlander.storyboard in Resources */,
 				56BC68641388BDE200403643 /* Labels.plist in Resources */,
 				5604B7EE1828581C002ABB0F /* Icon-iPad-Spotlight-iOS7@2x.png in Resources */,
 				56B2BD811825FAEA00F43E30 /* Icon-76.png in Resources */,

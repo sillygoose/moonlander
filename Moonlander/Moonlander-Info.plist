@@ -85,7 +85,7 @@
 		</dict>
 	</array>
 	<key>UIMainStoryboardFile~ipad</key>
-	<string>iOS7</string>
+	<string>Moonlander</string>
 	<key>UIRequiredDeviceCapabilities</key>
 	<array>
 		<string>gamekit</string>
