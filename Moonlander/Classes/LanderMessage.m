@@ -193,7 +193,7 @@
             if ([removeItems count]) {
                 dispatch_sync(dispatch_get_main_queue(), ^{
                     VGLabel *label = [removeItems objectAtIndex:0];
-                    [removeItems removeObject:0];
+                    //###[removeItems removeObject:0];
                     if (label) {
                         [self removeAllLanderMessages];
                     }

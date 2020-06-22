@@ -1306,6 +1306,9 @@ const float RollButtonRepeatInterval = 0.20;        // Timer value for roll butt
         // Wait a bit before continuing
         [self performSelector:@selector(prepareForNewGame) withObject:nil afterDelay:[self getDelay: DelayTakeoff]];
     }
+    else if (self.landerModel.lemOnSurface) {
+        // Allow this thread to die since we touched down again
+    }
     else {
         // Keep waiting for screen change
         const float PollLiftoffInterval = 0.4;
@@ -1385,10 +1388,10 @@ const float RollButtonRepeatInterval = 0.20;        // Timer value for roll butt
                 self.reportedCheeseburgerChallenge = YES;
 #if defined(TESTFLIGHT_SDK_VERSION) && defined(USE_TESTFLIGHT)
                 if (landingScore >= 999) {
-                    [TestFlight passCheckpoint:[NSString stringWithFormat:@"Exceptionsal CBC score: %ds, %dft, %d (vv), %d (hv), %d (fuel)", (short)self.TIME, self.HORDIS, self.VERVEL, self.HORVEL, self.FUEL]];
+                    [TestFlight passCheckpoint:[NSString stringWithFormat:@"Exceptionsal CBC score: %d, %ds, %dft, %d (vv), %d (hv), %d (fuel)", landingScore, (short)self.TIME, self.HORDIS, self.VERVEL, self.HORVEL, self.FUEL]];
                 }
                 else {
-                    [TestFlight passCheckpoint:[NSString stringWithFormat:@"CBC: %ds, %dft, %d (vv), %d (hv), %d (fuel)", (short)self.TIME, self.HORDIS, self.VERVEL, self.HORVEL, self.FUEL]];
+                    [TestFlight passCheckpoint:[NSString stringWithFormat:@"CBC: %d, %ds, %dft, %d (vv), %d (hv), %d (fuel)", landingScore, (short)self.TIME, self.HORDIS, self.VERVEL, self.HORVEL, self.FUEL]];
                 }
 #endif
                 // Post the score for Game Center

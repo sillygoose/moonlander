@@ -17,7 +17,9 @@
 @property (nonatomic, strong) IBOutlet UIButton *gameCenterButton;
 @property (nonatomic, strong) IBOutlet UIButton *faqButton;
 @property (nonatomic, strong) IBOutlet UIButton *creditsButton;
+#ifdef ML_MORE_CLASSICS
 @property (nonatomic, strong) IBOutlet UIButton *moreClassicsButton;
+#endif
 
 @property (nonatomic) BOOL enableGameCenter;
 @property (nonatomic, strong) NSString *mcdonaldsLeaderboard;
@@ -219,6 +221,8 @@
     
     // Authenticate with Game Center
     self.enableGameCenter = NO;
+    self.gameCenterManager = nil;
+#if 0
     if ([GameCenterManager isGameCenterAvailable]) {
         // Create the manager
 		self.gameCenterManager= [[GameCenterManager alloc] init];
@@ -228,6 +232,7 @@
 	else {
         self.gameCenterManager = nil;
 	}
+#endif
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -285,6 +290,7 @@
 #pragma mark -
 #pragma mark Button events
 
+#ifdef ML_MORE_CLASSICS
 - (IBAction)moreClassicsButtonSelected:(id)sender
 {
 #if defined(TESTFLIGHT_SDK_VERSION) && defined(USE_TESTFLIGHT)
@@ -294,5 +300,6 @@
     NSString *iTunesLink = @"itms-apps://itunes.com/apps/paradigmsystems";
     [[UIApplication sharedApplication] openURL:[NSURL URLWithString:iTunesLink]];
 }
+#endif
 
 @end

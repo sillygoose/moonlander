@@ -25,7 +25,7 @@ typedef float (^angle_data_t)();
     
 @private
     int                 _FRAND;
-    int                 _FSHIFT;
+    int                 _FPSHIFT;
     int                 _FlameLine;
     int                 _FlameIntensity;
 }
@@ -39,7 +39,7 @@ typedef float (^angle_data_t)();
 @property (nonatomic) float previousAngle;
 
 @property (nonatomic) int FRAND;
-@property (nonatomic) int FSHIFT;
+@property (nonatomic) int FPSHIFT;
 @property (nonatomic) int flameLine;
 @property (nonatomic) int flameIntensity;
 

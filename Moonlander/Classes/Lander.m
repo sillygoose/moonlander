@@ -18,7 +18,7 @@
 @synthesize previousAngle=_previousAngle;
 
 @synthesize FRAND=_FRAND;
-@synthesize FSHIFT=_FSHIFT;
+@synthesize FPSHIFT=_FPSHIFT;
 @synthesize flameLine=_FlameLine;
 @synthesize flameIntensity=_FlameIntensity;
 
@@ -121,8 +121,8 @@
             short RET2 = self.FRAND & 0x1f;
             RET2 = YUPDWN[RET2]; 
             RET1 += RET2;
-            self.FSHIFT += RET1;
-            RET2 = self.FSHIFT & 0x03;
+            self.FPSHIFT += RET1;
+            RET2 = self.FPSHIFT & 0x03;
             //;LET RET2 POINT TO THE BYTE X TABLE
 
             // Start drawing now
