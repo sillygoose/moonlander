@@ -3,7 +3,7 @@
 //  Moonlander
 //
 //  Created by Rick on 6/14/11.
-//  Copyright 2011, 2012 Paradigm Systems. All rights reserved.
+//  Copyright 2011, 2012 Rick Naro. All rights reserved.
 //
 
 #import "Dust.h"

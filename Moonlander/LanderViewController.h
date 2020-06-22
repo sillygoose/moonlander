@@ -3,7 +3,7 @@
 //  Moonlander
 //
 //  Created by Silly Goose on 5/10/11.
-//  Copyright (c) 2012 Paradigm Systemse. All rights reserved.
+//  Copyright (c) 2012 Rick Naroe. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>

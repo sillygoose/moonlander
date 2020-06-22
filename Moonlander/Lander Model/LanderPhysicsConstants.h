@@ -3,7 +3,7 @@
 //  Moonlander
 //
 //  Created by Rick on 5/12/11.
-//  Copyright 2012 Paradigm Systems. All rights reserved.
+//  Copyright 2012 Rick Naro. All rights reserved.
 //
 //  Most constants are form the orignla sources, those ending with LEM are from
 //  the Smithsonian Apollo specifications

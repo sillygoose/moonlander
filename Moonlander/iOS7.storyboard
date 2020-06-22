@@ -391,7 +391,7 @@
         <!--Auto Pilot View Controller-->
         <scene sceneID="V9c-nT-1wb">
             <objects>
-                <viewController storyboardIdentifier="AutoPilotSimulation" autoresizesArchivedViewToFullSize="NO" automaticallyAdjustsScrollViewInsets="NO" id="1Pw-xj-Q7P" customClass="AutoPilotViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="AutoPilotSimulation" automaticallyAdjustsScrollViewInsets="NO" id="1Pw-xj-Q7P" customClass="AutoPilotViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="8QL-6Q-ImT"/>
                         <viewControllerLayoutGuide type="bottom" id="iy7-0i-IbB"/>
@@ -404,7 +404,6 @@
                             <accessibilityTraits key="traits" notEnabled="YES"/>
                         </accessibility>
                     </view>
-                    <extendedEdge key="edgesForExtendedLayout"/>
                     <nil key="simulatedStatusBarMetrics"/>
                     <nil key="simulatedTopBarMetrics"/>
                     <nil key="simulatedBottomBarMetrics"/>

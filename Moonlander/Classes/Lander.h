@@ -3,16 +3,16 @@
 //  Moonlander
 //
 //  Created by Rick on 5/24/11.
-//  Copyright 2011, 2012 Paradigm Systems. All rights reserved.
+//  Copyright 2011, 2012 Rick Naro. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
 
 #import "VGView.h"
 
-typedef short (^thrust_percent_t)();
-typedef short (^thrust_data_t)();
-typedef float (^angle_data_t)();
+typedef short (^thrust_percent_t)(void);
+typedef short (^thrust_data_t)(void);
+typedef float (^angle_data_t)(void);
 
 @interface Lander : VGView {
     VGView              *_thrust;

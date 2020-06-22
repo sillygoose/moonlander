@@ -3,7 +3,7 @@
 //  Moonlander
 //
 //  Created by Silly Goose on 12/6/12.
-//  Copyright (c) 2012 Paradigm Systems. All rights reserved.
+//  Copyright (c) 2012 Rick Naro. All rights reserved.
 //
 
 #import "AutoPilotViewController.h"

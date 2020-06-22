@@ -3,7 +3,7 @@
 //  Moonlander
 //
 //  Created by Rick Naro on 10/3/11.
-//  Copyright (c) 2011, 2012 Paradigm Systems. All rights reserved.
+//  Copyright (c) 2011, 2012 Rick Naro. All rights reserved.
 //
 //  Used to create a simple modal yes/no dialog
 //

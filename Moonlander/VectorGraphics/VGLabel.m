@@ -3,7 +3,7 @@
 //  Moonlander
 //
 //  Created by Rick on 5/18/11.
-//  Copyright 2012 Paradigm Systems. All rights reserved.
+//  Copyright 2012 Rick Naro. All rights reserved.
 //
 
 #import "VGLabel.h"
@@ -40,7 +40,7 @@
 -(void)updateDrawingDictionary
 {
     // Blink state and text alignment
-    NSNumber *textAlign = [NSNumber numberWithInt:self.textAlignment];
+    NSNumber *textAlign = [NSNumber numberWithInt:(int)self.textAlignment];
     NSNumber *intensity = [NSNumber numberWithInt:self.intensity];
     NSNumber *blinkState = (self.blink) ? [NSNumber numberWithBool:self.blink] : nil;
     

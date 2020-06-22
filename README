@@ -3,6 +3,8 @@ Moonlander, the classic 1973 video game for the DEC GT40
 
 History
 =======
+3.0.3               Lazarus build
+
 2.1.2               Cleaned up and tested with iOS8
 
 2.1.1               Fixed bug which caused Cheeseburger challenge scores to
@@ -19,22 +21,6 @@ History
                     Changed to use new delays to speed things up
                     
 1.0.0               Initial release
-
-
-Current bugs/issues
-===================
-
-
-Features wish list
-===================
-- lunar rover upgrade
-- lunar golf mini game
-
-
-Issues to do list
-=================
-- switching screens disrupts autopilot lunar walk
-- disable AUTOPILOT control when on surface
 
 
 Credits

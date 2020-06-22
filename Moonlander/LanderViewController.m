@@ -3,7 +3,7 @@
 //  Moonlander
 //
 //  Created by Rick on 5/10/11.
-//  Copyright 2011, 2012 Paradigm Systems. All rights reserved.
+//  Copyright 2011, 2012 Rick Naro. All rights reserved.
 //
 
 #import "LanderViewController.h"
@@ -880,6 +880,7 @@ const float RollButtonRepeatInterval = 0.20;        // Timer value for roll butt
     [self setupTimers];
 }
 
+#if 0 //###
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
 	return (interfaceOrientation == UIInterfaceOrientationLandscapeLeft || interfaceOrientation == UIInterfaceOrientationLandscapeRight);
@@ -894,6 +895,7 @@ const float RollButtonRepeatInterval = 0.20;        // Timer value for roll butt
 {
     [super willRotateToInterfaceOrientation:toInterfaceOrientation duration:duration];
 }
+#endif
 
 - (void)viewWillAppear:(BOOL)animated
 {

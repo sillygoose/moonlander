@@ -3,7 +3,7 @@
 //  Moonlander
 //
 //  Created by Rick Naro on 4/29/12.
-//  Copyright (c) 2012 Paradigm Systems. All rights reserved.
+//  Copyright (c) 2012 Rick Naro. All rights reserved.
 //
 
 #import "DocumentViewController.h"
@@ -135,9 +135,11 @@
     [self.documentContent loadHTMLString:errorString baseURL:nil];
 }
 
+#if 0 //###
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
 	return (interfaceOrientation == UIInterfaceOrientationLandscapeLeft || interfaceOrientation == UIInterfaceOrientationLandscapeRight);
 }
+#endif
 
 @end

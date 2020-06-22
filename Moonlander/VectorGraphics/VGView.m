@@ -3,7 +3,7 @@
 //  Moonlander
 //
 //  Created by Rick on 5/14/11.
-//  Copyright 2011, 2012 Paradigm Systems. All rights reserved.
+//  Copyright 2011, 2012 Rick Naro. All rights reserved.
 //
 
 #import "VGView.h"
@@ -66,7 +66,7 @@ const float VGBlinkInterval = 0.75;
 - (void)drawSomethingUsing:(NSArray *)arrayOfVectors
 {
     BOOL logCommand = NO;
-    UITextAlignment textAlignment = NSTextAlignmentLeft;
+    NSTextAlignment textAlignment = NSTextAlignmentLeft;
 
     // Simple stack for push/pop support
     CGPoint positionStack[4];

@@ -3,7 +3,7 @@
 //  Moonlander
 //
 //  Created by Rick Naro on 4/29/12.
-//  Copyright (c) 2012 Paradigm Systemse. All rights reserved.
+//  Copyright (c) 2012 Rick Naro. All rights reserved.
 //
 
 #import "MenuViewController.h"
@@ -204,7 +204,11 @@
     [self.view sendSubviewToBack:self.menuBackground.view];
     [self addChildViewController:self.menuBackground];
     [self.menuBackground didMoveToParentViewController:self];
-    
+
+#if 1 // No GC stuff
+    // Hide Game Center button
+    self.gameCenterButton.hidden = YES;
+#else
     // Access to Game Center elements
     self.mcdonaldsLeaderboard = @"moonlander.mcdonalds.leaderboard";
     self.remainingFuelLeaderboard = @"moonlander.remainingfuel.leaderboard";
@@ -233,6 +237,7 @@
         self.gameCenterManager = nil;
 	}
 #endif
+#endif
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -250,6 +255,7 @@
     [super viewWillDisappear:animated];
 }
 
+#if 0
 - (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation
 {
     [super didRotateFromInterfaceOrientation:fromInterfaceOrientation];
@@ -264,7 +270,7 @@
 {
 	return (interfaceOrientation == UIInterfaceOrientationLandscapeLeft || interfaceOrientation == UIInterfaceOrientationLandscapeRight);
 }
-
+#endif
 
 #pragma mark -
 #pragma mark Game Center button actions

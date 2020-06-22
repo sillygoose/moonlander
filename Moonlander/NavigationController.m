@@ -3,7 +3,7 @@
 //  Moonlander
 //
 //  Created by Rick Naro on 4/29/12.
-//  Copyright (c) 2012 Paradigm Systemse. All rights reserved.
+//  Copyright (c) 2012 Rick Naroe. All rights reserved.
 //
 
 #import "NavigationController.h"
@@ -24,9 +24,11 @@
     [[self navigationController] setNavigationBarHidden:YES animated:NO];
 }
 
+#if 0 //###
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
 	return (interfaceOrientation == UIInterfaceOrientationLandscapeLeft || interfaceOrientation == UIInterfaceOrientationLandscapeRight);
 }
+#endif
 
 @end

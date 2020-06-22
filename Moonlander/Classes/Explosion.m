@@ -3,7 +3,7 @@
 //  Moonlander
 //
 //  Created by Rick Naro on 4/14/12.
-//  Copyright (c) 2012 Paradigm Systems. All rights reserved.
+//  Copyright (c) 2012 Rick Naro. All rights reserved.
 //
 
 #import "Explosion.h"
@@ -17,10 +17,12 @@ static float DegreesToRadians(float degrees)
     return degrees * M_PI / 180;
 }
 
+#if 0 //###
 static float RadiansToDegrees(float radians)
 {
     return radians * 180 / M_PI;
 }
+#endif
 
 - (id)initWithFrame:(CGRect)frameRect
 {

@@ -3,7 +3,7 @@
 //  Moonlander
 //
 //  Created by Rick on 5/23/11.
-//  Copyright 2012 Paradigm Systems. All rights reserved.
+//  Copyright 2012 Rick Naro. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
@@ -11,7 +11,7 @@
 #import "VGButton.h"
 
 
-typedef short (^telemetry_data_t)();
+typedef short (^telemetry_data_t)(void);
 
 @interface Telemetry : VGButton {
     NSString                        *_format;

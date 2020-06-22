@@ -3,7 +3,7 @@
 //  Moonlander
 //
 //  Created by Rick Naro on 4/14/12.
-//  Copyright (c) 2012 Paradigm Systems. All rights reserved.
+//  Copyright (c) 2012 Rick Naro. All rights reserved.
 //
 
 #import "VGView.h"

@@ -3,7 +3,7 @@
 //  Moonlander
 //
 //  Created by Rick on 5/15/11.
-//  Copyright 2012 Paradigm Systems. All rights reserved.
+//  Copyright 2012 Rick Naro. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>

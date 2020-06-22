@@ -3,7 +3,7 @@
 //  Moonlander
 //
 //  Created by Rick on 5/15/11.
-//  Copyright 2011, 2012 Paradigm Systems. All rights reserved.
+//  Copyright 2011, 2012 Rick Naro. All rights reserved.
 //
 
 #import "VGSlider.h"
@@ -108,7 +108,7 @@
     
     // Update the % thrust subview by dynamically creating a draw path
     NSString *thrustValue = [NSString stringWithFormat:@"%3.0f%%", self.value];
-    NSNumber *textAlign = [NSNumber numberWithInt:self.thrusterValue.textAlignment];
+    NSNumber *textAlign = [NSNumber numberWithInt:(int)self.thrusterValue.textAlignment];
 
     NSDictionary *currentThrustPath = [NSDictionary dictionaryWithObjectsAndKeys:textAlign, @"alignment", thrustValue, @"text", nil];
     NSArray *path = [NSArray arrayWithObject:currentThrustPath];

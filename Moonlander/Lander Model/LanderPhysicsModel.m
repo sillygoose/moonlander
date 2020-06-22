@@ -3,7 +3,7 @@
 // Moonlander
 //
 // Created by Rick on 5/10/11.
-// Copyright 2011, 2012 Paradigm Systems. All rights reserved.
+// Copyright 2011, 2012 Rick Naro. All rights reserved.
 //
 
 #import "LanderPhysicsModel.h"
@@ -54,10 +54,12 @@ static float DegreesToRadians(float degrees)
     return degrees * M_PI / 180;
 }
 
+#if 0 //###
 static float RadiansToDegrees(float radians)
 {
     return radians * 180 / M_PI;
 }
+#endif
 
 // Setters and getters
 - (void)setFuelRemaining:(float)fuel

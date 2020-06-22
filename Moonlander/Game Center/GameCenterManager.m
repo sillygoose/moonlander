@@ -3,7 +3,7 @@
 //  Moonlander Classic
 //
 //  Created by Rick Naro on 5/10/12.
-//  Copyright (c) 2012 Paradigm Systems. All rights reserved.
+//  Copyright (c) 2012 Rick Naro. All rights reserved.
 //
 
 #import "GameCenterManager.h"

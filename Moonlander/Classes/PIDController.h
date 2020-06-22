@@ -3,12 +3,12 @@
 //  Moonlander
 //
 //  Created by Rick Naro on 5/3/12.
-//  Copyright (c) 2012 Paradigm Systems. All rights reserved.
+//  Copyright (c) 2012 Rick Naro. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
 
-typedef float (^process_data_t)();
+typedef float (^process_data_t)(void);
 
 
 @interface PIDController : NSObject
