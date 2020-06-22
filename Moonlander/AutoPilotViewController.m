@@ -117,13 +117,19 @@
 }
 - (void)waitNewGame
 {
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wundeclared-selector"
     [self performSelector:@selector(startGameDelay) withObject:nil afterDelay:[self getDelay:DelayNewGame]];
+#pragma clang diagnostic pop
 }
 
 - (void)getStarted
 {
     [super getStarted];
-    [self performSelector:@selector(enableAutoPilot) withObject:nil afterDelay:0];
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wundeclared-selector"
+[self performSelector:@selector(enableAutoPilot) withObject:nil afterDelay:0];
+#pragma clang diagnostic pop
     
     // Initial instrument displays in autopilot mode
     self.instrument1.instrument = self.heightData;

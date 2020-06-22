@@ -52,7 +52,10 @@
     self.autoPilotSwitch = [[VGButton alloc] initWithFrame:CGRectMake(TelemetryXPos, instrumentY, TelemetryXSize, TelemetryYSize)];
     self.autoPilotSwitch.titleLabel.fontSize = self.gameFontSize;;
     self.autoPilotSwitch.titleLabel.text = @"AUTOPILOT";
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wundeclared-selector"
     [self.autoPilotSwitch addTarget:self action:@selector(autoPilotChange) forControlEvents:UIControlEventValueChanged];
+#pragma clang diagnostic pop
     self.autoPilotSwitch.hidden = YES;
 #ifdef DEBUG
     self.autoPilotSwitch.titleLabel.vectorName = @"autopilot";
