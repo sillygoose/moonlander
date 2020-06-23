@@ -276,7 +276,7 @@
                     <connections>
                         <outlet property="_activityIndicator" destination="sIr-Cp-QOT" id="R5O-zO-cFc"/>
                         <outlet property="_documentContent" destination="P6n-cM-0AM" id="XPR-4J-l3m"/>
-                        <segue destination="PJ3-PK-k6G" kind="push" identifier="http://simh.trailing-edge.com/contrib.html" id="uMu-QH-uPq"/>
+                        <segue destination="PJ3-PK-k6G" kind="push" identifier="http://simh.trailing-edge.com/" id="uMu-QH-uPq"/>
                         <segue destination="PJ3-PK-k6G" kind="push" identifier="http://www.ultimate.com/phil/xy/" id="Hnb-ln-Yd1"/>
                         <segue destination="PJ3-PK-k6G" kind="push" identifier="http://www.brouhaha.com/~eric/retrocomputing/dec/gt40/" id="xNp-nA-x8o"/>
                     </connections>
@@ -450,7 +450,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="xNp-nA-x8o"/>
+        <segue reference="pjc-R8-KNF"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="Game-Center-iOS-7-256.png" width="256" height="256"/>
