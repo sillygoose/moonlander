@@ -406,42 +406,6 @@
             </objects>
             <point key="canvasLocation" x="3101" y="-956"/>
         </scene>
-        <!--Game Center Challenges-->
-        <scene sceneID="LV3-UU-Cyh">
-            <objects>
-                <viewController title="Game Center Challenges" id="IZ9-WM-VQn" userLabel="Game Center Challenges" customClass="DocumentViewController" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="kFz-Wj-RX0"/>
-                        <viewControllerLayoutGuide type="bottom" id="Obz-kr-Dlf"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="VDg-Dq-foy">
-                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <subviews>
-                            <webView opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" fixedFrame="YES" allowsInlineMediaPlayback="NO" mediaPlaybackRequiresUserAction="NO" mediaPlaybackAllowsAirPlay="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ne8-BN-Ggv">
-                                <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <dataDetectorType key="dataDetectorTypes"/>
-                                <connections>
-                                    <outlet property="delegate" destination="IZ9-WM-VQn" id="taS-mV-Pm4"/>
-                                </connections>
-                            </webView>
-                        </subviews>
-                        <color key="backgroundColor" red="0.66666668653488159" green="0.66666668653488159" blue="0.66666668653488159" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                    </view>
-                    <extendedEdge key="edgesForExtendedLayout"/>
-                    <navigationItem key="navigationItem" title="Game Center Challenges" id="Bnd-Mm-YFf">
-                        <barButtonItem key="backBarButtonItem" title="Back" id="Pbl-ib-l3u"/>
-                    </navigationItem>
-                    <connections>
-                        <outlet property="_documentContent" destination="Ne8-BN-Ggv" id="6oQ-49-Fwb"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="h71-Fz-EdV" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="3101" y="-255"/>
-        </scene>
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="pjc-R8-KNF"/>
