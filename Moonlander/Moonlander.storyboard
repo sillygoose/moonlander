@@ -14,7 +14,7 @@
                     <nil key="simulatedStatusBarMetrics"/>
                     <nil key="simulatedTopBarMetrics"/>
                     <nil key="simulatedBottomBarMetrics"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="hoZ-fw-SkC">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="hoZ-fw-SkC">
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
@@ -226,13 +226,7 @@
                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
                     <extendedEdge key="edgesForExtendedLayout"/>
-                    <navigationItem key="navigationItem" title="Flight Controls" id="j1h-XN-k8B">
-                        <barButtonItem key="rightBarButtonItem" title="Game Center Challenges" id="Tal-zu-FOE">
-                            <connections>
-                                <segue destination="IZ9-WM-VQn" kind="push" identifier="Challenges.htm" id="J6g-QX-Iud"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="Flight Controls" id="j1h-XN-k8B"/>
                     <connections>
                         <outlet property="_activityIndicator" destination="IoP-wR-u8S" id="1Lb-Xg-tmW"/>
                         <outlet property="_documentContent" destination="sbp-YL-yv8" id="Byl-Ze-ojG"/>
@@ -240,7 +234,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Usp-bA-DSB" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2184.375" y="-120.11718749999999"/>
+            <point key="canvasLocation" x="2184" y="-263"/>
         </scene>
         <!--Credits View Controller-->
         <scene sceneID="sMW-Wp-tAb">
@@ -329,7 +323,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Y3z-qN-xTN" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2184.375" y="942.77343749999989"/>
+            <point key="canvasLocation" x="2198" y="1167"/>
         </scene>
         <!--Links View Controller-->
         <scene sceneID="Kyb-Oq-CeL">
@@ -386,7 +380,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RJA-k2-Tf2" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2184.375" y="-659.765625"/>
+            <point key="canvasLocation" x="2184" y="-956"/>
         </scene>
         <!--Auto Pilot View Controller-->
         <scene sceneID="V9c-nT-1wb">
@@ -410,7 +404,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0O6-Cr-PMU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3185" y="-817"/>
+            <point key="canvasLocation" x="3101" y="-956"/>
         </scene>
         <!--Game Center Challenges-->
         <scene sceneID="LV3-UU-Cyh">
@@ -446,7 +440,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="h71-Fz-EdV" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3100.78125" y="-116.60156249999999"/>
+            <point key="canvasLocation" x="3101" y="-255"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
