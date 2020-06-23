@@ -54,13 +54,6 @@ static float DegreesToRadians(float degrees)
     return degrees * M_PI / 180;
 }
 
-#if 0 //###
-static float RadiansToDegrees(float radians)
-{
-    return radians * 180 / M_PI;
-}
-#endif
-
 // Setters and getters
 - (void)setFuelRemaining:(float)fuel
 {

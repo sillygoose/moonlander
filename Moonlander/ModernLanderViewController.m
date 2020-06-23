@@ -83,13 +83,6 @@
     [super viewDidDisappear:animated];
 }
 
-#if 0 //###
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
-{
-	return YES;
-}
-#endif
-
 - (void)enableFlightControls
 {
     [super enableFlightControls];

@@ -135,11 +135,4 @@
     [self.documentContent loadHTMLString:errorString baseURL:nil];
 }
 
-#if 0 //###
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
-{
-	return (interfaceOrientation == UIInterfaceOrientationLandscapeLeft || interfaceOrientation == UIInterfaceOrientationLandscapeRight);
-}
-#endif
-
 @end

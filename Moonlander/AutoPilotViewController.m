@@ -81,13 +81,6 @@
     [super viewDidDisappear:animated];
 }
 
-#if 0 //###
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
-{
-	return YES;
-}
-#endif
-
 - (void)initGame:(BOOL)splash
 {
     self.landerMessages.hidden = YES;
