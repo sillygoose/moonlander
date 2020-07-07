@@ -10,9 +10,11 @@
 
 #import "LanderMessage.h"
 
+//#define DEBUG
+
 // Add any custom debugging options
 #if defined(TARGET_IPHONE_SIMULATOR) && defined(DEBUG)
-//#define DEBUG_SHORT_DELAYS
+//#define DEBUG_SHORT_DELAYS # -- NEEDS WORK
 //#define DEBUG_NO_SPLASH
 //#define DEBUG_EXTRA_INSTRUMENTS
 //#define DEBUG_GRAB_EMPTY_SCREEN
@@ -109,7 +111,7 @@ const float RollButtonRepeatInterval = 0.20;        // Timer value for roll butt
 
 - (float)getDelay:(MoonlanderDelay)delayItem
 {
-#if defined(DEBUG) && defined(DEBUG_SHORT_DELAYS)
+#if defined(DEBUG_SHORT_DELAYS)
     static float Delays[DelayLast][2] = {
         {  0.0,  0.0 },   // DelayZero
         {  2.0,  2.0 },   // DelaySplashScreen

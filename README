@@ -3,6 +3,9 @@ Moonlander, the classic 1973 video game for the DEC GT40
 
 History
 =======
+4.0.6               Basic KW GT40 Mono font support
+                    Game Center code removed (not supported by new Developer account)
+
 4.0.2               Lazarus build
 
 2.1.2               Cleaned up and tested with iOS8
@@ -24,7 +27,9 @@ History
 
 Issues
 ======
-Italics not used where used in the original
+Italics not not yet completely implemented
+Update credits for KW fonts
+
 
 Credits
 =======

@@ -34,13 +34,13 @@
 		56173A12154661BB00380AB4 /* Icon-72@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 56173A0E154661BB00380AB4 /* Icon-72@2x.png */; };
 		5621703515392F1F0094122B /* Explosion.m in Sources */ = {isa = PBXBuildFile; fileRef = 5621703415392F1F0094122B /* Explosion.m */; };
 		5622049318253DC400D5F5BE /* Moonlander.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5622049218253DC400D5F5BE /* Moonlander.storyboard */; };
+		5623099324AE8CF600820D41 /* GT40 Mono Italic.otf in Resources */ = {isa = PBXBuildFile; fileRef = 5623099124AE8CF600820D41 /* GT40 Mono Italic.otf */; };
+		5623099424AE8CF600820D41 /* GT40 Mono.otf in Resources */ = {isa = PBXBuildFile; fileRef = 5623099224AE8CF600820D41 /* GT40 Mono.otf */; };
 		562B108A13841BAA00CC5C97 /* VGLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 562B108913841BAA00CC5C97 /* VGLabel.m */; };
 		562B108D13841D5A00CC5C97 /* LanderMessages.plist in Resources */ = {isa = PBXBuildFile; fileRef = 562B108C13841D5A00CC5C97 /* LanderMessages.plist */; };
 		562CB7BB137F3AE6003CB9B5 /* LargeLeftArrow.plist in Resources */ = {isa = PBXBuildFile; fileRef = 562CB7BA137F3AE6003CB9B5 /* LargeLeftArrow.plist */; };
 		562D6250154DC3CE00BD4EDD /* NavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 562D624F154DC3CE00BD4EDD /* NavigationController.m */; };
 		562F26A81417A22E0069169B /* Man.m in Sources */ = {isa = PBXBuildFile; fileRef = 562F26A71417A22E0069169B /* Man.m */; };
-		563F401B16A5C05D004F7FB6 /* GameCenterManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 563F401816A5C05D004F7FB6 /* GameCenterManager.m */; };
-		563F401E16A5C0A7004F7FB6 /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 563F401D16A5C0A7004F7FB6 /* GameKit.framework */; };
 		563F402616A5F3E8004F7FB6 /* moonlander.png in Resources */ = {isa = PBXBuildFile; fileRef = 563F402516A5F3E8004F7FB6 /* moonlander.png */; };
 		563F402816A5F7CD004F7FB6 /* gamecenter.png in Resources */ = {isa = PBXBuildFile; fileRef = 563F402716A5F7CD004F7FB6 /* gamecenter.png */; };
 		563F402D16A5FAB6004F7FB6 /* controls.png in Resources */ = {isa = PBXBuildFile; fileRef = 563F402916A5FAB6004F7FB6 /* controls.png */; };
@@ -160,6 +160,8 @@
 		5621703415392F1F0094122B /* Explosion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Explosion.m; sourceTree = "<group>"; };
 		5622049218253DC400D5F5BE /* Moonlander.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Moonlander.storyboard; sourceTree = "<group>"; };
 		5622933316701D2C0023E008 /* Moonlander-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Moonlander-Info.plist"; sourceTree = "<group>"; };
+		5623099124AE8CF600820D41 /* GT40 Mono Italic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "GT40 Mono Italic.otf"; sourceTree = "<group>"; };
+		5623099224AE8CF600820D41 /* GT40 Mono.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "GT40 Mono.otf"; sourceTree = "<group>"; };
 		562B108813841BAA00CC5C97 /* VGLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VGLabel.h; sourceTree = "<group>"; };
 		562B108913841BAA00CC5C97 /* VGLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VGLabel.m; sourceTree = "<group>"; };
 		562B108C13841D5A00CC5C97 /* LanderMessages.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = LanderMessages.plist; sourceTree = "<group>"; };
@@ -168,9 +170,6 @@
 		562D624F154DC3CE00BD4EDD /* NavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NavigationController.m; sourceTree = "<group>"; };
 		562F26A61417A22E0069169B /* Man.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Man.h; sourceTree = "<group>"; };
 		562F26A71417A22E0069169B /* Man.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Man.m; sourceTree = "<group>"; };
-		563F401716A5C05D004F7FB6 /* GameCenterManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameCenterManager.h; sourceTree = "<group>"; };
-		563F401816A5C05D004F7FB6 /* GameCenterManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameCenterManager.m; sourceTree = "<group>"; };
-		563F401D16A5C0A7004F7FB6 /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
 		563F401F16A5C116004F7FB6 /* Game Center Metadata */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "Game Center Metadata"; sourceTree = "<group>"; };
 		563F402516A5F3E8004F7FB6 /* moonlander.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = moonlander.png; sourceTree = "<group>"; };
 		563F402716A5F7CD004F7FB6 /* gamecenter.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = gamecenter.png; sourceTree = "<group>"; };
@@ -359,7 +358,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				56B2BD7618259D4600F43E30 /* libTestFlight.a in Frameworks */,
-				563F401E16A5C0A7004F7FB6 /* GameKit.framework in Frameworks */,
 				567386A61673B44C0069C1EA /* SystemConfiguration.framework in Frameworks */,
 				56DB82C716724C8C00C243A8 /* AVFoundation.framework in Frameworks */,
 				560FA0D0137991AD0017EE25 /* UIKit.framework in Frameworks */,
@@ -398,7 +396,6 @@
 			children = (
 				567386A51673B44C0069C1EA /* SystemConfiguration.framework */,
 				560FA0CF137991AD0017EE25 /* UIKit.framework */,
-				563F401D16A5C0A7004F7FB6 /* GameKit.framework */,
 				560FA0D1137991AD0017EE25 /* Foundation.framework */,
 				560FA0D3137991AD0017EE25 /* CoreGraphics.framework */,
 				56DB82C616724C8C00C243A8 /* AVFoundation.framework */,
@@ -435,7 +432,6 @@
 				567CD473154853D800797BD1 /* Classes */,
 				560FA10D1379923D0017EE25 /* Lander Model */,
 				5695F1A9137F52B50075CD26 /* Vector Graphics */,
-				563F401616A5C05D004F7FB6 /* Game Center */,
 				56D6C7CD16435290001C2344 /* TestFlight */,
 				560FA13B1379C3900017EE25 /* Resources */,
 				560FA0D6137991AE0017EE25 /* Supporting Files */,
@@ -547,15 +543,6 @@
 				562B108C13841D5A00CC5C97 /* LanderMessages.plist */,
 			);
 			path = plist;
-			sourceTree = "<group>";
-		};
-		563F401616A5C05D004F7FB6 /* Game Center */ = {
-			isa = PBXGroup;
-			children = (
-				563F401716A5C05D004F7FB6 /* GameCenterManager.h */,
-				563F401816A5C05D004F7FB6 /* GameCenterManager.m */,
-			);
-			path = "Game Center";
 			sourceTree = "<group>";
 		};
 		563F403316A5FB40004F7FB6 /* acorn */ = {
@@ -722,6 +709,8 @@
 		56CB094A1548E63000973CBE /* fonts */ = {
 			isa = PBXGroup;
 			children = (
+				5623099124AE8CF600820D41 /* GT40 Mono Italic.otf */,
+				5623099224AE8CF600820D41 /* GT40 Mono.otf */,
 				56E07CF31674F9CA009C847B /* Vectorb.ttf */,
 			);
 			path = fonts;
@@ -954,7 +943,7 @@
 				ORGANIZATIONNAME = "Paradigm Systems";
 				TargetAttributes = {
 					560FA0CA137991AD0017EE25 = {
-						DevelopmentTeam = WN33N2QYLE;
+						DevelopmentTeam = HCFAA55RSK;
 					};
 				};
 			};
@@ -1008,6 +997,7 @@
 				56173A11154661BB00380AB4 /* Icon-72.png in Resources */,
 				56173A12154661BB00380AB4 /* Icon-72@2x.png in Resources */,
 				5604B7F21828581C002ABB0F /* Icon-Spotlight-iOS7@2x.png in Resources */,
+				5623099324AE8CF600820D41 /* GT40 Mono Italic.otf in Resources */,
 				56F369CA17C7F10100A478FB /* Game-Center-iOS-7-256.png in Resources */,
 				56EF5137154E59A3001E7B77 /* Default-Landscape~ipad.png in Resources */,
 				5604B7E4182857F2002ABB0F /* iTunesArtwork@2x in Resources */,
@@ -1026,6 +1016,7 @@
 				56DFB17B166FF2610076F4DC /* beep-low.caf in Resources */,
 				56B2BD841826E91100F43E30 /* AppIcon.acorn in Resources */,
 				56B2BD821825FAEA00F43E30 /* Icon-76@2x.png in Resources */,
+				5623099424AE8CF600820D41 /* GT40 Mono.otf in Resources */,
 				56DFB17C166FF2610076F4DC /* beep-med.caf in Resources */,
 				56DFB17D166FF2610076F4DC /* beep.caf in Resources */,
 				5604B7F41828581C002ABB0F /* Icon@2x.png in Resources */,
@@ -1099,7 +1090,6 @@
 				56DB5F7B16716E02000CB72A /* AutoPilotViewController+Autopilot.m in Sources */,
 				56DB830B1672B64C00C243A8 /* MenuViewController.m in Sources */,
 				567386A41673B3C10069C1EA /* Reachability.m in Sources */,
-				563F401B16A5C05D004F7FB6 /* GameCenterManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1229,6 +1219,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				CURRENT_PROJECT_VERSION = lazarus;
+				DEVELOPMENT_TEAM = HCFAA55RSK;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
@@ -1245,8 +1236,8 @@
 					"$(inherited)",
 					"/\"$(SRCROOT)/Moonlander/TestFlight\"",
 				);
-				MARKETING_VERSION = 4.0.4;
-				PRODUCT_BUNDLE_IDENTIFIER = com.devtools.moonlander;
+				MARKETING_VERSION = 4.0.6;
+				PRODUCT_BUNDLE_IDENTIFIER = com.sillygoose.moonlander;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 2;
@@ -1263,6 +1254,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
 				CURRENT_PROJECT_VERSION = lazarus;
+				DEVELOPMENT_TEAM = HCFAA55RSK;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
@@ -1278,8 +1270,8 @@
 					"$(inherited)",
 					"/\"$(SRCROOT)/Moonlander/TestFlight\"",
 				);
-				MARKETING_VERSION = 4.0.4;
-				PRODUCT_BUNDLE_IDENTIFIER = com.devtools.moonlander;
+				MARKETING_VERSION = 4.0.6;
+				PRODUCT_BUNDLE_IDENTIFIER = com.sillygoose.moonlander;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";

@@ -35,7 +35,7 @@ const float VGBlinkInterval = 0.75;
         const CGFloat DefaultAlpha = 1.0;
         self.viewColor = [[UIColor alloc] initWithRed:DefaultRed green:DefaultGreen blue:DefaultBlue alpha:DefaultAlpha];
         self.fontSize = 14;
-        self.viewFont = [UIFont fontWithName:@"Courier-Bold" size:self.fontSize];
+        self.viewFont = [UIFont fontWithName:@"GT40 Mono" size:self.fontSize];
         
         self.actualBounds = CGRectMake(FLT_MAX, FLT_MAX, -FLT_MAX, -FLT_MAX);
         self.vectorName = @"[VGView initWithFrame]";
@@ -78,7 +78,7 @@ const float VGBlinkInterval = 0.75;
     CGContextSetShouldAntialias(context, YES);
     CGContextSetAllowsAntialiasing(context, YES);
     
-    CGFontRef fontRef = CGFontCreateWithFontName((CFStringRef)@"Courier");
+    CGFontRef fontRef = CGFontCreateWithFontName((CFStringRef)@"GT40 Mono");
     CGContextSetFont(context, fontRef);
     CGContextSetFontSize(context, self.fontSize);
     

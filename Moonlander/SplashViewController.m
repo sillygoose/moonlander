@@ -10,6 +10,7 @@
 
 #import <AVFoundation/AVFoundation.h>
 
+//#define DEBUG_SKIPSPLASH
 
 @interface SplashViewController ()
 
@@ -62,7 +63,7 @@
 {
     [super viewWillAppear:animated];
 
-#ifdef DEBUG
+#ifdef DEBUG_SKIPSPLASH
     [self performSelector:@selector(dismissSplashScreen) withObject:nil afterDelay:0];
 #else
     const float SplashScreenDelay = 3.0;

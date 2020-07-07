@@ -832,6 +832,8 @@
 					<dict>
 						<key>intensity</key>
 						<integer>6</integer>
+						<key>italics</key>
+						<true/>
 						<key>text</key>
 						<string>THAT&apos;S ONE SMALL STEP FOR A MAN, ONE GIANT LEAP FOR MANKIND.</string>
 					</dict>
@@ -1048,6 +1050,8 @@
 					<dict>
 						<key>intensity</key>
 						<integer>6</integer>
+						<key>italics</key>
+						<true/>
 						<key>text</key>
 						<string>TWO CHEESEBURGERS AND A BIG MAC TO GO.</string>
 					</dict>

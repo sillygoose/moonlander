@@ -41,7 +41,7 @@
         CGRect noRect = CGRectMake(fiveEights * frameRect.size.width, fiveEights * frameRect.size.height, ButtonWidth, ButtonHeight);
         
         // Font info
-        UIFont *fontInfo = [UIFont fontWithName:@"Courier-Bold" size:16.0f];
+        UIFont *fontInfo = [UIFont fontWithName:@"GT40 Mono" size:16.0f];
         
         // Button font/background colors
         UIColor *buttonText = [UIColor blackColor];

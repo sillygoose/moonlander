@@ -68,7 +68,8 @@
 	<key>UIAppFonts</key>
 	<array>
 		<string>Vectorb.ttf</string>
-		<string>Teleprinter-Bold.ttf</string>
+		<string>GT40 Mono</string>
+		<string>GT40 Mono Italic</string>
 	</array>
 	<key>UILaunchImages~ipad</key>
 	<array>
@@ -95,10 +96,6 @@
 	</array>
 	<key>UIMainStoryboardFile~ipad</key>
 	<string>Moonlander</string>
-	<key>UIRequiredDeviceCapabilities</key>
-	<array>
-		<string>gamekit</string>
-	</array>
 	<key>UIStatusBarHidden</key>
 	<true/>
 	<key>UIStatusBarHidden~ipad</key>
