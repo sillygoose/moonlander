@@ -16,6 +16,7 @@
     UIColor                     *_textColor;
     NSTextAlignment             _textAlignment;
 
+    BOOL                       _italics;
     short                       _intensity;
     BOOL                        _blink;
 }
@@ -26,6 +27,7 @@
 @property (nonatomic) NSTextAlignment textAlignment;
 
 @property (nonatomic) short intensity;
+@property (nonatomic) BOOL italics;
 @property (nonatomic) BOOL blink;
 
 

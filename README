@@ -3,6 +3,8 @@ Moonlander, the classic 1973 video game for the DEC GT40
 
 History
 =======
+4.0.7               Full italics support
+
 4.0.6               Basic KW GT40 Mono font support
                     Game Center code removed (not supported by new Developer account)
 
@@ -28,6 +30,7 @@ History
 Issues
 ======
 Italics not not yet completely implemented
+Fixed debug settings in LanderViewController
 
 
 Credits

@@ -68,8 +68,8 @@
 	<key>UIAppFonts</key>
 	<array>
 		<string>Vectorb.ttf</string>
-		<string>GT40 Mono</string>
-		<string>GT40 Mono Italic</string>
+		<string>GT40 Mono.otf</string>
+		<string>GT40 Mono Italic Alt.otf</string>
 	</array>
 	<key>UILaunchImages~ipad</key>
 	<array>

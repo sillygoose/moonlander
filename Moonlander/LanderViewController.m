@@ -588,9 +588,11 @@ const float RollButtonRepeatInterval = 0.20;        // Timer value for roll butt
     short instrumentID = (self.landerType == LanderTypeModern) ? 1 : 0;
     short instrumentY = (self.landerType == LanderTypeModern) ? 320 : 250;
     short instrumentYDelta = (self.landerType == LanderTypeModern) ? 27 : 22;;
-
-    self.heightData = [[Telemetry alloc] initWithFrame:CGRectMake(TelemetryXPos, (instrumentY - instrumentYDelta * instrumentID++), TelemetryXSize, TelemetryYSize)];
+    
+    short telemetryYPos = instrumentY - instrumentYDelta * instrumentID++;
+    self.heightData = [[Telemetry alloc] initWithFrame:CGRectMake(TelemetryXPos, telemetryYPos, TelemetryXSize, TelemetryYSize)];
     self.heightData.titleLabel.text = @"HEIGHT";
+    self.heightData.titleLabel.italics = YES;
     self.heightData.format = @"%6d %@";
     self.heightData.data = [^{ return weakSelf.RADARY;} copy];
 	[self.heightData addTarget:self 
@@ -600,8 +602,10 @@ const float RollButtonRepeatInterval = 0.20;        // Timer value for roll butt
     self.heightData.titleLabel.vectorName = @"heightData";
     [self.view addSubview:self.heightData];
     
-    self.altitudeData = [[Telemetry alloc] initWithFrame:CGRectMake(TelemetryXPos, (instrumentY - instrumentYDelta * instrumentID++), TelemetryXSize, TelemetryYSize)];
+    telemetryYPos = instrumentY - instrumentYDelta * instrumentID++;
+    self.altitudeData = [[Telemetry alloc] initWithFrame:CGRectMake(TelemetryXPos, telemetryYPos, TelemetryXSize, TelemetryYSize)];
     self.altitudeData.titleLabel.text = @"ALTITUDE";
+    self.altitudeData.titleLabel.italics = YES;
     self.altitudeData.format = @"%6d %@";
     self.altitudeData.data = [^{ return weakSelf.VERDIS;} copy];
 	[self.altitudeData addTarget:self 
@@ -611,8 +615,10 @@ const float RollButtonRepeatInterval = 0.20;        // Timer value for roll butt
     self.altitudeData.titleLabel.vectorName = @"altitudeData";
     [self.view addSubview:self.altitudeData];
     
-    self.distanceData = [[Telemetry alloc] initWithFrame:CGRectMake(TelemetryXPos, (instrumentY - instrumentYDelta * instrumentID++), TelemetryXSize, TelemetryYSize)];
+    telemetryYPos = instrumentY - instrumentYDelta * instrumentID++;
+    self.distanceData = [[Telemetry alloc] initWithFrame:CGRectMake(TelemetryXPos, telemetryYPos, TelemetryXSize, TelemetryYSize)];
     self.distanceData.titleLabel.text = @"DISTANCE";
+    self.distanceData.titleLabel.italics = YES;
     self.distanceData.format = @"%6d %@";
     self.distanceData.data = [^{ return weakSelf.HORDIS;} copy];
 	[self.distanceData addTarget:self 
@@ -622,9 +628,10 @@ const float RollButtonRepeatInterval = 0.20;        // Timer value for roll butt
     self.distanceData.titleLabel.vectorName = @"distanceData";
     [self.view addSubview:self.distanceData];
     
-    
-    self.fuelLeftData = [[Telemetry alloc] initWithFrame:CGRectMake(TelemetryXPos, (instrumentY - instrumentYDelta * instrumentID++), TelemetryXSize, TelemetryYSize)];
+    telemetryYPos = instrumentY - instrumentYDelta * instrumentID++;
+    self.fuelLeftData = [[Telemetry alloc] initWithFrame:CGRectMake(TelemetryXPos, telemetryYPos, TelemetryXSize, TelemetryYSize)];
     self.fuelLeftData.titleLabel.text = @"FUEL LEFT";
+    self.fuelLeftData.titleLabel.italics = YES;
     self.fuelLeftData.format = @"%6d %@";
     self.fuelLeftData.data = [^{ return weakSelf.FUEL;} copy];
 	[self.fuelLeftData addTarget:self 
@@ -634,8 +641,10 @@ const float RollButtonRepeatInterval = 0.20;        // Timer value for roll butt
     self.fuelLeftData.titleLabel.vectorName = @"fuelLeftData";
     [self.view addSubview:self.fuelLeftData];
     
-    self.weightData = [[Telemetry alloc] initWithFrame:CGRectMake(TelemetryXPos, (instrumentY - instrumentYDelta * instrumentID++), TelemetryXSize, TelemetryYSize)];
+    telemetryYPos = instrumentY - instrumentYDelta * instrumentID++;
+    self.weightData = [[Telemetry alloc] initWithFrame:CGRectMake(TelemetryXPos, telemetryYPos, TelemetryXSize, TelemetryYSize)];
     self.weightData.titleLabel.text = @"WEIGHT";
+    self.weightData.titleLabel.italics = YES;
     self.weightData.format = @"%6d %@";
     self.weightData.data = [^{ return weakSelf.WEIGHT;} copy];
 	[self.weightData addTarget:self 
@@ -645,8 +654,10 @@ const float RollButtonRepeatInterval = 0.20;        // Timer value for roll butt
     self.weightData.titleLabel.vectorName = @"weightData";
     [self.view addSubview:self.weightData];
     
-    self.thrustData = [[Telemetry alloc] initWithFrame:CGRectMake(TelemetryXPos, (instrumentY - instrumentYDelta * instrumentID++), TelemetryXSize, TelemetryYSize)];
+    telemetryYPos = instrumentY - instrumentYDelta * instrumentID++;
+    self.thrustData = [[Telemetry alloc] initWithFrame:CGRectMake(TelemetryXPos, telemetryYPos, TelemetryXSize, TelemetryYSize)];
     self.thrustData.titleLabel.text = @"THRUST";
+    self.thrustData.titleLabel.italics = YES;
     self.thrustData.format = @"%6d %@";
     self.thrustData.data = [^{ return weakSelf.THRUST;} copy];
 	[self.thrustData addTarget:self 
@@ -656,8 +667,10 @@ const float RollButtonRepeatInterval = 0.20;        // Timer value for roll butt
     self.thrustData.titleLabel.vectorName = @"thrustData";
     [self.view addSubview:self.thrustData];
     
-    self.thrustAngleData = [[Telemetry alloc] initWithFrame:CGRectMake(TelemetryXPos, (instrumentY - instrumentYDelta * instrumentID++), TelemetryXSize, TelemetryYSize)];
+    telemetryYPos = instrumentY - instrumentYDelta * instrumentID++;
+    self.thrustAngleData = [[Telemetry alloc] initWithFrame:CGRectMake(TelemetryXPos, telemetryYPos, TelemetryXSize, TelemetryYSize)];
     self.thrustAngleData.titleLabel.text = @"ANGLE";
+    self.thrustAngleData.titleLabel.italics = YES;
     self.thrustAngleData.format = @"%6d %@";
     self.thrustAngleData.data = [^{ return weakSelf.ANGLED;} copy];
 	[self.thrustAngleData addTarget:self 
@@ -667,8 +680,10 @@ const float RollButtonRepeatInterval = 0.20;        // Timer value for roll butt
     self.thrustAngleData.titleLabel.vectorName = @"thrustAngleData";
     [self.view addSubview:self.thrustAngleData];
     
-    self.verticalVelocityData = [[Telemetry alloc] initWithFrame:CGRectMake(TelemetryXPos, (instrumentY - instrumentYDelta * instrumentID++), TelemetryXSize, TelemetryYSize)];
+    telemetryYPos = instrumentY - instrumentYDelta * instrumentID++;
+    self.verticalVelocityData = [[Telemetry alloc] initWithFrame:CGRectMake(TelemetryXPos, telemetryYPos, TelemetryXSize, TelemetryYSize)];
     self.verticalVelocityData.titleLabel.text = @"VER VEL";
+    self.verticalVelocityData.titleLabel.italics = YES;
     self.verticalVelocityData.format = @"%6d %@";
     self.verticalVelocityData.data = [^{ return weakSelf.VERVEL;} copy];
 	[self.verticalVelocityData addTarget:self 
@@ -678,8 +693,10 @@ const float RollButtonRepeatInterval = 0.20;        // Timer value for roll butt
     self.verticalVelocityData.titleLabel.vectorName = @"verticalVelocityData";
     [self.view addSubview:self.verticalVelocityData];
     
-    self.horizontalVelocityData = [[Telemetry alloc] initWithFrame:CGRectMake(TelemetryXPos, (instrumentY - instrumentYDelta * instrumentID++), TelemetryXSize, TelemetryYSize)];
+    telemetryYPos = instrumentY - instrumentYDelta * instrumentID++;
+    self.horizontalVelocityData = [[Telemetry alloc] initWithFrame:CGRectMake(TelemetryXPos, telemetryYPos, TelemetryXSize, TelemetryYSize)];
     self.horizontalVelocityData.titleLabel.text = @"HOR VEL";
+    self.horizontalVelocityData.titleLabel.italics = YES;
     self.horizontalVelocityData.format = @"%6d %@";
     self.horizontalVelocityData.data = [^{ return weakSelf.HORVEL;} copy];
 	[self.horizontalVelocityData addTarget:self 
@@ -689,8 +706,10 @@ const float RollButtonRepeatInterval = 0.20;        // Timer value for roll butt
     self.horizontalVelocityData.titleLabel.vectorName = @"horizontalVelocityData";
     [self.view addSubview:self.horizontalVelocityData];
     
-    self.verticalAccelerationData = [[Telemetry alloc] initWithFrame:CGRectMake(TelemetryXPos, (instrumentY - instrumentYDelta * instrumentID++), TelemetryXSize, TelemetryYSize)];
+    telemetryYPos = instrumentY - instrumentYDelta * instrumentID++;
+    self.verticalAccelerationData = [[Telemetry alloc] initWithFrame:CGRectMake(TelemetryXPos, telemetryYPos, TelemetryXSize, TelemetryYSize)];
     self.verticalAccelerationData.titleLabel.text = @"VER ACC";
+    self.verticalAccelerationData.titleLabel.italics = YES;
     self.verticalAccelerationData.format = @"%6d %@";
     self.verticalAccelerationData.data = [^{ return weakSelf.VERACC;} copy];
 	[self.verticalAccelerationData addTarget:self 
@@ -700,8 +719,10 @@ const float RollButtonRepeatInterval = 0.20;        // Timer value for roll butt
     self.verticalAccelerationData.titleLabel.vectorName = @"verticalAccelerationData";
     [self.view addSubview:self.verticalAccelerationData];
     
-    self.horizontalAccelerationData = [[Telemetry alloc] initWithFrame:CGRectMake(TelemetryXPos, (instrumentY - instrumentYDelta * instrumentID++), TelemetryXSize, TelemetryYSize)];
+    telemetryYPos = instrumentY - instrumentYDelta * instrumentID++;
+    self.horizontalAccelerationData = [[Telemetry alloc] initWithFrame:CGRectMake(TelemetryXPos, telemetryYPos, TelemetryXSize, TelemetryYSize)];
     self.horizontalAccelerationData.titleLabel.text = @"HOR ACC";
+    self.horizontalAccelerationData.titleLabel.italics = YES;
     self.horizontalAccelerationData.format = @"%6d %@";
     self.horizontalAccelerationData.data = [^{ return weakSelf.HORACC;} copy];
 	[self.horizontalAccelerationData addTarget:self 
@@ -711,8 +732,10 @@ const float RollButtonRepeatInterval = 0.20;        // Timer value for roll butt
     self.horizontalAccelerationData.titleLabel.vectorName = @"horizontalAccelerationData";
     [self.view addSubview:self.horizontalAccelerationData];
     
-    self.secondsData = [[Telemetry alloc] initWithFrame:CGRectMake(TelemetryXPos, (instrumentY - instrumentYDelta * instrumentID++), TelemetryXSize, TelemetryYSize)];
+    telemetryYPos = instrumentY - instrumentYDelta * instrumentID++;
+    self.secondsData = [[Telemetry alloc] initWithFrame:CGRectMake(TelemetryXPos, telemetryYPos, TelemetryXSize, TelemetryYSize)];
     self.secondsData.titleLabel.text = @"SECONDS";
+    self.secondsData.titleLabel.italics = YES;
     self.secondsData.format = @"%6d %@";
     self.secondsData.data =[^{ return (short)weakSelf.TIME;} copy];
 	[self.secondsData addTarget:self 
@@ -736,6 +759,7 @@ const float RollButtonRepeatInterval = 0.20;        // Timer value for roll butt
                          action:@selector(instrumentSelected:) 
                forControlEvents:UIControlEventTouchUpInside];
     self.instrument1.titleLabel.fontSize = self.gameFontSize;
+    self.instrument1.titleLabel.italics = YES;
     self.instrument1.titleLabel.vectorName = @"instrument1";
     [self.view addSubview:self.instrument1];
     
@@ -745,6 +769,7 @@ const float RollButtonRepeatInterval = 0.20;        // Timer value for roll butt
                          action:@selector(instrumentSelected:) 
                forControlEvents:UIControlEventTouchUpInside];
     self.instrument2.titleLabel.fontSize = self.gameFontSize;
+    self.instrument2.titleLabel.italics = YES;
     self.instrument2.titleLabel.vectorName = @"instrument2";
     [self.view addSubview:self.instrument2];
     
@@ -754,6 +779,7 @@ const float RollButtonRepeatInterval = 0.20;        // Timer value for roll butt
                          action:@selector(instrumentSelected:) 
                forControlEvents:UIControlEventTouchUpInside];
     self.instrument3.titleLabel.fontSize = self.gameFontSize;
+    self.instrument3.titleLabel.italics = YES;
     self.instrument3.titleLabel.vectorName = @"instrument3";
     [self.view addSubview:self.instrument3];
     
@@ -763,6 +789,7 @@ const float RollButtonRepeatInterval = 0.20;        // Timer value for roll butt
                          action:@selector(instrumentSelected:) 
                forControlEvents:UIControlEventTouchUpInside];
     self.instrument4.titleLabel.fontSize = self.gameFontSize;
+    self.instrument4.titleLabel.italics = YES;
     self.instrument4.titleLabel.vectorName = @"instrument4";
     [self.view addSubview:self.instrument4];
     

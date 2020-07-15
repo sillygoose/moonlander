@@ -13,21 +13,23 @@
 				<key>origin</key>
 				<dict>
 					<key>x</key>
-					<integer>900</integer>
+					<integer>920</integer>
 					<key>y</key>
-					<integer>210</integer>
+					<integer>250</integer>
 				</dict>
 				<key>size</key>
 				<dict>
 					<key>height</key>
-					<integer>40</integer>
+					<integer>24</integer>
 					<key>width</key>
-					<integer>200</integer>
+					<integer>100</integer>
 				</dict>
 			</dict>
 			<key>text</key>
 			<array>
 				<dict>
+					<key>italics</key>
+					<true/>
 					<key>text</key>
 					<string> HEIGHT </string>
 				</dict>
@@ -40,21 +42,23 @@
 				<key>origin</key>
 				<dict>
 					<key>x</key>
-					<integer>900</integer>
+					<integer>920</integer>
 					<key>y</key>
-					<integer>240</integer>
+					<integer>226</integer>
 				</dict>
 				<key>size</key>
 				<dict>
 					<key>height</key>
-					<integer>40</integer>
+					<integer>24</integer>
 					<key>width</key>
-					<integer>200</integer>
+					<integer>100</integer>
 				</dict>
 			</dict>
 			<key>text</key>
 			<array>
 				<dict>
+					<key>italics</key>
+					<true/>
 					<key>text</key>
 					<string> ALTITUDE </string>
 				</dict>
@@ -67,21 +71,23 @@
 				<key>origin</key>
 				<dict>
 					<key>x</key>
-					<integer>900</integer>
+					<integer>920</integer>
 					<key>y</key>
-					<integer>270</integer>
+					<integer>202</integer>
 				</dict>
 				<key>size</key>
 				<dict>
 					<key>height</key>
-					<integer>40</integer>
+					<integer>24</integer>
 					<key>width</key>
-					<integer>200</integer>
+					<integer>100</integer>
 				</dict>
 			</dict>
 			<key>text</key>
 			<array>
 				<dict>
+					<key>italics</key>
+					<true/>
 					<key>text</key>
 					<string> DISTANCE </string>
 				</dict>
@@ -109,6 +115,8 @@
 			<key>text</key>
 			<array>
 				<dict>
+					<key>italics</key>
+					<true/>
 					<key>text</key>
 					<string> FUEL LEFT</string>
 				</dict>
@@ -136,6 +144,8 @@
 			<key>text</key>
 			<array>
 				<dict>
+					<key>italics</key>
+					<true/>
 					<key>text</key>
 					<string> WEIGHT </string>
 				</dict>
@@ -163,6 +173,8 @@
 			<key>text</key>
 			<array>
 				<dict>
+					<key>italics</key>
+					<true/>
 					<key>text</key>
 					<string> THRUST </string>
 				</dict>
@@ -190,6 +202,8 @@
 			<key>text</key>
 			<array>
 				<dict>
+					<key>italics</key>
+					<true/>
 					<key>text</key>
 					<string>  ANGLE </string>
 				</dict>
@@ -217,6 +231,8 @@
 			<key>text</key>
 			<array>
 				<dict>
+					<key>italics</key>
+					<true/>
 					<key>text</key>
 					<string> VER VEL</string>
 				</dict>
@@ -244,6 +260,8 @@
 			<key>text</key>
 			<array>
 				<dict>
+					<key>italics</key>
+					<true/>
 					<key>text</key>
 					<string>  HOR VEL </string>
 				</dict>
@@ -271,6 +289,8 @@
 			<key>text</key>
 			<array>
 				<dict>
+					<key>italics</key>
+					<true/>
 					<key>text</key>
 					<string> VER ACC</string>
 				</dict>
@@ -298,6 +318,8 @@
 			<key>text</key>
 			<array>
 				<dict>
+					<key>italics</key>
+					<true/>
 					<key>text</key>
 					<string> HOR ACC</string>
 				</dict>
@@ -325,6 +347,8 @@
 			<key>text</key>
 			<array>
 				<dict>
+					<key>italics</key>
+					<true/>
 					<key>text</key>
 					<string> SECONDS</string>
 				</dict>

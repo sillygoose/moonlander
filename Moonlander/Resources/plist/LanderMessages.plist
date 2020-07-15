@@ -109,6 +109,8 @@
 					<dict>
 						<key>intensity</key>
 						<integer>3</integer>
+						<key>italics</key>
+						<false/>
 						<key>text</key>
 						<string>            R T - 1 1  L U N A R  L A N D E R</string>
 					</dict>
@@ -170,6 +172,8 @@
 					<dict>
 						<key>intensity</key>
 						<integer>3</integer>
+						<key>italics</key>
+						<false/>
 						<key>text</key>
 						<string>            R T - 1 1  L U N A R  L A N D E R</string>
 					</dict>
@@ -237,6 +241,8 @@
 					<dict>
 						<key>intensity</key>
 						<integer>6</integer>
+						<key>italics</key>
+						<false/>
 						<key>text</key>
 						<string>BUT THE TERRAIN IS TOO ROUGH, AND YOU TIPPED OVER</string>
 					</dict>
@@ -290,6 +296,8 @@
 					<dict>
 						<key>intensity</key>
 						<integer>6</integer>
+						<key>italics</key>
+						<false/>
 						<key>text</key>
 						<string>THE LANDING WAS TOO FAST AND DAMAGE WAS DONE TO THE SHIP</string>
 					</dict>
@@ -321,6 +329,8 @@
 					<dict>
 						<key>intensity</key>
 						<integer>6</integer>
+						<key>italics</key>
+						<false/>
 						<key>blink</key>
 						<true/>
 						<key>text</key>
@@ -354,6 +364,8 @@
 					<dict>
 						<key>intensity</key>
 						<integer>6</integer>
+						<key>italics</key>
+						<false/>
 						<key>text</key>
 						<string>BETTER START SLOWING IT UP PRETTY SOON</string>
 					</dict>
@@ -385,6 +397,8 @@
 					<dict>
 						<key>intensity</key>
 						<integer>6</integer>
+						<key>italics</key>
+						<false/>
 						<key>text</key>
 						<string>BUT THE HORIZONTAL VELOCITY WAS TOO GREAT, AND YOU CRASHED ANYWAY</string>
 					</dict>
@@ -438,6 +452,8 @@
 					<dict>
 						<key>intensity</key>
 						<integer>4</integer>
+						<key>italics</key>
+						<false/>
 						<key>blink</key>
 						<true/>
 						<key>text</key>
@@ -471,6 +487,8 @@
 					<dict>
 						<key>intensity</key>
 						<integer>6</integer>
+						<key>italics</key>
+						<false/>
 						<key>text</key>
 						<string>CONGRATULATIONS ON A GOOD LANDING</string>
 					</dict>
@@ -502,6 +520,8 @@
 					<dict>
 						<key>intensity</key>
 						<integer>6</integer>
+						<key>italics</key>
+						<false/>
 						<key>text</key>
 						<string>FANTASTIC, A PERFECT LANDING</string>
 					</dict>
@@ -533,6 +553,8 @@
 					<dict>
 						<key>intensity</key>
 						<integer>6</integer>
+						<key>italics</key>
+						<false/>
 						<key>text</key>
 						<string>NICE WORK. YOU JUST CRASHED INTO A PREVIOUSLY CRASHED SHIP</string>
 					</dict>
@@ -586,6 +608,8 @@
 					<dict>
 						<key>intensity</key>
 						<integer>6</integer>
+						<key>italics</key>
+						<false/>
 						<key>text</key>
 						<string>YOU JUST CRASHED ON TOP OF AN OLD LUNAR MODULE</string>
 					</dict>
@@ -639,6 +663,8 @@
 					<dict>
 						<key>intensity</key>
 						<integer>6</integer>
+						<key>italics</key>
+						<false/>
 						<key>text</key>
 						<string>Well you&apos;ve just destroyed the only MacDonald&apos;s</string>
 					</dict>
@@ -678,6 +704,8 @@
 					<dict>
 						<key>intensity</key>
 						<integer>6</integer>
+						<key>italics</key>
+						<false/>
 						<key>text</key>
 						<string>YOU HAVE JUST VAPORIZED A PREVIOUSLY PLANTED AMERICAN FLAG</string>
 					</dict>
@@ -709,6 +737,8 @@
 					<dict>
 						<key>intensity</key>
 						<integer>6</integer>
+						<key>italics</key>
+						<false/>
 						<key>text</key>
 						<string>YOU JUST CRASHED INTO THAT ROCK</string>
 					</dict>
@@ -762,6 +792,8 @@
 					<dict>
 						<key>intensity</key>
 						<integer>6</integer>
+						<key>italics</key>
+						<false/>
 						<key>text</key>
 						<string>BOY, ARE YOU</string>
 					</dict>
@@ -801,6 +833,8 @@
 					<dict>
 						<key>intensity</key>
 						<integer>6</integer>
+						<key>italics</key>
+						<false/>
 						<key>text</key>
 						<string>TAKE IT NICE AND EASY. A PERFECT LANDING IS UNDER 8 FPS</string>
 					</dict>
@@ -865,6 +899,8 @@
 					<dict>
 						<key>intensity</key>
 						<integer>6</integer>
+						<key>italics</key>
+						<false/>
 						<key>text</key>
 						<string>  YOU HAVE JUST CRASHED</string>
 					</dict>
@@ -902,6 +938,8 @@
 					<dict>
 						<key>intensity</key>
 						<integer>6</integer>
+						<key>italics</key>
+						<false/>
 						<key>text</key>
 						<string>THE LANDING WAS A LITTLE FAST</string>
 					</dict>
@@ -933,6 +971,8 @@
 					<dict>
 						<key>intensity</key>
 						<integer>6</integer>
+						<key>italics</key>
+						<false/>
 						<key>text</key>
 						<string>BUT THE ANGLE WAS TOO GREAT AND THE SHIP TIPPED OVER</string>
 					</dict>
@@ -986,6 +1026,8 @@
 					<dict>
 						<key>intensity</key>
 						<integer>6</integer>
+						<key>italics</key>
+						<false/>
 						<key>text</key>
 						<string>SORRY, BUT WHEN YOU LOSE TV COVERAGE, YOU ALSO LOSE YOUR FUEL</string>
 					</dict>
@@ -1017,6 +1059,8 @@
 					<dict>
 						<key>intensity</key>
 						<integer>7</integer>
+						<key>italics</key>
+						<false/>
 						<key>blink</key>
 						<true/>
 						<key>text</key>

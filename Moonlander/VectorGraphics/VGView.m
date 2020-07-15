@@ -35,8 +35,9 @@ const float VGBlinkInterval = 0.75;
         const CGFloat DefaultAlpha = 1.0;
         self.viewColor = [[UIColor alloc] initWithRed:DefaultRed green:DefaultGreen blue:DefaultBlue alpha:DefaultAlpha];
         self.fontSize = 14;
-        self.viewFont = [UIFont fontWithName:@"GT40 Mono" size:self.fontSize];
-        
+        self.viewFontNormal = [UIFont fontWithName:@"GT40 Mono" size:self.fontSize];
+        self.viewFontItalic = [UIFont fontWithName:@"GT40 Mono Italic" size:self.fontSize];
+
         self.actualBounds = CGRectMake(FLT_MAX, FLT_MAX, -FLT_MAX, -FLT_MAX);
         self.vectorName = @"[VGView initWithFrame]";
     }
@@ -90,8 +91,12 @@ const float VGBlinkInterval = 0.75;
     CGContextSetShouldSmoothFonts(context, YES);
     
     // Font setup
-    NSDictionary *normalTextAttributes = [NSDictionary dictionaryWithObjectsAndKeys:self.viewFont, NSFontAttributeName, self.viewColor, NSForegroundColorAttributeName, nil];
-    NSDictionary *blinkTextAttributes = [NSDictionary dictionaryWithObjectsAndKeys:self.viewFont, NSFontAttributeName, [UIColor clearColor], NSForegroundColorAttributeName, nil];
+    NSDictionary *normalTextAttributes = [NSDictionary dictionaryWithObjectsAndKeys:self.viewFontNormal, NSFontAttributeName, self.viewColor, NSForegroundColorAttributeName, nil];
+    NSDictionary *italicsTextAttributes = [NSDictionary dictionaryWithObjectsAndKeys:self.viewFontItalic, NSFontAttributeName, self.viewColor, NSForegroundColorAttributeName, nil];
+    NSDictionary *blinkTextAttributes = [NSDictionary dictionaryWithObjectsAndKeys:self.viewFontNormal, NSFontAttributeName, [UIColor clearColor], NSForegroundColorAttributeName, nil];
+    
+    // This is the current font attributes
+    NSDictionary *currentTextAttributes = normalTextAttributes;
 
     NSEnumerator *vectorEnumerator = [arrayOfVectors objectEnumerator];
     NSDictionary *currentVector;
@@ -185,6 +190,24 @@ const float VGBlinkInterval = 0.75;
             CGContextSetAlpha(context, Intensities[intensityLevel % (sizeof(Intensities)/sizeof(Intensities[0]))]);
             CGContextMoveToPoint(context, prevPoint.x, prevPoint.y);
         }
+        
+#if 1
+        // "italics" is used to set the font attributes
+        if ([currentVector objectForKey:@"italics"]) {
+            BOOL italics = [[currentVector objectForKey:@"italics"] boolValue];
+            if (italics) {
+                currentTextAttributes = italicsTextAttributes;
+            }
+        }
+        
+        // "normal" is used to set the font attributes
+        if ([currentVector objectForKey:@"normal"]) {
+            BOOL normal = [[currentVector objectForKey:@"normal"] boolValue];
+            if (normal) {
+                currentTextAttributes = normalTextAttributes;
+            }
+        }
+#endif
         
         // "textmode" is used to set the text drawing mode
         if ([currentVector objectForKey:@"mode"]) {
@@ -366,7 +389,7 @@ const float VGBlinkInterval = 0.75;
                 CGContextSaveGState(context);
                 CGContextGetTextPosition(context);
                 CGContextSetTextDrawingMode(context, kCGTextInvisible);
-                [theText drawAtPoint:currentPosition withAttributes:normalTextAttributes];
+                [theText drawAtPoint:currentPosition withAttributes:currentTextAttributes];
                 CGContextRestoreGState(context);
                 CGPoint endPoint = CGContextGetTextPosition(context);
                 
@@ -381,7 +404,7 @@ const float VGBlinkInterval = 0.75;
                 CGContextSaveGState(context);
                 CGContextGetTextPosition(context);
                 CGContextSetTextDrawingMode(context, kCGTextInvisible);
-                [theText drawAtPoint:currentPosition withAttributes:normalTextAttributes];
+                [theText drawAtPoint:currentPosition withAttributes:currentTextAttributes];
                 CGContextRestoreGState(context);
                 CGPoint endPoint = CGContextGetTextPosition(context);
                 
@@ -397,13 +420,13 @@ const float VGBlinkInterval = 0.75;
             CGContextTranslateCTM(context, 0, self.bounds.size.height);
             CGContextScaleCTM(context, 1.0, -1.0);
             CGSize size = CGSizeMake(self.bounds.size.width, self.bounds.size.height);
-            CGRect boundingRect = [theText boundingRectWithSize:size options:NSStringDrawingTruncatesLastVisibleLine attributes:normalTextAttributes context:nil];
+            CGRect boundingRect = [theText boundingRectWithSize:size options:NSStringDrawingTruncatesLastVisibleLine attributes:currentTextAttributes context:nil];
 
             // We do this only if blinking is requested
             if (doBlink) {
                 if (self.blinkOn) {
                     // Draw normally this cycle
-                    [theText drawAtPoint:currentPosition withAttributes:normalTextAttributes];
+                    [theText drawAtPoint:currentPosition withAttributes:currentTextAttributes];
                 }
                 else {
                     // Draw with clear/invisible attributes
@@ -411,7 +434,7 @@ const float VGBlinkInterval = 0.75;
                 }
             }
             else {
-                [theText drawAtPoint:currentPosition withAttributes:normalTextAttributes];
+                [theText drawAtPoint:currentPosition withAttributes:currentTextAttributes];
             }
             //NSLog(@"Drawing text at %@", NSStringFromCGPoint(currentPosition));
 

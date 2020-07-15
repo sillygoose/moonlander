@@ -16,15 +16,17 @@
 @synthesize textAlignment=_textAlignment;
 
 @synthesize intensity=_intensity;
+@synthesize italics=_italics;
 @synthesize blink=_blink;
 
 - (id)initWithFrame:(CGRect)frameRect
 {
     self = [super initWithFrame:frameRect];
     if (self) {
-        // Defaults are full intensity and align text left
+        // Defaults are no italics, full intensity, and align text left
         _textAlignment = NSTextAlignmentLeft;
         _intensity = 7;
+        _italics = NO;
         
         // For debugging purposes
 #ifdef DEBUG
@@ -42,10 +44,11 @@
     // Blink state and text alignment
     NSNumber *textAlign = [NSNumber numberWithInt:(int)self.textAlignment];
     NSNumber *intensity = [NSNumber numberWithInt:self.intensity];
+    NSNumber *italics = [NSNumber numberWithBool:self.italics];
     NSNumber *blinkState = (self.blink) ? [NSNumber numberWithBool:self.blink] : nil;
-    
+
     // Build the draw dictionary (blinkState is nil will terminate the list early)
-    NSDictionary *drawDict = [NSDictionary dictionaryWithObjectsAndKeys:self.text, @"text", textAlign, @"alignment", intensity, @"intensity", blinkState, @"blink", nil];
+    NSDictionary *drawDict = [NSDictionary dictionaryWithObjectsAndKeys:self.text, @"text", textAlign, @"alignment", italics, @"italics", intensity, @"intensity", blinkState, @"blink", nil];
     NSDictionary *nameDict = (self.vectorName) ? [NSDictionary dictionaryWithObjectsAndKeys:self.vectorName, @"name", nil] : nil;
     NSArray *path = [NSArray arrayWithObjects:drawDict, nameDict, nil];
     NSArray *paths = [NSArray arrayWithObject:path];
@@ -57,6 +60,12 @@
 - (void)setBlink:(BOOL)blinkType
 {
     _blink = blinkType;
+    [self updateDrawingDictionary];
+}
+
+- (void)setItalics:(BOOL)italics
+{
+    _italics = italics;
     [self updateDrawingDictionary];
 }
 
